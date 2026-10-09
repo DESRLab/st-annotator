@@ -1,0 +1,27 @@
+name: Publish release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash -el {0}
+
+jobs:
+  docs:
+    name: Publish documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup
+      - name: Generate documentation
+        run: bash scripts/doc.sh
+      - name: Deploy documentation to GitHub Pages
+        run: python -m mkdocs gh-deploy --dirty --force

@@ -1,0 +1,24 @@
+ignores:
+  # Type annotations
+  - '@types/*'
+  # Test related
+  - 'depcheck'
+  - 'typescript'
+  - 'eslint'
+  - 'eslint-*'
+  - 'vitest'
+  - '@vitest/*'
+  - 'jsdom'
+  # Docs related
+  - 'typedoc'
+  - 'typedoc-*'
+
+ignore-files:
+  - eslint.config.mjs
+
+ignore-dirs:
+  - dist
+  - coverage
+
+specials:
+  - eslint

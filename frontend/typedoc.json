@@ -1,0 +1,37 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": [
+        "./client/index.ts",
+        "./lib/common/spatial/index.js",
+        "./lib/common/widgets/index.js",
+        "./lib/common/utils/index.js",
+        "./lib/common/testing/index.js",
+        "./lib/services/account/lib/index.js",
+        "./lib/services/auth/lib/index.js",
+        "./lib/services/editor/lib/base/index.js",
+        "./lib/services/editor/lib/base/widgets/pane/index.js",
+        "./lib/services/editor/lib/core/index.js",
+        "./lib/services/editor/lib/testing/index.js",
+        "./lib/services/editor/static/index.js",
+        "./lib/services/label/lib/index.js",
+        "./lib/services/project/lib/index.js",
+        "./lib/services/source/lib/index.js",
+    ],
+    "out": "docs/_build",
+    "name": "JavaScript API",
+    "readme": "docs/index.md",
+    "customCss": "docs/_static/material.css",
+    "jsDocCompatibility": true,
+    "sortEntryPoints": false,
+    "sidebarLinks": {
+        "← API Reference": "/api/"
+    },
+    "plugin": [
+        "typedoc-plugin-extras",
+        "typedoc-plugin-mdn-links",
+        "typedoc-plugin-zod"
+    ],
+    "favicon": "docs/_static/favicon.ico",
+    "customTitle": "⭐ JavaScript API",
+    "footerTypedocVersion": true
+}

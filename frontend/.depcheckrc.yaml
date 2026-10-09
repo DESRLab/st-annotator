@@ -1,0 +1,33 @@
+ignores:
+  # Type annotations
+  - '@types/*'
+  - 'ts-essentials'
+  # Imported in HTML
+  - '@fortawesome/*'
+  - bootstrap
+  - 'font-*'
+  # Test related
+  - 'depcheck'
+  - 'typescript'
+  - 'eslint'
+  - 'eslint-*'
+  - 'vitest'
+  - '@vitest/*'
+  - 'jsdom'
+  # Docs related
+  - 'typedoc'
+  - 'typedoc-*'
+  # Automatically installed
+  - '@react-router/node'
+  - autoprefixer
+  - isbot
+
+ignore-files:
+  - eslint.config.mjs
+
+ignore-dirs:
+  - dist
+  - coverage
+
+specials:
+  - eslint

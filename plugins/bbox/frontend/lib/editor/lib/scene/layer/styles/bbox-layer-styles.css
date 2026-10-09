@@ -1,0 +1,52 @@
+.cursor-all-scroll {
+    cursor: all-scroll;
+}
+
+.cursor-crosshair {
+    cursor: crosshair;
+}
+
+.cursor-cell {
+    cursor: cell;
+}
+
+.cursor-copy {
+    cursor: copy;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+.cursor-add-square {
+    cursor: url('../images/add_square.png') 32 32, cell;
+}
+
+.cursor-arrow-square {
+    cursor: url('../images/arrow_square.png') 32 32, cell;
+}
+
+.cursor-add-circle {
+    cursor: url('../images/add_circle.png') 32 32, cell;
+}
+
+.cursor-arrow-circle {
+    cursor: url('../images/arrow_circle.png') 32 32, cell;
+}
+
+.bbox-tooltip {
+    position: absolute;
+    text-align: center;
+
+    padding: 4px;
+    transform: translate(-50%, -100%) translateY(-12px);
+
+    font-size: 0.75em;
+
+    color: white;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 1px solid gray;
+
+    pointer-events: none;
+    touch-action: none;
+}

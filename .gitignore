@@ -1,0 +1,32 @@
+__pycache__/
+
+.nyc_output/
+build/
+coverage/
+dist/
+node_modules/
+
+.coverage
+.coverage.*
+coverage.xml
+
+.env
+.hypothesis/
+.nx/installation
+.nx/cache
+.pytest_cache/
+.webassets-cache/
+
+**/docs/_api_generated/
+**/docs/_build/
+/packages/**/python/js/dist
+/site/
+
+# Local data
+/experiments/data
+/data
+
+# For HTTPS certificate
+*.crt
+*.csr
+*.key

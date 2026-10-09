@@ -1,0 +1,43 @@
+from typing import ClassVar
+
+from sqlalchemy.sql.sqltypes import Integer, String, Text
+from sqlmodel import Field, SQLModel
+
+from ..base import OptimisticLockingSQLModel
+from ..types import Name
+
+
+class _SourceGroupBase(OptimisticLockingSQLModel):
+    name: Name = Field(sa_type=String(255), nullable=False, unique=True)
+    description: str = Field(sa_type=Text, nullable=False, default='')
+
+
+class SourceGroup(_SourceGroupBase, table=True):
+    __tablename__: ClassVar[str] = 'source_group'
+
+    id: int | None = Field(
+        default=None,
+        sa_type=Integer,
+        primary_key=True,
+        sa_column_kwargs={"autoincrement": True},
+    )
+
+
+class SourceGroupCreate(_SourceGroupBase):
+    pass
+
+
+class SourceGroupPublic(_SourceGroupBase):
+    id: int
+
+    def __hash__(self) -> int:
+        return hash(self.id)
+
+
+class SourceGroupUpdate(SQLModel):
+    name: Name | None = None
+    description: str | None = None
+
+
+class SourceGroupBulkUpdate(SQLModel):
+    description: str | None = None

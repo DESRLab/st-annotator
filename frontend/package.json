@@ -1,0 +1,222 @@
+{
+  "name": "sta",
+  "version": "5.0.0",
+  "description": "ST Annotator Frontend",
+  "keywords": [
+    "computer-vision",
+    "3d",
+    "spatiotemporal",
+    "spatio-temporal",
+    "spatial-temporal",
+    "annotation",
+    "annotation-tool",
+    "labeling",
+    "labeling-tool"
+  ],
+  "homepage": "https://github.com/DESRLab/st-annotator",
+  "bugs": {
+    "url": "https://github.com/DESRLab/st-annotator/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "DESRLab",
+  "contributors": [
+    "Cyrus Leung <tlleungac@connect.ust.hk>",
+    "Maral Bahari <mbahari@connect.ust.hk>"
+  ],
+  "directories": {
+    "doc": "docs"
+  },
+  "type": "module",
+  "types": "./dist/types",
+  "exports": {
+    "./client": {
+      "import": "./dist/lib/client.js",
+      "require": "./dist/lib/client.umd.cjs"
+    },
+    "./common/spatial": {
+      "import": "./dist/lib/common/spatial.js",
+      "require": "./dist/lib/common/spatial.umd.cjs"
+    },
+    "./common/widgets": {
+      "import": "./dist/lib/common/widgets.js",
+      "require": "./dist/lib/common/widgets.umd.cjs"
+    },
+    "./common/utils": {
+      "import": "./dist/lib/common/utils.js",
+      "require": "./dist/lib/common/utils.umd.cjs"
+    },
+    "./common/testing": {
+      "import": "./dist/lib/common/testing.js",
+      "require": "./dist/lib/common/testing.umd.cjs"
+    },
+    "./services/account": {
+      "import": "./dist/lib/services/account.js",
+      "require": "./dist/lib/services/account.umd.cjs"
+    },
+    "./services/auth": {
+      "import": "./dist/lib/services/auth.js",
+      "require": "./dist/lib/services/auth.umd.cjs"
+    },
+    "./services/editor/base": {
+      "import": "./dist/lib/services/editor/base.js",
+      "require": "./dist/lib/services/editor/base.umd.cjs"
+    },
+    "./services/editor/core": {
+      "import": "./dist/lib/services/editor/core.js",
+      "require": "./dist/lib/services/editor/core.umd.cjs"
+    },
+    "./services/editor/static": {
+      "import": "./dist/lib/services/editor/static.js",
+      "require": "./dist/lib/services/editor/static.umd.cjs"
+    },
+    "./services/editor/testing": {
+      "import": "./dist/lib/services/editor/testing.js",
+      "require": "./dist/lib/services/editor/testing.umd.cjs"
+    },
+    "./services/label": {
+      "import": "./dist/lib/services/label.js",
+      "require": "./dist/lib/services/label.umd.cjs"
+    },
+    "./services/project": {
+      "import": "./dist/lib/services/project.js",
+      "require": "./dist/lib/services/project.umd.cjs"
+    },
+    "./services/source": {
+      "import": "./dist/lib/services/source.js",
+      "require": "./dist/lib/services/source.umd.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "client": [
+        "./dist/types/client"
+      ],
+      "common/spatial": [
+        "./dist/types/lib/common/spatial"
+      ],
+      "common/widgets": [
+        "./dist/types/lib/common/widgets"
+      ],
+      "common/utils": [
+        "./dist/types/lib/common/utils"
+      ],
+      "common/testing": [
+        "./dist/types/lib/common/testing"
+      ],
+      "services/account": [
+        "./dist/types/services/account/lib"
+      ],
+      "services/auth": [
+        "./dist/types/services/auth/lib"
+      ],
+      "services/editor/base": [
+        "./dist/types/services/editor/lib/base"
+      ],
+      "services/editor/core": [
+        "./dist/types/services/editor/lib/core"
+      ],
+      "services/editor/testing": [
+        "./dist/types/services/editor/lib/testing"
+      ],
+      "services/editor/static": [
+        "./dist/types/services/editor/static"
+      ],
+      "services/label": [
+        "./dist/types/services/label/lib"
+      ],
+      "services/project": [
+        "./dist/types/services/project/lib"
+      ],
+      "services/source": [
+        "./dist/types/services/source/lib"
+      ]
+    }
+  },
+  "scripts": {
+    "openapi-ts": "openapi-ts",
+    "build": "cross-env NODE_ENV=production react-router build",
+    "dev": "react-router dev",
+    "start": "cross-env NODE_ENV=production react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@react-router/node": "^7.6.2",
+    "@react-router/serve": "^7.6.2",
+    "@rwh/keystrokes": "^1.5.4",
+    "@slickgrid-universal/common": "^10.7.0",
+    "@tweakpane/core": "^1.1.6",
+    "@tweakpane/plugin-essentials": "^0.1.8",
+    "@vitest/coverage-istanbul": "^1.4.0",
+    "async-await-queue": "^2.1.2",
+    "autoprefixer": "^10.4.14",
+    "bootstrap": "^5.2.6",
+    "chai": "^4.3.6",
+    "colormap": "^2.3.2",
+    "dataclass": "^2.1.1",
+    "decimal.js": "^10.4.3",
+    "fast-check": "^3.1.1",
+    "find-up": "^8.0.0",
+    "interactjs": "^1.10.18",
+    "isbot": "^5.1.17",
+    "jquery": "^3.6.0",
+    "js-yaml": "^4.1.1",
+    "jstree": "^3.3.14",
+    "lodash": "^4.18.1",
+    "lru-cache": "^7.12.0",
+    "mathjs": "^9.4.1",
+    "moment": "^2.30.1",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.6.2",
+    "slickgrid-react": "^10.4.0",
+    "three": "^0.159.0",
+    "tippy.js": "^6.3.7",
+    "ts-bidirectional-map": "^1.0.2",
+    "tweakpane": "^3.1.10",
+    "tweakpane-table": "^0.3.1",
+    "typescript-collections": "^1.3.3",
+    "uuid": "^14.0.0",
+    "vitest": "^1.4.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.90.2",
+    "@react-router/dev": "^7.6.2",
+    "@types/chai": "^4.3.1",
+    "@types/colormap": "^2.3.1",
+    "@types/jquery": "^3.5.14",
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash": "^4.17.24",
+    "@types/node": "^20",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "@types/sinon": "^17.0.3",
+    "@types/three": "^0.159.0",
+    "@types/uuid": "^9.0.0",
+    "chai": "^4.3.6",
+    "depcheck": "^1.4.7",
+    "eslint": "^9.39.4",
+    "eslint-plugin-chai-friendly": "^1.2.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^62.9.0",
+    "jsdom": "^24.0.0",
+    "sinon": "^17.0.1",
+    "sta-config": "file:../config/js",
+    "ts-essentials": "^9.3.2",
+    "typedoc": "^0.28.19",
+    "typedoc-plugin-extras": "^4.0.1",
+    "typedoc-plugin-mdn-links": "^5.1.1",
+    "typedoc-plugin-zod": "^1.4.3",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DESRLab/st-annotator"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

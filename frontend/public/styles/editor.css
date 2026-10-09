@@ -1,0 +1,171 @@
+main {
+    font-size: 0.9em;
+}
+
+main kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0px 2px;
+    padding: 2px 4px;
+    white-space: nowrap;
+}
+
+.app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    color: white;
+    background-color: black;
+}
+
+.hint {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    border: 2px solid black;
+
+    color: var(--tp-container-foreground-color, hsl(230, 7%, 75%));
+    background-color: var(--tp-base-background-color, hsl(230, 7%, 17%));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px;
+
+    font-size: 0.8em;
+}
+
+.draggable-panel {
+    z-index: 999;
+
+    font-family: var(--tp-font-family, Roboto Mono, Source Code Pro, Menlo, Courier, monospace);
+
+    background-color: var(--tp-base-background-color, hsl(230, 7%, 17%));
+}
+
+.draggable-panel > .header {
+    display: grid;
+    grid-template-columns: 1fr 32px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    color: var(--tp-container-foreground-color, hsl(230, 7%, 75%));
+    background-color: var(--tp-container-background-color, rgba(187, 188, 196, 0.1));
+    filter: brightness(1.3);
+}
+
+.draggable-panel > .header > label:nth-child(1) {
+    padding-left: 4px;
+}
+
+.draggable-panel > .header > label:nth-child(2) {
+    text-align: center;
+}
+
+.draggable-panel > .header > label:nth-child(2):active {
+    background-color: var(--tp-input-background-color-active, rgba(187, 188, 196, 0.25));
+}
+
+.draggable-panel > .header > label:nth-child(2):focus {
+    background-color: var(--tp-input-background-color-focus, rgba(187, 188, 196, 0.2));
+}
+
+.draggable-panel > .header > label:nth-child(2):hover {
+    background-color: var(--tp-input-background-color-hover, rgba(187, 188, 196, 0.15));
+}
+
+.draggable-panel > .content {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+
+    padding: 4px;
+    border: 2px solid black;
+
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.draggable-panel.collapsed > .content {
+    max-height: 0;
+    overflow-y: hidden;
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.frame-path .scrolllist-item {
+    border: 2px solid transparent;
+    padding: 2px;
+}
+
+.frame-path .scrolllist-item.complete {
+    background-color: green;
+}
+
+.frame-path .scrolllist-item.selected {
+    border: 2px solid white;
+}
+
+.frame-path .scrolllist-item:hover:not(.selected) {
+    border: 2px dotted white;
+}
+
+.layer-menu-table-row .tp-brkv.tp-rotv_c > * {
+    padding-left: var(--cnt-h-p);
+}
+
+.layer-menu-table-row .layer-name {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.layer-menu-table-row .layer-name:hover:not(.active) {
+    color: white;
+    background-color: royalblue;
+
+    filter: opacity(70%);
+}
+
+.layer-menu-table-row .layer-name.active {
+    color: white;
+    background-color: royalblue;
+}
+
+.labelset-history .scrolllist-item {
+    border: 2px solid transparent;
+    padding: 2px;
+}
+
+.labelset-history .scrolllist-item.inactive {
+    background-color: dimgray;
+}
+
+.labelset-history .scrolllist-item.saved {
+    background-color: green;
+}
+
+.labelset-history .scrolllist-item.selected {
+    border: 2px solid white;
+
+    background-color: royalblue;
+}
+
+.labelset-history .scrolllist-item:hover:not(.selected) {
+    border: 2px dotted white;
+}

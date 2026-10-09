@@ -1,0 +1,61 @@
+name: Verify pre-release
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash -el {0}
+
+jobs:
+  lint:
+    name: Lint code
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run linter
+        run: bash ./scripts/lint.sh
+  test:
+    name: Test code
+    strategy:
+      matrix:
+        python-version: ['3.10']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run tests
+        run: bash ./scripts/test.sh
+      - name: Archive coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-py-${{ matrix.python-version }}
+          path: '**/coverage/'
+  test-release:
+    name: Test release process
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup
+      - name: Generate documentation
+        run: bash ./scripts/doc.sh

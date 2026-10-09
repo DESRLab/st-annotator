@@ -1,0 +1,97 @@
+{
+  "name": "sta-segmentation",
+  "version": "5.0.0",
+  "description": "ST Annotator Segmentation Labels Plugin",
+  "keywords": [
+    "computer-vision",
+    "3d",
+    "spatiotemporal",
+    "spatio-temporal",
+    "spatial-temporal",
+    "segmentation",
+    "semantic-segmentation",
+    "annotation",
+    "annotation-tool",
+    "labeling",
+    "labeling-tool"
+  ],
+  "homepage": "https://github.com/DESRLab/st-annotator",
+  "bugs": {
+    "url": "https://github.com/DESRLab/st-annotator/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "DESRLab",
+  "contributors": [
+    "Cyrus Leung <tlleungac@connect.ust.hk>",
+    "Maral Bahari <mbahari@connect.ust.hk>"
+  ],
+  "type": "module",
+  "types": "./dist/types",
+  "exports": {
+    "./editor": {
+      "import": "./dist/lib/editor.js",
+      "require": "./dist/lib/editor.umd.cjs"
+    },
+    "./label": {
+      "import": "./dist/lib/label.js",
+      "require": "./dist/lib/label.umd.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "editor": [
+        "./dist/types/editor/lib"
+      ],
+      "label": [
+        "./dist/types/label/lib"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@slickgrid-universal/common": "^3.6.0",
+    "dataclass": "^2.1.1",
+    "jquery": "^3.6.0",
+    "jstree": "^3.3.14",
+    "lodash": "^4.17.21",
+    "mathjs": "^9.4.1",
+    "rbush-3d": "^0.0.4",
+    "sta": "file:../../../frontend",
+    "sta-pcd": "file:../../pcd/frontend",
+    "three": "^0.159.0",
+    "ts-bidirectional-map": "^1.0.2",
+    "tweakpane": "^3.1.10",
+    "typescript-collections": "^1.3.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/jquery": "^3.5.14",
+    "@types/lodash": "^4.14.182",
+    "@types/three": "^0.159.0",
+    "@vitest/coverage-istanbul": "^1.4.0",
+    "depcheck": "^1.4.7",
+    "eslint": "^9.39.4",
+    "eslint-plugin-chai-friendly": "^1.2.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^62.9.0",
+    "jsdom": "^24.0.0",
+    "sta-config": "file:../../../config/js",
+    "ts-essentials": "^9.3.2",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-plugin-css-injected-by-js": "^3.5.0",
+    "vitest": "^1.4.0"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DESRLab/st-annotator"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

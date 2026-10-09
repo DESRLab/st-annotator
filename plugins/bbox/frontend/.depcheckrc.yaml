@@ -1,0 +1,23 @@
+ignores:
+  # Type annotations
+  - '@types/*'
+  - 'ts-essentials'
+  - 'sta-pcd'
+  # Test related
+  - 'depcheck'
+  - 'typescript'
+  - 'eslint'
+  - 'eslint-*'
+  - 'vitest'
+  - '@vitest/*'
+  - 'jsdom'
+
+ignore-files:
+  - eslint.config.mjs
+
+ignore-dirs:
+  - dist
+  - coverage
+
+specials:
+  - eslint
