@@ -499,6 +499,8 @@ describe("bbox inspector coordinators", () => {
     expect(dom.innerHTML).toBe("");
   });
 
+  // This sequence mounts a full Tweakpane inspector and flushes React after
+  // each interaction; concurrent plugin suites can exceed the default 5s in CI.
   it("keeps bbox box selection, class edits, draw toggles, and reload clearing wired through React panes", async () => {
     const track: FakeTrackEntity = {
       id: TRACK_ID,
@@ -715,7 +717,7 @@ describe("bbox inspector coordinators", () => {
       root.unmount();
     });
     expect(dom.innerHTML).toBe("");
-  });
+  }, 15_000);
 });
 
 describe("bbox inspector stale-selection sequence (delete versus edit)", () => {
