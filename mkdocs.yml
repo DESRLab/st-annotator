@@ -3,6 +3,9 @@ site_description: Spatial-Temporal Annotation
 site_url: https://desrlab.github.io/st-annotator/
 site_dir: site
 
+repo_url: https://github.com/DESRLab/st-annotator
+repo_name: DESRLab/st-annotator
+
 copyright: Copyright &copy; 2026 DESRLab
 
 theme:
