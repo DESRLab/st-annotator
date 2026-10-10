@@ -1,0 +1,30 @@
+SQLiteBackedDatabaseConfig
+==========================
+
+
+
+
+.. currentmodule:: sta.common.database.config
+
+.. autoclass:: SQLiteBackedDatabaseConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SQLiteBackedDatabaseConfig.create_db
+      ~SQLiteBackedDatabaseConfig.get_engine
+      ~SQLiteBackedDatabaseConfig.with_db_suffix
+
+   
+   .. automethod:: SQLiteBackedDatabaseConfig.create_db
+   .. automethod:: SQLiteBackedDatabaseConfig.get_engine
+   .. automethod:: SQLiteBackedDatabaseConfig.with_db_suffix
+   
+   
+
+   
+   
+   

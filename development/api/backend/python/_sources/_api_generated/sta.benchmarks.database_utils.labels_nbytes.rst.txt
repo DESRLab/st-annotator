@@ -1,0 +1,30 @@
+labels\_nbytes
+==============
+
+
+
+
+.. currentmodule:: sta.benchmarks.database_utils
+
+.. autoclass:: labels_nbytes
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~labels_nbytes.inherit_cache
+      ~labels_nbytes.negation_clause
+      ~labels_nbytes.proxy_set
+
+   
+   .. autoattribute:: labels_nbytes.inherit_cache
+   .. autoattribute:: labels_nbytes.negation_clause
+   .. autoattribute:: labels_nbytes.proxy_set
+   
+   

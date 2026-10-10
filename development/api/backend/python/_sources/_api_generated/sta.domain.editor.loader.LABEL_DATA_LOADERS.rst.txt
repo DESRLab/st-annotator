@@ -1,0 +1,6 @@
+LABEL\_DATA\_LOADERS
+====================
+
+.. currentmodule:: sta.domain.editor.loader
+
+.. autodata:: LABEL_DATA_LOADERS

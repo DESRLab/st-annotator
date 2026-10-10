@@ -1,0 +1,47 @@
+sta.api.files
+=============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.files
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      download_file
+      download_zip
+      list_files
+
+   
+   .. autofunction:: download_file
+   .. autofunction:: download_zip
+   .. autofunction:: list_files
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      DownloadZipRequest
+      FileEntry
+      FileListResponse
+   
+   
+
+   
+   
+   
+
+
+

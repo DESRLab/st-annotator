@@ -1,0 +1,81 @@
+LabelElementTableLike
+=====================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelElementTableLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelElementTableLike.model_dump
+      ~LabelElementTableLike.model_validate
+      ~LabelElementTableLike.sqlmodel_update
+      ~LabelElementTableLike.unpack_max_coords
+      ~LabelElementTableLike.unpack_min_coords
+      ~LabelElementTableLike.unpack_st_bounds
+      ~LabelElementTableLike.update_from_st_bounds
+
+   
+   .. automethod:: LabelElementTableLike.model_dump
+   .. automethod:: LabelElementTableLike.model_validate
+   .. automethod:: LabelElementTableLike.sqlmodel_update
+   .. automethod:: LabelElementTableLike.unpack_max_coords
+   .. automethod:: LabelElementTableLike.unpack_min_coords
+   .. automethod:: LabelElementTableLike.unpack_st_bounds
+   .. automethod:: LabelElementTableLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelElementTableLike.max_coords
+      ~LabelElementTableLike.min_coords
+      ~LabelElementTableLike.model_fields_set
+      ~LabelElementTableLike.st_bounds
+      ~LabelElementTableLike.entity_id
+      ~LabelElementTableLike.min_x
+      ~LabelElementTableLike.min_y
+      ~LabelElementTableLike.min_z
+      ~LabelElementTableLike.max_x
+      ~LabelElementTableLike.max_y
+      ~LabelElementTableLike.max_z
+      ~LabelElementTableLike.min_timestamp
+      ~LabelElementTableLike.max_timestamp
+      ~LabelElementTableLike.id
+      ~LabelElementTableLike.commit
+      ~LabelElementTableLike.group_id
+      ~LabelElementTableLike.commit_hash
+      ~LabelElementTableLike.is_deleted
+
+   
+   .. autoattribute:: LabelElementTableLike.max_coords
+   .. autoattribute:: LabelElementTableLike.min_coords
+   .. autoattribute:: LabelElementTableLike.model_fields_set
+   .. autoattribute:: LabelElementTableLike.st_bounds
+   .. autoattribute:: LabelElementTableLike.entity_id
+   .. autoattribute:: LabelElementTableLike.min_x
+   .. autoattribute:: LabelElementTableLike.min_y
+   .. autoattribute:: LabelElementTableLike.min_z
+   .. autoattribute:: LabelElementTableLike.max_x
+   .. autoattribute:: LabelElementTableLike.max_y
+   .. autoattribute:: LabelElementTableLike.max_z
+   .. autoattribute:: LabelElementTableLike.min_timestamp
+   .. autoattribute:: LabelElementTableLike.max_timestamp
+   .. autoattribute:: LabelElementTableLike.id
+   .. autoattribute:: LabelElementTableLike.commit
+   .. autoattribute:: LabelElementTableLike.group_id
+   .. autoattribute:: LabelElementTableLike.commit_hash
+   .. autoattribute:: LabelElementTableLike.is_deleted
+   
+   

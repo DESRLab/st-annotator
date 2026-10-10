@@ -1,0 +1,33 @@
+sta.domain.source.data
+======================
+
+.. currentmodule:: sta.domain.source
+
+.. automodule:: sta.domain.source.data
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.source.data.base
+

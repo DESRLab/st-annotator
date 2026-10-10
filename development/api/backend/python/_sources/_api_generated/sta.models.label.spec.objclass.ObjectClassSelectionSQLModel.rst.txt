@@ -1,0 +1,55 @@
+ObjectClassSelectionSQLModel
+============================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassSelectionSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionSQLModel.build_group_links_cls
+      ~ObjectClassSelectionSQLModel.build_table_base_cls
+      ~ObjectClassSelectionSQLModel.check_edit_conflict
+      ~ObjectClassSelectionSQLModel.get_create_cls
+      ~ObjectClassSelectionSQLModel.get_public_cls
+      ~ObjectClassSelectionSQLModel.get_table_cls
+      ~ObjectClassSelectionSQLModel.get_update_cls
+      ~ObjectClassSelectionSQLModel.sqlmodel_update
+
+   
+   .. automethod:: ObjectClassSelectionSQLModel.build_group_links_cls
+   .. automethod:: ObjectClassSelectionSQLModel.build_table_base_cls
+   .. automethod:: ObjectClassSelectionSQLModel.check_edit_conflict
+   .. automethod:: ObjectClassSelectionSQLModel.get_create_cls
+   .. automethod:: ObjectClassSelectionSQLModel.get_public_cls
+   .. automethod:: ObjectClassSelectionSQLModel.get_table_cls
+   .. automethod:: ObjectClassSelectionSQLModel.get_update_cls
+   .. automethod:: ObjectClassSelectionSQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionSQLModel.model_config
+      ~ObjectClassSelectionSQLModel.description
+      ~ObjectClassSelectionSQLModel.name
+      ~ObjectClassSelectionSQLModel.last_edit_at
+
+   
+   .. autoattribute:: ObjectClassSelectionSQLModel.model_config
+   .. autoattribute:: ObjectClassSelectionSQLModel.description
+   .. autoattribute:: ObjectClassSelectionSQLModel.name
+   .. autoattribute:: ObjectClassSelectionSQLModel.last_edit_at
+   
+   

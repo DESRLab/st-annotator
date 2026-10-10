@@ -1,0 +1,32 @@
+STMetadata
+==========
+
+
+
+
+.. currentmodule:: sta.porter.st_metadata
+
+.. autoclass:: STMetadata
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~STMetadata.filepath
+      ~STMetadata.file_coords_to_db_coords
+      ~STMetadata.min_timestamp
+      ~STMetadata.max_timestamp
+
+   
+   .. autoattribute:: STMetadata.filepath
+   .. autoattribute:: STMetadata.file_coords_to_db_coords
+   .. autoattribute:: STMetadata.min_timestamp
+   .. autoattribute:: STMetadata.max_timestamp
+   
+   

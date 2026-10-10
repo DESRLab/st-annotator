@@ -1,0 +1,59 @@
+RunCombination
+==============
+
+
+
+
+.. currentmodule:: sta.benchmarks.plot_utils
+
+.. autoclass:: RunCombination
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RunCombination.get_params
+      ~RunCombination.get_params_group_by_delete_prob
+      ~RunCombination.get_params_group_by_num_init_labels
+
+   
+   .. automethod:: RunCombination.get_params
+   .. automethod:: RunCombination.get_params_group_by_delete_prob
+   .. automethod:: RunCombination.get_params_group_by_num_init_labels
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RunCombination.iteration
+      ~RunCombination.num_users
+      ~RunCombination.use_delta
+      ~RunCombination.num_commits
+      ~RunCombination.num_init_labels
+      ~RunCombination.num_points
+      ~RunCombination.branch_prob
+      ~RunCombination.create_prob
+      ~RunCombination.delete_prob
+      ~RunCombination.entity_prob
+      ~RunCombination.seed
+
+   
+   .. autoattribute:: RunCombination.iteration
+   .. autoattribute:: RunCombination.num_users
+   .. autoattribute:: RunCombination.use_delta
+   .. autoattribute:: RunCombination.num_commits
+   .. autoattribute:: RunCombination.num_init_labels
+   .. autoattribute:: RunCombination.num_points
+   .. autoattribute:: RunCombination.branch_prob
+   .. autoattribute:: RunCombination.create_prob
+   .. autoattribute:: RunCombination.delete_prob
+   .. autoattribute:: RunCombination.entity_prob
+   .. autoattribute:: RunCombination.seed
+   
+   

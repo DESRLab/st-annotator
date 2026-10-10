@@ -1,0 +1,42 @@
+HistoryLabelSelectItem
+======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: HistoryLabelSelectItem
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HistoryLabelSelectItem.select_target
+      ~HistoryLabelSelectItem.query_closest_states_seconds
+      ~HistoryLabelSelectItem.total_seconds
+      ~HistoryLabelSelectItem.result_size
+      ~HistoryLabelSelectItem.step
+      ~HistoryLabelSelectItem.num_branches
+      ~HistoryLabelSelectItem.num_commits
+      ~HistoryLabelSelectItem.num_entities
+      ~HistoryLabelSelectItem.num_elements
+
+   
+   .. autoattribute:: HistoryLabelSelectItem.select_target
+   .. autoattribute:: HistoryLabelSelectItem.query_closest_states_seconds
+   .. autoattribute:: HistoryLabelSelectItem.total_seconds
+   .. autoattribute:: HistoryLabelSelectItem.result_size
+   .. autoattribute:: HistoryLabelSelectItem.step
+   .. autoattribute:: HistoryLabelSelectItem.num_branches
+   .. autoattribute:: HistoryLabelSelectItem.num_commits
+   .. autoattribute:: HistoryLabelSelectItem.num_entities
+   .. autoattribute:: HistoryLabelSelectItem.num_elements
+   
+   

@@ -1,0 +1,37 @@
+OptimisticLockingUpdate
+=======================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: OptimisticLockingUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OptimisticLockingUpdate.sqlmodel_update
+
+   
+   .. automethod:: OptimisticLockingUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OptimisticLockingUpdate.model_config
+      ~OptimisticLockingUpdate.issued_at
+
+   
+   .. autoattribute:: OptimisticLockingUpdate.model_config
+   .. autoattribute:: OptimisticLockingUpdate.issued_at
+   
+   

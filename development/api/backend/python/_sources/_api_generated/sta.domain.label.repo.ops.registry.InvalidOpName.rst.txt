@@ -1,0 +1,6 @@
+InvalidOpName
+=============
+
+.. currentmodule:: sta.domain.label.repo.ops.registry
+
+.. autoexception:: InvalidOpName

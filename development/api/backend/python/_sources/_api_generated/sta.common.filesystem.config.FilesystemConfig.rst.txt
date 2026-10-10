@@ -1,0 +1,39 @@
+FilesystemConfig
+================
+
+
+
+
+.. currentmodule:: sta.common.filesystem.config
+
+.. autoclass:: FilesystemConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FilesystemConfig.from_env
+      ~FilesystemConfig.get_fs
+      ~FilesystemConfig.validate_root
+
+   
+   .. automethod:: FilesystemConfig.from_env
+   .. automethod:: FilesystemConfig.get_fs
+   .. automethod:: FilesystemConfig.validate_root
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FilesystemConfig.root
+
+   
+   .. autoattribute:: FilesystemConfig.root
+   
+   

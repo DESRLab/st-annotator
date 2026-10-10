@@ -1,0 +1,6 @@
+DEFAULT\_POLL\_INTERVAL\_SECONDS
+================================
+
+.. currentmodule:: sta.domain.jobs.worker
+
+.. autodata:: DEFAULT_POLL_INTERVAL_SECONDS

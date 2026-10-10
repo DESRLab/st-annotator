@@ -1,0 +1,51 @@
+sta.domain.label.repo.ops.special
+=================================
+
+.. currentmodule:: sta.domain.label.repo.ops
+
+.. automodule:: sta.domain.label.repo.ops.special
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      register_special_ops
+
+   
+   .. autofunction:: register_special_ops
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      SpecialOperationType
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.label.repo.ops.special.checkpoint
+   sta.domain.label.repo.ops.special.import_
+   sta.domain.label.repo.ops.special.init_
+

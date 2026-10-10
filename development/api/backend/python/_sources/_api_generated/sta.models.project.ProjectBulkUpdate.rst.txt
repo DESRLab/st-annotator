@@ -1,0 +1,41 @@
+ProjectBulkUpdate
+=================
+
+
+
+
+.. currentmodule:: sta.models.project
+
+.. autoclass:: ProjectBulkUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProjectBulkUpdate.sqlmodel_update
+
+   
+   .. automethod:: ProjectBulkUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectBulkUpdate.model_config
+      ~ProjectBulkUpdate.description
+      ~ProjectBulkUpdate.config
+      ~ProjectBulkUpdate.member_ids
+
+   
+   .. autoattribute:: ProjectBulkUpdate.model_config
+   .. autoattribute:: ProjectBulkUpdate.description
+   .. autoattribute:: ProjectBulkUpdate.config
+   .. autoattribute:: ProjectBulkUpdate.member_ids
+   
+   

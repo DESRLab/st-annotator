@@ -1,0 +1,32 @@
+sta.domain.label.repo.ops.base.create
+=====================================
+
+.. currentmodule:: sta.domain.label.repo.ops.base
+
+.. automodule:: sta.domain.label.repo.ops.base.create
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      CreateBase
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,37 @@
+sta.models.frame
+================
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.frame
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Frame
+      FrameBulkUpdate
+      FrameCreate
+      FramePublic
+      FramePublicWithParents
+      FrameUpdate
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,43 @@
+SourceSpecCreateLike
+====================
+
+
+
+
+.. currentmodule:: sta.models.source.spec.base
+
+.. autoclass:: SourceSpecCreateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceSpecCreateLike.model_dump
+      ~SourceSpecCreateLike.model_validate
+      ~SourceSpecCreateLike.sqlmodel_update
+
+   
+   .. automethod:: SourceSpecCreateLike.model_dump
+   .. automethod:: SourceSpecCreateLike.model_validate
+   .. automethod:: SourceSpecCreateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceSpecCreateLike.model_fields_set
+      ~SourceSpecCreateLike.group_ids
+      ~SourceSpecCreateLike.name
+
+   
+   .. autoattribute:: SourceSpecCreateLike.model_fields_set
+   .. autoattribute:: SourceSpecCreateLike.group_ids
+   .. autoattribute:: SourceSpecCreateLike.name
+   
+   

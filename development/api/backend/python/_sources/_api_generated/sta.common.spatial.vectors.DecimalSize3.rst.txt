@@ -1,0 +1,65 @@
+DecimalSize3
+============
+
+
+
+
+.. currentmodule:: sta.common.spatial.vectors
+
+.. autoclass:: DecimalSize3
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DecimalSize3.copy_with
+      ~DecimalSize3.equals
+      ~DecimalSize3.from_array
+      ~DecimalSize3.from_dict
+      ~DecimalSize3.from_tuple
+      ~DecimalSize3.get
+      ~DecimalSize3.of
+      ~DecimalSize3.ones
+      ~DecimalSize3.to_array
+      ~DecimalSize3.to_dict
+      ~DecimalSize3.to_float
+      ~DecimalSize3.to_tuple
+      ~DecimalSize3.zeros
+
+   
+   .. automethod:: DecimalSize3.copy_with
+   .. automethod:: DecimalSize3.equals
+   .. automethod:: DecimalSize3.from_array
+   .. automethod:: DecimalSize3.from_dict
+   .. automethod:: DecimalSize3.from_tuple
+   .. automethod:: DecimalSize3.get
+   .. automethod:: DecimalSize3.of
+   .. automethod:: DecimalSize3.ones
+   .. automethod:: DecimalSize3.to_array
+   .. automethod:: DecimalSize3.to_dict
+   .. automethod:: DecimalSize3.to_float
+   .. automethod:: DecimalSize3.to_tuple
+   .. automethod:: DecimalSize3.zeros
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DecimalSize3.model_config
+      ~DecimalSize3.x
+      ~DecimalSize3.y
+      ~DecimalSize3.z
+
+   
+   .. autoattribute:: DecimalSize3.model_config
+   .. autoattribute:: DecimalSize3.x
+   .. autoattribute:: DecimalSize3.y
+   .. autoattribute:: DecimalSize3.z
+   
+   

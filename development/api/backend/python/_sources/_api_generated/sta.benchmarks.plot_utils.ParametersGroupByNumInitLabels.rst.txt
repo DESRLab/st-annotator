@@ -1,0 +1,36 @@
+ParametersGroupByNumInitLabels
+==============================
+
+
+
+
+.. currentmodule:: sta.benchmarks.plot_utils
+
+.. autoclass:: ParametersGroupByNumInitLabels
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ParametersGroupByNumInitLabels.num_commits
+      ~ParametersGroupByNumInitLabels.num_points
+      ~ParametersGroupByNumInitLabels.branch_prob
+      ~ParametersGroupByNumInitLabels.create_prob
+      ~ParametersGroupByNumInitLabels.delete_prob
+      ~ParametersGroupByNumInitLabels.entity_prob
+
+   
+   .. autoattribute:: ParametersGroupByNumInitLabels.num_commits
+   .. autoattribute:: ParametersGroupByNumInitLabels.num_points
+   .. autoattribute:: ParametersGroupByNumInitLabels.branch_prob
+   .. autoattribute:: ParametersGroupByNumInitLabels.create_prob
+   .. autoattribute:: ParametersGroupByNumInitLabels.delete_prob
+   .. autoattribute:: ParametersGroupByNumInitLabels.entity_prob
+   
+   

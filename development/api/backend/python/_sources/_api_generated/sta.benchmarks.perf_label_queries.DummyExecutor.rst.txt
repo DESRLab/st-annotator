@@ -1,0 +1,26 @@
+DummyExecutor
+=============
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: DummyExecutor
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DummyExecutor.submit
+
+   
+   .. automethod:: DummyExecutor.submit
+   
+   
+
+   
+   
+   

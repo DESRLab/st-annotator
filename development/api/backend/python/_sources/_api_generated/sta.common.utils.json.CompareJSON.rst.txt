@@ -1,0 +1,26 @@
+CompareJSON
+===========
+
+
+
+
+.. currentmodule:: sta.common.utils.json
+
+.. autoclass:: CompareJSON
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CompareJSON.check
+
+   
+   .. automethod:: CompareJSON.check
+   
+   
+
+   
+   
+   

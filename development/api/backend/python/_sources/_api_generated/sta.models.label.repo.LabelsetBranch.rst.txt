@@ -1,0 +1,61 @@
+LabelsetBranch
+==============
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetBranch
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetBranch.check_edit_conflict
+      ~LabelsetBranch.get_perm_links_cls
+      ~LabelsetBranch.sqlmodel_update
+
+   
+   .. automethod:: LabelsetBranch.check_edit_conflict
+   .. automethod:: LabelsetBranch.get_perm_links_cls
+   .. automethod:: LabelsetBranch.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetBranch.checkpoint
+      ~LabelsetBranch.checkpoint_hash
+      ~LabelsetBranch.group
+      ~LabelsetBranch.group_id
+      ~LabelsetBranch.head
+      ~LabelsetBranch.head_hash
+      ~LabelsetBranch.id
+      ~LabelsetBranch.last_edit_at
+      ~LabelsetBranch.model_config
+      ~LabelsetBranch.name
+      ~LabelsetBranch.perm_links
+      ~LabelsetBranch.perm_lv_by_user_id
+
+   
+   .. autoattribute:: LabelsetBranch.checkpoint
+   .. autoattribute:: LabelsetBranch.checkpoint_hash
+   .. autoattribute:: LabelsetBranch.group
+   .. autoattribute:: LabelsetBranch.group_id
+   .. autoattribute:: LabelsetBranch.head
+   .. autoattribute:: LabelsetBranch.head_hash
+   .. autoattribute:: LabelsetBranch.id
+   .. autoattribute:: LabelsetBranch.last_edit_at
+   .. autoattribute:: LabelsetBranch.model_config
+   .. autoattribute:: LabelsetBranch.name
+   .. autoattribute:: LabelsetBranch.perm_links
+   .. autoattribute:: LabelsetBranch.perm_lv_by_user_id
+   
+   

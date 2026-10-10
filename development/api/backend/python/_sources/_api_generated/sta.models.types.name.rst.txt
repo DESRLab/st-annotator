@@ -1,0 +1,32 @@
+sta.models.types.name
+=====================
+
+.. currentmodule:: sta.models.types
+
+.. automodule:: sta.models.types.name
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      NameValidators
+   
+   
+
+   
+   
+   
+
+
+

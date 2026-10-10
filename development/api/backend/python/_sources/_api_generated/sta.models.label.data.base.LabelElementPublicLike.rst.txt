@@ -1,0 +1,81 @@
+LabelElementPublicLike
+======================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelElementPublicLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelElementPublicLike.model_dump
+      ~LabelElementPublicLike.model_validate
+      ~LabelElementPublicLike.sqlmodel_update
+      ~LabelElementPublicLike.unpack_max_coords
+      ~LabelElementPublicLike.unpack_min_coords
+      ~LabelElementPublicLike.unpack_st_bounds
+      ~LabelElementPublicLike.update_from_st_bounds
+
+   
+   .. automethod:: LabelElementPublicLike.model_dump
+   .. automethod:: LabelElementPublicLike.model_validate
+   .. automethod:: LabelElementPublicLike.sqlmodel_update
+   .. automethod:: LabelElementPublicLike.unpack_max_coords
+   .. automethod:: LabelElementPublicLike.unpack_min_coords
+   .. automethod:: LabelElementPublicLike.unpack_st_bounds
+   .. automethod:: LabelElementPublicLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelElementPublicLike.max_coords
+      ~LabelElementPublicLike.min_coords
+      ~LabelElementPublicLike.model_fields_set
+      ~LabelElementPublicLike.st_bounds
+      ~LabelElementPublicLike.entity_id
+      ~LabelElementPublicLike.min_x
+      ~LabelElementPublicLike.min_y
+      ~LabelElementPublicLike.min_z
+      ~LabelElementPublicLike.max_x
+      ~LabelElementPublicLike.max_y
+      ~LabelElementPublicLike.max_z
+      ~LabelElementPublicLike.min_timestamp
+      ~LabelElementPublicLike.max_timestamp
+      ~LabelElementPublicLike.id
+      ~LabelElementPublicLike.commit
+      ~LabelElementPublicLike.group_id
+      ~LabelElementPublicLike.commit_hash
+      ~LabelElementPublicLike.is_deleted
+
+   
+   .. autoattribute:: LabelElementPublicLike.max_coords
+   .. autoattribute:: LabelElementPublicLike.min_coords
+   .. autoattribute:: LabelElementPublicLike.model_fields_set
+   .. autoattribute:: LabelElementPublicLike.st_bounds
+   .. autoattribute:: LabelElementPublicLike.entity_id
+   .. autoattribute:: LabelElementPublicLike.min_x
+   .. autoattribute:: LabelElementPublicLike.min_y
+   .. autoattribute:: LabelElementPublicLike.min_z
+   .. autoattribute:: LabelElementPublicLike.max_x
+   .. autoattribute:: LabelElementPublicLike.max_y
+   .. autoattribute:: LabelElementPublicLike.max_z
+   .. autoattribute:: LabelElementPublicLike.min_timestamp
+   .. autoattribute:: LabelElementPublicLike.max_timestamp
+   .. autoattribute:: LabelElementPublicLike.id
+   .. autoattribute:: LabelElementPublicLike.commit
+   .. autoattribute:: LabelElementPublicLike.group_id
+   .. autoattribute:: LabelElementPublicLike.commit_hash
+   .. autoattribute:: LabelElementPublicLike.is_deleted
+   
+   

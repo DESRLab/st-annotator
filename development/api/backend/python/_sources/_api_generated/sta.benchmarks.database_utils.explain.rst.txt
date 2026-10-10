@@ -1,0 +1,30 @@
+explain
+=======
+
+
+
+
+.. currentmodule:: sta.benchmarks.database_utils
+
+.. autoclass:: explain
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~explain.inherit_cache
+      ~explain.negation_clause
+      ~explain.proxy_set
+
+   
+   .. autoattribute:: explain.inherit_cache
+   .. autoattribute:: explain.negation_clause
+   .. autoattribute:: explain.proxy_set
+   
+   

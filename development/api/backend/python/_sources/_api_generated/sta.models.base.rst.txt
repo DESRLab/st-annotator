@@ -1,0 +1,74 @@
+sta.models.base
+===============
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.base
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TRANSFORM_FIELDS
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      PartialSTBoundsSQLMixin
+      TransformSQLMixin
+      non_nullable_field_names
+      sqlmodel_sa_type
+      st_bounds_coord_type
+      transform_component_type
+
+   
+   .. autofunction:: PartialSTBoundsSQLMixin
+   .. autofunction:: TransformSQLMixin
+   .. autofunction:: non_nullable_field_names
+   .. autofunction:: sqlmodel_sa_type
+   .. autofunction:: st_bounds_coord_type
+   .. autofunction:: transform_component_type
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      BaseSQLModel
+      MaxCoordsDict
+      MinCoordsDict
+      OptimisticLockingSQLModel
+      OptimisticLockingUpdate
+      PartialSTBoundsDict
+      PartialSTBoundsSQLMixinLike
+      PartialSTBoundsUpdateLike
+      RequiredFieldNullGuard
+      RotationDict
+      SQLMixinBase
+      SQLModelLike
+      ScaleDict
+      TransformDict
+      TransformSQLMixinLike
+      TransformSQLMixinUpdateLike
+      TranslationDict
+   
+   
+
+   
+   
+   
+
+
+

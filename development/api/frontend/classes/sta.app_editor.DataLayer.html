@@ -1,0 +1,613 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>DataLayer | TypeScript API</title><link rel="icon" href="../assets/favicon.ico"/><meta name="description" content="Documentation for TypeScript API"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><link rel="stylesheet" href="../assets/custom.css"/><script defer src="../assets/main.js"></script><script defer src="../assets/custom.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">⭐ TypeScript API</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="../modules/sta.html">sta</a></li>
+<li><a href="../modules/sta.app_editor.html">app/editor</a></li>
+<li><a href="" aria-current="page">DataLayer</a></li></ul>
+<h1>Class DataLayer&lt;WM, D&gt;</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>Represents a layer that displays data in the scene.</p>
+</div></section>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="wm"><span class="tsd-kind-type-parameter">WM</span> <span class="tsd-signature-keyword">extends</span> <a href="../types/sta.app_editor.WindowMapper.html" class="tsd-signature-type tsd-kind-type-alias">WindowMapper</a> = <a href="../types/sta.app_editor.WindowMapper.html" class="tsd-signature-type tsd-kind-type-alias">WindowMapper</a></span></li>
+<li><span id="d"><span class="tsd-kind-type-parameter">D</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-symbol">{}</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span> = <span class="tsd-signature-type">null</span></span></li></ul></section>
+<section class="tsd-panel tsd-hierarchy" data-refl="50409">
+<h4>Hierarchy (<a href="../hierarchy.html#sta.app/editor.DataLayer">View Summary</a>)</h4>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><a href="sta.app_editor.BaseSceneLayer.html" class="tsd-signature-type tsd-kind-class">BaseSceneLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">&gt;</span>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">DataLayer</span>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><a href="sta.app_editor.SourceDataLayer.html" class="tsd-signature-type tsd-kind-class">SourceDataLayer</a></li>
+<li class="tsd-hierarchy-item"><a href="sta.app_editor.LabelDataLayer.html" class="tsd-signature-type tsd-kind-class">LabelDataLayer</a></li></ul></li></ul></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/DataLayer.tsx#L11">core/frontend/app/routes/editor/scene/layer/DataLayer.tsx:11</a></li></ul></aside>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h5 class="tsd-index-heading uppercase">Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="constructors">Constructors<a href="#constructors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="properties">Properties<a href="#properties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#context" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>context</span></a>
+<a href="#dataview" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>data<wbr/>View</span></a>
+<a href="#keydownhandler" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>keydown<wbr/>Handler</span></a>
+<a href="#keyuphandler" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>keyup<wbr/>Handler</span></a>
+<a href="#name" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>name</span></a>
+<a href="#objects" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>objects</span></a>
+<a href="#state" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>state</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="accessors">Accessors<a href="#accessors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#actionsview" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>actions<wbr/>View</span></a>
+<a href="#controlssections" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>controls<wbr/>Sections</span></a>
+<a href="#controlsview" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>controls<wbr/>View</span></a>
+<a href="#isactive" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>is<wbr/>Active</span></a>
+<a href="#objecttreeview" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>object<wbr/>Tree<wbr/>View</span></a>
+<a href="#overlayview" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>overlay<wbr/>View</span></a>
+<a href="#prefsview" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>prefs<wbr/>View</span></a>
+<a href="#toolsview" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>tools<wbr/>View</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="methods">Methods<a href="#methods" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#addeventlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a>
+<a href="#dispatchevent" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a>
+<a href="#dispose" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a>
+<a href="#gethint" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Hint</span></a>
+<a href="#haseventlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a>
+<a href="#onafterupdatedata" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>After<wbr/>Update<wbr/>Data</span></a>
+<a href="#onbeforeupdatedata" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Before<wbr/>Update<wbr/>Data</span></a>
+<a href="#refreshhint" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>refresh<wbr/>Hint</span></a>
+<a href="#refreshobjects" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>refresh<wbr/>Objects</span></a>
+<a href="#refreshoverlay" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>refresh<wbr/>Overlay</span></a>
+<a href="#removeeventlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a>
+<a href="#render" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>render</span></a>
+<a href="#requestrender" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>request<wbr/>Render</span></a>
+<a href="#setcontrolssections" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Controls<wbr/>Sections</span></a>
+<a href="#setoverlaysize" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Overlay<wbr/>Size</span></a>
+</div></section></div></details></section></section>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="constructors-1">Constructors<a href="#constructors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructordatalayer"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">DataLayer</span><span class="tsd-signature-symbol">&lt;</span><br/>    <a class="tsd-signature-type tsd-kind-type-parameter" href="#constructordatalayerwm">WM</a> <span class="tsd-signature-keyword">extends</span> <a href="../types/sta.app_editor.WindowMapper.html" class="tsd-signature-type tsd-kind-type-alias">WindowMapper</a> <span class="tsd-signature-symbol">=</span> <a href="../types/sta.app_editor.WindowMapper.html" class="tsd-signature-type tsd-kind-type-alias">WindowMapper</a><span class="tsd-signature-symbol">,</span><br/>    <a class="tsd-signature-type tsd-kind-type-parameter" href="#constructordatalayerd">D</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-symbol">{}</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span> <span class="tsd-signature-symbol">=</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">dataView</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.DataView.html" class="tsd-signature-type tsd-kind-interface">DataView</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><a href="#constructordatalayer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new data layer.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="constructordatalayerwm"><span class="tsd-kind-type-parameter">WM</span> <span class="tsd-signature-keyword">extends</span> <a href="../types/sta.app_editor.WindowMapper.html" class="tsd-signature-type tsd-kind-type-alias">WindowMapper</a> = <a href="../types/sta.app_editor.WindowMapper.html" class="tsd-signature-type tsd-kind-type-alias">WindowMapper</a></span></li>
+<li><span id="constructordatalayerd"><span class="tsd-kind-type-parameter">D</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-symbol">{}</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span> = <span class="tsd-signature-type">null</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">context</span>: <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>A handle to the state of the scene.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">name</span>: <span class="tsd-signature-type">string</span></span>
+<div class="tsd-comment tsd-typography"><p>The display name of this layer.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">dataView</span>: <a href="../interfaces/sta.app_editor.DataView.html" class="tsd-signature-type tsd-kind-interface">DataView</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>A view of the data to display in the layer.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#constructor">constructor</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/DataLayer.tsx#L57">core/frontend/app/routes/editor/scene/layer/DataLayer.tsx:57</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="context"><code class="tsd-tag">Readonly</code><span>context</span><a href="#context" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-comment tsd-typography"><p>A handle to the state of the scene.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#context">context</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L135">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:135</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="dataview"><code class="tsd-tag">Readonly</code><span>data<wbr/>View</span><a href="#dataview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">dataView</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.DataView.html" class="tsd-signature-type tsd-kind-interface">DataView</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-comment tsd-typography"><p>A view of the data to display in this layer.</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/DataLayer.tsx#L18">core/frontend/app/routes/editor/scene/layer/DataLayer.tsx:18</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="keydownhandler"><code class="tsd-tag">Readonly</code><span>keydown<wbr/>Handler</span><a href="#keydownhandler" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">keydownHandler</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.ComposableKeybindHandler.html" class="tsd-signature-type tsd-kind-class">ComposableKeybindHandler</a></div>
+<div class="tsd-comment tsd-typography"><p>Handles the event when a key is pressed in this layer.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#keydownhandler">keydownHandler</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L204">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:204</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="keyuphandler"><code class="tsd-tag">Readonly</code><span>keyup<wbr/>Handler</span><a href="#keyuphandler" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">keyupHandler</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.ComposableKeybindHandler.html" class="tsd-signature-type tsd-kind-class">ComposableKeybindHandler</a></div>
+<div class="tsd-comment tsd-typography"><p>Handles the event when a key is released in this layer.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#keyuphandler">keyupHandler</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L209">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:209</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="name"><code class="tsd-tag">Readonly</code><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+<div class="tsd-comment tsd-typography"><p>The display name of this layer.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#name">name</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L140">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:140</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="objects"><code class="tsd-tag">Readonly</code><span>objects</span><a href="#objects" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">objects</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Group</span></div>
+<div class="tsd-comment tsd-typography"><p>A container of the <code>three.js</code> objects to include in the scene
+when this layer is displayed.</p>
+<p>This container and its children should be in world space,
+rather than being relative to the current frame.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#objects">objects</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L154">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:154</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="state"><code class="tsd-tag">Readonly</code><span>state</span><a href="#state" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">state</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.LayerState.html" class="tsd-signature-type tsd-kind-class">LayerState</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-comment tsd-typography"><p>The state of this layer.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#state">state</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L145">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:145</a></li></ul></aside></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="actionsview"><span>actions<wbr/>View</span><a href="#actionsview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="actionsviewactionsview"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">actionsView</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>React-owned content for the Actions column of the Layers panel.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactNode</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.actionsView</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L157">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:157</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="controlssections"><span>controls<wbr/>Sections</span><a href="#controlssections" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="controlssectionscontrolssections"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">controlsSections</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">readonly</span> <a href="../interfaces/sta.app_editor.LayerControlsSection.html" class="tsd-signature-type tsd-kind-interface">LayerControlsSection</a><span class="tsd-signature-symbol">[]</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The React-owned sections shown in the Controls panel, or <code>null</code> when
+this layer still supplies a legacy controls DOM element.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-keyword">readonly</span> <a href="../interfaces/sta.app_editor.LayerControlsSection.html" class="tsd-signature-type tsd-kind-interface">LayerControlsSection</a><span class="tsd-signature-symbol">[]</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.controlsSections</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L213">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:213</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="controlsview"><span>controls<wbr/>View</span><a href="#controlsview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="controlsviewcontrolsview"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">controlsView</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>A DOM element that is shown in the Controls panel
+when this layer is active.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactNode</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.controlsView</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L195">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:195</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="isactive"><span>is<wbr/>Active</span><a href="#isactive" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="isactiveisactive"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">isActive</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p><code>true</code> if this layer is the currently active one; otherwise, <code>false</code>.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.isActive</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L246">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:246</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="objecttreeview"><span>object<wbr/>Tree<wbr/>View</span><a href="#objecttreeview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="objecttreeviewobjecttreeview"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">objectTreeView</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>A DOM element that is shown in the Scene Objects panel
+when this layer is active.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactNode</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.objectTreeView</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L187">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:187</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="overlayview"><span>overlay<wbr/>View</span><a href="#overlayview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="overlayviewoverlayview"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">overlayView</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>React-owned content rendered over the scene.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactNode</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.overlayView</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L161">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:161</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="prefsview"><span>prefs<wbr/>View</span><a href="#prefsview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="prefsviewprefsview"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">prefsView</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>A DOM element that is shown in the Preferences panel
+when this layer is active.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactNode</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.prefsView</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L179">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:179</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="toolsview"><span>tools<wbr/>View</span><a href="#toolsview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="toolsviewtoolsview"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">toolsView</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>A DOM element that is shown in the Tools panel
+when this layer is active.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactNode</span></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneLayer.toolsView</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L171">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:171</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="addeventlistener"><span>add<wbr/>Event<wbr/>Listener</span><a href="#addeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-1"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds a listener to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:52</li></ul></aside></div></li>
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-2"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds a listener to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:56</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="dispatchevent"><span>dispatch<wbr/>Event</span><a href="#dispatchevent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="dispatchevent-1"><span class="tsd-kind-call-signature">dispatchEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BaseEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispatchevent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Fire an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="dispatcheventt"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">event</span>: <span class="tsd-signature-type">BaseEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span></span>
+<div class="tsd-comment tsd-typography"><p>The event that gets fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#dispatchevent">dispatchEvent</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:84</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="dispose"><span>dispose</span><a href="#dispose" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="dispose-1"><span class="tsd-kind-call-signature">dispose</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispose-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Disposes of this object. Do not use it afterwards.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#dispose">dispose</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/DataLayer.tsx#L72">core/frontend/app/routes/editor/scene/layer/DataLayer.tsx:72</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="gethint"><span>get<wbr/>Hint</span><a href="#gethint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="gethint-1"><span class="tsd-kind-call-signature">getHint</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span><a href="#gethint-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets the content to display as a hint to the user when this layer is active.</p>
+<p>If <code>null</code>, no hint is displayed.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactNode</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#gethint">getHint</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L273">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:273</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="haseventlistener"><span>has<wbr/>Event<wbr/>Listener</span><a href="#haseventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-1"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Checks if listener is added to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:63</li></ul></aside></div></li>
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-2"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Checks if listener is added to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:67</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-protected">
+<h3 class="tsd-anchor-link" id="onafterupdatedata"><code class="tsd-tag">Protected</code><span>on<wbr/>After<wbr/>Update<wbr/>Data</span><a href="#onafterupdatedata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected">
+<li class="tsd-is-protected">
+<div class="tsd-signature tsd-anchor-link" id="onafterupdatedata-1"><span class="tsd-kind-call-signature">onAfterUpdateData</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#onafterupdatedata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description"><code class="tsd-tag">Protected</code>
+<div class="tsd-comment tsd-typography"><p>Contains logic to run after the data to display is switched to a different one.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/DataLayer.tsx#L32">core/frontend/app/routes/editor/scene/layer/DataLayer.tsx:32</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-protected">
+<h3 class="tsd-anchor-link" id="onbeforeupdatedata"><code class="tsd-tag">Protected</code><span>on<wbr/>Before<wbr/>Update<wbr/>Data</span><a href="#onbeforeupdatedata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected">
+<li class="tsd-is-protected">
+<div class="tsd-signature tsd-anchor-link" id="onbeforeupdatedata-1"><span class="tsd-kind-call-signature">onBeforeUpdateData</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#onbeforeupdatedata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description"><code class="tsd-tag">Protected</code>
+<div class="tsd-comment tsd-typography"><p>Contains logic to run before the data to display is switched to a different one.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/DataLayer.tsx#L25">core/frontend/app/routes/editor/scene/layer/DataLayer.tsx:25</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="refreshhint"><span>refresh<wbr/>Hint</span><a href="#refreshhint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="refreshhint-1"><span class="tsd-kind-call-signature">refreshHint</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#refreshhint-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Notifies subscribers that the hint content of this layer changed.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#refreshhint">refreshHint</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L223">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:223</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="refreshobjects"><code class="tsd-tag">Protected</code><span>refresh<wbr/>Objects</span><a href="#refreshobjects" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="refreshobjects-1"><span class="tsd-kind-call-signature">refreshObjects</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#refreshobjects-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Notifies the layer collection that this layer rebuilt its Three.js objects.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#refreshobjects">refreshObjects</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L228">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:228</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="refreshoverlay"><span>refresh<wbr/>Overlay</span><a href="#refreshoverlay" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="refreshoverlay-1"><span class="tsd-kind-call-signature">refreshOverlay</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#refreshoverlay-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Notifies the route-owned overlay host that this layer's overlay changed.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#refreshoverlay">refreshOverlay</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L218">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:218</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="removeeventlistener"><span>remove<wbr/>Event<wbr/>Listener</span><a href="#removeeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-1"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a listener from an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of the listener that gets removed.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.SceneLayerEventMap.html" class="tsd-signature-type tsd-kind-interface">SceneLayerEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The listener function that gets removed.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:74</li></ul></aside></div></li>
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-2"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a listener from an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of the listener that gets removed.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">DataLayer</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#wm">WM</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#d">D</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The listener function that gets removed.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:78</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="render"><span>render</span><a href="#render" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="render-1"><span class="tsd-kind-call-signature">render</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#render-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Updates the <code>three.js</code> objects and the DOM elements of this layer.
+It is called during each requested scene frame while this layer is displayed.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#render">render</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L281">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:281</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="requestrender"><code class="tsd-tag">Protected</code><span>request<wbr/>Render</span><a href="#requestrender" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="requestrender-1"><span class="tsd-kind-call-signature">requestRender</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#requestrender-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Requests a scene frame after this layer has become dirty.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#requestrender">requestRender</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L233">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:233</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setcontrolssections"><span>set<wbr/>Controls<wbr/>Sections</span><a href="#setcontrolssections" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setcontrolssections-1"><span class="tsd-kind-call-signature">setControlsSections</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">sections</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">readonly</span> <a href="../interfaces/sta.app_editor.LayerControlsSection.html" class="tsd-signature-type tsd-kind-interface">LayerControlsSection</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setcontrolssections-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">sections</span>: <span class="tsd-signature-keyword">readonly</span> <a href="../interfaces/sta.app_editor.LayerControlsSection.html" class="tsd-signature-type tsd-kind-interface">LayerControlsSection</a><span class="tsd-signature-symbol">[]</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#setcontrolssections">setControlsSections</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L237">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:237</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setoverlaysize"><span>set<wbr/>Overlay<wbr/>Size</span><a href="#setoverlaysize" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setoverlaysize-1"><span class="tsd-kind-call-signature">setOverlaySize</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">_width</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">_height</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setoverlaysize-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Receives the current React-owned overlay size.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">_width</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">_height</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneLayer.html">BaseSceneLayer</a>.<a href="sta.app_editor.BaseSceneLayer.html#setoverlaysize">setOverlaySize</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx#L165">core/frontend/app/routes/editor/scene/layer/SceneLayer.tsx:165</a></li></ul></aside></div></li></ul></section></section></details></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary>
+<div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary>
+<div><a href="#context" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>context</span></a><a href="#dataview"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>data<wbr/>View</span></a><a href="#keydownhandler" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>keydown<wbr/>Handler</span></a><a href="#keyuphandler" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>keyup<wbr/>Handler</span></a><a href="#name" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>name</span></a><a href="#objects" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>objects</span></a><a href="#state" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>state</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
+<div><a href="#actionsview" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>actions<wbr/>View</span></a><a href="#controlssections" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>controls<wbr/>Sections</span></a><a href="#controlsview" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>controls<wbr/>View</span></a><a href="#isactive" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>is<wbr/>Active</span></a><a href="#objecttreeview" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>object<wbr/>Tree<wbr/>View</span></a><a href="#overlayview" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>overlay<wbr/>View</span></a><a href="#prefsview" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>prefs<wbr/>View</span></a><a href="#toolsview" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>tools<wbr/>View</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
+<div><a href="#addeventlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a><a href="#dispatchevent" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a><a href="#dispose"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a><a href="#gethint" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Hint</span></a><a href="#haseventlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a><a href="#onafterupdatedata" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>After<wbr/>Update<wbr/>Data</span></a><a href="#onbeforeupdatedata" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Before<wbr/>Update<wbr/>Data</span></a><a href="#refreshhint" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>refresh<wbr/>Hint</span></a><a href="#refreshobjects" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>refresh<wbr/>Objects</span></a><a href="#refreshoverlay" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>refresh<wbr/>Overlay</span></a><a href="#removeeventlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a><a href="#render" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>render</span></a><a href="#requestrender" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>request<wbr/>Render</span></a><a href="#setcontrolssections" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Controls<wbr/>Sections</span></a><a href="#setoverlaysize" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Overlay<wbr/>Size</span></a></div></details></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="../index.html">← API Reference</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">TypeScript API</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.28.20</p></footer>
+<div class="overlay"></div></body></html>

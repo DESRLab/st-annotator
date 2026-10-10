@@ -1,0 +1,43 @@
+SourceGroupCreate
+=================
+
+
+
+
+.. currentmodule:: sta.models.source.group
+
+.. autoclass:: SourceGroupCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceGroupCreate.check_edit_conflict
+      ~SourceGroupCreate.sqlmodel_update
+
+   
+   .. automethod:: SourceGroupCreate.check_edit_conflict
+   .. automethod:: SourceGroupCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceGroupCreate.model_config
+      ~SourceGroupCreate.name
+      ~SourceGroupCreate.description
+      ~SourceGroupCreate.last_edit_at
+
+   
+   .. autoattribute:: SourceGroupCreate.model_config
+   .. autoattribute:: SourceGroupCreate.name
+   .. autoattribute:: SourceGroupCreate.description
+   .. autoattribute:: SourceGroupCreate.last_edit_at
+   
+   

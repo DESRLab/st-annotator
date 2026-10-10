@@ -1,0 +1,40 @@
+PerfDeleteEntityParams
+======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfDeleteEntityParams
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfDeleteEntityParams.model_config
+      ~PerfDeleteEntityParams.builders
+      ~PerfDeleteEntityParams.entity_id
+      ~PerfDeleteEntityParams.step
+      ~PerfDeleteEntityParams.num_entities
+      ~PerfDeleteEntityParams.num_elements
+      ~PerfDeleteEntityParams.history
+      ~PerfDeleteEntityParams.insert_hash_to_distance_perf
+
+   
+   .. autoattribute:: PerfDeleteEntityParams.model_config
+   .. autoattribute:: PerfDeleteEntityParams.builders
+   .. autoattribute:: PerfDeleteEntityParams.entity_id
+   .. autoattribute:: PerfDeleteEntityParams.step
+   .. autoattribute:: PerfDeleteEntityParams.num_entities
+   .. autoattribute:: PerfDeleteEntityParams.num_elements
+   .. autoattribute:: PerfDeleteEntityParams.history
+   .. autoattribute:: PerfDeleteEntityParams.insert_hash_to_distance_perf
+   
+   

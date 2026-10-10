@@ -1,0 +1,42 @@
+sta.api.crud
+============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.crud
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      commit_created_ids
+      commit_queued_jobs
+      commit_record
+      commit_success
+      unique_ids
+
+   
+   .. autofunction:: commit_created_ids
+   .. autofunction:: commit_queued_jobs
+   .. autofunction:: commit_record
+   .. autofunction:: commit_success
+   .. autofunction:: unique_ids
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

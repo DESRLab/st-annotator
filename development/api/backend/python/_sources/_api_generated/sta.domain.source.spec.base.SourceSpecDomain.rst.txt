@@ -1,0 +1,48 @@
+SourceSpecDomain
+================
+
+
+
+
+.. currentmodule:: sta.domain.source.spec.base
+
+.. autoclass:: SourceSpecDomain
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceSpecDomain.bulk_delete_specs
+      ~SourceSpecDomain.bulk_update_specs
+      ~SourceSpecDomain.can_read_spec
+      ~SourceSpecDomain.can_read_spec_filters
+      ~SourceSpecDomain.count_specs
+      ~SourceSpecDomain.create_spec
+      ~SourceSpecDomain.delete_spec
+      ~SourceSpecDomain.list_specs
+      ~SourceSpecDomain.read_spec
+      ~SourceSpecDomain.read_spec_in_group
+      ~SourceSpecDomain.require_spec_writer
+      ~SourceSpecDomain.update_spec
+
+   
+   .. automethod:: SourceSpecDomain.bulk_delete_specs
+   .. automethod:: SourceSpecDomain.bulk_update_specs
+   .. automethod:: SourceSpecDomain.can_read_spec
+   .. automethod:: SourceSpecDomain.can_read_spec_filters
+   .. automethod:: SourceSpecDomain.count_specs
+   .. automethod:: SourceSpecDomain.create_spec
+   .. automethod:: SourceSpecDomain.delete_spec
+   .. automethod:: SourceSpecDomain.list_specs
+   .. automethod:: SourceSpecDomain.read_spec
+   .. automethod:: SourceSpecDomain.read_spec_in_group
+   .. automethod:: SourceSpecDomain.require_spec_writer
+   .. automethod:: SourceSpecDomain.update_spec
+   
+   
+
+   
+   
+   

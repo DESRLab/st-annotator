@@ -1,0 +1,55 @@
+ProfileEntityCreate
+===================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_ancestor_candidates
+
+.. autoclass:: ProfileEntityCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProfileEntityCreate.build_table_base_cls
+      ~ProfileEntityCreate.check_edit_conflict
+      ~ProfileEntityCreate.get_create_cls
+      ~ProfileEntityCreate.get_public_cls
+      ~ProfileEntityCreate.get_table_cls
+      ~ProfileEntityCreate.get_update_cls
+      ~ProfileEntityCreate.sqlmodel_update
+
+   
+   .. automethod:: ProfileEntityCreate.build_table_base_cls
+   .. automethod:: ProfileEntityCreate.check_edit_conflict
+   .. automethod:: ProfileEntityCreate.get_create_cls
+   .. automethod:: ProfileEntityCreate.get_public_cls
+   .. automethod:: ProfileEntityCreate.get_table_cls
+   .. automethod:: ProfileEntityCreate.get_update_cls
+   .. automethod:: ProfileEntityCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProfileEntityCreate.model_config
+      ~ProfileEntityCreate.group_id
+      ~ProfileEntityCreate.commit_hash
+      ~ProfileEntityCreate.is_deleted
+      ~ProfileEntityCreate.last_edit_at
+
+   
+   .. autoattribute:: ProfileEntityCreate.model_config
+   .. autoattribute:: ProfileEntityCreate.group_id
+   .. autoattribute:: ProfileEntityCreate.commit_hash
+   .. autoattribute:: ProfileEntityCreate.is_deleted
+   .. autoattribute:: ProfileEntityCreate.last_edit_at
+   
+   

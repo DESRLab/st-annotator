@@ -1,0 +1,61 @@
+FrameBulkUpdate
+===============
+
+
+
+
+.. currentmodule:: sta.models.frame
+
+.. autoclass:: FrameBulkUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FrameBulkUpdate.sqlmodel_update
+
+   
+   .. automethod:: FrameBulkUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FrameBulkUpdate.model_config
+      ~FrameBulkUpdate.source_group_id
+      ~FrameBulkUpdate.label_branch_id
+      ~FrameBulkUpdate.last_viewed_at
+      ~FrameBulkUpdate.is_complete
+      ~FrameBulkUpdate.min_x
+      ~FrameBulkUpdate.min_y
+      ~FrameBulkUpdate.min_z
+      ~FrameBulkUpdate.max_x
+      ~FrameBulkUpdate.max_y
+      ~FrameBulkUpdate.max_z
+      ~FrameBulkUpdate.min_timestamp
+      ~FrameBulkUpdate.max_timestamp
+      ~FrameBulkUpdate.issued_at
+
+   
+   .. autoattribute:: FrameBulkUpdate.model_config
+   .. autoattribute:: FrameBulkUpdate.source_group_id
+   .. autoattribute:: FrameBulkUpdate.label_branch_id
+   .. autoattribute:: FrameBulkUpdate.last_viewed_at
+   .. autoattribute:: FrameBulkUpdate.is_complete
+   .. autoattribute:: FrameBulkUpdate.min_x
+   .. autoattribute:: FrameBulkUpdate.min_y
+   .. autoattribute:: FrameBulkUpdate.min_z
+   .. autoattribute:: FrameBulkUpdate.max_x
+   .. autoattribute:: FrameBulkUpdate.max_y
+   .. autoattribute:: FrameBulkUpdate.max_z
+   .. autoattribute:: FrameBulkUpdate.min_timestamp
+   .. autoattribute:: FrameBulkUpdate.max_timestamp
+   .. autoattribute:: FrameBulkUpdate.issued_at
+   
+   

@@ -1,0 +1,49 @@
+sta.envs
+========
+
+.. currentmodule:: sta
+
+.. automodule:: sta.envs
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      FILESYSTEM_ROOT
+      POSTGRESQL_HOST
+      POSTGRESQL_PORT
+      POSTGRESQL_DBSE
+      POSTGRESQL_USER
+      POSTGRESQL_PASS
+      STA_FRONTEND_URL
+      STA_JWT_PRIVATE_KEY_PATH
+      STA_JWT_ACCESS_EXPIRY_SECONDS
+      STA_JOB_POLL_INTERVAL_SECONDS
+      STA_LOGIN_RATE_LIMIT_ATTEMPTS
+      STA_LOGIN_RATE_LIMIT_WINDOW_SECONDS
+      STA_MAX_REQUEST_BYTES
+      STA_TRUSTED_PROXY_IPS
+      STA_USE_ANCESTOR_CANDIDATES
+      STA_USE_DELTA_ENCODING
+      STA_ASSISTANT_URL
+      STA_ASSISTANT_MAX_REQUEST_BYTES
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

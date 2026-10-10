@@ -1,0 +1,6 @@
+DEFAULT\_FRONTEND\_URL
+======================
+
+.. currentmodule:: sta.api.cors
+
+.. autodata:: DEFAULT_FRONTEND_URL

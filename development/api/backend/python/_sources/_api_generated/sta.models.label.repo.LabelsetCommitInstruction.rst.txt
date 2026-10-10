@@ -1,0 +1,36 @@
+LabelsetCommitInstruction
+=========================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetCommitInstruction
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetCommitInstruction.model_config
+      ~LabelsetCommitInstruction.op_name
+      ~LabelsetCommitInstruction.op_params
+      ~LabelsetCommitInstruction.timestamp
+      ~LabelsetCommitInstruction.result_placeholder_key
+      ~LabelsetCommitInstruction.overwrites
+
+   
+   .. autoattribute:: LabelsetCommitInstruction.model_config
+   .. autoattribute:: LabelsetCommitInstruction.op_name
+   .. autoattribute:: LabelsetCommitInstruction.op_params
+   .. autoattribute:: LabelsetCommitInstruction.timestamp
+   .. autoattribute:: LabelsetCommitInstruction.result_placeholder_key
+   .. autoattribute:: LabelsetCommitInstruction.overwrites
+   
+   

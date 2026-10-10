@@ -1,0 +1,2455 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Spatial-Temporal Annotation">
+      
+      
+      
+        <link rel="canonical" href="https://desrlab.github.io/st-annotator/development/dev/plugin/">
+      
+      
+        <link rel="prev" href="../build/">
+      
+      
+        <link rel="next" href="../conventions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../_static/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Writing a Plugin - ST Annotator Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#writing-a-plugin" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ST Annotator Documentation" class="md-header__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../_static/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ST Annotator Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Writing a Plugin
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../install/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../user/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CLI Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ST Annotator Documentation" class="md-nav__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../_static/logo.png" alt="logo">
+
+    </a>
+    ST Annotator Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/host/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosting the ST Annotator Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registering a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user/handbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ST Annotator Platform Handbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ST Annotator Platform Handbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build, Distribution, and Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a Plugin
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Plugin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-layer-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Layer (models)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-layer-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Layer (domain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-layer-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Layer (api)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backend Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labelset-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Labelset Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frontend Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Annotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Annotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-loader_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labelset-operations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Labelset Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Docs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/editor-state-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor State Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/background-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Jobs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/placeholder-values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Placeholder Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/backend/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Plugin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-layer-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Layer (models)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-layer-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Layer (domain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-layer-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Layer (api)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backend Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labelset-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Labelset Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frontend Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Annotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Annotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-loader_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labelset-operations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Labelset Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="writing-a-plugin">Writing a Plugin</h1>
+<p>A plugin is simply a function that is automatically called when you run the ST Annotator Platform.</p>
+<h2 id="example-plugin">Example Plugin</h2>
+<p>Each plugin has its own backend package rooted at <code>plugins/&lt;name&gt;/backend/</code>: <code>pyproject.toml</code> and the importable package directory sit side by side, and <code>plugin.py</code> lives inside that package directory next to the package's other modules. Create the plugin file as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Directory structure:</span>
+<span class="c1"># plugins/</span>
+<span class="c1">#   my_plugin/</span>
+<span class="c1">#     backend/</span>
+<span class="c1">#       pyproject.toml</span>
+<span class="c1">#       my_package/</span>
+<span class="c1">#         plugin.py  # beside models/, domain/ and api/ in a full plugin</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Successfully loaded plugin.py"</span><span class="p">)</span>
+</code></pre></div>
+<p>To register the plugin to the backend, add the following lines to <code>plugins/my_plugin/backend/pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code>[project.entry-points."sta.plugins"]
+registry = "my_package.plugin:register"
+</code></pre></div>
+<p>The value names an importable module and function, so <code>my_package.plugin:register</code> resolves to <code>plugins/my_plugin/backend/my_package/plugin.py</code>. Then install the package. Afterwards, you should see the print statement being executed whenever you run <code>sta serve</code>.</p>
+<h2 id="plugin-structure">Plugin Structure</h2>
+<p>Each plugin lives under the top-level <code>plugins/</code> directory as a package with separate backend and frontend halves, corresponding to different application layers:</p>
+<div class="highlight"><pre><span></span><code>plugins/
+  my_plugin/
+    backend/
+      my_package/
+        models/  # Database layer
+        domain/  # Domain layer
+        api/     # API layer
+        plugin.py
+      pyproject.toml
+    frontend/
+      app/     # Data management routes, frontend plugin registration,
+               # and editor integration (app/editor/)
+      models/  # Label data state classes (label plugins only)
+      test/    # Frontend unit tests
+</code></pre></div>
+<p>A backend-only plugin can omit the frontend directory. A data plugin that adds browser-visible data types should usually include both backend API routes and frontend route modules. The <code>app/editor/</code> directory holds the annotation editor integration. The <code>models/</code> directory exists only in the label plugins (bbox, vector and segmentation); it holds their label data state classes, which are consumed by the editor's data adapters as well as the plugins' own editor code, while the source plugins pcd and gmesh have none. <code>test/</code> holds the plugin's frontend unit tests.</p>
+<h3 id="backend">Backend</h3>
+<h4 id="database-layer-models">Database Layer (<code>models</code>)</h4>
+<p>We use <a href="https://sqlmodel.tiangolo.com/">SQLModel</a> to define the schema for the database and CRUD operations.</p>
+<h4 id="domain-layer-domain">Domain Layer (<code>domain</code>)</h4>
+<p>For each file under <code>domain</code>, use the corresponding CRUD models under <code>models</code> to construct CRUD methods that can be called from elsewhere in the codebase.</p>
+<h4 id="api-layer-api">API Layer (<code>api</code>)</h4>
+<p>For each file under <code>api</code>, construct FastAPI endpoints that call corresponding methods in <code>domain</code> so that they can be accessed from the frontend.</p>
+<h2 id="data-plugins">Data Plugins</h2>
+<p>Data plugins introduce new data types to the ST Annotator Platform. In general, we can categorize data types as follows:</p>
+<ul>
+<li>Source Data (e.g. point cloud)</li>
+<li>Label Data (e.g. bounding box)</li>
+<li>Source Specifications (e.g. preprocessors)</li>
+<li>Label Specifications (e.g. object class)</li>
+</ul>
+<p>More details on each data type below:</p>
+<h3 id="source-data">Source Data</h3>
+<p>Source data refers to the data referenced during the annotation process. It should not be updated by annotators.</p>
+<p>Source data (see <code>SourceDataSQLModel</code>) includes the following attributes (* indicates primary key):</p>
+<ul>
+<li><code>id</code>*: The unique identifier of the data instance.</li>
+<li><code>group_id</code>: The group associated with the data instance.</li>
+<li><code>st_bounds</code>: The spatiotemporal boundaries of the data instance.</li>
+</ul>
+<p>Usually, source data is stored in read-only files. In this case, we can save storage space by referencing them via metadata instead of copying them into the database.</p>
+<p>This metadata (see <code>SourceMetadataSQLModel</code>) includes the following attributes in addition to those common to source data:</p>
+<ul>
+<li><code>uri</code>: A reference to the file containing the data instance.</li>
+</ul>
+<p>Building on this, <code>SourceTransformMetadataSQLModel</code> provides a way to transform the local coordinates in a file into world space by including the following attributes:</p>
+<ul>
+<li><code>transform</code>: The transformation matrix used to transform each coordinate in the file into the coordinate system of the database. Note that the spatiotemporal boundaries should be updated along with the transformation matrix to maintain their consistency.</li>
+</ul>
+<p>As indicated by the unique constraint on (<code>uri</code>, <code>group_id</code>), the same data file can be associated with multiple groups; each such association creates a separate instance of metadata.</p>
+<h3 id="label-data">Label Data</h3>
+<p>Label data refers to the data created during the annotation process. To keep track of the annotation history, we maintain snapshots of label data, which are created whenever a user performs an atomic operation. This process is similar to using a Git repository to manage the history of a codebase.</p>
+<p>Label data (see <code>LabelDataSQLModel</code>) includes the following attributes (* indicates primary key):</p>
+<ul>
+<li><code>id</code>*: The unique identifier of the data instance.</li>
+<li><code>commit_hash</code>*: The commit of the snapshot.</li>
+<li><code>group_id</code>*: The group associated with the data instance.</li>
+</ul>
+<p>As indicated by the composite primary key, within a particular group, we maintain multiple snapshots for the same data instance. To save storage space, we allow <code>id</code>s to be reused between groups; such <code>id</code>s have no relation between each other, unlike the case for source data <code>uri</code>s.</p>
+<p>We categorize label data by their compositional nature: entity (parent) and element (child).</p>
+<p>Label entities (see <code>LabelEntitySQLModel</code>) do not exist in space and time by themselves. Rather, they are semantically defined by their constituent elements.</p>
+<p>Label elements (see <code>LabelElementSQLModel</code>) represent concrete observations. They have the following attributes in addition to those common to label data:</p>
+<ul>
+<li><code>st_bounds</code>: The spatiotemporal boundaries of the data instance.</li>
+<li><code>entity_id</code>: The label entity acting as its parent.</li>
+</ul>
+<h3 id="data-specifications">Data Specifications</h3>
+<p>Source and label data can also be modified by specifications. Unlike file metadata, which specifies data at the instance level, specification data is applied at the group level; this means that the same specification is applied to every group that uses that specification.</p>
+<p>Specifications for source data is referred to as <em>source specifications</em> (see <code>SourceSpecSQLModel</code>); the same for label data is referred to as <em>label specifications</em> (see <code>LabelSpecSQLModel</code>). Subclass the corresponding base with the specification's own columns and bind the concrete table with <code>get_table_cls(tablename)</code>: the pcd plugin defines <code>PointCloudSpecSQLModel(SourceSpecSQLModel)</code> and binds <code>PointCloudSpec = PointCloudSpecSQLModel.get_table_cls("pcd_spec")</code>. That call generates the specification table together with the link table associating it with a group (named <code>&lt;tablename&gt;_source_group</code> for source specifications and <code>&lt;tablename&gt;_label_group</code> for label specifications), its <code>group_links</code>/<code>groups</code> relationships, and the <code>get_create_cls()</code>, <code>get_public_cls()</code> and <code>get_update_cls()</code> request and response models with their <code>group_ids</code> fields. The link table is never hand-written; where a plugin mentions these generated classes in annotations it declares them only under <code>if TYPE_CHECKING:</code> and binds the runtime names in the <code>else</code> branch.</p>
+<p>Since object classes are very common in label data, the main library ships the object class tables ready to use: <code>ObjectClass</code> holds the class definitions and is not scoped to any group, while <code>ObjectClassSelection</code> (created by <code>ObjectClassSelectionSQLModel.get_table_cls("object_class_selection")</code>) is a label specification listing the classes selectable in a given label group, so users see only those classes in the annotation editor. The core editor loads this selection once for the selected branch's label group and shares it with label data receivers; plugin bulk label responses carry labels and class IDs, not the selection. Plugins import both tables rather than subclassing them. An author who needs a different specification extends a base instead: <code>ObjectClassSelectionSQLModel</code> for a selection that still links to <code>ObjectClass</code> rows, or <code>LabelSpecSQLModel</code> for a label specification unrelated to object classes.</p>
+<p>Because a specification is applied to whole groups, saving one can leave every scan of those groups awaiting re-derivation, and the write says so: <code>enqueue_job</code> answers with the row it created, or <code>None</code> when equivalent work was already waiting, so only the queue can report what a save started. A plugin therefore overrides the <code>SourceSpecDomain</code> writers it extends to carry those ids up from its reconcile step — beside the record for <code>create_spec</code>/<code>update_spec</code>, alone for the delete and bulk writers — and its endpoints answer with them as <code>job_ids</code> (<code>sta.api.responses.QueuedJobsResponse</code>, <code>sta.api.crud.commit_queued_jobs</code>). The base reports an empty list, because it queues nothing: it has no reader for the data a specification configures. A client that offers to show the reader what their save began has to read these ids rather than infer a job from a success, since a save that changed nothing a derived value depends on starts none. The same reporting applies to a data write that queues, such as a bulk metadata edit, whose derived-state contract the <em>Data Management</em> notes below describe.</p>
+<p>Note that you can define any number of specification types for each type of source/label data; how they apply to the that data is up to you.</p>
+<h3 id="backend-implementation">Backend Implementation</h3>
+<p>Use this directory structure:</p>
+<div class="highlight"><pre><span></span><code>backend/
+  my_package/
+    models/
+      source/  # (or label/)
+    domain/
+      source/  # (or label/)
+      editor/
+    api/
+      source/  # (or label/)
+    plugin.py
+  pyproject.toml
+</code></pre></div>
+<p>The <code>register</code> method in the backend should do the following:</p>
+<ul>
+<li>Register the plugin's router for managing source (or label) data to the corresponding parent router in the main library (<code>sta.api.source.data.router</code> or <code>sta.api.label.data.router</code>).</li>
+<li>(Data specifications) Register the plugin's specification router to <code>sta.api.source.spec.router</code>, as the pcd plugin does, or to <code>sta.api.label.spec.router</code>.</li>
+<li>Register a data loader to the main library's <code>SOURCE_DATA_LOADERS</code> (or <code>LABEL_DATA_LOADERS</code>) so that they can be shown in the annotation editor.</li>
+<li>(Label data only) Register labelset operations to the main library's <code>OP_REGISTRY</code> so that users can update the annotations.</li>
+<li>(Optional) Register the plugin's own editor endpoints under <code>sta.api.editor.router</code>; the segmentation plugin mounts its assisted-labeling proxy there.</li>
+<li>(Optional) Attach a resource that opens and closes with the API process by passing an async generator function to <code>register_lifespan_handler</code> (<code>sta.api.lifespan</code>); the segmentation plugin does this for its model-service client.</li>
+<li>(Optional) Register an executor for each kind of background work the plugin queues, with <code>register_job_executor(kind, executor)</code> (<code>sta.domain.jobs</code>); pcd and gmesh queue their spatial-bounds sweeps this way. Core owns the queue and the <code>job</code> table, so a kind whose executor is absent simply fails — the plugin that knows the work is the only place that can supply it.</li>
+<li>(Optional) Let browser clients read plugin-defined response headers with <code>expose_headers</code> (<code>sta.api.cors</code>). Binary source loaders need it: pcd exposes its channel and point-count headers, gmesh its vertex and face byte-length headers.</li>
+<li>(Optional) Attach commands to the <code>sta plugins</code> CLI (via the <code>plugins_cli.group</code> decorator).</li>
+</ul>
+<h4 id="data-management">Data Management</h4>
+<ol>
+<li>Define appropriate SQLModel subclasses under <code>models/</code>.</li>
+<li>Define domain wrappers under <code>/domain</code>, such as <code>SourceMetadataDomain</code> for source data, or <code>LabelElementDomain</code> for label data.</li>
+<li>Define corresponding CRUD endpoints under <code>/api</code>.</li>
+</ol>
+<p>Source metadata whose spatial bounds are derived from its stored file inherits
+<code>bounds_config_hash</code> from <code>SourceDataSQLModel</code>: the identity of the reading configuration
+the stored bounds was produced under, and NULL while the record awaits derivation.
+<code>touch_st_bounds()</code> must write that identity alongside the bounds on success, and write
+neither on failure — a record whose file cannot be read stays pending with its reason in
+<code>bounds_error</code>, so "attempted" never looks like "finished". Deriving one record belongs in
+the write path; deriving a group's inventory belongs in a queued sweep
+(<code>schedule_bounds_reconcile()</code>), which is what keeps a request from reading a dataset. The
+pcd and gmesh domains are the reference implementations, including why an identity is
+plugin-owned: pcd hashes the configuration fields its reader consumes, while gmesh has no
+configuration at all and uses one constant.</p>
+<h4 id="data-loader">Data Loader</h4>
+<p>Create a subclass of <code>DataLoader</code> under <code>domain/editor</code>, implementing the abstract <code>get_data_bulk</code> method to query the data from the backend. If the bulk response is JSON, also set the <code>data_model</code> class attribute to the pydantic model describing that response; the label bulk endpoint is re-registered with the union of the registered <code>data_model</code>s as its response model, so label responses stay typed end to end. Nothing consumes <code>data_model</code> for source data — the source bulk endpoint is characterized only by the keys registered in <code>SOURCE_DATA_LOADERS</code> — so source loaders such as pcd and gmesh leave it as <code>None</code>, as does any loader that returns a binary response.</p>
+<p><a id="backend-labelset-operations"></a></p>
+<h4 id="labelset-operations">Labelset Operations</h4>
+<p>For each operation, define the following:</p>
+<ul>
+<li>A unique <code>op_name</code> to identify the type of operation.</li>
+<li>A <code>pydantic.BaseModel</code> (or list or dictionary thereof) to express the <code>op_params</code> required by the operation. This is used to parse the JSON data sent from the frontend.</li>
+<li>A concrete subclass of <code>Operation</code>. Implement its <code>apply()</code> method which applies the operation to a blank <code>commit</code>. Usually, <code>apply()</code> creates a new snapshot of each label that has been updated by the operation; those snapshots are linked to the provided <code>commit</code>. The return value of this method can be used in subsequent operations (see <a href="../design/placeholder-values/">Placeholder Values</a>). For common shapes, subclass the provided <code>CreateBase</code>, <code>UpdateBase</code> or <code>DeleteBase</code> instead and implement their abstract classmethods: <code>CreateBase</code> requires <code>get_domain()</code> and <code>get_data(commit, params)</code>, <code>UpdateBase</code> requires <code>get_domain()</code>, <code>get_id(params)</code> and <code>get_data(params)</code>, and <code>DeleteBase</code> requires <code>get_domain()</code> and <code>get_id(params)</code> — it defines no <code>get_data()</code>, since the identified row is deleted as a whole.</li>
+</ul>
+<p>Then register the operation to the main library's <code>OP_REGISTRY</code> via <code>OperationRegistry.register(op_name, op_type, params_type)</code>, conventionally collected into a <code>register_*_ops(registry)</code> helper that <code>register()</code> calls.</p>
+<h3 id="frontend-implementation">Frontend Implementation</h3>
+<p>The plugin should include the following:</p>
+<ul>
+<li>A frontend plugin object that registers data management routes and optional startup behavior.</li>
+<li>A user interface for data managers to perform CRUD operations on source data and to view label data.</li>
+<li>A user interface to interact with the data in the annotation editor.</li>
+</ul>
+<p>Register the frontend plugin by exporting an object that satisfies <code>STAPlugin</code>
+as the default export of the plugin's <code>app/plugin.ts</code>, and give the package an
+<code>app/index.ts</code> barrel that re-exports that registration together with the
+plugin's editor module:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// app/index.ts</span>
+<span class="k">export</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./plugin"</span><span class="p">;</span>
+<span class="k">export</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./editor/index"</span><span class="p">;</span>
+</code></pre></div>
+<p>The package's <code>./app</code> subpath resolves to the built barrel, so an application
+importing <code>sta-my-plugin/app</code> receives the registration as its default export
+and the editor contributions through its star export. Add the package to the
+target distribution's dependencies and import that <code>./app</code> export from that
+distribution's <code>sta.config.ts</code>. Do not add optional plugins to <code>core/frontend</code>:
+core's default configuration intentionally registers none. The repository's
+complete product is composed in <code>distributions/full/frontend/sta.config.ts</code>;
+downstream products can provide their own composition. See <a href="../build/#frontend-application-compositions">Build, Distribution,
+and Release</a> for development and
+production build commands.</p>
+<p>Plugin code reaches core through package subpaths: the <code>STAPlugin</code> type and the
+<code>pluginRouteModule</code> helper come from <code>sta/app</code>, and the editor interfaces
+(<code>EditorLayerFactoryEnv</code>, <code>findEditorLayer</code>, <code>Placeholder</code>,
+<code>createPluginSliceSelectorHook</code>) from <code>sta/app/editor</code>.</p>
+<p>A frontend plugin can contribute route cards to these data management dashboards:</p>
+<ul>
+<li><code>routes.source.data</code>: source data storage pages.</li>
+<li><code>routes.source.specs</code>: source specification pages.</li>
+<li><code>routes.label.data</code>: label data storage pages.</li>
+<li><code>routes.label.specs</code>: label specification pages.</li>
+</ul>
+<p>Each route entry provides a <code>path</code>, <code>module</code> and <code>title</code>. The <code>path</code> becomes the child route under the corresponding dashboard, <code>module</code> points to the React Router route module, and <code>title</code> is displayed on the dashboard card. The <code>module</code> value is passed straight to react-router's build-time <code>route(d.path, d.module)</code> calls in <code>core/frontend/app/routes.ts</code>, so it cannot be a bare relative string such as <code>'./label/data/vector'</code>. Every shipped plugin builds it with the helper core exports from <code>sta/app</code>: <code>module: pluginRouteModule(import.meta.url, "./label/data/vector")</code>. The helper resolves the route module against the plugin's own module URL and appends the extension the bundler needs — <code>.tsx</code> when the plugin is consumed from its TypeScript sources, <code>.js</code> when it is consumed from its built <code>dist/</code> output — returning the resulting absolute path.</p>
+<p>Plugins can also define an <code>entrypoint</code>. Use it for startup registration, such as adding source file handlers to <code>FILE_HANDLERS</code> from <code>core/frontend/app/plugins/source-files.ts</code> so the source file explorer can offer plugin-specific import actions.</p>
+<p><code>editor</code> is a required field of <code>STAPlugin</code> and <code>loader</code> is required within it, so every frontend registration supplies an editor loader, even one whose real contribution is data management routes. The loader returns the plugin's annotation editor integration (<code>() =&gt; import('./editor/index.js')</code>, as all shipped plugins write it) and is called by the editor runtime. The editor runtime is plugin-agnostic and discovers a module's contributions structurally:</p>
+<ul>
+<li>Export <code>createEditorLayer(env: EditorLayerFactoryEnv)</code> to contribute the plugin's scene layer. The env provides the scene <code>context</code>, the layers already created (registration order — a layer may depend only on layers registered earlier, discovered with <code>findEditorLayer(env.layers, SomeLayerClass)</code>), and the plugin's overlay DOM (<code>env.overlayDoms</code>).</li>
+<li>Optionally export <code>createEditorPreferencesMenu(env: EditorPreferencesMenuFactoryEnv)</code> to contribute the app's preferences menu (the layer collection exists at that point; the first contributor wins). The pcd plugin uses this for the main camera menu.</li>
+<li>If the layer needs React-owned overlay DOM (canvases/divs) that must exist before it is constructed, declare it in the registration's <code>editor.overlayDoms</code> — a list of <code>{ key, kind: 'canvas' | 'div', id?, testId? }</code> specs. The editor display shell creates those elements before building the runtime and passes them to the factory through <code>env.overlayDoms</code>, keyed by the spec's <code>key</code> (see the vector and segmentation registrations for examples).</li>
+<li>To serve the frame-creation dialog's source metadata for the plugin's source data type, set the registration's <code>client.source.loader</code>: <code>sourceLookupNames</code> lists the source-lookup names the loader serves and <code>loadMetadatas({ query })</code> returns that group's metadata records (see the pcd and gmesh registrations). The dialog dispatches by source-lookup name and passes only <code>query: { group_id }</code>; <code>auth</code> is optional in the <code>SourceMetadataSource</code> interface and core never populates it, so a loader must not depend on it.</li>
+</ul>
+<h4 id="data-management_1">Data Management</h4>
+<p>Source data routes should implement the same table behavior as the core data management pages: list, create, update, batch update and delete when the user has the <code>data-manager</code> role, and view-only behavior otherwise. Users with the <code>project-manager</code> role can access data management pages in read-only mode, so plugin routes should continue to load data for them but hide create, save, edit and delete actions unless they also have <code>data-manager</code>.</p>
+<p>Bulk work is reached from the row context menu and nowhere else. A plugin grid declares its batch operations in the <code>commandItems</code> array it hands to <code>selectableConfig</code> — <code>Batch Edit Details</code> and <code>Batch Delete</code>, visible when more than one entry is selected — and gives every command that writes a single row the matching one-entry gate, so a multi-row selection can never narrow itself to the row that happened to be right-clicked. On a paginated grid, the gates must count the whole-list selection from <code>selectedAllIdsRef</code> when present; <code>getAllSelectedItems()</code> counts only the current page. Read-only commands (<code>Open</code>, and <code>View Details</code> for a user who cannot write) keep no such override: a table with no batch command for that user must not end up with an empty menu. The toolbar above the grid holds the create button and nothing but the selection group, which comes from <code>GridSelectionButtons</code> (<code>core/frontend/app/components/GridSelectionButtons.tsx</code>). Pass <code>onSelectCurrentPage</code> only when the route actually pages its list, which is also when the route needs a <code>.../ids</code> endpoint beside the list endpoint so <code>Select All (N)</code> can name every entry under the current filter; a route that returns its whole inventory in one call passes just <code>onSelectAll</code>.</p>
+<p>Use the generated frontend client from <code>core/frontend/client</code> to call the plugin's backend endpoints from route loaders and actions. The route loader should load the current session and user, pass the access token to backend calls, and return enough user information for the component to derive <code>canManage = user.roles.includes('data-manager')</code>.</p>
+<p>For source data pages, plugin authors can reuse helpers from <code>core/frontend/app/plugins/source-data.ts</code> for common formatting, datetime conversion and error normalization. File-backed source plugins can register file explorer actions through <code>FILE_HANDLERS</code>; those actions remain data-manager-only because the file explorer itself is data-manager-only.</p>
+<p>Label data pages should generally be read-only views over committed label snapshots. Use helpers from <code>core/frontend/app/plugins/label-data.tsx</code> to build commit filters and SlickGrid options. If a plugin needs to expose label mutation UI outside the annotation editor, it should apply the same <code>data-manager</code>-only controls as source data management and rely on backend authorization as the final guard.</p>
+<h4 id="data-annotation">Data Annotation</h4>
+<h5 id="data-loader_1">Data Loader</h5>
+<p>Define a concrete implementation of <code>DataLoader</code>, which builds on top of <code>DataLookup</code> by adding a layer of indirection between which frame is opened by the user (i.e., the current frame) and which frames need their data to be loaded.</p>
+<ul>
+<li><code>UnitDataLoader</code> is functionally identical to <code>DataLookup</code> (one-to-one mapping of frames)</li>
+<li><code>WindowDataLoader</code> also loads the data in nearby frames (one-to-many mapping of frames), combining them into a single object. This enables data from other frames to be displayed in the current frame.</li>
+</ul>
+<h5 id="data-view">Data View</h5>
+<p>Define a concrete implementation of <code>DataView</code> (<code>SourceDataView</code> for source data; <code>LabelDataView</code> for label data), which exposes the data from <code>DataLoader</code> for the current frame.</p>
+<p>For label data, you should also define methods to apply the various <a href="#frontend-labelset-operations">operations</a> to the active data. Each such mutator wraps the operation and applies it through the current frame's <code>EditableBranch</code> (e.g. <code>this.currentBranch?.apply(op)</code>).</p>
+<h5 id="data-layer">Data Layer</h5>
+<p>Define a concrete implementation of <code>DataLayer</code> (<code>SourceDataLayer</code> for source data; <code>LabelDataLayer</code> for label data), through which the user can interact with the data that is exposed by <code>DataView</code>.</p>
+<ul>
+<li>Customize the layer-specific menus via the <code>actionsView</code>, <code>toolsView</code>, <code>prefsView</code>, <code>objectTreeView</code>, and <code>controlsView</code> (or <code>controlsSections</code>) attributes, each providing a React node.</li>
+<li>Place <code>three.js</code> objects in the scene via the <code>objects</code> attribute.</li>
+<li>Customize the 2D overlay via the <code>overlayView</code> attribute. Label inspectors (the former property panels) are rendered as draggable React panels inside this overlay.</li>
+<li>If the layer declared <code>editor.overlayDoms</code> in its registration and needs to render React content inside one of those elements (e.g. the segmentation brush cursor inside its cursor div), implement <code>EditorOverlayViewsContributor</code>: the <code>editorOverlayViews</code> attribute maps each DOM <code>key</code> to a React node, and the display shell renders it inside the element, re-rendering on the layer's <code>overlay-change</code> event.</li>
+<li>Programmatically navigate the scene and labelset repository via the <code>context</code> attribute.</li>
+<li>Set up event handlers for 3D pointer interaction via the <code>WindowPointer</code> class; windows can be accessed through the <code>context.display</code> attribute.</li>
+<li>Set up keybinds via the <code>keydownHandler</code> and <code>keyupHandler</code> attributes.</li>
+</ul>
+<p>You should refresh the <code>three.js</code> objects and the model state backing these views inside the <code>render()</code> method. Rendering is demand-driven: whenever an event marks internal render state dirty, call the protected <code>requestRender()</code> method to schedule a frame. After adding or removing children of the layer's <code>objects</code> group, call the protected <code>refreshObjects()</code> method once so that the layer collection reapplies the correct per-window visibility masks without polling every group's children.</p>
+<p>Where these contributions live: <code>createEditorLayer</code> and <code>createEditorPreferencesMenu</code> are plain function exports of the plugin's <code>app/editor/contribution.ts</code>, star-exported from the plugin's editor barrel <code>app/editor/index.ts</code> so they are present on exactly the module the registration's <code>editor.loader</code> returns. A layer that owns editor state also implements <code>EditorSliceContributor</code> (<code>mapEditorSlice(previous)</code> projects the layer's imperative state into the snapshot slice keyed by the plugin's registration key, reusing <code>previous</code> fields that are unchanged, and <code>subscribeEditorSlice(listener)</code> subscribes to every event that can affect that slice). Both contributions are discovered structurally, so core never imports a plugin package. See <a href="../design/editor-state-management/#the-unified-read-model-editor-state-store">Editor State Management</a> for the snapshot shape and the wiring rules.</p>
+<p>The label plugins' editor scaffolds — each plugin's <code>InteractContext</code>, its inspector and settings-pane containers, its label index classes, and the vector controls stack — share a shape without sharing a base. That duplication is deliberate: the per-plugin state structure is not settled, so a common abstraction would be designed backwards. A plugin extending this surface copies the nearest existing one rather than unifying them; unification is a decision of its own, not a side effect of unrelated work.</p>
+<p><a id="frontend-labelset-operations"></a></p>
+<h5 id="labelset-operations_1">Labelset Operations</h5>
+<p>For each operation, define a concrete implementation of <code>BaseOperation</code> which includes the following:</p>
+<ul>
+<li>An <code>opName</code> that corresponds to the <code>op_name</code> in Python (described above).</li>
+<li>A type definition of <code>opParams</code> which corresponds to the <code>op_params</code> in Python (described above). May contain <a href="../design/placeholder-values/">placeholders</a>.</li>
+<li>An <code>opResult</code> that corresponds to the return value of <code>Operation.apply()</code> in Python. Expressed as a <a href="../design/placeholder-values/">placeholder</a>.</li>
+<li>An implementation of <code>applyLocal()</code> to update the data in the annotation editor when the operation is applied.</li>
+<li>An implementation of <code>undoLocal()</code> to update the data in the annotation editor when the operation is undone.</li>
+</ul>
+<p>You can apply an operation by calling <code>EditableBranch.apply()</code> with your operation, typically through the label data view's mutator methods. This immediately applies the operation client-side. When the user saves their changes, the operation is also applied server-side, which invokes the corresponding <code>apply()</code> method in Python (described above).</p>
+<p>Note that once an operation has been applied server-side, it can no longer be undone in the annotation editor.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../build/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Build, Distribution, and Release">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Build, Distribution, and Release
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../conventions/" class="md-footer__link md-footer__link--next" aria-label="Next: Coding Conventions">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Coding Conventions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 DESRLab
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.footer", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

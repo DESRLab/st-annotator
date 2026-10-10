@@ -1,0 +1,6 @@
+STA\_JOB\_POLL\_INTERVAL\_SECONDS
+=================================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_JOB_POLL_INTERVAL_SECONDS

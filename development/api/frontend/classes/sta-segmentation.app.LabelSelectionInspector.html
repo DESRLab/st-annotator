@@ -1,0 +1,351 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>LabelSelectionInspector | TypeScript API</title><link rel="icon" href="../assets/favicon.ico"/><meta name="description" content="Documentation for TypeScript API"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><link rel="stylesheet" href="../assets/custom.css"/><script defer src="../assets/main.js"></script><script defer src="../assets/custom.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">⭐ TypeScript API</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="../modules/sta-segmentation.html">sta-segmentation</a></li>
+<li><a href="../modules/sta-segmentation.app.html">app</a></li>
+<li><a href="" aria-current="page">LabelSelectionInspector</a></li></ul>
+<h1>Class LabelSelectionInspector</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>Displays information about a selection which can be edited directly.</p>
+</div></section>
+<section class="tsd-panel">
+<h4>Implements</h4>
+<ul class="tsd-hierarchy">
+<li><a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorHandle</a></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L129">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:129</a></li></ul></aside>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h5 class="tsd-index-heading uppercase">Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="constructors">Constructors<a href="#constructors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="properties">Properties<a href="#properties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#labelsview" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>labels<wbr/>View</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="accessors">Accessors<a href="#accessors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#autoinstances" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>auto<wbr/>Instances</span></a>
+<a href="#disabled" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>disabled</span></a>
+<a href="#drawselectionactive" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>draw<wbr/>Selection<wbr/>Active</span></a>
+<a href="#outputdata" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>output<wbr/>Data</span></a>
+<a href="#paneparams" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>pane<wbr/>Params</span></a>
+<a href="#selectedid" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>selected<wbr/>Id</span></a>
+<a href="#selectedselection" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>selected<wbr/>Selection</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="methods">Methods<a href="#methods" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#addeventlistener" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a>
+<a href="#clickdrawselection" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>click<wbr/>Draw<wbr/>Selection</span></a>
+<a href="#dispose" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a>
+<a href="#getselectionparams" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Selection<wbr/>Params</span></a>
+<a href="#oninputchange" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Input<wbr/>Change</span></a>
+<a href="#onpaneevent" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Pane<wbr/>Event</span></a>
+<a href="#removeeventlistener" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a>
+</div></section></div></details></section></section>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="constructors-1">Constructors<a href="#constructors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructorlabelselectioninspector"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">LabelSelectionInspector</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorParams.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorParams</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">LabelSelectionInspector</a><a href="#constructorlabelselectioninspector" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new selection inspector.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorParams.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorParams</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">LabelSelectionInspector</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L406">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:406</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="labelsview"><span>labels<wbr/>View</span><a href="#labelsview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">labelsView</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-segmentation.app.SegmentationInspectorLabelsView.html" class="tsd-signature-type tsd-kind-interface">SegmentationInspectorLabelsView</a></div>
+<div class="tsd-comment tsd-typography"><p>A view of the collection of labels used to update the selected object instance.</p>
+</div><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#labelsview">labelsView</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L141">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:141</a></li></ul></aside></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="autoinstances"><span>auto<wbr/>Instances</span><a href="#autoinstances" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="autoinstancesautoinstances"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">autoInstances</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If <code>true</code>, each object instance only has one selection, and such objects
+are managed by the program without explicit input from the user.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#autoinstances">autoInstances</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L221">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:221</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="autoinstancesautoinstances-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">autoInstances</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#autoinstances">autoInstances</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L225">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:225</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="disabled"><span>disabled</span><a href="#disabled" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="disableddisabled"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">disabled</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p><code>true</code> if this inspector is disabled; otherwise, <code>false</code>.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#disabled">disabled</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L202">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:202</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="disableddisabled-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">disabled</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#disabled">disabled</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L206">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:206</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="drawselectionactive"><span>draw<wbr/>Selection<wbr/>Active</span><a href="#drawselectionactive" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="drawselectionactivedrawselectionactive"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">drawSelectionActive</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p><code>true</code> if the draw selection button is active; otherwise, <code>false</code>.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#drawselectionactive">drawSelectionActive</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L239">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:239</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="drawselectionactivedrawselectionactive-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">drawSelectionActive</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#drawselectionactive">drawSelectionActive</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L243">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:243</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="outputdata"><span>output<wbr/>Data</span><a href="#outputdata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="outputdataoutputdata"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">outputData</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorPaneData.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorPaneData</a></div>
+<div class="tsd-description">
+<h4 class="tsd-returns-title">Returns <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorPaneData.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorPaneData</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L470">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:470</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="paneparams"><span>pane<wbr/>Params</span><a href="#paneparams" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="paneparamspaneparams"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">paneParams</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><br/>    <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorPaneControllerParams.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorPaneControllerParams</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-type">&quot;inputtedData&quot;</span><br/>    <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;internalData&quot;</span><br/>    <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;settings&quot;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-description">
+<h4 class="tsd-returns-title">Returns <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><br/>    <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorPaneControllerParams.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorPaneControllerParams</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-type">&quot;inputtedData&quot;</span><br/>    <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;internalData&quot;</span><br/>    <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;settings&quot;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#paneparams">paneParams</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L459">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:459</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="selectedid"><span>selected<wbr/>Id</span><a href="#selectedid" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="selectedidselectedid"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">selectedId</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The unique identifier of the selection that is selected, if any.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#selectedid">selectedId</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L164">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:164</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="selectedidselectedid-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">selectedId</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The unique identifier of the selection that is selected, if any.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#selectedid">selectedId</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L171">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:171</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="selectedselection"><span>selected<wbr/>Selection</span><a href="#selectedselection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="selectedselectionselectedselection"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">selectedSelection</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The selection that is selected, if any.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#selectedselection">selectedSelection</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L188">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:188</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addeventlistener"><span>add<wbr/>Event<wbr/>Listener</span><a href="#addeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-1"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenerttype">TType</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenerttype">TType</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><br/>        <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><br/>            <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenerttype">TType</a> <span class="tsd-signature-symbol">}</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenerttype">TType</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/>        <span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenerttype"><span class="tsd-kind-type-parameter">TType</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenerttype">TType</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><br/>        <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenerttype">TType</a> <span class="tsd-signature-symbol">}</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenerttype">TType</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L507">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:507</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="clickdrawselection"><span>click<wbr/>Draw<wbr/>Selection</span><a href="#clickdrawselection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="clickdrawselection-1"><span class="tsd-kind-call-signature">clickDrawSelection</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#clickdrawselection-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Clicks on the draw selection button.</p>
+<p>This is a no-op if the button is disabled.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#clickdrawselection">clickDrawSelection</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L455">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:455</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="dispose"><span>dispose</span><a href="#dispose" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="dispose-1"><span class="tsd-kind-call-signature">dispose</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispose-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Disposes of this object. Do not use it afterwards.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#dispose">dispose</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L441">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:441</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getselectionparams"><span>get<wbr/>Selection<wbr/>Params</span><a href="#getselectionparams" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getselectionparams-1"><span class="tsd-kind-call-signature">getSelectionParams</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;config&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;id&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;points&quot;</span><span class="tsd-signature-symbol">&gt;</span><a href="#getselectionparams-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets the parameters of a selection represented by this inspector.</p>
+<p>parameters.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;config&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;id&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;points&quot;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#getselectionparams">getSelectionParams</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L392">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:392</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="oninputchange"><span>on<wbr/>Input<wbr/>Change</span><a href="#oninputchange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="oninputchange-1"><span class="tsd-kind-call-signature">onInputChange</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">inputtedData</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorInputtedData.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorInputtedData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#oninputchange-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">inputtedData</span>: <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorInputtedData.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorInputtedData</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#oninputchange">onInputChange</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L476">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:476</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="onpaneevent"><span>on<wbr/>Pane<wbr/>Event</span><a href="#onpaneevent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="onpaneevent-1"><span class="tsd-kind-call-signature">onPaneEvent</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#onpaneevent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">event</span>: <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">}</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#onpaneevent">onPaneEvent</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L488">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:488</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="removeeventlistener"><span>remove<wbr/>Event<wbr/>Listener</span><a href="#removeeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-1"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenerttype">TType</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenerttype">TType</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><br/>        <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><br/>            <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenerttype">TType</a> <span class="tsd-signature-symbol">}</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenerttype">TType</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/>        <span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenerttype"><span class="tsd-kind-type-parameter">TType</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenerttype">TType</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><br/>        <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenerttype">TType</a> <span class="tsd-signature-symbol">}</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorEventMap.html" class="tsd-signature-type tsd-kind-interface">LabelSelectionInspectorEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenerttype">TType</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html">LabelSelectionInspectorHandle</a>.<a href="../interfaces/sta-segmentation.app.LabelSelectionInspectorHandle.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx#L516">plugins/segmentation/frontend/app/editor/scene/widgets/LabelSelectionInspector.tsx:516</a></li></ul></aside></div></li></ul></section></section></details></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary>
+<div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary>
+<div><a href="#labelsview"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>labels<wbr/>View</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
+<div><a href="#autoinstances"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>auto<wbr/>Instances</span></a><a href="#disabled"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>disabled</span></a><a href="#drawselectionactive"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>draw<wbr/>Selection<wbr/>Active</span></a><a href="#outputdata"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>output<wbr/>Data</span></a><a href="#paneparams"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>pane<wbr/>Params</span></a><a href="#selectedid"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>selected<wbr/>Id</span></a><a href="#selectedselection"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>selected<wbr/>Selection</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
+<div><a href="#addeventlistener"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a><a href="#clickdrawselection"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>click<wbr/>Draw<wbr/>Selection</span></a><a href="#dispose"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a><a href="#getselectionparams"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Selection<wbr/>Params</span></a><a href="#oninputchange"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Input<wbr/>Change</span></a><a href="#onpaneevent"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Pane<wbr/>Event</span></a><a href="#removeeventlistener"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a></div></details></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="../index.html">← API Reference</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">TypeScript API</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.28.20</p></footer>
+<div class="overlay"></div></body></html>

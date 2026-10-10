@@ -1,0 +1,54 @@
+sta.domain.label.repo.graph
+===========================
+
+.. currentmodule:: sta.domain.label.repo
+
+.. automodule:: sta.domain.label.repo.graph
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      checkpoint
+      import_data
+      init_branch
+      push_commits
+      push_commits_with_branch
+      read_graph
+
+   
+   .. autofunction:: checkpoint
+   .. autofunction:: import_data
+   .. autofunction:: init_branch
+   .. autofunction:: push_commits
+   .. autofunction:: push_commits_with_branch
+   .. autofunction:: read_graph
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      CommitGraphEdgePublic
+      CommitGraphNodePublic
+      CommitGraphPublic
+      LabelsetBranchInit
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,34 @@
+sta.filesystem
+==============
+
+.. currentmodule:: sta
+
+.. automodule:: sta.filesystem
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      filesystem_ctx
+
+   
+   .. autofunction:: filesystem_ctx
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

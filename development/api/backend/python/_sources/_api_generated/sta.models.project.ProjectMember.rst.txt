@@ -1,0 +1,30 @@
+ProjectMember
+=============
+
+
+
+
+.. currentmodule:: sta.models.project
+
+.. autoclass:: ProjectMember
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectMember.member_id
+      ~ProjectMember.model_config
+      ~ProjectMember.project_id
+
+   
+   .. autoattribute:: ProjectMember.member_id
+   .. autoattribute:: ProjectMember.model_config
+   .. autoattribute:: ProjectMember.project_id
+   
+   

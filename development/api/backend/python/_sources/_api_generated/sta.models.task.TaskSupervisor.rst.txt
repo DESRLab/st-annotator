@@ -1,0 +1,34 @@
+TaskSupervisor
+==============
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: TaskSupervisor
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TaskSupervisor.account
+      ~TaskSupervisor.account_id
+      ~TaskSupervisor.model_config
+      ~TaskSupervisor.task
+      ~TaskSupervisor.task_id
+
+   
+   .. autoattribute:: TaskSupervisor.account
+   .. autoattribute:: TaskSupervisor.account_id
+   .. autoattribute:: TaskSupervisor.model_config
+   .. autoattribute:: TaskSupervisor.task
+   .. autoattribute:: TaskSupervisor.task_id
+   
+   

@@ -1,0 +1,51 @@
+SourceSpecTableLike
+===================
+
+
+
+
+.. currentmodule:: sta.models.source.spec.base
+
+.. autoclass:: SourceSpecTableLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceSpecTableLike.check_edit_conflict
+      ~SourceSpecTableLike.get_group_links_cls
+      ~SourceSpecTableLike.model_dump
+      ~SourceSpecTableLike.model_validate
+      ~SourceSpecTableLike.sqlmodel_update
+
+   
+   .. automethod:: SourceSpecTableLike.check_edit_conflict
+   .. automethod:: SourceSpecTableLike.get_group_links_cls
+   .. automethod:: SourceSpecTableLike.model_dump
+   .. automethod:: SourceSpecTableLike.model_validate
+   .. automethod:: SourceSpecTableLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceSpecTableLike.group_links
+      ~SourceSpecTableLike.groups
+      ~SourceSpecTableLike.model_fields_set
+      ~SourceSpecTableLike.id
+      ~SourceSpecTableLike.name
+
+   
+   .. autoattribute:: SourceSpecTableLike.group_links
+   .. autoattribute:: SourceSpecTableLike.groups
+   .. autoattribute:: SourceSpecTableLike.model_fields_set
+   .. autoattribute:: SourceSpecTableLike.id
+   .. autoattribute:: SourceSpecTableLike.name
+   
+   

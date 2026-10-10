@@ -1,0 +1,50 @@
+sta.api
+=======
+
+.. currentmodule:: sta
+
+.. automodule:: sta.api
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.api.accounts
+   sta.api.auth
+   sta.api.body_limit
+   sta.api.cors
+   sta.api.crud
+   sta.api.editor
+   sta.api.files
+   sta.api.frames
+   sta.api.jobs
+   sta.api.label
+   sta.api.lifespan
+   sta.api.projects
+   sta.api.rate_limit
+   sta.api.responses
+   sta.api.root
+   sta.api.source
+   sta.api.tasks
+   sta.api.users
+

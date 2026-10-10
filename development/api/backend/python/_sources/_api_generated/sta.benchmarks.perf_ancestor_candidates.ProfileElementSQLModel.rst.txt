@@ -1,0 +1,89 @@
+ProfileElementSQLModel
+======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_ancestor_candidates
+
+.. autoclass:: ProfileElementSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProfileElementSQLModel.build_table_base_cls
+      ~ProfileElementSQLModel.check_edit_conflict
+      ~ProfileElementSQLModel.get_create_cls
+      ~ProfileElementSQLModel.get_public_cls
+      ~ProfileElementSQLModel.get_table_cls
+      ~ProfileElementSQLModel.get_update_cls
+      ~ProfileElementSQLModel.sqlmodel_update
+      ~ProfileElementSQLModel.unpack_max_coords
+      ~ProfileElementSQLModel.unpack_min_coords
+      ~ProfileElementSQLModel.unpack_st_bounds
+      ~ProfileElementSQLModel.update_from_st_bounds
+
+   
+   .. automethod:: ProfileElementSQLModel.build_table_base_cls
+   .. automethod:: ProfileElementSQLModel.check_edit_conflict
+   .. automethod:: ProfileElementSQLModel.get_create_cls
+   .. automethod:: ProfileElementSQLModel.get_public_cls
+   .. automethod:: ProfileElementSQLModel.get_table_cls
+   .. automethod:: ProfileElementSQLModel.get_update_cls
+   .. automethod:: ProfileElementSQLModel.sqlmodel_update
+   .. automethod:: ProfileElementSQLModel.unpack_max_coords
+   .. automethod:: ProfileElementSQLModel.unpack_min_coords
+   .. automethod:: ProfileElementSQLModel.unpack_st_bounds
+   .. automethod:: ProfileElementSQLModel.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProfileElementSQLModel.COORD_TYPE
+      ~ProfileElementSQLModel.max_coords
+      ~ProfileElementSQLModel.min_coords
+      ~ProfileElementSQLModel.model_config
+      ~ProfileElementSQLModel.st_bounds
+      ~ProfileElementSQLModel.entity_id
+      ~ProfileElementSQLModel.min_x
+      ~ProfileElementSQLModel.min_y
+      ~ProfileElementSQLModel.min_z
+      ~ProfileElementSQLModel.max_x
+      ~ProfileElementSQLModel.max_y
+      ~ProfileElementSQLModel.max_z
+      ~ProfileElementSQLModel.min_timestamp
+      ~ProfileElementSQLModel.max_timestamp
+      ~ProfileElementSQLModel.group_id
+      ~ProfileElementSQLModel.commit_hash
+      ~ProfileElementSQLModel.is_deleted
+      ~ProfileElementSQLModel.last_edit_at
+
+   
+   .. autoattribute:: ProfileElementSQLModel.COORD_TYPE
+   .. autoattribute:: ProfileElementSQLModel.max_coords
+   .. autoattribute:: ProfileElementSQLModel.min_coords
+   .. autoattribute:: ProfileElementSQLModel.model_config
+   .. autoattribute:: ProfileElementSQLModel.st_bounds
+   .. autoattribute:: ProfileElementSQLModel.entity_id
+   .. autoattribute:: ProfileElementSQLModel.min_x
+   .. autoattribute:: ProfileElementSQLModel.min_y
+   .. autoattribute:: ProfileElementSQLModel.min_z
+   .. autoattribute:: ProfileElementSQLModel.max_x
+   .. autoattribute:: ProfileElementSQLModel.max_y
+   .. autoattribute:: ProfileElementSQLModel.max_z
+   .. autoattribute:: ProfileElementSQLModel.min_timestamp
+   .. autoattribute:: ProfileElementSQLModel.max_timestamp
+   .. autoattribute:: ProfileElementSQLModel.group_id
+   .. autoattribute:: ProfileElementSQLModel.commit_hash
+   .. autoattribute:: ProfileElementSQLModel.is_deleted
+   .. autoattribute:: ProfileElementSQLModel.last_edit_at
+   
+   

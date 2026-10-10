@@ -1,0 +1,46 @@
+sta.cli
+=======
+
+.. currentmodule:: sta
+
+.. automodule:: sta.cli
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      PluginCLIGroup
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.cli.base
+   sta.cli.bench
+   sta.cli.init
+   sta.cli.plugin
+   sta.cli.porter
+   sta.cli.prompts
+   sta.cli.serve
+

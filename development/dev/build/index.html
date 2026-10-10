@@ -1,0 +1,2208 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Spatial-Temporal Annotation">
+      
+      
+      
+        <link rel="canonical" href="https://desrlab.github.io/st-annotator/development/dev/build/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../plugin/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../_static/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Build, Distribution, and Release - ST Annotator Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#build-distribution-and-release" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ST Annotator Documentation" class="md-header__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../_static/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ST Annotator Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Build, Distribution, and Release
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../install/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../user/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CLI Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ST Annotator Documentation" class="md-nav__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../_static/logo.png" alt="logo">
+
+    </a>
+    ST Annotator Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/host/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosting the ST Annotator Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registering a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user/handbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ST Annotator Platform Handbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ST Annotator Platform Handbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/handbook/editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build, Distribution, and Release
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build, Distribution, and Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up the workspace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontend-package-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend package builds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frontend package builds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-distributable-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build distributable packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-packages-outside-the-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify packages outside the workspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontend-application-compositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend application compositions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frontend application compositions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-the-full-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build the full application
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backend-package-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend package builds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-before-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation before release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-ordering-and-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release ordering and versioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Docs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/editor-state-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor State Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/background-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Jobs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/placeholder-values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Placeholder Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/backend/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up the workspace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontend-package-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend package builds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frontend package builds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-distributable-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build distributable packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-packages-outside-the-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify packages outside the workspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontend-application-compositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend application compositions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frontend application compositions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-the-full-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build the full application
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backend-package-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend package builds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-before-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation before release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-ordering-and-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release ordering and versioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="build-distribution-and-release">Build, Distribution, and Release</h1>
+<p>ST Annotator has two independently packaged layers:</p>
+<ul>
+<li>Python packages provide the backend core and backend plugins.</li>
+<li>npm packages provide the frontend core and frontend plugins.</li>
+</ul>
+<p>The repository is a development workspace for both layers. The Python packages
+are members of the root uv workspace, while all frontend packages use the root
+npm workspace and its single <code>package-lock.json</code>.</p>
+<h2 id="set-up-the-workspace">Set up the workspace</h2>
+<p>Run the installation script from the repository root:</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/install.sh
+</code></pre></div>
+<p>The script runs one root <code>npm ci</code>, synchronizes every Python workspace package,
+starts a temporary backend on <code>localhost:8000</code> from <code>appconfig-postgis.json</code>,
+and regenerates the TypeScript API client from the backend's OpenAPI document.
+That temporary backend runs with <code>--debug --testing</code>, which drops and recreates
+the separate <code>&lt;db&gt;_test</code> database, so installation needs a reachable
+PostgreSQL/PostGIS server, a populated <code>.env</code>, and <code>curl</code> on the <code>PATH</code>. The
+generated client is environment-specific and
+ignored by Git. Run the installation script after changing backend API
+contracts or the workspace lockfiles. Local installation refreshes <code>uv.lock</code>
+before syncing; in CI, installation uses <code>uv sync --frozen</code> so dependency
+resolution cannot alter the committed lockfile.</p>
+<p>For normal frontend-only work, an existing checkout can be refreshed with:</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>ci
+</code></pre></div>
+<p>Do not run separate installs inside <code>core/frontend</code> or plugin directories.
+Workspace packages are linked by npm, and the root lockfile is the reproducible
+record of the complete frontend development environment.</p>
+<p>The standard development workflow is:</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/install.sh
+bash<span class="w"> </span>scripts/serve-dev.sh<span class="w"> </span>-c<span class="w"> </span>appconfig-postgis.json
+</code></pre></div>
+<p><code>install.sh</code> installs dependencies and generates the API client. <code>serve-dev.sh</code>
+then rebuilds outdated frontend package exports in dependency order and
+starts the backend and the source-watching Vite frontend development server.
+It checks package sources for changes while the server runs. A production
+build is not required: Vite compiles application source on demand.</p>
+<p>Run <code>bash scripts/build-prod.sh</code> separately when producing publishable package
+artifacts, validating the full production composition, or preparing a release.
+It is a production/package validation command rather than a prerequisite for
+<code>serve-dev.sh</code>.</p>
+<p>Run <code>bash scripts/build-dev.sh</code> when you need a clean rebuild of the
+publishable frontend packages during development. The development server
+performs incremental package builds automatically.</p>
+<h2 id="frontend-package-builds">Frontend package builds</h2>
+<p>The frontend distinguishes a <strong>package build</strong> from an <strong>application build</strong>.</p>
+<h3 id="build-distributable-packages">Build distributable packages</h3>
+<p>From the repository root, run the development build script:</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/build-dev.sh
+</code></pre></div>
+<p>The script first removes all generated package and application output:
+<code>core/frontend/{.react-router,build,dist}</code>, every plugin frontend's <code>dist/</code>,
+the generated composition shims, and the production build-hash marker. It then
+invokes <code>build:package</code> for <code>sta</code> and each frontend plugin, in the explicit
+workspace list in the script; a new plugin must be added to both the cleanup
+and build lists.</p>
+<p>The OpenAPI client under <code>core/frontend/client/</code> is generated during both
+installation and frontend builds. Each generation briefly starts the testing
+backend and requires the configured database to be reachable.</p>
+<p>Each package build:</p>
+<ol>
+<li>removes that package's previous <code>dist/</code> directory;</li>
+<li>compiles TypeScript to JavaScript;</li>
+<li>emits declaration files and source maps;</li>
+<li>copies runtime assets such as CSS, shaders, images, JSON, and WASM; and</li>
+<li>makes emitted relative ESM imports directly consumable by Node and bundlers.</li>
+</ol>
+<p>The result is a <code>dist/</code> directory in each package. Package <code>exports</code> point to
+these built files rather than repository TypeScript sources, and the <code>files</code>
+field limits a packed package to its intended runtime artifacts. <code>npm pack</code> and
+<code>npm publish</code> run the package's <code>prepack</code> script, so they rebuild <code>dist/</code>
+automatically.</p>
+<p><code>scripts/build-dev.sh</code> cleans every package before any rebuilding starts.
+Cleaning is also part of each package's <code>build:package</code> command. Consequently
+direct <code>npm pack</code>/<code>npm publish</code> builds cannot retain files for deleted or
+renamed sources, and retrying an interrupted build starts that package from an
+empty output directory.</p>
+<p>While <code>serve-dev.sh</code> is running, its watcher recompiles changed packages
+without deleting <code>dist/</code> first. This keeps package entry points available to
+Vite during a reload. Run <code>bash scripts/build-dev.sh</code> with the dev server
+stopped when deleted or renamed sources require a fully clean output tree.</p>
+<p>The core package has no frontend plugin dependency and is valid by itself.
+Plugin manifests describe their own runtime closure. Installing a plugin with
+indispensable plugin prerequisites also installs those prerequisite packages;
+optional siblings remain host-selected.</p>
+<h3 id="verify-packages-outside-the-workspace">Verify packages outside the workspace</h3>
+<p>Workspace hoisting can hide undeclared imports. Before releasing frontend
+packages, run:</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>scripts/check-frontend-dependencies.mjs
+node<span class="w"> </span>scripts/test-frontend-packages.mjs
+</code></pre></div>
+<p><code>check-frontend-dependencies.mjs</code> validates internal dependency ranges, plugin
+contracts, and package exports. <code>test-frontend-packages.mjs</code> builds and packs
+all frontend packages, then installs their tarballs in temporary projects for
+these compositions:</p>
+<ul>
+<li>core only;</li>
+<li>each plugin with its required dependency closure; and</li>
+<li>the complete plugin set.</li>
+</ul>
+<p>The temporary projects resolve the core package's <code>sta/app</code> and <code>sta/client</code>
+exports and each plugin's <code>&lt;plugin&gt;/app</code> export, and perform a real import of
+<code>sta/client</code>. <code>check-frontend-dependencies.mjs</code> separately verifies that every
+declared export target exists on disk. This is the release gate that proves
+package consumption does not depend on npm workspace hoisting.</p>
+<p>To inspect one package manually, use:</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>pack<span class="w"> </span>--dry-run<span class="w"> </span>--workspace<span class="o">=</span>sta-vector
+</code></pre></div>
+<h2 id="frontend-application-compositions">Frontend application compositions</h2>
+<p>Installing a frontend plugin does not activate it. An application composition
+chooses runtime plugins explicitly in a <code>sta.config.ts</code> file and their
+lightweight route manifests in the adjacent <code>sta.routes.ts</code> file. Keeping route
+metadata separate lets React Router discover routes from workspace source
+before the application's Vite aliases are active.</p>
+<p>The repository provides two compositions:</p>
+<ul>
+<li><code>core/frontend/sta.config.ts</code> and <code>sta.routes.ts</code> are the core-only defaults
+  and register no plugins.</li>
+<li><code>distributions/full/frontend/sta.config.ts</code> imports and registers every
+  repository plugin in dependency order; its adjacent <code>sta.routes.ts</code> imports
+  the matching route manifests directly from workspace source.</li>
+</ul>
+<p><code>STA_CONFIG_PATH</code> selects the composition used by Vite and React Router. If it
+is unset, Vite searches upward for the nearest <code>sta.config.*</code>, which is normally
+the core-only configuration when commands run from <code>core/frontend</code>. A relative
+<code>STA_CONFIG_PATH</code> is resolved from the command's working directory.
+The routes configuration is derived by replacing <code>.config</code> with <code>.routes</code> and
+must exist beside the selected application configuration.</p>
+<p>For example, run a core-only development server with:</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w"> </span>--workspace<span class="o">=</span>sta
+</code></pre></div>
+<p>Run the full product with the backend and frontend together using:</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/serve-dev.sh<span class="w"> </span>-c<span class="w"> </span>appconfig-postgis.json
+</code></pre></div>
+<p>The serving script selects the full composition and passes the backend URL to
+both server-side loaders and the browser client.</p>
+<h3 id="build-the-full-application">Build the full application</h3>
+<p><code>scripts/build-prod.sh</code> invokes <code>scripts/build-dev.sh</code> first, so every
+production build starts by cleaning and rebuilding all frontend packages. It
+then selects the full composition and invokes the core application's React
+Router build. To perform the same clean package rebuild without creating the
+React Router application bundle, use:</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/build-dev.sh
+</code></pre></div>
+<p><code>bash scripts/build-prod.sh</code> selects
+<code>distributions/full/frontend/sta.config.ts</code> and invokes the core React Router
+production build. The deployable application is written under:</p>
+<div class="highlight"><pre><span></span><code>core/frontend/build/
+  client/  # static browser assets
+  server/  # React Router server bundle
+</code></pre></div>
+<p>Serve that bundle together with a non-debug backend using:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">STA_JWT_PRIVATE_KEY_PATH</span><span class="o">=</span>/path/to/jwt-signing.key<span class="w"> </span><span class="se">\</span>
+<span class="nv">STA_SESSION_SECRET</span><span class="o">=</span>&lt;private-secret&gt;<span class="w"> </span><span class="se">\</span>
+bash<span class="w"> </span>scripts/serve-prod.sh<span class="w"> </span>-c<span class="w"> </span>appconfig-postgis.json
+</code></pre></div>
+<p><code>serve-prod.sh</code> does not build the application. It exits with an error when the
+production bundle or its build-hash marker is missing, or when source inputs
+have changed since the build, so deployment remains an explicit build-then-serve
+process. It serves plain HTTP; use separately managed
+processes and a reverse proxy for TLS deployments.</p>
+<p>A successful build does not by itself prove the bundle runs. Node resolves
+package entry points differently from the Vite dev server, so a bundle can
+compile cleanly and still fail while the server entry loads, and the browser
+tests exercise the dev server rather than the built output.
+<code>scripts/smoke-prod.sh</code> closes that gap: it starts the built server entry with
+<code>react-router-serve</code>, asserts that <code>/login</code> responds 200 and that <code>/</code> responds
+302 through the protected layout, and fails if the server bundle imports a
+test-only package. The assertions are on status codes only; the script does not
+inspect rendered markup. It requires no backend and no deployment secret,
+supplying a throwaway
+session secret because the production server refuses to start without one.</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/build-prod.sh
+bash<span class="w"> </span>scripts/smoke-prod.sh
+</code></pre></div>
+<p>Each production build also generates an untracked build hash shared by the
+client and SSR bundles. The server rejects requests with HTTP 503 if its
+embedded hash differs from the deployed client marker, preventing a mixed
+old-server/new-client build from being served. This guard applies to production
+artifacts; the Vite development server serves current source directly and does
+not require a production build hash. The source fingerprint in the production
+build separately lets <code>serve-prod.sh</code> reject an outdated bundle at startup.</p>
+<p>The distribution workspace is deliberately private. It is a composition
+manifest, not another copy of core and not a publishable plugin. Its package
+dependencies describe the exact packages that a full-product deployment must
+install. After the build, the helper restores the generated configuration shim
+to the core-only configuration so subsequent core commands are not
+accidentally coupled to the full product.</p>
+<p>A downstream product can create another private composition package with its
+own dependencies and <code>sta.config.ts</code>, then build core with an absolute
+<code>STA_CONFIG_PATH</code> pointing to that file.</p>
+<h2 id="backend-package-builds">Backend package builds</h2>
+<p>The backend core and each backend plugin are separate Python distributions.
+Their <code>pyproject.toml</code> files use <code>uv_build</code>, and plugin discovery uses the
+<code>sta.plugins</code> entry-point group. Installing a backend plugin therefore enables
+its backend registration; this differs from the frontend, where installation
+and activation are deliberately separate.</p>
+<p>Build a backend distribution from its package directory, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>core/backend
+uv<span class="w"> </span>build
+</code></pre></div>
+<p>or:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>plugins/vector/backend
+uv<span class="w"> </span>build
+</code></pre></div>
+<p>The resulting source distribution and wheel are written to that package's
+<code>dist/</code> directory. Build and test each backend package that will be published;
+backend plugins declare core and prerequisite plugins as normal Python package
+dependencies.</p>
+<h2 id="validation-before-release">Validation before release</h2>
+<p>CI runs backend checks across Python 3.10–3.12 and frontend checks in a
+separate job. To run the same gates locally from the repository root:</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/install.sh
+bash<span class="w"> </span>scripts/lint.sh<span class="w"> </span>backend
+bash<span class="w"> </span>scripts/test.sh<span class="w"> </span>backend
+bash<span class="w"> </span>scripts/build-dev.sh
+bash<span class="w"> </span>scripts/lint.sh<span class="w"> </span>frontend
+bash<span class="w"> </span>scripts/test.sh<span class="w"> </span>frontend
+node<span class="w"> </span>scripts/test-frontend-packages.mjs
+bash<span class="w"> </span>scripts/build-prod.sh
+bash<span class="w"> </span>scripts/smoke-prod.sh
+bash<span class="w"> </span>scripts/doc.sh
+</code></pre></div>
+<p>The lint script is the single entry point for non-mutating validation of both
+languages: formatting, dependency checks, static analysis, and type checking.
+<code>scripts/format.sh</code> applies the corresponding rewrites — ESLint autofixes and
+Prettier formatting for the frontend, <code>ruff format</code> for Python — and both
+scripts take <code>all</code>, <code>backend</code>, or <code>frontend</code>. The build script produces the
+publishable frontend package artifacts and proves that the full composition
+bundles successfully. The smoke script proves the built server bundle boots and
+serves, which neither the build nor the browser tests cover. The test script
+covers backend and frontend unit and integration tests, including browser tests.
+The isolated tarball installations described above run separately through
+<code>scripts/test-frontend-packages.mjs</code>. The separate documentation workflow
+(<code>.github/workflows/docs.yml</code>) publishes <code>development/</code> on pushes to <code>main</code> and
+builds the tagged source when a GitHub release is published. Manual runs target
+<code>main</code>. Release tags use <code>vX.Y.Z</code> or
+<code>vX.Y.Z-prerelease</code>; documentation directories omit the leading <code>v</code>. Published
+prereleases receive their own snapshot but do not update <code>stable/</code>. The stable
+alias advances only for a stable release at least as new as its current target,
+so publishing an older release does not change the default documentation.
+The development snapshot uses <code>development/</code> because <code>dev/</code> is the existing
+developer guide path; unversioned developer guide links remain redirects.</p>
+<p>The workflow runs <code>doc.sh</code> once, preserving its complete MkDocs, Sphinx, and
+TypeDoc output. <code>DOCS_VERSION</code> selects a version-specific <code>site_url</code> through a
+temporary MkDocs configuration written by
+<code>scripts/configure-doc-version.py</code>; an ordinary <code>bash scripts/doc.sh</code> still builds
+the standalone site. The publishing tools come from the workflow revision,
+while documentation and package sources come from the selected branch or tag.
+Release checkouts must support the current documentation build pipeline.</p>
+<p><code>uv run --package sta python scripts/package-doc-versions.py site &lt;archive&gt; &lt;version&gt; [--stable]</code>
+updates the selected snapshot in an archive checkout. The <code>docs-site</code> branch
+stores completed snapshots, Material-compatible <code>versions.json</code> metadata, and
+redirects. Older snapshots are preserved without rebuilding them. The site root
+and existing unversioned HTML paths redirect to the corresponding stable page,
+or to development documentation before a stable release exists. A page absent
+from the default snapshot redirects to its home page. Redirects preserve query
+parameters and fragments in browsers with JavaScript. The <code>stable/</code> paths
+redirect to the corresponding pages of the latest stable snapshot.</p>
+<p>The assembled archive is uploaded with <code>actions/upload-pages-artifact</code> and
+published with <code>actions/deploy-pages</code> in the <code>github-pages</code> environment. The
+repository's <strong>Settings → Pages → Build and deployment → Source</strong> stays set to
+<strong>GitHub Actions</strong>; <code>docs-site</code> is archive storage, not a branch-based Pages
+source. The build job needs <code>contents: write</code> to persist snapshots; the deployment
+job needs <code>pages: write</code> and <code>id-token: write</code>. Publishing is serialized without
+cancelling an active run. Documentation deploys independently of backend and
+frontend tests and does not run on pull requests.</p>
+<p><code>uv run --package sta python scripts/test-doc-versions.py</code> verifies snapshot preservation,
+API reference inclusion, stable alias ordering, and redirects. Pre-release CI
+and the publishing workflow run this check. <code>doc.sh</code> builds frontend
+packages in dependency order before TypeDoc discovers their public entry points
+from package exports, so documentation does not depend on existing <code>dist/</code>
+artifacts.</p>
+<p>CI does <strong>not</strong> publish npm packages, Python distributions, application images,
+or release archives. Publishing runtime artifacts is an explicit maintainer
+action; neither merging to <code>main</code> nor publishing documentation releases them.</p>
+<h2 id="release-ordering-and-versioning">Release ordering and versioning</h2>
+<p>Core and plugin frontend/backend halves currently share the same release
+version. Before a release:</p>
+<ol>
+<li>run <code>bash scripts/set-version.sh &lt;major.minor.patch&gt;</code> from the repository
+   root to set the shared release version (use <code>--dry-run</code> to preview);</li>
+<li>review internal compatibility ranges when the release changes a package
+   contract;</li>
+<li>review the root <code>package-lock.json</code> and <code>uv.lock</code>;</li>
+<li>run the validation commands above;</li>
+<li>build and inspect Python distributions and npm tarballs; and</li>
+<li>publish prerequisites before packages that depend on them.</li>
+</ol>
+<p>For the current full composition, a safe frontend publication order is core,
+<code>sta-pcd</code>, <code>sta-gmesh</code>, then the plugins that depend on them (<code>sta-bbox</code>,
+<code>sta-segmentation</code>, and <code>sta-vector</code>). Publish only packages changed by the
+release, but ensure every referenced version is already available in the target
+registry before building or deploying the full composition.</p>
+<p>The exact registry, credentials, signing, tags, and deployment destination are
+release-environment concerns and are not encoded in this repository today. A
+future automated release workflow should preserve the same package-build,
+isolated-install, composition-build, and publication-order gates.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Developer Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Developer Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../plugin/" class="md-footer__link md-footer__link--next" aria-label="Next: Writing a Plugin">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Writing a Plugin
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 DESRLab
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.footer", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

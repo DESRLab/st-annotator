@@ -1,0 +1,36 @@
+TaskAnnotator
+=============
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: TaskAnnotator
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TaskAnnotator.account
+      ~TaskAnnotator.account_id
+      ~TaskAnnotator.model_config
+      ~TaskAnnotator.quality_rank
+      ~TaskAnnotator.task
+      ~TaskAnnotator.task_id
+
+   
+   .. autoattribute:: TaskAnnotator.account
+   .. autoattribute:: TaskAnnotator.account_id
+   .. autoattribute:: TaskAnnotator.model_config
+   .. autoattribute:: TaskAnnotator.quality_rank
+   .. autoattribute:: TaskAnnotator.task
+   .. autoattribute:: TaskAnnotator.task_id
+   
+   

@@ -1,0 +1,38 @@
+PrincipalProfiles
+=================
+
+
+
+
+.. currentmodule:: sta.testing.authorization
+
+.. autoclass:: PrincipalProfiles
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PrincipalProfiles.no_roles
+      ~PrincipalProfiles.annotator
+      ~PrincipalProfiles.supervisor
+      ~PrincipalProfiles.project_manager
+      ~PrincipalProfiles.data_manager
+      ~PrincipalProfiles.administrator
+      ~PrincipalProfiles.dual_role
+
+   
+   .. autoattribute:: PrincipalProfiles.no_roles
+   .. autoattribute:: PrincipalProfiles.annotator
+   .. autoattribute:: PrincipalProfiles.supervisor
+   .. autoattribute:: PrincipalProfiles.project_manager
+   .. autoattribute:: PrincipalProfiles.data_manager
+   .. autoattribute:: PrincipalProfiles.administrator
+   .. autoattribute:: PrincipalProfiles.dual_role
+   
+   

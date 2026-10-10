@@ -1,0 +1,72 @@
+LabelEntityDomain
+=================
+
+
+
+
+.. currentmodule:: sta.domain.label.data.base
+
+.. autoclass:: LabelEntityDomain
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelEntityDomain.build_list_query
+      ~LabelEntityDomain.bulk_create_datas
+      ~LabelEntityDomain.bulk_delete_datas
+      ~LabelEntityDomain.bulk_update_datas
+      ~LabelEntityDomain.can_read_data
+      ~LabelEntityDomain.can_read_data_filters
+      ~LabelEntityDomain.count_datas
+      ~LabelEntityDomain.create_data
+      ~LabelEntityDomain.delete_data
+      ~LabelEntityDomain.domain_registry
+      ~LabelEntityDomain.has_children
+      ~LabelEntityDomain.initialize_has_children
+      ~LabelEntityDomain.insert_states
+      ~LabelEntityDomain.iter_cruds
+      ~LabelEntityDomain.list_datas
+      ~LabelEntityDomain.list_datas_for_element_window
+      ~LabelEntityDomain.prepare_commit_states
+      ~LabelEntityDomain.read_data
+      ~LabelEntityDomain.read_data_for_operation
+      ~LabelEntityDomain.refresh_states
+      ~LabelEntityDomain.require_write_data_branch
+      ~LabelEntityDomain.select_states
+      ~LabelEntityDomain.set_has_children
+      ~LabelEntityDomain.update_data
+
+   
+   .. automethod:: LabelEntityDomain.build_list_query
+   .. automethod:: LabelEntityDomain.bulk_create_datas
+   .. automethod:: LabelEntityDomain.bulk_delete_datas
+   .. automethod:: LabelEntityDomain.bulk_update_datas
+   .. automethod:: LabelEntityDomain.can_read_data
+   .. automethod:: LabelEntityDomain.can_read_data_filters
+   .. automethod:: LabelEntityDomain.count_datas
+   .. automethod:: LabelEntityDomain.create_data
+   .. automethod:: LabelEntityDomain.delete_data
+   .. automethod:: LabelEntityDomain.domain_registry
+   .. automethod:: LabelEntityDomain.has_children
+   .. automethod:: LabelEntityDomain.initialize_has_children
+   .. automethod:: LabelEntityDomain.insert_states
+   .. automethod:: LabelEntityDomain.iter_cruds
+   .. automethod:: LabelEntityDomain.list_datas
+   .. automethod:: LabelEntityDomain.list_datas_for_element_window
+   .. automethod:: LabelEntityDomain.prepare_commit_states
+   .. automethod:: LabelEntityDomain.read_data
+   .. automethod:: LabelEntityDomain.read_data_for_operation
+   .. automethod:: LabelEntityDomain.refresh_states
+   .. automethod:: LabelEntityDomain.require_write_data_branch
+   .. automethod:: LabelEntityDomain.select_states
+   .. automethod:: LabelEntityDomain.set_has_children
+   .. automethod:: LabelEntityDomain.update_data
+   
+   
+
+   
+   
+   

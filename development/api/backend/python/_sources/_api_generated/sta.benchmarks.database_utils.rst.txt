@@ -1,0 +1,44 @@
+sta.benchmarks.database\_utils
+==============================
+
+.. currentmodule:: sta.benchmarks
+
+.. automodule:: sta.benchmarks.database_utils
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      pg_explain
+      pg_labels_nbytes
+
+   
+   .. autofunction:: pg_explain
+   .. autofunction:: pg_labels_nbytes
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      explain
+      labels_nbytes
+   
+   
+
+   
+   
+   
+
+
+

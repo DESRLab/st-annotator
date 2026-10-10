@@ -1,0 +1,41 @@
+AppConfigArgs
+=============
+
+
+
+
+.. currentmodule:: sta.config
+
+.. autoclass:: AppConfigArgs
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AppConfigArgs.as_config
+      ~AppConfigArgs.from_file
+
+   
+   .. automethod:: AppConfigArgs.as_config
+   .. automethod:: AppConfigArgs.from_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AppConfigArgs.model_config
+      ~AppConfigArgs.db
+      ~AppConfigArgs.fs
+
+   
+   .. autoattribute:: AppConfigArgs.model_config
+   .. autoattribute:: AppConfigArgs.db
+   .. autoattribute:: AppConfigArgs.fs
+   
+   

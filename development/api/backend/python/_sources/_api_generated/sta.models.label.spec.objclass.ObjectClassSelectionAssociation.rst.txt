@@ -1,0 +1,30 @@
+ObjectClassSelectionAssociation
+===============================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassSelectionAssociation
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionAssociation.model_config
+      ~ObjectClassSelectionAssociation.objclass_id
+      ~ObjectClassSelectionAssociation.selection_id
+
+   
+   .. autoattribute:: ObjectClassSelectionAssociation.model_config
+   .. autoattribute:: ObjectClassSelectionAssociation.objclass_id
+   .. autoattribute:: ObjectClassSelectionAssociation.selection_id
+   
+   

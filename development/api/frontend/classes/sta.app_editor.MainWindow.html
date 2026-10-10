@@ -1,0 +1,518 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>MainWindow | TypeScript API</title><link rel="icon" href="../assets/favicon.ico"/><meta name="description" content="Documentation for TypeScript API"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><link rel="stylesheet" href="../assets/custom.css"/><script defer src="../assets/main.js"></script><script defer src="../assets/custom.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">⭐ TypeScript API</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="../modules/sta.html">sta</a></li>
+<li><a href="../modules/sta.app_editor.html">app/editor</a></li>
+<li><a href="" aria-current="page">MainWindow</a></li></ul>
+<h1>Class MainWindow</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>Represents the main window of the application.</p>
+</div></section>
+<section class="tsd-panel tsd-hierarchy" data-refl="53723">
+<h4>Hierarchy (<a href="../hierarchy.html#sta.app/editor.MainWindow">View Summary</a>)</h4>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><a href="sta.app_editor.BaseSceneWindow.html" class="tsd-signature-type tsd-kind-class">BaseSceneWindow</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">&gt;</span>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">MainWindow</span></li></ul></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L27">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:27</a></li></ul></aside>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h5 class="tsd-index-heading uppercase">Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="constructors">Constructors<a href="#constructors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="properties">Properties<a href="#properties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#camera2d" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>camera2<wbr/>D</span></a>
+<a href="#camera3d" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>camera3<wbr/>D</span></a>
+<a href="#controls2d" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>controls2<wbr/>D</span></a>
+<a href="#controls3d" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>controls3<wbr/>D</span></a>
+<a href="#layerid" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>layer<wbr/>Id</span></a>
+<a href="#name" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>name</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="accessors">Accessors<a href="#accessors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#crosshairvisible" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>crosshair<wbr/>Visible</span></a>
+<a href="#dom" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>dom</span></a>
+<a href="#enablecameracontrols" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>enable<wbr/>Camera<wbr/>Controls</span></a>
+<a href="#overrideorbittarget" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>override<wbr/>Orbit<wbr/>Target</span></a>
+<a href="#pointerevents" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>pointer<wbr/>Events</span></a>
+<a href="#viewmode" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>view<wbr/>Mode</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="methods">Methods<a href="#methods" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#addeventlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a>
+<a href="#dispatchevent" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a>
+<a href="#dispose" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a>
+<a href="#getcamera" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Camera</span></a>
+<a href="#getcontrols" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Controls</span></a>
+<a href="#haseventlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a>
+<a href="#pancamera3d" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>pan<wbr/>Camera3<wbr/>D</span></a>
+<a href="#removeeventlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a>
+<a href="#setpose3d" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Pose3<wbr/>D</span></a>
+<a href="#updatecameraaspects" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Camera<wbr/>Aspects</span></a>
+</div></section></div></details></section></section>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="constructors-1">Constructors<a href="#constructors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructormainwindow"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">MainWindow</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">layerId</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">dom</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/API/HTMLDivElement" class="tsd-signature-type external" target="_blank">HTMLDivElement</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><a href="#constructormainwindow" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new main window.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">name</span>: <span class="tsd-signature-type">string</span></span></li>
+<li><span><span class="tsd-kind-parameter">layerId</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">dom</span>: <a href="https://developer.mozilla.org/docs/Web/API/HTMLDivElement" class="tsd-signature-type external" target="_blank">HTMLDivElement</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#constructor">constructor</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L289">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:289</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="camera2d"><code class="tsd-tag">Readonly</code><span>camera2<wbr/>D</span><a href="#camera2d" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">camera2D</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrthographicCamera</span></div>
+<div class="tsd-comment tsd-typography"><p>The camera used to render the 2D (top-down) view of the scene.</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L43">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:43</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="camera3d"><code class="tsd-tag">Readonly</code><span>camera3<wbr/>D</span><a href="#camera3d" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">camera3D</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PerspectiveCamera</span></div>
+<div class="tsd-comment tsd-typography"><p>The camera used to render the 3D view of the scene.</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L48">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:48</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="controls2d"><code class="tsd-tag">Readonly</code><span>controls2<wbr/>D</span><a href="#controls2d" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">controls2D</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrbitControls</span></div>
+<div class="tsd-comment tsd-typography"><p>The controls used to move the camera used to render the 2D (top-down) view of the scene.</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L132">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:132</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="controls3d"><code class="tsd-tag">Readonly</code><span>controls3<wbr/>D</span><a href="#controls3d" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">controls3D</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrbitControls</span></div>
+<div class="tsd-comment tsd-typography"><p>The controls used to move the camera used to render the 3D view of the scene.</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L137">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:137</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="layerid"><code class="tsd-tag">Readonly</code><span>layer<wbr/>Id</span><a href="#layerid" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">layerId</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+<div class="tsd-comment tsd-typography"><p>The <code>three.js</code> layer of this window; only objects that belong to this layer
+will be rendered in this window.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#layerid">layerId</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/SceneWindow.tsx#L165">core/frontend/app/routes/editor/scene/display/SceneWindow.tsx:165</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="name"><code class="tsd-tag">Readonly</code><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+<div class="tsd-comment tsd-typography"><p>The name of this window.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#name">name</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/SceneWindow.tsx#L159">core/frontend/app/routes/editor/scene/display/SceneWindow.tsx:159</a></li></ul></aside></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="crosshairvisible"><span>crosshair<wbr/>Visible</span><a href="#crosshairvisible" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="crosshairvisiblecrosshairvisible"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">crosshairVisible</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L154">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:154</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="dom"><span>dom</span><a href="#dom" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="domdom"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">dom</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/API/HTMLDivElement" class="tsd-signature-type external" target="_blank">HTMLDivElement</a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>A DOM element which boundaries define the area in which to render this window.</p>
+<p>When this window is added to a <a href="../interfaces/sta.app_editor.SceneDisplay.html" class="tsd-kind-interface">SceneDisplay</a>, this element will be
+added as a sibling of its rendering canvas.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/API/HTMLDivElement" class="tsd-signature-type external" target="_blank">HTMLDivElement</a></h4><aside class="tsd-sources">
+<p>Overrides BaseSceneWindow.dom</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L36">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:36</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="enablecameracontrols"><span>enable<wbr/>Camera<wbr/>Controls</span><a href="#enablecameracontrols" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="enablecameracontrolsenablecameracontrols"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">enableCameraControls</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p><code>true</code> if the user can manipulate the camera; otherwise, <code>false</code>.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L117">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:117</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="enablecameracontrolsenablecameracontrols-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">enableCameraControls</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L121">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:121</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="overrideorbittarget"><span>override<wbr/>Orbit<wbr/>Target</span><a href="#overrideorbittarget" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="overrideorbittargetoverrideorbittarget"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">overrideOrbitTarget</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">|</span> (<br/>    <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">defaultTarget</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">camera</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Camera</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">Vector3</span><br/>)<br/><span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If given, the orbit target of the camera controls of this window is overriden with
+the return value of this function, which accepts the default orbit target and
+the state of the active camera.</p>
+</div>
+<h4 class="tsd-returns-title">Returns (<span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">defaultTarget</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">camera</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Camera</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">Vector3</span>) <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L173">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:173</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="overrideorbittargetoverrideorbittarget-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">overrideOrbitTarget</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> (<span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">defaultTarget</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">camera</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Camera</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">Vector3</span>) <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: (<span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">defaultTarget</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">camera</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Camera</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">Vector3</span>) <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L177">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:177</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="pointerevents"><span>pointer<wbr/>Events</span><a href="#pointerevents" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="pointereventspointerevents"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">pointerEvents</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.PointerEventsObserver.html" class="tsd-signature-type tsd-kind-class">PointerEventsObserver</a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>A handle for other objects to listen to the <a href="../types/sta.app_editor.ScenePointerEvent.html" class="tsd-kind-type-alias">ScenePointerEvent</a>s emitted by
+this window.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.app_editor.PointerEventsObserver.html" class="tsd-signature-type tsd-kind-class">PointerEventsObserver</a></h4><aside class="tsd-sources">
+<p>Inherited from BaseSceneWindow.pointerEvents</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/SceneWindow.tsx#L187">core/frontend/app/routes/editor/scene/display/SceneWindow.tsx:187</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="viewmode"><span>view<wbr/>Mode</span><a href="#viewmode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="viewmodeviewmode"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">viewMode</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.ViewMode.html" class="tsd-signature-type tsd-kind-type-alias">ViewMode</a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If <code>'2D'</code>, a top-down view of the scene is rendered; if <code>'3D'</code>, a three-dimensional
+view of the scene is rendered.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta.app_editor.ViewMode.html" class="tsd-signature-type tsd-kind-type-alias">ViewMode</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L92">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:92</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="viewmodeviewmode-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">viewMode</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.ViewMode.html" class="tsd-signature-type tsd-kind-type-alias">ViewMode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <a href="../types/sta.app_editor.ViewMode.html" class="tsd-signature-type tsd-kind-type-alias">ViewMode</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L96">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:96</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="addeventlistener"><span>add<wbr/>Event<wbr/>Listener</span><a href="#addeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-1"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds a listener to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:52</li></ul></aside></div></li>
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-2"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds a listener to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:56</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="dispatchevent"><span>dispatch<wbr/>Event</span><a href="#dispatchevent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="dispatchevent-1"><span class="tsd-kind-call-signature">dispatchEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BaseEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispatchevent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Fire an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="dispatcheventt"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">event</span>: <span class="tsd-signature-type">BaseEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span></span>
+<div class="tsd-comment tsd-typography"><p>The event that gets fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#dispatchevent">dispatchEvent</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:84</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="dispose"><span>dispose</span><a href="#dispose" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="dispose-1"><span class="tsd-kind-call-signature">dispose</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispose-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Disposes of this object. Do not use it afterwards.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#dispose">dispose</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L327">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:327</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getcamera"><span>get<wbr/>Camera</span><a href="#getcamera" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getcamera-1"><span class="tsd-kind-call-signature">getCamera</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Camera</span><a href="#getcamera-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets the camera used to render this window.</p>
+<p>This camera should be located in world space,
+rather than being relative to the current frame.</p>
+<p>Unlike other attributes of this window, a different camera may be returned
+each time this is called.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Camera</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#getcamera">getCamera</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L343">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:343</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getcontrols"><span>get<wbr/>Controls</span><a href="#getcontrols" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getcontrols-1"><span class="tsd-kind-call-signature">getControls</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrbitControls</span><a href="#getcontrols-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets the corresponding set of controls of <a href="#getcamera" class="tsd-kind-method">MainWindow#getCamera</a>.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OrbitControls</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L357">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:357</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="haseventlistener"><span>has<wbr/>Event<wbr/>Listener</span><a href="#haseventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-1"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Checks if listener is added to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:63</li></ul></aside></div></li>
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-2"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Checks if listener is added to an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The function that gets called when the event is fired.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:67</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="pancamera3d"><span>pan<wbr/>Camera3<wbr/>D</span><a href="#pancamera3d" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="pancamera3d-1"><span class="tsd-kind-call-signature">panCamera3D</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">position3D</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#pancamera3d-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Pans the 3D camera to the given position, updating the 2D camera to
+maintain its position and direction relative to the 3D camera.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">position3D</span>: <span class="tsd-signature-type">Vector3</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L406">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:406</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="removeeventlistener"><span>remove<wbr/>Event<wbr/>Listener</span><a href="#removeeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-1"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a listener from an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of the listener that gets removed.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.MainWindowEventMap.html" class="tsd-signature-type tsd-kind-interface">MainWindowEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The listener function that gets removed.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:74</li></ul></aside></div></li>
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-2"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a listener from an event type.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a></span>
+<div class="tsd-comment tsd-typography"><p>The type of the listener that gets removed.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.types.three_examples_jsm_controls_OrbitControls.OrbitControls.html#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">MainWindow</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The listener function that gets removed.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.BaseSceneWindow.html">BaseSceneWindow</a>.<a href="sta.app_editor.BaseSceneWindow.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in node_modules/@types/three/src/core/EventDispatcher.d.ts:78</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="setpose3d"><span>set<wbr/>Pose3<wbr/>D</span><a href="#setpose3d" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="setpose3d-1"><span class="tsd-kind-call-signature">setPose3D</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">position3D</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">target3D</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setpose3d-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the pose of the 3D camera, updating the 2D camera to be directly
+above the target.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">position3D</span>: <span class="tsd-signature-type">Vector3</span></span></li>
+<li><span><span class="tsd-kind-parameter">target3D</span>: <span class="tsd-signature-type">Vector3</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L373">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:373</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatecameraaspects"><span>update<wbr/>Camera<wbr/>Aspects</span><a href="#updatecameraaspects" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatecameraaspects-1"><span class="tsd-kind-call-signature">updateCameraAspects</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#updatecameraaspects-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Updates each camera to fit the DOM element of this window.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/scene/display/MainWindow.tsx#L70">core/frontend/app/routes/editor/scene/display/MainWindow.tsx:70</a></li></ul></aside></div></li></ul></section></section></details></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary>
+<div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary>
+<div><a href="#camera2d"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>camera2<wbr/>D</span></a><a href="#camera3d"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>camera3<wbr/>D</span></a><a href="#controls2d"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>controls2<wbr/>D</span></a><a href="#controls3d"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>controls3<wbr/>D</span></a><a href="#layerid" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>layer<wbr/>Id</span></a><a href="#name" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>name</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
+<div><a href="#crosshairvisible"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>crosshair<wbr/>Visible</span></a><a href="#dom"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>dom</span></a><a href="#enablecameracontrols"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>enable<wbr/>Camera<wbr/>Controls</span></a><a href="#overrideorbittarget"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>override<wbr/>Orbit<wbr/>Target</span></a><a href="#pointerevents" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>pointer<wbr/>Events</span></a><a href="#viewmode"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>view<wbr/>Mode</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
+<div><a href="#addeventlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a><a href="#dispatchevent" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a><a href="#dispose"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a><a href="#getcamera"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Camera</span></a><a href="#getcontrols"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Controls</span></a><a href="#haseventlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a><a href="#pancamera3d"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>pan<wbr/>Camera3<wbr/>D</span></a><a href="#removeeventlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a><a href="#setpose3d"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Pose3<wbr/>D</span></a><a href="#updatecameraaspects"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Camera<wbr/>Aspects</span></a></div></details></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="../index.html">← API Reference</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">TypeScript API</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.28.20</p></footer>
+<div class="overlay"></div></body></html>

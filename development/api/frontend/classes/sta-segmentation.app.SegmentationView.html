@@ -1,0 +1,1025 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>SegmentationView | TypeScript API</title><link rel="icon" href="../assets/favicon.ico"/><meta name="description" content="Documentation for TypeScript API"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><link rel="stylesheet" href="../assets/custom.css"/><script defer src="../assets/main.js"></script><script defer src="../assets/custom.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">⭐ TypeScript API</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="../modules/sta-segmentation.html">sta-segmentation</a></li>
+<li><a href="../modules/sta-segmentation.app.html">app</a></li>
+<li><a href="" aria-current="page">SegmentationView</a></li></ul>
+<h1>Class SegmentationView</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>Represents a collection of object instanceing labels. Any changes to the labels through
+this class are also applied to the backend.</p>
+</div></section>
+<section class="tsd-panel tsd-hierarchy" data-refl="72694">
+<h4>Hierarchy (<a href="../hierarchy.html#sta-segmentation.app.SegmentationView">View Summary</a>)</h4>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><a href="sta.app_editor.LabelDataView.html" class="tsd-signature-type tsd-kind-class">LabelDataView</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlySegmentationIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlySegmentationIndex</a><span class="tsd-signature-symbol">&gt;</span>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">SegmentationView</span></li></ul></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L107">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:107</a></li></ul></aside>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h5 class="tsd-index-heading uppercase">Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="constructors">Constructors<a href="#constructors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="properties">Properties<a href="#properties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#_frame" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>_<wbr/>frame</span></a>
+<a href="#context" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>context</span></a>
+<a href="#loader" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>loader</span></a>
+<a href="#operation" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>Operation</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="accessors">Accessors<a href="#accessors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#currentbranch" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>current<wbr/>Branch</span></a>
+<a href="#data" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>data</span></a>
+<a href="#downloadprogress" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>download<wbr/>Progress</span></a>
+<a href="#frame" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>frame</span></a>
+<a href="#isloading" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>is<wbr/>Loading</span></a>
+<a href="#loaderror" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>load<wbr/>Error</span></a>
+<a href="#timepathrange" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>time<wbr/>Path<wbr/>Range</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="methods">Methods<a href="#methods" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#_reloaddata" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>_<wbr/>reload<wbr/>Data</span></a>
+<a href="#addeventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a>
+<a href="#addlabelinstance" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Instance</span></a>
+<a href="#addlabelinstancelocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Instance<wbr/>Local<wbr/>Only</span></a>
+<a href="#addlabelselection" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Selection</span></a>
+<a href="#addlabelselectionlocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Selection<wbr/>Local<wbr/>Only</span></a>
+<a href="#deletelabelinstance" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Instance</span></a>
+<a href="#deletelabelinstancelocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Instance<wbr/>Local<wbr/>Only</span></a>
+<a href="#deletelabelselection" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Selection</span></a>
+<a href="#deletelabelselectionlocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Selection<wbr/>Local<wbr/>Only</span></a>
+<a href="#dispatchevent" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a>
+<a href="#dispose" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a>
+<a href="#encodepointcloud" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>encode<wbr/>Point<wbr/>Cloud</span></a>
+<a href="#getdata" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Data</span></a>
+<a href="#getlabelclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Class</span></a>
+<a href="#getlabelinstance" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Instance</span></a>
+<a href="#getlabelselection" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Selection</span></a>
+<a href="#getmaxtimestampinrange" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a>
+<a href="#getmintimestampinrange" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Min<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a>
+<a href="#haseventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a>
+<a href="#haslabelclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Class</span></a>
+<a href="#haslabelinstance" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Instance</span></a>
+<a href="#haslabelselection" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Selection</span></a>
+<a href="#isassistantavailable" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Assistant<wbr/>Available</span></a>
+<a href="#iscached" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Cached</span></a>
+<a href="#iterlabelclasses" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Classes</span></a>
+<a href="#iterlabelinstanceidswithelements" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Instance<wbr/>Ids<wbr/>With<wbr/>Elements</span></a>
+<a href="#iterlabelinstances" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Instances</span></a>
+<a href="#iterlabelselections" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Selections</span></a>
+<a href="#predictmask" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>predict<wbr/>Mask</span></a>
+<a href="#removeeventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a>
+<a href="#retry" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>retry</span></a>
+<a href="#setframe" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Frame</span></a>
+<a href="#setlabelinstancedisplayparams" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Instance<wbr/>Display<wbr/>Params</span></a>
+<a href="#setlabelselectiondisplayparams" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Selection<wbr/>Display<wbr/>Params</span></a>
+<a href="#updatelabelinstancegtclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Instance<wbr/>Gt<wbr/>Class</span></a>
+<a href="#updatelabelinstanceisblack" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Instance<wbr/>Is<wbr/>Black</span></a>
+<a href="#updatelabelpointselection" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Point<wbr/>Selection</span></a>
+<a href="#updatelabelselectiondistinctivelv" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Distinctive<wbr/>Lv</span></a>
+<a href="#updatelabelselectionocclusionlv" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Occlusion<wbr/>Lv</span></a>
+<a href="#updatelabelselectionparentinstance" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Parent<wbr/>Instance</span></a>
+<a href="#updatelabelselectionperceivedclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Perceived<wbr/>Class</span></a>
+<a href="#create" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>create</span></a>
+</div></section></div></details></section></section>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="constructors-1">Constructors<a href="#constructors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructorsegmentationview"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">SegmentationView</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">loader</span><span class="tsd-signature-symbol">:</span> <a href="sta-segmentation.app.SegmentationLoader.html" class="tsd-signature-type tsd-kind-class">SegmentationLoader</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><a href="#constructorsegmentationview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new view of object instanceing labels that updates based on the active frame.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">loader</span>: <a href="sta-segmentation.app.SegmentationLoader.html" class="tsd-signature-type tsd-kind-class">SegmentationLoader</a></span></li>
+<li><span><span class="tsd-kind-parameter">context</span>: <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#constructor">constructor</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L343">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:343</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="_frame"><code class="tsd-tag">Protected</code><span>_<wbr/>frame</span><a href="#_frame" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">_frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#_frame">_frame</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L107">core/frontend/app/routes/editor/data/DataView.tsx:107</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="context"><code class="tsd-tag">Readonly</code><span>context</span><a href="#context" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-comment tsd-typography"><p>A handle to the state of the scene.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#context">context</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L316">core/frontend/app/routes/editor/data/DataView.tsx:316</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="loader"><code class="tsd-tag">Protected</code><span>loader</span><a href="#loader" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">loader</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.DataLoader.html" class="tsd-signature-type tsd-kind-interface">DataLoader</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlySegmentationIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlySegmentationIndex</a><span class="tsd-signature-symbol">&gt;</span></div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#loader">loader</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L147">core/frontend/app/routes/editor/data/DataView.tsx:147</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="operation"><code class="tsd-tag">Static</code><span>Operation</span><a href="#operation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">Operation</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.SegmentationViewOperationConstructor.html" class="tsd-signature-type tsd-kind-type-alias">SegmentationViewOperationConstructor</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L511">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:511</a></li></ul></aside></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="currentbranch"><span>current<wbr/>Branch</span><a href="#currentbranch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="currentbranchcurrentbranch"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">currentBranch</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableBranch.html" class="tsd-signature-type tsd-kind-class">EditableBranch</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The currently selected label branch, or <code>null</code> if none.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.app_editor.EditableBranch.html" class="tsd-signature-type tsd-kind-class">EditableBranch</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.currentBranch</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L319">core/frontend/app/routes/editor/data/DataView.tsx:319</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="data"><span>data</span><a href="#data" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="datadata"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">data</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.app_editor.BaseDataView.html#d">D</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The data to display, if any.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.app_editor.BaseDataView.html#d">D</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.data</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L103">core/frontend/app/routes/editor/data/DataView.tsx:103</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="downloadprogress"><span>download<wbr/>Progress</span><a href="#downloadprogress" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="downloadprogressdownloadprogress"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">downloadProgress</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.DownloadProgress.html" class="tsd-signature-type tsd-kind-interface">DownloadProgress</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Byte progress for the active download, or <code>null</code> when unavailable.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="../interfaces/sta.app_editor.DownloadProgress.html" class="tsd-signature-type tsd-kind-interface">DownloadProgress</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.downloadProgress</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L127">core/frontend/app/routes/editor/data/DataView.tsx:127</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="frame"><span>frame</span><a href="#frame" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="frameframe"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">frame</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The frame for which the data is displayed.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.frame</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L110">core/frontend/app/routes/editor/data/DataView.tsx:110</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="isloading"><span>is<wbr/>Loading</span><a href="#isloading" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="isloadingisloading"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">isLoading</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p><code>true</code> if the data to display is being loaded; otherwise, <code>false</code>.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.isLoading</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L118">core/frontend/app/routes/editor/data/DataView.tsx:118</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="loaderror"><span>load<wbr/>Error</span><a href="#loaderror" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="loaderrorloaderror"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">loadError</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Human-readable error from the latest load, or <code>null</code> after success/retry.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.loadError</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L131">core/frontend/app/routes/editor/data/DataView.tsx:131</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="timepathrange"><span>time<wbr/>Path<wbr/>Range</span><a href="#timepathrange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="timepathrangetimepathrange"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">timePathRange</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The maximum number of frames on either side of the active frame in the
+time-sorted path for which to display labels.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L117">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:117</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="timepathrangetimepathrange-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">timePathRange</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L121">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:121</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="_reloaddata"><code class="tsd-tag">Protected</code><span>_<wbr/>reload<wbr/>Data</span><a href="#_reloaddata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="_reloaddata-1"><span class="tsd-kind-call-signature">_reloadData</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#_reloaddata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Updates the data stored in this layer according to its current state.</p>
+<p>Note that display data is <code>null</code> while waiting for it to load.
+You can listen to this change through the <code>'beforeload'</code> event.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A promise representing the task.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#_reloaddata">_reloadData</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L171">core/frontend/app/routes/editor/data/DataView.tsx:171</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="addeventlistener"><span>add<wbr/>Event<wbr/>Listener</span><a href="#addeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-1"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L44">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:44</a></li></ul></aside></div></li>
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-2"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L48">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:48</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabelinstance"><span>add<wbr/>Label<wbr/>Instance</span><a href="#addlabelinstance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabelinstance-1"><span class="tsd-kind-call-signature">addLabelInstance</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.InstanceParams.html" class="tsd-signature-type tsd-kind-type-alias">InstanceParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">&gt;</span><a href="#addlabelinstance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs an object instance, and adds it to this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.InstanceParams.html" class="tsd-signature-type tsd-kind-type-alias">InstanceParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L783">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:783</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabelinstancelocalonly"><span>add<wbr/>Label<wbr/>Instance<wbr/>Local<wbr/>Only</span><a href="#addlabelinstancelocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabelinstancelocalonly-1"><span class="tsd-kind-call-signature">addLabelInstanceLocalOnly</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.InstanceParams.html" class="tsd-signature-type tsd-kind-type-alias">InstanceParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><a href="#addlabelinstancelocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs an object instance, adding it to this collection.</p>
+<p>Unlike <code>addLabelInstance</code>, the remote dataset remains unaffected.</p>
+<p>Items added in this way can only be deleted through <code>deleteLabelInstanceLocalOnly</code>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.InstanceParams.html" class="tsd-signature-type tsd-kind-type-alias">InstanceParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L470">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:470</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabelselection"><span>add<wbr/>Label<wbr/>Selection</span><a href="#addlabelselection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabelselection-1"><span class="tsd-kind-call-signature">addLabelSelection</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">&gt;</span><a href="#addlabelselection-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs a selection, adding it to this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L640">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:640</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabelselectionlocalonly"><span>add<wbr/>Label<wbr/>Selection<wbr/>Local<wbr/>Only</span><a href="#addlabelselectionlocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabelselectionlocalonly-1"><span class="tsd-kind-call-signature">addLabelSelectionLocalOnly</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><a href="#addlabelselectionlocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs a selection, adding it to this collection.</p>
+<p>Unlike <code>addLabelSelection</code>, the remote dataset remains unaffected.</p>
+<p>Items added in this way can only be deleted through <code>deleteLabelSelectionLocalOnly</code>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L374">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:374</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabelinstance"><span>delete<wbr/>Label<wbr/>Instance</span><a href="#deletelabelinstance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabelinstance-1"><span class="tsd-kind-call-signature">deleteLabelInstance</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">instance</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#deletelabelinstance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes an object instance from this collection.</p>
+<p>This is a deterministic no-op if the instance is no longer live
+(e.g. a stale control invoked this after it was already deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">instance</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L841">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:841</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabelinstancelocalonly"><span>delete<wbr/>Label<wbr/>Instance<wbr/>Local<wbr/>Only</span><a href="#deletelabelinstancelocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabelinstancelocalonly-1"><span class="tsd-kind-call-signature">deleteLabelInstanceLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">instance</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#deletelabelinstancelocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes an object instance from this collection.</p>
+<p>Unlike <code>deleteLabelInstance</code>, the remote dataset remains unaffected.</p>
+<p>This method can only delete items added through <code>addLabelInstanceLocalOnly</code>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">instance</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L494">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:494</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabelselection"><span>delete<wbr/>Label<wbr/>Selection</span><a href="#deletelabelselection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabelselection-1"><span class="tsd-kind-call-signature">deleteLabelSelection</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#deletelabelselection-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a selection from this collection.</p>
+<p>This is a deterministic no-op if the selection is no longer live
+(e.g. a stale control invoked this after it was already deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L771">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:771</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabelselectionlocalonly"><span>delete<wbr/>Label<wbr/>Selection<wbr/>Local<wbr/>Only</span><a href="#deletelabelselectionlocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabelselectionlocalonly-1"><span class="tsd-kind-call-signature">deleteLabelSelectionLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#deletelabelselectionlocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a selection from this collection.</p>
+<p>Unlike <code>deleteLabelSelection</code>, the remote dataset remains unaffected.</p>
+<p>This method can only delete items added through <code>addLabelSelectionLocalOnly</code>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L398">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:398</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="dispatchevent"><span>dispatch<wbr/>Event</span><a href="#dispatchevent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="dispatchevent-1"><span class="tsd-kind-call-signature">dispatchEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.BaseEvent.html" class="tsd-signature-type tsd-kind-interface">BaseEvent</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispatchevent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="dispatcheventt"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">event</span>: <a href="../interfaces/sta.app_editor.BaseEvent.html" class="tsd-signature-type tsd-kind-interface">BaseEvent</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#dispatchevent">dispatchEvent</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L105">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:105</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="dispose"><span>dispose</span><a href="#dispose" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="dispose-1"><span class="tsd-kind-call-signature">dispose</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispose-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Disposes of resources owned by this data view.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#dispose">dispose</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L360">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:360</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="encodepointcloud"><span>encode<wbr/>Point<wbr/>Cloud</span><a href="#encodepointcloud" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="encodepointcloud-1"><span class="tsd-kind-call-signature">encodePointCloud</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">pcdArr</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array" class="tsd-signature-type external" target="_blank">Float32Array</a><span class="tsd-signature-symbol">&lt;</span><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" class="tsd-signature-type external" target="_blank">ArrayBuffer</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">numPoints</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">pcdId</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">signal</span><span class="tsd-signature-symbol">?:</span> <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#encodepointcloud-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sends a point cloud frame to the labeling assistant for encoding.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">pcdArr</span>: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array" class="tsd-signature-type external" target="_blank">Float32Array</a><span class="tsd-signature-symbol">&lt;</span><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" class="tsd-signature-type external" target="_blank">ArrayBuffer</a><span class="tsd-signature-symbol">&gt;</span></span>
+<div class="tsd-comment tsd-typography"><p>The point cloud as a flat float32 array in database coordinates.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">numPoints</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>The number of points contained in the point cloud frame.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">pcdId</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">signal</span>: <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a></span>
+<div class="tsd-comment tsd-typography"><p>Aborts the request when a newer point cloud supersedes this one.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A promise that resolves to <code>true</code> if the assistant encoded
+the point cloud successfully.</p>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L859">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:859</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getdata"><span>get<wbr/>Data</span><a href="#getdata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getdata-1"><span class="tsd-kind-call-signature">getData</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">signal</span><span class="tsd-signature-symbol">?:</span> <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onProgress</span><span class="tsd-signature-symbol">?:</span> <a href="../types/sta.app_editor.DownloadProgressListener.html" class="tsd-signature-type tsd-kind-type-alias">DownloadProgressListener</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlySegmentationIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlySegmentationIndex</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span><a href="#getdata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Requests that data be loaded in memory for a frame, and returns it.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">signal</span>: <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">onProgress</span>: <a href="../types/sta.app_editor.DownloadProgressListener.html" class="tsd-signature-type tsd-kind-type-alias">DownloadProgressListener</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlySegmentationIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlySegmentationIndex</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#getdata">getData</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L201">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:201</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getlabelclass"><span>get<wbr/>Label<wbr/>Class</span><a href="#getlabelclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getlabelclass-1"><span class="tsd-kind-call-signature">getLabelClass</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a><a href="#getlabelclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets an object class in this collection by its unique identifier.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L275">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:275</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getlabelinstance"><span>get<wbr/>Label<wbr/>Instance</span><a href="#getlabelinstance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getlabelinstance-1"><span class="tsd-kind-call-signature">getLabelInstance</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><a href="#getlabelinstance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets an object instance in this collection by its unique identifier.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L322">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:322</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getlabelselection"><span>get<wbr/>Label<wbr/>Selection</span><a href="#getlabelselection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getlabelselection-1"><span class="tsd-kind-call-signature">getLabelSelection</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><a href="#getlabelselection-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets a selection in this collection by its unique identifier.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L296">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:296</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getmaxtimestampinrange"><span>get<wbr/>Max<wbr/>Timestamp<wbr/>In<wbr/>Range</span><a href="#getmaxtimestampinrange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getmaxtimestampinrange-1"><span class="tsd-kind-call-signature">getMaxTimestampInRange</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><a href="#getmaxtimestampinrange-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the minimum timestamp for which to display the labels.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L154">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:154</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getmintimestampinrange"><span>get<wbr/>Min<wbr/>Timestamp<wbr/>In<wbr/>Range</span><a href="#getmintimestampinrange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getmintimestampinrange-1"><span class="tsd-kind-call-signature">getMinTimestampInRange</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><a href="#getmintimestampinrange-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the minimum timestamp for which to display the labels.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L147">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:147</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="haseventlistener"><span>has<wbr/>Event<wbr/>Listener</span><a href="#haseventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-1"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L63">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:63</a></li></ul></aside></div></li>
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-2"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L67">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:67</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="haslabelclass"><span>has<wbr/>Label<wbr/>Class</span><a href="#haslabelclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="haslabelclass-1"><span class="tsd-kind-call-signature">hasLabelClass</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haslabelclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether an object class exists in this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L268">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:268</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="haslabelinstance"><span>has<wbr/>Label<wbr/>Instance</span><a href="#haslabelinstance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="haslabelinstance-1"><span class="tsd-kind-call-signature">hasLabelInstance</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haslabelinstance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether an object instance exists in this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L315">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:315</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="haslabelselection"><span>has<wbr/>Label<wbr/>Selection</span><a href="#haslabelselection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="haslabelselection-1"><span class="tsd-kind-call-signature">hasLabelSelection</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haslabelselection-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether a selection exists in this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L289">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:289</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="isassistantavailable"><span>is<wbr/>Assistant<wbr/>Available</span><a href="#isassistantavailable" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="isassistantavailable-1"><span class="tsd-kind-call-signature">isAssistantAvailable</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">signal</span><span class="tsd-signature-symbol">?:</span> <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#isassistantavailable-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns whether the backend can currently reach the labeling assistant.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">signal</span>: <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L874">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:874</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="iscached"><span>is<wbr/>Cached</span><a href="#iscached" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="iscached-1"><span class="tsd-kind-call-signature">isCached</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#iscached-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether the data for a frame is in the cache.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a></span>
+<div class="tsd-comment tsd-typography"><p>The frame to load the data for.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><p><code>true</code> if the data for a frame is in the cache; otherwise, <code>false</code>.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#iscached">isCached</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L282">core/frontend/app/routes/editor/data/DataView.tsx:282</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="iterlabelclasses"><span>iter<wbr/>Label<wbr/>Classes</span><a href="#iterlabelclasses" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="iterlabelclasses-1"><span class="tsd-kind-call-signature">iterLabelClasses</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a><span class="tsd-signature-symbol">&gt;</span><a href="#iterlabelclasses-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Iterates through each object class in this collection.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L261">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:261</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="iterlabelinstanceidswithelements"><span>iter<wbr/>Label<wbr/>Instance<wbr/>Ids<wbr/>With<wbr/>Elements</span><a href="#iterlabelinstanceidswithelements" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="iterlabelinstanceidswithelements-1"><span class="tsd-kind-call-signature">iterLabelInstanceIdsWithElements</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">&gt;</span><a href="#iterlabelinstanceidswithelements-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Iterates precomputed IDs for instances referenced in the active frame window.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L308">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:308</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="iterlabelinstances"><span>iter<wbr/>Label<wbr/>Instances</span><a href="#iterlabelinstances" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="iterlabelinstances-1"><span class="tsd-kind-call-signature">iterLabelInstances</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">&gt;</span><a href="#iterlabelinstances-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Iterates through each object instance in this collection.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L303">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:303</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="iterlabelselections"><span>iter<wbr/>Label<wbr/>Selections</span><a href="#iterlabelselections" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="iterlabelselections-1"><span class="tsd-kind-call-signature">iterLabelSelections</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">&gt;</span><a href="#iterlabelselections-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Iterates through each a selection in this collection.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L282">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:282</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="predictmask"><span>predict<wbr/>Mask</span><a href="#predictmask" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="predictmask-1"><span class="tsd-kind-call-signature">predictMask</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">points</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">readonly</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">labels</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">readonly</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">pcdId</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array" class="tsd-signature-type external" target="_blank">Float32Array</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBufferLike</span><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span><a href="#predictmask-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Prompts the labeling assistant to predict a segmentation mask.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">points</span>: <span class="tsd-signature-keyword">readonly</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">[]</span></span>
+<div class="tsd-comment tsd-typography"><p>The coordinates of each prompted point in database coordinates.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">labels</span>: <span class="tsd-signature-keyword">readonly</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></span>
+<div class="tsd-comment tsd-typography"><p>The foreground (1) or background (0) label of each prompted point.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">pcdId</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array" class="tsd-signature-type external" target="_blank">Float32Array</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBufferLike</span><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A promise that resolves to the logits of the predicted mask,
+or <code>null</code> if the prediction failed.</p>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L886">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:886</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="removeeventlistener"><span>remove<wbr/>Event<wbr/>Listener</span><a href="#removeeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-1"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L81">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:81</a></li></ul></aside></div></li>
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-2"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L85">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:85</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="retry"><span>retry</span><a href="#retry" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="retry-1"><span class="tsd-kind-call-signature">retry</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#retry-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Retries loading the currently selected frame.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#retry">retry</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L251">core/frontend/app/routes/editor/data/DataView.tsx:251</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setframe"><span>set<wbr/>Frame</span><a href="#setframe" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setframe-1"><span class="tsd-kind-call-signature">setFrame</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#setframe-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Displays the data for the given frame, loading the corresponding data if necessary.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span>
+<div class="tsd-comment tsd-typography"><p>The frame to display the data for.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A promise representing the task.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#setframe">setFrame</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L242">core/frontend/app/routes/editor/data/DataView.tsx:242</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="setlabelinstancedisplayparams"><span>set<wbr/>Label<wbr/>Instance<wbr/>Display<wbr/>Params</span><a href="#setlabelinstancedisplayparams" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="setlabelinstancedisplayparams-1"><span class="tsd-kind-call-signature">setLabelInstanceDisplayParams</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">instance</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.InstanceParams.html" class="tsd-signature-type tsd-kind-type-alias">InstanceParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;minTimestamp&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;maxTimestamp&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setlabelinstancedisplayparams-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the display parameters of an object instance.</p>
+<p>This method can be used to update items added through both
+<code>addLabelInstance</code> and <code>addLabelInstanceLocalOnly</code>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">instance</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a></span></li>
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.InstanceParams.html" class="tsd-signature-type tsd-kind-type-alias">InstanceParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;minTimestamp&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;maxTimestamp&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L421">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:421</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="setlabelselectiondisplayparams"><span>set<wbr/>Label<wbr/>Selection<wbr/>Display<wbr/>Params</span><a href="#setlabelselectiondisplayparams" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="setlabelselectiondisplayparams-1"><span class="tsd-kind-call-signature">setLabelSelectionDisplayParams</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><br/>        <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showPointSize&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showColor&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showCenter&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showPerceivedClass&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;opacity&quot;</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setlabelselectiondisplayparams-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the display parameters of a selection.</p>
+<p>This method can be used to update items added through both
+<code>addLabelSelection</code> and <code>addLabelSelectionLocalOnly</code>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li>
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><br/>    <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.SelectionParams.html" class="tsd-signature-type tsd-kind-type-alias">SelectionParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showPointSize&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showColor&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showCenter&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showPerceivedClass&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;opacity&quot;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L442">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:442</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelinstancegtclass"><span>update<wbr/>Label<wbr/>Instance<wbr/>Gt<wbr/>Class</span><a href="#updatelabelinstancegtclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelinstancegtclass-1"><span class="tsd-kind-call-signature">updateLabelInstanceGtClass</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">instance</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">labelClass</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelinstancegtclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an object class to an object instance in this collection.</p>
+<p>This is a deterministic no-op if the instance is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">instance</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a></span></li>
+<li><span><span class="tsd-kind-parameter">labelClass</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L805">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:805</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelinstanceisblack"><span>update<wbr/>Label<wbr/>Instance<wbr/>Is<wbr/>Black</span><a href="#updatelabelinstanceisblack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelinstanceisblack-1"><span class="tsd-kind-call-signature">updateLabelInstanceIsBlack</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">instance</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">isBlack</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelinstanceisblack-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns the low reflectivity indicator to an object instance in this collection.</p>
+<p>This is a deterministic no-op if the instance is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">instance</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a></span></li>
+<li><span><span class="tsd-kind-parameter">isBlack</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L823">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:823</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelpointselection"><span>update<wbr/>Label<wbr/>Point<wbr/>Selection</span><a href="#updatelabelpointselection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelpointselection-1"><span class="tsd-kind-call-signature">updateLabelPointSelection</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">mode</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">newPoints</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">readonly</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelpointselection-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Registers that a selection in this collection has been transformed.</p>
+<p>This is a deterministic no-op if the selection is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li>
+<li><span><span class="tsd-kind-parameter">mode</span>: <span class="tsd-signature-type">string</span></span></li>
+<li><span><span class="tsd-kind-parameter">newPoints</span>: <span class="tsd-signature-keyword">readonly</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L741">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:741</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelselectiondistinctivelv"><span>update<wbr/>Label<wbr/>Selection<wbr/>Distinctive<wbr/>Lv</span><a href="#updatelabelselectiondistinctivelv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelselectiondistinctivelv-1"><span class="tsd-kind-call-signature">updateLabelSelectionDistinctiveLv</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">distinctiveLv</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelselectiondistinctivelv-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns a distinctiveness level to a selection in this collection.</p>
+<p>This is a deterministic no-op if the selection is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li>
+<li><span><span class="tsd-kind-parameter">distinctiveLv</span>: <a href="../interfaces/sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L699">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:699</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelselectionocclusionlv"><span>update<wbr/>Label<wbr/>Selection<wbr/>Occlusion<wbr/>Lv</span><a href="#updatelabelselectionocclusionlv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelselectionocclusionlv-1"><span class="tsd-kind-call-signature">updateLabelSelectionOcclusionLv</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">occlusionLv</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelselectionocclusionlv-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an occlusion level to a selection in this collection.</p>
+<p>This is a deterministic no-op if the selection is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li>
+<li><span><span class="tsd-kind-parameter">occlusionLv</span>: <a href="../interfaces/sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L720">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:720</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelselectionparentinstance"><span>update<wbr/>Label<wbr/>Selection<wbr/>Parent<wbr/>Instance</span><a href="#updatelabelselectionparentinstance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelselectionparentinstance-1"><span class="tsd-kind-call-signature">updateLabelSelectionParentInstance</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">instance</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelselectionparentinstance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an object instance to a selection in this collection.</p>
+<p>This is a deterministic no-op if the selection or the instance is no
+longer live (e.g. a stale control invoked this after either was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li>
+<li><span><span class="tsd-kind-parameter">instance</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelInstance.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelInstance</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L662">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:662</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelselectionperceivedclass"><span>update<wbr/>Label<wbr/>Selection<wbr/>Perceived<wbr/>Class</span><a href="#updatelabelselectionperceivedclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelselectionperceivedclass-1"><span class="tsd-kind-call-signature">updateLabelSelectionPerceivedClass</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">selection</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">labelClass</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelselectionperceivedclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an object class to a selection in this collection.</p>
+<p>This is a deterministic no-op if the selection is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">selection</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelSelection.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelSelection</a></span></li>
+<li><span><span class="tsd-kind-parameter">labelClass</span>: <a href="../types/sta-segmentation.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L681">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:681</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="create"><code class="tsd-tag">Static</code><span>create</span><a href="#create" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="create-1"><span class="tsd-kind-call-signature">create</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">timePathRange</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a><a href="#create-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new view of object instanceing labels that updates based on the active frame.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">context</span>: <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></span></li>
+<li><span><span class="tsd-kind-parameter">timePathRange</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">SegmentationView</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx#L329">plugins/segmentation/frontend/app/editor/scene/data/SegmentationView.tsx:329</a></li></ul></aside></div></li></ul></section></section></details></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary>
+<div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary>
+<div><a href="#_frame" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>_<wbr/>frame</span></a><a href="#context" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>context</span></a><a href="#loader" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>loader</span></a><a href="#operation"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>Operation</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
+<div><a href="#currentbranch" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>current<wbr/>Branch</span></a><a href="#data" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>data</span></a><a href="#downloadprogress" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>download<wbr/>Progress</span></a><a href="#frame" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>frame</span></a><a href="#isloading" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>is<wbr/>Loading</span></a><a href="#loaderror" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>load<wbr/>Error</span></a><a href="#timepathrange"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>time<wbr/>Path<wbr/>Range</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
+<div><a href="#_reloaddata" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>_<wbr/>reload<wbr/>Data</span></a><a href="#addeventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a><a href="#addlabelinstance"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Instance</span></a><a href="#addlabelinstancelocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Instance<wbr/>Local<wbr/>Only</span></a><a href="#addlabelselection"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Selection</span></a><a href="#addlabelselectionlocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Selection<wbr/>Local<wbr/>Only</span></a><a href="#deletelabelinstance"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Instance</span></a><a href="#deletelabelinstancelocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Instance<wbr/>Local<wbr/>Only</span></a><a href="#deletelabelselection"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Selection</span></a><a href="#deletelabelselectionlocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Selection<wbr/>Local<wbr/>Only</span></a><a href="#dispatchevent" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a><a href="#dispose"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a><a href="#encodepointcloud"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>encode<wbr/>Point<wbr/>Cloud</span></a><a href="#getdata"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Data</span></a><a href="#getlabelclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Class</span></a><a href="#getlabelinstance"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Instance</span></a><a href="#getlabelselection"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Selection</span></a><a href="#getmaxtimestampinrange"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a><a href="#getmintimestampinrange"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Min<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a><a href="#haseventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a><a href="#haslabelclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Class</span></a><a href="#haslabelinstance"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Instance</span></a><a href="#haslabelselection"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Selection</span></a><a href="#isassistantavailable"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Assistant<wbr/>Available</span></a><a href="#iscached" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Cached</span></a><a href="#iterlabelclasses"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Classes</span></a><a href="#iterlabelinstanceidswithelements"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Instance<wbr/>Ids<wbr/>With<wbr/>Elements</span></a><a href="#iterlabelinstances"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Instances</span></a><a href="#iterlabelselections"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Selections</span></a><a href="#predictmask"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>predict<wbr/>Mask</span></a><a href="#removeeventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a><a href="#retry" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>retry</span></a><a href="#setframe" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Frame</span></a><a href="#setlabelinstancedisplayparams"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Instance<wbr/>Display<wbr/>Params</span></a><a href="#setlabelselectiondisplayparams"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Selection<wbr/>Display<wbr/>Params</span></a><a href="#updatelabelinstancegtclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Instance<wbr/>Gt<wbr/>Class</span></a><a href="#updatelabelinstanceisblack"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Instance<wbr/>Is<wbr/>Black</span></a><a href="#updatelabelpointselection"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Point<wbr/>Selection</span></a><a href="#updatelabelselectiondistinctivelv"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Distinctive<wbr/>Lv</span></a><a href="#updatelabelselectionocclusionlv"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Occlusion<wbr/>Lv</span></a><a href="#updatelabelselectionparentinstance"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Parent<wbr/>Instance</span></a><a href="#updatelabelselectionperceivedclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Selection<wbr/>Perceived<wbr/>Class</span></a><a href="#create"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>create</span></a></div></details></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="../index.html">← API Reference</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">TypeScript API</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.28.20</p></footer>
+<div class="overlay"></div></body></html>

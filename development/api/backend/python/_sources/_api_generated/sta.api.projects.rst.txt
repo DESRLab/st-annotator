@@ -1,0 +1,46 @@
+sta.api.projects
+================
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.projects
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_projects
+      create_project
+      delete_project
+      list_project_ids
+      list_projects
+      read_project
+      update_project
+
+   
+   .. autofunction:: bulk_update_projects
+   .. autofunction:: create_project
+   .. autofunction:: delete_project
+   .. autofunction:: list_project_ids
+   .. autofunction:: list_projects
+   .. autofunction:: read_project
+   .. autofunction:: update_project
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,51 @@
+ObjectClassUpdate
+=================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassUpdate.sqlmodel_update
+
+   
+   .. automethod:: ObjectClassUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassUpdate.model_config
+      ~ObjectClassUpdate.name
+      ~ObjectClassUpdate.description
+      ~ObjectClassUpdate.color_rgb
+      ~ObjectClassUpdate.default_size_x
+      ~ObjectClassUpdate.default_size_y
+      ~ObjectClassUpdate.default_size_z
+      ~ObjectClassUpdate.is_deleted
+      ~ObjectClassUpdate.issued_at
+
+   
+   .. autoattribute:: ObjectClassUpdate.model_config
+   .. autoattribute:: ObjectClassUpdate.name
+   .. autoattribute:: ObjectClassUpdate.description
+   .. autoattribute:: ObjectClassUpdate.color_rgb
+   .. autoattribute:: ObjectClassUpdate.default_size_x
+   .. autoattribute:: ObjectClassUpdate.default_size_y
+   .. autoattribute:: ObjectClassUpdate.default_size_z
+   .. autoattribute:: ObjectClassUpdate.is_deleted
+   .. autoattribute:: ObjectClassUpdate.issued_at
+   
+   

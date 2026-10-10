@@ -1,0 +1,77 @@
+SourceDataPublicLike
+====================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceDataPublicLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceDataPublicLike.model_dump
+      ~SourceDataPublicLike.model_validate
+      ~SourceDataPublicLike.sqlmodel_update
+      ~SourceDataPublicLike.unpack_max_coords
+      ~SourceDataPublicLike.unpack_min_coords
+      ~SourceDataPublicLike.unpack_st_bounds
+      ~SourceDataPublicLike.update_from_st_bounds
+
+   
+   .. automethod:: SourceDataPublicLike.model_dump
+   .. automethod:: SourceDataPublicLike.model_validate
+   .. automethod:: SourceDataPublicLike.sqlmodel_update
+   .. automethod:: SourceDataPublicLike.unpack_max_coords
+   .. automethod:: SourceDataPublicLike.unpack_min_coords
+   .. automethod:: SourceDataPublicLike.unpack_st_bounds
+   .. automethod:: SourceDataPublicLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceDataPublicLike.max_coords
+      ~SourceDataPublicLike.min_coords
+      ~SourceDataPublicLike.model_fields_set
+      ~SourceDataPublicLike.st_bounds
+      ~SourceDataPublicLike.id
+      ~SourceDataPublicLike.group
+      ~SourceDataPublicLike.auto_bounds
+      ~SourceDataPublicLike.group_id
+      ~SourceDataPublicLike.min_x
+      ~SourceDataPublicLike.min_y
+      ~SourceDataPublicLike.min_z
+      ~SourceDataPublicLike.max_x
+      ~SourceDataPublicLike.max_y
+      ~SourceDataPublicLike.max_z
+      ~SourceDataPublicLike.min_timestamp
+      ~SourceDataPublicLike.max_timestamp
+
+   
+   .. autoattribute:: SourceDataPublicLike.max_coords
+   .. autoattribute:: SourceDataPublicLike.min_coords
+   .. autoattribute:: SourceDataPublicLike.model_fields_set
+   .. autoattribute:: SourceDataPublicLike.st_bounds
+   .. autoattribute:: SourceDataPublicLike.id
+   .. autoattribute:: SourceDataPublicLike.group
+   .. autoattribute:: SourceDataPublicLike.auto_bounds
+   .. autoattribute:: SourceDataPublicLike.group_id
+   .. autoattribute:: SourceDataPublicLike.min_x
+   .. autoattribute:: SourceDataPublicLike.min_y
+   .. autoattribute:: SourceDataPublicLike.min_z
+   .. autoattribute:: SourceDataPublicLike.max_x
+   .. autoattribute:: SourceDataPublicLike.max_y
+   .. autoattribute:: SourceDataPublicLike.max_z
+   .. autoattribute:: SourceDataPublicLike.min_timestamp
+   .. autoattribute:: SourceDataPublicLike.max_timestamp
+   
+   

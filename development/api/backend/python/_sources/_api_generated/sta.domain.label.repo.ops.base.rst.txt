@@ -1,0 +1,36 @@
+sta.domain.label.repo.ops.base
+==============================
+
+.. currentmodule:: sta.domain.label.repo.ops
+
+.. automodule:: sta.domain.label.repo.ops.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.label.repo.ops.base.create
+   sta.domain.label.repo.ops.base.delete
+   sta.domain.label.repo.ops.base.operation
+   sta.domain.label.repo.ops.base.update
+

@@ -1,0 +1,41 @@
+CreateBase
+==========
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.base.create
+
+.. autoclass:: CreateBase
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CreateBase.apply
+      ~CreateBase.get_data
+      ~CreateBase.get_domain
+
+   
+   .. automethod:: CreateBase.apply
+   .. automethod:: CreateBase.get_data
+   .. automethod:: CreateBase.get_domain
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CreateBase.name
+      ~CreateBase.params
+
+   
+   .. autoattribute:: CreateBase.name
+   .. autoattribute:: CreateBase.params
+   
+   

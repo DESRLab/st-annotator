@@ -1,0 +1,37 @@
+PerfUpdateEntity
+================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfUpdateEntity
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PerfUpdateEntity.apply
+
+   
+   .. automethod:: PerfUpdateEntity.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfUpdateEntity.name
+      ~PerfUpdateEntity.params
+
+   
+   .. autoattribute:: PerfUpdateEntity.name
+   .. autoattribute:: PerfUpdateEntity.params
+   
+   

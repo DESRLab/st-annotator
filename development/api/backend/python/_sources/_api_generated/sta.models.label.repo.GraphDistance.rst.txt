@@ -1,0 +1,40 @@
+GraphDistance
+=============
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: GraphDistance
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GraphDistance.distance
+      ~GraphDistance.dst_commit
+      ~GraphDistance.dst_hash
+      ~GraphDistance.group
+      ~GraphDistance.group_id
+      ~GraphDistance.model_config
+      ~GraphDistance.src_commit
+      ~GraphDistance.src_hash
+
+   
+   .. autoattribute:: GraphDistance.distance
+   .. autoattribute:: GraphDistance.dst_commit
+   .. autoattribute:: GraphDistance.dst_hash
+   .. autoattribute:: GraphDistance.group
+   .. autoattribute:: GraphDistance.group_id
+   .. autoattribute:: GraphDistance.model_config
+   .. autoattribute:: GraphDistance.src_commit
+   .. autoattribute:: GraphDistance.src_hash
+   
+   

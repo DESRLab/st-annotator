@@ -1,0 +1,17 @@
+SizedIterator
+=============
+
+
+
+
+.. currentmodule:: sta.common.utils.collections
+
+.. autoclass:: SizedIterator
+
+   
+   
+   
+
+   
+   
+   

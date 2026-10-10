@@ -1,0 +1,49 @@
+STBounds
+========
+
+
+
+
+.. currentmodule:: sta.common.spatial.boundaries
+
+.. autoclass:: STBounds
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~STBounds.contains
+      ~STBounds.intersects
+      ~STBounds.spatial_volume_not_negative
+      ~STBounds.timestamp_volume_not_negative
+
+   
+   .. automethod:: STBounds.contains
+   .. automethod:: STBounds.intersects
+   .. automethod:: STBounds.spatial_volume_not_negative
+   .. automethod:: STBounds.timestamp_volume_not_negative
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~STBounds.model_config
+      ~STBounds.min_coords
+      ~STBounds.max_coords
+      ~STBounds.min_timestamp
+      ~STBounds.max_timestamp
+
+   
+   .. autoattribute:: STBounds.model_config
+   .. autoattribute:: STBounds.min_coords
+   .. autoattribute:: STBounds.max_coords
+   .. autoattribute:: STBounds.min_timestamp
+   .. autoattribute:: STBounds.max_timestamp
+   
+   

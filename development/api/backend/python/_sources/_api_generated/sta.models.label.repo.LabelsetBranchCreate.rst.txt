@@ -1,0 +1,49 @@
+LabelsetBranchCreate
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetBranchCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetBranchCreate.check_edit_conflict
+      ~LabelsetBranchCreate.sqlmodel_update
+
+   
+   .. automethod:: LabelsetBranchCreate.check_edit_conflict
+   .. automethod:: LabelsetBranchCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetBranchCreate.model_config
+      ~LabelsetBranchCreate.perm_lv_by_user_id
+      ~LabelsetBranchCreate.group_id
+      ~LabelsetBranchCreate.head_hash
+      ~LabelsetBranchCreate.checkpoint_hash
+      ~LabelsetBranchCreate.name
+      ~LabelsetBranchCreate.last_edit_at
+
+   
+   .. autoattribute:: LabelsetBranchCreate.model_config
+   .. autoattribute:: LabelsetBranchCreate.perm_lv_by_user_id
+   .. autoattribute:: LabelsetBranchCreate.group_id
+   .. autoattribute:: LabelsetBranchCreate.head_hash
+   .. autoattribute:: LabelsetBranchCreate.checkpoint_hash
+   .. autoattribute:: LabelsetBranchCreate.name
+   .. autoattribute:: LabelsetBranchCreate.last_edit_at
+   
+   

@@ -1,0 +1,36 @@
+LabelsetOperationMetadata
+=========================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetOperationMetadata
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetOperationMetadata.model_config
+      ~LabelsetOperationMetadata.op_name
+      ~LabelsetOperationMetadata.op_params
+      ~LabelsetOperationMetadata.author_id
+      ~LabelsetOperationMetadata.timestamp
+      ~LabelsetOperationMetadata.overwrites
+
+   
+   .. autoattribute:: LabelsetOperationMetadata.model_config
+   .. autoattribute:: LabelsetOperationMetadata.op_name
+   .. autoattribute:: LabelsetOperationMetadata.op_params
+   .. autoattribute:: LabelsetOperationMetadata.author_id
+   .. autoattribute:: LabelsetOperationMetadata.timestamp
+   .. autoattribute:: LabelsetOperationMetadata.overwrites
+   
+   

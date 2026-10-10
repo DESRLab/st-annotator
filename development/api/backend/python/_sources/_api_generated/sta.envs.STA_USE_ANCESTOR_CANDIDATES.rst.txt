@@ -1,0 +1,6 @@
+STA\_USE\_ANCESTOR\_CANDIDATES
+==============================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_USE_ANCESTOR_CANDIDATES

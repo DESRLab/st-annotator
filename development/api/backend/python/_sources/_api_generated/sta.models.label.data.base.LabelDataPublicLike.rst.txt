@@ -1,0 +1,49 @@
+LabelDataPublicLike
+===================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelDataPublicLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelDataPublicLike.model_dump
+      ~LabelDataPublicLike.model_validate
+      ~LabelDataPublicLike.sqlmodel_update
+
+   
+   .. automethod:: LabelDataPublicLike.model_dump
+   .. automethod:: LabelDataPublicLike.model_validate
+   .. automethod:: LabelDataPublicLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelDataPublicLike.model_fields_set
+      ~LabelDataPublicLike.id
+      ~LabelDataPublicLike.commit
+      ~LabelDataPublicLike.group_id
+      ~LabelDataPublicLike.commit_hash
+      ~LabelDataPublicLike.is_deleted
+
+   
+   .. autoattribute:: LabelDataPublicLike.model_fields_set
+   .. autoattribute:: LabelDataPublicLike.id
+   .. autoattribute:: LabelDataPublicLike.commit
+   .. autoattribute:: LabelDataPublicLike.group_id
+   .. autoattribute:: LabelDataPublicLike.commit_hash
+   .. autoattribute:: LabelDataPublicLike.is_deleted
+   
+   

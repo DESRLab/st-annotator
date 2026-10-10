@@ -1,0 +1,44 @@
+sta.api.tasks
+=============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.tasks
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_tasks
+      create_task
+      delete_task
+      list_tasks
+      read_task
+      update_task
+
+   
+   .. autofunction:: bulk_update_tasks
+   .. autofunction:: create_task
+   .. autofunction:: delete_task
+   .. autofunction:: list_tasks
+   .. autofunction:: read_task
+   .. autofunction:: update_task
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

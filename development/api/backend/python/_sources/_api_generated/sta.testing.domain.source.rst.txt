@@ -1,0 +1,33 @@
+sta.testing.domain.source
+=========================
+
+.. currentmodule:: sta.testing.domain
+
+.. automodule:: sta.testing.domain.source
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.testing.domain.source.groups
+

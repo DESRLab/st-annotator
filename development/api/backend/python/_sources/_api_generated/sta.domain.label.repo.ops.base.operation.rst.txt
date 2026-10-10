@@ -1,0 +1,32 @@
+sta.domain.label.repo.ops.base.operation
+========================================
+
+.. currentmodule:: sta.domain.label.repo.ops.base
+
+.. automodule:: sta.domain.label.repo.ops.base.operation
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Operation
+   
+   
+
+   
+   
+   
+
+
+

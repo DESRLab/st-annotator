@@ -1,0 +1,6 @@
+SHUTDOWN\_GRACE\_SECONDS
+========================
+
+.. currentmodule:: sta.domain.jobs.worker
+
+.. autodata:: SHUTDOWN_GRACE_SECONDS

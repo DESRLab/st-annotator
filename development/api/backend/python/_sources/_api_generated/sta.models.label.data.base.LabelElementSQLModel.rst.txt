@@ -1,0 +1,89 @@
+LabelElementSQLModel
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelElementSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelElementSQLModel.build_table_base_cls
+      ~LabelElementSQLModel.check_edit_conflict
+      ~LabelElementSQLModel.get_create_cls
+      ~LabelElementSQLModel.get_public_cls
+      ~LabelElementSQLModel.get_table_cls
+      ~LabelElementSQLModel.get_update_cls
+      ~LabelElementSQLModel.sqlmodel_update
+      ~LabelElementSQLModel.unpack_max_coords
+      ~LabelElementSQLModel.unpack_min_coords
+      ~LabelElementSQLModel.unpack_st_bounds
+      ~LabelElementSQLModel.update_from_st_bounds
+
+   
+   .. automethod:: LabelElementSQLModel.build_table_base_cls
+   .. automethod:: LabelElementSQLModel.check_edit_conflict
+   .. automethod:: LabelElementSQLModel.get_create_cls
+   .. automethod:: LabelElementSQLModel.get_public_cls
+   .. automethod:: LabelElementSQLModel.get_table_cls
+   .. automethod:: LabelElementSQLModel.get_update_cls
+   .. automethod:: LabelElementSQLModel.sqlmodel_update
+   .. automethod:: LabelElementSQLModel.unpack_max_coords
+   .. automethod:: LabelElementSQLModel.unpack_min_coords
+   .. automethod:: LabelElementSQLModel.unpack_st_bounds
+   .. automethod:: LabelElementSQLModel.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelElementSQLModel.COORD_TYPE
+      ~LabelElementSQLModel.max_coords
+      ~LabelElementSQLModel.min_coords
+      ~LabelElementSQLModel.model_config
+      ~LabelElementSQLModel.st_bounds
+      ~LabelElementSQLModel.entity_id
+      ~LabelElementSQLModel.min_x
+      ~LabelElementSQLModel.min_y
+      ~LabelElementSQLModel.min_z
+      ~LabelElementSQLModel.max_x
+      ~LabelElementSQLModel.max_y
+      ~LabelElementSQLModel.max_z
+      ~LabelElementSQLModel.min_timestamp
+      ~LabelElementSQLModel.max_timestamp
+      ~LabelElementSQLModel.group_id
+      ~LabelElementSQLModel.commit_hash
+      ~LabelElementSQLModel.is_deleted
+      ~LabelElementSQLModel.last_edit_at
+
+   
+   .. autoattribute:: LabelElementSQLModel.COORD_TYPE
+   .. autoattribute:: LabelElementSQLModel.max_coords
+   .. autoattribute:: LabelElementSQLModel.min_coords
+   .. autoattribute:: LabelElementSQLModel.model_config
+   .. autoattribute:: LabelElementSQLModel.st_bounds
+   .. autoattribute:: LabelElementSQLModel.entity_id
+   .. autoattribute:: LabelElementSQLModel.min_x
+   .. autoattribute:: LabelElementSQLModel.min_y
+   .. autoattribute:: LabelElementSQLModel.min_z
+   .. autoattribute:: LabelElementSQLModel.max_x
+   .. autoattribute:: LabelElementSQLModel.max_y
+   .. autoattribute:: LabelElementSQLModel.max_z
+   .. autoattribute:: LabelElementSQLModel.min_timestamp
+   .. autoattribute:: LabelElementSQLModel.max_timestamp
+   .. autoattribute:: LabelElementSQLModel.group_id
+   .. autoattribute:: LabelElementSQLModel.commit_hash
+   .. autoattribute:: LabelElementSQLModel.is_deleted
+   .. autoattribute:: LabelElementSQLModel.last_edit_at
+   
+   

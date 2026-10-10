@@ -1,0 +1,43 @@
+sta.models.label.spec.objclass
+==============================
+
+.. currentmodule:: sta.models.label.spec
+
+.. automodule:: sta.models.label.spec.objclass
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      ObjectClass
+      ObjectClassBulkUpdate
+      ObjectClassCreate
+      ObjectClassPublic
+      ObjectClassSelection
+      ObjectClassSelectionAssociation
+      ObjectClassSelectionBulkUpdate
+      ObjectClassSelectionCreate
+      ObjectClassSelectionPublic
+      ObjectClassSelectionSQLModel
+      ObjectClassSelectionUpdate
+      ObjectClassUpdate
+   
+   
+
+   
+   
+   
+
+
+

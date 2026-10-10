@@ -1,0 +1,34 @@
+JobState
+========
+
+
+
+
+.. currentmodule:: sta.models.job
+
+.. autoclass:: JobState
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~JobState.PENDING
+      ~JobState.RUNNING
+      ~JobState.SUCCEEDED
+      ~JobState.FAILED
+      ~JobState.CANCELLED
+
+   
+   .. autoattribute:: JobState.PENDING
+   .. autoattribute:: JobState.RUNNING
+   .. autoattribute:: JobState.SUCCEEDED
+   .. autoattribute:: JobState.FAILED
+   .. autoattribute:: JobState.CANCELLED
+   
+   

@@ -1,0 +1,41 @@
+FileURIValidators
+=================
+
+
+
+
+.. currentmodule:: sta.models.types.uri
+
+.. autoclass:: FileURIValidators
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FileURIValidators.validate
+
+   
+   .. automethod:: FileURIValidators.validate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileURIValidators.INVALID_LEN_MSG
+      ~FileURIValidators.INVALID_TARGET_MSG
+      ~FileURIValidators.MAX_LENGTH
+      ~FileURIValidators.MIN_LENGTH
+
+   
+   .. autoattribute:: FileURIValidators.INVALID_LEN_MSG
+   .. autoattribute:: FileURIValidators.INVALID_TARGET_MSG
+   .. autoattribute:: FileURIValidators.MAX_LENGTH
+   .. autoattribute:: FileURIValidators.MIN_LENGTH
+   
+   

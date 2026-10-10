@@ -1,0 +1,61 @@
+SourceMetadataUpdateLike
+========================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceMetadataUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceMetadataUpdateLike.model_dump
+      ~SourceMetadataUpdateLike.model_validate
+      ~SourceMetadataUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: SourceMetadataUpdateLike.model_dump
+   .. automethod:: SourceMetadataUpdateLike.model_validate
+   .. automethod:: SourceMetadataUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceMetadataUpdateLike.auto_bounds
+      ~SourceMetadataUpdateLike.group_id
+      ~SourceMetadataUpdateLike.max_timestamp
+      ~SourceMetadataUpdateLike.max_x
+      ~SourceMetadataUpdateLike.max_y
+      ~SourceMetadataUpdateLike.max_z
+      ~SourceMetadataUpdateLike.min_timestamp
+      ~SourceMetadataUpdateLike.min_x
+      ~SourceMetadataUpdateLike.min_y
+      ~SourceMetadataUpdateLike.min_z
+      ~SourceMetadataUpdateLike.model_fields_set
+      ~SourceMetadataUpdateLike.uri
+
+   
+   .. autoattribute:: SourceMetadataUpdateLike.auto_bounds
+   .. autoattribute:: SourceMetadataUpdateLike.group_id
+   .. autoattribute:: SourceMetadataUpdateLike.max_timestamp
+   .. autoattribute:: SourceMetadataUpdateLike.max_x
+   .. autoattribute:: SourceMetadataUpdateLike.max_y
+   .. autoattribute:: SourceMetadataUpdateLike.max_z
+   .. autoattribute:: SourceMetadataUpdateLike.min_timestamp
+   .. autoattribute:: SourceMetadataUpdateLike.min_x
+   .. autoattribute:: SourceMetadataUpdateLike.min_y
+   .. autoattribute:: SourceMetadataUpdateLike.min_z
+   .. autoattribute:: SourceMetadataUpdateLike.model_fields_set
+   .. autoattribute:: SourceMetadataUpdateLike.uri
+   
+   

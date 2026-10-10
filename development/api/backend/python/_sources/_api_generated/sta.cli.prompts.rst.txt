@@ -1,0 +1,42 @@
+sta.cli.prompts
+===============
+
+.. currentmodule:: sta.cli
+
+.. automodule:: sta.cli.prompts
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      prompt_label_branch
+      prompt_label_branch_from_group
+      prompt_label_group
+      prompt_login
+      prompt_source_group
+
+   
+   .. autofunction:: prompt_label_branch
+   .. autofunction:: prompt_label_branch_from_group
+   .. autofunction:: prompt_label_group
+   .. autofunction:: prompt_login
+   .. autofunction:: prompt_source_group
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

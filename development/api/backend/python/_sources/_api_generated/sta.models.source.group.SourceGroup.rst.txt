@@ -1,0 +1,45 @@
+SourceGroup
+===========
+
+
+
+
+.. currentmodule:: sta.models.source.group
+
+.. autoclass:: SourceGroup
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceGroup.check_edit_conflict
+      ~SourceGroup.sqlmodel_update
+
+   
+   .. automethod:: SourceGroup.check_edit_conflict
+   .. automethod:: SourceGroup.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceGroup.description
+      ~SourceGroup.id
+      ~SourceGroup.last_edit_at
+      ~SourceGroup.model_config
+      ~SourceGroup.name
+
+   
+   .. autoattribute:: SourceGroup.description
+   .. autoattribute:: SourceGroup.id
+   .. autoattribute:: SourceGroup.last_edit_at
+   .. autoattribute:: SourceGroup.model_config
+   .. autoattribute:: SourceGroup.name
+   
+   

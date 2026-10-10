@@ -1,0 +1,91 @@
+SourceMetadataSQLModel
+======================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceMetadataSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceMetadataSQLModel.build_table_base_cls
+      ~SourceMetadataSQLModel.check_edit_conflict
+      ~SourceMetadataSQLModel.get_create_cls
+      ~SourceMetadataSQLModel.get_public_cls
+      ~SourceMetadataSQLModel.get_table_cls
+      ~SourceMetadataSQLModel.get_update_cls
+      ~SourceMetadataSQLModel.sqlmodel_update
+      ~SourceMetadataSQLModel.unpack_max_coords
+      ~SourceMetadataSQLModel.unpack_min_coords
+      ~SourceMetadataSQLModel.unpack_st_bounds
+      ~SourceMetadataSQLModel.update_from_st_bounds
+
+   
+   .. automethod:: SourceMetadataSQLModel.build_table_base_cls
+   .. automethod:: SourceMetadataSQLModel.check_edit_conflict
+   .. automethod:: SourceMetadataSQLModel.get_create_cls
+   .. automethod:: SourceMetadataSQLModel.get_public_cls
+   .. automethod:: SourceMetadataSQLModel.get_table_cls
+   .. automethod:: SourceMetadataSQLModel.get_update_cls
+   .. automethod:: SourceMetadataSQLModel.sqlmodel_update
+   .. automethod:: SourceMetadataSQLModel.unpack_max_coords
+   .. automethod:: SourceMetadataSQLModel.unpack_min_coords
+   .. automethod:: SourceMetadataSQLModel.unpack_st_bounds
+   .. automethod:: SourceMetadataSQLModel.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceMetadataSQLModel.COORD_TYPE
+      ~SourceMetadataSQLModel.max_coords
+      ~SourceMetadataSQLModel.min_coords
+      ~SourceMetadataSQLModel.model_config
+      ~SourceMetadataSQLModel.st_bounds
+      ~SourceMetadataSQLModel.uri
+      ~SourceMetadataSQLModel.group_id
+      ~SourceMetadataSQLModel.auto_bounds
+      ~SourceMetadataSQLModel.bounds_config_hash
+      ~SourceMetadataSQLModel.bounds_error
+      ~SourceMetadataSQLModel.min_x
+      ~SourceMetadataSQLModel.min_y
+      ~SourceMetadataSQLModel.min_z
+      ~SourceMetadataSQLModel.max_x
+      ~SourceMetadataSQLModel.max_y
+      ~SourceMetadataSQLModel.max_z
+      ~SourceMetadataSQLModel.min_timestamp
+      ~SourceMetadataSQLModel.max_timestamp
+      ~SourceMetadataSQLModel.last_edit_at
+
+   
+   .. autoattribute:: SourceMetadataSQLModel.COORD_TYPE
+   .. autoattribute:: SourceMetadataSQLModel.max_coords
+   .. autoattribute:: SourceMetadataSQLModel.min_coords
+   .. autoattribute:: SourceMetadataSQLModel.model_config
+   .. autoattribute:: SourceMetadataSQLModel.st_bounds
+   .. autoattribute:: SourceMetadataSQLModel.uri
+   .. autoattribute:: SourceMetadataSQLModel.group_id
+   .. autoattribute:: SourceMetadataSQLModel.auto_bounds
+   .. autoattribute:: SourceMetadataSQLModel.bounds_config_hash
+   .. autoattribute:: SourceMetadataSQLModel.bounds_error
+   .. autoattribute:: SourceMetadataSQLModel.min_x
+   .. autoattribute:: SourceMetadataSQLModel.min_y
+   .. autoattribute:: SourceMetadataSQLModel.min_z
+   .. autoattribute:: SourceMetadataSQLModel.max_x
+   .. autoattribute:: SourceMetadataSQLModel.max_y
+   .. autoattribute:: SourceMetadataSQLModel.max_z
+   .. autoattribute:: SourceMetadataSQLModel.min_timestamp
+   .. autoattribute:: SourceMetadataSQLModel.max_timestamp
+   .. autoattribute:: SourceMetadataSQLModel.last_edit_at
+   
+   

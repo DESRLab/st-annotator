@@ -1,0 +1,26 @@
+PerformanceCounter
+==================
+
+
+
+
+.. currentmodule:: sta.common.perf
+
+.. autoclass:: PerformanceCounter
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerformanceCounter.total_seconds
+
+   
+   .. autoattribute:: PerformanceCounter.total_seconds
+   
+   

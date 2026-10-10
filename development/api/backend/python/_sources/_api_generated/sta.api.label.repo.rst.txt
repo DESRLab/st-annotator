@@ -1,0 +1,53 @@
+sta.api.label.repo
+==================
+
+.. currentmodule:: sta.api.label
+
+.. automodule:: sta.api.label.repo
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      checkpoint
+      get_op_registry
+      init_branch
+      push_commits
+      read_graph
+      setup_router
+
+   
+   .. autofunction:: checkpoint
+   .. autofunction:: get_op_registry
+   .. autofunction:: init_branch
+   .. autofunction:: push_commits
+   .. autofunction:: read_graph
+   .. autofunction:: setup_router
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.api.label.repo.branches
+   sta.api.label.repo.commits
+

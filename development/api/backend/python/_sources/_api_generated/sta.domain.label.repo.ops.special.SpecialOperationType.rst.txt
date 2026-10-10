@@ -1,0 +1,30 @@
+SpecialOperationType
+====================
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.special
+
+.. autoclass:: SpecialOperationType
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SpecialOperationType.INIT
+      ~SpecialOperationType.IMPORT
+      ~SpecialOperationType.CHECKPOINT
+
+   
+   .. autoattribute:: SpecialOperationType.INIT
+   .. autoattribute:: SpecialOperationType.IMPORT
+   .. autoattribute:: SpecialOperationType.CHECKPOINT
+   
+   

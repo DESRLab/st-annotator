@@ -1,0 +1,43 @@
+sta.models.source.data.base
+===========================
+
+.. currentmodule:: sta.models.source.data
+
+.. automodule:: sta.models.source.data.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      SourceDataPublicLike
+      SourceDataSQLModel
+      SourceDataTableLike
+      SourceDataUpdateLike
+      SourceMetadataPublicLike
+      SourceMetadataSQLModel
+      SourceMetadataTableLike
+      SourceMetadataUpdateLike
+      SourceTransformMetadataPublicLike
+      SourceTransformMetadataSQLModel
+      SourceTransformMetadataTableLike
+      SourceTransformMetadataUpdateLike
+   
+   
+
+   
+   
+   
+
+
+

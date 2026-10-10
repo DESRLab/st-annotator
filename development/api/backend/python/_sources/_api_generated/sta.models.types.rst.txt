@@ -1,0 +1,35 @@
+sta.models.types
+================
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.types
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.models.types.name
+   sta.models.types.quality
+   sta.models.types.uri
+

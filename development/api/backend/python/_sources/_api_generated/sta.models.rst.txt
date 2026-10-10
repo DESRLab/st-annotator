@@ -1,0 +1,43 @@
+sta.models
+==========
+
+.. currentmodule:: sta
+
+.. automodule:: sta.models
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.models.account
+   sta.models.base
+   sta.models.configs
+   sta.models.frame
+   sta.models.job
+   sta.models.label
+   sta.models.project
+   sta.models.source
+   sta.models.task
+   sta.models.types
+   sta.models.user
+

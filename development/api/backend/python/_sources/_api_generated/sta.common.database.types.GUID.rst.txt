@@ -1,0 +1,39 @@
+GUID
+====
+
+
+
+
+.. currentmodule:: sta.common.database.types
+
+.. autoclass:: GUID
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~GUID.load_dialect_impl
+      ~GUID.process_bind_param
+      ~GUID.process_result_value
+
+   
+   .. automethod:: GUID.load_dialect_impl
+   .. automethod:: GUID.process_bind_param
+   .. automethod:: GUID.process_result_value
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GUID.cache_ok
+
+   
+   .. autoattribute:: GUID.cache_ok
+   
+   

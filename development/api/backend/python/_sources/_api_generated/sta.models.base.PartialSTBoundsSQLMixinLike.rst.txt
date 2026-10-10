@@ -1,0 +1,69 @@
+PartialSTBoundsSQLMixinLike
+===========================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: PartialSTBoundsSQLMixinLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PartialSTBoundsSQLMixinLike.model_dump
+      ~PartialSTBoundsSQLMixinLike.model_validate
+      ~PartialSTBoundsSQLMixinLike.sqlmodel_update
+      ~PartialSTBoundsSQLMixinLike.unpack_max_coords
+      ~PartialSTBoundsSQLMixinLike.unpack_min_coords
+      ~PartialSTBoundsSQLMixinLike.unpack_st_bounds
+      ~PartialSTBoundsSQLMixinLike.update_from_st_bounds
+
+   
+   .. automethod:: PartialSTBoundsSQLMixinLike.model_dump
+   .. automethod:: PartialSTBoundsSQLMixinLike.model_validate
+   .. automethod:: PartialSTBoundsSQLMixinLike.sqlmodel_update
+   .. automethod:: PartialSTBoundsSQLMixinLike.unpack_max_coords
+   .. automethod:: PartialSTBoundsSQLMixinLike.unpack_min_coords
+   .. automethod:: PartialSTBoundsSQLMixinLike.unpack_st_bounds
+   .. automethod:: PartialSTBoundsSQLMixinLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PartialSTBoundsSQLMixinLike.max_coords
+      ~PartialSTBoundsSQLMixinLike.min_coords
+      ~PartialSTBoundsSQLMixinLike.model_fields_set
+      ~PartialSTBoundsSQLMixinLike.st_bounds
+      ~PartialSTBoundsSQLMixinLike.min_x
+      ~PartialSTBoundsSQLMixinLike.min_y
+      ~PartialSTBoundsSQLMixinLike.min_z
+      ~PartialSTBoundsSQLMixinLike.max_x
+      ~PartialSTBoundsSQLMixinLike.max_y
+      ~PartialSTBoundsSQLMixinLike.max_z
+      ~PartialSTBoundsSQLMixinLike.min_timestamp
+      ~PartialSTBoundsSQLMixinLike.max_timestamp
+
+   
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.max_coords
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.min_coords
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.model_fields_set
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.st_bounds
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.min_x
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.min_y
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.min_z
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.max_x
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.max_y
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.max_z
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.min_timestamp
+   .. autoattribute:: PartialSTBoundsSQLMixinLike.max_timestamp
+   
+   

@@ -1,0 +1,43 @@
+LabelGroupCreate
+================
+
+
+
+
+.. currentmodule:: sta.models.label.group
+
+.. autoclass:: LabelGroupCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelGroupCreate.check_edit_conflict
+      ~LabelGroupCreate.sqlmodel_update
+
+   
+   .. automethod:: LabelGroupCreate.check_edit_conflict
+   .. automethod:: LabelGroupCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelGroupCreate.model_config
+      ~LabelGroupCreate.name
+      ~LabelGroupCreate.description
+      ~LabelGroupCreate.last_edit_at
+
+   
+   .. autoattribute:: LabelGroupCreate.model_config
+   .. autoattribute:: LabelGroupCreate.name
+   .. autoattribute:: LabelGroupCreate.description
+   .. autoattribute:: LabelGroupCreate.last_edit_at
+   
+   

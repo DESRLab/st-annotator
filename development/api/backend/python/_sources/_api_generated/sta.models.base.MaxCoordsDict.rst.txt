@@ -1,0 +1,30 @@
+MaxCoordsDict
+=============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: MaxCoordsDict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MaxCoordsDict.max_x
+      ~MaxCoordsDict.max_y
+      ~MaxCoordsDict.max_z
+
+   
+   .. autoattribute:: MaxCoordsDict.max_x
+   .. autoattribute:: MaxCoordsDict.max_y
+   .. autoattribute:: MaxCoordsDict.max_z
+   
+   

@@ -1,0 +1,35 @@
+sta.common.filesystem.io.base
+=============================
+
+.. currentmodule:: sta.common.filesystem.io
+
+.. automodule:: sta.common.filesystem.io.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      FileIO
+      FileIOFunc
+      FilesystemIO
+      NormalizedFileIOFunc
+   
+   
+
+   
+   
+   
+
+
+

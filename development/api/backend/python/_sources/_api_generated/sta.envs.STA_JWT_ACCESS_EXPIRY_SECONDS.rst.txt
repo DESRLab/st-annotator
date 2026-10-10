@@ -1,0 +1,6 @@
+STA\_JWT\_ACCESS\_EXPIRY\_SECONDS
+=================================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_JWT_ACCESS_EXPIRY_SECONDS

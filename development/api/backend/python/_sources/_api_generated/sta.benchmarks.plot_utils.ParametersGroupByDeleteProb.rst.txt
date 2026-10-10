@@ -1,0 +1,36 @@
+ParametersGroupByDeleteProb
+===========================
+
+
+
+
+.. currentmodule:: sta.benchmarks.plot_utils
+
+.. autoclass:: ParametersGroupByDeleteProb
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ParametersGroupByDeleteProb.num_commits
+      ~ParametersGroupByDeleteProb.num_points
+      ~ParametersGroupByDeleteProb.num_init_labels
+      ~ParametersGroupByDeleteProb.branch_prob
+      ~ParametersGroupByDeleteProb.create_prob
+      ~ParametersGroupByDeleteProb.entity_prob
+
+   
+   .. autoattribute:: ParametersGroupByDeleteProb.num_commits
+   .. autoattribute:: ParametersGroupByDeleteProb.num_points
+   .. autoattribute:: ParametersGroupByDeleteProb.num_init_labels
+   .. autoattribute:: ParametersGroupByDeleteProb.branch_prob
+   .. autoattribute:: ParametersGroupByDeleteProb.create_prob
+   .. autoattribute:: ParametersGroupByDeleteProb.entity_prob
+   
+   

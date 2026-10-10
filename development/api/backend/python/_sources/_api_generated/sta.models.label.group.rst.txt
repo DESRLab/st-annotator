@@ -1,0 +1,36 @@
+sta.models.label.group
+======================
+
+.. currentmodule:: sta.models.label
+
+.. automodule:: sta.models.label.group
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LabelGroup
+      LabelGroupBulkUpdate
+      LabelGroupCreate
+      LabelGroupPublic
+      LabelGroupUpdate
+   
+   
+
+   
+   
+   
+
+
+

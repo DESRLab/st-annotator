@@ -1,0 +1,37 @@
+JSONB
+=====
+
+
+
+
+.. currentmodule:: sta.common.database.types
+
+.. autoclass:: JSONB
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~JSONB.load_dialect_impl
+      ~JSONB.process_bind_param
+
+   
+   .. automethod:: JSONB.load_dialect_impl
+   .. automethod:: JSONB.process_bind_param
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~JSONB.cache_ok
+
+   
+   .. autoattribute:: JSONB.cache_ok
+   
+   

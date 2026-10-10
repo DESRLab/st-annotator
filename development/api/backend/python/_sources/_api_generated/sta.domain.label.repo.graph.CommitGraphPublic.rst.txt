@@ -1,0 +1,30 @@
+CommitGraphPublic
+=================
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.graph
+
+.. autoclass:: CommitGraphPublic
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CommitGraphPublic.model_config
+      ~CommitGraphPublic.nodes
+      ~CommitGraphPublic.edges
+
+   
+   .. autoattribute:: CommitGraphPublic.model_config
+   .. autoattribute:: CommitGraphPublic.nodes
+   .. autoattribute:: CommitGraphPublic.edges
+   
+   

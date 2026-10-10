@@ -1,0 +1,36 @@
+sta.common.filesystem
+=====================
+
+.. currentmodule:: sta.common
+
+.. automodule:: sta.common.filesystem
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.common.filesystem.base
+   sta.common.filesystem.config
+   sta.common.filesystem.io
+   sta.common.filesystem.path
+

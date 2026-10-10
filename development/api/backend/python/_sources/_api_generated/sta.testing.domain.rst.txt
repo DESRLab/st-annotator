@@ -1,0 +1,38 @@
+sta.testing.domain
+==================
+
+.. currentmodule:: sta.testing
+
+.. automodule:: sta.testing.domain
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.testing.domain.frames
+   sta.testing.domain.label
+   sta.testing.domain.projects
+   sta.testing.domain.source
+   sta.testing.domain.tasks
+   sta.testing.domain.users
+

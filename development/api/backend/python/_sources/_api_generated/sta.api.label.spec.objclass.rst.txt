@@ -1,0 +1,34 @@
+sta.api.label.spec.objclass
+===========================
+
+.. currentmodule:: sta.api.label.spec
+
+.. automodule:: sta.api.label.spec.objclass
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.api.label.spec.objclass.definitions
+   sta.api.label.spec.objclass.selections
+

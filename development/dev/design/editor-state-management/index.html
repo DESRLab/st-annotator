@@ -1,0 +1,1858 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Spatial-Temporal Annotation">
+      
+      
+      
+        <link rel="canonical" href="https://desrlab.github.io/st-annotator/development/dev/design/editor-state-management/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../background-jobs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../_static/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Editor State Management - ST Annotator Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#editor-state-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ST Annotator Documentation" class="md-header__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../../_static/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ST Annotator Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Editor State Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../install/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../user/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CLI Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ST Annotator Documentation" class="md-nav__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../../_static/logo.png" alt="logo">
+
+    </a>
+    ST Annotator Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../user/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/host/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosting the ST Annotator Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registering a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../user/handbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ST Annotator Platform Handbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ST Annotator Platform Handbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/handbook/account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/handbook/data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/handbook/project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/handbook/editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build, Distribution, and Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Docs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor State Management
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor State Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-unified-read-model-editor-state-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The unified read model (editor state store)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#narrow-bridges-for-imperative-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Narrow bridges for imperative sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threejs-react-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        three.js / React separation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State synchronization
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Jobs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../placeholder-values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Placeholder Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/backend/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-unified-read-model-editor-state-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The unified read model (editor state store)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#narrow-bridges-for-imperative-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Narrow bridges for imperative sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threejs-react-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        three.js / React separation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State synchronization
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="editor-state-management">Editor State Management</h1>
+<p>The annotation editor is a deliberate hybrid of React and imperative code; new changes must preserve this boundary.</p>
+<p>The three.js scene graph, the per-frame render loop, and the editor domain models (labelsets and their history, playback, selection, data indices, lookups and loaders) are imperative classes that remain the single source of truth for their state. Do not mirror their state into React state, and do not write three.js objects from React.</p>
+<p>New UI-only state — panels, overlays, tooltips, dialogs — is React state. Anything that mutates per frame or per pointer event stays imperative; React never sits in the render loop.</p>
+<h2 id="the-unified-read-model-editor-state-store">The unified read model (editor state store)</h2>
+<p>React reads editor state through a single three-free snapshot, not by reaching into models. A route-owned store (<code>core/frontend/app/routes/editor/store/</code>) lazily maps the imperative runtime into a normalized, read-only <code>EditorState</code> snapshot (<code>store/types.ts</code>) with four top-level slices:</p>
+<ul>
+<li><code>navigation</code> — "where am I in the dataset": <code>projectId</code>, task, sourceGroup, labelBranch (each <code>{items, currentId}</code>), frames (<code>byId</code>/<code>ids</code>/<code>activeId</code>), <code>isNavigating</code>, bounds.</li>
+<li><code>labelset</code> — version-control state of the selected branch: <code>history</code>, <code>hasUnsavedChanges</code>, <code>isSaving</code>, <code>branchId</code>, <code>unsavedBranchIds</code>. Shared by all label plugins; it is NOT a plugin slice.</li>
+<li><code>layers</code> — structural/domain state: <code>metadata</code> (keyed <code>{key,name,kind}</code>), <code>order</code>, <code>views</code> (opaque per-layer React nodes + controls source), plus one plugin slice per contributing layer keyed by its collection key (<code>layers.bbox</code>, <code>layers.vector</code>, …).</li>
+<li><code>ui</code> — cross-cutting/shell state plus per-layer interaction records: <code>layers.&lt;key&gt; = {active, enabled}</code>, <code>activeLayerKey</code>, <code>hint</code>.</li>
+</ul>
+<p>Components read with <code>useEditorSelector(selector, isEqual?)</code> and write with <code>useEditorIntents()</code> (<code>store/</code>). Intents run through the imperative controllers, which mutate and notify; the store then re-maps. Components never mutate the snapshot or the scene, and never hold model handles. Selector results are memoized by <code>isEqual</code> (default <code>Object.is</code>), so return a structurally-shared slice reference — selecting a whole object that is rebuilt on every invalidation causes spurious re-renders.</p>
+<p>The write side is composed per plugin: <code>EditorIntents&lt;TPluginIntents&gt;</code> merges the base intents with plugin intent groups keyed by layer key (e.g. <code>intents.bbox.setAction(...)</code>), built by the composition root. Plugin pane containers read their slice through a per-plugin selector hook (<code>useBBoxSelector</code> and siblings, built with <code>createPluginSliceSelectorHook</code> — TypeScript cannot partially infer <code>useEditorSelector</code>'s type arguments), and settings panes layer a local optimistic draft over the committed selector state (<code>useOptimisticPaneParams</code>); pane drafts never enter the snapshot.</p>
+<p>The mapper rebuilds each slice only when its invalidation fingerprint changes (structural sharing): per-source counters in <code>EditorMapperCounters</code> (maintained by the wiring in <code>useEditorStoreRuntime.ts</code>) plus reference fingerprints of the navigator indexes. Keep this O(1)-when-idle; never diff the tree per frame.</p>
+<p>Plugin slices are contributed, not registered: a layer that implements <code>EditorSliceContributor&lt;TSlice&gt;</code> (<code>mapEditorSlice(previous)</code> + <code>subscribeEditorSlice(listener)</code>, <code>store/contributors.ts</code>) is discovered structurally at runtime — no static plugin import at the wiring. Follow the template in <code>plugins/bbox/.../layer/BBoxSlice.ts</code> + <code>BBoxLayer.mapEditorSlice/subscribeEditorSlice</code>: a plain <code>*Slice.ts</code> pure mapper (reuse <code>previous</code> when every field is <code>===</code>-equal) plus a layer method that delegates to it, and a unit test of the pure mapper (constructing the real layer needs a live scene context, so test the mapper, not the layer). Type-level regression for the merged slices and intents lives in <code>tests/frontend/type-contracts/</code> (<code>plugin-slices.ts</code>, <code>plugin-intents.ts</code>), compiled by the frontend-tests typecheck (<code>tests/frontend/tsconfig.type-contracts.json</code>) because it spans every plugin package.</p>
+<p>The label plugins' slices also carry ENTITY LISTS: plain DTO projections of the current labels index (<code>bbox.boxes/tracks/classes</code>, <code>vector.vectors/classes</code>, <code>segmentation.instances/selections/classes</code>), plus the inspector pane state (<code>draw*Active</code>, the exact per-pane disabled values, selection ids). Three rules keep them cheap and correct:</p>
+<ul>
+<li><strong>Per-record structural sharing.</strong> Every record is reprojected and compared field by field on each invalidation; unchanged records and whole lists reuse the previous references so downstream selectors/memos/Tweakpane identities stay stable. Mapping is O(N) per index mutation and O(1) only while idle — the sharing buys identity stability, not mapping cost.</li>
+<li><strong>Entity text is relationally derived</strong> (linked class/track names): recompute it on every mapping and include it in the record comparison; never cache it.</li>
+<li><strong>Keep the domain relation names</strong> in DTOs (<code>entityId</code> = parent track/instance, <code>perceivedClassId</code>, <code>gtClassId</code>) so write paths wired against the DTOs target the right relation.</li>
+</ul>
+<p><strong>Wiring pitfalls (cost e2e failures and review rounds to learn):</strong></p>
+<ul>
+<li>Structural sharing keyed on object identity/reference misses IN-PLACE mutation. Frame status (<code>is_complete</code>) flips on a stable <code>frames.elements</code> reference, so the navigation fingerprint also includes a <code>navigation</code> counter bumped on <code>edit-frame</code>. Any new in-place mutation needs its own counter/event in the fingerprint.</li>
+<li>Subscribe to EVERY event that can change the mapped state. The store wiring subscribes to branch <code>beforechange</code> AND <code>afterchange</code> (<code>beforechange</code> flips <code>isSaving</code> at save start); subscribing to only <code>afterchange</code> leaves the Save button stale.</li>
+<li>Labels indexes are REPLACED on every data load, and <code>DataView</code> dispatches <code>beforeload</code> BEFORE nulling <code>data</code>. Aggregate index events through <code>subscribeDataIndexLifecycle</code> (<code>data</code>): persistent view-level <code>beforeload</code>/<code>afterload</code> subscriptions; on <code>beforeload</code> detach every listener from the OLD index and publish loading (the slice's <code>labels</code> input goes <code>null</code>, so entity lists map empty mid-load); on <code>afterload</code> attach to the NEW index. Subscribe the index's FULL <code>ALL_EVENT_TYPES</code> constant (covers <code>add/delete/update/resolveId/bulk</code>) — a hand-enumerated list will go stale.</li>
+<li>An <code>InteractContext</code> must NOT start its state machine in its constructor: the layer attaches its <code>change</code>/<code>action-change</code> listeners after construction, so the initial transition is triggered by the layer's <code>disabled = true</code> assignment made AFTER those listeners — otherwise the initial controls/keybind update is lost on a listener that does not exist yet.</li>
+<li>Inspector pane events (draw toggles, create buttons) are intents that forward <code>onPaneEvent</code> VERBATIM — never the coordinators' guarded <code>click*</code> methods — so the coordinators keep their exact internal ordering (including the draw-toggle input-mirror rebuild that the draw flow reads for new-entity defaults).</li>
+<li>The store/intents providers must wrap the WHOLE editor tree, not just the app view. The layer overlays embed selector/intent-based inspector containers, but their host (the display shell / <code>LayerCollectionOverlaysView</code>) mounts BEFORE the runtime exists, so the providers cannot be gated on runtime presence. Wrap the whole tree in the nullable <code>OptionalEditorStoreProvider</code>/<code>OptionalEditorIntentsProvider</code> — adding providers only later remounts the scene canvases and re-triggers the runtime lifecycle.</li>
+<li>Slice entity-selection ids (<code>selectedBoxId</code>, <code>selectedVectorId</code>, <code>selectedSelectionId</code>) must be mapped from the INSPECTOR COORDINATOR's <code>selectedId</code> (e.g. <code>context.selectedSelectionId</code>), NOT from the pointer selector's <code>selectedObj</code>. The abort/Escape flow clears <code>selectedObj</code> but deliberately keeps the inspector's selection, so the inspector panes keep showing the inspected entity after leaving the edit state. (Track ids are the exception: <code>selectedTrackId</code> reads the live state-machine params by design.)</li>
+<li>Stale selection clearing is OWNED BY THE COORDINATORS, not by React containers: every inspector coordinator clears its own <code>selectedId</code> on <code>beforeload</code>/<code>afterload</code> when the label no longer exists. Do not add container effects that clear a selection because the id is missing from the slice entity lists — the lists map EMPTY during the load window (<code>labels</code> is null between <code>beforeload</code> and <code>afterload</code>), so such an effect would wipe selections that survive the reload.</li>
+</ul>
+<p>Test fixtures: <code>store/testing.ts</code> provides <code>createEditorStateFixture</code>, <code>createMockEditorStore</code>, and <code>noopEditorIntents</code> for rendering components against a plain snapshot in jsdom.</p>
+<p>Plugin loading seam: an application imports plugin packages only in its explicit
+<code>sta.config.ts</code>, through each plugin package's <code>./app</code> export subpath
+(<code>sta-bbox/app</code>, …). Core's default configuration selects no plugins;
+<code>distributions/full/frontend/sta.config.ts</code> selects the repository's complete
+product. Its adjacent <code>sta.routes.ts</code> imports each plugin's lightweight
+<code>app/routes.ts</code> manifest directly from workspace source; route discovery must
+not import runtime plugin barrels or depend on package <code>dist/</code> artifacts.
+Installing or workspace-linking a plugin never activates it. A plugin
+may declare another plugin in <code>dependencies</code> only when it is an indispensable
+runtime prerequisite; otherwise the host must select both. The <code>./app</code> subpath
+resolves to the built plugin barrel, whose default export is the registration
+and whose star export contains its editor modules. The registration's
+<code>editor.loader</code> dynamically imports the adjacent editor barrel. The composition
+root (<code>runtime.ts</code>) remains plugin-agnostic: it loads registered modules and
+discovers their contributions structurally. Cross-plugin imports use the same
+<code>./app</code> subpath (<code>sta-gmesh/app</code>, <code>sta-pcd/app</code>). Editor widget tests that
+exercise a specific plugin live under that plugin's <code>frontend/test/</code> tree.
+All editor and plugin modules must stay Node-import-safe (no DOM at import
+time), because the SSR bundle includes them without stubs.</p>
+<p>On the plugin side these contributions live by convention in <code>app/editor/contribution.ts</code>, star-exported from the plugin's editor barrel (<code>app/editor/index.ts</code>) so they are present on the exact module the registration's <code>editor.loader</code> returns. Unlike the declarative registration fields (<code>routes</code>, <code>editor.overlayDoms</code>, <code>client.source.loader</code>, <code>client.source.bounds</code>), the layer and preferences-menu contributions are function exports on the editor module itself, because they need the live runtime environment rather than static data. <code>createEditorLayer(env)</code> receives the scene <code>context</code>, the layers already created (registration order — a layer may depend only on layers registered earlier, discovered by class via <code>findEditorLayer</code>), and the overlay DOM the registration declared, and returns the concrete layer whose exact type <code>EditorLayers</code> picks up per registry key. See <code>plugins/vector/frontend/app/editor/contribution.ts</code> for a minimal example (depends on pcd + gmesh, receives its canvas from <code>env.overlayDoms</code>); pcd's plugin also contributes the main-camera preferences menu.</p>
+<h2 id="narrow-bridges-for-imperative-sources">Narrow bridges for imperative sources</h2>
+<p><code>useSourceEventVersion</code> (duck-typed <code>useSyncExternalStore</code> bridge over event sources) is the sanctioned read path for the sources deliberately kept out of the snapshot: <code>FramePlayback</code> traversal state, the transformer gizmo panes, and the segmentation assisted-selection control (render-loop / live-interaction state, on <code>usePaneState</code>). The plugin interaction/settings/inspector panes are store-backed (selectors + intents); their drafts stay local React state (<code>useOptimisticPaneParams</code>: optimistic input merged before the write path round-trips). The scene-view chrome (windows/display, clipboard, layer overlays) likewise reads through <code>useSourceEventVersion</code>, and prefers <strong>narrow structural sources</strong> over the owning classes (see the imperative-host note below); the remaining exceptions are listed here. When moving one of these sources into the store, add the state to the snapshot + wiring first, then switch the component to <code>useEditorSelector</code>/intents, and delete the bridge only once nothing uses it.</p>
+<p><strong>Bridged sources (the enumerated exceptions).</strong> Decision rule: state belongs in the store when MULTIPLE React consumers must read it consistently; state that is single-consumer, per-frame, or DOM-geometry-coupled stays with its imperative owner behind a narrow bridge. The enumerated exceptions, grouped by rationale:</p>
+<ul>
+<li><em>Render-loop / live-interaction state</em> (imperative controllers operating per-frame or per-pointer-event during continuous manipulation; React must not sit in that loop): the transformer gizmo panes (gmesh <code>Transformer.react.tsx</code> shared by bbox, <code>VectorTransformer.react.tsx</code>) and the segmentation assisted-selection control — both on <code>usePaneState</code> over their controller — plus <code>FramePlayback</code> traversal (advances per animation frame).</li>
+<li><em>DOM-geometry / camera-coupled chrome</em> (values change continuously with layout/camera and are consumed only by their own window; see exception #1): <code>MainWindow</code>/<code>MinimapWindow</code>/<code>DefaultSceneDisplay</code> rect/markers/crosshair.</li>
+<li><em>Single-consumer imperative reads</em> (the cross-component facets are already in the slices where needed): the clipboard tool view (<code>canCopy</code>/<code>canPaste</code> live in the label slices) and the layer-overlay refresh plumbing (payload is already three-free plain data). (The labels trees are store-backed like the panes: they group the slice entity lists and write selection through the <code>select*</code> intents.)</li>
+<li><em>Core menu surfaces over live handler state</em> (the <code>Controls</code> menu re-renders when a handler's own state changes rather than through the snapshot): the keybind handler collection (<code>change</code>) and the active layer's controls source (<code>controls-change</code>).</li>
+<li><em>Core chrome that still holds an owning model</em> (a deliberate gap, not a template): the frame-path menu subscribes to the scene context's navigation events (<code>isNavigating-changed</code>, <code>edit-frame</code>, <code>nav-frame</code>, <code>nav-source-group</code>) and takes <code>FramePlayback</code> as a prop, duplicating what the <code>navigation</code> slice already carries. Its <code>ProjectMenu</code> sibling does the same. New code must not extend this pattern — bridge a narrow source or go through the store.</li>
+</ul>
+<p>This enumeration is the complete list of bridged sources; a new exception must fit one of the rationales above.</p>
+<h2 id="threejs-react-separation">three.js / React separation</h2>
+<p>React components must never contain three.js objects: no <code>THREE.*</code> value may be received as a prop, read from a model getter during render, or constructed in a component. Three.js objects are modified indirectly by the imperative layer when state changes (the template is labelset ops → index → model setters → view Object3D updates). The hard, lint-enforced guarantee is <strong>three-free imports</strong>: no <code>*.react.tsx</code> / <code>*.react.ts</code> module may import <code>three</code> directly. Passing plain state through an intermediate module that itself uses three.js is the intended shape of the boundary, and <code>import type</code> across it is erased at build time, so neither is a violation; what must not happen is a React module touching three.js values. On top of that, React's inputs are three-free data <strong>plus an enumerated set of narrow imperative / model-view interfaces</strong>, not "everything plain." The enumerated exceptions:</p>
+<ol>
+<li><strong>Narrow imperative hosts</strong> — the window views expose, alongside three-free snapshots and event subscriptions, the minimal imperative operations that reconcile render/UI state with DOM geometry: <code>MainWindowSource</code> has <code>updateCameraAspects()</code> (three.js camera frustum from DOM layout, called from a <code>ResizeObserver</code> effect); <code>MinimapWindowSource</code> has <code>setRect()</code> (minimap UI geometry from drag/resize), <code>updateCameraAspects()</code> and <code>getPointerTooltipContent()</code> (a derived read); <code>DefaultSceneDisplaySource</code> exposes no imperative member at all, only the window snapshots its chrome renders from. These write no <em>domain</em> state, so React still never mutates the scene graph or any model.</li>
+</ol>
+<p>Plugin React views must not take their owning layer/<code>InteractContext</code> as a prop; they receive narrow <code>*Source</code> interfaces (e.g. <code>BBoxOverlaySource</code>, <code>SegmentationLayerOverlaySource</code>) that the owning class satisfies structurally, or no props at all when they are pure selector/intent containers. No <code>Readonly*</code> label model crosses into React: the inspector panes are pure selector/intent containers projecting their params from the slice's entity DTOs (scalar quality levels readapted to the panes' <code>QualityLevel</code> contract), and the inspector <em>coordinators</em> (selection sync, diff-based async writes, draw defaults) are imperative classes owned by each plugin's <code>InteractContext</code>, reached from React only through editor intents; the narrow structural label-view sources (<code>BBoxInspectorLabelsView</code>, <code>VectorInspectorLabelsView</code>, <code>SegmentationInspectorLabelsView</code>) are the coordinators' write-path surface — an imperative-to-imperative boundary. Other imperative interaction helpers that React needs to reach (the inspector coordinators, the main camera settings menu) are likewise owned by the imperative side (<code>InteractContext</code> / the editor runtime) and exposed through editor intents — React never constructs or holds them.</p>
+<p>The <code>EditorState</code> snapshot itself is likewise <strong>three-free, not literally plain</strong>: it carries no three.js objects but does carry opaque UI slots (model-produced <code>ReactNode</code>s rendered but never inspected), <code>Map</code>/<code>Set</code> containers, per-layer <code>controls</code> event-source references, and the pcd/gmesh color blender target (<code>PointBuffer</code> data plus channel names — a data container, not a scene object) under <code>settings.target</code>.</p>
+<p>File convention enforcing the boundary: a <code>*.react.tsx</code> file contains React components/hooks and imports no <code>three</code> module; imperative classes that own three.js objects live in plain-named <code>.tsx</code> files. This is lint-enforced (<code>no-restricted-imports</code> on <code>three</code> for <code>**/*.react.tsx</code> and <code>**/*.react.ts</code> in every frontend package). A plain <code>.ts</code> slice module (e.g. <code>BBoxSlice.ts</code>) may <code>import type</code> from a <code>.react.tsx</code> for shared plain types — type-only imports are erased and introduce no three runtime dependency.</p>
+<p>The event substrate follows the same boundary: modules outside the scene layer emit through the three-free <code>VanillaEventDispatcher</code> (<code>utils</code>) — navigation, labelset, data views, keybinds, playback, layer state, the pane engine, and the clipboard all do. <code>THREE.EventDispatcher</code> stays only in modules that use three geometry/scene types regardless (the scene layer, the label models/indexes, <code>EditableFrame</code>'s spatial queries). The two dispatchers are behavior-identical and structurally interchangeable (both satisfy <code>TypedEventTarget</code>/<code>SourceEventTarget</code>), so new non-scene code must not import <code>three</code> just for the emitter base.</p>
+<h2 id="state-synchronization">State synchronization</h2>
+<p>The imperative domain models are the editor's only authoritative state; the three.js scene graph and the React-facing plain state snapshot are both <em>derived views</em> of them, so they cannot diverge from each other. Three invariants preserve this:</p>
+<ol>
+<li><strong>Single write path.</strong> Every mutation — React pane input, pointer/gizmo manipulation, labelset operations (incl. undo/redo), data loads — is applied through the models' mutation pipeline (ops → index → model setters). No code path may write an Object3D without updating the model, and none may update the React-facing snapshot except in response to a model notification. Do not introduce direct Object3D mutations that bypass this path.</li>
+<li><strong>Notify after mutate.</strong> Models dispatch change events only after the mutation is complete, so observers (React bridges, snapshot mappers) always read a complete state whose Object3D side has already been updated.</li>
+<li><strong>UI emits intents, never state writes.</strong> React components call imperative controller/view APIs to effect change; they never write the scene or the snapshot directly.</li>
+</ol>
+<p>The only sanctioned transient divergence is continuous manipulation (e.g. a gizmo drag): the Object3D follows the pointer immediately and the model/UI catch up when the interaction commits through the write path. Anything that must track a live manipulation reads the Object3D imperatively per frame, outside React. An abandoned transform (invalid result or abort) is converged back through a named model rollback API (e.g. <code>LabelVector.rollbackCoords</code>) — a rollback re-syncs the Object3D to the already-committed model state, creates no op and dispatches no change, and must never be a raw geometry assignment.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Design Docs">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Design Docs
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../background-jobs/" class="md-footer__link md-footer__link--next" aria-label="Next: Background Jobs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Background Jobs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 DESRLab
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.footer", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

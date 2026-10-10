@@ -1,0 +1,28 @@
+DownloadZipRequest
+==================
+
+
+
+
+.. currentmodule:: sta.api.files
+
+.. autoclass:: DownloadZipRequest
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DownloadZipRequest.model_config
+      ~DownloadZipRequest.paths
+
+   
+   .. autoattribute:: DownloadZipRequest.model_config
+   .. autoattribute:: DownloadZipRequest.paths
+   
+   

@@ -1,0 +1,3057 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Spatial-Temporal Annotation">
+      
+      
+      
+        <link rel="canonical" href="https://desrlab.github.io/st-annotator/development/user/handbook/editor/">
+      
+      
+        <link rel="prev" href="../project/">
+      
+      
+        <link rel="next" href="../../../dev/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../_static/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Annotation Editor - ST Annotator Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#annotation-editor" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ST Annotator Documentation" class="md-header__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../../_static/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ST Annotator Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Annotation Editor
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../install/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../dev/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CLI Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ST Annotator Documentation" class="md-nav__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../../_static/logo.png" alt="logo">
+
+    </a>
+    ST Annotator Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../host/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosting the ST Annotator Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registering a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ST Annotator Platform Handbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ST Annotator Platform Handbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Editor
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Navigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scene-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene Navigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scene Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skip-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skip Frames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Playback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#labelset-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Labelset History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Frame
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3D Navigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Camera
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layer Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toggle-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toggle Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point Cloud
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Point Cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ground-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ground Mesh
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ground Mesh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preferences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounding-box-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bounding Box Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bounding Box Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clipboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clipboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vector Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clipboard_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clipboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segmentation-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segmentation Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segmentation Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assistant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build, Distribution, and Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../dev/design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Docs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/design/editor-state-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor State Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/design/background-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Jobs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/design/placeholder-values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Placeholder Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/backend/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Navigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scene-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene Navigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scene Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skip-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skip Frames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Playback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#labelset-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Labelset History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Frame
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3D Navigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Camera
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layer Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toggle-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toggle Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point Cloud
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Point Cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ground-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ground Mesh
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ground Mesh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preferences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounding-box-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bounding Box Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bounding Box Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clipboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clipboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vector Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clipboard_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clipboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segmentation-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segmentation Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segmentation Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assistant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="annotation-editor">Annotation Editor</h1>
+<p>The annotation editor is used to perform annotation tasks.</p>
+<p>The interface has various menus that facilitate the user experience. Here is a list of common menus:</p>
+<ul>
+<li><code>Project</code>: Manages project navigation and changes to the labelset. It provides a <code>Task</code>, <code>Scene</code> and <code>Frame</code> tab.</li>
+<li><code>Controls</code>: Lists the keyboard shortcuts available to the user under a <code>General</code> tab, and the shortcuts of one layer under a <code>Layer</code> tab (the layer is chosen with the <code>Configure Layer:</code> dropdown).</li>
+<li><code>Layers</code>: Enables the user to select the data type to interact with. It provides a <code>Source Data</code> and a <code>Label Data</code> tab, each listing its layers in a table of <code>Layer</code>, <code>Enabled</code> and <code>Actions</code> columns.</li>
+<li><code>Tools</code>: Includes settings for interacting with the active layer.</li>
+<li><code>Preferences</code>: Includes settings to customize the general user experience. It provides a <code>Main Camera</code> tab plus a <code>Layer</code> tab holding the settings of one layer (the layer is chosen with the <code>Configure Layer:</code> dropdown).</li>
+</ul>
+<p>To avoid clutter, you can reposition each menu (by click and dragging the header bar) and even minimize them (by clicking on the minus icon on the header bar).</p>
+<p>While a frame is loading, a <code>Loading frame data</code> overlay reports the progress of the process (e.g. <code>2 of 3 layers ready</code>). Once the frame is displayed, a hint bar at the top of the scene describes how to interact with the currently selected layer.</p>
+<p>Below is a comprehensive list of workflows that can be performed in the annotation editor.</p>
+<h2 id="permissions">Permissions</h2>
+<p>The annotation editor can only access projects and tasks where at least one frame has been assigned to that user through <a href="../project/">Project Management</a>.</p>
+<p>What you may do with the label branch of a frame follows its access level: <code>Read</code> lets you open the branch and look at its labels, while saving changes requires <code>Write</code>. See <a href="../data/#branch-access-levels">Branch Access Levels</a>.</p>
+<h2 id="workflows">Workflows</h2>
+<h3 id="project-navigation">Project Navigation</h3>
+<p>The project to open is determined by the URL used to open the annotation interface. Further navigation can be conducted through the <code>Project</code> menu, as explained below.</p>
+<h4 id="task-navigation">Task Navigation</h4>
+<p>The active task can be set through the <code>Project &gt; Task</code> tab; the list of tasks depends on the active project (see above).</p>
+<p>To open a task, select a task via the corresponding dropdown. Then, select the source group and label branch for the frames you want to work on under the active task.</p>
+<h4 id="scene-navigation">Scene Navigation</h4>
+<p>The active scene can be set through the <code>Project &gt; Scene</code> tab; the list of frames is filtered by the active task, source group and label branch (see above).</p>
+<p>To open a scene, select the corresponding frame in the <code>Project &gt; Scene &gt; Frames</code> folder.</p>
+<h5 id="path-setup">Path Setup</h5>
+<p>For easy navigation between frames, first define how to order the list of frames via the <code>Project &gt; Scene &gt; Path Setup</code> folder, which sets the ordering with <code>Sort by axes:</code> and the sampling with <code>Stride</code>. Based on this ordering, you can use the <code>Step previous frame</code> (<code>Z</code>) and <code>Step next frame</code> (<code>C</code>) keyboard shortcuts, or the corresponding buttons in the <code>Project &gt; Scene &gt; Playback</code> folder, to move to the previous/next frame.</p>
+<h5 id="skip-frames">Skip Frames</h5>
+<p>To avoid annotating redundant data, adjust <code>Stride</code> in the <code>Project &gt; Scene &gt; Path Setup</code> folder to skip the specified number of frames between each example. To hide the frames that are skipped due to this setting, disable the <code>Show all frames</code> checkbox in the <code>Project &gt; Scene &gt; Frames</code> folder. The number after the ID of the frame (e.g. <code>#1</code>) indicates the index of the frame in the current path.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A negative stride reverses the notion of previous/next while keeping the list unchanged.</p>
+</div>
+<h5 id="playback">Playback</h5>
+<p>To conveniently review the annotated examples, you can use the <code>Play/Pause video</code> (<code>Space</code>) keyboard shortcut or the corresponding button in the <code>Project &gt; Scene &gt; Playback</code> folder to play a video of the frames, which repeatedly loads the next frame in the current path.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Adjusting the <code>FPS</code> to a smaller value can help load the data more consistently as fewer concurrent requests are sent to the backend.</p>
+</div>
+<h3 id="managing-changes">Managing Changes</h3>
+<h4 id="labelset-history">Labelset History</h4>
+<p>The <code>Project &gt; Task &gt; History</code> folder displays a history of each operation made to the active labelset in the current session:</p>
+<ul>
+<li>The blue entry represents the current operation; the active state of the labelset refers to the state immediately after applying that operation.</li>
+<li>Green entries represent saved operations.</li>
+<li>Grey entries represent undone operations.</li>
+</ul>
+<p>You can use the <code>Undo change</code> (<code>Ctrl+Z</code>) and <code>Redo change</code> (<code>Ctrl+Y</code>) keyboard shortcuts to undo/redo operations. Clicking on an item in the history sets the current operation to the corresponding one.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unless saved, operations only persist for the current session and will be discarded if you reload the page.</p>
+</div>
+<h4 id="save-changes">Save Changes</h4>
+<p>You can use the <code>Save changes</code> (<code>Ctrl+S</code>) keyboard shortcut or the <code>Save Changes</code> button in the <code>Project &gt; Task</code> tab (listed just below the <code>History</code> folder) to save each operation up to the current one. Doing so applies the changes to the remote server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Once saved, operations can no longer be undone through the annotation editor.</p>
+</div>
+<h4 id="complete-frame">Complete Frame</h4>
+<p>After finishing your task for a frame, you can mark that frame as completed either without a keyboard by selecting <code>Complete</code> in the <code>Frame Status</code> control of the <code>Project &gt; Frame</code> tab, or with the <code>Cycle frame status; step previous frame</code> (<code>Shift+Z</code>) and <code>Cycle frame status; step next frame</code> (<code>Shift+C</code>) keyboard shortcuts, which also move to the previous/next frame. Doing so will update the progress that is displayed in the <code>Project &gt; Task</code> tab.</p>
+<h3 id="3d-navigation">3D Navigation</h3>
+<h4 id="main-camera">Main Camera</h4>
+<p>You can view the scene in 2D (top-down only) or 3D (any angle). Both cameras use orbital controls, which involve the following operations:
+- Left click to orbit.
+- Right click to pan.
+- Scroll wheel to zoom.</p>
+<p>You can switch between 2D and 3D mode via the <code>Cycle view mode</code> (<code>X</code>) keyboard shortcut or the corresponding button in the <code>Preferences &gt; Main Camera</code> tab.</p>
+<p>To force the camera to orbit about a point that exists in the point cloud (instead of empty space), you can toggle the <code>Orbit Point</code> checkbox in the <code>Preferences &gt; Main Camera</code> tab, either by clicking it or by using the <code>Toggle orbit point</code> (<code>O</code>) keyboard shortcut.</p>
+<h4 id="minimap">Minimap</h4>
+<p>The minimap displays a top-down view of the active scene, and is initially located behind the <code>Project</code> menu. You can left-click and drag the interior or borders of the minimap to move and resize it, respectively.</p>
+<p>The position of the 2D camera is marked in red. The position of the 3D camera is marked in yellow (when active) or grey (when inactive). You can right-click and drag on the minimap to move both cameras horizontally in sync.</p>
+<h3 id="layer-management">Layer Management</h3>
+<p>Each layer in the annotation editor enables user interaction with a particular type of source or label data. You can manage layers through the <code>Layers</code> menu, which separates them into a <code>Source Data</code> tab and a <code>Label Data</code> tab. Each tab lists its layers in a table with an <code>Enabled</code> checkbox and an <code>Actions</code> column.</p>
+<h4 id="toggle-layer">Toggle Layer</h4>
+<p>Data is only displayed for enabled layers. There is no limit to the number of enabled layers at any given time.</p>
+<p>You can enable/disable a layer by toggling the <code>Enabled</code> checkbox. The button below the table enables (<code>Enable All</code>) or disables (<code>Disable All</code>) every layer of the current tab at once.</p>
+<h4 id="select-layer">Select Layer</h4>
+<p>User can only interact with selected layers. Only one layer can be selected at any given time. Also, a disabled layer is automatically deselected.</p>
+<p>You can select a layer by clicking on its name in the list of layers.</p>
+<h4 id="layer-actions">Layer Actions</h4>
+<p>Each layer may further define <code>Actions</code> which represent common operations to be performed on that layer. They are only available when the layer is selected.</p>
+<h3 id="plugins">Plugins</h3>
+<h4 id="point-cloud">Point Cloud</h4>
+<p>The point cloud plugin adds the <code>Point Cloud</code> source data layer which displays point clouds in the annotation editor.</p>
+<p>Upon navigating to a scene, any point clouds that occur in the corresponding frame are loaded. They cannot be modified in the annotation editor.</p>
+<p><a id="pcd-preferences"></a></p>
+<h5 id="preferences">Preferences</h5>
+<p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
+<ul>
+<li><code>RemoveBG</code>: Toggles whether <code>remove-bg</code> preprocessors are applied. You can also toggle it with the <code>Toggle RemoveBG</code> (<code>J</code>) keyboard shortcut.</li>
+<li><code>CropArea</code>: Toggles whether <code>crop-box</code> and <code>crop-polygon</code> preprocessors are applied. You can also toggle it with the <code>Toggle CropArea</code> (<code>K</code>) keyboard shortcut.</li>
+<li><code>Point Size</code>: Adjusts the point size to avoid visual clutter when the point cloud is too dense.</li>
+<li><code>Blender Type</code>: Controls how the display color of each point is computed. The sub-controls below it depend on the selected type:<ul>
+<li><code>ApplyColormap</code>: Sets the display color by applying a colormap on the values along a single channel. Its sub-controls are <code>Colormap</code> (the colormap to apply), <code>Channel</code> (the channel to read), and <code>Use Z-Score</code> (which switches the two range inputs between <code>Min. Z-Score</code>/<code>Max. Z-Score</code> and <code>Min. Value</code>/<code>Max. Value</code>).</li>
+<li><code>ComposeRGB</code>: Sets the display color using the values along three channels. Its <code>Red</code>, <code>Green</code> and <code>Blue</code> tabs each provide the channel and range controls described above for one color component.</li>
+</ul>
+</li>
+</ul>
+<h4 id="ground-mesh">Ground Mesh</h4>
+<p>The ground mesh plugin adds the <code>Ground Mesh</code> source data layer which displays triangle meshes in the annotation editor.</p>
+<p>Upon navigating to a scene, any meshes that occur in the corresponding frame are loaded. They cannot be modified in the annotation editor.</p>
+<p><a id="gmesh-preferences"></a></p>
+<h5 id="preferences_1">Preferences</h5>
+<p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
+<ul>
+<li><code>Show Wireframe</code>: Toggles whether meshes are displayed with solid faces, to avoid visual clutter when a <a href="#point-cloud">point cloud</a> is also available in the current frame.</li>
+<li><code>Opacity</code>: Adjusts the opacity of meshes to avoid visual clutter.</li>
+<li><code>Blender Type</code>: Controls how the display color of each vertex is computed. The sub-controls below it depend on the selected type:<ul>
+<li><code>ApplyColormap</code>: Sets the display color by applying a colormap on the values along a single channel. Its sub-controls are <code>Colormap</code> (the colormap to apply), <code>Channel</code> (the channel to read), and <code>Use Z-Score</code> (which switches the two range inputs between <code>Min. Z-Score</code>/<code>Max. Z-Score</code> and <code>Min. Value</code>/<code>Max. Value</code>).</li>
+<li><code>ComposeRGB</code>: Sets the display color using the values along three channels. Its <code>Red</code>, <code>Green</code> and <code>Blue</code> tabs each provide the channel and range controls described above for one color component.</li>
+</ul>
+</li>
+</ul>
+<h4 id="bounding-box-labels">Bounding Box Labels</h4>
+<p>The bounding box labels plugin adds the <code>Bounding Box</code> label data layer which enables the user to edit bounding boxes and associated object tracks in the annotation editor.</p>
+<p>Upon navigating to a scene, any labels that occur in the corresponding frame as well as other frames within the <a href="#bbox-preferences">time-path range</a> are loaded. While the layer is selected, the collection of labels can be modified via the following <a href="#layer-actions">actions</a>:</p>
+<ul>
+<li><a href="#bbox-draw">(D)raw</a> a new bounding box.</li>
+<li><a href="#bbox-select">(S)elect</a> an existing bounding box and <a href="#bbox-edit">editing</a> it.</li>
+</ul>
+<p><a id="bbox-draw"></a></p>
+<h5 id="draw-mode">Draw Mode</h5>
+<p>The draw mode is activated by pressing <code>D</code> or clicking on the corresponding <a href="#layer-actions">action</a>. While in draw mode, you can create a new bounding box via these methods:</p>
+<ul>
+<li>Left-click and drag on empty space: All properties follow those in the <code>Bounding Box</code> menu, except for the following:<ul>
+<li>The pose of the new box is determined by the setting in <code>Tools &gt; Draw &gt; Draw Origin</code>, which you can switch between with the <code>Cycle draw origin</code> (<code>F</code>) keyboard shortcut:<ul>
+<li><code>Corner</code> (corner-to-corner): The box is horizontally bounded by the start and end points of the click-and-drag interaction. Usually used for cuboid boxes.</li>
+<li><code>Center</code> (center-to-front): The center of the box is located at the start point, with its front touching the end point of the click-and-drag interaction. Usually used for cylindrical boxes.</li>
+</ul>
+</li>
+<li>The object track associated with the new box depends on the <code>Object Track</code> menu:<ul>
+<li>If an object track is selected in the <code>Object Track</code> menu, the new bounding box is assigned to that object track.</li>
+<li>Otherwise, a new object track is created according to the properties in the <code>Object Track</code> menu before being assigned to the bounding box.</li>
+<li>You can also create object tracks manually by clicking on the <code>+</code> button in the <code>Object Track</code> menu.</li>
+</ul>
+</li>
+<li>For convenience, you can use the keyboard shortcut (<code>Finish draw box</code>, <code>G</code>) to set the size of the new box to the default value defined for its perceived class (if not provided, then the ground truth class of its associated object track). Dimensions without a class default retain their current drawn value, and the box is still created.</li>
+</ul>
+</li>
+<li>Left-click and drag on existing bounding box: All properties are copied from the referenced bounding box, except for the following:<ul>
+<li>The position of the new box is set to the end point of the click-and-drag interaction.</li>
+<li>The heading of the new box follows the line joining the start and end points of the click-and-drag interaction, arranged in chronological order.</li>
+</ul>
+</li>
+</ul>
+<p>In both cases, the timestamp of the new box is set to that of the current frame.</p>
+<p>You can abandon the box being drawn with the <code>Cancel draw box</code> (<code>Esc</code>) keyboard shortcut.</p>
+<p>After drawing a bounding box, you are automatically sent into <a href="#bbox-edit">edit mode</a> which enables you to further edit it.</p>
+<p><a id="bbox-select"></a></p>
+<h5 id="select-mode">Select Mode</h5>
+<p>The select mode is activated by pressing <code>S</code> or clicking on the corresponding <a href="#layer-actions">action</a>. While in select mode, you can select an existing bounding box by left-clicking it in the scene. You can leave select mode without selecting a bounding box with the <code>Cancel select box</code> (<code>Esc</code>) keyboard shortcut.</p>
+<p>After selecting a bounding box, you are automatically sent into <a href="#bbox-edit">edit mode</a> which enables you to further edit it.</p>
+<p><a id="bbox-edit"></a></p>
+<h5 id="edit-mode">Edit Mode</h5>
+<p>The edit mode is automatically activated when you select a bounding box (through <a href="#bbox-select">select mode</a> or directly via the <code>Bounding Box</code> menu). Upon entering this mode, the selected bounding box in the <code>Bounding Box</code> menu is updated accordingly, and the selected object track in the <code>Object Track</code> menu is updated to its associated object track. While in edit mode, you can directly update the properties of the selected bounding box and object track via their corresponding menus.</p>
+<p>Use <strong>Hide in scene</strong> in the <code>Bounding Box</code> menu or press <code>H</code> while editing a selected box to temporarily make a box’s faces transparent and its edges dashed. Hidden boxes have no tooltip and their center and visible edges respond to hover and selection. Select the center or an edge (or choose the box in the menu) and clear the checkbox to unhide it. Hidden box IDs remain remembered when navigating between frames during the editor session; this setting is not saved to the backend.</p>
+<p>Also, a transform widget appears on the selected bounding box which can be manipulated to modify its pose based on the <a href="#main-camera">camera mode</a>:</p>
+<ul>
+<li>In 2D mode, you can adjust the pose along the horizontal plane.</li>
+<li>In 3D mode, you can adjust the pose along the vertical plane.</li>
+</ul>
+<p>The individual components of the widget can be toggled on/off in <code>Tools &gt; Transform &gt; Modes</code>, or with the <code>Toggle translate gizmo</code> (<code>W</code>), <code>Toggle rotate gizmo</code> (<code>E</code>) and <code>Toggle scale gizmo</code> (<code>R</code>) keyboard shortcuts. While dragging the widget, holding <code>Shift</code> constrains the transformation (<code>Enable gizmo constraints</code>); releasing it removes the constraint (<code>Disable gizmo constraints</code>). You can also turn the heading of the selected bounding box by a quarter turn with the <code>Rotate box heading</code> (<code>Alt</code>) keyboard shortcut.</p>
+<p>To discard the selected bounding box, use the <code>Delete box</code> (<code>Delete</code>) keyboard shortcut. To leave edit mode without selecting another bounding box, use the <code>Cancel edit box</code> (<code>Esc</code>) keyboard shortcut.</p>
+<p><a id="bbox-clipboard"></a></p>
+<h5 id="clipboard">Clipboard</h5>
+<p>While in <a href="#bbox-edit">edit mode</a>, you can use the <code>Copy box</code> (<code>Ctrl+C</code>) keyboard shortcut or click on the corresponding button in <code>Tools &gt; Clipboard</code> to copy the data of the selected bounding box to the clipboard.</p>
+<p>When not in <a href="#bbox-draw">draw mode</a> or <a href="#bbox-select">select mode</a>, you can use the <code>Paste box</code> (<code>Ctrl+V</code>) keyboard shortcut or click on the corresponding button in <code>Tools &gt; Clipboard</code> to create a new bounding box with the same data (except for timestamp, which is always set to that of the current frame).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is similar in function to left-clicking and dragging a reference box in <a href="#bbox-draw">draw mode</a>. Nevertheless, using the clipboard is preferred when the reference box is located many frames away from the current frame as doing so avoids the need to load the data for each frame in between.</p>
+</div>
+<p><a id="bbox-preferences"></a></p>
+<h5 id="preferences_2">Preferences</h5>
+<p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
+<ul>
+<li><code>Time-path Range</code>: Adjusts the number of frames from the current one in the time-sorted frame path for which to load bounding boxes and object tracks, facilitating access to labels in nearby timestamps.</li>
+<li><code>Maintain elevation relative to ground mesh</code>: If a <a href="#ground-mesh">ground mesh</a> is available in the current frame and this option is enabled, the elevation of bounding boxes are preserved when translating them horizontally. This is particularly useful in situations where the ground level is not constant.</li>
+<li><code>Show perceived class</code>: Toggles whether the perceived (tied to bounding box) or ground truth (tied to object track) class is displayed for each bounding box.</li>
+<li><code>Show tooltips</code>: Toggles whether tooltips are displayed for each bounding box. You can also toggle it with the <code>Toggle box tooltips</code> (<code>T</code>) keyboard shortcut.</li>
+<li><code>Show Occlusion</code>: Toggles whether the occlusion level is displayed in each tooltip.</li>
+<li><code>Show Distinctiveness</code>: Toggles whether the distinctiveness level is displayed in each tooltip.</li>
+<li><code>Show Timestamp Diff.</code>: Toggles whether each tooltip shows the time difference from the current frame.</li>
+<li><code>Show Track &amp; Box IDs</code>: Toggles whether the label ID is displayed in each tooltip.</li>
+<li><code>Transparent Faces</code>: Toggles whether bounding boxes are displayed with solid faces, to prevent them from occluding each other. You can also toggle it with the <code>Toggle box transparency</code> (<code>Q</code>) keyboard shortcut.</li>
+<li><code>Face opacity</code>: Adjusts the opacity of bounding boxes to prevent them from occluding each other.</li>
+<li><code>Hover color</code>: Controls the display color of bounding boxes when hovered over.</li>
+<li><code>Select color</code>: Controls the display color of bounding boxes when selected.</li>
+</ul>
+<h4 id="vector-labels">Vector Labels</h4>
+<p>The vector labels plugin adds the <code>Vector</code> label data layer which enables the user to edit polylines, polygons and single points in the annotation editor.</p>
+<p>Upon navigating to a scene, any vertices of vector labels are loaded that occur in the corresponding frame's timestamp and boundary coordinate. While the layer is selected, the collection of labels can be modified via the following <a href="#layer-actions">actions</a>:</p>
+<ul>
+<li><a href="#vector-draw">(D)raw</a> a new vector object.</li>
+<li><a href="#vector-select">(S)elect</a> an existing vector object and <a href="#vector-edit">editing</a> it.</li>
+</ul>
+<p><a id="vector-draw"></a></p>
+<h5 id="draw-mode_1">Draw Mode</h5>
+<p>The draw mode is activated by pressing <code>D</code> or clicking on the corresponding <a href="#layer-actions">action</a>. While in draw mode, you can create any type of vector labels by selecting the label type from the setting <code>Tools &gt; Draw</code> widgets or the keyboard shortcuts below:</p>
+<ul>
+<li><code>line</code>: Activated by pressing <code>L</code> (<code>Draw line</code>), the position of each vertex of polyline is
+determined by the mouse left click on the scene and to finish drawing press <code>G</code> (<code>finish draw vector</code>).</li>
+<li><code>Polygon</code>: Activated by pressing <code>K</code> (<code>Draw Polygon</code>), the position of each vertex of polygon is
+determined by the mouse left click on the scene and to finish drawing press <code>G</code> (<code>finish draw vector</code>).</li>
+<li><code>Point</code>: Activated by pressing <code>P</code> (<code>Draw Point</code>), the position of a point vertex is determined once the mouse left click is released and the draw is finished automatically.</li>
+</ul>
+<p>At any point you can abandon the vector being drawn with the <code>cancel draw vector</code> (<code>Esc</code>) keyboard shortcut.</p>
+<p>After selecting a vector object, you are automatically sent into <a href="#vector-edit">edit mode</a> which enables you to further edit it.</p>
+<p><a id="vector-select"></a></p>
+<h5 id="select-mode_1">Select Mode</h5>
+<p>The select mode is activated by pressing <code>S</code> or clicking on the corresponding <a href="#layer-actions">action</a>. While in select mode, you can select an existing vector object by left-clicking it in the scene.</p>
+<p>After selecting a vector object, you are automatically sent into <a href="#vector-edit">edit mode</a> which enables you to further edit it.</p>
+<p><a id="vector-edit"></a></p>
+<h5 id="edit-mode_1">Edit Mode</h5>
+<p>The edit mode is activated after selecting or drawing a vector object, you can modify the vertices by translating the vertex/vertices of vector objects only in <a href="#main-camera">2D mode</a>.</p>
+<p>The vertices of polygon and polyline can be modified in two ways as below:</p>
+<ul>
+<li>In 2D mode, translate each individual vertex at a time.</li>
+<li>In 2D mode, translate all the vertices at the same time via translating a 2D plane helper.</li>
+</ul>
+<p>The above modes of translations can be toggled with the <code>Translation Modes</code> control (<code>Vertex</code> / <code>Vertices</code>) in the <code>Tools &gt; Transform</code> folder, or with the <code>Toggle translate single vertex</code> (<code>W</code>) and <code>Toggle translate all vertices</code> (<code>E</code>) keyboard shortcuts.</p>
+<p>To discard the selected vector object, use the <code>Delete vector</code> (<code>Delete</code>) keyboard shortcut. To leave edit mode without selecting another vector object, use the <code>Cancel edit vector</code> (<code>Esc</code>) keyboard shortcut.</p>
+<p><a id="vector-clipboard"></a></p>
+<h5 id="clipboard_1">Clipboard</h5>
+<p>While in <a href="#vector-edit">edit mode</a>, you can use the <code>Copy vector</code> (<code>Ctrl+C</code>) keyboard shortcut or click on the corresponding button in <code>Tools &gt; Clipboard</code> to copy the data of the selected vector object to the clipboard.</p>
+<p>When not in <a href="#vector-draw">draw mode</a> or <a href="#vector-select">select mode</a>, you can use the <code>Paste vector</code> (<code>Ctrl+V</code>) keyboard shortcut or click on the corresponding button in <code>Tools &gt; Clipboard</code> to create a new vector object with the same data (except for timestamp, which is always set to that of the current frame).</p>
+<p><a id="vector-preferences"></a></p>
+<h5 id="preferences_3">Preferences</h5>
+<p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
+<ul>
+<li><code>Show tooltips</code>: Toggles whether tooltips are displayed for each vector object.</li>
+<li><code>Show Vector ID</code>: Toggles whether the ID of the vector object is displayed in each tooltip.</li>
+<li><code>stroke width</code>: Controls the width size of vector objects in draw mode.</li>
+<li><code>stroke color</code>: Controls the display color of vector objects in draw mode.</li>
+<li><code>Hover color</code>: Controls the display color of vector objects when hovered over.</li>
+<li><code>Select color</code>: Controls the display color of vector objects when selected.</li>
+</ul>
+<h4 id="segmentation-labels">Segmentation Labels</h4>
+<p>The segmentation labels plugin adds the <code>Segmentation</code> label data layer which enables the user to edit selection points and associated object instance in the annotation editor.</p>
+<p>Upon navigating to a scene, any labels that occur in the corresponding frame as well as other frames within the <a href="#segmentation-preferences">time-path range</a> are loaded. While the layer is selected, the collection of labels can be modified via the following <a href="#layer-actions">actions</a>:</p>
+<ul>
+<li><a href="#selection-draw">(D)raw</a> a new points selection.</li>
+<li><a href="#selection-select">(S)elect</a> an existing point selection and <a href="#selection-edit">editing</a> it.</li>
+</ul>
+<p><a id="selection-draw"></a></p>
+<h5 id="draw-mode_2">Draw Mode</h5>
+<p>The draw mode is activated by pressing <code>D</code> or clicking on the corresponding <a href="#layer-actions">action</a>. While in draw mode, you can create point selections via different methods by selecting corresponding method from the setting <code>Tools &gt; Draw</code> widgets or the keyboard shortcuts as below:</p>
+<ul>
+<li><code>box</code>: Activated by pressing <code>R</code> (<code>Query with Rectangle</code>) and start drawing a rectangle box by left-click and dragging the mouse in the desired direction after the mouse is released the points inside the drawn rectangle box, would create a selection.</li>
+<li><code>lasso</code>: Activated by pressing <code>L</code> (<code>Query with Lasso</code>) and start drawing any kind of shapes as you would with a pen, by left-click and dragging the mouse in any direction, after the mouse is released hte points inside the drawn shape, would create a selection.</li>
+<li><code>polygon</code>: Activated by pressing <code>P</code> (<code>Query with Polygon</code>), the position of each vertex of polygon is
+determined by the mouse left click on the scene and to finish drawing press <code>g</code> (<code>finish create selection</code>) in after which the points inside the polygon would create a selection.</li>
+<li><code>brush</code>: Activate by pressing <code>B</code> (<code>Query with Brush</code>), and start painting the desired area for segmentation as a result the points inside the diameter of brush would create a selection.</li>
+</ul>
+<p>At any point you can abandon the object being drawn with the <code>cancel create/edit selection</code> (<code>Esc</code>) keyboard shortcut.</p>
+<p>After drawing a selection, you are automatically sent into <a href="#selection-edit">edit mode</a> which enables you to further edit it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In edit mode the selection <a href="#layer-actions">action</a> is still on draw since a selection is made via drawing objects in the scene to query the points inside drawn object. To differentiate whether you are drawing a new selection or editing an existing object, check the widgets for this data layer.</p>
+</div>
+<p><a id="selection-select"></a></p>
+<h5 id="select-mode_2">Select Mode</h5>
+<p>The select mode is activated by pressing <code>S</code> or clicking on the corresponding <a href="#layer-actions">action</a>. While in select mode, you can select an existing point selection by left-clicking it in the scene.</p>
+<p>After selecting a point selection, you are automatically sent into <a href="#selection-edit">edit mode</a> which enables you to further edit it.</p>
+<p><a id="selection-edit"></a></p>
+<h5 id="edit-mode_2">Edit Mode</h5>
+<p>The edit mode is activated after selecting or drawing a point selection, you can modify points of a selection by adding more points or removing some points from a selection, to do so, you can follow the same steps in <a href="#selection-draw">draw mode</a> section, with a small difference that the mode of the modification is set by the <code>Edit Mode</code> control in the <code>Tools &gt; Modify</code> folder, which offers the <code>Add</code> and <code>Erase</code> options. To add points to a selection, select <code>Add</code>; to remove points from a selection, select <code>Erase</code>.</p>
+<p>To discard the selected point selection, use the <code>Delete selection</code> (<code>Delete</code>) keyboard shortcut.</p>
+<p><a id="selection-assistant"></a></p>
+<h5 id="assistant">Assistant</h5>
+<p>Instead of querying the points inside a drawn object, the segmentation layer can ask a labeling assistant to predict which points belong to the object you are working on. To use it, enable the <code>Use Assistant</code> checkbox in the settings of the <code>Segmentation</code> layer.</p>
+<p>Once enabled, the <a href="#selection-draw">draw mode</a> queries no longer create a selection from the points inside a drawn object. Instead, each click on the point cloud adds a point prompt at the clicked location, and the assistant predicts the selection from the prompts gathered so far. A left click prompts with a foreground point and a right click with a background point; when <code>Prompt Mode</code> is set to <code>Background</code>, every click prompts in the background. The prompts are configured by the <code>Tools &gt; Assistant</code> folder:</p>
+<ul>
+<li><code>Prompt Mode</code>: Sets whether each prompt marks a point that belongs to the selection (<code>Foreground</code>) or a point that must be excluded from it (<code>Background</code>).</li>
+<li><code>Number of Prompts</code>: Sets how many prompts are gathered before a new selection is created.</li>
+<li><code>Mask Threshold</code>: Sets the cutoff applied to the assistant's prediction when deciding which points join the selection.</li>
+</ul>
+<p>While editing an existing selection, prompts in <code>Foreground</code> mode add points to it and prompts in <code>Background</code> mode remove points from it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This feature is unavailable unless an operator has configured a labeling assistant service for your deployment; see the <a href="../../host/">hosting guide</a> for the operator-side configuration.</p>
+</div>
+<p><a id="segmentation-preferences"></a></p>
+<h5 id="preferences_4">Preferences</h5>
+<p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
+<ul>
+<li><code>Use Assistant</code>: Toggles the <a href="#selection-assistant">labeling assistant</a> preference used to predict a selection from point prompts. The checkbox remains editable while data loads or the assistant is unavailable; predictions run only when the configured service is available.</li>
+<li><code>Time-path Range</code>: Adjusts the number of frames from the current one in the time-sorted frame path for which to load selection points and object instances, facilitating access to labels in nearby timestamps.</li>
+<li><code>Show tooltips</code>: Toggles whether tooltips are displayed for each point selection.</li>
+<li><code>Show Occlusion</code>: Toggles whether the occlusion level is displayed in each tooltip.</li>
+<li><code>Show Distinctiveness</code>: Toggles whether the distinctiveness level is displayed in each tooltip.</li>
+<li><code>Show Timestamp Diff.</code>: Toggles whether each tooltip shows the time difference from the current frame.</li>
+<li><code>Show Track &amp; Segment IDs</code>: Toggles whether the label ID is displayed in each tooltip.</li>
+<li><code>Show perceived class</code>: Toggles whether the perceived (tied to point selection) or ground truth (tied to object instance) class is displayed for each point selection.</li>
+<li><code>Transparent Points</code>: Blends selection points with the point cloud so its colors remain visible. Toggle it with <code>Toggle selection transparency</code> (<code>Q</code>).</li>
+<li><code>Point opacity</code>: Sets the opacity of selection points from 0 (invisible) to 1 (opaque) when <code>Transparent Points</code> is enabled.</li>
+<li><code>Brush Diameter</code>: Controls the diameter of the brush used to query points for a selection.</li>
+<li><code>Brush Hue</code>: Controls how strongly the area painted by the brush is highlighted.</li>
+<li><code>stroke color</code>: Controls the display color of drawn objects/shapes to query points for a selection.</li>
+<li><code>Hover color</code>: Controls the display color of point selections when hovered over.</li>
+<li><code>Select color</code>: Controls the display color of point selections when selected.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../project/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Project Management">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Project Management
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../dev/" class="md-footer__link md-footer__link--next" aria-label="Next: Developer Guide">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Developer Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 DESRLab
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.footer", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

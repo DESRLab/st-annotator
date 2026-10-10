@@ -1,0 +1,28 @@
+BoundsModePayload
+=================
+
+
+
+
+.. currentmodule:: sta.domain.source.data.base
+
+.. autoclass:: BoundsModePayload
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BoundsModePayload.auto_bounds
+      ~BoundsModePayload.model_fields_set
+
+   
+   .. autoattribute:: BoundsModePayload.auto_bounds
+   .. autoattribute:: BoundsModePayload.model_fields_set
+   
+   

@@ -1,0 +1,36 @@
+sta.testing.domain.projects
+===========================
+
+.. currentmodule:: sta.testing.domain
+
+.. automodule:: sta.testing.domain.projects
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      assigned_project
+      unassigned_project
+
+   
+   .. autofunction:: assigned_project
+   .. autofunction:: unassigned_project
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

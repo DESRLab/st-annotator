@@ -1,0 +1,63 @@
+sta.domain.auth
+===============
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.auth
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      auth_user
+      configure_signing_key
+      create_jwt_token
+      get_password_hash
+      get_user
+      require_configured_signing_key
+      require_role
+      signing_key
+      verification_key
+      verify_jwt_token
+      verify_password
+      verify_user_jwt_token
+
+   
+   .. autofunction:: auth_user
+   .. autofunction:: configure_signing_key
+   .. autofunction:: create_jwt_token
+   .. autofunction:: get_password_hash
+   .. autofunction:: get_user
+   .. autofunction:: require_configured_signing_key
+   .. autofunction:: require_role
+   .. autofunction:: signing_key
+   .. autofunction:: verification_key
+   .. autofunction:: verify_jwt_token
+   .. autofunction:: verify_password
+   .. autofunction:: verify_user_jwt_token
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      JwtClaims
+   
+   
+
+   
+   
+   
+
+
+
