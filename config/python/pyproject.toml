@@ -1,0 +1,161 @@
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    # Pyflakes
+    "F",
+    # pycodestyle
+    "E", "W",   
+    # flake8-boolean-trap
+    "FBT",
+    # flake8-bugbear
+    "B",
+    # flake8-builtins
+    "A",
+    # flake8-commas
+    "COM",
+    # flake8-comprehensions
+    "C4",
+    # flake8-datetimez
+    "DTZ",
+    # flake8-debugger
+    "T10",
+    # flake8-errmsg
+    "EM",
+    # flake8-future-annotations
+    "FA",
+    # flake8-implicit-str-concat
+    "ISC",
+    # flake8-import-conventions
+    "ICN",
+    # flake8-logging
+    "LOG",
+    # flake8-logging-format
+    "G",
+    # flake8-no-pep420
+    "INP",
+    # flake8-pie
+    "PIE",
+    # flake8-print
+    "T20",
+    # flake8-raise
+    "RSE",
+    # flake8-simplify
+    "SIM",
+    # flake8-use-pathlib
+    "PTH",
+    # NumPy-specific rules
+    "NPY",
+    # Pandas-specific rules
+    "PD",
+    # Ruff-specific rules
+    "RUF",
+    # isort
+    "I",
+    # pydocstyle
+    "D",
+    # pyupgrade
+    "UP",
+]
+ignore = [
+    "F403", "F405",
+    "E501",
+    "SIM102", "SIM117", "SIM118",
+    "PIE790",
+    "D1", "D205", "D401",
+    # Ruff's two formatter-conflicting rules. `ruff format` owns trailing-comma
+    # placement, so COM812 demands commas the formatter removes and the two never
+    # converge; the formatter can also collapse a long line into a single-line
+    # implicit string concatenation, which ISC001 then flags in code the
+    # formatter itself produced. Both concerns belong to the formatter.
+    "COM812", "ISC001",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["copyright", "hash", "id", "type"]
+
+[tool.ruff.lint.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = true
+
+[tool.ruff.lint.isort]
+classes = [
+    # Standard library
+    "ABC", "IO",
+    # SQLAlchemy
+    "JSON", "UUID",
+    # SQLAlchemy (custom)
+    "GUID",
+]
+extra-standard-library = ["typing_extensions"]
+
+section-order = [
+    "future", "standard-library", "third-party",
+    "data-ml", "data-3d", "db", "test",
+    "sta", "first-party",
+    "local-folder",
+]
+combine-as-imports = true
+
+[tool.ruff.lint.isort.sections]
+"data-ml" = ["numpy", "pandas", "matplotlib", "seaborn", "scipy"]
+"data-3d" = ["CSF", "open3d", "laspy", "pypcd4", "plyfile", "shapely"]
+"db" = ["pydantic", "pydantic_core", "fastapi", "starlette", "sqlalchemy", "psycopg2", "geoalchemy2", "sqlmodel"]
+"test" = ["hypothesis", "pytest", "jsoncomparison"]
+"sta" = ["sta", "sta_pcd", "sta_gmesh", "sta_bbox", "sta_vector", "sta_segmentation"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
+
+[tool.pyright]
+# These are set to "error" in "strict" mode
+reportConstantRedefinition = "warning"
+reportDeprecated = "warning"
+reportDuplicateImport = "warning"
+reportFunctionMemberAccess = "warning"
+reportIncompatibleMethodOverride = "warning"
+reportIncompatibleVariableOverride = "warning"
+reportIncompleteStub = "warning"
+reportInconsistentConstructor = "warning"
+reportInvalidStubStatement = "warning"
+reportMatchNotExhaustive = "warning"
+reportMissingParameterType = "warning"
+reportMissingTypeArgument = "warning"
+reportOverlappingOverload = "warning"
+reportPrivateUsage = "warning"
+reportTypeCommentUsage = "warning"
+# reportUnknownArgumentType = "warning"
+# reportUnknownLambdaType = "warning"
+# reportUnknownMemberType = "warning"
+# reportUnknownParameterType = "warning"
+# reportUnknownVariableType = "warning"
+reportUnnecessaryCast = "warning"
+reportUnnecessaryComparison = "warning"
+reportUnnecessaryContains = "warning"
+reportUnnecessaryIsInstance = "warning"
+# reportUnusedClass = "warning"
+reportUnusedImport = "warning"
+# reportUnusedFunction = "warning"
+reportUnusedVariable = "warning"
+reportUntypedBaseClass = "warning"
+reportUntypedClassDecorator = "warning"
+reportUntypedFunctionDecorator = "warning"
+reportUntypedNamedTuple = "warning"
+
+# These are set to "none" even in "strict" mode
+reportCallInDefaultInitializer = "warning"
+# reportImplicitOverride = "warning"
+reportImplicitStringConcatenation = "none"
+# reportImportCycles = "warning"
+reportMissingSuperCall = "warning"
+reportPropertyTypeMismatch = "warning"
+reportUninitializedInstanceVariable = "warning"
+reportUnnecessaryTypeIgnoreComment = "information"
+# reportUnusedCallResult = "warning"

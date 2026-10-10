@@ -1,0 +1,4 @@
+{
+  "db": "sta.common.database:PostgresDatabaseConfig.from_env",
+  "fs": "sta.common.filesystem:FilesystemConfig.from_env"
+}

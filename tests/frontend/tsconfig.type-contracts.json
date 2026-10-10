@@ -1,0 +1,14 @@
+{
+    "extends": "sta/tsconfig",
+    "compilerOptions": {
+        "noUnusedLocals": false,
+        "types": ["node"]
+    },
+    "include": [],
+    "files": [
+        "frontend-types.d.ts",
+        "type-contracts/openapi-conformance-labels.ts",
+        "type-contracts/plugin-intents.ts",
+        "type-contracts/plugin-slices.ts"
+    ]
+}

@@ -1,0 +1,17 @@
+ignores:
+  # Type annotations
+  - '@types/*'
+  # Lint related
+  - 'depcheck'
+  - 'eslint-*'
+  - 'prettier'
+  # Test related
+  - 'typescript'
+  - '@vitest/*'
+  # Docs related
+  - 'typedoc'
+  - 'typedoc-*'
+
+specials:
+  - eslint
+  - prettier

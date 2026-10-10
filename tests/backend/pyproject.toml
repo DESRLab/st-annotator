@@ -1,0 +1,51 @@
+[project]
+name = "sta-integration-tests"
+version = "1.0.0"
+description = "Plugin-dependent backend integration tests for the ST Annotator platform"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Cyrus Leung", email = "tlleungac@connect.ust.hk"},
+    { name = "Maral Bahari", email = "mbahari@connect.ust.hk"},
+]
+dependencies = ["sta", "sta-bbox", "sta-gmesh", "sta-pcd", "sta-segmentation", "sta-vector", "click>=8.1", "fastapi>=0.115.13,<0.116", "numpy>=1.26,<2.3", "shapely>=2.0", "sqlmodel>=0.0.24,<0.1", "pytest>=7.0"]
+
+# The repo-level `scripts/` data tooling and the with-data e2e fixture
+# server (`tests/frontend/serve_e2e_fixture.py`) import the plugin
+# backends. The plugins depend on `sta`, so they cannot be core test
+# dependencies; this project declares them instead. All five are declared
+# so this venv registers every plugin entry point (the fixture server
+# boots the full app).
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+sta = { workspace = true }
+sta-bbox = { workspace = true }
+sta-gmesh = { workspace = true }
+sta-pcd = { workspace = true }
+sta-segmentation = { workspace = true }
+sta-vector = { workspace = true }
+
+[dependency-groups]
+dev = ["deptry>=0.14", "ruff>=0.12"]
+
+[tool.deptry]
+extend_exclude = ["__pycache__"]
+
+[tool.deptry.per_rule_ignores]
+# `_typeshed` is typing-only; `scripts` is repo-root data tooling reached via
+# the `sys.path` insertion in conftest.py, not an installable package.
+DEP001 = ["_typeshed", "scripts"]
+# Not imported by these tests, but declared so this venv registers all five
+# plugin entry points for the with-data fixture server it hosts.
+DEP002 = ["sta-gmesh", "sta-vector"]
+
+[tool.ruff]
+extend = "../../config/python/pyproject.toml"
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+markers = [
+    "no_plugins: boot the test app without loading plugins through entry points; for modules that register any plugin domains they need by direct import",
+]

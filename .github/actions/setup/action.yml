@@ -1,0 +1,60 @@
+name: Setup environment
+description: |
+  Sets up the development environment for this repository.
+  
+  Notes:
+  1. You have to first checkout the repository.
+  2. To use the conda environment, you have to set `defaults.run.shell` to `bash -el {0}`. See [this page](https://github.com/marketplace/actions/setup-miniconda#important) for more details.
+
+inputs:
+  python-version:
+    description: 'Python version'
+    required: false
+    default: '3.10'
+
+runs:
+  using: composite
+  steps:
+    - name: Install Miniconda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        auto-update-conda: true
+        python-version: ${{ inputs.python-version }}
+        activate-environment: 'sta-${{ inputs.python-version }}'
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: '0.8.4'
+    - name: Select matrix Python
+      run: |
+        python_path="$(conda run --no-capture-output -n 'sta-${{ inputs.python-version }}' python -c 'import sys; print(sys.executable)')"
+        echo "UV_PYTHON=$python_path" >> "$GITHUB_ENV"
+        "$python_path" -c "import sys; assert '.'.join(map(str, sys.version_info[:2])) == '${{ inputs.python-version }}', sys.version"
+      shell: bash
+    - name: Create .env file
+      # The database defaults match the `postgis/postgis` service container
+      # declared by the CI workflows; override them via the environment to
+      # point at another server.
+      #
+      # The signing key is generated rather than committed: it is a throwaway
+      # that only ever signs tokens for processes living and dying inside one CI
+      # job. `*.key` is git-ignored, so it cannot be committed from here.
+      run: |
+        openssl ecparam -name prime256v1 -genkey -noout -out jwt-signing.key
+        {
+          echo "FILESYSTEM_ROOT=$(pwd)"
+          echo "STA_JWT_PRIVATE_KEY_PATH=$(pwd)/jwt-signing.key"
+          echo "POSTGRESQL_HOST=${POSTGRESQL_HOST:-localhost}"
+          echo "POSTGRESQL_PORT=${POSTGRESQL_PORT:-5432}"
+          echo "POSTGRESQL_DBSE=${POSTGRESQL_DBSE:-sta}"
+          echo "POSTGRESQL_USER=${POSTGRESQL_USER:-postgres}"
+          echo "POSTGRESQL_PASS=${POSTGRESQL_PASS:-postgres}"
+        } > .env
+      shell: bash
+    - name: Install code
+      run: bash ./scripts/install.sh
+      shell: bash

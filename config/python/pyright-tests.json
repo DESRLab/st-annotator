@@ -1,0 +1,17 @@
+{
+  "extends": "./pyproject.toml",
+  "extraPaths": ["../.."],
+  "typeCheckingMode": "basic",
+  "reportArgumentType": "none",
+  "reportAttributeAccessIssue": "none",
+  "reportCallIssue": "none",
+  "reportIndexIssue": "none",
+  "reportInvalidTypeForm": "none",
+  "reportOperatorIssue": "none",
+  "reportOptionalMemberAccess": "none",
+  "reportOptionalOperand": "none",
+  "reportOptionalSubscript": "none",
+  "reportPrivateImportUsage": "none",
+  "reportReturnType": "none",
+  "reportUnhashable": "none"
+}

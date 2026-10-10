@@ -1,0 +1,117 @@
+name: Verify pre-release
+
+on:
+  workflow_dispatch: {}
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash -el {0}
+
+# Cancel an older run as a unit. Job-level groups caused matrix legs from the
+# same run to cancel one another.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  approve-pr-ci:
+    name: Approve PR CI
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    environment: pr-ci-approval
+    steps:
+      - name: Approval received
+        run: echo "PR CI approved"
+  test:
+    name: Test backend
+    needs:
+      - approve-pr-ci
+    if: >-
+      always() && (github.event_name != 'pull_request' ||
+      needs.approve-pr-ci.result == 'success')
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    runs-on: ubuntu-latest
+    services:
+      postgis:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sta
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run linter
+        run: bash ./scripts/lint.sh backend
+      - name: Run backend tests
+        run: bash ./scripts/test.sh backend
+      - name: Archive coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-py-${{ matrix.python-version }}
+          path: '**/coverage/'
+  test-frontend:
+    name: Test frontend
+    needs:
+      - approve-pr-ci
+    if: >-
+      always() && (github.event_name != 'pull_request' ||
+      needs.approve-pr-ci.result == 'success')
+    runs-on: ubuntu-latest
+    services:
+      postgis:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sta
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup
+      - name: Install Playwright browsers
+        run: (cd tests/frontend && npx playwright install --with-deps chromium)
+      - name: Build frontend packages
+        run: bash ./scripts/build-dev.sh
+      - name: Run linter
+        run: bash ./scripts/lint.sh frontend
+      - name: Run frontend tests
+        run: bash ./scripts/test.sh frontend
+      - name: Test package consumers
+        run: node ./scripts/test-frontend-packages.mjs
+      - name: Build full distribution
+        run: bash ./scripts/build-prod.sh
+      - name: Smoke test production bundle
+        run: bash ./scripts/smoke-prod.sh
+      - name: Test documentation
+        run: bash ./scripts/doc.sh

@@ -1,0 +1,10 @@
+{
+    // The shared intentionallyNotExported entry (root packageOptions) exists for
+    // the plugin packages, whose registered editor loader type is
+    // `typeof import("./editor/index.js")`. TypeDoc warns about an entry that
+    // goes unused in a package, so core lists only what it actually references:
+    // `BaseVector3Data` is the private generic base of `DecimalVector3Data` and
+    // `OptionalDecimalVector3Data`, and the `equals` parameter those classes
+    // inherit names it.
+    "intentionallyNotExported": ["BaseVector3Data"]
+}

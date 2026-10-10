@@ -1,0 +1,73 @@
+[build-system]
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+
+[project]
+name = "sta-pcd"
+version = "1.0.0"
+description = "ST Annotator Point Cloud Plugin"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Cyrus Leung", email = "tlleungac@connect.ust.hk"},
+    { name = "Maral Bahari", email = "mbahari@connect.ust.hk"},
+]
+keywords = [
+    "computer-vision",
+    "3d", "spatiotemporal", "spatio-temporal", "spatial-temporal",
+    "pcd", "pointcloud", "point-cloud",
+    "annotation", "annotation-tool",
+    "labeling", "labeling-tool",
+]
+dependencies = [
+    "sta", "pydantic>=2.6,<3", "pytz>=2023.3", "typing-extensions>=4.6", "matplotlib>=3.4", "numpy>=1.26,<2.3", "pandas>=2.2,<3", "scipy>=1.12", "pypcd4>=1.1.0,<2", "plyfile>=1.0.3", "laspy[lazrs,laszip]>=2.3", "open3d>=0.19",
+    "addict", "pillow>=9.3.0", "scikit-learn>=0.21", "tqdm", "pyquaternion", "fastapi[standard]>=0.115.13,<0.116", "sqlmodel>=0.0.24,<0.1", "SQLAlchemy>=2.0,<3", "click>=8.1",
+]
+
+[project.urls]
+homepage = "https://github.com/DESRLab/st-annotator"
+repository = "https://github.com/DESRLab/st-annotator"
+
+[project.entry-points."sta.plugins"]
+registry = "sta_pcd.plugin:register"
+
+[tool.uv.sources]
+sta = { workspace = true }
+
+[dependency-groups]
+dev = ["pandas-stubs>=2.2", "deptry>=0.14", "ruff>=0.3", "pyright>=1.1.354", "pytest>=7.0", "pytest-cov>=3.0", "pytest-xdist>=3.5"]
+
+[tool.deptry]
+extend_exclude = ["\\.coverage/", "test", "__pycache__", "node_modules"]
+
+[tool.deptry.per_rule_ignores]
+DEP001 = ["_typeshed"]
+DEP002 = ["addict", "pillow", "scikit-learn", "tqdm", "pyquaternion"]
+
+[tool.ruff]
+extend = "../../../config/python/pyproject.toml"
+
+[tool.pytest.ini_options]
+addopts = "--cov=sta_pcd --cov=sta --cov-report=term-missing --cov-report html:coverage --cov-branch --cov-context=test"
+testpaths = ["test"]
+
+[tool.coverage.html]
+show_contexts = true
+
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol(\\[.*\\])?\\):",
+    "@(abc\\.)?abstractmethod",
+    "@(typing\\.)?overload",
+]

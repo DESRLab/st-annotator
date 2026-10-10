@@ -1,0 +1,98 @@
+from typing import TYPE_CHECKING, Any, ClassVar
+
+from sqlalchemy.sql.sqltypes import Integer, SmallInteger, String, Text
+from sqlmodel import Field, Relationship, SQLModel
+
+from sta.common.database.types import JSONB
+from sta.models.base import sqlmodel_sa_type
+
+from .account import Account, AccountPublicSummary
+from .base import (
+    OptimisticLockingSQLModel,
+    OptimisticLockingUpdate,
+    RequiredFieldNullGuard,
+    non_nullable_field_names,
+)
+from .configs import ProjectConfig
+from .types import Name
+
+if TYPE_CHECKING:
+    from .task import Task, TaskPublic
+
+
+class ProjectMember(SQLModel, table=True):
+    __tablename__: ClassVar[Any] = "project_member"
+
+    project_id: int = Field(
+        foreign_key="project.id",
+        ondelete="CASCADE",
+        primary_key=True,
+        nullable=False,
+    )
+    member_id: int = Field(
+        foreign_key="account.id",
+        ondelete="CASCADE",
+        primary_key=True,
+        nullable=False,
+    )
+
+
+class _ProjectBase(OptimisticLockingSQLModel):
+    name: Name = Field(sa_type=sqlmodel_sa_type(String(255)), nullable=False, unique=True)
+    description: str = Field(sa_type=Text, nullable=False, default="")
+    config: ProjectConfig = Field(
+        sa_type=JSONB, nullable=False, default_factory=ProjectConfig.default
+    )
+
+
+class Project(_ProjectBase, table=True):
+    __tablename__: ClassVar[Any] = "project"
+
+    id: int | None = Field(
+        default=None,
+        sa_type=sqlmodel_sa_type(SmallInteger().with_variant(Integer, "sqlite")),
+        primary_key=True,
+        sa_column_kwargs={"autoincrement": True},
+    )
+
+    members: list[Account] = Relationship(cascade_delete=False, link_model=ProjectMember)
+    tasks: list["Task"] = Relationship(back_populates="project", cascade_delete=True)
+
+    @classmethod
+    def get_member_links_cls(cls) -> type[ProjectMember]:
+        return ProjectMember
+
+
+class ProjectCreate(_ProjectBase):
+    member_ids: list[int] = Field(default_factory=list)
+
+
+class ProjectPublic(_ProjectBase):
+    id: int
+
+    # Members are visible to everyone assigned to the project's tasks, so the
+    # list carries the non-owner projection rather than the full account.
+    members: list[AccountPublicSummary]
+    tasks: list["TaskPublic"]
+
+    def __hash__(self) -> int:
+        return hash(self.id)
+
+
+class ProjectUpdate(OptimisticLockingUpdate):
+    _null_forbidden_fields: ClassVar[frozenset[str]] = non_nullable_field_names(_ProjectBase)
+
+    name: Name | None = None
+    description: str | None = None
+    config: ProjectConfig | None = None
+
+    member_ids: list[int] | None = None
+
+
+class ProjectBulkUpdate(RequiredFieldNullGuard):
+    _null_forbidden_fields: ClassVar[frozenset[str]] = non_nullable_field_names(_ProjectBase)
+
+    description: str | None = None
+    config: ProjectConfig | None = None
+
+    member_ids: list[int] | None = None

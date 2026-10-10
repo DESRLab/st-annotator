@@ -1,0 +1,43 @@
+import pytest
+
+from sta.config import AppConfig
+from sta.domain.label.repo.graph import LabelsetBranchInit, init_branch
+from sta.domain.label.repo.ops import OperationRegistry
+from sta.domain.label.repo.ops.special import register_special_ops
+from sta.models.label.group import LabelGroupPublic
+from sta.models.label.repo import LabelsetBranchPublic
+from sta.models.user import UserPublic
+from sta.session import session_ctx
+
+
+@pytest.fixture
+def op_registry():
+    op_registry = OperationRegistry()
+
+    register_special_ops(op_registry)
+
+    return op_registry
+
+
+@pytest.fixture
+def labelset_branch(
+    test_app_config: AppConfig,
+    root_user: UserPublic,
+    label_group: LabelGroupPublic,
+    op_registry: OperationRegistry,
+):
+    with session_ctx(test_app_config) as session:
+        record = init_branch(
+            current_user=root_user,
+            session=session,
+            op_registry=op_registry,
+            data=LabelsetBranchInit(
+                group_id=label_group.id,
+                name="test",
+            ),
+        )
+        branch = LabelsetBranchPublic.model_validate(record)
+
+        session.commit()
+
+    yield branch

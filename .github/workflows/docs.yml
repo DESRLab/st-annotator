@@ -1,0 +1,49 @@
+name: Publish documentation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash -el {0}
+
+concurrency:
+  group: github-pages-deployment
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    name: Build and publish documentation
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    services:
+      postgis:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sta
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup
+      - name: Generate documentation
+        run: bash ./scripts/doc.sh
+      - name: Deploy documentation to GitHub Pages
+        run: uv run --package sta mkdocs gh-deploy -f mkdocs.yml --dirty --force

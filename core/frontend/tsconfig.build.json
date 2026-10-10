@@ -1,0 +1,32 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [".react-router/types/**/*", "app", "client", "lib"],
+  "exclude": [
+    "build",
+    "dist",
+    "node_modules",
+    "test",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ],
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": false,
+    "jsx": "react-jsx",
+    "noEmit": false,
+    "outDir": "dist",
+    "paths": {
+      "mathjs": ["../../node_modules/mathjs"],
+      "sta/app/editor": ["./app/routes/editor/public"],
+      "sta/app/editor/testing": ["./app/routes/editor/testing/index"],
+      "sta/common": ["./lib/common/lib/index"],
+      "sta/common/testing": ["./lib/common/lib/testing/index"],
+      "sta/*": ["./*"]
+    },
+    "rootDir": ".",
+    "rewriteRelativeImportExtensions": true,
+    "sourceMap": true
+  }
+}

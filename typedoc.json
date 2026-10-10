@@ -1,0 +1,104 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    // One merged site over the core and every plugin frontend. In "packages" mode a
+    // root option does NOT reach a package except through `packageOptions` below, so a
+    // value every package must share belongs there, while root-only values
+    // (`out`, `plugin`, `customCss`, `customJs`, `favicon`, `name`, `readme`,
+    // `sidebarLinks`, `treatWarningsAsErrors`) stay here. Packages mode also cannot
+    // resolve a `{@link}` into another package: cross-package references are curated as
+    // `externalSymbolLinkMappings`, keyed by the declaring package.
+    //
+    // `scripts/doc.sh` gates on warnings, so curate a new one at its cause here, through
+    // `suppressCommentWarningsInDeclarationFiles`, or through the plugin listed in
+    // `plugin`, never by reintroducing a blanket `"validation": false` block, which
+    // would silence real missing-documentation errors along with upstream noise.
+    "entryPointStrategy": "packages",
+    "entryPoints": ["./core/frontend", "./plugins/*/frontend"],
+    "out": "./core/frontend/docs/_build",
+    "name": "TypeScript API",
+    "readme": "./core/frontend/docs/index.md",
+    "customCss": "./core/frontend/docs/_static/material.css",
+    "customJs": "./core/frontend/docs/_static/links.js",
+    "favicon": "./core/frontend/docs/_static/favicon.ico",
+    "customTitle": "⭐ TypeScript API",
+    "footerTypedocVersion": true,
+    "treatWarningsAsErrors": true,
+    "sidebarLinks": {
+        "← API Reference": "../index.html"
+    },
+    "plugin": [
+        "typedoc-plugin-extras",
+        "typedoc-plugin-mdn-links",
+        "typedoc-plugin-zod",
+        "./core/frontend/typedoc-suppress-dts-warnings.js"
+    ],
+    "packageOptions": {
+        "jsDocCompatibility": true,
+        "sortEntryPoints": false,
+        "readme": "none",
+        "suppressCommentWarningsInDeclarationFiles": true,
+        "intentionallyNotExported": ["__module"],
+        "externalSymbolLinkMappings": {
+            "sta": {
+                "Placeholder": "/api/frontend/classes/sta.app_editor.Placeholder.html"
+            },
+            "sta-bbox": {
+                "BBoxIndex": "#",
+                "BBoxSettingsPaneElementParams": "#",
+                "DrawModePaneElementParams": "#",
+                "LabelBoxView": "#",
+                "LabelClass": "#",
+                "LabelTrack": "#"
+            },
+            "sta-gmesh": {
+                "GroundMeshSettingsPaneElementParams": "#",
+                "TransformerSettingsPaneElementParams": "#"
+            },
+            "sta-pcd": {
+                "MainCameraSettingsPaneElementParams": "#",
+                "PointCloudSettingsPaneElementParams": "#"
+            },
+            "sta-segmentation": {
+                "DrawModePaneElementParams": "#",
+                "SegmentationIndex": "#",
+                "SegmentationSettingsPaneElementParams": "#"
+            },
+            "sta-vector": {
+                "DrawModePaneElementParams": "#",
+                "TransformerSettingsPaneElementParams": "#",
+                "VectorSettingsPaneElementParams": "#"
+            },
+            "@types/lodash": {
+                "\"../index\".LoDashStatic.get": "https://lodash.com/docs/4.17.15#get",
+                "\"../index\".LoDashStatic.merge": "https://lodash.com/docs/4.17.15#merge"
+            },
+            "@types/three": {
+                "Object3D": "https://threejs.org/docs/#api/en/core/Object3D",
+                "Raycaster": "https://threejs.org/docs/#api/en/core/Raycaster",
+                "BufferGeometry.setFromPoints": "https://threejs.org/docs/#api/en/core/BufferGeometry.setFromPoints",
+                "DirectionalLight": "https://threejs.org/docs/#api/en/lights/DirectionalLight",
+                "HemisphereLight": "https://threejs.org/docs/#api/en/lights/HemisphereLight",
+                "Color": "https://threejs.org/docs/#api/en/math/Color",
+                "Euler": "https://threejs.org/docs/#api/en/math/Euler",
+                "Quaternion": "https://threejs.org/docs/#api/en/math/Quaternion",
+                "Quaternion.setFromAxisAngle": "https://threejs.org/docs/#api/en/math/Quaternion.setFromAxisAngle",
+                "Quaternion.setFromEuler": "https://threejs.org/docs/#api/en/math/Quaternion.setFromEuler",
+                "Quaternion.setFromRotationMatrix": "https://threejs.org/docs/#api/en/math/Quaternion.setFromRotationMatrix",
+                "Vector3": "https://threejs.org/docs/#api/en/math/Vector3",
+                "Group": "https://threejs.org/docs/#api/en/objects/Group",
+                "Line": "https://threejs.org/docs/#api/en/objects/Line",
+                "Mesh": "https://threejs.org/docs/#api/en/objects/Mesh",
+                "Points": "https://threejs.org/docs/#api/en/objects/Points"
+            },
+            "fast-check": {
+                "toStringMethod": "https://fast-check.dev/docs/api/variables/toStringMethod/"
+            },
+            "ts-bidirectional-map": {
+                "default": "https://github.com/pratikpc/ts-bidirectional-map"
+            },
+            "typescript": {
+                "Body": "https://developer.mozilla.org/en-US/docs/Web/API/Body"
+            }
+        }
+    }
+}

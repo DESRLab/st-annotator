@@ -1,0 +1,27 @@
+{
+  "name": "st-annotator-full",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../../.prettierignore --log-level silent",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../../.prettierignore",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "sta": "^1.0.0",
+    "sta-bbox": "^1.0.0",
+    "sta-gmesh": "^1.0.0",
+    "sta-pcd": "^1.0.0",
+    "sta-segmentation": "^1.0.0",
+    "sta-vector": "^1.0.0"
+  },
+  "devDependencies": {
+    "sta-config": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

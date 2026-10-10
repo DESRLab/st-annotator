@@ -1,0 +1,19 @@
+{
+    "include": ["lib", "test"],
+    "compilerOptions": {
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "target": "ESNext",
+        "jsx": "preserve",
+        "allowJs": true,
+        "checkJs": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "maxNodeModuleJsDepth": 0,
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "noUnusedLocals": true,
+        "noEmit": true,
+        "allowImportingTsExtensions": true
+    }
+}

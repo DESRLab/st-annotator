@@ -1,0 +1,186 @@
+{
+  "name": "sta",
+  "version": "1.0.0",
+  "description": "ST Annotator Frontend",
+  "keywords": [
+    "computer-vision",
+    "3d",
+    "spatiotemporal",
+    "spatio-temporal",
+    "spatial-temporal",
+    "annotation",
+    "annotation-tool",
+    "labeling",
+    "labeling-tool"
+  ],
+  "homepage": "https://github.com/DESRLab/st-annotator",
+  "bugs": {
+    "url": "https://github.com/DESRLab/st-annotator/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "DESRLab",
+  "contributors": [
+    "Cyrus Leung <tlleungac@connect.ust.hk>",
+    "Maral Bahari <mbahari@connect.ust.hk>"
+  ],
+  "directories": {
+    "doc": "docs"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "lib/types.d.ts",
+    "tsconfig.json",
+    "tsconfig.paths.json"
+  ],
+  "exports": {
+    "./app": {
+      "types": "./dist/app/plugin.d.ts",
+      "import": "./dist/app/plugin.js"
+    },
+    "./client": {
+      "types": "./dist/lib/client-plugin.d.ts",
+      "import": "./dist/lib/client-plugin.js"
+    },
+    "./client-instance": {
+      "types": "./dist/client-instance.d.ts",
+      "import": "./dist/client-instance.js"
+    },
+    "./common": {
+      "types": "./dist/lib/common/lib/index.d.ts",
+      "import": "./dist/lib/common/lib/index.js"
+    },
+    "./common/testing": {
+      "types": "./dist/lib/common/lib/testing/index.d.ts",
+      "import": "./dist/lib/common/lib/testing/index.js"
+    },
+    "./app/components": {
+      "types": "./dist/app/components/index.d.ts",
+      "import": "./dist/app/components/index.js"
+    },
+    "./app/config": {
+      "types": "./dist/app/config.d.ts",
+      "import": "./dist/app/config.js"
+    },
+    "./app/editor": {
+      "types": "./dist/app/routes/editor/public.d.ts",
+      "import": "./dist/app/routes/editor/public.js"
+    },
+    "./app/editor/testing": {
+      "types": "./dist/app/routes/editor/testing/index.d.ts",
+      "import": "./dist/app/routes/editor/testing/index.js"
+    },
+    "./app/loaders": {
+      "types": "./dist/app/loaders.d.ts",
+      "import": "./dist/app/loaders.js"
+    },
+    "./app/sessions": {
+      "types": "./dist/app/sessions.d.ts",
+      "import": "./dist/app/sessions.js"
+    },
+    "./app/models": {
+      "types": "./dist/app/models/index.d.ts",
+      "import": "./dist/app/models/index.js"
+    },
+    "./app/plugins": {
+      "types": "./dist/app/plugins/index.d.ts",
+      "import": "./dist/app/plugins/index.js"
+    },
+    "./app/templates": {
+      "types": "./dist/app/templates.d.ts",
+      "import": "./dist/app/templates.js"
+    },
+    "./types": {
+      "types": "./lib/types.d.ts"
+    },
+    "./tsconfig": "./tsconfig.json"
+  },
+  "scripts": {
+    "openapi-ts": "openapi-ts && node ../../scripts/export-openapi-client-types.mjs",
+    "prebuild": "node ../../scripts/generate-frontend-build-hash.mjs .",
+    "build": "react-router build",
+    "build:package": "node ../../scripts/clean-frontend-dist.mjs . && node ../../scripts/select-frontend-config.mjs . sta.config.ts && react-router typegen && tsc -p tsconfig.build.json && node ../../scripts/copy-frontend-assets.mjs .",
+    "prepack": "npm run build:package",
+    "dev": "react-router dev",
+    "start": "NODE_ENV=production react-router-serve ./build/server/index.js",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../.prettierignore --log-level silent",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../.prettierignore",
+    "prelint": "node ../../scripts/select-frontend-config.mjs . sta.config.ts",
+    "lint": "eslint .",
+    "prelint:fix": "node ../../scripts/select-frontend-config.mjs . sta.config.ts",
+    "lint:fix": "eslint . --fix",
+    "pretest:unit": "node ../../scripts/select-frontend-config.mjs . sta.config.ts",
+    "test:unit": "vitest run",
+    "typecheck": "node ../../scripts/select-frontend-config.mjs . sta.config.ts && react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.15.4",
+    "@react-router/node": "7.6.2",
+    "@react-router/serve": "7.6.2",
+    "@rwh/keystrokes": "^1.5.4",
+    "@slickgrid-universal/common": "10.4.0",
+    "@tweakpane/core": "^2.0.5",
+    "@tweakpane/plugin-essentials": "^0.2.1",
+    "@vitest/coverage-istanbul": "^1.4.0",
+    "@vitest/runner": "1.6.1",
+    "async-await-queue": "^2.1.2",
+    "autoprefixer": "^10.4.14",
+    "bootstrap": "^5.2.6",
+    "chai": "^4.3.6",
+    "colormap": "^2.3.2",
+    "decimal.js": "^10.4.3",
+    "fast-check": "^3.1.1",
+    "find-up": "^8.0.0",
+    "interactjs": "^1.10.18",
+    "isbot": "^5.1.17",
+    "lodash": "^4.18.1",
+    "lru-cache": "^7.12.0",
+    "mathjs": "^9.4.1",
+    "moment": "^2.30.1",
+    "react": "19.1.0",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "19.1.0",
+    "react-router": "7.6.2",
+    "slickgrid-react": "10.4.0",
+    "three": "^0.159.0",
+    "tippy.js": "^6.3.7",
+    "ts-bidirectional-map": "^1.0.2",
+    "tweakpane": "^4.0.5",
+    "tweakpane-table": "^0.4.1",
+    "typescript-collections": "^1.3.3",
+    "uuid": "^14.0.0",
+    "vitest": "^1.4.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.90.2",
+    "@react-router/dev": "7.6.2",
+    "@types/chai": "^4.3.1",
+    "@types/colormap": "^2.3.1",
+    "@types/lodash": "^4.17.24",
+    "@types/node": "^20",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "@types/sinon": "^17.0.3",
+    "@types/three": "^0.159.0",
+    "@types/uuid": "^9.0.0",
+    "eslint": "9.39.4",
+    "sinon": "^17.0.1",
+    "sta-config": "^1.0.0",
+    "ts-essentials": "^9.3.2",
+    "typedoc": "^0.28.19",
+    "typedoc-plugin-extras": "^4.0.1",
+    "typedoc-plugin-mdn-links": "^5.1.1",
+    "typedoc-plugin-zod": "^1.4.3",
+    "typescript-eslint": "^8.65.0",
+    "vite": "5.4.21",
+    "vitest": "1.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DESRLab/st-annotator"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

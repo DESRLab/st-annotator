@@ -1,0 +1,40 @@
+{
+  // Maps the core `sta/*` subpaths back to TypeScript source, so core typechecks
+  // against the code it edits. A cross-plugin subpath (`sta-gmesh/app`) has no
+  // entry here: it resolves through the workspace symlink to that package's
+  // emitted `dist/*.d.ts`. A stale build is therefore invisible to `typecheck`
+  // yet live in the browser, rebuild the package (`bash scripts/build-dev.sh`,
+  // or `npm run build:package --workspace=sta-<name>`) before trusting a browser
+  // or package-consumer result, and build plugins before their dependents.
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "sta/app": ["./app/plugin"],
+      "sta/app/editor": ["./app/routes/editor/public"],
+      "sta/app/editor/testing": ["./app/routes/editor/testing/index"],
+      "sta/client-instance": ["./client-instance"],
+      "sta/common": ["./lib/common/lib/index"],
+      "sta/common/testing": ["./lib/common/lib/testing/index"],
+      "sta/*": ["./*"],
+      "react": ["node_modules/@types/react"],
+      "react/jsx-runtime": ["node_modules/@types/react/jsx-runtime.d.ts"],
+      "react/jsx-dev-runtime": [
+        "node_modules/@types/react/jsx-dev-runtime.d.ts"
+      ],
+      "react-dom": ["node_modules/@types/react-dom"],
+      "react-dom/client": ["node_modules/@types/react-dom/client.d.ts"],
+      "react-bootstrap": ["node_modules/react-bootstrap/esm/index.d.ts"],
+      "react-router": [
+        "node_modules/react-router/dist/development/index.d.mts"
+      ],
+      "@react-router/dev/routes": [
+        "node_modules/@react-router/dev/dist/routes.d.ts"
+      ],
+      "slickgrid-react": ["node_modules/slickgrid-react/dist/index.d.ts"],
+      "zod": ["node_modules/zod"],
+      "mathjs": ["../../node_modules/mathjs"],
+      "typescript-collections": ["node_modules/typescript-collections"],
+      "ts-bidirectional-map": ["node_modules/ts-bidirectional-map"]
+    }
+  }
+}

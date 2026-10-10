@@ -1,0 +1,6 @@
+[tool.ruff]
+extend = "../config/python/pyproject.toml"
+
+[tool.ruff.lint.extend-per-file-ignores]
+# These files are executable entry points, not an importable Python package.
+"*.py" = ["INP001"]

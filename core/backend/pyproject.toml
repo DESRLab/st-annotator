@@ -1,0 +1,78 @@
+[build-system]
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+
+[project]
+name = "sta"
+version = "1.0.0"
+description = "ST Annotator Backend Library"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Cyrus Leung", email = "tlleungac@connect.ust.hk"},
+    { name = "Maral Bahari", email = "mbahari@connect.ust.hk"},
+]
+keywords = [
+    "computer-vision",
+    "3d", "spatiotemporal", "spatio-temporal", "spatial-temporal",
+    "annotation", "annotation-tool",
+    "labeling", "labeling-tool",
+]
+dependencies = [
+    "certifi>=2023.5", "fsspec>=2024.10", "python-dotenv>=1.0", "pydantic>=2.6,<3", "pydantic-extra-types>=2.6,<3", "pytz>=2023.3", "PyYAML>=5.3", "typing-extensions>=4.6", "uuid6>=2024.1",
+    "matplotlib>=3.4", "numpy>=1.26,<2.3", "pandas>=2.2,<3", "scipy>=1.12", "seaborn>=0.13", "fastapi[standard]>=0.115.13,<0.116", "starlette>=0.40,<0.47", "sqlmodel>=0.0.24,<0.1", "SQLAlchemy>=2.0,<3",
+    "psycopg2-binary>=2.9,<3", "pyjwt[crypto]>=2.10.1,<3", "cryptography>=41", "passlib[argon2]>=1.7.4,<2", "uvicorn>=0.46.0,<0.47", "click>=8.1", "tqdm>=4.23", "pytest>=7.0", "hypothesis[zoneinfo]>=6.88", "jsoncomparison>=1.1,<2",
+]
+
+[project.urls]
+homepage = "https://github.com/DESRLab/st-annotator"
+repository = "https://github.com/DESRLab/st-annotator"
+
+[project.scripts]
+sta = "sta.cli:cli"
+
+[dependency-groups]
+dev = [
+    "mkdocs-material>=9.4", "mkdocs-section-index>=0.3", "sphinx>=6.2,<7", "sphinx-immaterial>=0.11",
+    "pandas-stubs>=2.2", "types-passlib>=1.7.7.20260211,<2",
+    "deptry>=0.14", "ruff>=0.12", "pyright>=1.1.354", "pytest-cov>=3.0", "pytest-xdist>=3.5",
+]
+
+[tool.deptry]
+extend_exclude = ["\\.coverage/", "sta/benchmarks", "docs", "test", "__pycache__", "node_modules"]
+
+[tool.deptry.per_rule_ignores]
+DEP001 = ["_typeshed"]
+DEP002 = ["certifi", "matplotlib", "seaborn", "tqdm"]
+
+[tool.ruff]
+extend = "../../config/python/pyproject.toml"
+
+[tool.pytest.ini_options]
+addopts = "--cov=sta --cov-report=term-missing --cov-report html:coverage --cov-branch --cov-context=test"
+testpaths = ["test"]
+markers = [
+    "in_memory_db: boot the test app on an in-memory SQLite database instead of a per-test PostGIS database; only for modules that need neither spatial columns nor plugin routes",
+    "no_plugins: boot the test app without loading plugins through entry points; for modules that register any plugin domains they need by direct import",
+]
+
+[tool.coverage.html]
+show_contexts = true
+
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol(\\[.*\\])?\\):",
+    "@(abc\\.)?abstractmethod",
+    "@(typing\\.)?overload",
+]

@@ -1,0 +1,37 @@
+__pycache__/
+
+build/
+coverage/
+dist/
+node_modules/
+
+.coverage
+.coverage.*
+coverage.xml
+
+.env
+.hypothesis/
+.pytest_cache/
+
+**/docs/_api_generated/
+**/docs/_build/
+/site/
+
+# Local data
+/experiments/data
+/data
+
+# For HTTPS certificate
+*.crt
+*.csr
+*.key
+
+# Generated for the selected frontend composition.
+/core/frontend/app/sta-config.shim.ts
+/core/frontend/app/sta-routes-config.shim.ts
+/core/frontend/public/build-hash.txt
+
+# Generated from the active backend's OpenAPI schema during installation.
+/core/frontend/client/
+
+*.log

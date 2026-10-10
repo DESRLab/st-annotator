@@ -1,0 +1,25 @@
+ignores:
+  # Type annotations
+  - '@types/*'
+  # Imported in HTML
+  - 'bootstrap'
+  # Lint related
+  - 'depcheck'
+  - 'eslint-*'
+  - 'prettier'
+  # Test related
+  - 'typescript'
+  - '@vitest/*'
+  # Docs related
+  - 'typedoc'
+  - 'typedoc-*'
+  # Automatically installed
+  - '@react-router/node'
+  - autoprefixer
+  - isbot
+  # Self-references
+  - sta
+
+specials:
+  - eslint
+  - prettier

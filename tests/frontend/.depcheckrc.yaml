@@ -1,0 +1,17 @@
+ignores:
+  # Tooling loaded from npm scripts or the shared flat ESLint configuration.
+  - 'depcheck'
+  - 'eslint'
+  - 'eslint-plugin-chai-friendly'
+  - 'eslint-plugin-import'
+  - 'eslint-plugin-jsdoc'
+  - 'vite'
+  - 'typescript'
+  # Never imported directly by the specs: they are declared so the plugin
+  # packages linked through 'sta' resolve in this package's node_modules.
+  - 'sta-bbox'
+  - 'sta-segmentation'
+  - 'sta-vector'
+
+specials:
+  - eslint

@@ -1,0 +1,7 @@
+{
+  "extends": "../../../config/js/tsconfig.json",
+  "include": ["sta.config.ts", "sta.routes.ts"],
+  "compilerOptions": {
+    "noEmit": true
+  }
+}

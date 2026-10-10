@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+:root {
+    /* Light */
+    --light-color-background: #fff;
+    --light-color-background-secondary: #2094f3;
+    --light-color-warning-text: rgba(0, 0, 0, .87);
+    --light-color-background-warning: rgba(255, 255, 0, .5);
+    --light-color-icon-background: var(--light-color-background);
+    --light-color-accent: #176db4;
+    --light-color-active-menu-item: #2094f3;
+    --light-color-text: rgba(0, 0, 0, .87);
+    --light-color-text-aside: #2094f3;
+    --light-color-link: #2094f3;
+
+    /* Dark */
+    --dark-color-background: hsla(225, 15%, 14%, 1);
+    --dark-color-background-secondary: #4051b5;
+    --dark-color-background-warning: rgba(66, 135, 255, .3);
+    --dark-color-warning-text: hsla(232, 75%, 95%, 1);
+    --dark-color-icon-background: var(--dark-color-background-secondary);
+    --dark-color-accent: #3e64ab;
+    --dark-color-active-menu-item: #5488e8;
+    --dark-color-text: hsla(232, 15%, 90%, 0.82);
+    --dark-color-text-aside: #5488e8;
+    --dark-color-link: #5488e8;
+}
+
+body {
+    font-family: "Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    font-feature-settings: "kern", "liga";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tsd-signature {
+    font-family: "Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace;
+    font-feature-settings: "kern";
+    font-variant-ligatures: none;
+}
+
+.tsd-page-toolbar a,
+#tsd-search .field label,
+#tsd-search .field input {
+    color: #fff;
+}
+
+#tsd-search .results li:nth-child(even) {
+    background-color: var(--color-background);
+}
+
+#tsd-search .results a {
+    color: var(--color-text);
+}
+
+#tsd-search .results span.parent {
+    color: var(--color-text);
+    font-style: italic;
+}
+
+#icon-search path {
+    fill: #fff;
+}
+
+#tsd-sidebar-links {
+    font-weight: 700;
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--color-text);
+    padding-bottom: 4px;
+}
+
+.tsd-navigation a.current {
+    background: inherit;
+}
+
+.tsd-navigation a.current .tsd-kind-icon ~ span {
+    color: var(--color-active-menu-item);
+}

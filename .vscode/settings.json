@@ -1,0 +1,62 @@
+{
+    "eslint.enable": true,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportCallInDefaultInitializer": "warning",
+        "reportConstantRedefinition": "warning",
+        "reportDeprecated": "warning",
+        "reportDuplicateImport": "warning",
+        "reportFunctionMemberAccess": "warning",
+        "reportImplicitStringConcatenation": "none",
+        "reportIncompatibleMethodOverride": "warning",
+        "reportIncompatibleVariableOverride": "warning",
+        "reportIncompleteStub": "warning",
+        "reportInconsistentConstructor": "warning",
+        "reportInvalidStubStatement": "warning",
+        "reportMatchNotExhaustive": "warning",
+        "reportMissingParameterType": "warning",
+        "reportMissingSuperCall": "warning",
+        "reportMissingTypeArgument": "warning",
+        "reportOverlappingOverload": "warning",
+        "reportPrivateUsage": "warning",
+        "reportPropertyTypeMismatch": "warning",
+        "reportShadowedImports": "warning",
+        "reportTypeCommentUsage": "warning",
+        "reportUninitializedInstanceVariable": "warning",
+        "reportUnnecessaryCast": "warning",
+        "reportUnnecessaryComparison": "warning",
+        "reportUnnecessaryContains": "warning",
+        "reportUnnecessaryIsInstance": "warning",
+        "reportUnnecessaryTypeIgnoreComment": "information",
+        "reportUntypedBaseClass": "warning",
+        "reportUntypedClassDecorator": "warning",
+        "reportUntypedFunctionDecorator": "warning",
+        "reportUntypedNamedTuple": "warning",
+        "reportUnusedImport": "warning",
+        "reportUnusedVariable": "warning"
+    },
+    "python.analysis.exclude": [
+        "**/.*",
+        "**/__pycache__",
+        "**/node_modules",
+        "docs/**",
+        "packages/**",
+        "site/**",
+        "**/js/**"
+    ],
+    "python.defaultInterpreterPath": "${userHome}/miniconda3/envs/st-annotator/bin/python",
+    "python.testing.pytestArgs": [
+        "--no-cov"
+    ],
+    "yaml.schemas": {
+        "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+    },
+    "yaml.customTags": [
+        "!ENV scalar",
+        "!ENV sequence",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.to_svg",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
+        "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda"
+}

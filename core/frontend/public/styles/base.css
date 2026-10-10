@@ -1,0 +1,41 @@
+.dropdown-menu .dropend .dropdown-menu[data-bs-popper] {
+    top: -0.5rem;   /* Aligns top with the parent menu item */
+}
+
+/* Improve the alignment of the items in the SlickGrid context menu */
+.slick-menu-icon + .slick-menu-content {
+    padding-left: 4px;
+}
+
+/* See MultipleSelectField.js */
+div.multiple-select-container {
+    display: grid;
+    grid-template-areas: 
+        "header-left . header-right"
+        "select-left buttons select-right";
+    grid-template-columns: 1fr 40px 1fr;
+}
+
+div.multiple-select-container button {
+    height: 32px;
+}
+
+div.multiple-select-container select {
+    height: 128px;
+}
+
+div.multiple-select-container .form-control, div.multiple-select-container .form-select {
+    font-size: inherit;
+}
+
+/* widgets/ScrollList.js */
+.scrolllist .scrolllist-item {
+    cursor: pointer;
+}
+
+.scrolllist.disabled .scrolllist-item, .scrolllist .scrolllist-item.disabled {
+    filter: brightness(0.5);
+
+    cursor: not-allowed;
+}
+

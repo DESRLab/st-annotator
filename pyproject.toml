@@ -1,0 +1,13 @@
+[tool.uv]
+# The pinned CSF revision declares numpy>=2.3 as a build dependency even though
+# NumPy 2.3 no longer supports Python 3.10. Build this extension against the
+# workspace's resolved NumPy instead (2.2.x on Python 3.10); all other packages
+# retain normal PEP 517 build isolation.
+no-build-isolation-package = ["cloth-simulation-filter"]
+
+[tool.uv.workspace]
+members = [
+    "core/backend",
+    "plugins/*/backend",
+    "tests/backend",
+]

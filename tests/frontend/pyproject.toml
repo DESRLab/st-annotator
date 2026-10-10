@@ -1,0 +1,7 @@
+[tool.ruff]
+extend = "../../config/python/pyproject.toml"
+
+[tool.ruff.lint.extend-per-file-ignores]
+# The fixture is an executable entry point and prints deterministic seed
+# identifiers that are useful in the Playwright web-server log.
+"serve_e2e_fixture.py" = ["INP001", "T201"]
