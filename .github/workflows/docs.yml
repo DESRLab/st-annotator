@@ -102,13 +102,32 @@ jobs:
             git -C "$archive" push origin HEAD:refs/heads/docs-site
           fi
       - name: Upload documentation artifact
+        if: github.event_name != 'release'
         uses: actions/upload-pages-artifact@v4
         with:
           path: ${{ runner.temp }}/docs-site
 
+  publish-release:
+    name: Request publication of release documentation
+    needs: docs
+    if: github.event_name == 'release'
+    permissions:
+      actions: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      # Release deployments can reuse an earlier Pages artifact for the same SHA.
+      # Dispatching on main publishes the archive through a non-release event.
+      # https://github.com/actions/deploy-pages/issues/383
+      - name: Trigger documentation publication on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run docs.yml --repo "$GITHUB_REPOSITORY" --ref main
+
   deploy:
     name: Publish documentation
     needs: docs
+    if: github.event_name != 'release'
     permissions:
       pages: write
       id-token: write

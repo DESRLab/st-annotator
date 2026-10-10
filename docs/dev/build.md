@@ -341,12 +341,23 @@ redirect to the corresponding pages of the latest stable snapshot.
 
 The assembled archive is uploaded with `actions/upload-pages-artifact` and
 published with `actions/deploy-pages` in the `github-pages` environment. The
-repository's **Settings → Pages → Build and deployment → Source** stays set to
+release run saves its snapshot and dispatches this workflow on `main`, which
+updates development documentation and publishes the complete archive. It does
+not deploy Pages directly: a release deployment can report success while
+reusing an earlier artifact from the same source commit
+([deploy-pages issue 383](https://github.com/actions/deploy-pages/issues/383)).
+To republish an archived release, manually run **Publish documentation** on
+`main`; the workflow includes all snapshots stored on `docs-site`.
+
+The repository's **Settings → Pages → Build and deployment → Source** stays set to
 **GitHub Actions**; `docs-site` is archive storage, not a branch-based Pages
 source. The build job needs `contents: write` to persist snapshots; the deployment
 job needs `pages: write` and `id-token: write`. Publishing is serialized without
 cancelling an active run. Documentation deploys independently of backend and
 frontend tests and does not run on pull requests.
+The release publication request needs `actions: write` to dispatch the workflow
+on `main`. A successful request queues publication; the dispatched run's
+deployment determines whether the updated site is published.
 
 `uv run --package sta python scripts/test-doc-versions.py` verifies snapshot preservation,
 API reference inclusion, stable alias ordering, and redirects. Pre-release CI
