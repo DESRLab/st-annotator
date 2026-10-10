@@ -313,8 +313,15 @@ The isolated tarball installations described above run separately through
 `scripts/test-frontend-packages.mjs`. The separate documentation workflow
 (`.github/workflows/docs.yml`) runs automatically on every push to `main` and
 supports manual runs targeting `main`. It builds documentation once with
-`doc.sh`, then deploys it to GitHub Pages independently of the backend and
-frontend tests. It does not run on pull requests. `doc.sh` builds the frontend
+`doc.sh`, uploads the completed `site/` directory with
+`actions/upload-pages-artifact`, then publishes that artifact with
+`actions/deploy-pages` in the `github-pages` environment. Deployment does not
+rebuild MkDocs or push to a `gh-pages` branch. The repository's **Settings →
+Pages → Build and deployment → Source** must be set to **GitHub Actions**.
+The deployment job has `pages: write` and `id-token: write` permissions; the
+build job only needs read access to repository contents. Documentation deploys
+independently of the backend and frontend tests and does not run on pull
+requests. `doc.sh` builds the frontend
 packages in dependency order before TypeDoc discovers their public entry points
 from the package exports, so documentation does not depend on existing `dist/`
 artifacts.

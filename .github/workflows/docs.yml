@@ -19,10 +19,8 @@ concurrency:
 
 jobs:
   docs:
-    name: Build and publish documentation
+    name: Build documentation
     if: github.ref == 'refs/heads/main'
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     services:
       postgis:
@@ -45,5 +43,22 @@ jobs:
         uses: ./.github/actions/setup
       - name: Generate documentation
         run: bash ./scripts/doc.sh
+      - name: Upload documentation artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    name: Publish documentation
+    needs: docs
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy documentation to GitHub Pages
-        run: uv run --package sta mkdocs gh-deploy -f mkdocs.yml --dirty --force
+        id: deployment
+        uses: actions/deploy-pages@v4
