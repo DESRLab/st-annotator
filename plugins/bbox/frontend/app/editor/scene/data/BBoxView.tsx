@@ -200,7 +200,11 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
     const branchData = this.#mergeIntoBranch(frame, data);
 
     const validFrames = this.#loader.getFramesInWindow(frame);
-    return new BBoxIndexView(branchData, validFrames);
+    this.#resolveHiddenIds();
+    const view = new BBoxIndexView(branchData, validFrames);
+    for (const box of view.iterLabelBoxes())
+      box.setHidden(this.#hiddenBoxes.has(box.id));
+    return view;
   }
 
   get #index(): BBoxIndex | null {
@@ -340,6 +344,25 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
   override dispose(): void {
     this.#loader.removeBackgroundLoadListener(this.#onBackgroundLoad);
     super.dispose();
+  }
+
+  readonly #hiddenBoxes = new Set<UUID>();
+
+  #resolveHiddenIds(): void {
+    for (const id of this.#hiddenBoxes) {
+      if (Placeholder.isPlaceholder(id) && id.isResolved) {
+        this.#hiddenBoxes.delete(id);
+        this.#hiddenBoxes.add(id.orElse(""));
+      }
+    }
+  }
+
+  /** Retains hidden IDs across frame loads for this editor session only. */
+  setBoxHidden(id: UUID, hidden: boolean): void {
+    this.#resolveHiddenIds();
+    if (hidden) this.#hiddenBoxes.add(id);
+    else this.#hiddenBoxes.delete(id);
+    if (this.hasLabelBox(id)) this.getLabelBox(id).setHidden(hidden);
   }
 
   readonly #localBoxes = new Set<ReadonlyLabelBox>();

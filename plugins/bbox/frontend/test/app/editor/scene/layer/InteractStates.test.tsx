@@ -143,6 +143,32 @@ describe("bbox interaction states", () => {
     },
   );
 
+  it("H toggles the selected box locally and publishes visibility changes", () => {
+    const fixture = createInteractContextFixture();
+    const { context, dataView } = fixture;
+    const box = createLabelBoxFixture();
+    dataView.boxes.set("box-1", box);
+    dataView.data = createLoadedIndex();
+    fixture.setSourceData({});
+    fixture.applyLayerGate(true);
+    context.transitionEdit({ trackId: null, boxId: "box-1" });
+    const notify = vi.fn();
+    context.addEventListener("box-visibility-change", notify);
+    fixture.key("h");
+    expect(box.hidden).toBe(true);
+    fixture.key("h");
+    expect(box.hidden).toBe(false);
+    expect(dataView.setBoxHidden.mock.calls).toEqual([
+      ["box-1", true],
+      ["box-1", false],
+    ]);
+    expect(notify).toHaveBeenCalledTimes(2);
+    context.transitionEdit({ trackId: null, boxId: null });
+    fixture.key("h");
+    expect(dataView.setBoxHidden).toHaveBeenCalledTimes(2);
+    context.dispose();
+  });
+
   it("edit state binds and cleans up selected controls and aborts a lost transform", () => {
     const { context, box } = makeContext();
     const state = new EditState(context, {

@@ -185,6 +185,8 @@ export interface InteractContextEventMap<WM extends MainWindowMapper> {
   "action-change": { type: "action-change" };
   /** The event when the selected draw mode changes. */
   "draw-mode-change": { type: "draw-mode-change" };
+  /** Local box visibility changed; repaint the scene and tooltips. */
+  "box-visibility-change": { type: "box-visibility-change" };
   /** The event when the active state has been changed. */
   change: { currentState: InteractState<WM> };
 }
@@ -273,6 +275,18 @@ export class InteractContext<
    */
   get selectedBoxId(): UUID | null {
     return this.#boxInspector.selectedId;
+  }
+
+  /** Applies session-local visibility through the same path as the inspector. */
+  setBoxHidden(id: UUID, hidden: boolean): void {
+    this.dataView.setBoxHidden(id, hidden);
+    this.dispatchEvent({ type: "box-visibility-change" });
+  }
+
+  /** Toggles the currently selected box, if any. */
+  toggleSelectedBoxHidden(): void {
+    const box = this.#boxInspector.selectedBox;
+    if (box != null) this.setBoxHidden(box.id, !box.hidden);
   }
 
   /** Whether the draw-box button of the box inspector is active. */

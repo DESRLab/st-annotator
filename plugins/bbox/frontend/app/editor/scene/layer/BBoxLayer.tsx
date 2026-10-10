@@ -21,6 +21,7 @@ import {
   DraggableVertex,
   isE2EProbeEnabled,
   ClipboardToolView,
+  EventSubscriptions,
 } from "sta/app/editor";
 import { ThreeUtils } from "sta/common";
 
@@ -326,6 +327,8 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
 
   /** An accordion containing each tool. */
   readonly #toolFolders: Record<string, React.JSX.Element>;
+
+  readonly #subscriptions = new EventSubscriptions();
 
   readonly TOOLS_KEYDOWN_BINDS = [
     {
@@ -677,6 +680,15 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
       this.#onActionChange,
     );
 
+    this.#subscriptions.add<
+      InteractContextEventMap<WM>,
+      "box-visibility-change"
+    >(
+      this.#interactContext,
+      "box-visibility-change",
+      this.#invalidateSceneAndTooltips,
+    );
+
     // Starts the interaction state machine (initial transition). Set
     // after the listeners above so the initial state update is heard.
     this.#interactContext.disabled = true;
@@ -711,6 +723,7 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
   }
 
   dispose(): void {
+    this.#subscriptions.dispose();
     this.context.removeEventListener("layer-activate", this.#onLayerActivate);
 
     this.pointCloudLayer.dataView.removeEventListener(
@@ -902,6 +915,9 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
   createEditorIntents(): BBoxPluginIntents {
     return {
       bbox: {
+        setBoxHidden: (id, hidden) => {
+          this.#interactContext.setBoxHidden(id, hidden);
+        },
         setAction: (action) => {
           this.setAction(action);
         },
@@ -1081,7 +1097,7 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
       displayClassName: box.displayClass?.name ?? null,
       occlusionName: box.occlusionLv.name,
       distinctivenessName: box.distinctiveLv.name,
-      showTooltips,
+      showTooltips: showTooltips && !box.hidden,
       showTrackBoxId,
       showTimestampDiff,
       showOcclusion,

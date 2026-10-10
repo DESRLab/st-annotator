@@ -35,6 +35,7 @@ export interface BBoxEntity {
   readonly id: UUID;
   readonly text: string;
   readonly boxType: BoxType;
+  readonly hidden: boolean;
   readonly center: Vector3XYZ;
   readonly size: Vector3XYZ;
   readonly angle: number;
@@ -149,6 +150,7 @@ export function projectBBoxEntity(box: ReadonlyLabelBox): BBoxEntity {
     id: box.id,
     text: getLabelBoxSelectionItemText(box),
     boxType: box.boxType,
+    hidden: box.hidden,
     center: { x: box.center.x, y: box.center.y, z: box.center.z },
     size: { x: box.size.x, y: box.size.y, z: box.size.z },
     angle: box.angle,
@@ -186,6 +188,7 @@ function sameBBoxEntity(a: BBoxEntity, b: BBoxEntity): boolean {
     a.id === b.id &&
     a.text === b.text &&
     a.boxType === b.boxType &&
+    a.hidden === b.hidden &&
     a.center.x === b.center.x &&
     a.center.y === b.center.y &&
     a.center.z === b.center.z &&
@@ -363,6 +366,8 @@ export function mapBBoxSlice(
  * snapshot in the same dispatch.
  */
 export interface BBoxIntents {
+  /** Sets whether the box is temporarily hidden locally. */
+  setBoxHidden(id: UUID, hidden: boolean): void;
   /** Selects the interaction action. */
   setAction(action: Action): void;
   /** Selects the draw origin used when creating a box. */

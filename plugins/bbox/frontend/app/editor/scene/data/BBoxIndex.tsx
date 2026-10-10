@@ -511,6 +511,7 @@ export function labelBoxToPlain(box: ReadonlyLabelBox): Required<BoxParams> {
     entityId: box.entityId,
     timestamp: box.timestamp,
     opacity: box.opacity,
+    hidden: box.hidden,
     showForwardIndicator: box.showForwardIndicator,
     showFrame: box.showFrame,
     showPerceivedClass: box.showPerceivedClass,

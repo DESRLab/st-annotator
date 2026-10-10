@@ -387,3 +387,86 @@ describe("BoundingBox", () => {
     });
   });
 });
+
+describe("hidden bounding boxes", () => {
+  it("makes both shapes transparent and dashed, selects the center and visible edges, and restores display", async () => {
+    const { BoundingCuboidBuilder, BoundingCylinderBuilder } =
+      await import("../../../../../app/editor/scene/data/views");
+    for (const builder of [
+      new BoundingCuboidBuilder(),
+      new BoundingCylinderBuilder(),
+    ]) {
+      const box = builder.createBox({
+        position: new THREE.Vector3(),
+        rotation: new THREE.Euler(),
+        scale: new THREE.Vector3(1, 1, 1),
+        color: new THREE.Color("red"),
+        opacity: 0.4,
+      });
+      box.hidden = true;
+      box.opacity = 0.6;
+      const group = box.asObject3D();
+      for (const child of group.children) {
+        if (child instanceof THREE.Mesh)
+          expect(child.material.opacity).to.equal(0);
+        if (child instanceof THREE.LineSegments) {
+          expect(child.material).to.be.instanceOf(THREE.LineDashedMaterial);
+          expect(child.geometry.getAttribute("lineDistance")).not.to.equal(
+            undefined,
+          );
+        }
+      }
+      const caster = new THREE.Raycaster();
+      const { vi } = await import("vitest");
+      const intersect = vi
+        .spyOn(caster, "intersectObjects")
+        .mockReturnValue([]);
+      box.raycast(caster);
+      expect(intersect.mock.calls[0][0]).to.deep.equal([
+        group.children[0],
+        group.children[2],
+        group.children[4],
+      ]);
+      intersect.mockRestore();
+      group.updateMatrixWorld(true);
+      // Exercise the default line tolerance used by an unconfigured raycaster.
+      expect(caster.params.Line.threshold).to.equal(1);
+      caster.params.Points.threshold = 0.00001;
+      const edges = group
+        .children[2] as THREE.LineSegments<THREE.BufferGeometry>;
+      const positions = edges.geometry.getAttribute("position");
+      const midpoint = new THREE.Vector3()
+        .fromBufferAttribute(positions, 0)
+        .add(new THREE.Vector3().fromBufferAttribute(positions, 1))
+        .multiplyScalar(0.5);
+      caster.set(
+        midpoint.clone().add(new THREE.Vector3(0, 0, 5)),
+        new THREE.Vector3(0, 0, -1),
+      );
+      expect(box.raycast(caster).some((hit) => hit.object === edges)).to.equal(
+        true,
+      );
+      caster.set(new THREE.Vector3(0, 0, 5), new THREE.Vector3(0, 0, -1));
+      expect(
+        box.raycast(caster).some((hit) => hit.object === group.children[0]),
+      ).to.equal(true);
+      caster.set(new THREE.Vector3(0.1, 0.2, 5), new THREE.Vector3(0, 0, -1));
+      expect(box.raycast(caster)).to.have.length(0);
+      expect(caster.params.Line.threshold).to.equal(1);
+      box.showFrame = false;
+      caster.set(
+        midpoint.clone().add(new THREE.Vector3(0, 0, 5)),
+        new THREE.Vector3(0, 0, -1),
+      );
+      expect(box.raycast(caster)).to.have.length(0);
+      box.hidden = false;
+      for (const child of group.children) {
+        if (child instanceof THREE.Mesh)
+          expect(child.material.opacity).to.equal(0.6);
+        if (child instanceof THREE.LineSegments)
+          expect(child.material).not.to.be.instanceOf(THREE.LineDashedMaterial);
+      }
+      box.dispose();
+    }
+  });
+});

@@ -70,6 +70,7 @@ interface FakeTrackEntity {
 interface FakeBoxEntity {
   id: string;
   boxType: string;
+  hidden: boolean;
   center: Vector3;
   size: Vector3;
   angle: number;
@@ -516,6 +517,7 @@ describe("bbox inspector coordinators", () => {
     const box: FakeBoxEntity = {
       id: BOX_ID,
       boxType: "cuboid",
+      hidden: false,
       center: new Vector3(1, 2, 3),
       size: new Vector3(4, 5, 6),
       angle: 0,
@@ -721,6 +723,7 @@ describe("bbox inspector stale-selection sequence (delete versus edit)", () => {
     return {
       id: BOX_ID,
       boxType: "cuboid",
+      hidden: false,
       center: new Vector3(1, 2, 3),
       size: new Vector3(4, 5, 6),
       angle: 0,

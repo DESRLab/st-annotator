@@ -258,9 +258,11 @@ export function BBoxInspectorView(): React.JSX.Element {
             ...cloneLabelBoxInspectorInputtedData(
               labelBoxInspectorPaneFactoryParams.inputtedData,
             ),
+            hidden: false,
             selection: { boxId: null },
           }
         : {
+            hidden: selectedBox.hidden,
             selection: { boxId: selectedBox.id },
             geometry: {
               boxType: selectedBox.boxType,
@@ -313,9 +315,21 @@ export function BBoxInspectorView(): React.JSX.Element {
     ui.autoTracks,
   ]);
   const applyInputChange = React.useCallback(
-    (values: LabelBoxInspectorPaneControllerParams["inputtedData"]): void =>
-      intents.bbox.applyBoxInspectorInput(values),
-    [intents],
+    (values: LabelBoxInspectorPaneControllerParams["inputtedData"]): void => {
+      if (selectedBox == null) {
+        intents.bbox.applyBoxInspectorInput(values);
+        return;
+      }
+      if (
+        values.selection.boxId === selectedBox.id &&
+        values.hidden !== selectedBox.hidden
+      ) {
+        intents.bbox.setBoxHidden(selectedBox.id, values.hidden);
+        return;
+      }
+      intents.bbox.applyBoxInspectorInput(values);
+    },
+    [intents, selectedBox],
   );
   const applyPaneEvent = React.useCallback(
     (event: { type: string }): void =>

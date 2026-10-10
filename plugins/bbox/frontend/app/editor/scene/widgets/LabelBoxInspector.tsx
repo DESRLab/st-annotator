@@ -148,6 +148,7 @@ export function getLabelBoxInspectorPaneParams(
           selection: { boxId: null },
         }
       : {
+          hidden: selectedBox.hidden,
           selection: { boxId: selectedBox.id },
           geometry: {
             boxType: selectedBox.boxType,

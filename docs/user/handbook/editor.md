@@ -205,6 +205,8 @@ After selecting a bounding box, you are automatically sent into [edit mode](#bbo
 
 The edit mode is automatically activated when you select a bounding box (through [select mode](#bbox-select) or directly via the `Bounding Box` menu). Upon entering this mode, the selected bounding box in the `Bounding Box` menu is updated accordingly, and the selected object track in the `Object Track` menu is updated to its associated object track. While in edit mode, you can directly update the properties of the selected bounding box and object track via their corresponding menus.
 
+Use **Hide in scene** in the `Bounding Box` menu or press `H` while editing a selected box to temporarily make a box’s faces transparent and its edges dashed. Hidden boxes have no tooltip and their center and visible edges respond to hover and selection. Select the center or an edge (or choose the box in the menu) and clear the checkbox to unhide it. Hidden box IDs remain remembered when navigating between frames during the editor session; this setting is not saved to the backend.
+
 Also, a transform widget appears on the selected bounding box which can be manipulated to modify its pose based on the [camera mode](#main-camera):
 
 - In 2D mode, you can adjust the pose along the horizontal plane.

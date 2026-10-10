@@ -87,6 +87,10 @@ export class FakeBBoxLabelsView extends VanillaEventDispatcher {
     return this.boxes.get(id);
   }
 
+  setBoxHidden = vi.fn((id: string, hidden: boolean) => {
+    this.boxes.get(id).setHidden(hidden);
+  });
+
   addLabelTrackLocalOnly = vi.fn((params: any) => {
     const track = {
       id: params.id,

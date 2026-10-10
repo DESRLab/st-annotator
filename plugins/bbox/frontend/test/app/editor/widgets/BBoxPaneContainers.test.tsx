@@ -91,6 +91,7 @@ function createRecordingIntents(): typeof noopEditorIntents & {
       setAction: vi.fn(),
       setDrawMode: vi.fn(),
       setSettings: vi.fn(),
+      setBoxHidden: vi.fn(),
       applyBoxInspectorInput: vi.fn(),
       applyTrackInspectorInput: vi.fn(),
       selectBox: vi.fn(),
@@ -123,6 +124,7 @@ function createBoxEntity(overrides: Partial<BBoxEntity> = {}): BBoxEntity {
     id: BOX_ID,
     text: `B{${BOX_ID.slice(0, 4)}} [Car]`,
     boxType: "cuboid",
+    hidden: false,
     center: { x: 1, y: 2, z: 3 },
     size: { x: 4, y: 5, z: 6 },
     angle: 0.5,
@@ -411,6 +413,51 @@ describe("bbox pane containers", () => {
       expect(payload, label).toMatchObject({ [field]: !initial });
     }
 
+    await view.unmount();
+  });
+
+  it("disables Hide in scene when no bounding box is selected", async () => {
+    const intents = createRecordingIntents();
+    const view = await renderPane(
+      createBBoxSlice(),
+      intents,
+      <BBoxInspectorView />,
+    );
+    const checkbox = [
+      ...view.container.querySelectorAll<HTMLElement>(".tp-lblv"),
+    ]
+      .find((row) => row.textContent?.includes("Hide in scene"))
+      ?.querySelector<HTMLInputElement>('input[type="checkbox"]');
+    expect(checkbox).toBeTruthy();
+    expect(checkbox?.disabled).toBe(true);
+    await act(async () => {
+      checkbox?.click();
+    });
+    expect(intents.bbox.setBoxHidden).not.toHaveBeenCalled();
+    await view.unmount();
+  });
+
+  it("toggles the selected box locally through its intent", async () => {
+    const intents = createRecordingIntents();
+    const view = await renderPane(
+      createBBoxSlice({
+        ui: { ...createBBoxSlice().ui, selectedBoxId: BOX_ID },
+        boxes: [createBoxEntity({ hidden: true })],
+      }),
+      intents,
+      <BBoxInspectorView />,
+    );
+    const checkbox = [
+      ...view.container.querySelectorAll<HTMLElement>(".tp-lblv"),
+    ]
+      .find((row) => row.textContent?.includes("Hide in scene"))
+      ?.querySelector<HTMLInputElement>('input[type="checkbox"]');
+    expect(checkbox?.checked).toBe(true);
+    await act(async () => {
+      checkbox?.click();
+    });
+    expect(intents.bbox.setBoxHidden).toHaveBeenCalledWith(BOX_ID, false);
+    expect(intents.bbox.applyBoxInspectorInput).not.toHaveBeenCalled();
     await view.unmount();
   });
 

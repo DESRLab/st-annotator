@@ -38,6 +38,8 @@ interface LabelBoxViewParams {
   color?: Readonly<THREE.Color>;
   /** The opacity of the faces in the bounding box. */
   opacity?: number;
+  /** Temporarily hidden locally, retaining center and edge selection. */
+  hidden?: boolean;
   /**
    * `true` if the forward indicator of the bounding box is visible; otherwise, `false`.
    */
@@ -132,6 +134,13 @@ class LabelBoxView {
   /**
    * The opacity of the faces in the bounding box.
    */
+  get hidden(): boolean {
+    return this.#box.hidden;
+  }
+  set hidden(value: boolean) {
+    this.#box.hidden = value;
+  }
+
   get opacity(): number {
     return this.#box.opacity;
   }
@@ -175,6 +184,7 @@ class LabelBoxView {
       scale: params.scale ?? new THREE.Vector3(1, 1, 1),
       color: params.color ?? new THREE.Color("black"),
       opacity: params.opacity ?? 0.2,
+      hidden: params.hidden ?? false,
       showForwardIndicator: params.showForwardIndicator ?? true,
       showFrame: params.showFrame ?? true,
     });
@@ -270,6 +280,8 @@ export interface LabelBoxParams {
   timestamp?: Timestamp | null;
   /** The opacity of the faces in the bounding box. */
   opacity?: number;
+  /** Temporarily hidden locally, retaining center and edge selection. */
+  hidden?: boolean;
   /**
    * `true` if the forward indicator of the bounding box is visible; otherwise, `false`.
    */
@@ -325,6 +337,7 @@ export type ReadonlyLabelBox = Pick<
   | "perceivedClass"
   | "displayClass"
   | "setDisplayOptions"
+  | "setHidden"
 >;
 
 /**
@@ -699,6 +712,15 @@ export class LabelBox extends THREE.EventDispatcher<LabelBoxEventMap> {
   /**
    * The opacity of the faces in this bounding box.
    */
+  get hidden(): boolean {
+    return this.#view.hidden;
+  }
+  set hidden(value: boolean) {
+    if (this.#view.hidden === value) return;
+    this.#view.hidden = value;
+    this.dispatchEvent({ type: "change", obj: this, propertyKey: "hidden" });
+  }
+
   get opacity(): number {
     return this.#view.opacity;
   }
@@ -793,6 +815,11 @@ export class LabelBox extends THREE.EventDispatcher<LabelBoxEventMap> {
         propertyKey: "showColor",
       });
     }
+  }
+
+  /** Applies session-local hidden state without a labelset operation. */
+  setHidden(value: boolean): void {
+    this.hidden = value;
   }
 
   /** Updates transient scene presentation without emitting label-data events. */
@@ -1065,6 +1092,7 @@ export class LabelBox extends THREE.EventDispatcher<LabelBoxEventMap> {
       rotation: LabelBox.#getRotation(this.config, params.angle),
       scale: LabelBox.#getScale(this.config, params.size),
       opacity: params.opacity,
+      hidden: params.hidden,
       showForwardIndicator: params.showForwardIndicator,
       showFrame: params.showFrame,
     });

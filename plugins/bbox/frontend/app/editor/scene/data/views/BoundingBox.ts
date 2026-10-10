@@ -10,6 +10,7 @@ export interface BoundingBoxParams {
   opacity: number;
   showForwardIndicator?: boolean;
   showFrame?: boolean;
+  hidden?: boolean;
 }
 
 export interface BoundingBoxElements {
@@ -135,6 +136,27 @@ export class BoundingBox {
     this.#forwardIndicatorEdges.material.color.copy(color);
   }
 
+  #hidden = false;
+
+  /** Local display state; the center and visible edges remain selectable. */
+  get hidden(): boolean {
+    return this.#hidden;
+  }
+
+  set hidden(value: boolean) {
+    if (this.#hidden === value) return;
+    this.#hidden = value;
+    for (const edges of [this.#edges, this.#forwardIndicatorEdges]) {
+      const color = edges.material.color.clone();
+      edges.material.dispose();
+      edges.material = value
+        ? new THREE.LineDashedMaterial({ color, dashSize: 0.08, gapSize: 0.05 })
+        : new THREE.LineBasicMaterial({ color });
+      if (value) edges.computeLineDistances();
+    }
+    this.#updateOpacity();
+  }
+
   #opacity: number;
 
   /**
@@ -158,10 +180,12 @@ export class BoundingBox {
    * Updates the opacity of the components of this object.
    */
   #updateOpacity() {
-    const opacity = this.#opacity;
+    const opacity = this.hidden ? 0 : this.#opacity;
 
     this.#faces.material.opacity = opacity;
+    this.#faces.material.depthWrite = !this.hidden;
     this.#forwardIndicatorFaces.material.opacity = opacity;
+    this.#forwardIndicatorFaces.material.depthWrite = !this.hidden;
   }
 
   #showForwardIndicator: boolean;
@@ -245,6 +269,7 @@ export class BoundingBox {
     this.#showForwardIndicator = params.showForwardIndicator ?? true;
     this.#showFrame = params.showFrame ?? true;
     this.#updateVisibility();
+    this.hidden = params.hidden ?? false;
   }
 
   /**
@@ -268,6 +293,20 @@ export class BoundingBox {
     raycaster: THREE.Raycaster,
     intersects: THREE.Intersection[] = [],
   ): THREE.Intersection[] {
+    if (this.hidden && this.showFrame) {
+      const targets: THREE.Object3D[] = [this.#center, this.#edges];
+      if (this.showForwardIndicator) targets.push(this.#forwardIndicatorEdges);
+      // THREE's default one-unit line tolerance covers much of a box's
+      // interior. Keep edge picking narrow, respecting tighter caller settings.
+      const threshold = raycaster.params.Line.threshold;
+      raycaster.params.Line.threshold = Math.min(threshold, 0.025);
+      try {
+        return raycaster.intersectObjects(targets, false, intersects);
+      } finally {
+        // This raycaster also visits other labels and scene objects.
+        raycaster.params.Line.threshold = threshold;
+      }
+    }
     const target = this.showFrame ? this.#faces : this.#center;
     return raycaster.intersectObject(target, false, intersects);
   }

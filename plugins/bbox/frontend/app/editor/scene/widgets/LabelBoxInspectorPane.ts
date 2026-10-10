@@ -46,6 +46,7 @@ import type {
 import type { LabelTrackSelectionItem } from "./LabelTrackSelectionPane.ts";
 
 export interface LabelBoxInspectorInputtedData {
+  hidden: boolean;
   selection: LabelBoxSelectionPaneControllerParams["inputtedData"];
   geometry: LabelBoxGeometryPaneControllerParams["inputtedData"];
   relations: LabelBoxRelationsPaneControllerParams["inputtedData"];
@@ -182,6 +183,7 @@ export function getLabelBoxInspectorOutputData(
 export const labelBoxInspectorPaneFactoryParams: PaneElementParams<LabelBoxInspectorPaneControllerParams> =
   {
     inputtedData: {
+      hidden: false,
       selection: labelBoxSelectionPaneDefaultParams.inputtedData,
       geometry: labelBoxGeometryPaneFactoryParams.inputtedData,
       relations: labelBoxRelationsPaneFactoryParams.inputtedData,
@@ -335,6 +337,15 @@ export function createLabelBoxInspectorPaneElementFactory(
         }),
       },
     ),
+    builder.input(["inputtedData", "hidden"], {
+      options: (params) => ({
+        label: "Hide in scene",
+        disabled:
+          params.settings.disabled ||
+          params.inputtedData.selection.boxId == null,
+        hidden: params.settings.hidden,
+      }),
+    }),
     builder.separator({
       options: ({ settings: { disabled, hidden } }) => ({
         disabled,
