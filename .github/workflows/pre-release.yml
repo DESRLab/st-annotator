@@ -115,3 +115,5 @@ jobs:
         run: bash ./scripts/smoke-prod.sh
       - name: Test documentation
         run: bash ./scripts/doc.sh
+      - name: Test documentation version packaging
+        run: uv run --package sta python ./scripts/test-doc-versions.py

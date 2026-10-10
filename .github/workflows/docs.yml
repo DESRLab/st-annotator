@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  release:
+    types: [published]
   workflow_dispatch: {}
 
 permissions:
@@ -15,12 +17,14 @@ defaults:
 
 concurrency:
   group: github-pages-deployment
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   docs:
     name: Build documentation
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'release' || github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     services:
       postgis:
@@ -37,16 +41,70 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - name: Checkout Git repository
+      # Keep the publishing tools from this workflow, then build the tagged source.
+      - name: Checkout publishing tools
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+      - name: Preserve publishing tools
+        run: |
+          mkdir -p "$RUNNER_TEMP/docs-tools"
+          cp scripts/doc.sh scripts/configure-doc-version.py scripts/package-doc-versions.py scripts/test-doc-versions.py "$RUNNER_TEMP/docs-tools/"
+      - name: Checkout documentation source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || 'main' }}
+      - name: Select documentation version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          IS_RELEASE: ${{ github.event_name == 'release' }}
+          IS_PRERELEASE: ${{ github.event.release.prerelease }}
+        run: |
+          version=development
+          if [[ "$IS_RELEASE" == true ]]; then
+            version="${RELEASE_TAG#v}"
+            if [[ ! "$version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z]+([.-][0-9A-Za-z]+)*)?$ ]]; then
+              echo "Release tag must use vX.Y.Z or vX.Y.Z-prerelease" >&2
+              exit 1
+            fi
+          fi
+          echo "DOCS_VERSION=$version" >> "$GITHUB_ENV"
+          if [[ "$IS_RELEASE" == true && "$IS_PRERELEASE" != true && "$version" != *-* ]]; then
+            echo "DOCS_STABLE=true" >> "$GITHUB_ENV"
+          fi
       - name: Setup environment
         uses: ./.github/actions/setup
+      - name: Test documentation version packaging
+        run: uv run --package sta python "$RUNNER_TEMP/docs-tools/test-doc-versions.py"
       - name: Generate documentation
-        run: bash ./scripts/doc.sh
+        run: bash "$RUNNER_TEMP/docs-tools/doc.sh"
+      - name: Assemble and persist documentation versions
+        run: |
+          archive="$RUNNER_TEMP/docs-site"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          if git ls-remote --exit-code --heads origin docs-site > /dev/null; then
+            git fetch origin docs-site
+            git worktree add --detach "$archive" FETCH_HEAD
+          else
+            status=$?
+            if [[ "$status" != 2 ]]; then exit "$status"; fi
+            git worktree add --detach "$archive" HEAD
+            git -C "$archive" checkout --orphan docs-site
+            git -C "$archive" rm -rf . > /dev/null
+          fi
+          stable_args=()
+          if [[ "${DOCS_STABLE:-false}" == true ]]; then stable_args+=(--stable); fi
+          uv run --package sta python "$RUNNER_TEMP/docs-tools/package-doc-versions.py" site "$archive" "$DOCS_VERSION" "${stable_args[@]}"
+          git -C "$archive" add --all
+          if ! git -C "$archive" diff --cached --quiet; then
+            git -C "$archive" commit -m "Publish documentation for $DOCS_VERSION"
+            git -C "$archive" push origin HEAD:refs/heads/docs-site
+          fi
       - name: Upload documentation artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: site
+          path: ${{ runner.temp }}/docs-site
 
   deploy:
     name: Publish documentation

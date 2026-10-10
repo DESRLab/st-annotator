@@ -32,7 +32,16 @@ echo "=== [DOC] Backend library ==="
 doc_backend
 
 echo "=== [DOC] Main site ==="
-rm -rf site; uv run --package sta mkdocs build -f mkdocs.yml --strict
+# A temporary config stays at the repository root so relative paths keep working.
+# The publishing workflow can use this builder against a release checkout.
+docs_config=mkdocs.yml
+if [[ -n "${DOCS_VERSION:-}" ]]; then
+    docs_config=$(mktemp "$PWD/.mkdocs-versioned-XXXXXX.yml")
+    trap 'rm -f "$docs_config"' EXIT
+    uv run --package sta python "$(dirname -- "${BASH_SOURCE[0]}")/configure-doc-version.py" "$docs_config"
+fi
+rm -rf site
+uv run --package sta mkdocs build -f "$docs_config" --strict
 # The generated API reference is copied in only after the strict build, so the pages
 # under site/api/ must already exist for it to resolve: docs/api/** ships tracked stub
 # index.html files that mkdocs.yml's nav and docs/api/index.md point at, and these two

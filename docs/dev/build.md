@@ -311,25 +311,53 @@ serves, which neither the build nor the browser tests cover. The test script
 covers backend and frontend unit and integration tests, including browser tests.
 The isolated tarball installations described above run separately through
 `scripts/test-frontend-packages.mjs`. The separate documentation workflow
-(`.github/workflows/docs.yml`) runs automatically on every push to `main` and
-supports manual runs targeting `main`. It builds documentation once with
-`doc.sh`, uploads the completed `site/` directory with
-`actions/upload-pages-artifact`, then publishes that artifact with
-`actions/deploy-pages` in the `github-pages` environment. Deployment does not
-rebuild MkDocs or push to a `gh-pages` branch. The repository's **Settings →
-Pages → Build and deployment → Source** must be set to **GitHub Actions**.
-The deployment job has `pages: write` and `id-token: write` permissions; the
-build job only needs read access to repository contents. Documentation deploys
-independently of the backend and frontend tests and does not run on pull
-requests. `doc.sh` builds the frontend
+(`.github/workflows/docs.yml`) publishes `development/` on pushes to `main` and
+builds the tagged source when a GitHub release is published. Manual runs target
+`main`. Release tags use `vX.Y.Z` or
+`vX.Y.Z-prerelease`; documentation directories omit the leading `v`. Published
+prereleases receive their own snapshot but do not update `stable/`. The stable
+alias advances only for a stable release at least as new as its current target,
+so publishing an older release does not change the default documentation.
+The development snapshot uses `development/` because `dev/` is the existing
+developer guide path; unversioned developer guide links remain redirects.
+
+The workflow runs `doc.sh` once, preserving its complete MkDocs, Sphinx, and
+TypeDoc output. `DOCS_VERSION` selects a version-specific `site_url` through a
+temporary MkDocs configuration written by
+`scripts/configure-doc-version.py`; an ordinary `bash scripts/doc.sh` still builds
+the standalone site. The publishing tools come from the workflow revision,
+while documentation and package sources come from the selected branch or tag.
+Release checkouts must support the current documentation build pipeline.
+
+`uv run --package sta python scripts/package-doc-versions.py site <archive> <version> [--stable]`
+updates the selected snapshot in an archive checkout. The `docs-site` branch
+stores completed snapshots, Material-compatible `versions.json` metadata, and
+redirects. Older snapshots are preserved without rebuilding them. The site root
+and existing unversioned HTML paths redirect to the corresponding stable page,
+or to development documentation before a stable release exists. A page absent
+from the default snapshot redirects to its home page. Redirects preserve query
+parameters and fragments in browsers with JavaScript. The `stable/` paths
+redirect to the corresponding pages of the latest stable snapshot.
+
+The assembled archive is uploaded with `actions/upload-pages-artifact` and
+published with `actions/deploy-pages` in the `github-pages` environment. The
+repository's **Settings → Pages → Build and deployment → Source** stays set to
+**GitHub Actions**; `docs-site` is archive storage, not a branch-based Pages
+source. The build job needs `contents: write` to persist snapshots; the deployment
+job needs `pages: write` and `id-token: write`. Publishing is serialized without
+cancelling an active run. Documentation deploys independently of backend and
+frontend tests and does not run on pull requests.
+
+`uv run --package sta python scripts/test-doc-versions.py` verifies snapshot preservation,
+API reference inclusion, stable alias ordering, and redirects. Pre-release CI
+and the publishing workflow run this check. `doc.sh` builds frontend
 packages in dependency order before TypeDoc discovers their public entry points
-from the package exports, so documentation does not depend on existing `dist/`
+from package exports, so documentation does not depend on existing `dist/`
 artifacts.
 
-CI currently validates the repository and deploys documentation from `main`.
-It does **not** publish npm packages, Python distributions, application images,
-or release archives. Publishing is therefore an explicit maintainer action;
-do not infer that merging to `main` releases runtime artifacts.
+CI does **not** publish npm packages, Python distributions, application images,
+or release archives. Publishing runtime artifacts is an explicit maintainer
+action; neither merging to `main` nor publishing documentation releases them.
 
 ## Release ordering and versioning
 
