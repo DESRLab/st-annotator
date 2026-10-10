@@ -1,0 +1,73 @@
+LabelElementUpdateLike
+======================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelElementUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelElementUpdateLike.model_dump
+      ~LabelElementUpdateLike.model_validate
+      ~LabelElementUpdateLike.sqlmodel_update
+      ~LabelElementUpdateLike.unpack_max_coords
+      ~LabelElementUpdateLike.unpack_min_coords
+      ~LabelElementUpdateLike.unpack_st_bounds
+      ~LabelElementUpdateLike.update_from_st_bounds
+
+   
+   .. automethod:: LabelElementUpdateLike.model_dump
+   .. automethod:: LabelElementUpdateLike.model_validate
+   .. automethod:: LabelElementUpdateLike.sqlmodel_update
+   .. automethod:: LabelElementUpdateLike.unpack_max_coords
+   .. automethod:: LabelElementUpdateLike.unpack_min_coords
+   .. automethod:: LabelElementUpdateLike.unpack_st_bounds
+   .. automethod:: LabelElementUpdateLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelElementUpdateLike.entity_id
+      ~LabelElementUpdateLike.is_deleted
+      ~LabelElementUpdateLike.max_coords
+      ~LabelElementUpdateLike.min_coords
+      ~LabelElementUpdateLike.model_fields_set
+      ~LabelElementUpdateLike.st_bounds
+      ~LabelElementUpdateLike.min_x
+      ~LabelElementUpdateLike.min_y
+      ~LabelElementUpdateLike.min_z
+      ~LabelElementUpdateLike.max_x
+      ~LabelElementUpdateLike.max_y
+      ~LabelElementUpdateLike.max_z
+      ~LabelElementUpdateLike.min_timestamp
+      ~LabelElementUpdateLike.max_timestamp
+
+   
+   .. autoattribute:: LabelElementUpdateLike.entity_id
+   .. autoattribute:: LabelElementUpdateLike.is_deleted
+   .. autoattribute:: LabelElementUpdateLike.max_coords
+   .. autoattribute:: LabelElementUpdateLike.min_coords
+   .. autoattribute:: LabelElementUpdateLike.model_fields_set
+   .. autoattribute:: LabelElementUpdateLike.st_bounds
+   .. autoattribute:: LabelElementUpdateLike.min_x
+   .. autoattribute:: LabelElementUpdateLike.min_y
+   .. autoattribute:: LabelElementUpdateLike.min_z
+   .. autoattribute:: LabelElementUpdateLike.max_x
+   .. autoattribute:: LabelElementUpdateLike.max_y
+   .. autoattribute:: LabelElementUpdateLike.max_z
+   .. autoattribute:: LabelElementUpdateLike.min_timestamp
+   .. autoattribute:: LabelElementUpdateLike.max_timestamp
+   
+   

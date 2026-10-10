@@ -1,0 +1,36 @@
+sta.common.logging.logger
+=========================
+
+.. currentmodule:: sta.common.logging
+
+.. automodule:: sta.common.logging.logger
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_logger
+      set_logger_level
+
+   
+   .. autofunction:: get_logger
+   .. autofunction:: set_logger_level
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

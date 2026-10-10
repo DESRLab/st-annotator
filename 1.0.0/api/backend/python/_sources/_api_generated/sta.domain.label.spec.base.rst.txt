@@ -1,0 +1,32 @@
+sta.domain.label.spec.base
+==========================
+
+.. currentmodule:: sta.domain.label.spec
+
+.. automodule:: sta.domain.label.spec.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LabelSpecDomain
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,34 @@
+Role
+====
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: Role
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Role.ADMIN
+      ~Role.DATA_MANAGER
+      ~Role.PROJECT_MANAGER
+      ~Role.SUPERVISOR
+      ~Role.ANNOTATOR
+
+   
+   .. autoattribute:: Role.ADMIN
+   .. autoattribute:: Role.DATA_MANAGER
+   .. autoattribute:: Role.PROJECT_MANAGER
+   .. autoattribute:: Role.SUPERVISOR
+   .. autoattribute:: Role.ANNOTATOR
+   
+   

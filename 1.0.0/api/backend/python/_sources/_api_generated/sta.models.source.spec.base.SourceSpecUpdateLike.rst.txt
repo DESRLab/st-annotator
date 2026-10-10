@@ -1,0 +1,43 @@
+SourceSpecUpdateLike
+====================
+
+
+
+
+.. currentmodule:: sta.models.source.spec.base
+
+.. autoclass:: SourceSpecUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceSpecUpdateLike.model_dump
+      ~SourceSpecUpdateLike.model_validate
+      ~SourceSpecUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: SourceSpecUpdateLike.model_dump
+   .. automethod:: SourceSpecUpdateLike.model_validate
+   .. automethod:: SourceSpecUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceSpecUpdateLike.group_ids
+      ~SourceSpecUpdateLike.model_fields_set
+      ~SourceSpecUpdateLike.name
+
+   
+   .. autoattribute:: SourceSpecUpdateLike.group_ids
+   .. autoattribute:: SourceSpecUpdateLike.model_fields_set
+   .. autoattribute:: SourceSpecUpdateLike.name
+   
+   

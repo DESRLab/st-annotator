@@ -1,0 +1,45 @@
+ObjectClassSelectionUpdate
+==========================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassSelectionUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionUpdate.sqlmodel_update
+
+   
+   .. automethod:: ObjectClassSelectionUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionUpdate.model_config
+      ~ObjectClassSelectionUpdate.description
+      ~ObjectClassSelectionUpdate.objclass_ids
+      ~ObjectClassSelectionUpdate.name
+      ~ObjectClassSelectionUpdate.group_ids
+      ~ObjectClassSelectionUpdate.issued_at
+
+   
+   .. autoattribute:: ObjectClassSelectionUpdate.model_config
+   .. autoattribute:: ObjectClassSelectionUpdate.description
+   .. autoattribute:: ObjectClassSelectionUpdate.objclass_ids
+   .. autoattribute:: ObjectClassSelectionUpdate.name
+   .. autoattribute:: ObjectClassSelectionUpdate.group_ids
+   .. autoattribute:: ObjectClassSelectionUpdate.issued_at
+   
+   

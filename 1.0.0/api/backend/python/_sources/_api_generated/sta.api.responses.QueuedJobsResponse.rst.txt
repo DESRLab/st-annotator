@@ -1,0 +1,30 @@
+QueuedJobsResponse
+==================
+
+
+
+
+.. currentmodule:: sta.api.responses
+
+.. autoclass:: QueuedJobsResponse
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~QueuedJobsResponse.model_config
+      ~QueuedJobsResponse.job_ids
+      ~QueuedJobsResponse.success
+
+   
+   .. autoattribute:: QueuedJobsResponse.model_config
+   .. autoattribute:: QueuedJobsResponse.job_ids
+   .. autoattribute:: QueuedJobsResponse.success
+   
+   

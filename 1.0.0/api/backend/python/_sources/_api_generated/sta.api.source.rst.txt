@@ -1,0 +1,44 @@
+sta.api.source
+==============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.source
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      setup_router
+
+   
+   .. autofunction:: setup_router
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.api.source.data
+   sta.api.source.groups
+   sta.api.source.spec
+

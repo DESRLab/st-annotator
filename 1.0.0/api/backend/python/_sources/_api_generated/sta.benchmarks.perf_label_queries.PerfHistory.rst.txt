@@ -1,0 +1,63 @@
+PerfHistory
+===========
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfHistory
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PerfHistory.add_create_history
+      ~PerfHistory.add_delete_history
+      ~PerfHistory.add_select_history
+      ~PerfHistory.add_update_history
+      ~PerfHistory.set_element_plan
+      ~PerfHistory.set_entity_plan
+      ~PerfHistory.set_storage_usage
+
+   
+   .. automethod:: PerfHistory.add_create_history
+   .. automethod:: PerfHistory.add_delete_history
+   .. automethod:: PerfHistory.add_select_history
+   .. automethod:: PerfHistory.add_update_history
+   .. automethod:: PerfHistory.set_element_plan
+   .. automethod:: PerfHistory.set_entity_plan
+   .. automethod:: PerfHistory.set_storage_usage
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfHistory.num_branches
+      ~PerfHistory.num_commits
+      ~PerfHistory.num_steps
+      ~PerfHistory.items
+      ~PerfHistory.commit_hashes
+      ~PerfHistory.branch_ids
+      ~PerfHistory.entity_plans_by_step
+      ~PerfHistory.element_plans_by_step
+      ~PerfHistory.storage_usages_by_step
+
+   
+   .. autoattribute:: PerfHistory.num_branches
+   .. autoattribute:: PerfHistory.num_commits
+   .. autoattribute:: PerfHistory.num_steps
+   .. autoattribute:: PerfHistory.items
+   .. autoattribute:: PerfHistory.commit_hashes
+   .. autoattribute:: PerfHistory.branch_ids
+   .. autoattribute:: PerfHistory.entity_plans_by_step
+   .. autoattribute:: PerfHistory.element_plans_by_step
+   .. autoattribute:: PerfHistory.storage_usages_by_step
+   
+   

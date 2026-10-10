@@ -1,0 +1,38 @@
+LabelsetEdge
+============
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetEdge
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetEdge.child
+      ~LabelsetEdge.child_hash
+      ~LabelsetEdge.group
+      ~LabelsetEdge.group_id
+      ~LabelsetEdge.model_config
+      ~LabelsetEdge.parent
+      ~LabelsetEdge.parent_hash
+
+   
+   .. autoattribute:: LabelsetEdge.child
+   .. autoattribute:: LabelsetEdge.child_hash
+   .. autoattribute:: LabelsetEdge.group
+   .. autoattribute:: LabelsetEdge.group_id
+   .. autoattribute:: LabelsetEdge.model_config
+   .. autoattribute:: LabelsetEdge.parent
+   .. autoattribute:: LabelsetEdge.parent_hash
+   
+   

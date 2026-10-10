@@ -1,0 +1,47 @@
+LabelsetCommitCreate
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetCommitCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetCommitCreate.check_edit_conflict
+      ~LabelsetCommitCreate.sqlmodel_update
+
+   
+   .. automethod:: LabelsetCommitCreate.check_edit_conflict
+   .. automethod:: LabelsetCommitCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetCommitCreate.model_config
+      ~LabelsetCommitCreate.parent_hashes
+      ~LabelsetCommitCreate.group_id
+      ~LabelsetCommitCreate.hash
+      ~LabelsetCommitCreate.operations
+      ~LabelsetCommitCreate.last_edit_at
+
+   
+   .. autoattribute:: LabelsetCommitCreate.model_config
+   .. autoattribute:: LabelsetCommitCreate.parent_hashes
+   .. autoattribute:: LabelsetCommitCreate.group_id
+   .. autoattribute:: LabelsetCommitCreate.hash
+   .. autoattribute:: LabelsetCommitCreate.operations
+   .. autoattribute:: LabelsetCommitCreate.last_edit_at
+   
+   

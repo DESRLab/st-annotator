@@ -1,0 +1,6 @@
+TRANSFORM\_FIELDS
+=================
+
+.. currentmodule:: sta.models.base
+
+.. autodata:: TRANSFORM_FIELDS

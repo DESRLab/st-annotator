@@ -1,0 +1,44 @@
+HistoryLabelDeleteItem
+======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: HistoryLabelDeleteItem
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HistoryLabelDeleteItem.delete_target
+      ~HistoryLabelDeleteItem.insert_hash_to_distance_seconds
+      ~HistoryLabelDeleteItem.query_closest_states_seconds
+      ~HistoryLabelDeleteItem.add_seconds
+      ~HistoryLabelDeleteItem.total_seconds
+      ~HistoryLabelDeleteItem.step
+      ~HistoryLabelDeleteItem.num_branches
+      ~HistoryLabelDeleteItem.num_commits
+      ~HistoryLabelDeleteItem.num_entities
+      ~HistoryLabelDeleteItem.num_elements
+
+   
+   .. autoattribute:: HistoryLabelDeleteItem.delete_target
+   .. autoattribute:: HistoryLabelDeleteItem.insert_hash_to_distance_seconds
+   .. autoattribute:: HistoryLabelDeleteItem.query_closest_states_seconds
+   .. autoattribute:: HistoryLabelDeleteItem.add_seconds
+   .. autoattribute:: HistoryLabelDeleteItem.total_seconds
+   .. autoattribute:: HistoryLabelDeleteItem.step
+   .. autoattribute:: HistoryLabelDeleteItem.num_branches
+   .. autoattribute:: HistoryLabelDeleteItem.num_commits
+   .. autoattribute:: HistoryLabelDeleteItem.num_entities
+   .. autoattribute:: HistoryLabelDeleteItem.num_elements
+   
+   

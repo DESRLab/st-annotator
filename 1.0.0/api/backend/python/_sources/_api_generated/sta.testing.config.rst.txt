@@ -1,0 +1,45 @@
+sta.testing.config
+==================
+
+.. currentmodule:: sta.testing
+
+.. automodule:: sta.testing.config
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      test_app
+      test_app_config
+      test_db_config
+
+   
+   .. autofunction:: test_app
+   .. autofunction:: test_app_config
+   .. autofunction:: test_db_config
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      TestApp
+   
+   
+
+   
+   
+   
+
+
+

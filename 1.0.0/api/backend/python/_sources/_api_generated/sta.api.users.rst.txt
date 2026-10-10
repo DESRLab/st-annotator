@@ -1,0 +1,55 @@
+sta.api.users
+=============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.users
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_users
+      create_user
+      delete_user
+      list_user_ids
+      list_users
+      list_users_roles
+      read_user
+      update_user
+
+   
+   .. autofunction:: bulk_update_users
+   .. autofunction:: create_user
+   .. autofunction:: delete_user
+   .. autofunction:: list_user_ids
+   .. autofunction:: list_users
+   .. autofunction:: list_users_roles
+   .. autofunction:: read_user
+   .. autofunction:: update_user
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      UserRoles
+   
+   
+
+   
+   
+   
+
+
+

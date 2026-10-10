@@ -1,0 +1,6 @@
+STA\_ASSISTANT\_URL
+===================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_ASSISTANT_URL

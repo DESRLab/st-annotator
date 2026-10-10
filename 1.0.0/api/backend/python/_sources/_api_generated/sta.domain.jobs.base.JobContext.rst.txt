@@ -1,0 +1,43 @@
+JobContext
+==========
+
+
+
+
+.. currentmodule:: sta.domain.jobs.base
+
+.. autoclass:: JobContext
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~JobContext.checkpoint
+      ~JobContext.report
+
+   
+   .. automethod:: JobContext.checkpoint
+   .. automethod:: JobContext.report
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~JobContext.current_user
+      ~JobContext.job
+      ~JobContext.payload
+      ~JobContext.session
+
+   
+   .. autoattribute:: JobContext.current_user
+   .. autoattribute:: JobContext.job
+   .. autoattribute:: JobContext.payload
+   .. autoattribute:: JobContext.session
+   
+   

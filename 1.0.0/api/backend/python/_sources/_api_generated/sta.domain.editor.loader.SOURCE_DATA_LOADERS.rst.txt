@@ -1,0 +1,6 @@
+SOURCE\_DATA\_LOADERS
+=====================
+
+.. currentmodule:: sta.domain.editor.loader
+
+.. autodata:: SOURCE_DATA_LOADERS

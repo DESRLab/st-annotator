@@ -1,0 +1,36 @@
+PerfOperations
+==============
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfOperations
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfOperations.ENTITY_CREATE
+      ~PerfOperations.ENTITY_UPDATE
+      ~PerfOperations.ENTITY_DELETE
+      ~PerfOperations.ELEMENT_CREATE
+      ~PerfOperations.ELEMENT_UPDATE
+      ~PerfOperations.ELEMENT_DELETE
+
+   
+   .. autoattribute:: PerfOperations.ENTITY_CREATE
+   .. autoattribute:: PerfOperations.ENTITY_UPDATE
+   .. autoattribute:: PerfOperations.ENTITY_DELETE
+   .. autoattribute:: PerfOperations.ELEMENT_CREATE
+   .. autoattribute:: PerfOperations.ELEMENT_UPDATE
+   .. autoattribute:: PerfOperations.ELEMENT_DELETE
+   
+   

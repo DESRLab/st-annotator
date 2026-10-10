@@ -1,0 +1,64 @@
+SourceDataDomain
+================
+
+
+
+
+.. currentmodule:: sta.domain.source.data.base
+
+.. autoclass:: SourceDataDomain
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceDataDomain.attest_bounds
+      ~SourceDataDomain.build_list_query
+      ~SourceDataDomain.bulk_create_datas
+      ~SourceDataDomain.bulk_delete_datas
+      ~SourceDataDomain.bulk_update_datas
+      ~SourceDataDomain.can_read_data
+      ~SourceDataDomain.can_read_data_filters
+      ~SourceDataDomain.count_datas
+      ~SourceDataDomain.create_data
+      ~SourceDataDomain.delete_data
+      ~SourceDataDomain.list_datas
+      ~SourceDataDomain.list_datas_in_bounds
+      ~SourceDataDomain.list_pending_bounds
+      ~SourceDataDomain.mark_group_bounds_pending
+      ~SourceDataDomain.mark_rows_bounds_pending
+      ~SourceDataDomain.pending_bounds_group_ids
+      ~SourceDataDomain.read_data
+      ~SourceDataDomain.record_bounds_error
+      ~SourceDataDomain.require_data_writer
+      ~SourceDataDomain.update_data
+
+   
+   .. automethod:: SourceDataDomain.attest_bounds
+   .. automethod:: SourceDataDomain.build_list_query
+   .. automethod:: SourceDataDomain.bulk_create_datas
+   .. automethod:: SourceDataDomain.bulk_delete_datas
+   .. automethod:: SourceDataDomain.bulk_update_datas
+   .. automethod:: SourceDataDomain.can_read_data
+   .. automethod:: SourceDataDomain.can_read_data_filters
+   .. automethod:: SourceDataDomain.count_datas
+   .. automethod:: SourceDataDomain.create_data
+   .. automethod:: SourceDataDomain.delete_data
+   .. automethod:: SourceDataDomain.list_datas
+   .. automethod:: SourceDataDomain.list_datas_in_bounds
+   .. automethod:: SourceDataDomain.list_pending_bounds
+   .. automethod:: SourceDataDomain.mark_group_bounds_pending
+   .. automethod:: SourceDataDomain.mark_rows_bounds_pending
+   .. automethod:: SourceDataDomain.pending_bounds_group_ids
+   .. automethod:: SourceDataDomain.read_data
+   .. automethod:: SourceDataDomain.record_bounds_error
+   .. automethod:: SourceDataDomain.require_data_writer
+   .. automethod:: SourceDataDomain.update_data
+   
+   
+
+   
+   
+   

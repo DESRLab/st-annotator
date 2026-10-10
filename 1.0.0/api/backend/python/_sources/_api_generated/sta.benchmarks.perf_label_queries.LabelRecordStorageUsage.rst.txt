@@ -1,0 +1,30 @@
+LabelRecordStorageUsage
+=======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: LabelRecordStorageUsage
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelRecordStorageUsage.label_records_size_bytes
+      ~LabelRecordStorageUsage.label_entity_records_size_bytes
+      ~LabelRecordStorageUsage.label_element_records_size_bytes
+
+   
+   .. autoattribute:: LabelRecordStorageUsage.label_records_size_bytes
+   .. autoattribute:: LabelRecordStorageUsage.label_entity_records_size_bytes
+   .. autoattribute:: LabelRecordStorageUsage.label_element_records_size_bytes
+   
+   

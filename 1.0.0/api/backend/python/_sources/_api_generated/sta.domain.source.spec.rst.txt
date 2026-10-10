@@ -1,0 +1,33 @@
+sta.domain.source.spec
+======================
+
+.. currentmodule:: sta.domain.source
+
+.. automodule:: sta.domain.source.spec
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.source.spec.base
+

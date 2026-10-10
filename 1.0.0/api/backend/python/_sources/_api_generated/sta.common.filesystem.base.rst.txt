@@ -1,0 +1,40 @@
+sta.common.filesystem.base
+==========================
+
+.. currentmodule:: sta.common.filesystem
+
+.. automodule:: sta.common.filesystem.base
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      format_uri
+      fs_ctx
+      init_fs
+      resolve_uri
+
+   
+   .. autofunction:: format_uri
+   .. autofunction:: fs_ctx
+   .. autofunction:: init_fs
+   .. autofunction:: resolve_uri
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

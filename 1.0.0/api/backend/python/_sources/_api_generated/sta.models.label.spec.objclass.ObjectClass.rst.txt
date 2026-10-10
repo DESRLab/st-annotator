@@ -1,0 +1,61 @@
+ObjectClass
+===========
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClass
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClass.check_edit_conflict
+      ~ObjectClass.sqlmodel_update
+      ~ObjectClass.update_from_color
+
+   
+   .. automethod:: ObjectClass.check_edit_conflict
+   .. automethod:: ObjectClass.sqlmodel_update
+   .. automethod:: ObjectClass.update_from_color
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClass.color
+      ~ObjectClass.color_rgb
+      ~ObjectClass.default_size_x
+      ~ObjectClass.default_size_y
+      ~ObjectClass.default_size_z
+      ~ObjectClass.description
+      ~ObjectClass.id
+      ~ObjectClass.is_deleted
+      ~ObjectClass.last_edit_at
+      ~ObjectClass.model_config
+      ~ObjectClass.name
+      ~ObjectClass.selections
+
+   
+   .. autoattribute:: ObjectClass.color
+   .. autoattribute:: ObjectClass.color_rgb
+   .. autoattribute:: ObjectClass.default_size_x
+   .. autoattribute:: ObjectClass.default_size_y
+   .. autoattribute:: ObjectClass.default_size_z
+   .. autoattribute:: ObjectClass.description
+   .. autoattribute:: ObjectClass.id
+   .. autoattribute:: ObjectClass.is_deleted
+   .. autoattribute:: ObjectClass.last_edit_at
+   .. autoattribute:: ObjectClass.model_config
+   .. autoattribute:: ObjectClass.name
+   .. autoattribute:: ObjectClass.selections
+   
+   

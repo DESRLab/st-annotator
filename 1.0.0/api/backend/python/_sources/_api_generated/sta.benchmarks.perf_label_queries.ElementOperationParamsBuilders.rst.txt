@@ -1,0 +1,36 @@
+ElementOperationParamsBuilders
+==============================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: ElementOperationParamsBuilders
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ElementOperationParamsBuilders.create_op
+      ~ElementOperationParamsBuilders.create
+      ~ElementOperationParamsBuilders.update_op
+      ~ElementOperationParamsBuilders.update
+      ~ElementOperationParamsBuilders.delete_op
+      ~ElementOperationParamsBuilders.delete
+
+   
+   .. autoattribute:: ElementOperationParamsBuilders.create_op
+   .. autoattribute:: ElementOperationParamsBuilders.create
+   .. autoattribute:: ElementOperationParamsBuilders.update_op
+   .. autoattribute:: ElementOperationParamsBuilders.update
+   .. autoattribute:: ElementOperationParamsBuilders.delete_op
+   .. autoattribute:: ElementOperationParamsBuilders.delete
+   
+   

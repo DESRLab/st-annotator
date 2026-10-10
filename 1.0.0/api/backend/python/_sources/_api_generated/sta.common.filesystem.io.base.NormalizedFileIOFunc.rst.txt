@@ -1,0 +1,17 @@
+NormalizedFileIOFunc
+====================
+
+
+
+
+.. currentmodule:: sta.common.filesystem.io.base
+
+.. autoclass:: NormalizedFileIOFunc
+
+   
+   
+   
+
+   
+   
+   

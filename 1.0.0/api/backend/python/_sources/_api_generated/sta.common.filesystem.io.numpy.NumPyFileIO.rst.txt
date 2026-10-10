@@ -1,0 +1,49 @@
+NumPyFileIO
+===========
+
+
+
+
+.. currentmodule:: sta.common.filesystem.io.numpy
+
+.. autoclass:: NumPyFileIO
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~NumPyFileIO.normalize_uri_or_path
+      ~NumPyFileIO.read
+      ~NumPyFileIO.reader
+      ~NumPyFileIO.supports_read
+      ~NumPyFileIO.supports_write
+      ~NumPyFileIO.write
+      ~NumPyFileIO.writer
+
+   
+   .. automethod:: NumPyFileIO.normalize_uri_or_path
+   .. automethod:: NumPyFileIO.read
+   .. automethod:: NumPyFileIO.reader
+   .. automethod:: NumPyFileIO.supports_read
+   .. automethod:: NumPyFileIO.supports_write
+   .. automethod:: NumPyFileIO.write
+   .. automethod:: NumPyFileIO.writer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~NumPyFileIO.read_suffixes
+      ~NumPyFileIO.write_suffixes
+
+   
+   .. autoattribute:: NumPyFileIO.read_suffixes
+   .. autoattribute:: NumPyFileIO.write_suffixes
+   
+   

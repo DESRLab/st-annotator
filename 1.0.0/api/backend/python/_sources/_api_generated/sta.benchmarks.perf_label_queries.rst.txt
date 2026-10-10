@@ -1,0 +1,103 @@
+sta.benchmarks.perf\_label\_queries
+===================================
+
+.. currentmodule:: sta.benchmarks
+
+.. automodule:: sta.benchmarks.perf_label_queries
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      apply_extend_branch
+      apply_init_repo
+      apply_new_branch
+      create_benchmark_users
+      format_storage_metric
+      format_storage_usage
+      get_bbox_op_params_builders
+      get_import_func
+      get_label_record_storage_usage
+      get_op_params_builders
+      get_segmentation_op_params_builders
+      init_op_registry
+      perf_label_queries
+      random_points
+      run_user
+      run_user_step
+      run_user_worker
+      seed_benchmark_rng
+      split_rng_seeds
+      write_history
+
+   
+   .. autofunction:: apply_extend_branch
+   .. autofunction:: apply_init_repo
+   .. autofunction:: apply_new_branch
+   .. autofunction:: create_benchmark_users
+   .. autofunction:: format_storage_metric
+   .. autofunction:: format_storage_usage
+   .. autofunction:: get_bbox_op_params_builders
+   .. autofunction:: get_import_func
+   .. autofunction:: get_label_record_storage_usage
+   .. autofunction:: get_op_params_builders
+   .. autofunction:: get_segmentation_op_params_builders
+   .. autofunction:: init_op_registry
+   .. autofunction:: perf_label_queries
+   .. autofunction:: random_points
+   .. autofunction:: run_user
+   .. autofunction:: run_user_step
+   .. autofunction:: run_user_worker
+   .. autofunction:: seed_benchmark_rng
+   .. autofunction:: split_rng_seeds
+   .. autofunction:: write_history
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      DummyExecutor
+      ElementOperationParamsBuilders
+      EntityOperationParamsBuilders
+      HistoryItem
+      HistoryLabelCreateItem
+      HistoryLabelDeleteItem
+      HistoryLabelSelectItem
+      HistoryLabelUpdateItem
+      LabelRecordStorageUsage
+      OperationParamsBuilders
+      PerfCreateElement
+      PerfCreateElementParams
+      PerfCreateEntity
+      PerfCreateEntityParams
+      PerfDeleteElement
+      PerfDeleteElementParams
+      PerfDeleteEntity
+      PerfDeleteEntityParams
+      PerfHistory
+      PerfOperationParams
+      PerfOperations
+      PerfUpdateElement
+      PerfUpdateElementParams
+      PerfUpdateEntity
+      PerfUpdateEntityParams
+   
+   
+
+   
+   
+   
+
+
+

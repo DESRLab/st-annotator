@@ -1,0 +1,2256 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Spatial-Temporal Annotation">
+      
+      
+      
+        <link rel="canonical" href="https://desrlab.github.io/st-annotator/1.0.0/user/handbook/data/">
+      
+      
+        <link rel="prev" href="../account/">
+      
+      
+        <link rel="next" href="../project/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../_static/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Data Management - ST Annotator Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ST Annotator Documentation" class="md-header__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../../_static/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ST Annotator Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../install/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../dev/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CLI Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ST Annotator Documentation" class="md-nav__button md-logo" aria-label="ST Annotator Documentation" data-md-component="logo">
+      
+  <img src="../../../_static/logo.png" alt="logo">
+
+    </a>
+    ST Annotator Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DESRLab/st-annotator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DESRLab/st-annotator
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../host/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosting the ST Annotator Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registering a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ST Annotator Platform Handbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ST Annotator Platform Handbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Management
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-explorer-data-manager-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Explorer (data-manager only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-jobs-data-manager-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background Jobs (data-manager only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Label Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-groups_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-data-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Data Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-specifications_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Open Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-labelset-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Labelset Branches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manage Labelset Branches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-access-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Access Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#granting-branch-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Granting Branch Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-labelset-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Labelset Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build, Distribution, and Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../dev/design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Docs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/design/editor-state-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor State Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/design/background-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Jobs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/design/placeholder-values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Placeholder Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/backend/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-explorer-data-manager-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Explorer (data-manager only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-jobs-data-manager-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background Jobs (data-manager only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Label Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-groups_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-data-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Data Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-data-specifications_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Data Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Open Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-labelset-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage Labelset Branches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manage Labelset Branches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-access-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Access Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#granting-branch-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Granting Branch Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-labelset-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Labelset Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="data-management">Data Management</h1>
+<p>Datasets on the ST Annotator Platform are divided into source data and label data:</p>
+<ul>
+<li>Source data are inputted to the ML model.</li>
+<li>Label data are the expected outputs of the ML model.</li>
+</ul>
+<p>In the context of annotation, humans refer to source data to create label data. Before annotation can begin, source data must first be <a href="#source-data">registered</a> and label data <a href="#label-data">configured</a> on the platform.</p>
+<p>Below is a comprehensive list of workflows that relate to data management.</p>
+<h2 id="permissions">Permissions</h2>
+<p>The <code>data-manager</code> role is required to manage source and label data.</p>
+<p>Users with the <code>project-manager</code> role can access source and label data pages in read-only mode, but cannot use the file explorer; nor can they create, modify or delete data.</p>
+<h2 id="workflows">Workflows</h2>
+<h3 id="source-data">Source Data</h3>
+<p>To set up source data for a project, follow these steps:</p>
+<ol>
+<li>Use <a href="#source-data-groups">Manage Data Groups</a> to create a new group.</li>
+<li>Use <a href="#source-file-explorer">File Explorer</a> to select the files to include in the group; each file you register becomes a new data item.</li>
+<li>Use <a href="#source-data-items">Manage Data Items</a> to review those items and to change the group of any that are already registered.</li>
+<li>Use <a href="#source-data-specifications">Manage Data Specifications</a> to create the specifications of the relevant data type; each specification lists the groups it applies to under its <code>Source Groups</code> field.</li>
+</ol>
+<p>More details are provided below.</p>
+<p><a id="source-data-groups"></a></p>
+<h5 id="manage-data-groups">Manage Data Groups</h5>
+<p>Navigate to the Source Groups page (<code>Source Data &gt; Groups</code>) to view groups via a <a href="../#data-table">data table</a>.</p>
+<p>Users with the <code>data-manager</code> role can also add, modify and delete groups.</p>
+<p><a id="source-file-explorer"></a></p>
+<h5 id="file-explorer-data-manager-only">File Explorer (<code>data-manager</code> only)</h5>
+<p>Navigate the filesystem and register source data files to source groups via a <a href="../#data-table">data table</a>.</p>
+<p>The file explorer only creates new assignments. A file may be registered to several groups, and registering a file that another group already uses leaves that group untouched, but the explorer never changes or removes an item that is already registered. To reallocate an existing item, use <a href="#source-data-items">Manage Data Items</a>.</p>
+<p>When importing source metadata:</p>
+<ul>
+<li>The <code>Timestamp Range</code> fieldset lets you detect timestamps from filenames or enter a range by hand. <code>Detect timestamps from filenames</code> assigns each detected timestamp as both the minimum and maximum for that file. With the pattern input blank, detection recognizes <code>YYYY_MM_DD=HH_mm_ss_fff</code> (or six fractional digits) and a 13-digit Unix epoch timestamp in milliseconds. Enter a Python strftime style pattern such as <code>scan_%Y%m%d_%H%M%S</code> for another filename convention; numeric <code>%Y</code>, <code>%m</code>, <code>%d</code>, <code>%H</code>, <code>%M</code>, <code>%S</code>, and <code>%f</code> directives are supported. The pattern matches the whole filename stem, excluding directories and the extension. The dialog shows the number of matches; unmatched names get null timestamps. Turn off detection to enter timestamps by hand.</li>
+<li>In the <code>Spatial Bounds</code> fieldset, <code>Derive spatial bounds</code> calculates bounds from each scan; turn it off to enter bounds by hand.</li>
+<li>The <code>Transform</code> fieldset holds translation, rotation and scale.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can double-click on a directory to open it without having to use the context menu. Double-clicking a file does nothing; its actions live in the context menu. While the next directory loads, the current listing stays on screen under an <code>Opening &lt;directory&gt;</code> indicator and ignores further activations, so a slow directory load is visible rather than silent.</p>
+</div>
+<p><a id="source-data-items"></a></p>
+<h5 id="manage-data-items">Manage Data Items</h5>
+<p>Navigate to the Source Data Storage page (<code>Source Data &gt; Data Storage</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with to view its data items via a <a href="../#data-table">data table</a>. The items of a group are loaded once you select that group under <code>Source Group</code>.</p>
+<p>Users with the <code>data-manager</code> role can also add, modify and delete data items.</p>
+<p>You may edit the <code>Timestamp Range</code>, <code>Spatial Bounds</code>, and <code>Transform</code> of existing items, similar to the <a href="#source-file-explorer">File Explorer</a>. Each attribute you enable <strong>replaces</strong> what the selected items already hold, except for <code>Update Timestamp Range</code> and <code>Update Bounds Derivation</code> which automatically calculates <code>Timestamp Range</code> and <code>Spatial Bounds</code> for each item independently.</p>
+<p>Source group allocations of existing items are changed here rather than in the <a href="#source-file-explorer">File Explorer</a>: select the items and choose <code>Batch Edit Details</code>, then set the new group under <code>Update Source Group</code>. An item belongs to exactly one group, so a batch moves items between groups rather than taking them out of one: applying <code>Update Source Group</code> while its list is still unset reports that in the dialog and sends no request. The <code>Edit Details</code> form of a single item shows its group but keeps it fixed.</p>
+<p>Re-deriving spatial bounds means reading the item's stored data again, which is too much to ask of a save that touches a whole group, so those recomputations happen in the background instead: an item whose bounds a change has invalidated is marked as awaiting derivation and refreshed a moment later. A bounds is therefore allowed to lag the change that invalidated it -- which matters because a bounds decides which frames an item appears in -- and an item that cannot be refreshed at all (its group has no point cloud specification, or its stored file has gone) keeps the bounds it had rather than losing it. See <a href="#source-background-jobs">Background Jobs</a> for where that delay becomes visible.</p>
+<p>The <code>Update Source Group</code> list of the point cloud tab greys out a group that no point cloud specification lists yet, labelling it <code>(missing point cloud source)</code>, since an item there cannot be parsed without one. See <a href="../#batch-edit">Batch Edit</a> for how the dialog works.</p>
+<p><a id="source-data-specifications"></a></p>
+<h5 id="manage-data-specifications">Manage Data Specifications</h5>
+<p>Navigate to the Source Specifications page (<code>Source Data &gt; Specifications</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with to view its data specifications via a <a href="../#data-table">data table</a>.</p>
+<p>Users with the <code>data-manager</code> role can also add, modify and delete data specifications.</p>
+<p>A specification lists every group it parses under its <code>Source Groups</code> field, so one specification can serve several groups. The relationship is single-valued in the other direction: a group is listed by at most one specification of its data type, so adding a group that another specification already lists is rejected, and <code>Batch Edit Details</code> assigns groups to one selected specification at a time. Unlisting every group leaves the specification unassigned, parsing nothing until a group is added.</p>
+<p>A point cloud specification's <code>Preprocessors</code> open as two tabs: one card per operation, in the order they are applied, under <code>Preprocessors</code>, and the JSON that is actually saved under <code>Preprocessors (Raw JSON)</code>. Each card names its operation and shows only that operation's parameters, so switching the operation replaces them, and an empty list says so instead of showing nothing. The raw text is authoritative: while it holds something that does not parse as a preprocessor list, that tab is marked <code>invalid</code> and the cards keep showing the last list that did until it is fixed.</p>
+<p>You may select several specifications and choose <code>Batch Edit Details</code> to set <code>Name</code>, <code>Description</code>, <code>Source Groups</code>, and so on. The single-specification rule still holds under a batch: naming any group while more than one specification is selected keeps the dialog from applying the write, since the same list would be handed to each of them, and unassigning a group from its current owner is required first. Untick <code>Update Source Groups</code> to batch the other attributes over several specifications, or leave its picker empty to unassign every selected one. See <a href="../#batch-edit">Batch Edit</a> for how the dialog works.</p>
+<p>Because registering a data item needs a group that already has a specification of that type, create the specification before the group holds any items.</p>
+<p>Saving a specification adds, drops or replaces the groups it lists, and every group it touched -- the ones it left as well as the ones it joined -- has its data items re-derived against whatever specification owns them now. Removing a group therefore refreshes nothing in the group that stayed, and a group left without a specification keeps the boxes its items already hold until a specification lists it again.</p>
+<p><a id="source-background-jobs"></a></p>
+<h5 id="background-jobs-data-manager-only">Background Jobs (<code>data-manager</code> only)</h5>
+<p>Navigate to the Background Jobs page (<code>Source Data &gt; Background Jobs</code>) to see the work the platform has queued rather than performed inside a save.</p>
+<p>The page lists every job by default, with its description, its state (<code>pending</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code> or <code>cancelled</code>), how far it has got, when it was created, started and finished, and -- for a job that failed or was cancelled -- the <code>Error</code> that ended it. Use the <code>State</code> filter to narrow the inventory; clearing it returns to all states. The page refreshes itself while anything is still queued or running, and stops refreshing once the queue is idle. A data manager can cancel a running job from its row menu; the command is absent for every other state. Cancellation does not undo work the job already checkpointed, and blocking work already executing may continue until it returns, but it cannot change the row back from <code>cancelled</code>. The page offers no retry: work is queued again the next time you change the data it covers.</p>
+<p>Below the list, the page counts the data items still awaiting a spatial-bounds derivation, one row per data type, each linking to that type's Data Storage tab. That count is the durable measure of what is owed: a job row only reports progress, so a job lost to a restart leaves its items counted here all the same. A count that falls between refreshes is a sweep working through the group; a count that stays put means those items cannot be derived as things stand -- their group has no specification of that data type, or their stored file cannot be read -- and each keeps the bounds it already had until that changes.</p>
+<p>A save that starts work says so on the page you made it: it reports how many jobs the queue took on and links to exactly those, in whatever state they have since reached. A save that queued nothing says nothing, which is an answer rather than an omission -- a change that cannot move a derived box, or one whose work is already waiting, starts no job to look at.</p>
+<h3 id="label-data">Label Data</h3>
+<p>To set up label data for a project, follow these steps:</p>
+<ol>
+<li>Use <a href="#label-data-groups">Manage Data Groups</a> to create a new group.</li>
+<li>Use <a href="#label-data-specifications">Manage Data Specifications</a> to define the object classes that may be labelled, and to select the object classes to include for that group; each selection lists the groups it applies to under its <code>Label Groups</code> field.</li>
+<li>Use <a href="#labelset-branches">Manage Labelset Branches</a> to create the branch for each annotator and reviewer, granting each of them <code>Write</code> access to the branches they will save to.<ul>
+<li>To avoid conflicts between users, each annotator should have their own branch, while each supervisor should have access to the branch of each annotator they plan to review. Supervisors should also avoid editing the dataset while reviewing an annotator's work.</li>
+</ul>
+</li>
+</ol>
+<p>To view the annotated labels from a project, follow these steps:</p>
+<ol>
+<li>Use <a href="#label-data-items">View Data Items</a> to view the data at the head commit of each labelset branch.</li>
+<li>Use <a href="#labelset-commits">View Labelset Commits</a> for a more detailed view of the annotation operations involved.</li>
+</ol>
+<p>More details are provided below.</p>
+<p><a id="label-data-groups"></a></p>
+<h5 id="manage-data-groups_1">Manage Data Groups</h5>
+<p>Navigate to the Label Groups page (<code>Label Data &gt; Groups</code>) to view groups via a <a href="../#data-table">data table</a>.</p>
+<p>Users with the <code>data-manager</code> role can also add, modify and delete groups.</p>
+<p><a id="label-data-items"></a></p>
+<h5 id="view-data-items">View Data Items</h5>
+<p>Navigate to the Label Data Storage page (<code>Label Data &gt; Data Storage</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with, then select the group under <code>Label Group</code> and the commit under <code>Commit</code> (each commit is named after the branch whose head or checkpoint it is) to view its data items via a <a href="../#data-table">data table</a>.</p>
+<p><a id="label-data-specifications"></a></p>
+<h5 id="manage-data-specifications_1">Manage Data Specifications</h5>
+<p>Navigate to the Label Specifications page (<code>Label Data &gt; Specifications</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with to view its data specifications via a <a href="../#data-table">data table</a>. Users with the <code>data-manager</code> role can also add, modify and delete data specifications.</p>
+<p>Object classes are the only label specifications that the platform provides out of the box, and are managed on the <code>Object Classes</code> page (<code>Label Data &gt; Specifications &gt; Object Classes</code>), which provides two tabs:</p>
+<ul>
+<li><code>Definitions</code> sets the details of each object class.</li>
+<li><code>Selections</code> sets the object classes to include for each label group.</li>
+</ul>
+<p>A selection applies to every group it lists under <code>Label Groups</code>, so one selection can serve several groups, and a group is listed by at most one selection. Leaving <code>Label Groups</code> empty keeps the selection unassigned; a group with no selection offers no object classes to label.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Create the object class definitions under <code>Definitions</code> first, so that they can be included in a selection under <code>Selections</code>.</p>
+</div>
+<h4 id="open-repository">Open Repository</h4>
+<p>Navigate to the Repositories page (<code>Label Data &gt; Repositories</code>), then right-click a row in the <a href="../#data-table">data table</a> and choose <code>Open Repository</code> to access the site of the repository corresponding to the label group.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can double-click on a repository to open it without having to use the context menu.</p>
+</div>
+<p><a id="labelset-branches"></a></p>
+<h5 id="manage-labelset-branches">Manage Labelset Branches</h5>
+<p>Navigate to the <code>Branches</code> page of a repository to view its branches via a <a href="../#data-table">data table</a>. The <code>Your Access</code> column shows the level you hold on each branch.</p>
+<p>Only users with the <code>data-manager</code> role see the <code>Create Branch</code> button. A <code>data-manager</code> can modify and delete an existing branch. A user with <code>Admin</code> on that branch can do the same; other users open it read-only as <code>View Branch</code>. Branch names must be unique within a repository, although another repository may use the same name.</p>
+<h6 id="branch-access-levels">Branch Access Levels</h6>
+<p>Access is granted per user, on one branch at a time. Pick a level for each account in the <code>Permissions</code> section of the create or edit form; your own row stays <code>Admin</code> while you edit.</p>
+<ul>
+<li><code>None</code>: the branch is invisible to that user, unless one of the role overrides below grants them a level on every branch.</li>
+<li><code>Read</code>: the branch and its commits can be viewed, and its labels can be opened in the annotation editor, but nothing can be saved to it.</li>
+<li><code>Write</code>: commits can be saved to the branch, and label data can be created, updated and deleted at its commits. This is the level an annotator needs.</li>
+<li><code>Write Elevated</code>: offered between the two levels above. Behaves like <code>Write</code> with access to additional operations such as merging datasets (to be implemented in the future). This is the level a reviewer needs.</li>
+<li><code>Admin</code>: everything above, plus renaming and deleting the branch and editing its <code>Permissions</code>.</li>
+</ul>
+<p>A role adds to whatever level is assigned to a user. A <code>data-manager</code> holds every level on every branch without a grant of their own, which is what the <code>Your Access</code> column shows for them. A <code>project-manager</code> holds <code>Read</code> on every branch without a grant of their own, so every branch of a repository appears in their <code>Branches</code> page, and the ones carrying no grant for them show <code>None</code> in <code>Your Access</code> and open as <code>View Branch</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Granting someone their first access to a repository can require an <code>admin</code> or <code>data-manager</code>. Accounts listed in the <code>Permissions</code> picker are the ones the editor may see: <code>admin</code> users get every account, while <code>data-manager</code>s only get their own account plus accounts that already hold a grant on some branch of that repository.</p>
+</div>
+<h6 id="granting-branch-access">Granting Branch Access</h6>
+<ol>
+<li>Navigate to <code>Label Data &gt; Repositories</code>, then choose <code>Open Repository</code> on the repository that holds the branch.</li>
+<li>On the <code>Branches</code> page, choose <code>Create Branch</code> to make one, or <code>Open Details</code> on an existing branch to change its access.</li>
+<li>In the <code>Permissions</code> section, set each account's level: <code>Write</code> for the annotators who will save to the branch, <code>Write Elevated</code> for the reviewers, and <code>Admin</code> for whoever should manage it.</li>
+<li>Save the form.</li>
+</ol>
+<p>Assigning frames then requires those same grants: see <a href="../project/#edit-frames">Edit Frames</a>.</p>
+<p><a id="labelset-commits"></a></p>
+<h5 id="view-labelset-commits">View Labelset Commits</h5>
+<p>Navigate to the <code>Commits</code> page to view the commit graph of that repository.</p>
+<p>Hover over an tag or commit in the graph to view more details.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../account/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Account Management">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Account Management
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../project/" class="md-footer__link md-footer__link--next" aria-label="Next: Project Management">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Project Management
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 DESRLab
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.footer", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

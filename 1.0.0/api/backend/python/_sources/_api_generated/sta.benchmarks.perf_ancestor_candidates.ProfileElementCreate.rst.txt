@@ -1,0 +1,89 @@
+ProfileElementCreate
+====================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_ancestor_candidates
+
+.. autoclass:: ProfileElementCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProfileElementCreate.build_table_base_cls
+      ~ProfileElementCreate.check_edit_conflict
+      ~ProfileElementCreate.get_create_cls
+      ~ProfileElementCreate.get_public_cls
+      ~ProfileElementCreate.get_table_cls
+      ~ProfileElementCreate.get_update_cls
+      ~ProfileElementCreate.sqlmodel_update
+      ~ProfileElementCreate.unpack_max_coords
+      ~ProfileElementCreate.unpack_min_coords
+      ~ProfileElementCreate.unpack_st_bounds
+      ~ProfileElementCreate.update_from_st_bounds
+
+   
+   .. automethod:: ProfileElementCreate.build_table_base_cls
+   .. automethod:: ProfileElementCreate.check_edit_conflict
+   .. automethod:: ProfileElementCreate.get_create_cls
+   .. automethod:: ProfileElementCreate.get_public_cls
+   .. automethod:: ProfileElementCreate.get_table_cls
+   .. automethod:: ProfileElementCreate.get_update_cls
+   .. automethod:: ProfileElementCreate.sqlmodel_update
+   .. automethod:: ProfileElementCreate.unpack_max_coords
+   .. automethod:: ProfileElementCreate.unpack_min_coords
+   .. automethod:: ProfileElementCreate.unpack_st_bounds
+   .. automethod:: ProfileElementCreate.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProfileElementCreate.COORD_TYPE
+      ~ProfileElementCreate.max_coords
+      ~ProfileElementCreate.min_coords
+      ~ProfileElementCreate.model_config
+      ~ProfileElementCreate.st_bounds
+      ~ProfileElementCreate.entity_id
+      ~ProfileElementCreate.min_x
+      ~ProfileElementCreate.min_y
+      ~ProfileElementCreate.min_z
+      ~ProfileElementCreate.max_x
+      ~ProfileElementCreate.max_y
+      ~ProfileElementCreate.max_z
+      ~ProfileElementCreate.min_timestamp
+      ~ProfileElementCreate.max_timestamp
+      ~ProfileElementCreate.group_id
+      ~ProfileElementCreate.commit_hash
+      ~ProfileElementCreate.is_deleted
+      ~ProfileElementCreate.last_edit_at
+
+   
+   .. autoattribute:: ProfileElementCreate.COORD_TYPE
+   .. autoattribute:: ProfileElementCreate.max_coords
+   .. autoattribute:: ProfileElementCreate.min_coords
+   .. autoattribute:: ProfileElementCreate.model_config
+   .. autoattribute:: ProfileElementCreate.st_bounds
+   .. autoattribute:: ProfileElementCreate.entity_id
+   .. autoattribute:: ProfileElementCreate.min_x
+   .. autoattribute:: ProfileElementCreate.min_y
+   .. autoattribute:: ProfileElementCreate.min_z
+   .. autoattribute:: ProfileElementCreate.max_x
+   .. autoattribute:: ProfileElementCreate.max_y
+   .. autoattribute:: ProfileElementCreate.max_z
+   .. autoattribute:: ProfileElementCreate.min_timestamp
+   .. autoattribute:: ProfileElementCreate.max_timestamp
+   .. autoattribute:: ProfileElementCreate.group_id
+   .. autoattribute:: ProfileElementCreate.commit_hash
+   .. autoattribute:: ProfileElementCreate.is_deleted
+   .. autoattribute:: ProfileElementCreate.last_edit_at
+   
+   

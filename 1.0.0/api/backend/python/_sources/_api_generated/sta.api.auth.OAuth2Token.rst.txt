@@ -1,0 +1,34 @@
+OAuth2Token
+===========
+
+
+
+
+.. currentmodule:: sta.api.auth
+
+.. autoclass:: OAuth2Token
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OAuth2Token.model_config
+      ~OAuth2Token.access_token
+      ~OAuth2Token.token_type
+      ~OAuth2Token.expires_in
+      ~OAuth2Token.refresh_token
+
+   
+   .. autoattribute:: OAuth2Token.model_config
+   .. autoattribute:: OAuth2Token.access_token
+   .. autoattribute:: OAuth2Token.token_type
+   .. autoattribute:: OAuth2Token.expires_in
+   .. autoattribute:: OAuth2Token.refresh_token
+   
+   

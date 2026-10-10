@@ -1,0 +1,32 @@
+sta.domain.label.repo.ops.base.delete
+=====================================
+
+.. currentmodule:: sta.domain.label.repo.ops.base
+
+.. automodule:: sta.domain.label.repo.ops.base.delete
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      DeleteBase
+   
+   
+
+   
+   
+   
+
+
+

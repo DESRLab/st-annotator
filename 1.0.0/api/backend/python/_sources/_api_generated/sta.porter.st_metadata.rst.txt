@@ -1,0 +1,34 @@
+sta.porter.st\_metadata
+=======================
+
+.. currentmodule:: sta.porter
+
+.. automodule:: sta.porter.st_metadata
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      STInfoRow
+      STMetadata
+      STMetadataReader
+   
+   
+
+   
+   
+   
+
+
+

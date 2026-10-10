@@ -1,0 +1,41 @@
+sta.models.task
+===============
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.task
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Task
+      TaskAnnotator
+      TaskBulkUpdate
+      TaskCreate
+      TaskPublic
+      TaskPublicFlat
+      TaskPublicWithParents
+      TaskSupervisor
+      TaskUpdate
+      WorkType
+   
+   
+
+   
+   
+   
+
+
+

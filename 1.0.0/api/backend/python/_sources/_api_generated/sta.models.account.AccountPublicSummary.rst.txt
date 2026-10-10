@@ -1,0 +1,30 @@
+AccountPublicSummary
+====================
+
+
+
+
+.. currentmodule:: sta.models.account
+
+.. autoclass:: AccountPublicSummary
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AccountPublicSummary.model_config
+      ~AccountPublicSummary.id
+      ~AccountPublicSummary.username
+
+   
+   .. autoattribute:: AccountPublicSummary.model_config
+   .. autoattribute:: AccountPublicSummary.id
+   .. autoattribute:: AccountPublicSummary.username
+   
+   

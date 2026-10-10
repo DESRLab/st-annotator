@@ -1,0 +1,47 @@
+ProjectCreate
+=============
+
+
+
+
+.. currentmodule:: sta.models.project
+
+.. autoclass:: ProjectCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProjectCreate.check_edit_conflict
+      ~ProjectCreate.sqlmodel_update
+
+   
+   .. automethod:: ProjectCreate.check_edit_conflict
+   .. automethod:: ProjectCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectCreate.model_config
+      ~ProjectCreate.member_ids
+      ~ProjectCreate.name
+      ~ProjectCreate.description
+      ~ProjectCreate.config
+      ~ProjectCreate.last_edit_at
+
+   
+   .. autoattribute:: ProjectCreate.model_config
+   .. autoattribute:: ProjectCreate.member_ids
+   .. autoattribute:: ProjectCreate.name
+   .. autoattribute:: ProjectCreate.description
+   .. autoattribute:: ProjectCreate.config
+   .. autoattribute:: ProjectCreate.last_edit_at
+   
+   

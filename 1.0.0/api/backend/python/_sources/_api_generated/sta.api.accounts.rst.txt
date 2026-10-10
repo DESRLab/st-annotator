@@ -1,0 +1,44 @@
+sta.api.accounts
+================
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.accounts
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_accounts
+      create_account
+      delete_account
+      list_accounts
+      read_account
+      update_account
+
+   
+   .. autofunction:: bulk_update_accounts
+   .. autofunction:: create_account
+   .. autofunction:: delete_account
+   .. autofunction:: list_accounts
+   .. autofunction:: read_account
+   .. autofunction:: update_account
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

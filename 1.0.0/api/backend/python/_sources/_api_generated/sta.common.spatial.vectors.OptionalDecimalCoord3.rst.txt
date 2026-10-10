@@ -1,0 +1,65 @@
+OptionalDecimalCoord3
+=====================
+
+
+
+
+.. currentmodule:: sta.common.spatial.vectors
+
+.. autoclass:: OptionalDecimalCoord3
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OptionalDecimalCoord3.copy_with
+      ~OptionalDecimalCoord3.empty
+      ~OptionalDecimalCoord3.equals
+      ~OptionalDecimalCoord3.filled
+      ~OptionalDecimalCoord3.from_dict
+      ~OptionalDecimalCoord3.from_tuple
+      ~OptionalDecimalCoord3.get
+      ~OptionalDecimalCoord3.of
+      ~OptionalDecimalCoord3.ones
+      ~OptionalDecimalCoord3.to_dict
+      ~OptionalDecimalCoord3.to_float
+      ~OptionalDecimalCoord3.to_tuple
+      ~OptionalDecimalCoord3.zeros
+
+   
+   .. automethod:: OptionalDecimalCoord3.copy_with
+   .. automethod:: OptionalDecimalCoord3.empty
+   .. automethod:: OptionalDecimalCoord3.equals
+   .. automethod:: OptionalDecimalCoord3.filled
+   .. automethod:: OptionalDecimalCoord3.from_dict
+   .. automethod:: OptionalDecimalCoord3.from_tuple
+   .. automethod:: OptionalDecimalCoord3.get
+   .. automethod:: OptionalDecimalCoord3.of
+   .. automethod:: OptionalDecimalCoord3.ones
+   .. automethod:: OptionalDecimalCoord3.to_dict
+   .. automethod:: OptionalDecimalCoord3.to_float
+   .. automethod:: OptionalDecimalCoord3.to_tuple
+   .. automethod:: OptionalDecimalCoord3.zeros
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OptionalDecimalCoord3.model_config
+      ~OptionalDecimalCoord3.x
+      ~OptionalDecimalCoord3.y
+      ~OptionalDecimalCoord3.z
+
+   
+   .. autoattribute:: OptionalDecimalCoord3.model_config
+   .. autoattribute:: OptionalDecimalCoord3.x
+   .. autoattribute:: OptionalDecimalCoord3.y
+   .. autoattribute:: OptionalDecimalCoord3.z
+   
+   

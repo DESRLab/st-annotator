@@ -1,0 +1,38 @@
+Registry
+========
+
+
+
+
+.. currentmodule:: sta.common.utils.registry
+
+.. autoclass:: Registry
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Registry.clear
+      ~Registry.deregister
+      ~Registry.get
+      ~Registry.items
+      ~Registry.keys
+      ~Registry.register
+      ~Registry.values
+
+   
+   .. automethod:: Registry.clear
+   .. automethod:: Registry.deregister
+   .. automethod:: Registry.get
+   .. automethod:: Registry.items
+   .. automethod:: Registry.keys
+   .. automethod:: Registry.register
+   .. automethod:: Registry.values
+   
+   
+
+   
+   
+   

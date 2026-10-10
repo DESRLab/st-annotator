@@ -1,0 +1,30 @@
+Pagination
+==========
+
+
+
+
+.. currentmodule:: sta.domain.querying
+
+.. autoclass:: Pagination
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Pagination.model_config
+      ~Pagination.offset
+      ~Pagination.limit
+
+   
+   .. autoattribute:: Pagination.model_config
+   .. autoattribute:: Pagination.offset
+   .. autoattribute:: Pagination.limit
+   
+   

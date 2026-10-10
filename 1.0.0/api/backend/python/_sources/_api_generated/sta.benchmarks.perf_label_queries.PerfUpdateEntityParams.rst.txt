@@ -1,0 +1,40 @@
+PerfUpdateEntityParams
+======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfUpdateEntityParams
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfUpdateEntityParams.model_config
+      ~PerfUpdateEntityParams.builders
+      ~PerfUpdateEntityParams.entity_id
+      ~PerfUpdateEntityParams.step
+      ~PerfUpdateEntityParams.num_entities
+      ~PerfUpdateEntityParams.num_elements
+      ~PerfUpdateEntityParams.history
+      ~PerfUpdateEntityParams.insert_hash_to_distance_perf
+
+   
+   .. autoattribute:: PerfUpdateEntityParams.model_config
+   .. autoattribute:: PerfUpdateEntityParams.builders
+   .. autoattribute:: PerfUpdateEntityParams.entity_id
+   .. autoattribute:: PerfUpdateEntityParams.step
+   .. autoattribute:: PerfUpdateEntityParams.num_entities
+   .. autoattribute:: PerfUpdateEntityParams.num_elements
+   .. autoattribute:: PerfUpdateEntityParams.history
+   .. autoattribute:: PerfUpdateEntityParams.insert_hash_to_distance_perf
+   
+   

@@ -1,0 +1,65 @@
+Vector3
+=======
+
+
+
+
+.. currentmodule:: sta.common.spatial.vectors
+
+.. autoclass:: Vector3
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Vector3.copy_with
+      ~Vector3.equals
+      ~Vector3.from_array
+      ~Vector3.from_dict
+      ~Vector3.from_tuple
+      ~Vector3.get
+      ~Vector3.of
+      ~Vector3.ones
+      ~Vector3.to_array
+      ~Vector3.to_decimal
+      ~Vector3.to_dict
+      ~Vector3.to_tuple
+      ~Vector3.zeros
+
+   
+   .. automethod:: Vector3.copy_with
+   .. automethod:: Vector3.equals
+   .. automethod:: Vector3.from_array
+   .. automethod:: Vector3.from_dict
+   .. automethod:: Vector3.from_tuple
+   .. automethod:: Vector3.get
+   .. automethod:: Vector3.of
+   .. automethod:: Vector3.ones
+   .. automethod:: Vector3.to_array
+   .. automethod:: Vector3.to_decimal
+   .. automethod:: Vector3.to_dict
+   .. automethod:: Vector3.to_tuple
+   .. automethod:: Vector3.zeros
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Vector3.model_config
+      ~Vector3.x
+      ~Vector3.y
+      ~Vector3.z
+
+   
+   .. autoattribute:: Vector3.model_config
+   .. autoattribute:: Vector3.x
+   .. autoattribute:: Vector3.y
+   .. autoattribute:: Vector3.z
+   
+   

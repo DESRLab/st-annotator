@@ -1,0 +1,44 @@
+sta.api.label.spec.objclass.selections
+======================================
+
+.. currentmodule:: sta.api.label.spec.objclass
+
+.. automodule:: sta.api.label.spec.objclass.selections
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_selections
+      create_selection
+      delete_selection
+      list_selections
+      read_selection
+      update_selection
+
+   
+   .. autofunction:: bulk_update_selections
+   .. autofunction:: create_selection
+   .. autofunction:: delete_selection
+   .. autofunction:: list_selections
+   .. autofunction:: read_selection
+   .. autofunction:: update_selection
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

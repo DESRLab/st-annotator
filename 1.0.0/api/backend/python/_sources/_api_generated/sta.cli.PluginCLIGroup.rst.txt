@@ -1,0 +1,69 @@
+PluginCLIGroup
+==============
+
+
+
+
+.. currentmodule:: sta.cli
+
+.. autoclass:: PluginCLIGroup
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PluginCLIGroup.get_command
+      ~PluginCLIGroup.invoke
+      ~PluginCLIGroup.list_commands
+
+   
+   .. automethod:: PluginCLIGroup.get_command
+   .. automethod:: PluginCLIGroup.invoke
+   .. automethod:: PluginCLIGroup.list_commands
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PluginCLIGroup.commands
+      ~PluginCLIGroup.invoke_without_command
+      ~PluginCLIGroup.subcommand_metavar
+      ~PluginCLIGroup.chain
+      ~PluginCLIGroup.name
+      ~PluginCLIGroup.context_settings
+      ~PluginCLIGroup.callback
+      ~PluginCLIGroup.params
+      ~PluginCLIGroup.help
+      ~PluginCLIGroup.epilog
+      ~PluginCLIGroup.options_metavar
+      ~PluginCLIGroup.short_help
+      ~PluginCLIGroup.add_help_option
+      ~PluginCLIGroup.no_args_is_help
+      ~PluginCLIGroup.hidden
+      ~PluginCLIGroup.deprecated
+
+   
+   .. autoattribute:: PluginCLIGroup.commands
+   .. autoattribute:: PluginCLIGroup.invoke_without_command
+   .. autoattribute:: PluginCLIGroup.subcommand_metavar
+   .. autoattribute:: PluginCLIGroup.chain
+   .. autoattribute:: PluginCLIGroup.name
+   .. autoattribute:: PluginCLIGroup.context_settings
+   .. autoattribute:: PluginCLIGroup.callback
+   .. autoattribute:: PluginCLIGroup.params
+   .. autoattribute:: PluginCLIGroup.help
+   .. autoattribute:: PluginCLIGroup.epilog
+   .. autoattribute:: PluginCLIGroup.options_metavar
+   .. autoattribute:: PluginCLIGroup.short_help
+   .. autoattribute:: PluginCLIGroup.add_help_option
+   .. autoattribute:: PluginCLIGroup.no_args_is_help
+   .. autoattribute:: PluginCLIGroup.hidden
+   .. autoattribute:: PluginCLIGroup.deprecated
+   
+   

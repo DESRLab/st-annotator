@@ -1,0 +1,25 @@
+sta.api.label.data
+==================
+
+.. currentmodule:: sta.api.label
+
+.. automodule:: sta.api.label.data
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

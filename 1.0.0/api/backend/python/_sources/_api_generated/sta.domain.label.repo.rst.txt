@@ -1,0 +1,37 @@
+sta.domain.label.repo
+=====================
+
+.. currentmodule:: sta.domain.label
+
+.. automodule:: sta.domain.label.repo
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.label.repo.branches
+   sta.domain.label.repo.commits
+   sta.domain.label.repo.graph
+   sta.domain.label.repo.ops
+   sta.domain.label.repo.placeholder
+

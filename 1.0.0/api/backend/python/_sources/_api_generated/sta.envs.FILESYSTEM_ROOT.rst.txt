@@ -1,0 +1,6 @@
+FILESYSTEM\_ROOT
+================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: FILESYSTEM_ROOT

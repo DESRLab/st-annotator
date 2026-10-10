@@ -1,0 +1,49 @@
+LabelsetCommitPublicWithParents
+===============================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetCommitPublicWithParents
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetCommitPublicWithParents.check_edit_conflict
+      ~LabelsetCommitPublicWithParents.sqlmodel_update
+
+   
+   .. automethod:: LabelsetCommitPublicWithParents.check_edit_conflict
+   .. automethod:: LabelsetCommitPublicWithParents.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetCommitPublicWithParents.model_config
+      ~LabelsetCommitPublicWithParents.parents
+      ~LabelsetCommitPublicWithParents.group
+      ~LabelsetCommitPublicWithParents.group_id
+      ~LabelsetCommitPublicWithParents.hash
+      ~LabelsetCommitPublicWithParents.operations
+      ~LabelsetCommitPublicWithParents.last_edit_at
+
+   
+   .. autoattribute:: LabelsetCommitPublicWithParents.model_config
+   .. autoattribute:: LabelsetCommitPublicWithParents.parents
+   .. autoattribute:: LabelsetCommitPublicWithParents.group
+   .. autoattribute:: LabelsetCommitPublicWithParents.group_id
+   .. autoattribute:: LabelsetCommitPublicWithParents.hash
+   .. autoattribute:: LabelsetCommitPublicWithParents.operations
+   .. autoattribute:: LabelsetCommitPublicWithParents.last_edit_at
+   
+   

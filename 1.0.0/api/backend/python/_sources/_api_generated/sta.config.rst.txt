@@ -1,0 +1,46 @@
+sta.config
+==========
+
+.. currentmodule:: sta
+
+.. automodule:: sta.config
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      config_ctx
+      get_config
+      obj_from_path
+
+   
+   .. autofunction:: config_ctx
+   .. autofunction:: get_config
+   .. autofunction:: obj_from_path
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      AppConfig
+      AppConfigArgs
+   
+   
+
+   
+   
+   
+
+
+

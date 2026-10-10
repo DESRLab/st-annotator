@@ -1,0 +1,65 @@
+sta.domain.jobs.base
+====================
+
+.. currentmodule:: sta.domain.jobs
+
+.. automodule:: sta.domain.jobs.base
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CHECKPOINT_EVERY
+      JOB_EXECUTORS
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      cancel_job
+      claim_next_job
+      count_jobs
+      enqueue_job
+      list_jobs
+      register_job_executor
+      request_job_cancellation
+      run_job
+      run_pending_jobs
+
+   
+   .. autofunction:: cancel_job
+   .. autofunction:: claim_next_job
+   .. autofunction:: count_jobs
+   .. autofunction:: enqueue_job
+   .. autofunction:: list_jobs
+   .. autofunction:: register_job_executor
+   .. autofunction:: request_job_cancellation
+   .. autofunction:: run_job
+   .. autofunction:: run_pending_jobs
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      JobContext
+   
+   
+
+   
+   
+   
+
+
+

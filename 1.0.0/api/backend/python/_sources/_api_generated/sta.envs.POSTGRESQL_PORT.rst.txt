@@ -1,0 +1,6 @@
+POSTGRESQL\_PORT
+================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: POSTGRESQL_PORT

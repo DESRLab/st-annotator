@@ -1,0 +1,32 @@
+LoginRateLimiter
+================
+
+
+
+
+.. currentmodule:: sta.api.rate_limit
+
+.. autoclass:: LoginRateLimiter
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LoginRateLimiter.check
+      ~LoginRateLimiter.from_env
+      ~LoginRateLimiter.refund
+      ~LoginRateLimiter.reset
+
+   
+   .. automethod:: LoginRateLimiter.check
+   .. automethod:: LoginRateLimiter.from_env
+   .. automethod:: LoginRateLimiter.refund
+   .. automethod:: LoginRateLimiter.reset
+   
+   
+
+   
+   
+   

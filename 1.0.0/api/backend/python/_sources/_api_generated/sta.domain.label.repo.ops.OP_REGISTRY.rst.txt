@@ -1,0 +1,6 @@
+OP\_REGISTRY
+============
+
+.. currentmodule:: sta.domain.label.repo.ops
+
+.. autodata:: OP_REGISTRY

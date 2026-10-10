@@ -1,0 +1,49 @@
+LabelDataTableLike
+==================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelDataTableLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelDataTableLike.model_dump
+      ~LabelDataTableLike.model_validate
+      ~LabelDataTableLike.sqlmodel_update
+
+   
+   .. automethod:: LabelDataTableLike.model_dump
+   .. automethod:: LabelDataTableLike.model_validate
+   .. automethod:: LabelDataTableLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelDataTableLike.model_fields_set
+      ~LabelDataTableLike.id
+      ~LabelDataTableLike.commit
+      ~LabelDataTableLike.group_id
+      ~LabelDataTableLike.commit_hash
+      ~LabelDataTableLike.is_deleted
+
+   
+   .. autoattribute:: LabelDataTableLike.model_fields_set
+   .. autoattribute:: LabelDataTableLike.id
+   .. autoattribute:: LabelDataTableLike.commit
+   .. autoattribute:: LabelDataTableLike.group_id
+   .. autoattribute:: LabelDataTableLike.commit_hash
+   .. autoattribute:: LabelDataTableLike.is_deleted
+   
+   

@@ -1,0 +1,36 @@
+sta.models.source.group
+=======================
+
+.. currentmodule:: sta.models.source
+
+.. automodule:: sta.models.source.group
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      SourceGroup
+      SourceGroupBulkUpdate
+      SourceGroupCreate
+      SourceGroupPublic
+      SourceGroupUpdate
+   
+   
+
+   
+   
+   
+
+
+

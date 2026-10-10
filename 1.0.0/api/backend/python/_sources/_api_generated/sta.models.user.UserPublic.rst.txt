@@ -1,0 +1,53 @@
+UserPublic
+==========
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: UserPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~UserPublic.check_edit_conflict
+      ~UserPublic.has_role
+      ~UserPublic.sqlmodel_update
+
+   
+   .. automethod:: UserPublic.check_edit_conflict
+   .. automethod:: UserPublic.has_role
+   .. automethod:: UserPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UserPublic.model_config
+      ~UserPublic.id
+      ~UserPublic.roles
+      ~UserPublic.username
+      ~UserPublic.created_at
+      ~UserPublic.prev_login_at
+      ~UserPublic.current_login_at
+      ~UserPublic.last_edit_at
+
+   
+   .. autoattribute:: UserPublic.model_config
+   .. autoattribute:: UserPublic.id
+   .. autoattribute:: UserPublic.roles
+   .. autoattribute:: UserPublic.username
+   .. autoattribute:: UserPublic.created_at
+   .. autoattribute:: UserPublic.prev_login_at
+   .. autoattribute:: UserPublic.current_login_at
+   .. autoattribute:: UserPublic.last_edit_at
+   
+   

@@ -1,0 +1,6 @@
+STA\_ASSISTANT\_MAX\_REQUEST\_BYTES
+===================================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_ASSISTANT_MAX_REQUEST_BYTES

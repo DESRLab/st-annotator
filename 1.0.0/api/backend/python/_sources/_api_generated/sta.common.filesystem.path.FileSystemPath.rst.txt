@@ -1,0 +1,95 @@
+FileSystemPath
+==============
+
+
+
+
+.. currentmodule:: sta.common.filesystem.path
+
+.. autoclass:: FileSystemPath
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FileSystemPath.as_uri
+      ~FileSystemPath.copyfile_to
+      ~FileSystemPath.exists
+      ~FileSystemPath.from_uri
+      ~FileSystemPath.glob
+      ~FileSystemPath.is_absolute
+      ~FileSystemPath.is_dir
+      ~FileSystemPath.is_file
+      ~FileSystemPath.is_relative_to
+      ~FileSystemPath.iterdir
+      ~FileSystemPath.match
+      ~FileSystemPath.mkdir
+      ~FileSystemPath.open
+      ~FileSystemPath.relative_to
+      ~FileSystemPath.stat
+      ~FileSystemPath.unlink
+      ~FileSystemPath.with_name
+      ~FileSystemPath.with_stem
+      ~FileSystemPath.with_suffix
+
+   
+   .. automethod:: FileSystemPath.as_uri
+   .. automethod:: FileSystemPath.copyfile_to
+   .. automethod:: FileSystemPath.exists
+   .. automethod:: FileSystemPath.from_uri
+   .. automethod:: FileSystemPath.glob
+   .. automethod:: FileSystemPath.is_absolute
+   .. automethod:: FileSystemPath.is_dir
+   .. automethod:: FileSystemPath.is_file
+   .. automethod:: FileSystemPath.is_relative_to
+   .. automethod:: FileSystemPath.iterdir
+   .. automethod:: FileSystemPath.match
+   .. automethod:: FileSystemPath.mkdir
+   .. automethod:: FileSystemPath.open
+   .. automethod:: FileSystemPath.relative_to
+   .. automethod:: FileSystemPath.stat
+   .. automethod:: FileSystemPath.unlink
+   .. automethod:: FileSystemPath.with_name
+   .. automethod:: FileSystemPath.with_stem
+   .. automethod:: FileSystemPath.with_suffix
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileSystemPath.anchor
+      ~FileSystemPath.drive
+      ~FileSystemPath.fs
+      ~FileSystemPath.name
+      ~FileSystemPath.parent
+      ~FileSystemPath.parents
+      ~FileSystemPath.parts
+      ~FileSystemPath.path
+      ~FileSystemPath.path_str
+      ~FileSystemPath.root
+      ~FileSystemPath.stem
+      ~FileSystemPath.suffix
+      ~FileSystemPath.suffixes
+
+   
+   .. autoattribute:: FileSystemPath.anchor
+   .. autoattribute:: FileSystemPath.drive
+   .. autoattribute:: FileSystemPath.fs
+   .. autoattribute:: FileSystemPath.name
+   .. autoattribute:: FileSystemPath.parent
+   .. autoattribute:: FileSystemPath.parents
+   .. autoattribute:: FileSystemPath.parts
+   .. autoattribute:: FileSystemPath.path
+   .. autoattribute:: FileSystemPath.path_str
+   .. autoattribute:: FileSystemPath.root
+   .. autoattribute:: FileSystemPath.stem
+   .. autoattribute:: FileSystemPath.suffix
+   .. autoattribute:: FileSystemPath.suffixes
+   
+   

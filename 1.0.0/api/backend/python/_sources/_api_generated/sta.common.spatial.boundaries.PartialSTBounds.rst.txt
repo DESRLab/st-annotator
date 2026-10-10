@@ -1,0 +1,51 @@
+PartialSTBounds
+===============
+
+
+
+
+.. currentmodule:: sta.common.spatial.boundaries
+
+.. autoclass:: PartialSTBounds
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PartialSTBounds.contains
+      ~PartialSTBounds.filled
+      ~PartialSTBounds.intersects
+      ~PartialSTBounds.spatial_volume_not_negative
+      ~PartialSTBounds.timestamp_volume_not_negative
+
+   
+   .. automethod:: PartialSTBounds.contains
+   .. automethod:: PartialSTBounds.filled
+   .. automethod:: PartialSTBounds.intersects
+   .. automethod:: PartialSTBounds.spatial_volume_not_negative
+   .. automethod:: PartialSTBounds.timestamp_volume_not_negative
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PartialSTBounds.model_config
+      ~PartialSTBounds.min_coords
+      ~PartialSTBounds.max_coords
+      ~PartialSTBounds.min_timestamp
+      ~PartialSTBounds.max_timestamp
+
+   
+   .. autoattribute:: PartialSTBounds.model_config
+   .. autoattribute:: PartialSTBounds.min_coords
+   .. autoattribute:: PartialSTBounds.max_coords
+   .. autoattribute:: PartialSTBounds.min_timestamp
+   .. autoattribute:: PartialSTBounds.max_timestamp
+   
+   

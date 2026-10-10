@@ -1,0 +1,57 @@
+ObjectClassCreate
+=================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassCreate.check_edit_conflict
+      ~ObjectClassCreate.sqlmodel_update
+      ~ObjectClassCreate.update_from_color
+
+   
+   .. automethod:: ObjectClassCreate.check_edit_conflict
+   .. automethod:: ObjectClassCreate.sqlmodel_update
+   .. automethod:: ObjectClassCreate.update_from_color
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassCreate.color
+      ~ObjectClassCreate.model_config
+      ~ObjectClassCreate.name
+      ~ObjectClassCreate.description
+      ~ObjectClassCreate.color_rgb
+      ~ObjectClassCreate.default_size_x
+      ~ObjectClassCreate.default_size_y
+      ~ObjectClassCreate.default_size_z
+      ~ObjectClassCreate.is_deleted
+      ~ObjectClassCreate.last_edit_at
+
+   
+   .. autoattribute:: ObjectClassCreate.color
+   .. autoattribute:: ObjectClassCreate.model_config
+   .. autoattribute:: ObjectClassCreate.name
+   .. autoattribute:: ObjectClassCreate.description
+   .. autoattribute:: ObjectClassCreate.color_rgb
+   .. autoattribute:: ObjectClassCreate.default_size_x
+   .. autoattribute:: ObjectClassCreate.default_size_y
+   .. autoattribute:: ObjectClassCreate.default_size_z
+   .. autoattribute:: ObjectClassCreate.is_deleted
+   .. autoattribute:: ObjectClassCreate.last_edit_at
+   
+   

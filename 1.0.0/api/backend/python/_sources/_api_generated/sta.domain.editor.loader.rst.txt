@@ -1,0 +1,49 @@
+sta.domain.editor.loader
+========================
+
+.. currentmodule:: sta.domain.editor
+
+.. automodule:: sta.domain.editor.loader
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SOURCE_DATA_LOADERS
+      LABEL_DATA_LOADERS
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      register_data_loader
+
+   
+   .. autofunction:: register_data_loader
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      DataLoader
+   
+   
+
+   
+   
+   
+
+
+

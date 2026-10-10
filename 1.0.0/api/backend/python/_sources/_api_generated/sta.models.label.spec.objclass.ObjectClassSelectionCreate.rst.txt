@@ -1,0 +1,59 @@
+ObjectClassSelectionCreate
+==========================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassSelectionCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionCreate.build_group_links_cls
+      ~ObjectClassSelectionCreate.build_table_base_cls
+      ~ObjectClassSelectionCreate.check_edit_conflict
+      ~ObjectClassSelectionCreate.get_create_cls
+      ~ObjectClassSelectionCreate.get_public_cls
+      ~ObjectClassSelectionCreate.get_table_cls
+      ~ObjectClassSelectionCreate.get_update_cls
+      ~ObjectClassSelectionCreate.sqlmodel_update
+
+   
+   .. automethod:: ObjectClassSelectionCreate.build_group_links_cls
+   .. automethod:: ObjectClassSelectionCreate.build_table_base_cls
+   .. automethod:: ObjectClassSelectionCreate.check_edit_conflict
+   .. automethod:: ObjectClassSelectionCreate.get_create_cls
+   .. automethod:: ObjectClassSelectionCreate.get_public_cls
+   .. automethod:: ObjectClassSelectionCreate.get_table_cls
+   .. automethod:: ObjectClassSelectionCreate.get_update_cls
+   .. automethod:: ObjectClassSelectionCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionCreate.model_config
+      ~ObjectClassSelectionCreate.objclass_ids
+      ~ObjectClassSelectionCreate.group_ids
+      ~ObjectClassSelectionCreate.description
+      ~ObjectClassSelectionCreate.name
+      ~ObjectClassSelectionCreate.last_edit_at
+
+   
+   .. autoattribute:: ObjectClassSelectionCreate.model_config
+   .. autoattribute:: ObjectClassSelectionCreate.objclass_ids
+   .. autoattribute:: ObjectClassSelectionCreate.group_ids
+   .. autoattribute:: ObjectClassSelectionCreate.description
+   .. autoattribute:: ObjectClassSelectionCreate.name
+   .. autoattribute:: ObjectClassSelectionCreate.last_edit_at
+   
+   

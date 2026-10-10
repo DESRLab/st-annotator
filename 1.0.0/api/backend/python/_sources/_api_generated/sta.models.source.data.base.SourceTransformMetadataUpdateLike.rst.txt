@@ -1,0 +1,79 @@
+SourceTransformMetadataUpdateLike
+=================================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceTransformMetadataUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceTransformMetadataUpdateLike.model_dump
+      ~SourceTransformMetadataUpdateLike.model_validate
+      ~SourceTransformMetadataUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: SourceTransformMetadataUpdateLike.model_dump
+   .. automethod:: SourceTransformMetadataUpdateLike.model_validate
+   .. automethod:: SourceTransformMetadataUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceTransformMetadataUpdateLike.auto_bounds
+      ~SourceTransformMetadataUpdateLike.group_id
+      ~SourceTransformMetadataUpdateLike.max_timestamp
+      ~SourceTransformMetadataUpdateLike.max_x
+      ~SourceTransformMetadataUpdateLike.max_y
+      ~SourceTransformMetadataUpdateLike.max_z
+      ~SourceTransformMetadataUpdateLike.min_timestamp
+      ~SourceTransformMetadataUpdateLike.min_x
+      ~SourceTransformMetadataUpdateLike.min_y
+      ~SourceTransformMetadataUpdateLike.min_z
+      ~SourceTransformMetadataUpdateLike.model_fields_set
+      ~SourceTransformMetadataUpdateLike.rotate_x
+      ~SourceTransformMetadataUpdateLike.rotate_y
+      ~SourceTransformMetadataUpdateLike.rotate_z
+      ~SourceTransformMetadataUpdateLike.scale_x
+      ~SourceTransformMetadataUpdateLike.scale_y
+      ~SourceTransformMetadataUpdateLike.scale_z
+      ~SourceTransformMetadataUpdateLike.translate_x
+      ~SourceTransformMetadataUpdateLike.translate_y
+      ~SourceTransformMetadataUpdateLike.translate_z
+      ~SourceTransformMetadataUpdateLike.uri
+
+   
+   .. autoattribute:: SourceTransformMetadataUpdateLike.auto_bounds
+   .. autoattribute:: SourceTransformMetadataUpdateLike.group_id
+   .. autoattribute:: SourceTransformMetadataUpdateLike.max_timestamp
+   .. autoattribute:: SourceTransformMetadataUpdateLike.max_x
+   .. autoattribute:: SourceTransformMetadataUpdateLike.max_y
+   .. autoattribute:: SourceTransformMetadataUpdateLike.max_z
+   .. autoattribute:: SourceTransformMetadataUpdateLike.min_timestamp
+   .. autoattribute:: SourceTransformMetadataUpdateLike.min_x
+   .. autoattribute:: SourceTransformMetadataUpdateLike.min_y
+   .. autoattribute:: SourceTransformMetadataUpdateLike.min_z
+   .. autoattribute:: SourceTransformMetadataUpdateLike.model_fields_set
+   .. autoattribute:: SourceTransformMetadataUpdateLike.rotate_x
+   .. autoattribute:: SourceTransformMetadataUpdateLike.rotate_y
+   .. autoattribute:: SourceTransformMetadataUpdateLike.rotate_z
+   .. autoattribute:: SourceTransformMetadataUpdateLike.scale_x
+   .. autoattribute:: SourceTransformMetadataUpdateLike.scale_y
+   .. autoattribute:: SourceTransformMetadataUpdateLike.scale_z
+   .. autoattribute:: SourceTransformMetadataUpdateLike.translate_x
+   .. autoattribute:: SourceTransformMetadataUpdateLike.translate_y
+   .. autoattribute:: SourceTransformMetadataUpdateLike.translate_z
+   .. autoattribute:: SourceTransformMetadataUpdateLike.uri
+   
+   

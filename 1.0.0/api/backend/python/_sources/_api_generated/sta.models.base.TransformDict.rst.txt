@@ -1,0 +1,42 @@
+TransformDict
+=============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: TransformDict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TransformDict.translate_x
+      ~TransformDict.translate_y
+      ~TransformDict.translate_z
+      ~TransformDict.rotate_x
+      ~TransformDict.rotate_y
+      ~TransformDict.rotate_z
+      ~TransformDict.scale_x
+      ~TransformDict.scale_y
+      ~TransformDict.scale_z
+
+   
+   .. autoattribute:: TransformDict.translate_x
+   .. autoattribute:: TransformDict.translate_y
+   .. autoattribute:: TransformDict.translate_z
+   .. autoattribute:: TransformDict.rotate_x
+   .. autoattribute:: TransformDict.rotate_y
+   .. autoattribute:: TransformDict.rotate_z
+   .. autoattribute:: TransformDict.scale_x
+   .. autoattribute:: TransformDict.scale_y
+   .. autoattribute:: TransformDict.scale_z
+   
+   

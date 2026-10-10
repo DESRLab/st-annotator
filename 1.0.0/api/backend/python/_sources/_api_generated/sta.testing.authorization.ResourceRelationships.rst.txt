@@ -1,0 +1,34 @@
+ResourceRelationships
+=====================
+
+
+
+
+.. currentmodule:: sta.testing.authorization
+
+.. autoclass:: ResourceRelationships
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ResourceRelationships.project_member
+      ~ResourceRelationships.assigned_annotator
+      ~ResourceRelationships.assigned_supervisor
+      ~ResourceRelationships.frame
+      ~ResourceRelationships.branch_grant
+
+   
+   .. autoattribute:: ResourceRelationships.project_member
+   .. autoattribute:: ResourceRelationships.assigned_annotator
+   .. autoattribute:: ResourceRelationships.assigned_supervisor
+   .. autoattribute:: ResourceRelationships.frame
+   .. autoattribute:: ResourceRelationships.branch_grant
+   
+   

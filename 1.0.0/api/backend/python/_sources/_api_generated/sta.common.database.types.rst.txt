@@ -1,0 +1,35 @@
+sta.common.database.types
+=========================
+
+.. currentmodule:: sta.common.database
+
+.. automodule:: sta.common.database.types
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      DecimalString
+      GUID
+      JSONB
+      UTCDateTime
+   
+   
+
+   
+   
+   
+
+
+

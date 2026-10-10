@@ -1,0 +1,17 @@
+OptionalEquals
+==============
+
+
+
+
+.. currentmodule:: sta.common.utils.func
+
+.. autoclass:: OptionalEquals
+
+   
+   
+   
+
+   
+   
+   

@@ -1,0 +1,70 @@
+sta.domain.tasks
+================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.tasks
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      apply_task_visibility
+      bulk_delete_task_annotators
+      bulk_delete_task_supervisors
+      bulk_update_tasks
+      can_read_task
+      can_read_task_filters
+      count_tasks
+      create_task
+      delete_task
+      get_assigned_task_ids_query
+      get_inherited_annotator_ids
+      get_inherited_assignment_pairs
+      get_inherited_supervisor_ids
+      get_task_branch_permission_warnings
+      iter_task_descendants
+      list_tasks
+      read_task
+      require_task_writer
+      update_task
+
+   
+   .. autofunction:: apply_task_visibility
+   .. autofunction:: bulk_delete_task_annotators
+   .. autofunction:: bulk_delete_task_supervisors
+   .. autofunction:: bulk_update_tasks
+   .. autofunction:: can_read_task
+   .. autofunction:: can_read_task_filters
+   .. autofunction:: count_tasks
+   .. autofunction:: create_task
+   .. autofunction:: delete_task
+   .. autofunction:: get_assigned_task_ids_query
+   .. autofunction:: get_inherited_annotator_ids
+   .. autofunction:: get_inherited_assignment_pairs
+   .. autofunction:: get_inherited_supervisor_ids
+   .. autofunction:: get_task_branch_permission_warnings
+   .. autofunction:: iter_task_descendants
+   .. autofunction:: list_tasks
+   .. autofunction:: read_task
+   .. autofunction:: require_task_writer
+   .. autofunction:: update_task
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

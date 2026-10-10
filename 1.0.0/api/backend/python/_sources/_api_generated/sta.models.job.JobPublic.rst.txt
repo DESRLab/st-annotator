@@ -1,0 +1,52 @@
+JobPublic
+=========
+
+
+
+
+.. currentmodule:: sta.models.job
+
+.. autoclass:: JobPublic
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~JobPublic.model_config
+      ~JobPublic.id
+      ~JobPublic.kind
+      ~JobPublic.dedupe_key
+      ~JobPublic.payload
+      ~JobPublic.label
+      ~JobPublic.state
+      ~JobPublic.progress_done
+      ~JobPublic.progress_total
+      ~JobPublic.error
+      ~JobPublic.created_by_id
+      ~JobPublic.created_at
+      ~JobPublic.started_at
+      ~JobPublic.finished_at
+
+   
+   .. autoattribute:: JobPublic.model_config
+   .. autoattribute:: JobPublic.id
+   .. autoattribute:: JobPublic.kind
+   .. autoattribute:: JobPublic.dedupe_key
+   .. autoattribute:: JobPublic.payload
+   .. autoattribute:: JobPublic.label
+   .. autoattribute:: JobPublic.state
+   .. autoattribute:: JobPublic.progress_done
+   .. autoattribute:: JobPublic.progress_total
+   .. autoattribute:: JobPublic.error
+   .. autoattribute:: JobPublic.created_by_id
+   .. autoattribute:: JobPublic.created_at
+   .. autoattribute:: JobPublic.started_at
+   .. autoattribute:: JobPublic.finished_at
+   
+   

@@ -1,0 +1,41 @@
+LabelDataUpdateLike
+===================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelDataUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelDataUpdateLike.model_dump
+      ~LabelDataUpdateLike.model_validate
+      ~LabelDataUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: LabelDataUpdateLike.model_dump
+   .. automethod:: LabelDataUpdateLike.model_validate
+   .. automethod:: LabelDataUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelDataUpdateLike.is_deleted
+      ~LabelDataUpdateLike.model_fields_set
+
+   
+   .. autoattribute:: LabelDataUpdateLike.is_deleted
+   .. autoattribute:: LabelDataUpdateLike.model_fields_set
+   
+   

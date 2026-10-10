@@ -1,0 +1,28 @@
+SuccessResponse
+===============
+
+
+
+
+.. currentmodule:: sta.api.responses
+
+.. autoclass:: SuccessResponse
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SuccessResponse.model_config
+      ~SuccessResponse.success
+
+   
+   .. autoattribute:: SuccessResponse.model_config
+   .. autoattribute:: SuccessResponse.success
+   
+   

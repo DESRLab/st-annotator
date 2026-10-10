@@ -1,0 +1,48 @@
+LabelSpecDomain
+===============
+
+
+
+
+.. currentmodule:: sta.domain.label.spec.base
+
+.. autoclass:: LabelSpecDomain
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelSpecDomain.bulk_update_specs
+      ~LabelSpecDomain.can_read_spec
+      ~LabelSpecDomain.can_read_spec_filters
+      ~LabelSpecDomain.count_specs
+      ~LabelSpecDomain.create_spec
+      ~LabelSpecDomain.delete_spec
+      ~LabelSpecDomain.get_sort_columns
+      ~LabelSpecDomain.list_specs
+      ~LabelSpecDomain.read_spec
+      ~LabelSpecDomain.read_spec_in_group
+      ~LabelSpecDomain.require_spec_writer
+      ~LabelSpecDomain.update_spec
+
+   
+   .. automethod:: LabelSpecDomain.bulk_update_specs
+   .. automethod:: LabelSpecDomain.can_read_spec
+   .. automethod:: LabelSpecDomain.can_read_spec_filters
+   .. automethod:: LabelSpecDomain.count_specs
+   .. automethod:: LabelSpecDomain.create_spec
+   .. automethod:: LabelSpecDomain.delete_spec
+   .. automethod:: LabelSpecDomain.get_sort_columns
+   .. automethod:: LabelSpecDomain.list_specs
+   .. automethod:: LabelSpecDomain.read_spec
+   .. automethod:: LabelSpecDomain.read_spec_in_group
+   .. automethod:: LabelSpecDomain.require_spec_writer
+   .. automethod:: LabelSpecDomain.update_spec
+   
+   
+
+   
+   
+   

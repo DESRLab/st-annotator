@@ -1,0 +1,37 @@
+sta.common.database.config
+==========================
+
+.. currentmodule:: sta.common.database
+
+.. automodule:: sta.common.database.config
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      DatabaseConfig
+      InMemoryDatabaseConfig
+      PostGISDatabaseConfig
+      PostgresDatabaseConfig
+      SQLiteBackedDatabaseConfig
+      TempFileDatabaseConfig
+   
+   
+
+   
+   
+   
+
+
+

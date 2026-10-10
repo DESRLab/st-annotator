@@ -1,0 +1,41 @@
+DeleteBase
+==========
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.base.delete
+
+.. autoclass:: DeleteBase
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DeleteBase.apply
+      ~DeleteBase.get_domain
+      ~DeleteBase.get_id
+
+   
+   .. automethod:: DeleteBase.apply
+   .. automethod:: DeleteBase.get_domain
+   .. automethod:: DeleteBase.get_id
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DeleteBase.name
+      ~DeleteBase.params
+
+   
+   .. autoattribute:: DeleteBase.name
+   .. autoattribute:: DeleteBase.params
+   
+   

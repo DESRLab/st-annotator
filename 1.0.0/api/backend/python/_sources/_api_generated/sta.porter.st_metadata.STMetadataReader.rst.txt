@@ -1,0 +1,26 @@
+STMetadataReader
+================
+
+
+
+
+.. currentmodule:: sta.porter.st_metadata
+
+.. autoclass:: STMetadataReader
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~STMetadataReader.read_csv
+
+   
+   .. automethod:: STMetadataReader.read_csv
+   
+   
+
+   
+   
+   

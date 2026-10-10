@@ -1,0 +1,33 @@
+sta.testing.domain.label.repo
+=============================
+
+.. currentmodule:: sta.testing.domain.label
+
+.. automodule:: sta.testing.domain.label.repo
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.testing.domain.label.repo.branches
+

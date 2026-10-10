@@ -1,0 +1,57 @@
+LabelsetBranchPublic
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetBranchPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetBranchPublic.check_edit_conflict
+      ~LabelsetBranchPublic.sqlmodel_update
+
+   
+   .. automethod:: LabelsetBranchPublic.check_edit_conflict
+   .. automethod:: LabelsetBranchPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetBranchPublic.model_config
+      ~LabelsetBranchPublic.id
+      ~LabelsetBranchPublic.group
+      ~LabelsetBranchPublic.head
+      ~LabelsetBranchPublic.checkpoint
+      ~LabelsetBranchPublic.perm_lv_by_user_id
+      ~LabelsetBranchPublic.group_id
+      ~LabelsetBranchPublic.head_hash
+      ~LabelsetBranchPublic.checkpoint_hash
+      ~LabelsetBranchPublic.name
+      ~LabelsetBranchPublic.last_edit_at
+
+   
+   .. autoattribute:: LabelsetBranchPublic.model_config
+   .. autoattribute:: LabelsetBranchPublic.id
+   .. autoattribute:: LabelsetBranchPublic.group
+   .. autoattribute:: LabelsetBranchPublic.head
+   .. autoattribute:: LabelsetBranchPublic.checkpoint
+   .. autoattribute:: LabelsetBranchPublic.perm_lv_by_user_id
+   .. autoattribute:: LabelsetBranchPublic.group_id
+   .. autoattribute:: LabelsetBranchPublic.head_hash
+   .. autoattribute:: LabelsetBranchPublic.checkpoint_hash
+   .. autoattribute:: LabelsetBranchPublic.name
+   .. autoattribute:: LabelsetBranchPublic.last_edit_at
+   
+   

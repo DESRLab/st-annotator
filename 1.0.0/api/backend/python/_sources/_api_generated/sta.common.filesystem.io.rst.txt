@@ -1,0 +1,37 @@
+sta.common.filesystem.io
+========================
+
+.. currentmodule:: sta.common.filesystem
+
+.. automodule:: sta.common.filesystem.io
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.common.filesystem.io.base
+   sta.common.filesystem.io.csv
+   sta.common.filesystem.io.json
+   sta.common.filesystem.io.numpy
+   sta.common.filesystem.io.yaml
+

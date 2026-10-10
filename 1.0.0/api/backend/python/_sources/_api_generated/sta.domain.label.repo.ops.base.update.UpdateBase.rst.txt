@@ -1,0 +1,43 @@
+UpdateBase
+==========
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.base.update
+
+.. autoclass:: UpdateBase
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~UpdateBase.apply
+      ~UpdateBase.get_data
+      ~UpdateBase.get_domain
+      ~UpdateBase.get_id
+
+   
+   .. automethod:: UpdateBase.apply
+   .. automethod:: UpdateBase.get_data
+   .. automethod:: UpdateBase.get_domain
+   .. automethod:: UpdateBase.get_id
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UpdateBase.name
+      ~UpdateBase.params
+
+   
+   .. autoattribute:: UpdateBase.name
+   .. autoattribute:: UpdateBase.params
+   
+   

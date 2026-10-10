@@ -1,0 +1,57 @@
+User
+====
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: User
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~User.check_edit_conflict
+      ~User.get_role_links_cls
+      ~User.sqlmodel_update
+
+   
+   .. automethod:: User.check_edit_conflict
+   .. automethod:: User.get_role_links_cls
+   .. automethod:: User.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~User.created_at
+      ~User.current_login_at
+      ~User.id
+      ~User.last_edit_at
+      ~User.model_config
+      ~User.password_hash
+      ~User.prev_login_at
+      ~User.role_links
+      ~User.roles
+      ~User.username
+
+   
+   .. autoattribute:: User.created_at
+   .. autoattribute:: User.current_login_at
+   .. autoattribute:: User.id
+   .. autoattribute:: User.last_edit_at
+   .. autoattribute:: User.model_config
+   .. autoattribute:: User.password_hash
+   .. autoattribute:: User.prev_login_at
+   .. autoattribute:: User.role_links
+   .. autoattribute:: User.roles
+   .. autoattribute:: User.username
+   
+   

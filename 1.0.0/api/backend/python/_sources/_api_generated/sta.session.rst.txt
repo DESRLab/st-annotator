@@ -1,0 +1,46 @@
+sta.session
+===========
+
+.. currentmodule:: sta
+
+.. automodule:: sta.session
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_tables
+      dispose_engine
+      drop_tables
+      get_engine
+      get_session
+      insert_default_user
+      session_ctx
+
+   
+   .. autofunction:: create_tables
+   .. autofunction:: dispose_engine
+   .. autofunction:: drop_tables
+   .. autofunction:: get_engine
+   .. autofunction:: get_session
+   .. autofunction:: insert_default_user
+   .. autofunction:: session_ctx
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

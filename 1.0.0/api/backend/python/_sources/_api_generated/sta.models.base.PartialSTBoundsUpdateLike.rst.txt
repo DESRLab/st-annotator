@@ -1,0 +1,55 @@
+PartialSTBoundsUpdateLike
+=========================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: PartialSTBoundsUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PartialSTBoundsUpdateLike.model_dump
+      ~PartialSTBoundsUpdateLike.model_validate
+      ~PartialSTBoundsUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: PartialSTBoundsUpdateLike.model_dump
+   .. automethod:: PartialSTBoundsUpdateLike.model_validate
+   .. automethod:: PartialSTBoundsUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PartialSTBoundsUpdateLike.max_timestamp
+      ~PartialSTBoundsUpdateLike.max_x
+      ~PartialSTBoundsUpdateLike.max_y
+      ~PartialSTBoundsUpdateLike.max_z
+      ~PartialSTBoundsUpdateLike.min_timestamp
+      ~PartialSTBoundsUpdateLike.min_x
+      ~PartialSTBoundsUpdateLike.min_y
+      ~PartialSTBoundsUpdateLike.min_z
+      ~PartialSTBoundsUpdateLike.model_fields_set
+
+   
+   .. autoattribute:: PartialSTBoundsUpdateLike.max_timestamp
+   .. autoattribute:: PartialSTBoundsUpdateLike.max_x
+   .. autoattribute:: PartialSTBoundsUpdateLike.max_y
+   .. autoattribute:: PartialSTBoundsUpdateLike.max_z
+   .. autoattribute:: PartialSTBoundsUpdateLike.min_timestamp
+   .. autoattribute:: PartialSTBoundsUpdateLike.min_x
+   .. autoattribute:: PartialSTBoundsUpdateLike.min_y
+   .. autoattribute:: PartialSTBoundsUpdateLike.min_z
+   .. autoattribute:: PartialSTBoundsUpdateLike.model_fields_set
+   
+   

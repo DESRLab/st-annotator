@@ -1,0 +1,28 @@
+FileListResponse
+================
+
+
+
+
+.. currentmodule:: sta.api.files
+
+.. autoclass:: FileListResponse
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileListResponse.model_config
+      ~FileListResponse.entries
+
+   
+   .. autoattribute:: FileListResponse.model_config
+   .. autoattribute:: FileListResponse.entries
+   
+   

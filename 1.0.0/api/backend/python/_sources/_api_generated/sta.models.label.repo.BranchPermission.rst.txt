@@ -1,0 +1,36 @@
+BranchPermission
+================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: BranchPermission
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BranchPermission.branch
+      ~BranchPermission.branch_id
+      ~BranchPermission.model_config
+      ~BranchPermission.permission_lv
+      ~BranchPermission.user
+      ~BranchPermission.user_id
+
+   
+   .. autoattribute:: BranchPermission.branch
+   .. autoattribute:: BranchPermission.branch_id
+   .. autoattribute:: BranchPermission.model_config
+   .. autoattribute:: BranchPermission.permission_lv
+   .. autoattribute:: BranchPermission.user
+   .. autoattribute:: BranchPermission.user_id
+   
+   

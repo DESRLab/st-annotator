@@ -1,0 +1,60 @@
+sta.domain.users
+================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.users
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_users
+      count_users
+      create_root_user
+      create_user
+      delete_user
+      list_user_ids
+      list_users
+      login_user
+      logout_user
+      read_user
+      require_user_auth
+      require_user_reader
+      require_user_writer
+      update_user
+
+   
+   .. autofunction:: bulk_update_users
+   .. autofunction:: count_users
+   .. autofunction:: create_root_user
+   .. autofunction:: create_user
+   .. autofunction:: delete_user
+   .. autofunction:: list_user_ids
+   .. autofunction:: list_users
+   .. autofunction:: login_user
+   .. autofunction:: logout_user
+   .. autofunction:: read_user
+   .. autofunction:: require_user_auth
+   .. autofunction:: require_user_reader
+   .. autofunction:: require_user_writer
+   .. autofunction:: update_user
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,40 @@
+sta.testing
+===========
+
+.. currentmodule:: sta
+
+.. automodule:: sta.testing
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.testing.authorization
+   sta.testing.config
+   sta.testing.domain
+   sta.testing.keys
+   sta.testing.plugin_import
+   sta.testing.pytest_fixtures
+   sta.testing.pytest_plugin
+   sta.testing.session
+

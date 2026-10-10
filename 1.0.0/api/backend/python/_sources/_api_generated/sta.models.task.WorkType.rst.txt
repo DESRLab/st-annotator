@@ -1,0 +1,28 @@
+WorkType
+========
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: WorkType
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~WorkType.ANNOTATE
+      ~WorkType.REVIEW
+
+   
+   .. autoattribute:: WorkType.ANNOTATE
+   .. autoattribute:: WorkType.REVIEW
+   
+   

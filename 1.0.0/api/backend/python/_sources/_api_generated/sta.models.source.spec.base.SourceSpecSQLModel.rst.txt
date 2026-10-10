@@ -1,0 +1,53 @@
+SourceSpecSQLModel
+==================
+
+
+
+
+.. currentmodule:: sta.models.source.spec.base
+
+.. autoclass:: SourceSpecSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceSpecSQLModel.build_group_links_cls
+      ~SourceSpecSQLModel.build_table_base_cls
+      ~SourceSpecSQLModel.check_edit_conflict
+      ~SourceSpecSQLModel.get_create_cls
+      ~SourceSpecSQLModel.get_public_cls
+      ~SourceSpecSQLModel.get_table_cls
+      ~SourceSpecSQLModel.get_update_cls
+      ~SourceSpecSQLModel.sqlmodel_update
+
+   
+   .. automethod:: SourceSpecSQLModel.build_group_links_cls
+   .. automethod:: SourceSpecSQLModel.build_table_base_cls
+   .. automethod:: SourceSpecSQLModel.check_edit_conflict
+   .. automethod:: SourceSpecSQLModel.get_create_cls
+   .. automethod:: SourceSpecSQLModel.get_public_cls
+   .. automethod:: SourceSpecSQLModel.get_table_cls
+   .. automethod:: SourceSpecSQLModel.get_update_cls
+   .. automethod:: SourceSpecSQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceSpecSQLModel.model_config
+      ~SourceSpecSQLModel.name
+      ~SourceSpecSQLModel.last_edit_at
+
+   
+   .. autoattribute:: SourceSpecSQLModel.model_config
+   .. autoattribute:: SourceSpecSQLModel.name
+   .. autoattribute:: SourceSpecSQLModel.last_edit_at
+   
+   

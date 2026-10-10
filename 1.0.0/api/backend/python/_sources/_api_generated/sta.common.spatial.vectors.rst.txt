@@ -1,0 +1,50 @@
+sta.common.spatial.vectors
+==========================
+
+.. currentmodule:: sta.common.spatial
+
+.. automodule:: sta.common.spatial.vectors
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      decimals_equal
+      floats_equal
+
+   
+   .. autofunction:: decimals_equal
+   .. autofunction:: floats_equal
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      BaseOptionalVector3
+      BaseVector3
+      DecimalCoord3
+      DecimalSize3
+      DecimalVector3
+      OptionalDecimalCoord3
+      OptionalVector3
+      Vector3
+   
+   
+
+   
+   
+   
+
+
+

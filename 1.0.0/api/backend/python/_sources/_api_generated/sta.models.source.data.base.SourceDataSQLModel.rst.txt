@@ -1,0 +1,89 @@
+SourceDataSQLModel
+==================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceDataSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceDataSQLModel.build_table_base_cls
+      ~SourceDataSQLModel.check_edit_conflict
+      ~SourceDataSQLModel.get_create_cls
+      ~SourceDataSQLModel.get_public_cls
+      ~SourceDataSQLModel.get_table_cls
+      ~SourceDataSQLModel.get_update_cls
+      ~SourceDataSQLModel.sqlmodel_update
+      ~SourceDataSQLModel.unpack_max_coords
+      ~SourceDataSQLModel.unpack_min_coords
+      ~SourceDataSQLModel.unpack_st_bounds
+      ~SourceDataSQLModel.update_from_st_bounds
+
+   
+   .. automethod:: SourceDataSQLModel.build_table_base_cls
+   .. automethod:: SourceDataSQLModel.check_edit_conflict
+   .. automethod:: SourceDataSQLModel.get_create_cls
+   .. automethod:: SourceDataSQLModel.get_public_cls
+   .. automethod:: SourceDataSQLModel.get_table_cls
+   .. automethod:: SourceDataSQLModel.get_update_cls
+   .. automethod:: SourceDataSQLModel.sqlmodel_update
+   .. automethod:: SourceDataSQLModel.unpack_max_coords
+   .. automethod:: SourceDataSQLModel.unpack_min_coords
+   .. automethod:: SourceDataSQLModel.unpack_st_bounds
+   .. automethod:: SourceDataSQLModel.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceDataSQLModel.COORD_TYPE
+      ~SourceDataSQLModel.max_coords
+      ~SourceDataSQLModel.min_coords
+      ~SourceDataSQLModel.model_config
+      ~SourceDataSQLModel.st_bounds
+      ~SourceDataSQLModel.group_id
+      ~SourceDataSQLModel.auto_bounds
+      ~SourceDataSQLModel.bounds_config_hash
+      ~SourceDataSQLModel.bounds_error
+      ~SourceDataSQLModel.min_x
+      ~SourceDataSQLModel.min_y
+      ~SourceDataSQLModel.min_z
+      ~SourceDataSQLModel.max_x
+      ~SourceDataSQLModel.max_y
+      ~SourceDataSQLModel.max_z
+      ~SourceDataSQLModel.min_timestamp
+      ~SourceDataSQLModel.max_timestamp
+      ~SourceDataSQLModel.last_edit_at
+
+   
+   .. autoattribute:: SourceDataSQLModel.COORD_TYPE
+   .. autoattribute:: SourceDataSQLModel.max_coords
+   .. autoattribute:: SourceDataSQLModel.min_coords
+   .. autoattribute:: SourceDataSQLModel.model_config
+   .. autoattribute:: SourceDataSQLModel.st_bounds
+   .. autoattribute:: SourceDataSQLModel.group_id
+   .. autoattribute:: SourceDataSQLModel.auto_bounds
+   .. autoattribute:: SourceDataSQLModel.bounds_config_hash
+   .. autoattribute:: SourceDataSQLModel.bounds_error
+   .. autoattribute:: SourceDataSQLModel.min_x
+   .. autoattribute:: SourceDataSQLModel.min_y
+   .. autoattribute:: SourceDataSQLModel.min_z
+   .. autoattribute:: SourceDataSQLModel.max_x
+   .. autoattribute:: SourceDataSQLModel.max_y
+   .. autoattribute:: SourceDataSQLModel.max_z
+   .. autoattribute:: SourceDataSQLModel.min_timestamp
+   .. autoattribute:: SourceDataSQLModel.max_timestamp
+   .. autoattribute:: SourceDataSQLModel.last_edit_at
+   
+   

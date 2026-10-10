@@ -1,0 +1,30 @@
+DatabaseConfig
+==============
+
+
+
+
+.. currentmodule:: sta.common.database.config
+
+.. autoclass:: DatabaseConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DatabaseConfig.create_db
+      ~DatabaseConfig.get_engine
+      ~DatabaseConfig.with_db_suffix
+
+   
+   .. automethod:: DatabaseConfig.create_db
+   .. automethod:: DatabaseConfig.get_engine
+   .. automethod:: DatabaseConfig.with_db_suffix
+   
+   
+
+   
+   
+   

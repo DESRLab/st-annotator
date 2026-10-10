@@ -1,0 +1,123 @@
+SourceTransformMetadataTableLike
+================================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceTransformMetadataTableLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceTransformMetadataTableLike.model_dump
+      ~SourceTransformMetadataTableLike.model_validate
+      ~SourceTransformMetadataTableLike.sqlmodel_update
+      ~SourceTransformMetadataTableLike.unpack_max_coords
+      ~SourceTransformMetadataTableLike.unpack_min_coords
+      ~SourceTransformMetadataTableLike.unpack_rotation
+      ~SourceTransformMetadataTableLike.unpack_scale
+      ~SourceTransformMetadataTableLike.unpack_st_bounds
+      ~SourceTransformMetadataTableLike.unpack_transform
+      ~SourceTransformMetadataTableLike.unpack_translation
+      ~SourceTransformMetadataTableLike.update_from_rotation
+      ~SourceTransformMetadataTableLike.update_from_scale
+      ~SourceTransformMetadataTableLike.update_from_st_bounds
+      ~SourceTransformMetadataTableLike.update_from_transform
+      ~SourceTransformMetadataTableLike.update_from_translation
+
+   
+   .. automethod:: SourceTransformMetadataTableLike.model_dump
+   .. automethod:: SourceTransformMetadataTableLike.model_validate
+   .. automethod:: SourceTransformMetadataTableLike.sqlmodel_update
+   .. automethod:: SourceTransformMetadataTableLike.unpack_max_coords
+   .. automethod:: SourceTransformMetadataTableLike.unpack_min_coords
+   .. automethod:: SourceTransformMetadataTableLike.unpack_rotation
+   .. automethod:: SourceTransformMetadataTableLike.unpack_scale
+   .. automethod:: SourceTransformMetadataTableLike.unpack_st_bounds
+   .. automethod:: SourceTransformMetadataTableLike.unpack_transform
+   .. automethod:: SourceTransformMetadataTableLike.unpack_translation
+   .. automethod:: SourceTransformMetadataTableLike.update_from_rotation
+   .. automethod:: SourceTransformMetadataTableLike.update_from_scale
+   .. automethod:: SourceTransformMetadataTableLike.update_from_st_bounds
+   .. automethod:: SourceTransformMetadataTableLike.update_from_transform
+   .. automethod:: SourceTransformMetadataTableLike.update_from_translation
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceTransformMetadataTableLike.max_coords
+      ~SourceTransformMetadataTableLike.min_coords
+      ~SourceTransformMetadataTableLike.model_fields_set
+      ~SourceTransformMetadataTableLike.rotation
+      ~SourceTransformMetadataTableLike.scale
+      ~SourceTransformMetadataTableLike.st_bounds
+      ~SourceTransformMetadataTableLike.transform
+      ~SourceTransformMetadataTableLike.translation
+      ~SourceTransformMetadataTableLike.translate_x
+      ~SourceTransformMetadataTableLike.translate_y
+      ~SourceTransformMetadataTableLike.translate_z
+      ~SourceTransformMetadataTableLike.rotate_x
+      ~SourceTransformMetadataTableLike.rotate_y
+      ~SourceTransformMetadataTableLike.rotate_z
+      ~SourceTransformMetadataTableLike.scale_x
+      ~SourceTransformMetadataTableLike.scale_y
+      ~SourceTransformMetadataTableLike.scale_z
+      ~SourceTransformMetadataTableLike.id
+      ~SourceTransformMetadataTableLike.group
+      ~SourceTransformMetadataTableLike.auto_bounds
+      ~SourceTransformMetadataTableLike.bounds_config_hash
+      ~SourceTransformMetadataTableLike.bounds_error
+      ~SourceTransformMetadataTableLike.group_id
+      ~SourceTransformMetadataTableLike.min_x
+      ~SourceTransformMetadataTableLike.min_y
+      ~SourceTransformMetadataTableLike.min_z
+      ~SourceTransformMetadataTableLike.max_x
+      ~SourceTransformMetadataTableLike.max_y
+      ~SourceTransformMetadataTableLike.max_z
+      ~SourceTransformMetadataTableLike.min_timestamp
+      ~SourceTransformMetadataTableLike.max_timestamp
+
+   
+   .. autoattribute:: SourceTransformMetadataTableLike.max_coords
+   .. autoattribute:: SourceTransformMetadataTableLike.min_coords
+   .. autoattribute:: SourceTransformMetadataTableLike.model_fields_set
+   .. autoattribute:: SourceTransformMetadataTableLike.rotation
+   .. autoattribute:: SourceTransformMetadataTableLike.scale
+   .. autoattribute:: SourceTransformMetadataTableLike.st_bounds
+   .. autoattribute:: SourceTransformMetadataTableLike.transform
+   .. autoattribute:: SourceTransformMetadataTableLike.translation
+   .. autoattribute:: SourceTransformMetadataTableLike.translate_x
+   .. autoattribute:: SourceTransformMetadataTableLike.translate_y
+   .. autoattribute:: SourceTransformMetadataTableLike.translate_z
+   .. autoattribute:: SourceTransformMetadataTableLike.rotate_x
+   .. autoattribute:: SourceTransformMetadataTableLike.rotate_y
+   .. autoattribute:: SourceTransformMetadataTableLike.rotate_z
+   .. autoattribute:: SourceTransformMetadataTableLike.scale_x
+   .. autoattribute:: SourceTransformMetadataTableLike.scale_y
+   .. autoattribute:: SourceTransformMetadataTableLike.scale_z
+   .. autoattribute:: SourceTransformMetadataTableLike.id
+   .. autoattribute:: SourceTransformMetadataTableLike.group
+   .. autoattribute:: SourceTransformMetadataTableLike.auto_bounds
+   .. autoattribute:: SourceTransformMetadataTableLike.bounds_config_hash
+   .. autoattribute:: SourceTransformMetadataTableLike.bounds_error
+   .. autoattribute:: SourceTransformMetadataTableLike.group_id
+   .. autoattribute:: SourceTransformMetadataTableLike.min_x
+   .. autoattribute:: SourceTransformMetadataTableLike.min_y
+   .. autoattribute:: SourceTransformMetadataTableLike.min_z
+   .. autoattribute:: SourceTransformMetadataTableLike.max_x
+   .. autoattribute:: SourceTransformMetadataTableLike.max_y
+   .. autoattribute:: SourceTransformMetadataTableLike.max_z
+   .. autoattribute:: SourceTransformMetadataTableLike.min_timestamp
+   .. autoattribute:: SourceTransformMetadataTableLike.max_timestamp
+   
+   

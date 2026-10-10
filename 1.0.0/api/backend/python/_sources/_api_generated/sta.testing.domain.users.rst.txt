@@ -1,0 +1,34 @@
+sta.testing.domain.users
+========================
+
+.. currentmodule:: sta.testing.domain
+
+.. automodule:: sta.testing.domain.users
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      root_user
+
+   
+   .. autofunction:: root_user
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

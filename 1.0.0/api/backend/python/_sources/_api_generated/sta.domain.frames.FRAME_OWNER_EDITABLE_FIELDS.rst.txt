@@ -1,0 +1,6 @@
+FRAME\_OWNER\_EDITABLE\_FIELDS
+==============================
+
+.. currentmodule:: sta.domain.frames
+
+.. autodata:: FRAME_OWNER_EDITABLE_FIELDS

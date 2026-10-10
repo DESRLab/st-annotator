@@ -1,0 +1,30 @@
+TranslationDict
+===============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: TranslationDict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TranslationDict.translate_x
+      ~TranslationDict.translate_y
+      ~TranslationDict.translate_z
+
+   
+   .. autoattribute:: TranslationDict.translate_x
+   .. autoattribute:: TranslationDict.translate_y
+   .. autoattribute:: TranslationDict.translate_z
+   
+   

@@ -1,0 +1,6 @@
+STA\_LOGIN\_RATE\_LIMIT\_ATTEMPTS
+=================================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_LOGIN_RATE_LIMIT_ATTEMPTS

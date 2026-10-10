@@ -1,0 +1,1028 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>BBoxView | TypeScript API</title><link rel="icon" href="../assets/favicon.ico"/><meta name="description" content="Documentation for TypeScript API"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><link rel="stylesheet" href="../assets/custom.css"/><script defer src="../assets/main.js"></script><script defer src="../assets/custom.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">⭐ TypeScript API</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="../modules/sta-bbox.html">sta-bbox</a></li>
+<li><a href="../modules/sta-bbox.app.html">app</a></li>
+<li><a href="" aria-current="page">BBoxView</a></li></ul>
+<h1>Class BBoxView</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>Represents a collection of bounding box labels. Any changes to the labels through
+this class are also applied to the backend.</p>
+</div></section>
+<section class="tsd-panel tsd-hierarchy" data-refl="61368">
+<h4>Hierarchy (<a href="../hierarchy.html#sta-bbox.app.BBoxView">View Summary</a>)</h4>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><a href="sta.app_editor.LabelDataView.html" class="tsd-signature-type tsd-kind-class">LabelDataView</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyBBoxIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyBBoxIndex</a><span class="tsd-signature-symbol">&gt;</span>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">BBoxView</span></li></ul></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L101">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:101</a></li></ul></aside>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h5 class="tsd-index-heading uppercase">Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="constructors">Constructors<a href="#constructors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="properties">Properties<a href="#properties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#_frame" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>_<wbr/>frame</span></a>
+<a href="#context" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>context</span></a>
+<a href="#loader" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>loader</span></a>
+<a href="#operation" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>Operation</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="accessors">Accessors<a href="#accessors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#currentbranch" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>current<wbr/>Branch</span></a>
+<a href="#data" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>data</span></a>
+<a href="#downloadprogress" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>download<wbr/>Progress</span></a>
+<a href="#frame" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>frame</span></a>
+<a href="#isloading" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>is<wbr/>Loading</span></a>
+<a href="#loaderror" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>load<wbr/>Error</span></a>
+<a href="#timepathrange" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>time<wbr/>Path<wbr/>Range</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="methods">Methods<a href="#methods" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#_reloaddata" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>_<wbr/>reload<wbr/>Data</span></a>
+<a href="#addeventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a>
+<a href="#addlabelbox" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Box</span></a>
+<a href="#addlabelboxlocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Box<wbr/>Local<wbr/>Only</span></a>
+<a href="#addlabeltrack" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Track</span></a>
+<a href="#addlabeltracklocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a>
+<a href="#deletelabelbox" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Box</span></a>
+<a href="#deletelabelboxlocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Box<wbr/>Local<wbr/>Only</span></a>
+<a href="#deletelabeltrack" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Track</span></a>
+<a href="#deletelabeltracklocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a>
+<a href="#dispatchevent" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a>
+<a href="#dispose" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a>
+<a href="#getdata" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Data</span></a>
+<a href="#getlabelbox" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Box</span></a>
+<a href="#getlabelclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Class</span></a>
+<a href="#getlabeltrack" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Track</span></a>
+<a href="#getlabeltracklocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a>
+<a href="#getmaxtimestampinrange" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a>
+<a href="#getmintimestampinrange" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Min<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a>
+<a href="#haseventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a>
+<a href="#haslabelbox" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Box</span></a>
+<a href="#haslabelclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Class</span></a>
+<a href="#haslabeltrack" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Track</span></a>
+<a href="#haslabeltracklocalonly" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a>
+<a href="#iscached" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Cached</span></a>
+<a href="#iterlabelboxes" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Boxes</span></a>
+<a href="#iterlabelclasses" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Classes</span></a>
+<a href="#iterlabeltracks" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Tracks</span></a>
+<a href="#removeeventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a>
+<a href="#retry" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>retry</span></a>
+<a href="#setboxhidden" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Box<wbr/>Hidden</span></a>
+<a href="#setframe" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Frame</span></a>
+<a href="#setlabelboxdisplayparams" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Box<wbr/>Display<wbr/>Params</span></a>
+<a href="#setlabeltrackdisplayparams" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Track<wbr/>Display<wbr/>Params</span></a>
+<a href="#updatelabelboxdistinctivelv" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Distinctive<wbr/>Lv</span></a>
+<a href="#updatelabelboxocclusionlv" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Occlusion<wbr/>Lv</span></a>
+<a href="#updatelabelboxparenttrack" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Parent<wbr/>Track</span></a>
+<a href="#updatelabelboxperceivedclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Perceived<wbr/>Class</span></a>
+<a href="#updatelabelboxtransform" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Transform</span></a>
+<a href="#updatelabelboxtype" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Type</span></a>
+<a href="#updatelabeltrackgtclass" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Track<wbr/>Gt<wbr/>Class</span></a>
+<a href="#updatelabeltrackisblack" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Track<wbr/>Is<wbr/>Black</span></a>
+<a href="#create" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>create</span></a>
+</div></section></div></details></section></section>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="constructors-1">Constructors<a href="#constructors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructorbboxview"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">BBoxView</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">loader</span><span class="tsd-signature-symbol">:</span> <a href="sta-bbox.app.BBoxLoader.html" class="tsd-signature-type tsd-kind-class">BBoxLoader</a><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><a href="#constructorbboxview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new view of bounding box labels that updates based on the active frame.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">loader</span>: <a href="sta-bbox.app.BBoxLoader.html" class="tsd-signature-type tsd-kind-class">BBoxLoader</a></span></li>
+<li><span><span class="tsd-kind-parameter">context</span>: <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#constructor">constructor</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L330">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:330</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="_frame"><code class="tsd-tag">Protected</code><span>_<wbr/>frame</span><a href="#_frame" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">_frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#_frame">_frame</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L107">core/frontend/app/routes/editor/data/DataView.tsx:107</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="context"><code class="tsd-tag">Readonly</code><span>context</span><a href="#context" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-comment tsd-typography"><p>A handle to the state of the scene.</p>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#context">context</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L316">core/frontend/app/routes/editor/data/DataView.tsx:316</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="loader"><code class="tsd-tag">Protected</code><span>loader</span><a href="#loader" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">loader</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.DataLoader.html" class="tsd-signature-type tsd-kind-interface">DataLoader</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyBBoxIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyBBoxIndex</a><span class="tsd-signature-symbol">&gt;</span></div><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#loader">loader</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L147">core/frontend/app/routes/editor/data/DataView.tsx:147</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="operation"><code class="tsd-tag">Static</code><span>Operation</span><a href="#operation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">Operation</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.BBoxViewOperationConstructor.html" class="tsd-signature-type tsd-kind-type-alias">BBoxViewOperationConstructor</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L548">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:548</a></li></ul></aside></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="currentbranch"><span>current<wbr/>Branch</span><a href="#currentbranch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="currentbranchcurrentbranch"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">currentBranch</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableBranch.html" class="tsd-signature-type tsd-kind-class">EditableBranch</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The currently selected label branch, or <code>null</code> if none.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.app_editor.EditableBranch.html" class="tsd-signature-type tsd-kind-class">EditableBranch</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.currentBranch</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L319">core/frontend/app/routes/editor/data/DataView.tsx:319</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="data"><span>data</span><a href="#data" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="datadata"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">data</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.app_editor.BaseDataView.html#d">D</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The data to display, if any.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a class="tsd-signature-type tsd-kind-type-parameter" href="sta.app_editor.BaseDataView.html#d">D</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.data</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L103">core/frontend/app/routes/editor/data/DataView.tsx:103</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="downloadprogress"><span>download<wbr/>Progress</span><a href="#downloadprogress" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="downloadprogressdownloadprogress"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">downloadProgress</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.DownloadProgress.html" class="tsd-signature-type tsd-kind-interface">DownloadProgress</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Byte progress for the active download, or <code>null</code> when unavailable.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="../interfaces/sta.app_editor.DownloadProgress.html" class="tsd-signature-type tsd-kind-interface">DownloadProgress</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.downloadProgress</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L127">core/frontend/app/routes/editor/data/DataView.tsx:127</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="frame"><span>frame</span><a href="#frame" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="frameframe"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">frame</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The frame for which the data is displayed.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.frame</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L110">core/frontend/app/routes/editor/data/DataView.tsx:110</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="isloading"><span>is<wbr/>Loading</span><a href="#isloading" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="isloadingisloading"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">isLoading</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p><code>true</code> if the data to display is being loaded; otherwise, <code>false</code>.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.isLoading</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L118">core/frontend/app/routes/editor/data/DataView.tsx:118</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="loaderror"><span>load<wbr/>Error</span><a href="#loaderror" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="loaderrorloaderror"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">loadError</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Human-readable error from the latest load, or <code>null</code> after success/retry.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<p>Inherited from LabelDataView.loadError</p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L131">core/frontend/app/routes/editor/data/DataView.tsx:131</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="timepathrange"><span>time<wbr/>Path<wbr/>Range</span><a href="#timepathrange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li>
+<div class="tsd-signature" id="timepathrangetimepathrange"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">timePathRange</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The maximum number of frames on either side of the active frame in the
+time-sorted path for which to display labels.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L111">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:111</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="timepathrangetimepathrange-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">timePathRange</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L115">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:115</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="_reloaddata"><code class="tsd-tag">Protected</code><span>_<wbr/>reload<wbr/>Data</span><a href="#_reloaddata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="_reloaddata-1"><span class="tsd-kind-call-signature">_reloadData</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#_reloaddata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Updates the data stored in this layer according to its current state.</p>
+<p>Note that display data is <code>null</code> while waiting for it to load.
+You can listen to this change through the <code>'beforeload'</code> event.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A promise representing the task.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#_reloaddata">_reloadData</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L171">core/frontend/app/routes/editor/data/DataView.tsx:171</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="addeventlistener"><span>add<wbr/>Event<wbr/>Listener</span><a href="#addeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-1"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L44">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:44</a></li></ul></aside></div></li>
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-2"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="addeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#addeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L48">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:48</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabelbox"><span>add<wbr/>Label<wbr/>Box</span><a href="#addlabelbox" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabelbox-1"><span class="tsd-kind-call-signature">addLabelBox</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.BoxParams.html" class="tsd-signature-type tsd-kind-type-alias">BoxParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">&gt;</span><a href="#addlabelbox-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs a bounding box, adding it to this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.BoxParams.html" class="tsd-signature-type tsd-kind-type-alias">BoxParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L673">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:673</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabelboxlocalonly"><span>add<wbr/>Label<wbr/>Box<wbr/>Local<wbr/>Only</span><a href="#addlabelboxlocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabelboxlocalonly-1"><span class="tsd-kind-call-signature">addLabelBoxLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.BoxParams.html" class="tsd-signature-type tsd-kind-type-alias">BoxParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><a href="#addlabelboxlocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs a bounding box, adding it to this collection.</p>
+<p>Unlike <a href="#addlabelbox" class="tsd-kind-method">BBoxView#addLabelBox</a>, the remote dataset remains unaffected.</p>
+<p>Items added in this way can only be deleted through
+<a href="#deletelabelboxlocalonly" class="tsd-kind-method">BBoxView#deleteLabelBoxLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.BoxParams.html" class="tsd-signature-type tsd-kind-type-alias">BoxParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L378">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:378</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabeltrack"><span>add<wbr/>Label<wbr/>Track</span><a href="#addlabeltrack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabeltrack-1"><span class="tsd-kind-call-signature">addLabelTrack</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.TrackParams.html" class="tsd-signature-type tsd-kind-type-alias">TrackParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">&gt;</span><a href="#addlabeltrack-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs an object track, and adds it to this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.TrackParams.html" class="tsd-signature-type tsd-kind-type-alias">TrackParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L821">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:821</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="addlabeltracklocalonly"><span>add<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span><a href="#addlabeltracklocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="addlabeltracklocalonly-1"><span class="tsd-kind-call-signature">addLabelTrackLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.TrackParams.html" class="tsd-signature-type tsd-kind-type-alias">TrackParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><a href="#addlabeltracklocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Constructs an object track, adding it to this collection.</p>
+<p>Unlike <a href="#addlabeltrack" class="tsd-kind-method">BBoxView#addLabelTrack</a>, the remote dataset remains unaffected.</p>
+<p>Items added in this way can only be deleted through
+<a href="#deletelabeltracklocalonly" class="tsd-kind-method">BBoxView#deleteLabelTrackLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys" class="tsd-signature-type external" target="_blank">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.TrackParams.html" class="tsd-signature-type tsd-kind-type-alias">TrackParams</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L474">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:474</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabelbox"><span>delete<wbr/>Label<wbr/>Box</span><a href="#deletelabelbox" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabelbox-1"><span class="tsd-kind-call-signature">deleteLabelBox</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#deletelabelbox-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a bounding box from this collection.</p>
+<p>This is a deterministic no-op if the box is no longer live
+(e.g. a stale control invoked this after it was already deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L809">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:809</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabelboxlocalonly"><span>delete<wbr/>Label<wbr/>Box<wbr/>Local<wbr/>Only</span><a href="#deletelabelboxlocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabelboxlocalonly-1"><span class="tsd-kind-call-signature">deleteLabelBoxLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#deletelabelboxlocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes a bounding box from this collection.</p>
+<p>Unlike <a href="#deletelabelbox" class="tsd-kind-method">BBoxView#deleteLabelBox</a>, the remote dataset remains unaffected.</p>
+<p>This method can only delete items added through
+<a href="#addlabelboxlocalonly" class="tsd-kind-method">BBoxView#addLabelBoxLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L401">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:401</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabeltrack"><span>delete<wbr/>Label<wbr/>Track</span><a href="#deletelabeltrack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabeltrack-1"><span class="tsd-kind-call-signature">deleteLabelTrack</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">track</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#deletelabeltrack-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes an object track from this collection.</p>
+<p>This is a deterministic no-op if the track is no longer live
+(e.g. a stale control invoked this after it was already deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">track</span>: <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L879">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:879</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="deletelabeltracklocalonly"><span>delete<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span><a href="#deletelabeltracklocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="deletelabeltracklocalonly-1"><span class="tsd-kind-call-signature">deleteLabelTrackLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">track</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#deletelabeltracklocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes an object track from this collection.</p>
+<p>Unlike <a href="#deletelabeltrack" class="tsd-kind-method">BBoxView#deleteLabelTrack</a>, the remote dataset remains unaffected.</p>
+<p>This method can only delete items added through
+<a href="#addlabeltracklocalonly" class="tsd-kind-method">BBoxView#addLabelTrackLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">track</span>: <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L531">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:531</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="dispatchevent"><span>dispatch<wbr/>Event</span><a href="#dispatchevent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="dispatchevent-1"><span class="tsd-kind-call-signature">dispatchEvent</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta.app_editor.BaseEvent.html" class="tsd-signature-type tsd-kind-interface">BaseEvent</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispatchevent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="dispatcheventt"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">event</span>: <a href="../interfaces/sta.app_editor.BaseEvent.html" class="tsd-signature-type tsd-kind-interface">BaseEvent</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">&amp;</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#dispatcheventt">T</a><span class="tsd-signature-symbol">]</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#dispatchevent">dispatchEvent</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L105">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:105</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="dispose"><span>dispose</span><a href="#dispose" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="dispose-1"><span class="tsd-kind-call-signature">dispose</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispose-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Disposes of resources owned by this data view.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#dispose">dispose</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L344">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:344</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getdata"><span>get<wbr/>Data</span><a href="#getdata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getdata-1"><span class="tsd-kind-call-signature">getData</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">signal</span><span class="tsd-signature-symbol">?:</span> <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onProgress</span><span class="tsd-signature-symbol">?:</span> <a href="../types/sta.app_editor.DownloadProgressListener.html" class="tsd-signature-type tsd-kind-type-alias">DownloadProgressListener</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyBBoxIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyBBoxIndex</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span><a href="#getdata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Requests that data be loaded in memory for a frame, and returns it.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">signal</span>: <a href="https://developer.mozilla.org/docs/Web/API/AbortSignal" class="tsd-signature-type external" target="_blank">AbortSignal</a></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">onProgress</span>: <a href="../types/sta.app_editor.DownloadProgressListener.html" class="tsd-signature-type tsd-kind-type-alias">DownloadProgressListener</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyBBoxIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyBBoxIndex</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Overrides <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#getdata">getData</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L192">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:192</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getlabelbox"><span>get<wbr/>Label<wbr/>Box</span><a href="#getlabelbox" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getlabelbox-1"><span class="tsd-kind-call-signature">getLabelBox</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><a href="#getlabelbox-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets a bounding box in this collection by its unique identifier.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L291">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:291</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getlabelclass"><span>get<wbr/>Label<wbr/>Class</span><a href="#getlabelclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getlabelclass-1"><span class="tsd-kind-call-signature">getLabelClass</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a><a href="#getlabelclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets an object class in this collection by its unique identifier.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L270">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:270</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getlabeltrack"><span>get<wbr/>Label<wbr/>Track</span><a href="#getlabeltrack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getlabeltrack-1"><span class="tsd-kind-call-signature">getLabelTrack</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><a href="#getlabeltrack-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets an object track in this collection by its unique identifier.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L312">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:312</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getlabeltracklocalonly"><span>get<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span><a href="#getlabeltracklocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getlabeltracklocalonly-1"><span class="tsd-kind-call-signature">getLabelTrackLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">trackId</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><a href="#getlabeltracklocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Finds a track in local set by track id.</p>
+<p>Items that have been added in through
+<a href="#addlabeltracklocalonly" class="tsd-kind-method">BBoxView#addLabelTrackLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">trackId</span>: <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L512">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:512</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getmaxtimestampinrange"><span>get<wbr/>Max<wbr/>Timestamp<wbr/>In<wbr/>Range</span><a href="#getmaxtimestampinrange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getmaxtimestampinrange-1"><span class="tsd-kind-call-signature">getMaxTimestampInRange</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><a href="#getmaxtimestampinrange-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the maximum timestamp for which to display the labels.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L148">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:148</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="getmintimestampinrange"><span>get<wbr/>Min<wbr/>Timestamp<wbr/>In<wbr/>Range</span><a href="#getmintimestampinrange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="getmintimestampinrange-1"><span class="tsd-kind-call-signature">getMinTimestampInRange</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><a href="#getmintimestampinrange-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the minimum timestamp for which to display the labels.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L141">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:141</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="haseventlistener"><span>has<wbr/>Event<wbr/>Listener</span><a href="#haseventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-1"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L63">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:63</a></li></ul></aside></div></li>
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="haseventlistener-2"><span class="tsd-kind-call-signature">hasEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haseventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="haseventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#haseventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#haseventlistener">hasEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L67">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:67</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="haslabelbox"><span>has<wbr/>Label<wbr/>Box</span><a href="#haslabelbox" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="haslabelbox-1"><span class="tsd-kind-call-signature">hasLabelBox</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haslabelbox-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether a bounding box exists in this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L284">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:284</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="haslabelclass"><span>has<wbr/>Label<wbr/>Class</span><a href="#haslabelclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="haslabelclass-1"><span class="tsd-kind-call-signature">hasLabelClass</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haslabelclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether an object class exists in this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L263">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:263</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="haslabeltrack"><span>has<wbr/>Label<wbr/>Track</span><a href="#haslabeltrack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="haslabeltrack-1"><span class="tsd-kind-call-signature">hasLabelTrack</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haslabeltrack-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether an object track exists in this collection.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L305">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:305</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="haslabeltracklocalonly"><span>has<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span><a href="#haslabeltracklocalonly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="haslabeltracklocalonly-1"><span class="tsd-kind-call-signature">hasLabelTrackLocalOnly</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">trackId</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#haslabeltracklocalonly-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Checks wether the track exists in local set.</p>
+<p>Items that have been added in through
+<a href="#addlabeltracklocalonly" class="tsd-kind-method">BBoxView#addLabelTrackLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">trackId</span>: <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L495">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:495</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="iscached"><span>is<wbr/>Cached</span><a href="#iscached" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="iscached-1"><span class="tsd-kind-call-signature">isCached</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#iscached-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether the data for a frame is in the cache.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a></span>
+<div class="tsd-comment tsd-typography"><p>The frame to load the data for.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><p><code>true</code> if the data for a frame is in the cache; otherwise, <code>false</code>.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#iscached">isCached</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L282">core/frontend/app/routes/editor/data/DataView.tsx:282</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="iterlabelboxes"><span>iter<wbr/>Label<wbr/>Boxes</span><a href="#iterlabelboxes" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="iterlabelboxes-1"><span class="tsd-kind-call-signature">iterLabelBoxes</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">&gt;</span><a href="#iterlabelboxes-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Iterates through each bounding box in this collection.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L277">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:277</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="iterlabelclasses"><span>iter<wbr/>Label<wbr/>Classes</span><a href="#iterlabelclasses" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="iterlabelclasses-1"><span class="tsd-kind-call-signature">iterLabelClasses</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a><span class="tsd-signature-symbol">&gt;</span><a href="#iterlabelclasses-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Iterates through each object class in this collection.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L256">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:256</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="iterlabeltracks"><span>iter<wbr/>Label<wbr/>Tracks</span><a href="#iterlabeltracks" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="iterlabeltracks-1"><span class="tsd-kind-call-signature">iterLabelTracks</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">&gt;</span><a href="#iterlabeltracks-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Iterates through each object track in this collection.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L298">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:298</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="removeeventlistener"><span>remove<wbr/>Event<wbr/>Listener</span><a href="#removeeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-1"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-keyword">keyof</span> <a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sta.app_editor.DataViewEventMap.html" class="tsd-signature-type tsd-kind-interface">DataViewEventMap</a><span class="tsd-signature-symbol">[</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L81">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:81</a></li></ul></aside></div></li>
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-2"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li><span id="removeeventlistenert-1"><span class="tsd-kind-type-parameter">T</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">string</span></span></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">type</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a></span></li>
+<li><span><span class="tsd-kind-parameter">listener</span>: <a href="../types/sta.app_editor.EventListener.html" class="tsd-signature-type tsd-kind-type-alias">EventListener</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#removeeventlistenert-1">T</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts#L85">core/frontend/app/routes/editor/utils/VanillaEventDispatcher.ts:85</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="retry"><span>retry</span><a href="#retry" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="retry-1"><span class="tsd-kind-call-signature">retry</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#retry-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Retries loading the currently selected frame.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#retry">retry</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L251">core/frontend/app/routes/editor/data/DataView.tsx:251</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="setboxhidden"><span>set<wbr/>Box<wbr/>Hidden</span><a href="#setboxhidden" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="setboxhidden-1"><span class="tsd-kind-call-signature">setBoxHidden</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">hidden</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setboxhidden-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Retains hidden IDs across frame loads for this editor session only.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <a href="../types/sta-bbox.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></span></li>
+<li><span><span class="tsd-kind-parameter">hidden</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L361">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:361</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setframe"><span>set<wbr/>Frame</span><a href="#setframe" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setframe-1"><span class="tsd-kind-call-signature">setFrame</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#setframe-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Displays the data for the given frame, loading the corresponding data if necessary.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a href="sta.app_editor.EditableFrame.html" class="tsd-signature-type tsd-kind-class">EditableFrame</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span>
+<div class="tsd-comment tsd-typography"><p>The frame to display the data for.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A promise representing the task.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="sta.app_editor.LabelDataView.html">LabelDataView</a>.<a href="sta.app_editor.LabelDataView.html#setframe">setFrame</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/core/frontend/app/routes/editor/data/DataView.tsx#L242">core/frontend/app/routes/editor/data/DataView.tsx:242</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="setlabelboxdisplayparams"><span>set<wbr/>Label<wbr/>Box<wbr/>Display<wbr/>Params</span><a href="#setlabelboxdisplayparams" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="setlabelboxdisplayparams-1"><span class="tsd-kind-call-signature">setLabelBoxDisplayParams</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><br/>        <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.BoxParams.html" class="tsd-signature-type tsd-kind-type-alias">BoxParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;opacity&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showForwardIndicator&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showFrame&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showPerceivedClass&quot;</span><br/>            <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showColor&quot;</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setlabelboxdisplayparams-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the display parameters of a bounding box.</p>
+<p>This method can be used to update items added through both
+<a href="#addlabelbox" class="tsd-kind-method">BBoxView#addLabelBox</a> and <a href="#addlabelboxlocalonly" class="tsd-kind-method">BBoxView#addLabelBoxLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li>
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><br/>    <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.BoxParams.html" class="tsd-signature-type tsd-kind-type-alias">BoxParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;opacity&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showForwardIndicator&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showFrame&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showPerceivedClass&quot;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;showColor&quot;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L445">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:445</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="setlabeltrackdisplayparams"><span>set<wbr/>Label<wbr/>Track<wbr/>Display<wbr/>Params</span><a href="#setlabeltrackdisplayparams" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="setlabeltrackdisplayparams-1"><span class="tsd-kind-call-signature">setLabelTrackDisplayParams</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">track</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.TrackParams.html" class="tsd-signature-type tsd-kind-type-alias">TrackParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;minTimestamp&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;maxTimestamp&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setlabeltrackdisplayparams-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the display parameters of an object track.</p>
+<p>This method can be used to update items added through both
+<a href="#addlabeltrack" class="tsd-kind-method">BBoxView#addLabelTrack</a> and <a href="#addlabeltracklocalonly" class="tsd-kind-method">BBoxView#addLabelTrackLocalOnly</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">track</span>: <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></span></li>
+<li><span><span class="tsd-kind-parameter">params</span>: <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys" class="tsd-signature-type external" target="_blank">Pick</a><span class="tsd-signature-symbol">&lt;</span><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype" class="tsd-signature-type external" target="_blank">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../types/sta-bbox.app.TrackParams.html" class="tsd-signature-type tsd-kind-type-alias">TrackParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">&quot;minTimestamp&quot;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">&quot;maxTimestamp&quot;</span><span class="tsd-signature-symbol">&gt;</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L424">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:424</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelboxdistinctivelv"><span>update<wbr/>Label<wbr/>Box<wbr/>Distinctive<wbr/>Lv</span><a href="#updatelabelboxdistinctivelv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelboxdistinctivelv-1"><span class="tsd-kind-call-signature">updateLabelBoxDistinctiveLv</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">distinctiveLv</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-bbox.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelboxdistinctivelv-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns a distinctiveness level to a bounding box in this collection.</p>
+<p>This is a deterministic no-op if the box is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li>
+<li><span><span class="tsd-kind-parameter">distinctiveLv</span>: <a href="../interfaces/sta-bbox.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L748">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:748</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelboxocclusionlv"><span>update<wbr/>Label<wbr/>Box<wbr/>Occlusion<wbr/>Lv</span><a href="#updatelabelboxocclusionlv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelboxocclusionlv-1"><span class="tsd-kind-call-signature">updateLabelBoxOcclusionLv</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">occlusionLv</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-bbox.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelboxocclusionlv-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an occlusion level to a bounding box in this collection.</p>
+<p>This is a deterministic no-op if the box is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li>
+<li><span><span class="tsd-kind-parameter">occlusionLv</span>: <a href="../interfaces/sta-bbox.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L766">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:766</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelboxparenttrack"><span>update<wbr/>Label<wbr/>Box<wbr/>Parent<wbr/>Track</span><a href="#updatelabelboxparenttrack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelboxparenttrack-1"><span class="tsd-kind-call-signature">updateLabelBoxParentTrack</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">track</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelboxparenttrack-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an object track to a bounding box in this collection.</p>
+<p>This is a deterministic no-op if the box or the track is no longer
+live (e.g. a stale control invoked this after either was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li>
+<li><span><span class="tsd-kind-parameter">track</span>: <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L693">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:693</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelboxperceivedclass"><span>update<wbr/>Label<wbr/>Box<wbr/>Perceived<wbr/>Class</span><a href="#updatelabelboxperceivedclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelboxperceivedclass-1"><span class="tsd-kind-call-signature">updateLabelBoxPerceivedClass</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">labelClass</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelboxperceivedclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an object class to a bounding box in this collection.</p>
+<p>This is a deterministic no-op if the box is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li>
+<li><span><span class="tsd-kind-parameter">labelClass</span>: <a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L712">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:712</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelboxtransform"><span>update<wbr/>Label<wbr/>Box<wbr/>Transform</span><a href="#updatelabelboxtransform" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelboxtransform-1"><span class="tsd-kind-call-signature">updateLabelBoxTransform</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">mode</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">pose</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sta-bbox.app.BoxPose.html" class="tsd-signature-type tsd-kind-interface">BoxPose</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">prevPose</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/sta-bbox.app.BoxPose.html" class="tsd-signature-type tsd-kind-interface">BoxPose</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelboxtransform-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Registers that a bounding box in this collection has been transformed.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li>
+<li><span><span class="tsd-kind-parameter">mode</span>: <span class="tsd-signature-type">string</span></span></li>
+<li><span><span class="tsd-kind-parameter">pose</span>: <a href="../interfaces/sta-bbox.app.BoxPose.html" class="tsd-signature-type tsd-kind-interface">BoxPose</a></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">prevPose</span>: <a href="../interfaces/sta-bbox.app.BoxPose.html" class="tsd-signature-type tsd-kind-interface">BoxPose</a></span>
+<div class="tsd-comment tsd-typography"><p>If given, the pose of the box before the transformation,
+used as the undo data of the operation instead of the pose read from the box.
+This is needed when the box already reflects the new pose
+(e.g. while it is being transformed through a gizmo).</p>
+<p>This is a deterministic no-op if the box is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L789">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:789</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabelboxtype"><span>update<wbr/>Label<wbr/>Box<wbr/>Type</span><a href="#updatelabelboxtype" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabelboxtype-1"><span class="tsd-kind-call-signature">updateLabelBoxType</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">box</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">boxType</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.models.BoxType.html" class="tsd-signature-type tsd-kind-type-alias">BoxType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabelboxtype-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns a type to a bounding box in this collection.</p>
+<p>This is a deterministic no-op if the box is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">box</span>: <a href="../types/sta-bbox.app.ReadonlyLabelBox.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelBox</a></span></li>
+<li><span><span class="tsd-kind-parameter">boxType</span>: <a href="../types/sta-bbox.models.BoxType.html" class="tsd-signature-type tsd-kind-type-alias">BoxType</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L730">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:730</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabeltrackgtclass"><span>update<wbr/>Label<wbr/>Track<wbr/>Gt<wbr/>Class</span><a href="#updatelabeltrackgtclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabeltrackgtclass-1"><span class="tsd-kind-call-signature">updateLabelTrackGtClass</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">track</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">labelClass</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabeltrackgtclass-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns an object class to an object track in this collection.</p>
+<p>This is a deterministic no-op if the track is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">track</span>: <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></span></li>
+<li><span><span class="tsd-kind-parameter">labelClass</span>: <a href="../types/sta-bbox.app.ReadonlyLabelClass.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelClass</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L843">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:843</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="updatelabeltrackisblack"><span>update<wbr/>Label<wbr/>Track<wbr/>Is<wbr/>Black</span><a href="#updatelabeltrackisblack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="updatelabeltrackisblack-1"><span class="tsd-kind-call-signature">updateLabelTrackIsBlack</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">track</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">isBlack</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#updatelabeltrackisblack-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Assigns the low reflectivity indicator to an object track in this collection.</p>
+<p>This is a deterministic no-op if the track is no longer live
+(e.g. a stale control invoked this after it was deleted).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">track</span>: <a href="../types/sta-bbox.app.ReadonlyLabelTrack.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlyLabelTrack</a></span></li>
+<li><span><span class="tsd-kind-parameter">isBlack</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="tsd-signature-type external" target="_blank">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L861">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:861</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="create"><code class="tsd-tag">Static</code><span>create</span><a href="#create" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="create-1"><span class="tsd-kind-call-signature">create</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">context</span><span class="tsd-signature-symbol">:</span> <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">timePathRange</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a><a href="#create-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new view of bounding box labels that updates based on the active frame.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">context</span>: <a href="sta.app_editor.SceneContext.html" class="tsd-signature-type tsd-kind-class">SceneContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></span></li>
+<li><span><span class="tsd-kind-parameter">timePathRange</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">BBoxView</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx#L319">plugins/bbox/frontend/app/editor/scene/data/BBoxView.tsx:319</a></li></ul></aside></div></li></ul></section></section></details></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary>
+<div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary>
+<div><a href="#_frame" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>_<wbr/>frame</span></a><a href="#context" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>context</span></a><a href="#loader" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>loader</span></a><a href="#operation"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>Operation</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
+<div><a href="#currentbranch" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>current<wbr/>Branch</span></a><a href="#data" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>data</span></a><a href="#downloadprogress" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>download<wbr/>Progress</span></a><a href="#frame" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>frame</span></a><a href="#isloading" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>is<wbr/>Loading</span></a><a href="#loaderror" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>load<wbr/>Error</span></a><a href="#timepathrange"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>time<wbr/>Path<wbr/>Range</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
+<div><a href="#_reloaddata" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>_<wbr/>reload<wbr/>Data</span></a><a href="#addeventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a><a href="#addlabelbox"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Box</span></a><a href="#addlabelboxlocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Box<wbr/>Local<wbr/>Only</span></a><a href="#addlabeltrack"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Track</span></a><a href="#addlabeltracklocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a><a href="#deletelabelbox"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Box</span></a><a href="#deletelabelboxlocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Box<wbr/>Local<wbr/>Only</span></a><a href="#deletelabeltrack"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Track</span></a><a href="#deletelabeltracklocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>delete<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a><a href="#dispatchevent" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a><a href="#dispose"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispose</span></a><a href="#getdata"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Data</span></a><a href="#getlabelbox"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Box</span></a><a href="#getlabelclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Class</span></a><a href="#getlabeltrack"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Track</span></a><a href="#getlabeltracklocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a><a href="#getmaxtimestampinrange"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a><a href="#getmintimestampinrange"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Min<wbr/>Timestamp<wbr/>In<wbr/>Range</span></a><a href="#haseventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Event<wbr/>Listener</span></a><a href="#haslabelbox"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Box</span></a><a href="#haslabelclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Class</span></a><a href="#haslabeltrack"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Track</span></a><a href="#haslabeltracklocalonly"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>has<wbr/>Label<wbr/>Track<wbr/>Local<wbr/>Only</span></a><a href="#iscached" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Cached</span></a><a href="#iterlabelboxes"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Boxes</span></a><a href="#iterlabelclasses"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Classes</span></a><a href="#iterlabeltracks"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>iter<wbr/>Label<wbr/>Tracks</span></a><a href="#removeeventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a><a href="#retry" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>retry</span></a><a href="#setboxhidden"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Box<wbr/>Hidden</span></a><a href="#setframe" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Frame</span></a><a href="#setlabelboxdisplayparams"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Box<wbr/>Display<wbr/>Params</span></a><a href="#setlabeltrackdisplayparams"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Label<wbr/>Track<wbr/>Display<wbr/>Params</span></a><a href="#updatelabelboxdistinctivelv"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Distinctive<wbr/>Lv</span></a><a href="#updatelabelboxocclusionlv"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Occlusion<wbr/>Lv</span></a><a href="#updatelabelboxparenttrack"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Parent<wbr/>Track</span></a><a href="#updatelabelboxperceivedclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Perceived<wbr/>Class</span></a><a href="#updatelabelboxtransform"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Transform</span></a><a href="#updatelabelboxtype"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Box<wbr/>Type</span></a><a href="#updatelabeltrackgtclass"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Track<wbr/>Gt<wbr/>Class</span></a><a href="#updatelabeltrackisblack"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>update<wbr/>Label<wbr/>Track<wbr/>Is<wbr/>Black</span></a><a href="#create"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>create</span></a></div></details></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="../index.html">← API Reference</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">TypeScript API</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.28.20</p></footer>
+<div class="overlay"></div></body></html>

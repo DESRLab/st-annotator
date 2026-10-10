@@ -1,0 +1,49 @@
+CSVFileIO
+=========
+
+
+
+
+.. currentmodule:: sta.common.filesystem.io.csv
+
+.. autoclass:: CSVFileIO
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CSVFileIO.normalize_uri_or_path
+      ~CSVFileIO.read
+      ~CSVFileIO.reader
+      ~CSVFileIO.supports_read
+      ~CSVFileIO.supports_write
+      ~CSVFileIO.write
+      ~CSVFileIO.writer
+
+   
+   .. automethod:: CSVFileIO.normalize_uri_or_path
+   .. automethod:: CSVFileIO.read
+   .. automethod:: CSVFileIO.reader
+   .. automethod:: CSVFileIO.supports_read
+   .. automethod:: CSVFileIO.supports_write
+   .. automethod:: CSVFileIO.write
+   .. automethod:: CSVFileIO.writer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CSVFileIO.read_suffixes
+      ~CSVFileIO.write_suffixes
+
+   
+   .. autoattribute:: CSVFileIO.read_suffixes
+   .. autoattribute:: CSVFileIO.write_suffixes
+   
+   

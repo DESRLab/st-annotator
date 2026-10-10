@@ -1,0 +1,40 @@
+PartialSTBoundsDict
+===================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: PartialSTBoundsDict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PartialSTBoundsDict.min_x
+      ~PartialSTBoundsDict.min_y
+      ~PartialSTBoundsDict.min_z
+      ~PartialSTBoundsDict.max_x
+      ~PartialSTBoundsDict.max_y
+      ~PartialSTBoundsDict.max_z
+      ~PartialSTBoundsDict.min_timestamp
+      ~PartialSTBoundsDict.max_timestamp
+
+   
+   .. autoattribute:: PartialSTBoundsDict.min_x
+   .. autoattribute:: PartialSTBoundsDict.min_y
+   .. autoattribute:: PartialSTBoundsDict.min_z
+   .. autoattribute:: PartialSTBoundsDict.max_x
+   .. autoattribute:: PartialSTBoundsDict.max_y
+   .. autoattribute:: PartialSTBoundsDict.max_z
+   .. autoattribute:: PartialSTBoundsDict.min_timestamp
+   .. autoattribute:: PartialSTBoundsDict.max_timestamp
+   
+   

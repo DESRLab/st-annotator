@@ -1,0 +1,45 @@
+LabelGroupPublic
+================
+
+
+
+
+.. currentmodule:: sta.models.label.group
+
+.. autoclass:: LabelGroupPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelGroupPublic.check_edit_conflict
+      ~LabelGroupPublic.sqlmodel_update
+
+   
+   .. automethod:: LabelGroupPublic.check_edit_conflict
+   .. automethod:: LabelGroupPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelGroupPublic.model_config
+      ~LabelGroupPublic.id
+      ~LabelGroupPublic.name
+      ~LabelGroupPublic.description
+      ~LabelGroupPublic.last_edit_at
+
+   
+   .. autoattribute:: LabelGroupPublic.model_config
+   .. autoattribute:: LabelGroupPublic.id
+   .. autoattribute:: LabelGroupPublic.name
+   .. autoattribute:: LabelGroupPublic.description
+   .. autoattribute:: LabelGroupPublic.last_edit_at
+   
+   

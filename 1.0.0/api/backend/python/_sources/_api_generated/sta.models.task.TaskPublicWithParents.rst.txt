@@ -1,0 +1,63 @@
+TaskPublicWithParents
+=====================
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: TaskPublicWithParents
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TaskPublicWithParents.check_edit_conflict
+      ~TaskPublicWithParents.sqlmodel_update
+
+   
+   .. automethod:: TaskPublicWithParents.check_edit_conflict
+   .. automethod:: TaskPublicWithParents.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TaskPublicWithParents.model_config
+      ~TaskPublicWithParents.project
+      ~TaskPublicWithParents.parent
+      ~TaskPublicWithParents.children
+      ~TaskPublicWithParents.id
+      ~TaskPublicWithParents.supervisors
+      ~TaskPublicWithParents.annotators
+      ~TaskPublicWithParents.branch_permission_warnings
+      ~TaskPublicWithParents.name
+      ~TaskPublicWithParents.description
+      ~TaskPublicWithParents.deadline
+      ~TaskPublicWithParents.project_id
+      ~TaskPublicWithParents.parent_id
+      ~TaskPublicWithParents.last_edit_at
+
+   
+   .. autoattribute:: TaskPublicWithParents.model_config
+   .. autoattribute:: TaskPublicWithParents.project
+   .. autoattribute:: TaskPublicWithParents.parent
+   .. autoattribute:: TaskPublicWithParents.children
+   .. autoattribute:: TaskPublicWithParents.id
+   .. autoattribute:: TaskPublicWithParents.supervisors
+   .. autoattribute:: TaskPublicWithParents.annotators
+   .. autoattribute:: TaskPublicWithParents.branch_permission_warnings
+   .. autoattribute:: TaskPublicWithParents.name
+   .. autoattribute:: TaskPublicWithParents.description
+   .. autoattribute:: TaskPublicWithParents.deadline
+   .. autoattribute:: TaskPublicWithParents.project_id
+   .. autoattribute:: TaskPublicWithParents.parent_id
+   .. autoattribute:: TaskPublicWithParents.last_edit_at
+   
+   

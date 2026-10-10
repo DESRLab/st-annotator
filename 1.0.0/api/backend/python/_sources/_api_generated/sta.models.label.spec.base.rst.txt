@@ -1,0 +1,36 @@
+sta.models.label.spec.base
+==========================
+
+.. currentmodule:: sta.models.label.spec
+
+.. automodule:: sta.models.label.spec.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LabelSpecCreateLike
+      LabelSpecPublicLike
+      LabelSpecSQLModel
+      LabelSpecTableLike
+      LabelSpecUpdateLike
+   
+   
+
+   
+   
+   
+
+
+

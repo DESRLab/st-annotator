@@ -1,0 +1,32 @@
+UserCreate
+==========
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: UserCreate
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UserCreate.model_config
+      ~UserCreate.username
+      ~UserCreate.password
+      ~UserCreate.roles
+
+   
+   .. autoattribute:: UserCreate.model_config
+   .. autoattribute:: UserCreate.username
+   .. autoattribute:: UserCreate.password
+   .. autoattribute:: UserCreate.roles
+   
+   

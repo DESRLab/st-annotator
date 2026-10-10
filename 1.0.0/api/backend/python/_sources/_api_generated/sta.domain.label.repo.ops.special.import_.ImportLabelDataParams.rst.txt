@@ -1,0 +1,39 @@
+ImportLabelDataParams
+=====================
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.special.import_
+
+.. autoclass:: ImportLabelDataParams
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ImportLabelDataParams.serialize_func
+
+   
+   .. automethod:: ImportLabelDataParams.serialize_func
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ImportLabelDataParams.model_config
+      ~ImportLabelDataParams.func
+      ~ImportLabelDataParams.metadata
+
+   
+   .. autoattribute:: ImportLabelDataParams.model_config
+   .. autoattribute:: ImportLabelDataParams.func
+   .. autoattribute:: ImportLabelDataParams.metadata
+   
+   

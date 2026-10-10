@@ -1,0 +1,55 @@
+LabelsetCommit
+==============
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetCommit
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetCommit.check_edit_conflict
+      ~LabelsetCommit.get_child_links_cls
+      ~LabelsetCommit.get_parent_links_cls
+      ~LabelsetCommit.sqlmodel_update
+
+   
+   .. automethod:: LabelsetCommit.check_edit_conflict
+   .. automethod:: LabelsetCommit.get_child_links_cls
+   .. automethod:: LabelsetCommit.get_parent_links_cls
+   .. automethod:: LabelsetCommit.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetCommit.children
+      ~LabelsetCommit.group
+      ~LabelsetCommit.group_id
+      ~LabelsetCommit.hash
+      ~LabelsetCommit.last_edit_at
+      ~LabelsetCommit.model_config
+      ~LabelsetCommit.operations
+      ~LabelsetCommit.parents
+
+   
+   .. autoattribute:: LabelsetCommit.children
+   .. autoattribute:: LabelsetCommit.group
+   .. autoattribute:: LabelsetCommit.group_id
+   .. autoattribute:: LabelsetCommit.hash
+   .. autoattribute:: LabelsetCommit.last_edit_at
+   .. autoattribute:: LabelsetCommit.model_config
+   .. autoattribute:: LabelsetCommit.operations
+   .. autoattribute:: LabelsetCommit.parents
+   
+   

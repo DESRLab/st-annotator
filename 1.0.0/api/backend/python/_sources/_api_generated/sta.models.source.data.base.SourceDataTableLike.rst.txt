@@ -1,0 +1,81 @@
+SourceDataTableLike
+===================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceDataTableLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceDataTableLike.model_dump
+      ~SourceDataTableLike.model_validate
+      ~SourceDataTableLike.sqlmodel_update
+      ~SourceDataTableLike.unpack_max_coords
+      ~SourceDataTableLike.unpack_min_coords
+      ~SourceDataTableLike.unpack_st_bounds
+      ~SourceDataTableLike.update_from_st_bounds
+
+   
+   .. automethod:: SourceDataTableLike.model_dump
+   .. automethod:: SourceDataTableLike.model_validate
+   .. automethod:: SourceDataTableLike.sqlmodel_update
+   .. automethod:: SourceDataTableLike.unpack_max_coords
+   .. automethod:: SourceDataTableLike.unpack_min_coords
+   .. automethod:: SourceDataTableLike.unpack_st_bounds
+   .. automethod:: SourceDataTableLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceDataTableLike.max_coords
+      ~SourceDataTableLike.min_coords
+      ~SourceDataTableLike.model_fields_set
+      ~SourceDataTableLike.st_bounds
+      ~SourceDataTableLike.id
+      ~SourceDataTableLike.group
+      ~SourceDataTableLike.auto_bounds
+      ~SourceDataTableLike.bounds_config_hash
+      ~SourceDataTableLike.bounds_error
+      ~SourceDataTableLike.group_id
+      ~SourceDataTableLike.min_x
+      ~SourceDataTableLike.min_y
+      ~SourceDataTableLike.min_z
+      ~SourceDataTableLike.max_x
+      ~SourceDataTableLike.max_y
+      ~SourceDataTableLike.max_z
+      ~SourceDataTableLike.min_timestamp
+      ~SourceDataTableLike.max_timestamp
+
+   
+   .. autoattribute:: SourceDataTableLike.max_coords
+   .. autoattribute:: SourceDataTableLike.min_coords
+   .. autoattribute:: SourceDataTableLike.model_fields_set
+   .. autoattribute:: SourceDataTableLike.st_bounds
+   .. autoattribute:: SourceDataTableLike.id
+   .. autoattribute:: SourceDataTableLike.group
+   .. autoattribute:: SourceDataTableLike.auto_bounds
+   .. autoattribute:: SourceDataTableLike.bounds_config_hash
+   .. autoattribute:: SourceDataTableLike.bounds_error
+   .. autoattribute:: SourceDataTableLike.group_id
+   .. autoattribute:: SourceDataTableLike.min_x
+   .. autoattribute:: SourceDataTableLike.min_y
+   .. autoattribute:: SourceDataTableLike.min_z
+   .. autoattribute:: SourceDataTableLike.max_x
+   .. autoattribute:: SourceDataTableLike.max_y
+   .. autoattribute:: SourceDataTableLike.max_z
+   .. autoattribute:: SourceDataTableLike.min_timestamp
+   .. autoattribute:: SourceDataTableLike.max_timestamp
+   
+   

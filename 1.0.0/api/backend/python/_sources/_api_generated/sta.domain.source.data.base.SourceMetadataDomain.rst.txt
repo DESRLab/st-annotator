@@ -1,0 +1,66 @@
+SourceMetadataDomain
+====================
+
+
+
+
+.. currentmodule:: sta.domain.source.data.base
+
+.. autoclass:: SourceMetadataDomain
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceMetadataDomain.attest_bounds
+      ~SourceMetadataDomain.build_list_query
+      ~SourceMetadataDomain.bulk_create_datas
+      ~SourceMetadataDomain.bulk_delete_datas
+      ~SourceMetadataDomain.bulk_update_datas
+      ~SourceMetadataDomain.can_read_data
+      ~SourceMetadataDomain.can_read_data_filters
+      ~SourceMetadataDomain.count_datas
+      ~SourceMetadataDomain.create_data
+      ~SourceMetadataDomain.delete_data
+      ~SourceMetadataDomain.list_data_ids
+      ~SourceMetadataDomain.list_datas
+      ~SourceMetadataDomain.list_datas_in_bounds
+      ~SourceMetadataDomain.list_pending_bounds
+      ~SourceMetadataDomain.mark_group_bounds_pending
+      ~SourceMetadataDomain.mark_rows_bounds_pending
+      ~SourceMetadataDomain.pending_bounds_group_ids
+      ~SourceMetadataDomain.read_data
+      ~SourceMetadataDomain.record_bounds_error
+      ~SourceMetadataDomain.require_data_writer
+      ~SourceMetadataDomain.update_data
+
+   
+   .. automethod:: SourceMetadataDomain.attest_bounds
+   .. automethod:: SourceMetadataDomain.build_list_query
+   .. automethod:: SourceMetadataDomain.bulk_create_datas
+   .. automethod:: SourceMetadataDomain.bulk_delete_datas
+   .. automethod:: SourceMetadataDomain.bulk_update_datas
+   .. automethod:: SourceMetadataDomain.can_read_data
+   .. automethod:: SourceMetadataDomain.can_read_data_filters
+   .. automethod:: SourceMetadataDomain.count_datas
+   .. automethod:: SourceMetadataDomain.create_data
+   .. automethod:: SourceMetadataDomain.delete_data
+   .. automethod:: SourceMetadataDomain.list_data_ids
+   .. automethod:: SourceMetadataDomain.list_datas
+   .. automethod:: SourceMetadataDomain.list_datas_in_bounds
+   .. automethod:: SourceMetadataDomain.list_pending_bounds
+   .. automethod:: SourceMetadataDomain.mark_group_bounds_pending
+   .. automethod:: SourceMetadataDomain.mark_rows_bounds_pending
+   .. automethod:: SourceMetadataDomain.pending_bounds_group_ids
+   .. automethod:: SourceMetadataDomain.read_data
+   .. automethod:: SourceMetadataDomain.record_bounds_error
+   .. automethod:: SourceMetadataDomain.require_data_writer
+   .. automethod:: SourceMetadataDomain.update_data
+   
+   
+
+   
+   
+   

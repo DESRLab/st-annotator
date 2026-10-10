@@ -1,0 +1,32 @@
+sta.api.rate\_limit
+===================
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.rate_limit
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LoginRateLimiter
+   
+   
+
+   
+   
+   
+
+
+

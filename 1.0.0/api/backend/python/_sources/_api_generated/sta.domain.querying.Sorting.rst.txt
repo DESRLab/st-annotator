@@ -1,0 +1,30 @@
+Sorting
+=======
+
+
+
+
+.. currentmodule:: sta.domain.querying
+
+.. autoclass:: Sorting
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Sorting.model_config
+      ~Sorting.sort_by
+      ~Sorting.sort_dir
+
+   
+   .. autoattribute:: Sorting.model_config
+   .. autoattribute:: Sorting.sort_by
+   .. autoattribute:: Sorting.sort_dir
+   
+   

@@ -1,0 +1,34 @@
+sta.cli.base
+============
+
+.. currentmodule:: sta.cli
+
+.. automodule:: sta.cli.base
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_config_path_option
+
+   
+   .. autofunction:: get_config_path_option
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

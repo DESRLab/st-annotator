@@ -1,0 +1,36 @@
+sta.models.source.spec.base
+===========================
+
+.. currentmodule:: sta.models.source.spec
+
+.. automodule:: sta.models.source.spec.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      SourceSpecCreateLike
+      SourceSpecPublicLike
+      SourceSpecSQLModel
+      SourceSpecTableLike
+      SourceSpecUpdateLike
+   
+   
+
+   
+   
+   
+
+
+

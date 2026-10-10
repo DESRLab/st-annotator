@@ -1,0 +1,36 @@
+EntityOperationParamsBuilders
+=============================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: EntityOperationParamsBuilders
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EntityOperationParamsBuilders.create_op
+      ~EntityOperationParamsBuilders.create
+      ~EntityOperationParamsBuilders.update_op
+      ~EntityOperationParamsBuilders.update
+      ~EntityOperationParamsBuilders.delete_op
+      ~EntityOperationParamsBuilders.delete
+
+   
+   .. autoattribute:: EntityOperationParamsBuilders.create_op
+   .. autoattribute:: EntityOperationParamsBuilders.create
+   .. autoattribute:: EntityOperationParamsBuilders.update_op
+   .. autoattribute:: EntityOperationParamsBuilders.update
+   .. autoattribute:: EntityOperationParamsBuilders.delete_op
+   .. autoattribute:: EntityOperationParamsBuilders.delete
+   
+   

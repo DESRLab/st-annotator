@@ -1,0 +1,37 @@
+PerfDeleteEntity
+================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfDeleteEntity
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PerfDeleteEntity.apply
+
+   
+   .. automethod:: PerfDeleteEntity.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfDeleteEntity.name
+      ~PerfDeleteEntity.params
+
+   
+   .. autoattribute:: PerfDeleteEntity.name
+   .. autoattribute:: PerfDeleteEntity.params
+   
+   

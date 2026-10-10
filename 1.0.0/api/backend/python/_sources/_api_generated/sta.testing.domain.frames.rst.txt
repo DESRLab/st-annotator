@@ -1,0 +1,36 @@
+sta.testing.domain.frames
+=========================
+
+.. currentmodule:: sta.testing.domain
+
+.. automodule:: sta.testing.domain.frames
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      frame_for_annotate
+      frame_for_review
+
+   
+   .. autofunction:: frame_for_annotate
+   .. autofunction:: frame_for_review
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
