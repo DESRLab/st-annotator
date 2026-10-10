@@ -2062,12 +2062,22 @@ parameters and fragments in browsers with JavaScript. The <code>stable/</code> p
 redirect to the corresponding pages of the latest stable snapshot.</p>
 <p>The assembled archive is uploaded with <code>actions/upload-pages-artifact</code> and
 published with <code>actions/deploy-pages</code> in the <code>github-pages</code> environment. The
-repository's <strong>Settings → Pages → Build and deployment → Source</strong> stays set to
+release run saves its snapshot and dispatches this workflow on <code>main</code>, which
+updates development documentation and publishes the complete archive. It does
+not deploy Pages directly: a release deployment can report success while
+reusing an earlier artifact from the same source commit
+(<a href="https://github.com/actions/deploy-pages/issues/383">deploy-pages issue 383</a>).
+To republish an archived release, manually run <strong>Publish documentation</strong> on
+<code>main</code>; the workflow includes all snapshots stored on <code>docs-site</code>.</p>
+<p>The repository's <strong>Settings → Pages → Build and deployment → Source</strong> stays set to
 <strong>GitHub Actions</strong>; <code>docs-site</code> is archive storage, not a branch-based Pages
 source. The build job needs <code>contents: write</code> to persist snapshots; the deployment
 job needs <code>pages: write</code> and <code>id-token: write</code>. Publishing is serialized without
 cancelling an active run. Documentation deploys independently of backend and
-frontend tests and does not run on pull requests.</p>
+frontend tests and does not run on pull requests.
+The release publication request needs <code>actions: write</code> to dispatch the workflow
+on <code>main</code>. A successful request queues publication; the dispatched run's
+deployment determines whether the updated site is published.</p>
 <p><code>uv run --package sta python scripts/test-doc-versions.py</code> verifies snapshot preservation,
 API reference inclusion, stable alias ordering, and redirects. Pre-release CI
 and the publishing workflow run this check. <code>doc.sh</code> builds frontend

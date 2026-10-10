@@ -14,7 +14,7 @@
 <h1>Interface LabelSelectionParams</h1></div>
 <div class="tsd-signature"><span class="tsd-signature-keyword">interface</span> <span class="tsd-kind-interface">LabelSelectionParams</span> <span class="tsd-signature-symbol">{</span><br/>    <a class="tsd-kind-property" href="#config">config</a><span class="tsd-signature-symbol">:</span> <a href="../classes/sta.app_editor.EditorConfig.html" class="tsd-signature-type tsd-kind-class">EditorConfig</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#distinctivelv">distinctiveLv</a><span class="tsd-signature-symbol">?:</span> <a href="sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#entityid">entityId</a><span class="tsd-signature-symbol">?:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#id">id</a><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#labels">labels</a><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlySegmentationIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlySegmentationIndex</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#occlusionlv">occlusionLv</a><span class="tsd-signature-symbol">?:</span> <a href="sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#opacity">opacity</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#perceivedclassid">perceivedClassId</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#points">points</a><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">readonly</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#qualityrank">qualityRank</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#showcenter">showCenter</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#showcolor">showColor</a><span class="tsd-signature-symbol">?:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Color</span><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#showperceivedclass">showPerceivedClass</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#showpointsize">showPointSize</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#timestamp">timestamp</a><span class="tsd-signature-symbol">?:</span> <a href="../classes/sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/><span class="tsd-signature-symbol">}</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L125">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:125</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L125">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:125</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -47,28 +47,28 @@
 <div class="tsd-comment tsd-typography"><p>The configuration of the project.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L127">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:127</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L127">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:127</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="distinctivelv"><code class="tsd-tag">Optional</code><span>distinctive<wbr/>Lv</span><a href="#distinctivelv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">distinctiveLv</span><span class="tsd-signature-symbol">?:</span> <a href="sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a></div>
 <div class="tsd-comment tsd-typography"><p>The distinctiveness level of the represented object.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L140">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:140</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L140">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:140</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="entityid"><code class="tsd-tag">Optional</code><span>entity<wbr/>Id</span><a href="#entityid" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">entityId</span><span class="tsd-signature-symbol">?:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
 <div class="tsd-comment tsd-typography"><p>The unique identifier of the instance object representing the same object, or <code>null</code> if no object is assigned.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L146">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:146</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L146">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:146</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="id"><span>id</span><a href="#id" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">id</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.UUID.html" class="tsd-signature-type tsd-kind-type-alias">UUID</a></div>
 <div class="tsd-comment tsd-typography"><p>The unique identifier of the selection</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L134">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:134</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L134">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:134</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="labels"><span>labels</span><a href="#labels" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">labels</span><span class="tsd-signature-symbol">:</span> <a href="../types/sta-segmentation.app.ReadonlySegmentationIndex.html" class="tsd-signature-type tsd-kind-type-alias">ReadonlySegmentationIndex</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
@@ -76,77 +76,77 @@
 This is usually the collection of labels containing this selection object.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L132">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:132</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L132">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:132</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="occlusionlv"><code class="tsd-tag">Optional</code><span>occlusion<wbr/>Lv</span><a href="#occlusionlv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">occlusionLv</span><span class="tsd-signature-symbol">?:</span> <a href="sta-segmentation.models.QualityLevel.html" class="tsd-signature-type tsd-kind-interface">QualityLevel</a></div>
 <div class="tsd-comment tsd-typography"><p>The occlusion level of the represented object.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L142">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:142</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L142">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:142</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="opacity"><code class="tsd-tag">Optional</code><span>opacity</span><a href="#opacity" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">opacity</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-comment tsd-typography"><p>Opacity of the selection points over the source point cloud.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L152">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:152</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L152">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:152</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="perceivedclassid"><code class="tsd-tag">Optional</code><span>perceived<wbr/>Class<wbr/>Id</span><a href="#perceivedclassid" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">perceivedClassId</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
 <div class="tsd-comment tsd-typography"><p>The unique identifier of the perceived class of the represented object, or <code>null</code> if no class is assigned.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L144">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:144</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L144">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:144</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="points"><span>points</span><a href="#points" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">points</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">readonly</span> <span class="tsd-signature-type">Vector3</span><span class="tsd-signature-symbol">[]</span></div>
 <div class="tsd-comment tsd-typography"><p>The points coordinates of a selection. A shallow copy of the vector is made to this object.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L136">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:136</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L136">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:136</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="qualityrank"><code class="tsd-tag">Optional</code><span>quality<wbr/>Rank</span><a href="#qualityrank" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">qualityRank</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
 <div class="tsd-comment tsd-typography"><p>The quality rank of the annotation.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L138">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:138</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L138">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:138</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="showcenter"><code class="tsd-tag">Optional</code><span>show<wbr/>Center</span><a href="#showcenter" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">showCenter</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
 <div class="tsd-comment tsd-typography"><p><code>false</code> (default) if center of a selection is visibile, otherwise, <code>false</code>.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L158">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:158</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L158">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:158</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="showcolor"><code class="tsd-tag">Optional</code><span>show<wbr/>Color</span><a href="#showcolor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">showColor</span><span class="tsd-signature-symbol">?:</span> <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="tsd-signature-type external" target="_blank">Readonly</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Color</span><span class="tsd-signature-symbol">&gt;</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
 <div class="tsd-comment tsd-typography"><p>If given, displays the given color for the selection, regardless of <code>showPerceivedClass</code>.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L156">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:156</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L156">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:156</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="showperceivedclass"><code class="tsd-tag">Optional</code><span>show<wbr/>Perceived<wbr/>Class</span><a href="#showperceivedclass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">showPerceivedClass</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
 <div class="tsd-comment tsd-typography"><p>Displays the perceived-class color when <code>true</code>; otherwise, uses the ground-truth color.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L154">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:154</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L154">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:154</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="showpointsize"><code class="tsd-tag">Optional</code><span>show<wbr/>Point<wbr/>Size</span><a href="#showpointsize" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">showPointSize</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
 <div class="tsd-comment tsd-typography"><p>If given, displays the given number for points selection size.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L150">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:150</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L150">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:150</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="timestamp"><code class="tsd-tag">Optional</code><span>timestamp</span><a href="#timestamp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">timestamp</span><span class="tsd-signature-symbol">?:</span> <a href="../classes/sta.common.Timestamp.html" class="tsd-signature-type tsd-kind-class">Timestamp</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div>
 <div class="tsd-comment tsd-typography"><p>The timestamp of the represented object.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/efdadfc683f3b37fbb18aeea49024bcce8d69db0/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L148">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:148</a></li></ul></aside></section></section></details></div>
+<li>Defined in <a href="https://github.com/DESRLab/st-annotator/blob/af6eb01ddd564012cd6cff534a76fce92c6ae908/plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx#L148">plugins/segmentation/frontend/app/editor/scene/data/LabelSelection.tsx:148</a></li></ul></aside></section></section></details></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
