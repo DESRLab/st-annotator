@@ -53,8 +53,11 @@ export function exactText(value: string) {
   return new RegExp(`^\\s*${escapeRegex(value)}\\s*$`);
 }
 
-export async function getAccessToken(page: Page) {
+export async function getAccessToken(page: Pick<Page, "request">) {
   const response = await page.request.post(`${backendUrl()}/auth/login`, {
+    // Retry connection resets during fixture setup without rerunning a test
+    // that may have already mutated the shared database. HTTP errors still fail.
+    maxRetries: 2,
     form: {
       username: process.env.STA_E2E_ADMIN_USERNAME ?? "admin",
       password: process.env.STA_E2E_ADMIN_PASSWORD ?? "admin",

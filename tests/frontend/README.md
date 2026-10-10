@@ -190,6 +190,9 @@ the redundant scenario rather than keeping it as insurance.
   the shared fixture database (frame-status cycles, `Ctrl+S`) or restores its gesture
   mutations in place sets `test.describe.configure({ retries: 0 })` so a retry cannot
   start mid-mutation.
+  Fixture API login separately permits two connection-reset retries through
+  Playwright's request API. HTTP failures still fail immediately, and this does
+  not rerun any editor actions or persistence operations.
 - **Use real pointers only on exposed targets.** The default layout stacks draggable
   panels over the display and over each other, so call `uncoverTarget` before any
   real-pointer gesture. Orthographic 2D keeps the page-pixel to scene mapping 1:1,
