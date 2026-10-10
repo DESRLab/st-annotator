@@ -12,13 +12,13 @@ It also integrates our [DynamicSAM](https://github.com/DESRLab/dynamic-sam) mode
 
 ## Resources
 
-- [Documentation](./docs/index.md)
-  - [Installation Guide](./docs/install.md)
-  - [Quickstart Guide](./docs/quickstart.md)
-  - [User Guide](./docs/user/index.md)
-  - [Contributing Guide](./docs/contributing.md)
-  - [API Reference](./docs/api/index.md)
-  - [CLI Reference](./docs/cli/index.md)
+- [Documentation](https://desrlab.github.io/st-annotator)
+  - [Installation Guide](https://desrlab.github.io/st-annotator/install)
+  - [Quickstart Guide](https://desrlab.github.io/st-annotator/quickstart)
+  - [User Guide](https://desrlab.github.io/st-annotator/user)
+  - [Contributing Guide](https://desrlab.github.io/st-annotator/contributing)
+  - [API Reference](https://desrlab.github.io/st-annotator/api)
+  - [CLI Reference](https://desrlab.github.io/st-annotator/cli)
 - [License](LICENSE)
 
 ## Repository structure
@@ -42,13 +42,13 @@ Each plugin package contains both frontend and backend components similar to the
   activate it automatically.
 - After installing the plugin backend packages inside your project's Python environment, the backend plugins will be automatically loaded when you run `sta serve`.
 
-See [this guide](./docs/dev/plugin.md) on how to create your own plugin!
+See [this guide](https://desrlab.github.io/st-annotator/dev/plugin) on how to create your own plugin!
 
 ### Documentation
 
 The source files for the main documentation website are located [here](./docs).
 
-After [installing this repository](./docs/install.md), you can generate the documentation website by running `bash ./scripts/doc.sh`, which outputs HTML under the `site` directory of the repository root.
+After [installing this repository](https://desrlab.github.io/st-annotator/install), you can generate the documentation website by running `bash ./scripts/doc.sh`, which outputs HTML under the `site` directory of the repository root.
 
 ## Publication
 

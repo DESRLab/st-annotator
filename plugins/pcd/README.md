@@ -8,19 +8,3 @@ In addition, `.bin` files can be provided to be interpreted as a NumPy array wit
 
 You can refer to the 3D Velodyne point clouds in [KITTI's dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php) for examples.
 
-## Installation
-
-Please refer to our [installation guide](../../docs/install.md) for more details.
-
-## Contributing
-
-Please refer to our [contributing guide](../../docs/contributing.md) for more details.
-
-## Resources
-
-- [Documentation](../../docs/index.md)
-  - [Installation Guide](../../docs/install.md)
-  - [Quickstart Guide](../../docs/quickstart.md)
-  - [Contributing Guide](../../docs/contributing.md)
-  - [CLI Reference](../../docs/cli/index.md)
-- [License](../../LICENSE)

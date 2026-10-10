@@ -14,19 +14,3 @@ The `size` of a bounding box is relative to model space (local coordinate system
 - `y`: Left along `length` dimension
 - `z`: Up along `height` dimension
 
-## Installation
-
-Please refer to our [installation guide](../../docs/install.md) for more details.
-
-## Contributing
-
-Please refer to our [contributing guide](../../docs/contributing.md) for more details.
-
-## Resources
-
-- [Documentation](../../docs/index.md)
-  - [Installation Guide](../../docs/install.md)
-  - [Quickstart Guide](../../docs/quickstart.md)
-  - [Contributing Guide](../../docs/contributing.md)
-  - [CLI Reference](../../docs/cli/index.md)
-- [License](../../LICENSE)
