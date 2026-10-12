@@ -7,9 +7,9 @@ without a frontend workspace.
 
 The supported datasets are:
 
-- **SemanticKITTI:** Velodyne point clouds, instance segmentation, and fitted
+- [**SemanticKITTI:**](https://semantic-kitti.org/dataset.html) Velodyne point clouds, instance segmentation, and fitted
   bounding boxes. Both label types are imported by default.
-- **3RScan:** Raw annotated PLY point clouds and instance segmentation. Use
+- [**3RScan:**](https://github.com/WaldJohannaU/3RScan) Raw annotated PLY point clouds and instance segmentation. Use
   `--label-type segmentation --label-type bbox` to include fitted bounding boxes.
   PLY colors are annotation colors; textured meshes and RGB-D sequences are
   omitted.
