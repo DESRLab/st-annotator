@@ -1,4 +1,4 @@
-"""Unit tests for the pure and file-driven logic of ``scripts/import_semantickitti.py``.
+"""Unit tests for the pure and file-driven logic of ``sta_datasets.semantickitti``.
 
 The DB-coupled helpers are covered separately in ``test_import_semantickitti_db.py``.
 Everything here runs without a database or the SemanticKITTI dataset.
@@ -13,7 +13,6 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 import click
-import scripts.import_semantickitti as semantickitti
 
 import numpy as np
 
@@ -24,6 +23,8 @@ import pytest
 from sta.common.filesystem import FileSystemPath
 from sta.common.spatial import DecimalCoord3, OptionalDecimalCoord3, Transform
 from sta.porter.st_metadata import STInfoRow
+
+from sta_datasets import common, semantickitti
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -169,21 +170,21 @@ class TestParseSequences:
 
 class TestDecimalQuantization:
     def test_decimal_coord_truncates_to_six_places(self):
-        assert semantickitti.decimal_coord(1.1234567) == Decimal("1.123456")
+        assert common.decimal_coord(1.1234567) == Decimal("1.123456")
 
     def test_decimal_coord_rounds_towards_zero_for_negatives(self):
         # ROUND_DOWN truncates towards zero rather than to -infinity
-        assert semantickitti.decimal_coord(-1.1234567) == Decimal("-1.123456")
+        assert common.decimal_coord(-1.1234567) == Decimal("-1.123456")
 
     def test_decimal_bbox_coord_truncates_to_five_places(self):
-        assert semantickitti.decimal_bbox_coord(1.1234567) == Decimal("1.12345")
+        assert common.decimal_bbox_coord(1.1234567) == Decimal("1.12345")
 
     def test_decimal_bbox_size_clamps_to_the_minimum_size(self):
-        assert semantickitti.decimal_bbox_size(0.0) == Decimal("0.00001")
-        assert semantickitti.decimal_bbox_size(1e-9) == Decimal("0.00001")
+        assert common.decimal_bbox_size(0.0) == Decimal("0.00001")
+        assert common.decimal_bbox_size(1e-9) == Decimal("0.00001")
 
     def test_decimal_bbox_size_keeps_larger_sizes(self):
-        assert semantickitti.decimal_bbox_size(2.5) == Decimal("2.50000")
+        assert common.decimal_bbox_size(2.5) == Decimal("2.50000")
 
 
 class TestFsRelativeUri:
@@ -206,10 +207,10 @@ class TestFsRelativeUri:
 
 class TestFrameHelpers:
     def test_dummy_frame_timestamp_starts_at_the_unix_epoch(self):
-        assert semantickitti.dummy_frame_timestamp(0) == datetime(1970, 1, 1, tzinfo=timezone.utc)
+        assert common.dummy_frame_timestamp(0) == datetime(1970, 1, 1, tzinfo=timezone.utc)
 
     def test_dummy_frame_timestamp_advances_by_one_second_per_frame(self):
-        timestamp = semantickitti.dummy_frame_timestamp(3661)
+        timestamp = common.dummy_frame_timestamp(3661)
 
         assert timestamp == datetime(1970, 1, 1, tzinfo=timezone.utc) + timedelta(seconds=3661)
         assert timestamp.utcoffset() == timedelta(0)
@@ -264,13 +265,13 @@ class TestParallelHelpers:
     def test_parallel_worker_progress_has_distinguishing_prefix(
         self, monkeypatch: pytest.MonkeyPatch
     ):
-        monkeypatch.setattr(semantickitti, "_WORKER_NUMBER", 3)
+        monkeypatch.setattr(semantickitti, "_worker_number", 3)
 
         assert semantickitti.progress_desc("Importing labels") == "[DP3] Importing labels"
         assert semantickitti.progress_position() == 2
 
     def test_single_worker_progress_remains_unprefixed(self, monkeypatch: pytest.MonkeyPatch):
-        monkeypatch.setattr(semantickitti, "_WORKER_NUMBER", None)
+        monkeypatch.setattr(semantickitti, "_worker_number", None)
 
         assert semantickitti.progress_desc("Importing labels") == "Importing labels"
         assert semantickitti.progress_position() is None
@@ -373,7 +374,7 @@ class TestIterFrames:
             frame_index_offset=7,
         )
 
-        assert rows[0].min_timestamp == semantickitti.dummy_frame_timestamp(7)
+        assert rows[0].min_timestamp == common.dummy_frame_timestamp(7)
 
 
 class TestReadPoints:
@@ -468,9 +469,9 @@ class TestImportPoints:
             "dataset/sequences/00/velodyne/000001.bin",
         ]
         # Timestamps are frame-indexed placeholders, not real scan times
-        assert rows[0].min_timestamp == semantickitti.dummy_frame_timestamp(0)
-        assert rows[0].max_timestamp == semantickitti.dummy_frame_timestamp(0)
-        assert rows[1].min_timestamp == semantickitti.dummy_frame_timestamp(1)
+        assert rows[0].min_timestamp == common.dummy_frame_timestamp(0)
+        assert rows[0].max_timestamp == common.dummy_frame_timestamp(0)
+        assert rows[1].min_timestamp == common.dummy_frame_timestamp(1)
 
     def test_timestamps_continue_across_sequences(
         self, tmp_path: Path, write_semantickitti_frame: Callable[..., Path]
@@ -499,8 +500,8 @@ class TestImportPoints:
         )
 
         assert [row.min_timestamp for row in rows] == [
-            semantickitti.dummy_frame_timestamp(0),
-            semantickitti.dummy_frame_timestamp(1),
+            common.dummy_frame_timestamp(0),
+            common.dummy_frame_timestamp(1),
         ]
 
 
@@ -511,7 +512,7 @@ class TestStItemsFromRows:
             STInfoRow(file_uri="data/one.bin", min_timestamp=timestamp, max_timestamp=timestamp)
         ]
 
-        (item,) = semantickitti.st_items_from_rows(rows)
+        (item,) = common.st_items_from_rows(rows)
 
         assert item.filepath == FileSystemPath.from_uri("data/one.bin")
         assert item.min_timestamp == timestamp
@@ -653,10 +654,10 @@ class TestIterPointGroups:
 class TestLabelSelectionFromXyz:
     def test_builds_a_multipoint_selection_with_decimal_bounds(self):
         xyz = np.array([[-1, -2, -3], [0, 0, 0], [1, 2, 3]], dtype=np.float64)
-        timestamp = semantickitti.dummy_frame_timestamp(0)
+        timestamp = common.dummy_frame_timestamp(0)
         entity_id = uuid.uuid4()
 
-        selection = semantickitti.label_selection_from_xyz(
+        selection = common.label_selection_from_xyz(
             id=uuid.uuid4(),
             group_id=7,
             commit_hash="commit",
@@ -716,7 +717,7 @@ class TestBestFitCuboidFromXyz:
     def test_axis_aligned_box_is_fitted_exactly(self):
         xyz = self.box_corners(x_size=4, y_size=2, z_size=3, origin=(0, 0, 1))
 
-        center, angle, size = semantickitti.best_fit_cuboid_from_xyz(xyz)
+        center, angle, size = common.best_fit_cuboid_from_xyz(xyz)
 
         # The long side lies on the x axis, so the heading is zero and
         # size.x follows the heading direction
@@ -736,7 +737,7 @@ class TestBestFitCuboidFromXyz:
         t = np.linspace(-2, 2, 9)
         xyz = np.column_stack([t / np.sqrt(2), t / np.sqrt(2), np.zeros_like(t)])
 
-        _, angle, size = semantickitti.best_fit_cuboid_from_xyz(xyz)
+        _, angle, size = common.best_fit_cuboid_from_xyz(xyz)
 
         assert abs(angle - Decimal("0.78540")) <= Decimal("0.00001")
         # The line is ~4 units long along the heading and degenerate across it
@@ -746,7 +747,7 @@ class TestBestFitCuboidFromXyz:
     def test_fewer_than_three_points_default_to_a_zero_heading(self):
         xyz = np.array([[0, 0, 0], [1, 1, 1]], dtype=np.float64)
 
-        _, angle, size = semantickitti.best_fit_cuboid_from_xyz(xyz)
+        _, angle, size = common.best_fit_cuboid_from_xyz(xyz)
 
         assert angle == Decimal("0.00000")
         assert (size.x, size.y, size.z) == (
@@ -758,7 +759,7 @@ class TestBestFitCuboidFromXyz:
     def test_a_single_point_is_clamped_to_the_minimum_size(self):
         xyz = np.array([[5, 6, 7]], dtype=np.float64)
 
-        center, angle, size = semantickitti.best_fit_cuboid_from_xyz(xyz)
+        center, angle, size = common.best_fit_cuboid_from_xyz(xyz)
 
         assert angle == Decimal("0.00000")
         assert (center.x, center.y, center.z) == (
@@ -772,11 +773,11 @@ class TestBestFitCuboidFromXyz:
 class TestLabelBoxFromXyz:
     def test_builds_a_cuboid_from_the_best_fit(self):
         xyz = TestBestFitCuboidFromXyz.box_corners(x_size=4, y_size=2, z_size=3, origin=(0, 0, 1))
-        timestamp = semantickitti.dummy_frame_timestamp(1)
+        timestamp = common.dummy_frame_timestamp(1)
         box_id = uuid.uuid4()
         entity_id = uuid.uuid4()
 
-        box = semantickitti.label_box_from_xyz(
+        box = common.label_box_from_xyz(
             id=box_id,
             group_id=3,
             commit_hash="commit",
@@ -786,12 +787,12 @@ class TestLabelBoxFromXyz:
             perceived_class_id=10,
         )
 
-        expected_center, expected_angle, expected_size = semantickitti.best_fit_cuboid_from_xyz(xyz)
+        expected_center, expected_angle, expected_size = common.best_fit_cuboid_from_xyz(xyz)
 
         assert box.id == box_id
         assert box.group_id == 3
         assert box.commit_hash == "commit"
-        assert box.type == semantickitti.BoxType.CUBOID
+        assert box.type == common.BoxType.CUBOID
         assert box.timestamp == timestamp
         assert box.entity_id == entity_id
         assert box.perceived_class_id == 10
@@ -838,7 +839,7 @@ class TestEmptyBatchFlushes:
         assert items == []
 
     def test_flush_label_batch_is_a_noop_for_empty_batches(self):
-        semantickitti.flush_label_batch(
+        common.flush_label_batch(
             current_user=None,
             session=None,
             instance_items=[],

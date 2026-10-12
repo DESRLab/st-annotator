@@ -71,9 +71,17 @@ If you run DynamicSAM on another host or port, set the URL to the address reacha
 
 ### Import data
 
+The `sta-datasets` backend plugin provides dataset commands independently of the
+repository scripts. The workspace installation includes it. Run
+`uv run --package sta-datasets --directory . sta-datasets --help` from the
+repository root to list importers. Installed deployments can also use
+`sta plugins -c <config> datasets <dataset> <data-dir>`; the importer inherits
+the host's configuration. The original `scripts/import_*.py` paths remain thin
+launchers for these commands.
+
 #### SemanticKITTI dataset
 
-The repository includes a dedicated importer for SemanticKITTI point clouds,
+The `sta-datasets` backend plugin provides a dedicated importer for SemanticKITTI point clouds,
 point-wise segmentation labels, and instance-derived bounding boxes. Use
 `appconfig-postgis.json` when importing segmentation labels.
 
@@ -105,7 +113,7 @@ point-wise segmentation labels, and instance-derived bounding boxes. Use
 3. From the repository root, import the labeled sequences `00` through `10`:
 
     ```bash
-    python scripts/import_semantickitti.py \
+    uv run --package sta-datasets --directory . sta-datasets semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json
     ```
@@ -118,7 +126,7 @@ point-wise segmentation labels, and instance-derived bounding boxes. Use
    be repeated or receive comma-separated IDs:
 
     ```bash
-    python scripts/import_semantickitti.py \
+    uv run --package sta-datasets --directory . sta-datasets semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json \
         --sequence 00,01
@@ -129,7 +137,7 @@ Additional useful variants include:
 - Import only point clouds, including unlabeled test sequences:
 
     ```bash
-    python scripts/import_semantickitti.py \
+    uv run --package sta-datasets --directory . sta-datasets semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json \
         --sequence 11 \
@@ -144,7 +152,46 @@ Additional useful variants include:
 - Use `--source-group-name`, `--label-group-name`, and `--label-branch-name` to
   choose names other than the defaults. This is particularly useful for
   separate imports of different sequence sets.
-- Run `python scripts/import_semantickitti.py --help` for the complete option list.
+- Run `uv run --package sta-datasets --directory . sta-datasets semantickitti --help` for the complete option list.
+
+#### 3RScan dataset
+
+The `sta-datasets 3rscan` command imports the [3RScan dataset](https://github.com/WaldJohannaU/3RScan) at `data/3RScan`.
+Each annotated scan directory contains `labels.instances.annotated.v2.ply` and
+`semseg.v2.json`. The importer reads vertex `objectId` values from the PLY and
+class names from the JSON's `segGroups`. Directories without an annotated PLY
+are excluded from the default selection.
+
+From the repository root, validate one scan without database writes:
+
+```bash
+uv run --package sta-datasets --directory . sta-datasets 3rscan data/3RScan \
+    --scan 00d42bed-778d-2ac6-86a7-0e0e5f5f5660 --dry-run
+```
+
+Import all annotated scans, logging in with an ST Annotator account at the prompt:
+
+```bash
+uv run --package sta-datasets --directory . sta-datasets 3rscan data/3RScan \
+    -c appconfig-postgis.json
+```
+
+The dataset must be accessible under the configured filesystem root. The
+command creates source and label groups named `3RScan` and a `main` label
+branch. Sources reference the original PLY files, so keep those files in place.
+PLY RGB channels contain annotation colors. Textured meshes, photographic RGB-D
+frames, camera poses, and rescan registration are not imported. Coordinates stay
+in each scan's local frame, with a separate placeholder timestamp per scan.
+
+Segmentation is imported by default. To include upright boxes fitted from the
+object vertices, pass `--label-type segmentation --label-type bbox`. These boxes
+are estimates; the JSON's general oriented bounding boxes are not imported.
+`--skip-labels` imports sources without requiring annotation JSON files.
+`--scan` accepts repeated or comma-separated scan IDs, and `--name` changes the
+group names. `--dry-run` checks all selected point clouds and mappings without
+login. Unannotated vertices (`objectId` zero) receive no label. Failed imports
+remove their database groups while preserving the raw dataset. Each invocation
+creates new groups rather than resuming an earlier import.
 
 #### Custom data
 

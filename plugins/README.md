@@ -1,6 +1,6 @@
 # ⭐ Plugins
 
-This directory contains the built-in plugins. Each plugin defines one or more data types to be processed by the ST Annotator platform.
+This directory contains the built-in plugins, which provide data types and dataset import commands for the ST Annotator platform.
 
 ## List of Plugins
 
@@ -9,5 +9,6 @@ This directory contains the built-in plugins. Each plugin defines one or more da
 - [Bounding Box Labels Plugin](./bbox/)
 - [Vector Labels Plugin](./vector/)
 - [Segmentation Labels Plugin](./segmentation/)
+- [Dataset Import Plugin](./datasets/)
 
 Interested in creating your own plugin? Check out [this guide](https://desrlab.github.io/st-annotator/dev/plugin) for more details.

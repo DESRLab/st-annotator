@@ -1,0 +1,39 @@
+[build-system]
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+
+[project]
+name = "sta-datasets"
+version = "1.0.0"
+description = "ST Annotator dataset import plugin"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = ["sta", "sta-bbox", "sta-pcd", "sta-segmentation", "click>=8.1", "numpy>=1.26,<2.3", "plyfile>=1.0.3", "shapely>=2.0", "sqlmodel>=0.0.24,<0.1", "tqdm>=4.23"]
+
+[project.scripts]
+sta-datasets = "sta_datasets.cli:cli"
+
+[project.entry-points."sta.plugins"]
+registry = "sta_datasets.plugin:register"
+
+[tool.uv.sources]
+sta = { workspace = true }
+sta-bbox = { workspace = true }
+sta-pcd = { workspace = true }
+sta-segmentation = { workspace = true }
+
+[dependency-groups]
+dev = ["deptry>=0.14", "ruff>=0.12", "pyright>=1.1.354", "pytest>=7.0", "pytest-xdist>=3.5"]
+
+[tool.deptry]
+extend_exclude = ["test", "__pycache__"]
+
+[tool.ruff]
+extend = "../../../config/python/pyproject.toml"
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+markers = ["no_plugins: use the core test app without plugin entry-point loading"]

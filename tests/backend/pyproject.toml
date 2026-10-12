@@ -8,7 +8,7 @@ authors = [
     { name = "Cyrus Leung", email = "tlleungac@connect.ust.hk"},
     { name = "Maral Bahari", email = "mbahari@connect.ust.hk"},
 ]
-dependencies = ["sta", "sta-bbox", "sta-gmesh", "sta-pcd", "sta-segmentation", "sta-vector", "click>=8.1", "fastapi>=0.115.13,<0.116", "numpy>=1.26,<2.3", "shapely>=2.0", "sqlmodel>=0.0.24,<0.1", "pytest>=7.0"]
+dependencies = ["sta", "sta-datasets", "sta-bbox", "sta-gmesh", "sta-pcd", "sta-segmentation", "sta-vector", "click>=8.1", "fastapi>=0.115.13,<0.116", "numpy>=1.26,<2.3", "sqlmodel>=0.0.24,<0.1", "pytest>=7.0"]
 
 # The repo-level `scripts/` data tooling and the with-data e2e fixture
 # server (`tests/frontend/serve_e2e_fixture.py`) import the plugin
@@ -21,6 +21,7 @@ package = false
 
 [tool.uv.sources]
 sta = { workspace = true }
+sta-datasets = { workspace = true }
 sta-bbox = { workspace = true }
 sta-gmesh = { workspace = true }
 sta-pcd = { workspace = true }
@@ -37,9 +38,10 @@ extend_exclude = ["__pycache__"]
 # `_typeshed` is typing-only; `scripts` is repo-root data tooling reached via
 # the `sys.path` insertion in conftest.py, not an installable package.
 DEP001 = ["_typeshed", "scripts"]
-# Not imported by these tests, but declared so this venv registers all five
-# plugin entry points for the with-data fixture server it hosts.
-DEP002 = ["sta-gmesh", "sta-vector"]
+# Data plugins are discovered through entry points by authorization tests and
+# the fixture server. The fixture server outside this tree imports numpy;
+# sta-datasets supplies the compatibility launchers under scripts/.
+DEP002 = ["sta-bbox", "sta-gmesh", "sta-pcd", "sta-segmentation", "sta-vector", "sta-datasets", "numpy"]
 
 [tool.ruff]
 extend = "../../config/python/pyproject.toml"

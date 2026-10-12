@@ -69,6 +69,8 @@ format_plugins() {
     local -a labels=()
 
     for plugin in "${PLUGINS[@]}"; do
+        # CLI-only plugins contribute no frontend workspace.
+        [[ -d "plugins/$plugin/$side" ]] || continue
         (
             echo "=== [FORMAT] ${side^} of $plugin plugin${action:+ ($action)} ==="
             if [[ "$side" == "frontend" ]]; then

@@ -306,3 +306,22 @@ For each operation, define a concrete implementation of `BaseOperation` which in
 You can apply an operation by calling `EditableBranch.apply()` with your operation, typically through the label data view's mutator methods. This immediately applies the operation client-side. When the user saves their changes, the operation is also applied server-side, which invokes the corresponding `apply()` method in Python (described above).
 
 Note that once an operation has been applied server-side, it can no longer be undone in the annotation editor.
+
+## Dataset import plugin
+
+`plugins/datasets/backend` is a backend-only package (`sta-datasets`, module
+`sta_datasets`). Its plugin entry point registers the `datasets` command group,
+with SemanticKITTI and 3RScan importers. The same group is available through the
+`sta-datasets` executable without requiring a repository checkout. It contributes
+no API routes or frontend workspace.
+
+Dataset readers and orchestration live in separate modules. `sta_datasets.common`
+owns coordinate quantization, fitted geometry, object-class and label-branch
+creation, label batch writes, and failed-import cleanup. Importers depend on that
+module rather than each other. Package tests live under its `test/` directory;
+new importers register with `sta_datasets.cli` and declare any additional reader
+dependencies in the package's `pyproject.toml`.
+
+Repository lint, format, and test commands check each plugin's existing backend
+and frontend directories, so backend-only plugins participate without requiring
+an empty npm workspace.

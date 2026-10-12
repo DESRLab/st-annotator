@@ -64,6 +64,8 @@ test_plugins() {
     local -a labels=()
 
     for plugin in "${PLUGINS[@]}"; do
+        # CLI-only plugins contribute no frontend workspace.
+        [[ -d "plugins/$plugin/$side" ]] || continue
         (
             echo "=== [TEST] ${side^} of $plugin plugin ==="
             if [[ "$side" == "frontend" ]]; then

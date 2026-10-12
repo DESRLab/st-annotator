@@ -21,6 +21,7 @@ resolution-markers = [
 members = [
     "sta",
     "sta-bbox",
+    "sta-datasets",
     "sta-gmesh",
     "sta-integration-tests",
     "sta-pcd",
@@ -4556,6 +4557,55 @@ dev = [
 ]
 
 [[package]]
+name = "sta-datasets"
+version = "1.0.0"
+source = { editable = "plugins/datasets/backend" }
+dependencies = [
+    { name = "click" },
+    { name = "numpy" },
+    { name = "plyfile" },
+    { name = "shapely" },
+    { name = "sqlmodel" },
+    { name = "sta" },
+    { name = "sta-bbox" },
+    { name = "sta-pcd" },
+    { name = "sta-segmentation" },
+    { name = "tqdm" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "deptry" },
+    { name = "pyright" },
+    { name = "pytest" },
+    { name = "pytest-xdist" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "click", specifier = ">=8.1" },
+    { name = "numpy", specifier = ">=1.26,<2.3" },
+    { name = "plyfile", specifier = ">=1.0.3" },
+    { name = "shapely", specifier = ">=2.0" },
+    { name = "sqlmodel", specifier = ">=0.0.24,<0.1" },
+    { name = "sta", editable = "core/backend" },
+    { name = "sta-bbox", editable = "plugins/bbox/backend" },
+    { name = "sta-pcd", editable = "plugins/pcd/backend" },
+    { name = "sta-segmentation", editable = "plugins/segmentation/backend" },
+    { name = "tqdm", specifier = ">=4.23" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "deptry", specifier = ">=0.14" },
+    { name = "pyright", specifier = ">=1.1.354" },
+    { name = "pytest", specifier = ">=7.0" },
+    { name = "pytest-xdist", specifier = ">=3.5" },
+    { name = "ruff", specifier = ">=0.12" },
+]
+
+[[package]]
 name = "sta-gmesh"
 version = "1.0.0"
 source = { editable = "plugins/gmesh/backend" }
@@ -4621,10 +4671,10 @@ dependencies = [
     { name = "fastapi" },
     { name = "numpy" },
     { name = "pytest" },
-    { name = "shapely" },
     { name = "sqlmodel" },
     { name = "sta" },
     { name = "sta-bbox" },
+    { name = "sta-datasets" },
     { name = "sta-gmesh" },
     { name = "sta-pcd" },
     { name = "sta-segmentation" },
@@ -4643,10 +4693,10 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.115.13,<0.116" },
     { name = "numpy", specifier = ">=1.26,<2.3" },
     { name = "pytest", specifier = ">=7.0" },
-    { name = "shapely", specifier = ">=2.0" },
     { name = "sqlmodel", specifier = ">=0.0.24,<0.1" },
     { name = "sta", editable = "core/backend" },
     { name = "sta-bbox", editable = "plugins/bbox/backend" },
+    { name = "sta-datasets", editable = "plugins/datasets/backend" },
     { name = "sta-gmesh", editable = "plugins/gmesh/backend" },
     { name = "sta-pcd", editable = "plugins/pcd/backend" },
     { name = "sta-segmentation", editable = "plugins/segmentation/backend" },

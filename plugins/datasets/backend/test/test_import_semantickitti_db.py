@@ -1,4 +1,4 @@
-"""Tests for the DB-coupled helpers of ``scripts/import_semantickitti.py``.
+"""Tests for the DB-coupled helpers of ``sta_datasets.semantickitti``.
 
 These run against the standard throwaway test database from the ``test_app``
 fixture machinery and a tiny synthetic SemanticKITTI dataset, so they cover
@@ -12,7 +12,6 @@ from typing import TYPE_CHECKING
 from uuid import UUID
 
 import click
-import scripts.import_semantickitti as semantickitti
 
 import numpy as np
 
@@ -36,6 +35,8 @@ from sta_bbox.models.label.data import LabelBox, LabelTrack
 from sta_pcd.domain.source.data import metadata as pcd_metadata_domain
 from sta_pcd.domain.source.spec import specs as pcd_specs_domain
 from sta_segmentation.models.label.data import LabelInstance, LabelSelection
+
+from sta_datasets import common, semantickitti
 
 from .semantickitti_helpers import write_two_class_frames
 
@@ -121,8 +122,8 @@ def test_import_point_entries_to_db(
     assert metadata.max_y == Decimal("4.000000")
     assert metadata.min_z == Decimal("0.500000")
     assert metadata.max_z == Decimal("1.250000")
-    assert metadata.min_timestamp == semantickitti.dummy_frame_timestamp(0)
-    assert metadata.max_timestamp == semantickitti.dummy_frame_timestamp(0)
+    assert metadata.min_timestamp == common.dummy_frame_timestamp(0)
+    assert metadata.max_timestamp == common.dummy_frame_timestamp(0)
 
     # The script read each box from the raw scan, which is not what the group's own
     # configuration produces, so it must leave every record awaiting a sweep and queue
@@ -166,7 +167,7 @@ def test_create_label_import_branch(root_user: UserPublic, session: Session):
     labels_by_id = {10: "car", 1: "outlier", 50: "building"}
     created_objclass_ids: set[int] = set()
 
-    branch = semantickitti.create_label_import_branch(
+    branch = common.create_label_import_branch(
         current_user=root_user,
         session=session,
         group_name="SemanticKITTI labels",
@@ -194,13 +195,13 @@ def test_create_label_import_branch(root_user: UserPublic, session: Session):
 
 def test_get_or_create_object_class_is_idempotent(root_user: UserPublic, session: Session):
     created_objclass_ids: set[int] = set()
-    first = semantickitti.get_or_create_object_class(
+    first = common.get_or_create_object_class(
         current_user=root_user,
         session=session,
         name="car",
         created_ids=created_objclass_ids,
     )
-    second = semantickitti.get_or_create_object_class(
+    second = common.get_or_create_object_class(
         current_user=root_user,
         session=session,
         name="car",
@@ -227,7 +228,7 @@ def test_cleanup_failed_import_removes_only_new_object_classes(
         session=session,
         name="failed-source-group",
     )
-    branch = semantickitti.create_label_import_branch(
+    branch = common.create_label_import_branch(
         current_user=root_user,
         session=session,
         group_name="failed-label-group",
@@ -238,7 +239,7 @@ def test_cleanup_failed_import_removes_only_new_object_classes(
     assert len(created_objclass_ids) == 1
     new_objclass_id = next(iter(created_objclass_ids))
 
-    retained = semantickitti.cleanup_failed_import_in_session(
+    retained = common.cleanup_failed_import_in_session(
         current_user=root_user,
         session=session,
         source_group_id=source_group.id,
@@ -266,7 +267,7 @@ def test_import_labels_to_db_segmentation_and_bbox(
     dataset_root = write_two_class_frames(tmp_path, frame_count=2)
     labels_by_id = dict(semantickitti.SEMANTIC_KITTI_LABELS)
 
-    branch = semantickitti.create_label_import_branch(
+    branch = common.create_label_import_branch(
         current_user=root_user,
         session=session,
         group_name="SemanticKITTI",
@@ -327,8 +328,8 @@ def test_import_labels_to_db_segmentation_and_bbox(
     # class 0 points never produce boxes or tracks
     assert len(tracks) == 2
     assert len(boxes) == 4
-    assert all(semantickitti.segmentation_entity_domain.has_children(i) for i in instances)
-    assert all(semantickitti.bbox_entity_domain.has_children(track) for track in tracks)
+    assert all(common.segmentation_entity_domain.has_children(i) for i in instances)
+    assert all(common.bbox_entity_domain.has_children(track) for track in tracks)
 
     instance_ids = {instance.id for instance in instances}
     track_ids = {track.id for track in tracks}
@@ -356,11 +357,11 @@ def test_import_labels_to_db_segmentation_and_bbox(
 
     car_box_by_timestamp = {box.timestamp: box for box in car_boxes}
     assert set(car_box_by_timestamp) == {
-        semantickitti.dummy_frame_timestamp(0),
-        semantickitti.dummy_frame_timestamp(1),
+        common.dummy_frame_timestamp(0),
+        common.dummy_frame_timestamp(1),
     }
     # The car points span x in [1, 2], y in [1, 1], z in [0, 0]
-    car_box = car_box_by_timestamp[semantickitti.dummy_frame_timestamp(0)]
+    car_box = car_box_by_timestamp[common.dummy_frame_timestamp(0)]
     assert car_box.center.x == Decimal("1.50000")
     assert car_box.size.x == Decimal("1.00000")
     assert car_box.size.y == Decimal("0.00001")
@@ -374,7 +375,7 @@ def test_import_labels_to_db_bbox_only(
     dataset_root = write_two_class_frames(tmp_path, frame_count=1)
     labels_by_id = dict(semantickitti.SEMANTIC_KITTI_LABELS)
 
-    branch = semantickitti.create_label_import_branch(
+    branch = common.create_label_import_branch(
         current_user=root_user,
         session=session,
         group_name="SemanticKITTI bbox-only",
@@ -424,7 +425,7 @@ def test_import_labels_to_db_bbox_only(
     assert instances == []
     assert len(tracks) == 2
     assert len(boxes) == 2
-    assert all(semantickitti.bbox_entity_domain.has_children(track) for track in tracks)
+    assert all(common.bbox_entity_domain.has_children(track) for track in tracks)
 
 
 def test_import_labels_to_db_error_paths(
@@ -434,7 +435,7 @@ def test_import_labels_to_db_error_paths(
     write_semantickitti_frame: Callable[..., Path],
 ):
     labels_by_id = dict(semantickitti.SEMANTIC_KITTI_LABELS)
-    branch = semantickitti.create_label_import_branch(
+    branch = common.create_label_import_branch(
         current_user=root_user,
         session=session,
         group_name="SemanticKITTI errors",
@@ -506,7 +507,7 @@ def test_import_labels_to_db_flushes_batches_mid_loop(
         )
 
     labels_by_id = dict(semantickitti.SEMANTIC_KITTI_LABELS)
-    branch = semantickitti.create_label_import_branch(
+    branch = common.create_label_import_branch(
         current_user=root_user,
         session=session,
         group_name="SemanticKITTI batches",
