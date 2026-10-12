@@ -1,0 +1,32 @@
+UserRoles
+=========
+
+
+
+
+.. currentmodule:: sta.api.users
+
+.. autoclass:: UserRoles
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UserRoles.model_config
+      ~UserRoles.id
+      ~UserRoles.username
+      ~UserRoles.roles
+
+   
+   .. autoattribute:: UserRoles.model_config
+   .. autoattribute:: UserRoles.id
+   .. autoattribute:: UserRoles.username
+   .. autoattribute:: UserRoles.roles
+   
+   

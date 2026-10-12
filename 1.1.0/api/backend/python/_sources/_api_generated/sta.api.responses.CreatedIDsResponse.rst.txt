@@ -1,0 +1,30 @@
+CreatedIDsResponse
+==================
+
+
+
+
+.. currentmodule:: sta.api.responses
+
+.. autoclass:: CreatedIDsResponse
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CreatedIDsResponse.model_config
+      ~CreatedIDsResponse.ids
+      ~CreatedIDsResponse.success
+
+   
+   .. autoattribute:: CreatedIDsResponse.model_config
+   .. autoattribute:: CreatedIDsResponse.ids
+   .. autoattribute:: CreatedIDsResponse.success
+   
+   

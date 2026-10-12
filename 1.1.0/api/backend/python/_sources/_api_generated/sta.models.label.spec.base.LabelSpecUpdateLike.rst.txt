@@ -1,0 +1,43 @@
+LabelSpecUpdateLike
+===================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.base
+
+.. autoclass:: LabelSpecUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelSpecUpdateLike.model_dump
+      ~LabelSpecUpdateLike.model_validate
+      ~LabelSpecUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: LabelSpecUpdateLike.model_dump
+   .. automethod:: LabelSpecUpdateLike.model_validate
+   .. automethod:: LabelSpecUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelSpecUpdateLike.group_ids
+      ~LabelSpecUpdateLike.model_fields_set
+      ~LabelSpecUpdateLike.name
+
+   
+   .. autoattribute:: LabelSpecUpdateLike.group_ids
+   .. autoattribute:: LabelSpecUpdateLike.model_fields_set
+   .. autoattribute:: LabelSpecUpdateLike.name
+   
+   

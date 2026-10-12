@@ -1,0 +1,51 @@
+LabelSpecTableLike
+==================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.base
+
+.. autoclass:: LabelSpecTableLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelSpecTableLike.check_edit_conflict
+      ~LabelSpecTableLike.get_group_links_cls
+      ~LabelSpecTableLike.model_dump
+      ~LabelSpecTableLike.model_validate
+      ~LabelSpecTableLike.sqlmodel_update
+
+   
+   .. automethod:: LabelSpecTableLike.check_edit_conflict
+   .. automethod:: LabelSpecTableLike.get_group_links_cls
+   .. automethod:: LabelSpecTableLike.model_dump
+   .. automethod:: LabelSpecTableLike.model_validate
+   .. automethod:: LabelSpecTableLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelSpecTableLike.group_links
+      ~LabelSpecTableLike.groups
+      ~LabelSpecTableLike.model_fields_set
+      ~LabelSpecTableLike.id
+      ~LabelSpecTableLike.name
+
+   
+   .. autoattribute:: LabelSpecTableLike.group_links
+   .. autoattribute:: LabelSpecTableLike.groups
+   .. autoattribute:: LabelSpecTableLike.model_fields_set
+   .. autoattribute:: LabelSpecTableLike.id
+   .. autoattribute:: LabelSpecTableLike.name
+   
+   

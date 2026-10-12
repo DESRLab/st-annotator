@@ -1,0 +1,6 @@
+STA\_TRUSTED\_PROXY\_IPS
+========================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_TRUSTED_PROXY_IPS

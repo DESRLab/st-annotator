@@ -1,0 +1,35 @@
+RequiredFieldNullGuard
+======================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: RequiredFieldNullGuard
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RequiredFieldNullGuard.sqlmodel_update
+
+   
+   .. automethod:: RequiredFieldNullGuard.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RequiredFieldNullGuard.model_config
+
+   
+   .. autoattribute:: RequiredFieldNullGuard.model_config
+   
+   

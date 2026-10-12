@@ -1,0 +1,39 @@
+HTTPArgs
+========
+
+
+
+
+.. currentmodule:: sta.cli.serve
+
+.. autoclass:: HTTPArgs
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~HTTPArgs.parse_str
+
+   
+   .. automethod:: HTTPArgs.parse_str
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HTTPArgs.model_config
+      ~HTTPArgs.host
+      ~HTTPArgs.port
+
+   
+   .. autoattribute:: HTTPArgs.model_config
+   .. autoattribute:: HTTPArgs.host
+   .. autoattribute:: HTTPArgs.port
+   
+   

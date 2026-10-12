@@ -1,0 +1,34 @@
+HistoryItem
+===========
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: HistoryItem
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HistoryItem.step
+      ~HistoryItem.num_branches
+      ~HistoryItem.num_commits
+      ~HistoryItem.num_entities
+      ~HistoryItem.num_elements
+
+   
+   .. autoattribute:: HistoryItem.step
+   .. autoattribute:: HistoryItem.num_branches
+   .. autoattribute:: HistoryItem.num_commits
+   .. autoattribute:: HistoryItem.num_entities
+   .. autoattribute:: HistoryItem.num_elements
+   
+   

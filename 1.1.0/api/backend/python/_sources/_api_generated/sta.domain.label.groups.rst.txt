@@ -1,0 +1,54 @@
+sta.domain.label.groups
+=======================
+
+.. currentmodule:: sta.domain.label
+
+.. automodule:: sta.domain.label.groups
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_groups
+      can_read_group
+      can_read_group_filters
+      count_groups
+      create_group
+      delete_group
+      get_valid_group_ids
+      list_groups
+      read_group
+      require_group_writer
+      update_group
+
+   
+   .. autofunction:: bulk_update_groups
+   .. autofunction:: can_read_group
+   .. autofunction:: can_read_group_filters
+   .. autofunction:: count_groups
+   .. autofunction:: create_group
+   .. autofunction:: delete_group
+   .. autofunction:: get_valid_group_ids
+   .. autofunction:: list_groups
+   .. autofunction:: read_group
+   .. autofunction:: require_group_writer
+   .. autofunction:: update_group
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,33 @@
+sta.models.configs
+==================
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.configs
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.models.configs.project
+

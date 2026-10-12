@@ -1,0 +1,54 @@
+sta.domain.projects
+===================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.projects
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_projects
+      can_read_project
+      can_read_project_filters
+      count_projects
+      create_project
+      delete_project
+      list_project_ids
+      list_projects
+      read_project
+      require_project_writer
+      update_project
+
+   
+   .. autofunction:: bulk_update_projects
+   .. autofunction:: can_read_project
+   .. autofunction:: can_read_project_filters
+   .. autofunction:: count_projects
+   .. autofunction:: create_project
+   .. autofunction:: delete_project
+   .. autofunction:: list_project_ids
+   .. autofunction:: list_projects
+   .. autofunction:: read_project
+   .. autofunction:: require_project_writer
+   .. autofunction:: update_project
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

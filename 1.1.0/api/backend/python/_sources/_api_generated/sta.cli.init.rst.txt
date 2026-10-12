@@ -1,0 +1,34 @@
+sta.cli.init
+============
+
+.. currentmodule:: sta.cli
+
+.. automodule:: sta.cli.init
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      init_command
+
+   
+   .. autofunction:: init_command
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

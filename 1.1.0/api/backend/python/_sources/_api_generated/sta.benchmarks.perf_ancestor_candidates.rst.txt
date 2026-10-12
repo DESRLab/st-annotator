@@ -1,0 +1,47 @@
+sta.benchmarks.perf\_ancestor\_candidates
+=========================================
+
+.. currentmodule:: sta.benchmarks
+
+.. automodule:: sta.benchmarks.perf_ancestor_candidates
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      perf_ancestor_candidates
+
+   
+   .. autofunction:: perf_ancestor_candidates
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      ProfileElementCreate
+      ProfileElementSQLModel
+      ProfileEntityCreate
+      ProfileEntitySQLModel
+      ProfileNoOpOperation
+      ProfileNoOpParams
+      ProfileOperationType
+   
+   
+
+   
+   
+   
+
+
+

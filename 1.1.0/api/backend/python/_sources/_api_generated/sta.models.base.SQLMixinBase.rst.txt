@@ -1,0 +1,41 @@
+SQLMixinBase
+============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: SQLMixinBase
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SQLMixinBase.get_create_cls
+      ~SQLMixinBase.get_public_cls
+      ~SQLMixinBase.get_update_cls
+      ~SQLMixinBase.sqlmodel_update
+
+   
+   .. automethod:: SQLMixinBase.get_create_cls
+   .. automethod:: SQLMixinBase.get_public_cls
+   .. automethod:: SQLMixinBase.get_update_cls
+   .. automethod:: SQLMixinBase.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SQLMixinBase.model_config
+
+   
+   .. autoattribute:: SQLMixinBase.model_config
+   
+   

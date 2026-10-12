@@ -1,0 +1,30 @@
+InMemoryDatabaseConfig
+======================
+
+
+
+
+.. currentmodule:: sta.common.database.config
+
+.. autoclass:: InMemoryDatabaseConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~InMemoryDatabaseConfig.create_db
+      ~InMemoryDatabaseConfig.get_engine
+      ~InMemoryDatabaseConfig.with_db_suffix
+
+   
+   .. automethod:: InMemoryDatabaseConfig.create_db
+   .. automethod:: InMemoryDatabaseConfig.get_engine
+   .. automethod:: InMemoryDatabaseConfig.with_db_suffix
+   
+   
+
+   
+   
+   

@@ -1,0 +1,32 @@
+sta.common.filesystem.io.numpy
+==============================
+
+.. currentmodule:: sta.common.filesystem.io
+
+.. automodule:: sta.common.filesystem.io.numpy
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      NumPyFileIO
+   
+   
+
+   
+   
+   
+
+
+

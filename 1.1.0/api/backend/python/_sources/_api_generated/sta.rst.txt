@@ -1,0 +1,46 @@
+﻿sta
+===
+
+.. currentmodule:: sta
+
+.. automodule:: sta
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.api
+   sta.benchmarks
+   sta.cli
+   sta.common
+   sta.config
+   sta.domain
+   sta.entrypoints
+   sta.envs
+   sta.filesystem
+   sta.models
+   sta.plugin
+   sta.porter
+   sta.session
+   sta.testing
+

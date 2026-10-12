@@ -1,0 +1,45 @@
+AccountPublic
+=============
+
+
+
+
+.. currentmodule:: sta.models.account
+
+.. autoclass:: AccountPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AccountPublic.check_edit_conflict
+      ~AccountPublic.sqlmodel_update
+
+   
+   .. automethod:: AccountPublic.check_edit_conflict
+   .. automethod:: AccountPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AccountPublic.model_config
+      ~AccountPublic.id
+      ~AccountPublic.username
+      ~AccountPublic.preferences
+      ~AccountPublic.last_edit_at
+
+   
+   .. autoattribute:: AccountPublic.model_config
+   .. autoattribute:: AccountPublic.id
+   .. autoattribute:: AccountPublic.username
+   .. autoattribute:: AccountPublic.preferences
+   .. autoattribute:: AccountPublic.last_edit_at
+   
+   

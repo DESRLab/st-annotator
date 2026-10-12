@@ -1,0 +1,55 @@
+ProfileEntitySQLModel
+=====================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_ancestor_candidates
+
+.. autoclass:: ProfileEntitySQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProfileEntitySQLModel.build_table_base_cls
+      ~ProfileEntitySQLModel.check_edit_conflict
+      ~ProfileEntitySQLModel.get_create_cls
+      ~ProfileEntitySQLModel.get_public_cls
+      ~ProfileEntitySQLModel.get_table_cls
+      ~ProfileEntitySQLModel.get_update_cls
+      ~ProfileEntitySQLModel.sqlmodel_update
+
+   
+   .. automethod:: ProfileEntitySQLModel.build_table_base_cls
+   .. automethod:: ProfileEntitySQLModel.check_edit_conflict
+   .. automethod:: ProfileEntitySQLModel.get_create_cls
+   .. automethod:: ProfileEntitySQLModel.get_public_cls
+   .. automethod:: ProfileEntitySQLModel.get_table_cls
+   .. automethod:: ProfileEntitySQLModel.get_update_cls
+   .. automethod:: ProfileEntitySQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProfileEntitySQLModel.model_config
+      ~ProfileEntitySQLModel.group_id
+      ~ProfileEntitySQLModel.commit_hash
+      ~ProfileEntitySQLModel.is_deleted
+      ~ProfileEntitySQLModel.last_edit_at
+
+   
+   .. autoattribute:: ProfileEntitySQLModel.model_config
+   .. autoattribute:: ProfileEntitySQLModel.group_id
+   .. autoattribute:: ProfileEntitySQLModel.commit_hash
+   .. autoattribute:: ProfileEntitySQLModel.is_deleted
+   .. autoattribute:: ProfileEntitySQLModel.last_edit_at
+   
+   

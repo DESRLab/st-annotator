@@ -1,0 +1,59 @@
+ObjectClassPublic
+=================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassPublic.check_edit_conflict
+      ~ObjectClassPublic.sqlmodel_update
+      ~ObjectClassPublic.update_from_color
+
+   
+   .. automethod:: ObjectClassPublic.check_edit_conflict
+   .. automethod:: ObjectClassPublic.sqlmodel_update
+   .. automethod:: ObjectClassPublic.update_from_color
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassPublic.color
+      ~ObjectClassPublic.model_config
+      ~ObjectClassPublic.id
+      ~ObjectClassPublic.name
+      ~ObjectClassPublic.description
+      ~ObjectClassPublic.color_rgb
+      ~ObjectClassPublic.default_size_x
+      ~ObjectClassPublic.default_size_y
+      ~ObjectClassPublic.default_size_z
+      ~ObjectClassPublic.is_deleted
+      ~ObjectClassPublic.last_edit_at
+
+   
+   .. autoattribute:: ObjectClassPublic.color
+   .. autoattribute:: ObjectClassPublic.model_config
+   .. autoattribute:: ObjectClassPublic.id
+   .. autoattribute:: ObjectClassPublic.name
+   .. autoattribute:: ObjectClassPublic.description
+   .. autoattribute:: ObjectClassPublic.color_rgb
+   .. autoattribute:: ObjectClassPublic.default_size_x
+   .. autoattribute:: ObjectClassPublic.default_size_y
+   .. autoattribute:: ObjectClassPublic.default_size_z
+   .. autoattribute:: ObjectClassPublic.is_deleted
+   .. autoattribute:: ObjectClassPublic.last_edit_at
+   
+   

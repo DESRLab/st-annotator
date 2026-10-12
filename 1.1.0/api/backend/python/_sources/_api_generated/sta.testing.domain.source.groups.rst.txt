@@ -1,0 +1,34 @@
+sta.testing.domain.source.groups
+================================
+
+.. currentmodule:: sta.testing.domain.source
+
+.. automodule:: sta.testing.domain.source.groups
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      source_group
+
+   
+   .. autofunction:: source_group
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,91 @@
+FrameCreate
+===========
+
+
+
+
+.. currentmodule:: sta.models.frame
+
+.. autoclass:: FrameCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FrameCreate.check_edit_conflict
+      ~FrameCreate.get_create_cls
+      ~FrameCreate.get_public_cls
+      ~FrameCreate.get_update_cls
+      ~FrameCreate.sqlmodel_update
+      ~FrameCreate.unpack_max_coords
+      ~FrameCreate.unpack_min_coords
+      ~FrameCreate.unpack_st_bounds
+      ~FrameCreate.update_from_st_bounds
+
+   
+   .. automethod:: FrameCreate.check_edit_conflict
+   .. automethod:: FrameCreate.get_create_cls
+   .. automethod:: FrameCreate.get_public_cls
+   .. automethod:: FrameCreate.get_update_cls
+   .. automethod:: FrameCreate.sqlmodel_update
+   .. automethod:: FrameCreate.unpack_max_coords
+   .. automethod:: FrameCreate.unpack_min_coords
+   .. automethod:: FrameCreate.unpack_st_bounds
+   .. automethod:: FrameCreate.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FrameCreate.COORD_TYPE
+      ~FrameCreate.max_coords
+      ~FrameCreate.min_coords
+      ~FrameCreate.model_config
+      ~FrameCreate.st_bounds
+      ~FrameCreate.work_type
+      ~FrameCreate.last_viewed_at
+      ~FrameCreate.is_complete
+      ~FrameCreate.task_id
+      ~FrameCreate.account_id
+      ~FrameCreate.source_group_id
+      ~FrameCreate.label_branch_id
+      ~FrameCreate.min_x
+      ~FrameCreate.min_y
+      ~FrameCreate.min_z
+      ~FrameCreate.max_x
+      ~FrameCreate.max_y
+      ~FrameCreate.max_z
+      ~FrameCreate.min_timestamp
+      ~FrameCreate.max_timestamp
+      ~FrameCreate.last_edit_at
+
+   
+   .. autoattribute:: FrameCreate.COORD_TYPE
+   .. autoattribute:: FrameCreate.max_coords
+   .. autoattribute:: FrameCreate.min_coords
+   .. autoattribute:: FrameCreate.model_config
+   .. autoattribute:: FrameCreate.st_bounds
+   .. autoattribute:: FrameCreate.work_type
+   .. autoattribute:: FrameCreate.last_viewed_at
+   .. autoattribute:: FrameCreate.is_complete
+   .. autoattribute:: FrameCreate.task_id
+   .. autoattribute:: FrameCreate.account_id
+   .. autoattribute:: FrameCreate.source_group_id
+   .. autoattribute:: FrameCreate.label_branch_id
+   .. autoattribute:: FrameCreate.min_x
+   .. autoattribute:: FrameCreate.min_y
+   .. autoattribute:: FrameCreate.min_z
+   .. autoattribute:: FrameCreate.max_x
+   .. autoattribute:: FrameCreate.max_y
+   .. autoattribute:: FrameCreate.max_z
+   .. autoattribute:: FrameCreate.min_timestamp
+   .. autoattribute:: FrameCreate.max_timestamp
+   .. autoattribute:: FrameCreate.last_edit_at
+   
+   

@@ -1,0 +1,28 @@
+AccountBulkUpdate
+=================
+
+
+
+
+.. currentmodule:: sta.models.account
+
+.. autoclass:: AccountBulkUpdate
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AccountBulkUpdate.model_config
+      ~AccountBulkUpdate.preferences
+
+   
+   .. autoattribute:: AccountBulkUpdate.model_config
+   .. autoattribute:: AccountBulkUpdate.preferences
+   
+   

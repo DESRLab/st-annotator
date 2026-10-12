@@ -1,0 +1,45 @@
+UserUpdate
+==========
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: UserUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~UserUpdate.sqlmodel_update
+
+   
+   .. automethod:: UserUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UserUpdate.model_config
+      ~UserUpdate.username
+      ~UserUpdate.password
+      ~UserUpdate.current_password
+      ~UserUpdate.roles
+      ~UserUpdate.issued_at
+
+   
+   .. autoattribute:: UserUpdate.model_config
+   .. autoattribute:: UserUpdate.username
+   .. autoattribute:: UserUpdate.password
+   .. autoattribute:: UserUpdate.current_password
+   .. autoattribute:: UserUpdate.roles
+   .. autoattribute:: UserUpdate.issued_at
+   
+   

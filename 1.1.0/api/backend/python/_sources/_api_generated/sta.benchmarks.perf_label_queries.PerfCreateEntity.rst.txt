@@ -1,0 +1,37 @@
+PerfCreateEntity
+================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfCreateEntity
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PerfCreateEntity.apply
+
+   
+   .. automethod:: PerfCreateEntity.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfCreateEntity.name
+      ~PerfCreateEntity.params
+
+   
+   .. autoattribute:: PerfCreateEntity.name
+   .. autoattribute:: PerfCreateEntity.params
+   
+   

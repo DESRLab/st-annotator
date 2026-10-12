@@ -1,0 +1,6 @@
+POSTGRESQL\_PASS
+================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: POSTGRESQL_PASS

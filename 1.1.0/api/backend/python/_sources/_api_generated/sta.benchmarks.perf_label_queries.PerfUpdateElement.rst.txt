@@ -1,0 +1,37 @@
+PerfUpdateElement
+=================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfUpdateElement
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PerfUpdateElement.apply
+
+   
+   .. automethod:: PerfUpdateElement.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfUpdateElement.name
+      ~PerfUpdateElement.params
+
+   
+   .. autoattribute:: PerfUpdateElement.name
+   .. autoattribute:: PerfUpdateElement.params
+   
+   

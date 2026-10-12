@@ -1,0 +1,36 @@
+sta.testing.domain.label.repo.branches
+======================================
+
+.. currentmodule:: sta.testing.domain.label.repo
+
+.. automodule:: sta.testing.domain.label.repo.branches
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      labelset_branch
+      op_registry
+
+   
+   .. autofunction:: labelset_branch
+   .. autofunction:: op_registry
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

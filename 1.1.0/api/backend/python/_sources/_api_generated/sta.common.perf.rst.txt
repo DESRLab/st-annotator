@@ -1,0 +1,32 @@
+sta.common.perf
+===============
+
+.. currentmodule:: sta.common
+
+.. automodule:: sta.common.perf
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      PerformanceCounter
+   
+   
+
+   
+   
+   
+
+
+

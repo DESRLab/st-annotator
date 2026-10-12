@@ -1,0 +1,49 @@
+JSONFileIO
+==========
+
+
+
+
+.. currentmodule:: sta.common.filesystem.io.json
+
+.. autoclass:: JSONFileIO
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~JSONFileIO.normalize_uri_or_path
+      ~JSONFileIO.read
+      ~JSONFileIO.reader
+      ~JSONFileIO.supports_read
+      ~JSONFileIO.supports_write
+      ~JSONFileIO.write
+      ~JSONFileIO.writer
+
+   
+   .. automethod:: JSONFileIO.normalize_uri_or_path
+   .. automethod:: JSONFileIO.read
+   .. automethod:: JSONFileIO.reader
+   .. automethod:: JSONFileIO.supports_read
+   .. automethod:: JSONFileIO.supports_write
+   .. automethod:: JSONFileIO.write
+   .. automethod:: JSONFileIO.writer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~JSONFileIO.read_suffixes
+      ~JSONFileIO.write_suffixes
+
+   
+   .. autoattribute:: JSONFileIO.read_suffixes
+   .. autoattribute:: JSONFileIO.write_suffixes
+   
+   

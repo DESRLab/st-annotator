@@ -1,0 +1,34 @@
+sta.testing.domain.label.spec.objclass
+======================================
+
+.. currentmodule:: sta.testing.domain.label.spec
+
+.. automodule:: sta.testing.domain.label.spec.objclass
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      object_class_selection
+
+   
+   .. autofunction:: object_class_selection
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

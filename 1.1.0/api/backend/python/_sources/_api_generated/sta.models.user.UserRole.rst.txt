@@ -1,0 +1,30 @@
+UserRole
+========
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: UserRole
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UserRole.model_config
+      ~UserRole.role
+      ~UserRole.user_id
+
+   
+   .. autoattribute:: UserRole.model_config
+   .. autoattribute:: UserRole.role
+   .. autoattribute:: UserRole.user_id
+   
+   

@@ -1,0 +1,6 @@
+STA\_LOGIN\_RATE\_LIMIT\_WINDOW\_SECONDS
+========================================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_LOGIN_RATE_LIMIT_WINDOW_SECONDS

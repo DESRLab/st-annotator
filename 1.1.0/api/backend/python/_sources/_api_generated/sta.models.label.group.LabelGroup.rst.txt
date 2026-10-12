@@ -1,0 +1,45 @@
+LabelGroup
+==========
+
+
+
+
+.. currentmodule:: sta.models.label.group
+
+.. autoclass:: LabelGroup
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelGroup.check_edit_conflict
+      ~LabelGroup.sqlmodel_update
+
+   
+   .. automethod:: LabelGroup.check_edit_conflict
+   .. automethod:: LabelGroup.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelGroup.description
+      ~LabelGroup.id
+      ~LabelGroup.last_edit_at
+      ~LabelGroup.model_config
+      ~LabelGroup.name
+
+   
+   .. autoattribute:: LabelGroup.description
+   .. autoattribute:: LabelGroup.id
+   .. autoattribute:: LabelGroup.last_edit_at
+   .. autoattribute:: LabelGroup.model_config
+   .. autoattribute:: LabelGroup.name
+   
+   

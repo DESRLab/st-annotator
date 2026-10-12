@@ -1,0 +1,30 @@
+RotationDict
+============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: RotationDict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RotationDict.rotate_x
+      ~RotationDict.rotate_y
+      ~RotationDict.rotate_z
+
+   
+   .. autoattribute:: RotationDict.rotate_x
+   .. autoattribute:: RotationDict.rotate_y
+   .. autoattribute:: RotationDict.rotate_z
+   
+   

@@ -1,0 +1,41 @@
+sta.common.utils.collections
+============================
+
+.. currentmodule:: sta.common.utils
+
+.. automodule:: sta.common.utils.collections
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      take
+
+   
+   .. autofunction:: take
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      SizedIterator
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,83 @@
+SourceMetadataTableLike
+=======================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceMetadataTableLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceMetadataTableLike.model_dump
+      ~SourceMetadataTableLike.model_validate
+      ~SourceMetadataTableLike.sqlmodel_update
+      ~SourceMetadataTableLike.unpack_max_coords
+      ~SourceMetadataTableLike.unpack_min_coords
+      ~SourceMetadataTableLike.unpack_st_bounds
+      ~SourceMetadataTableLike.update_from_st_bounds
+
+   
+   .. automethod:: SourceMetadataTableLike.model_dump
+   .. automethod:: SourceMetadataTableLike.model_validate
+   .. automethod:: SourceMetadataTableLike.sqlmodel_update
+   .. automethod:: SourceMetadataTableLike.unpack_max_coords
+   .. automethod:: SourceMetadataTableLike.unpack_min_coords
+   .. automethod:: SourceMetadataTableLike.unpack_st_bounds
+   .. automethod:: SourceMetadataTableLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceMetadataTableLike.max_coords
+      ~SourceMetadataTableLike.min_coords
+      ~SourceMetadataTableLike.model_fields_set
+      ~SourceMetadataTableLike.st_bounds
+      ~SourceMetadataTableLike.uri
+      ~SourceMetadataTableLike.id
+      ~SourceMetadataTableLike.group
+      ~SourceMetadataTableLike.auto_bounds
+      ~SourceMetadataTableLike.bounds_config_hash
+      ~SourceMetadataTableLike.bounds_error
+      ~SourceMetadataTableLike.group_id
+      ~SourceMetadataTableLike.min_x
+      ~SourceMetadataTableLike.min_y
+      ~SourceMetadataTableLike.min_z
+      ~SourceMetadataTableLike.max_x
+      ~SourceMetadataTableLike.max_y
+      ~SourceMetadataTableLike.max_z
+      ~SourceMetadataTableLike.min_timestamp
+      ~SourceMetadataTableLike.max_timestamp
+
+   
+   .. autoattribute:: SourceMetadataTableLike.max_coords
+   .. autoattribute:: SourceMetadataTableLike.min_coords
+   .. autoattribute:: SourceMetadataTableLike.model_fields_set
+   .. autoattribute:: SourceMetadataTableLike.st_bounds
+   .. autoattribute:: SourceMetadataTableLike.uri
+   .. autoattribute:: SourceMetadataTableLike.id
+   .. autoattribute:: SourceMetadataTableLike.group
+   .. autoattribute:: SourceMetadataTableLike.auto_bounds
+   .. autoattribute:: SourceMetadataTableLike.bounds_config_hash
+   .. autoattribute:: SourceMetadataTableLike.bounds_error
+   .. autoattribute:: SourceMetadataTableLike.group_id
+   .. autoattribute:: SourceMetadataTableLike.min_x
+   .. autoattribute:: SourceMetadataTableLike.min_y
+   .. autoattribute:: SourceMetadataTableLike.min_z
+   .. autoattribute:: SourceMetadataTableLike.max_x
+   .. autoattribute:: SourceMetadataTableLike.max_y
+   .. autoattribute:: SourceMetadataTableLike.max_z
+   .. autoattribute:: SourceMetadataTableLike.min_timestamp
+   .. autoattribute:: SourceMetadataTableLike.max_timestamp
+   
+   

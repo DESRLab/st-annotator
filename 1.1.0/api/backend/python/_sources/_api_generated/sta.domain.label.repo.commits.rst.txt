@@ -1,0 +1,50 @@
+sta.domain.label.repo.commits
+=============================
+
+.. currentmodule:: sta.domain.label.repo
+
+.. automodule:: sta.domain.label.repo.commits
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_delete_parents
+      bulk_insert_parents
+      can_read_commit
+      count_commits
+      create_commit
+      delete_commit
+      list_commits
+      read_commit
+      require_write_commit
+
+   
+   .. autofunction:: bulk_delete_parents
+   .. autofunction:: bulk_insert_parents
+   .. autofunction:: can_read_commit
+   .. autofunction:: count_commits
+   .. autofunction:: create_commit
+   .. autofunction:: delete_commit
+   .. autofunction:: list_commits
+   .. autofunction:: read_commit
+   .. autofunction:: require_write_commit
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

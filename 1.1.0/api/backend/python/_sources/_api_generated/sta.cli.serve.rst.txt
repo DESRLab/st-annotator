@@ -1,0 +1,42 @@
+sta.cli.serve
+=============
+
+.. currentmodule:: sta.cli
+
+.. automodule:: sta.cli.serve
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      serve_command
+
+   
+   .. autofunction:: serve_command
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      HTTPArgs
+      HTTPSArgs
+   
+   
+
+   
+   
+   
+
+
+

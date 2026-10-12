@@ -1,0 +1,47 @@
+LabelsetCommitPublic
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetCommitPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetCommitPublic.check_edit_conflict
+      ~LabelsetCommitPublic.sqlmodel_update
+
+   
+   .. automethod:: LabelsetCommitPublic.check_edit_conflict
+   .. automethod:: LabelsetCommitPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetCommitPublic.model_config
+      ~LabelsetCommitPublic.group
+      ~LabelsetCommitPublic.group_id
+      ~LabelsetCommitPublic.hash
+      ~LabelsetCommitPublic.operations
+      ~LabelsetCommitPublic.last_edit_at
+
+   
+   .. autoattribute:: LabelsetCommitPublic.model_config
+   .. autoattribute:: LabelsetCommitPublic.group
+   .. autoattribute:: LabelsetCommitPublic.group_id
+   .. autoattribute:: LabelsetCommitPublic.hash
+   .. autoattribute:: LabelsetCommitPublic.operations
+   .. autoattribute:: LabelsetCommitPublic.last_edit_at
+   
+   

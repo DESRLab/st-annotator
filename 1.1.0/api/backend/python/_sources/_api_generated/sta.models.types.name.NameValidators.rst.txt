@@ -1,0 +1,39 @@
+NameValidators
+==============
+
+
+
+
+.. currentmodule:: sta.models.types.name
+
+.. autoclass:: NameValidators
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~NameValidators.validate
+
+   
+   .. automethod:: NameValidators.validate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~NameValidators.INVALID_MSG
+      ~NameValidators.MAX_LENGTH
+      ~NameValidators.MIN_LENGTH
+
+   
+   .. autoattribute:: NameValidators.INVALID_MSG
+   .. autoattribute:: NameValidators.MAX_LENGTH
+   .. autoattribute:: NameValidators.MIN_LENGTH
+   
+   

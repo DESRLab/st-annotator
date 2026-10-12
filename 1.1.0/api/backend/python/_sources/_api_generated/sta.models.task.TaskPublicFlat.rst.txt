@@ -1,0 +1,57 @@
+TaskPublicFlat
+==============
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: TaskPublicFlat
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TaskPublicFlat.check_edit_conflict
+      ~TaskPublicFlat.sqlmodel_update
+
+   
+   .. automethod:: TaskPublicFlat.check_edit_conflict
+   .. automethod:: TaskPublicFlat.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TaskPublicFlat.model_config
+      ~TaskPublicFlat.id
+      ~TaskPublicFlat.supervisors
+      ~TaskPublicFlat.annotators
+      ~TaskPublicFlat.branch_permission_warnings
+      ~TaskPublicFlat.name
+      ~TaskPublicFlat.description
+      ~TaskPublicFlat.deadline
+      ~TaskPublicFlat.project_id
+      ~TaskPublicFlat.parent_id
+      ~TaskPublicFlat.last_edit_at
+
+   
+   .. autoattribute:: TaskPublicFlat.model_config
+   .. autoattribute:: TaskPublicFlat.id
+   .. autoattribute:: TaskPublicFlat.supervisors
+   .. autoattribute:: TaskPublicFlat.annotators
+   .. autoattribute:: TaskPublicFlat.branch_permission_warnings
+   .. autoattribute:: TaskPublicFlat.name
+   .. autoattribute:: TaskPublicFlat.description
+   .. autoattribute:: TaskPublicFlat.deadline
+   .. autoattribute:: TaskPublicFlat.project_id
+   .. autoattribute:: TaskPublicFlat.parent_id
+   .. autoattribute:: TaskPublicFlat.last_edit_at
+   
+   

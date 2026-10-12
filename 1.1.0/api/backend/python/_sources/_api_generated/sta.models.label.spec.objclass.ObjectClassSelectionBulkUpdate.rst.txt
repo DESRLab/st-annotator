@@ -1,0 +1,45 @@
+ObjectClassSelectionBulkUpdate
+==============================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassSelectionBulkUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionBulkUpdate.sqlmodel_update
+
+   
+   .. automethod:: ObjectClassSelectionBulkUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionBulkUpdate.model_config
+      ~ObjectClassSelectionBulkUpdate.description
+      ~ObjectClassSelectionBulkUpdate.objclass_ids
+      ~ObjectClassSelectionBulkUpdate.name
+      ~ObjectClassSelectionBulkUpdate.group_ids
+      ~ObjectClassSelectionBulkUpdate.issued_at
+
+   
+   .. autoattribute:: ObjectClassSelectionBulkUpdate.model_config
+   .. autoattribute:: ObjectClassSelectionBulkUpdate.description
+   .. autoattribute:: ObjectClassSelectionBulkUpdate.objclass_ids
+   .. autoattribute:: ObjectClassSelectionBulkUpdate.name
+   .. autoattribute:: ObjectClassSelectionBulkUpdate.group_ids
+   .. autoattribute:: ObjectClassSelectionBulkUpdate.issued_at
+   
+   

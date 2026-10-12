@@ -1,0 +1,45 @@
+sta.api.label
+=============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.label
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      setup_router
+
+   
+   .. autofunction:: setup_router
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.api.label.data
+   sta.api.label.groups
+   sta.api.label.repo
+   sta.api.label.spec
+

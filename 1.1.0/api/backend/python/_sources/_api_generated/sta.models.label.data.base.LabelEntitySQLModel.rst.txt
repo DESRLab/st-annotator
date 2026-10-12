@@ -1,0 +1,55 @@
+LabelEntitySQLModel
+===================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelEntitySQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelEntitySQLModel.build_table_base_cls
+      ~LabelEntitySQLModel.check_edit_conflict
+      ~LabelEntitySQLModel.get_create_cls
+      ~LabelEntitySQLModel.get_public_cls
+      ~LabelEntitySQLModel.get_table_cls
+      ~LabelEntitySQLModel.get_update_cls
+      ~LabelEntitySQLModel.sqlmodel_update
+
+   
+   .. automethod:: LabelEntitySQLModel.build_table_base_cls
+   .. automethod:: LabelEntitySQLModel.check_edit_conflict
+   .. automethod:: LabelEntitySQLModel.get_create_cls
+   .. automethod:: LabelEntitySQLModel.get_public_cls
+   .. automethod:: LabelEntitySQLModel.get_table_cls
+   .. automethod:: LabelEntitySQLModel.get_update_cls
+   .. automethod:: LabelEntitySQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelEntitySQLModel.model_config
+      ~LabelEntitySQLModel.group_id
+      ~LabelEntitySQLModel.commit_hash
+      ~LabelEntitySQLModel.is_deleted
+      ~LabelEntitySQLModel.last_edit_at
+
+   
+   .. autoattribute:: LabelEntitySQLModel.model_config
+   .. autoattribute:: LabelEntitySQLModel.group_id
+   .. autoattribute:: LabelEntitySQLModel.commit_hash
+   .. autoattribute:: LabelEntitySQLModel.is_deleted
+   .. autoattribute:: LabelEntitySQLModel.last_edit_at
+   
+   

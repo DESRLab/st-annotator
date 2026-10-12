@@ -1,0 +1,40 @@
+JwtClaims
+=========
+
+
+
+
+.. currentmodule:: sta.domain.auth
+
+.. autoclass:: JwtClaims
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~JwtClaims.iss
+      ~JwtClaims.sub
+      ~JwtClaims.aud
+      ~JwtClaims.exp
+      ~JwtClaims.nbf
+      ~JwtClaims.iat
+      ~JwtClaims.jwt
+      ~JwtClaims.auth_epoch
+
+   
+   .. autoattribute:: JwtClaims.iss
+   .. autoattribute:: JwtClaims.sub
+   .. autoattribute:: JwtClaims.aud
+   .. autoattribute:: JwtClaims.exp
+   .. autoattribute:: JwtClaims.nbf
+   .. autoattribute:: JwtClaims.iat
+   .. autoattribute:: JwtClaims.jwt
+   .. autoattribute:: JwtClaims.auth_epoch
+   
+   

@@ -1,0 +1,33 @@
+sta.domain.label.repo.ops.special.checkpoint
+============================================
+
+.. currentmodule:: sta.domain.label.repo.ops.special
+
+.. automodule:: sta.domain.label.repo.ops.special.checkpoint
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      CheckpointLabelset
+      CheckpointLabelsetParams
+   
+   
+
+   
+   
+   
+
+
+

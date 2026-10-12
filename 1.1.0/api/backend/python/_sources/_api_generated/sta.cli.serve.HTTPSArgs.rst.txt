@@ -1,0 +1,43 @@
+HTTPSArgs
+=========
+
+
+
+
+.. currentmodule:: sta.cli.serve
+
+.. autoclass:: HTTPSArgs
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~HTTPSArgs.parse_str
+
+   
+   .. automethod:: HTTPSArgs.parse_str
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HTTPSArgs.model_config
+      ~HTTPSArgs.host
+      ~HTTPSArgs.port
+      ~HTTPSArgs.ssl_certfile
+      ~HTTPSArgs.ssl_keyfile
+
+   
+   .. autoattribute:: HTTPSArgs.model_config
+   .. autoattribute:: HTTPSArgs.host
+   .. autoattribute:: HTTPSArgs.port
+   .. autoattribute:: HTTPSArgs.ssl_certfile
+   .. autoattribute:: HTTPSArgs.ssl_keyfile
+   
+   

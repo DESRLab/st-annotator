@@ -1,0 +1,44 @@
+sta.api.label.spec.objclass.definitions
+=======================================
+
+.. currentmodule:: sta.api.label.spec.objclass
+
+.. automodule:: sta.api.label.spec.objclass.definitions
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_objclasses
+      create_objclass
+      delete_objclass
+      list_objclasses
+      read_objclass
+      update_objclass
+
+   
+   .. autofunction:: bulk_update_objclasses
+   .. autofunction:: create_objclass
+   .. autofunction:: delete_objclass
+   .. autofunction:: list_objclasses
+   .. autofunction:: read_objclass
+   .. autofunction:: update_objclass
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

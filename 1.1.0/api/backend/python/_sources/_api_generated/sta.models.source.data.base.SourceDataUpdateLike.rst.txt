@@ -1,0 +1,59 @@
+SourceDataUpdateLike
+====================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceDataUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceDataUpdateLike.model_dump
+      ~SourceDataUpdateLike.model_validate
+      ~SourceDataUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: SourceDataUpdateLike.model_dump
+   .. automethod:: SourceDataUpdateLike.model_validate
+   .. automethod:: SourceDataUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceDataUpdateLike.auto_bounds
+      ~SourceDataUpdateLike.group_id
+      ~SourceDataUpdateLike.max_timestamp
+      ~SourceDataUpdateLike.max_x
+      ~SourceDataUpdateLike.max_y
+      ~SourceDataUpdateLike.max_z
+      ~SourceDataUpdateLike.min_timestamp
+      ~SourceDataUpdateLike.min_x
+      ~SourceDataUpdateLike.min_y
+      ~SourceDataUpdateLike.min_z
+      ~SourceDataUpdateLike.model_fields_set
+
+   
+   .. autoattribute:: SourceDataUpdateLike.auto_bounds
+   .. autoattribute:: SourceDataUpdateLike.group_id
+   .. autoattribute:: SourceDataUpdateLike.max_timestamp
+   .. autoattribute:: SourceDataUpdateLike.max_x
+   .. autoattribute:: SourceDataUpdateLike.max_y
+   .. autoattribute:: SourceDataUpdateLike.max_z
+   .. autoattribute:: SourceDataUpdateLike.min_timestamp
+   .. autoattribute:: SourceDataUpdateLike.min_x
+   .. autoattribute:: SourceDataUpdateLike.min_y
+   .. autoattribute:: SourceDataUpdateLike.min_z
+   .. autoattribute:: SourceDataUpdateLike.model_fields_set
+   
+   

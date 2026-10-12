@@ -1,0 +1,57 @@
+TransformSQLMixinUpdateLike
+===========================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: TransformSQLMixinUpdateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TransformSQLMixinUpdateLike.model_dump
+      ~TransformSQLMixinUpdateLike.model_validate
+      ~TransformSQLMixinUpdateLike.sqlmodel_update
+
+   
+   .. automethod:: TransformSQLMixinUpdateLike.model_dump
+   .. automethod:: TransformSQLMixinUpdateLike.model_validate
+   .. automethod:: TransformSQLMixinUpdateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TransformSQLMixinUpdateLike.model_fields_set
+      ~TransformSQLMixinUpdateLike.rotate_x
+      ~TransformSQLMixinUpdateLike.rotate_y
+      ~TransformSQLMixinUpdateLike.rotate_z
+      ~TransformSQLMixinUpdateLike.scale_x
+      ~TransformSQLMixinUpdateLike.scale_y
+      ~TransformSQLMixinUpdateLike.scale_z
+      ~TransformSQLMixinUpdateLike.translate_x
+      ~TransformSQLMixinUpdateLike.translate_y
+      ~TransformSQLMixinUpdateLike.translate_z
+
+   
+   .. autoattribute:: TransformSQLMixinUpdateLike.model_fields_set
+   .. autoattribute:: TransformSQLMixinUpdateLike.rotate_x
+   .. autoattribute:: TransformSQLMixinUpdateLike.rotate_y
+   .. autoattribute:: TransformSQLMixinUpdateLike.rotate_z
+   .. autoattribute:: TransformSQLMixinUpdateLike.scale_x
+   .. autoattribute:: TransformSQLMixinUpdateLike.scale_y
+   .. autoattribute:: TransformSQLMixinUpdateLike.scale_z
+   .. autoattribute:: TransformSQLMixinUpdateLike.translate_x
+   .. autoattribute:: TransformSQLMixinUpdateLike.translate_y
+   .. autoattribute:: TransformSQLMixinUpdateLike.translate_z
+   
+   

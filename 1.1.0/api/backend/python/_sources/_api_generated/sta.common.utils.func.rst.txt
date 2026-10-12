@@ -1,0 +1,43 @@
+sta.common.utils.func
+=====================
+
+.. currentmodule:: sta.common.utils
+
+.. automodule:: sta.common.utils.func
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      optional_equals
+      retry
+
+   
+   .. autofunction:: optional_equals
+   .. autofunction:: retry
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      OptionalEquals
+   
+   
+
+   
+   
+   
+
+
+

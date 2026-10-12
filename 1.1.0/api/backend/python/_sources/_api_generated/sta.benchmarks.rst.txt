@@ -1,0 +1,36 @@
+sta.benchmarks
+==============
+
+.. currentmodule:: sta
+
+.. automodule:: sta.benchmarks
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.benchmarks.database_utils
+   sta.benchmarks.perf_ancestor_candidates
+   sta.benchmarks.perf_label_queries
+   sta.benchmarks.plot_utils
+

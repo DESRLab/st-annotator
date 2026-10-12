@@ -1,0 +1,53 @@
+LabelSpecSQLModel
+=================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.base
+
+.. autoclass:: LabelSpecSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelSpecSQLModel.build_group_links_cls
+      ~LabelSpecSQLModel.build_table_base_cls
+      ~LabelSpecSQLModel.check_edit_conflict
+      ~LabelSpecSQLModel.get_create_cls
+      ~LabelSpecSQLModel.get_public_cls
+      ~LabelSpecSQLModel.get_table_cls
+      ~LabelSpecSQLModel.get_update_cls
+      ~LabelSpecSQLModel.sqlmodel_update
+
+   
+   .. automethod:: LabelSpecSQLModel.build_group_links_cls
+   .. automethod:: LabelSpecSQLModel.build_table_base_cls
+   .. automethod:: LabelSpecSQLModel.check_edit_conflict
+   .. automethod:: LabelSpecSQLModel.get_create_cls
+   .. automethod:: LabelSpecSQLModel.get_public_cls
+   .. automethod:: LabelSpecSQLModel.get_table_cls
+   .. automethod:: LabelSpecSQLModel.get_update_cls
+   .. automethod:: LabelSpecSQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelSpecSQLModel.model_config
+      ~LabelSpecSQLModel.name
+      ~LabelSpecSQLModel.last_edit_at
+
+   
+   .. autoattribute:: LabelSpecSQLModel.model_config
+   .. autoattribute:: LabelSpecSQLModel.name
+   .. autoattribute:: LabelSpecSQLModel.last_edit_at
+   
+   

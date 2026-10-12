@@ -1,0 +1,64 @@
+LabelDataDomain
+===============
+
+
+
+
+.. currentmodule:: sta.domain.label.data.base
+
+.. autoclass:: LabelDataDomain
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelDataDomain.build_list_query
+      ~LabelDataDomain.bulk_create_datas
+      ~LabelDataDomain.bulk_delete_datas
+      ~LabelDataDomain.bulk_update_datas
+      ~LabelDataDomain.can_read_data
+      ~LabelDataDomain.can_read_data_filters
+      ~LabelDataDomain.count_datas
+      ~LabelDataDomain.create_data
+      ~LabelDataDomain.delete_data
+      ~LabelDataDomain.domain_registry
+      ~LabelDataDomain.insert_states
+      ~LabelDataDomain.iter_cruds
+      ~LabelDataDomain.list_datas
+      ~LabelDataDomain.prepare_commit_states
+      ~LabelDataDomain.read_data
+      ~LabelDataDomain.read_data_for_operation
+      ~LabelDataDomain.refresh_states
+      ~LabelDataDomain.require_write_data_branch
+      ~LabelDataDomain.select_states
+      ~LabelDataDomain.update_data
+
+   
+   .. automethod:: LabelDataDomain.build_list_query
+   .. automethod:: LabelDataDomain.bulk_create_datas
+   .. automethod:: LabelDataDomain.bulk_delete_datas
+   .. automethod:: LabelDataDomain.bulk_update_datas
+   .. automethod:: LabelDataDomain.can_read_data
+   .. automethod:: LabelDataDomain.can_read_data_filters
+   .. automethod:: LabelDataDomain.count_datas
+   .. automethod:: LabelDataDomain.create_data
+   .. automethod:: LabelDataDomain.delete_data
+   .. automethod:: LabelDataDomain.domain_registry
+   .. automethod:: LabelDataDomain.insert_states
+   .. automethod:: LabelDataDomain.iter_cruds
+   .. automethod:: LabelDataDomain.list_datas
+   .. automethod:: LabelDataDomain.prepare_commit_states
+   .. automethod:: LabelDataDomain.read_data
+   .. automethod:: LabelDataDomain.read_data_for_operation
+   .. automethod:: LabelDataDomain.refresh_states
+   .. automethod:: LabelDataDomain.require_write_data_branch
+   .. automethod:: LabelDataDomain.select_states
+   .. automethod:: LabelDataDomain.update_data
+   
+   
+
+   
+   
+   

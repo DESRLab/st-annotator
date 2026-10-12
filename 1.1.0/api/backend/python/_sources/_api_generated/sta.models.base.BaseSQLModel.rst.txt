@@ -1,0 +1,35 @@
+BaseSQLModel
+============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: BaseSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BaseSQLModel.sqlmodel_update
+
+   
+   .. automethod:: BaseSQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseSQLModel.model_config
+
+   
+   .. autoattribute:: BaseSQLModel.model_config
+   
+   

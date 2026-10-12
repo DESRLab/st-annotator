@@ -1,0 +1,59 @@
+TaskPublic
+==========
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: TaskPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TaskPublic.check_edit_conflict
+      ~TaskPublic.sqlmodel_update
+
+   
+   .. automethod:: TaskPublic.check_edit_conflict
+   .. automethod:: TaskPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TaskPublic.model_config
+      ~TaskPublic.children
+      ~TaskPublic.id
+      ~TaskPublic.supervisors
+      ~TaskPublic.annotators
+      ~TaskPublic.branch_permission_warnings
+      ~TaskPublic.name
+      ~TaskPublic.description
+      ~TaskPublic.deadline
+      ~TaskPublic.project_id
+      ~TaskPublic.parent_id
+      ~TaskPublic.last_edit_at
+
+   
+   .. autoattribute:: TaskPublic.model_config
+   .. autoattribute:: TaskPublic.children
+   .. autoattribute:: TaskPublic.id
+   .. autoattribute:: TaskPublic.supervisors
+   .. autoattribute:: TaskPublic.annotators
+   .. autoattribute:: TaskPublic.branch_permission_warnings
+   .. autoattribute:: TaskPublic.name
+   .. autoattribute:: TaskPublic.description
+   .. autoattribute:: TaskPublic.deadline
+   .. autoattribute:: TaskPublic.project_id
+   .. autoattribute:: TaskPublic.parent_id
+   .. autoattribute:: TaskPublic.last_edit_at
+   
+   

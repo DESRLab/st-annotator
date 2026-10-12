@@ -1,0 +1,36 @@
+sta.api.lifespan
+================
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.lifespan
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      api_lifespan
+      register_lifespan_handler
+
+   
+   .. autofunction:: api_lifespan
+   .. autofunction:: register_lifespan_handler
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

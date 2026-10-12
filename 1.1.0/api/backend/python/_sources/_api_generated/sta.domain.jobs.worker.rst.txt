@@ -1,0 +1,48 @@
+sta.domain.jobs.worker
+======================
+
+.. currentmodule:: sta.domain.jobs
+
+.. automodule:: sta.domain.jobs.worker
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DEFAULT_POLL_INTERVAL_SECONDS
+      SHUTDOWN_GRACE_SECONDS
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      cancel_active_job
+      drain_jobs
+      job_worker_lifespan
+      poll_interval_seconds_from_env
+
+   
+   .. autofunction:: cancel_active_job
+   .. autofunction:: drain_jobs
+   .. autofunction:: job_worker_lifespan
+   .. autofunction:: poll_interval_seconds_from_env
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

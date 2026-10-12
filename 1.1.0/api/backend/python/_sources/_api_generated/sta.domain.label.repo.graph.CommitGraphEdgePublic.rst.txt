@@ -1,0 +1,32 @@
+CommitGraphEdgePublic
+=====================
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.graph
+
+.. autoclass:: CommitGraphEdgePublic
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CommitGraphEdgePublic.model_config
+      ~CommitGraphEdgePublic.group_id
+      ~CommitGraphEdgePublic.parent_hash
+      ~CommitGraphEdgePublic.child_hash
+
+   
+   .. autoattribute:: CommitGraphEdgePublic.model_config
+   .. autoattribute:: CommitGraphEdgePublic.group_id
+   .. autoattribute:: CommitGraphEdgePublic.parent_hash
+   .. autoattribute:: CommitGraphEdgePublic.child_hash
+   
+   

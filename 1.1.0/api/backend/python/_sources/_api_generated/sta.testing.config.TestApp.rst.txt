@@ -1,0 +1,28 @@
+TestApp
+=======
+
+
+
+
+.. currentmodule:: sta.testing.config
+
+.. autoclass:: TestApp
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TestApp.config
+      ~TestApp.root_user
+
+   
+   .. autoattribute:: TestApp.config
+   .. autoattribute:: TestApp.root_user
+   
+   

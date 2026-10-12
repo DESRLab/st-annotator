@@ -1,0 +1,39 @@
+TempFileDatabaseConfig
+======================
+
+
+
+
+.. currentmodule:: sta.common.database.config
+
+.. autoclass:: TempFileDatabaseConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TempFileDatabaseConfig.create_db
+      ~TempFileDatabaseConfig.get_engine
+      ~TempFileDatabaseConfig.with_db_suffix
+
+   
+   .. automethod:: TempFileDatabaseConfig.create_db
+   .. automethod:: TempFileDatabaseConfig.get_engine
+   .. automethod:: TempFileDatabaseConfig.with_db_suffix
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TempFileDatabaseConfig.database
+
+   
+   .. autoattribute:: TempFileDatabaseConfig.database
+   
+   

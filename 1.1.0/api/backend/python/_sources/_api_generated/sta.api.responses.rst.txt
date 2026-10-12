@@ -1,0 +1,45 @@
+sta.api.responses
+=================
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.responses
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      format_content_range
+      set_content_range
+
+   
+   .. autofunction:: format_content_range
+   .. autofunction:: set_content_range
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      CreatedIDsResponse
+      QueuedJobsResponse
+      SuccessResponse
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,6 @@
+JSONUnit
+========
+
+.. currentmodule:: sta.common.utils.json
+
+.. autodata:: JSONUnit

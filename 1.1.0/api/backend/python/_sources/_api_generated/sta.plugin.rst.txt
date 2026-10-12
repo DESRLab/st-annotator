@@ -1,0 +1,34 @@
+sta.plugin
+==========
+
+.. currentmodule:: sta
+
+.. automodule:: sta.plugin
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      load_plugins
+
+   
+   .. autofunction:: load_plugins
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

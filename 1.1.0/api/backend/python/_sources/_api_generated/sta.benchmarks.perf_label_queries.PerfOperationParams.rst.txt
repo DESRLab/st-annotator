@@ -1,0 +1,36 @@
+PerfOperationParams
+===================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfOperationParams
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfOperationParams.model_config
+      ~PerfOperationParams.step
+      ~PerfOperationParams.num_entities
+      ~PerfOperationParams.num_elements
+      ~PerfOperationParams.history
+      ~PerfOperationParams.insert_hash_to_distance_perf
+
+   
+   .. autoattribute:: PerfOperationParams.model_config
+   .. autoattribute:: PerfOperationParams.step
+   .. autoattribute:: PerfOperationParams.num_entities
+   .. autoattribute:: PerfOperationParams.num_elements
+   .. autoattribute:: PerfOperationParams.history
+   .. autoattribute:: PerfOperationParams.insert_hash_to_distance_perf
+   
+   

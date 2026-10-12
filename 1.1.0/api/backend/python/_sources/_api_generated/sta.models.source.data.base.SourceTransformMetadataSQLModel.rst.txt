@@ -1,0 +1,133 @@
+SourceTransformMetadataSQLModel
+===============================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceTransformMetadataSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceTransformMetadataSQLModel.build_table_base_cls
+      ~SourceTransformMetadataSQLModel.check_edit_conflict
+      ~SourceTransformMetadataSQLModel.get_create_cls
+      ~SourceTransformMetadataSQLModel.get_public_cls
+      ~SourceTransformMetadataSQLModel.get_table_cls
+      ~SourceTransformMetadataSQLModel.get_update_cls
+      ~SourceTransformMetadataSQLModel.sqlmodel_update
+      ~SourceTransformMetadataSQLModel.unpack_max_coords
+      ~SourceTransformMetadataSQLModel.unpack_min_coords
+      ~SourceTransformMetadataSQLModel.unpack_rotation
+      ~SourceTransformMetadataSQLModel.unpack_scale
+      ~SourceTransformMetadataSQLModel.unpack_st_bounds
+      ~SourceTransformMetadataSQLModel.unpack_transform
+      ~SourceTransformMetadataSQLModel.unpack_translation
+      ~SourceTransformMetadataSQLModel.update_from_rotation
+      ~SourceTransformMetadataSQLModel.update_from_scale
+      ~SourceTransformMetadataSQLModel.update_from_st_bounds
+      ~SourceTransformMetadataSQLModel.update_from_transform
+      ~SourceTransformMetadataSQLModel.update_from_translation
+
+   
+   .. automethod:: SourceTransformMetadataSQLModel.build_table_base_cls
+   .. automethod:: SourceTransformMetadataSQLModel.check_edit_conflict
+   .. automethod:: SourceTransformMetadataSQLModel.get_create_cls
+   .. automethod:: SourceTransformMetadataSQLModel.get_public_cls
+   .. automethod:: SourceTransformMetadataSQLModel.get_table_cls
+   .. automethod:: SourceTransformMetadataSQLModel.get_update_cls
+   .. automethod:: SourceTransformMetadataSQLModel.sqlmodel_update
+   .. automethod:: SourceTransformMetadataSQLModel.unpack_max_coords
+   .. automethod:: SourceTransformMetadataSQLModel.unpack_min_coords
+   .. automethod:: SourceTransformMetadataSQLModel.unpack_rotation
+   .. automethod:: SourceTransformMetadataSQLModel.unpack_scale
+   .. automethod:: SourceTransformMetadataSQLModel.unpack_st_bounds
+   .. automethod:: SourceTransformMetadataSQLModel.unpack_transform
+   .. automethod:: SourceTransformMetadataSQLModel.unpack_translation
+   .. automethod:: SourceTransformMetadataSQLModel.update_from_rotation
+   .. automethod:: SourceTransformMetadataSQLModel.update_from_scale
+   .. automethod:: SourceTransformMetadataSQLModel.update_from_st_bounds
+   .. automethod:: SourceTransformMetadataSQLModel.update_from_transform
+   .. automethod:: SourceTransformMetadataSQLModel.update_from_translation
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceTransformMetadataSQLModel.COORD_TYPE
+      ~SourceTransformMetadataSQLModel.max_coords
+      ~SourceTransformMetadataSQLModel.min_coords
+      ~SourceTransformMetadataSQLModel.model_config
+      ~SourceTransformMetadataSQLModel.rotation
+      ~SourceTransformMetadataSQLModel.scale
+      ~SourceTransformMetadataSQLModel.st_bounds
+      ~SourceTransformMetadataSQLModel.transform
+      ~SourceTransformMetadataSQLModel.translation
+      ~SourceTransformMetadataSQLModel.translate_x
+      ~SourceTransformMetadataSQLModel.translate_y
+      ~SourceTransformMetadataSQLModel.translate_z
+      ~SourceTransformMetadataSQLModel.rotate_x
+      ~SourceTransformMetadataSQLModel.rotate_y
+      ~SourceTransformMetadataSQLModel.rotate_z
+      ~SourceTransformMetadataSQLModel.scale_x
+      ~SourceTransformMetadataSQLModel.scale_y
+      ~SourceTransformMetadataSQLModel.scale_z
+      ~SourceTransformMetadataSQLModel.uri
+      ~SourceTransformMetadataSQLModel.group_id
+      ~SourceTransformMetadataSQLModel.auto_bounds
+      ~SourceTransformMetadataSQLModel.bounds_config_hash
+      ~SourceTransformMetadataSQLModel.bounds_error
+      ~SourceTransformMetadataSQLModel.min_x
+      ~SourceTransformMetadataSQLModel.min_y
+      ~SourceTransformMetadataSQLModel.min_z
+      ~SourceTransformMetadataSQLModel.max_x
+      ~SourceTransformMetadataSQLModel.max_y
+      ~SourceTransformMetadataSQLModel.max_z
+      ~SourceTransformMetadataSQLModel.min_timestamp
+      ~SourceTransformMetadataSQLModel.max_timestamp
+      ~SourceTransformMetadataSQLModel.last_edit_at
+
+   
+   .. autoattribute:: SourceTransformMetadataSQLModel.COORD_TYPE
+   .. autoattribute:: SourceTransformMetadataSQLModel.max_coords
+   .. autoattribute:: SourceTransformMetadataSQLModel.min_coords
+   .. autoattribute:: SourceTransformMetadataSQLModel.model_config
+   .. autoattribute:: SourceTransformMetadataSQLModel.rotation
+   .. autoattribute:: SourceTransformMetadataSQLModel.scale
+   .. autoattribute:: SourceTransformMetadataSQLModel.st_bounds
+   .. autoattribute:: SourceTransformMetadataSQLModel.transform
+   .. autoattribute:: SourceTransformMetadataSQLModel.translation
+   .. autoattribute:: SourceTransformMetadataSQLModel.translate_x
+   .. autoattribute:: SourceTransformMetadataSQLModel.translate_y
+   .. autoattribute:: SourceTransformMetadataSQLModel.translate_z
+   .. autoattribute:: SourceTransformMetadataSQLModel.rotate_x
+   .. autoattribute:: SourceTransformMetadataSQLModel.rotate_y
+   .. autoattribute:: SourceTransformMetadataSQLModel.rotate_z
+   .. autoattribute:: SourceTransformMetadataSQLModel.scale_x
+   .. autoattribute:: SourceTransformMetadataSQLModel.scale_y
+   .. autoattribute:: SourceTransformMetadataSQLModel.scale_z
+   .. autoattribute:: SourceTransformMetadataSQLModel.uri
+   .. autoattribute:: SourceTransformMetadataSQLModel.group_id
+   .. autoattribute:: SourceTransformMetadataSQLModel.auto_bounds
+   .. autoattribute:: SourceTransformMetadataSQLModel.bounds_config_hash
+   .. autoattribute:: SourceTransformMetadataSQLModel.bounds_error
+   .. autoattribute:: SourceTransformMetadataSQLModel.min_x
+   .. autoattribute:: SourceTransformMetadataSQLModel.min_y
+   .. autoattribute:: SourceTransformMetadataSQLModel.min_z
+   .. autoattribute:: SourceTransformMetadataSQLModel.max_x
+   .. autoattribute:: SourceTransformMetadataSQLModel.max_y
+   .. autoattribute:: SourceTransformMetadataSQLModel.max_z
+   .. autoattribute:: SourceTransformMetadataSQLModel.min_timestamp
+   .. autoattribute:: SourceTransformMetadataSQLModel.max_timestamp
+   .. autoattribute:: SourceTransformMetadataSQLModel.last_edit_at
+   
+   

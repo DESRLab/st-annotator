@@ -1,0 +1,34 @@
+sta.cli.plugin
+==============
+
+.. currentmodule:: sta.cli
+
+.. automodule:: sta.cli.plugin
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      plugins_command
+
+   
+   .. autofunction:: plugins_command
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

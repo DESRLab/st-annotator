@@ -1,0 +1,35 @@
+DataLoader
+==========
+
+
+
+
+.. currentmodule:: sta.domain.editor.loader
+
+.. autoclass:: DataLoader
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataLoader.get_data_bulk
+
+   
+   .. automethod:: DataLoader.get_data_bulk
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataLoader.data_model
+
+   
+   .. autoattribute:: DataLoader.data_model
+   
+   

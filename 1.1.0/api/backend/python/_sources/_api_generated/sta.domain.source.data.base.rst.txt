@@ -1,0 +1,45 @@
+sta.domain.source.data.base
+===========================
+
+.. currentmodule:: sta.domain.source.data
+
+.. automodule:: sta.domain.source.data.base
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      imply_bounds_override
+      needs_bounds_recalculation
+
+   
+   .. autofunction:: imply_bounds_override
+   .. autofunction:: needs_bounds_recalculation
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      BoundsModePayload
+      SourceDataDomain
+      SourceMetadataDomain
+   
+   
+
+   
+   
+   
+
+
+

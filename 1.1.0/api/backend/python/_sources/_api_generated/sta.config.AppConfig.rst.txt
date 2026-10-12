@@ -1,0 +1,37 @@
+AppConfig
+=========
+
+
+
+
+.. currentmodule:: sta.config
+
+.. autoclass:: AppConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AppConfig.test
+
+   
+   .. automethod:: AppConfig.test
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AppConfig.db_config
+      ~AppConfig.fs_config
+
+   
+   .. autoattribute:: AppConfig.db_config
+   .. autoattribute:: AppConfig.fs_config
+   
+   

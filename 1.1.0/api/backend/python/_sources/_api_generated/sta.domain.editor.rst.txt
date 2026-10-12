@@ -1,0 +1,33 @@
+sta.domain.editor
+=================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.editor
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.editor.loader
+

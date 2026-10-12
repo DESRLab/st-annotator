@@ -1,0 +1,17 @@
+LabelImportBySTFunc
+===================
+
+
+
+
+.. currentmodule:: sta.cli.porter
+
+.. autoclass:: LabelImportBySTFunc
+
+   
+   
+   
+
+   
+   
+   

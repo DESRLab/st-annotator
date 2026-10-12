@@ -1,0 +1,37 @@
+CheckpointLabelset
+==================
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.special.checkpoint
+
+.. autoclass:: CheckpointLabelset
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CheckpointLabelset.apply
+
+   
+   .. automethod:: CheckpointLabelset.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CheckpointLabelset.name
+      ~CheckpointLabelset.params
+
+   
+   .. autoattribute:: CheckpointLabelset.name
+   .. autoattribute:: CheckpointLabelset.params
+   
+   

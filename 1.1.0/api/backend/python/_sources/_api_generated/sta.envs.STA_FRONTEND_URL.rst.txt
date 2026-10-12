@@ -1,0 +1,6 @@
+STA\_FRONTEND\_URL
+==================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_FRONTEND_URL

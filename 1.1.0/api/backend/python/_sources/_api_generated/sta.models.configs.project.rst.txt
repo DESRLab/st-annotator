@@ -1,0 +1,32 @@
+sta.models.configs.project
+==========================
+
+.. currentmodule:: sta.models.configs
+
+.. automodule:: sta.models.configs.project
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      ProjectConfig
+   
+   
+
+   
+   
+   
+
+
+

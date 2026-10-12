@@ -1,0 +1,41 @@
+sta.api.body\_limit
+===================
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.body_limit
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      max_request_bytes_from_env
+
+   
+   .. autofunction:: max_request_bytes_from_env
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      RequestBodyLimitMiddleware
+   
+   
+
+   
+   
+   
+
+
+

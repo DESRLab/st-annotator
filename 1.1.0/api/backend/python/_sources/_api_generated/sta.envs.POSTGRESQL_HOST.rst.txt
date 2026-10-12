@@ -1,0 +1,6 @@
+POSTGRESQL\_HOST
+================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: POSTGRESQL_HOST

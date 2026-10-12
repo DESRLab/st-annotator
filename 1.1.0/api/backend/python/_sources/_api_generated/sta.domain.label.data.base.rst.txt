@@ -1,0 +1,34 @@
+sta.domain.label.data.base
+==========================
+
+.. currentmodule:: sta.domain.label.data
+
+.. automodule:: sta.domain.label.data.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LabelDataDomain
+      LabelElementDomain
+      LabelEntityDomain
+   
+   
+
+   
+   
+   
+
+
+

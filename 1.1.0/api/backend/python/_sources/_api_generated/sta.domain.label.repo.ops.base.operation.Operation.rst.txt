@@ -1,0 +1,37 @@
+Operation
+=========
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.base.operation
+
+.. autoclass:: Operation
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Operation.apply
+
+   
+   .. automethod:: Operation.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Operation.name
+      ~Operation.params
+
+   
+   .. autoattribute:: Operation.name
+   .. autoattribute:: Operation.params
+   
+   

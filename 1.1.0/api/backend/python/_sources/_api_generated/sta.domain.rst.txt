@@ -1,0 +1,44 @@
+sta.domain
+==========
+
+.. currentmodule:: sta
+
+.. automodule:: sta.domain
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.accounts
+   sta.domain.auth
+   sta.domain.editor
+   sta.domain.frames
+   sta.domain.jobs
+   sta.domain.label
+   sta.domain.ops
+   sta.domain.projects
+   sta.domain.querying
+   sta.domain.source
+   sta.domain.tasks
+   sta.domain.users
+

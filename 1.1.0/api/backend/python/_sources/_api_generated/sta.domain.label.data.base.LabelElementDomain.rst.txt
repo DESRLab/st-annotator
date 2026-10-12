@@ -1,0 +1,70 @@
+LabelElementDomain
+==================
+
+
+
+
+.. currentmodule:: sta.domain.label.data.base
+
+.. autoclass:: LabelElementDomain
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelElementDomain.build_list_query
+      ~LabelElementDomain.bulk_create_datas
+      ~LabelElementDomain.bulk_delete_datas
+      ~LabelElementDomain.bulk_update_datas
+      ~LabelElementDomain.can_read_data
+      ~LabelElementDomain.can_read_data_filters
+      ~LabelElementDomain.count_datas
+      ~LabelElementDomain.create_data
+      ~LabelElementDomain.delete_data
+      ~LabelElementDomain.domain_registry
+      ~LabelElementDomain.has_live_children
+      ~LabelElementDomain.insert_states
+      ~LabelElementDomain.iter_cruds
+      ~LabelElementDomain.list_datas
+      ~LabelElementDomain.list_datas_in_any_bounds
+      ~LabelElementDomain.list_datas_in_bounds
+      ~LabelElementDomain.prepare_commit_states
+      ~LabelElementDomain.read_data
+      ~LabelElementDomain.read_data_for_operation
+      ~LabelElementDomain.refresh_states
+      ~LabelElementDomain.require_write_data_branch
+      ~LabelElementDomain.select_states
+      ~LabelElementDomain.update_data
+
+   
+   .. automethod:: LabelElementDomain.build_list_query
+   .. automethod:: LabelElementDomain.bulk_create_datas
+   .. automethod:: LabelElementDomain.bulk_delete_datas
+   .. automethod:: LabelElementDomain.bulk_update_datas
+   .. automethod:: LabelElementDomain.can_read_data
+   .. automethod:: LabelElementDomain.can_read_data_filters
+   .. automethod:: LabelElementDomain.count_datas
+   .. automethod:: LabelElementDomain.create_data
+   .. automethod:: LabelElementDomain.delete_data
+   .. automethod:: LabelElementDomain.domain_registry
+   .. automethod:: LabelElementDomain.has_live_children
+   .. automethod:: LabelElementDomain.insert_states
+   .. automethod:: LabelElementDomain.iter_cruds
+   .. automethod:: LabelElementDomain.list_datas
+   .. automethod:: LabelElementDomain.list_datas_in_any_bounds
+   .. automethod:: LabelElementDomain.list_datas_in_bounds
+   .. automethod:: LabelElementDomain.prepare_commit_states
+   .. automethod:: LabelElementDomain.read_data
+   .. automethod:: LabelElementDomain.read_data_for_operation
+   .. automethod:: LabelElementDomain.refresh_states
+   .. automethod:: LabelElementDomain.require_write_data_branch
+   .. automethod:: LabelElementDomain.select_states
+   .. automethod:: LabelElementDomain.update_data
+   
+   
+
+   
+   
+   

@@ -1,0 +1,37 @@
+PerfCreateElement
+=================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfCreateElement
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PerfCreateElement.apply
+
+   
+   .. automethod:: PerfCreateElement.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfCreateElement.name
+      ~PerfCreateElement.params
+
+   
+   .. autoattribute:: PerfCreateElement.name
+   .. autoattribute:: PerfCreateElement.params
+   
+   

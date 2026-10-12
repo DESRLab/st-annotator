@@ -1,0 +1,56 @@
+sta.api.auth
+============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.auth
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      check_password
+      get_current_user
+      jwt_access_expiry_seconds_from_env
+      login
+      logout
+      refresh
+      trusted_proxy_networks_from_env
+      whoami
+
+   
+   .. autofunction:: check_password
+   .. autofunction:: get_current_user
+   .. autofunction:: jwt_access_expiry_seconds_from_env
+   .. autofunction:: login
+   .. autofunction:: logout
+   .. autofunction:: refresh
+   .. autofunction:: trusted_proxy_networks_from_env
+   .. autofunction:: whoami
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      CheckPasswordData
+      OAuth2Token
+   
+   
+
+   
+   
+   
+
+
+

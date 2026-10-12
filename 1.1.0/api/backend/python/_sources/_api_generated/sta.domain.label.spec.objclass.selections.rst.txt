@@ -1,0 +1,6 @@
+selections
+==========
+
+.. currentmodule:: sta.domain.label.spec.objclass
+
+.. autodata:: selections

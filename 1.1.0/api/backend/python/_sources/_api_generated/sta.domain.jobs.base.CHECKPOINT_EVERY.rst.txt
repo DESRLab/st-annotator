@@ -1,0 +1,6 @@
+CHECKPOINT\_EVERY
+=================
+
+.. currentmodule:: sta.domain.jobs.base
+
+.. autodata:: CHECKPOINT_EVERY

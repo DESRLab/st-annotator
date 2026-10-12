@@ -1,0 +1,33 @@
+sta.domain.label.repo.ops.special.import\_
+==========================================
+
+.. currentmodule:: sta.domain.label.repo.ops.special
+
+.. automodule:: sta.domain.label.repo.ops.special.import_
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportLabelData
+      ImportLabelDataParams
+   
+   
+
+   
+   
+   
+
+
+

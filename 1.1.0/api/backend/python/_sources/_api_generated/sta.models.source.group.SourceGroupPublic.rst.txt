@@ -1,0 +1,45 @@
+SourceGroupPublic
+=================
+
+
+
+
+.. currentmodule:: sta.models.source.group
+
+.. autoclass:: SourceGroupPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceGroupPublic.check_edit_conflict
+      ~SourceGroupPublic.sqlmodel_update
+
+   
+   .. automethod:: SourceGroupPublic.check_edit_conflict
+   .. automethod:: SourceGroupPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceGroupPublic.model_config
+      ~SourceGroupPublic.id
+      ~SourceGroupPublic.name
+      ~SourceGroupPublic.description
+      ~SourceGroupPublic.last_edit_at
+
+   
+   .. autoattribute:: SourceGroupPublic.model_config
+   .. autoattribute:: SourceGroupPublic.id
+   .. autoattribute:: SourceGroupPublic.name
+   .. autoattribute:: SourceGroupPublic.description
+   .. autoattribute:: SourceGroupPublic.last_edit_at
+   
+   

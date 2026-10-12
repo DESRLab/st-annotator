@@ -1,0 +1,41 @@
+SourceGroupUpdate
+=================
+
+
+
+
+.. currentmodule:: sta.models.source.group
+
+.. autoclass:: SourceGroupUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceGroupUpdate.sqlmodel_update
+
+   
+   .. automethod:: SourceGroupUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceGroupUpdate.model_config
+      ~SourceGroupUpdate.name
+      ~SourceGroupUpdate.description
+      ~SourceGroupUpdate.issued_at
+
+   
+   .. autoattribute:: SourceGroupUpdate.model_config
+   .. autoattribute:: SourceGroupUpdate.name
+   .. autoattribute:: SourceGroupUpdate.description
+   .. autoattribute:: SourceGroupUpdate.issued_at
+   
+   

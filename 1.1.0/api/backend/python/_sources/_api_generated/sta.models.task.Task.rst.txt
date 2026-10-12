@@ -1,0 +1,73 @@
+Task
+====
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: Task
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Task.check_edit_conflict
+      ~Task.get_annotator_links_cls
+      ~Task.get_supervisor_links_cls
+      ~Task.sqlmodel_update
+
+   
+   .. automethod:: Task.check_edit_conflict
+   .. automethod:: Task.get_annotator_links_cls
+   .. automethod:: Task.get_supervisor_links_cls
+   .. automethod:: Task.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Task.annotator_ids
+      ~Task.annotator_links
+      ~Task.annotators
+      ~Task.children
+      ~Task.deadline
+      ~Task.description
+      ~Task.id
+      ~Task.last_edit_at
+      ~Task.model_config
+      ~Task.name
+      ~Task.parent
+      ~Task.parent_id
+      ~Task.project
+      ~Task.project_id
+      ~Task.supervisor_ids
+      ~Task.supervisor_links
+      ~Task.supervisors
+
+   
+   .. autoattribute:: Task.annotator_ids
+   .. autoattribute:: Task.annotator_links
+   .. autoattribute:: Task.annotators
+   .. autoattribute:: Task.children
+   .. autoattribute:: Task.deadline
+   .. autoattribute:: Task.description
+   .. autoattribute:: Task.id
+   .. autoattribute:: Task.last_edit_at
+   .. autoattribute:: Task.model_config
+   .. autoattribute:: Task.name
+   .. autoattribute:: Task.parent
+   .. autoattribute:: Task.parent_id
+   .. autoattribute:: Task.project
+   .. autoattribute:: Task.project_id
+   .. autoattribute:: Task.supervisor_ids
+   .. autoattribute:: Task.supervisor_links
+   .. autoattribute:: Task.supervisors
+   
+   

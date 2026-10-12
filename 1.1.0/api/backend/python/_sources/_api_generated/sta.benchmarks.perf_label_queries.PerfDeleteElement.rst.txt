@@ -1,0 +1,37 @@
+PerfDeleteElement
+=================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfDeleteElement
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PerfDeleteElement.apply
+
+   
+   .. automethod:: PerfDeleteElement.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfDeleteElement.name
+      ~PerfDeleteElement.params
+
+   
+   .. autoattribute:: PerfDeleteElement.name
+   .. autoattribute:: PerfDeleteElement.params
+   
+   
