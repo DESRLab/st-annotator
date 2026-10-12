@@ -187,7 +187,7 @@ if [[ $BACKEND_TRANSPORT == https ]]; then
     backend_args=(--https "$BACKEND_HTTPS")
 fi
 
-uv run --package sta sta serve -c "$CONFIG_PATH" "${backend_args[@]}" --frontend-url "$FRONTEND_URL" &
+sta serve -c "$CONFIG_PATH" "${backend_args[@]}" --frontend-url "$FRONTEND_URL" &
 backend_pid=$!
 
 (cd core/frontend && serve_frontend) &

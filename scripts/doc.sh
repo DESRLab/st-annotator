@@ -22,7 +22,10 @@ doc_backend() {
     rm -rf core/backend/docs/_api_generated core/backend/docs/_build/html/_api_generated
     # -W makes any warning fatal; --keep-going reports them all in one pass.
     # Extra args after the -M triple are forwarded to the underlying build.
-    uv run --package sta --directory core/backend sphinx-build -M html docs docs/_build -W --keep-going
+    (
+        cd core/backend
+        sphinx-build -M html docs docs/_build -W --keep-going
+    )
 }
 
 echo "=== [DOC] Frontend library ==="
@@ -38,10 +41,10 @@ docs_config=mkdocs.yml
 if [[ -n "${DOCS_VERSION:-}" ]]; then
     docs_config=$(mktemp "$PWD/.mkdocs-versioned-XXXXXX.yml")
     trap 'rm -f "$docs_config"' EXIT
-    uv run --package sta python "$(dirname -- "${BASH_SOURCE[0]}")/configure-doc-version.py" "$docs_config"
+    python "$(dirname -- "${BASH_SOURCE[0]}")/configure-doc-version.py" "$docs_config"
 fi
 rm -rf site
-uv run --package sta mkdocs build -f "$docs_config" --strict
+mkdocs build -f "$docs_config" --strict
 # The generated API reference is copied in only after the strict build, so the pages
 # under site/api/ must already exist for it to resolve: docs/api/** ships tracked stub
 # index.html files that mkdocs.yml's nav and docs/api/index.md point at, and these two

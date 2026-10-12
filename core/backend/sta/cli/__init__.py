@@ -23,7 +23,7 @@ __all__ = [
 
 
 class PluginCLIGroup(click.Group):
-    """Load plugin entry points before Click lists, resolves, or invokes commands."""
+    """Discover plugins when listing commands or resolving an unknown command."""
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
@@ -45,12 +45,13 @@ class PluginCLIGroup(click.Group):
         return super().list_commands(ctx)
 
     def get_command(self, ctx: click.Context, cmd_name: str):
+        # Built-in commands load plugins through their application context.
+        command = super().get_command(ctx, cmd_name)
+        if command is not None:
+            return command
+
         self._load_plugins()
         return super().get_command(ctx, cmd_name)
-
-    def invoke(self, ctx: click.Context):
-        self._load_plugins()
-        return super().invoke(ctx)
 
 
 @click.group(cls=PluginCLIGroup)

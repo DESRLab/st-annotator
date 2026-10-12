@@ -116,12 +116,12 @@ prefix the same command with `xvfb-run -a`.
 
 The default Playwright config starts:
 
-- backend: `uv run --directory ../.. --package sta sta serve -c appconfig-postgis.json --http localhost:8000 --testing`
+- backend: `cd ../.. && sta serve -c appconfig-postgis.json --http localhost:8000 --testing`
 - frontend: `STA_BACKEND_URL=http://localhost:8000 STA_CONFIG_PATH=../../distributions/full/frontend/sta.config.ts npm --prefix ../../core/frontend run dev -- --host localhost --port 5173`
 
 The with-data Playwright config starts:
 
-- backend: `uv run --directory ../backend --package sta-integration-tests python ../frontend/serve_e2e_fixture.py --http localhost:8000`
+- backend: `cd ../backend && python ../frontend/serve_e2e_fixture.py --http localhost:8000`
 - frontend: `STA_BACKEND_URL=http://localhost:8000 STA_CONFIG_PATH=../../distributions/full/frontend/sta.config.ts VITE_STA_E2E_PROBE=1 npm --prefix ../../core/frontend run dev -- --host localhost --port 5173`
 
 Both frontends explicitly select the full distribution. Installing a plugin in

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import logging
 import subprocess
+from importlib import metadata
 from unittest.mock import MagicMock
 
 import click
@@ -10,6 +12,8 @@ import pytest
 
 from sta import plugin as sta_plugin
 from sta.cli import PluginCLIGroup, cli as sta_cli
+from sta.config import AppConfig
+from sta.entrypoints import app_ctx
 
 
 def test_help():
@@ -25,6 +29,70 @@ def test_load_plugins_guard_runs_loader_only_once(monkeypatch: pytest.MonkeyPatc
     group._load_plugins()
     group._load_plugins()
 
+    load_plugins.assert_called_once_with()
+
+
+def test_builtin_serve_defers_plugin_loading_until_application_logging_is_configured(
+    monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture, app_config: AppConfig
+):
+    plugin = MagicMock(value="sta_datasets.plugin:register")
+    plugin.load.return_value = lambda: None
+    monkeypatch.setattr(metadata, "entry_points", lambda *, group: [plugin])
+    monkeypatch.setattr(sta_plugin, "_loaded_plugins", set())
+    monkeypatch.setattr(sta_plugin.logger, "handlers", [caplog.handler])
+    monkeypatch.setattr(sta_plugin.logger, "propagate", False)
+
+    group = PluginCLIGroup(name="stub")
+
+    @group.command()
+    def serve():
+        assert not sta_plugin._loaded_plugins
+        with app_ctx(app_config):
+            pass
+
+    previous_level = sta_plugin.logger.level
+    try:
+        with caplog.at_level(logging.INFO):
+            # The built-in command leaves plugin loading to app_ctx, which sets INFO.
+            sta_plugin.logger.setLevel(logging.WARNING)
+            result = CliRunner().invoke(group, ["serve"])
+    finally:
+        sta_plugin.logger.setLevel(previous_level)
+
+    assert result.exit_code == 0, result.output
+    assert sta_plugin._loaded_plugins == {"sta_datasets.plugin:register"}
+    assert [record.getMessage() for record in caplog.records if record.name == "sta"] == [
+        "Loading plugin: sta_datasets.plugin:register"
+    ]
+
+
+def test_serve_help_does_not_load_plugins(monkeypatch: pytest.MonkeyPatch):
+    load_plugins = MagicMock(name="load_plugins")
+    monkeypatch.setattr(sta_plugin, "load_plugins", load_plugins)
+    monkeypatch.setattr(sta_cli, "_plugins_loaded", False)
+
+    result = CliRunner().invoke(sta_cli, ["serve", "--help"])
+
+    assert result.exit_code == 0, result.output
+    assert "--config" in result.output
+    load_plugins.assert_not_called()
+
+
+def test_unregistered_command_loads_plugins_and_dispatches(monkeypatch: pytest.MonkeyPatch):
+    group = PluginCLIGroup(name="stub")
+
+    def register_command():
+        @group.command()
+        def contributed():
+            click.echo("Plugin command executed")
+
+    load_plugins = MagicMock(side_effect=register_command)
+    monkeypatch.setattr(sta_plugin, "load_plugins", load_plugins)
+
+    result = CliRunner().invoke(group, ["contributed"])
+
+    assert result.exit_code == 0, result.output
+    assert "Plugin command executed" in result.output
     load_plugins.assert_called_once_with()
 
 

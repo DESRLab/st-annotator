@@ -17,10 +17,10 @@ The supported datasets are:
 From the repository root, run:
 
 ```bash
-uv run --package sta-datasets --directory . sta-datasets semantickitti \
+sta-datasets semantickitti \
     data/SemanticKITTI/dataset -c appconfig-postgis.json
 
-uv run --package sta-datasets --directory . sta-datasets 3rscan \
+sta-datasets 3rscan \
     data/3RScan -c appconfig-postgis.json
 ```
 

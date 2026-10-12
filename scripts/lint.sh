@@ -31,38 +31,39 @@ for plugin_dir in plugins/*/; do
     fi
 done
 
-lint_backend() {
-    local package=$1
-    local project=$2
-    local source_target="${3:-}"
-    local test_target="${4:-test}"
+lint_backend() (
+    local project=$1
+    local source_target="${2:-}"
+    local test_target="${3:-test}"
 
-    uv run --package "$package" --directory "$project" deptry .
-    uv run --package "$package" --directory "$project" ruff format --check .
-    uv run --package "$package" --directory "$project" ruff check .
+    cd "$project"
+
+    deptry .
+    ruff format --check .
+    ruff check .
 
     local python_path
-    python_path="$(uv run --package "$package" python -c 'import sys; print(sys.executable)')"
+    python_path="$(python -c 'import sys; print(sys.executable)')"
     if [[ -n "$source_target" ]]; then
-        uv run --package "$package" --directory "$project" pyright \
+        pyright \
             --warnings \
             --pythonpath "$python_path" \
             --project "$PYRIGHT_CONFIG" \
             "$source_target"
     fi
 
-    if [[ -e "$project/$test_target" ]]; then
+    if [[ -e "$test_target" ]]; then
         # Test modules are checked separately with legacy fixture/SQLModel
         # diagnostics relaxed; all other errors still fail the build, and
         # --warnings makes the remaining diagnostics fail it too so the
         # relaxed pass cannot drift into a silent no-op.
-        uv run --package "$package" --directory "$project" pyright \
+        pyright \
             --warnings \
             --pythonpath "$python_path" \
             --project "$PYRIGHT_TEST_CONFIG" \
             "$test_target"
     fi
-}
+)
 
 # Standalone Python (tooling scripts, the Playwright tree) is not a
 # distributable package, so it gets no deptry/source pass; it is type-checked
@@ -70,13 +71,13 @@ lint_backend() {
 lint_standalone_python() {
     local project=$1
 
-    uv run --package sta-integration-tests --directory tests/backend ruff format --check \
+    ruff format --check \
         "$REPO_ROOT/$project"
-    uv run --package sta-integration-tests --directory tests/backend ruff check \
+    ruff check \
         "$REPO_ROOT/$project"
-    uv run --package sta-integration-tests --directory tests/backend pyright \
+    pyright \
         --warnings \
-        --pythonpath "$(uv run --package sta-integration-tests python -c 'import sys; print(sys.executable)')" \
+        --pythonpath "$(python -c 'import sys; print(sys.executable)')" \
         --project "$PYRIGHT_TEST_CONFIG" \
         "$REPO_ROOT/$project"
 }
@@ -125,7 +126,7 @@ lint_plugins() {
             if [[ "$side" == "frontend" ]]; then
                 lint_plugin_frontend "sta-$plugin"
             else
-                lint_backend "sta_$plugin" "plugins/$plugin/backend" "sta_$plugin"
+                lint_backend "plugins/$plugin/backend" "sta_$plugin"
             fi
         ) 2>&1 | sed -u "s/^/[LINT $side:$plugin] /" &
         pids+=("$!")
@@ -172,13 +173,13 @@ fi
 
 if $RUN_BACKEND; then
     echo "=== [LINT] Backend library ==="
-    lint_backend sta core/backend sta
+    lint_backend core/backend sta
 
     lint_plugins backend
 
     echo "=== [LINT] Backend integration ==="
     lint_standalone_python scripts
-    lint_backend sta-integration-tests tests/backend "" .
+    lint_backend tests/backend "" .
 fi
 
 echo "=== RESULT ==="

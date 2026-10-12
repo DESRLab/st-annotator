@@ -31,6 +31,9 @@ npm ci
 echo "=== [INSTALL] Backend library ==="
 setup_backends
 
+# Bootstrap also works before the caller has an environment to activate.
+source .venv/bin/activate
+
 echo "=== [INSTALL] OpenAPI Client ==="
 bash scripts/generate-openapi-client.sh
 

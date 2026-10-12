@@ -34,7 +34,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: `uv run --directory ../.. --package sta sta serve -c appconfig-postgis.json --http ${backend.host} --testing`,
+      command: `cd ../.. && sta serve -c appconfig-postgis.json --http ${backend.host} --testing`,
       url: backendURL,
       reuseExistingServer: !process.env.CI,
       timeout: 120_000,

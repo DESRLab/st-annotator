@@ -76,11 +76,12 @@ separate job runs `doc.sh`. Anything that breaks those is not ready to merge.
 
 ## Environments
 
-- **Python:** use the uv workspace, never a stray conda interpreter. The shared
-  environment is `.venv` at the repo root; run everything as
-  `uv run --package <pkg> --directory <project> …`. A bare `pytest` from a
-  system/conda environment resolves different dependency versions than CI and is
-  not a verification result.
+- **Python:** use the shared uv workspace environment, never a stray conda
+  interpreter. Activate `.venv` from the repo root with
+  `source .venv/bin/activate`, then run Python tools directly. Repository scripts
+  assume this environment is active and enter each package directory for its
+  checks. A `pytest` run from a system/conda environment resolves different
+  dependency versions than CI and is not a verification result.
 - **Node:** one npm workspace with one root `package-lock.json`. Run `npm ci` at
   the repository root only. Never `npm install`/`npm ci` inside `core/frontend`,
   a plugin, or `tests/frontend`.
@@ -246,11 +247,10 @@ belongs in the file that sets it.
 
 ### Backend
 
-- `bash scripts/test.sh backend` runs each package's pytest through uv
-  (core, every plugin, then `tests/backend`). Narrow iterations are fine
-  (`uv run --package sta --directory core/backend pytest
-  test/domain/test_data.py`), but a targeted green run is not a finished
-  verification.
+- `bash scripts/test.sh backend` runs each package's pytest in the activated
+  environment (core, every plugin, then `tests/backend`). Narrow iterations are
+  fine (`cd core/backend` then `pytest test/domain/test_data.py`), but a targeted
+  green run is not a finished verification.
 - This is a shared, loaded machine: a setup-phase database-connection error or a
   lone hypothesis deadline failure is environmental, not a regression. Retry it in
   isolation before suspecting the change under test. Why the runner parallelises the

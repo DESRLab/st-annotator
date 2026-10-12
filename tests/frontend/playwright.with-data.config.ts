@@ -43,7 +43,7 @@ export default defineConfig({
   // STA_BACKEND_URL / STA_FRONTEND_URL at free ones) if a stale server is up.
   webServer: [
     {
-      command: `uv run --directory ../backend --package sta-integration-tests python ../frontend/serve_e2e_fixture.py --http ${backend.host}`,
+      command: `cd ../backend && python ../frontend/serve_e2e_fixture.py --http ${backend.host}`,
       url: backendURL,
       reuseExistingServer: false,
       timeout: 300_000,

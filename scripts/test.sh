@@ -42,13 +42,14 @@ if $RUN_FRONTEND; then
     fi
 fi
 
-test_backend() {
-    local package=$1
-    local project=$2
-    local workers=${3:-8}
+test_backend() (
+    local project=$1
+    local workers=${2:-8}
+
+    cd "$project"
     # `-n auto` intermittently exhausts the shared Postgres server's connection slots
-    uv run --package "$package" --directory "$project" pytest -n "$workers"
-}
+    pytest -n "$workers"
+)
 test_frontend() {
     local workspace=$1
     # Istanbul coverage currently leaves Vitest open after tests finish.
@@ -75,7 +76,7 @@ test_plugins() {
                 # create 40 worker processes before accounting for connection
                 # pools. Keep the phase near the established eight-worker
                 # budget while retaining cross-plugin parallelism.
-                test_backend "sta_$plugin" "plugins/$plugin/backend" 2
+                test_backend "plugins/$plugin/backend" 2
             fi
         ) 2>&1 | sed -u "s/^/[TEST $side:$plugin] /" &
         pids+=("$!")
@@ -105,14 +106,14 @@ fi
 
 if $RUN_BACKEND; then
     echo "=== [TEST] Backend library ==="
-    test_backend sta core/backend
+    test_backend core/backend
 
     test_plugins backend
 
     echo "=== [TEST] Backend integration ==="
     # The plugin-dependent backend tests are a separate uv project:
     # plugins depend on core, so they cannot be core test dependencies.
-    test_backend sta-integration-tests tests/backend
+    test_backend tests/backend
 fi
 
 if $RUN_FRONTEND; then

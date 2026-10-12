@@ -27,7 +27,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: `STA_JWT_ACCESS_EXPIRY_SECONDS=2 uv run --directory ../.. --package sta sta serve -c appconfig-postgis.json --http ${backend.host} --testing`,
+      command: `cd ../.. && STA_JWT_ACCESS_EXPIRY_SECONDS=2 sta serve -c appconfig-postgis.json --http ${backend.host} --testing`,
       url: backendURL,
       reuseExistingServer: false,
       timeout: 120_000,

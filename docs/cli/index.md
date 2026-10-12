@@ -41,10 +41,8 @@ sta serve -c <config> --http <host>:<port>
 sta serve -c <config> --https <host>:<port>,<cert>,<key>
 ```
 
-The `sta` command is installed into whichever Python environment holds the
-backend package. Inside a checkout that is the workspace virtual environment, so
-either activate it first or prefix any command here with `uv run --package sta`
-(which is what the repository's scripts do).
+The CLI commands and repository scripts assume the workspace virtual environment
+is activated with `source .venv/bin/activate` from the repository root.
 
 ### Options
 

@@ -4,7 +4,7 @@ description: |
   
   Notes:
   1. You have to first checkout the repository.
-  2. To use the conda environment, you have to set `defaults.run.shell` to `bash -el {0}`. See [this page](https://github.com/marketplace/actions/setup-miniconda#important) for more details.
+  2. Conda supplies the matrix interpreter; following steps use the shared .venv through PATH.
 
 inputs:
   python-version:
@@ -57,4 +57,9 @@ runs:
       shell: bash
     - name: Install code
       run: bash ./scripts/install.sh
+      shell: bash
+    - name: Activate workspace environment for following steps
+      run: |
+        echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
+        echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv" >> "$GITHUB_ENV"
       shell: bash

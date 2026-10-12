@@ -73,7 +73,7 @@ If you run DynamicSAM on another host or port, set the URL to the address reacha
 
 The `sta-datasets` backend plugin provides dataset commands independently of the
 repository scripts. The workspace installation includes it. Run
-`uv run --package sta-datasets --directory . sta-datasets --help` from the
+`sta-datasets --help` from the
 repository root to list importers. Installed deployments can also use
 `sta plugins -c <config> datasets <dataset> <data-dir>`; the importer inherits
 the host's configuration. The original `scripts/import_*.py` paths remain thin
@@ -113,7 +113,7 @@ point-wise segmentation labels, and instance-derived bounding boxes. Use
 3. From the repository root, import the labeled sequences `00` through `10`:
 
     ```bash
-    uv run --package sta-datasets --directory . sta-datasets semantickitti \
+    sta-datasets semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json
     ```
@@ -126,7 +126,7 @@ point-wise segmentation labels, and instance-derived bounding boxes. Use
    be repeated or receive comma-separated IDs:
 
     ```bash
-    uv run --package sta-datasets --directory . sta-datasets semantickitti \
+    sta-datasets semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json \
         --sequence 00,01
@@ -137,7 +137,7 @@ Additional useful variants include:
 - Import only point clouds, including unlabeled test sequences:
 
     ```bash
-    uv run --package sta-datasets --directory . sta-datasets semantickitti \
+    sta-datasets semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json \
         --sequence 11 \
@@ -152,7 +152,7 @@ Additional useful variants include:
 - Use `--source-group-name`, `--label-group-name`, and `--label-branch-name` to
   choose names other than the defaults. This is particularly useful for
   separate imports of different sequence sets.
-- Run `uv run --package sta-datasets --directory . sta-datasets semantickitti --help` for the complete option list.
+- Run `sta-datasets semantickitti --help` for the complete option list.
 
 #### 3RScan dataset
 
@@ -165,14 +165,14 @@ are excluded from the default selection.
 From the repository root, validate one scan without database writes:
 
 ```bash
-uv run --package sta-datasets --directory . sta-datasets 3rscan data/3RScan \
+sta-datasets 3rscan data/3RScan \
     --scan 00d42bed-778d-2ac6-86a7-0e0e5f5f5660 --dry-run
 ```
 
 Import all annotated scans, logging in with an ST Annotator account at the prompt:
 
 ```bash
-uv run --package sta-datasets --directory . sta-datasets 3rscan data/3RScan \
+sta-datasets 3rscan data/3RScan \
     -c appconfig-postgis.json
 ```
 

@@ -28,6 +28,12 @@ registry = "my_package.plugin:register"
 
 The value names an importable module and function, so `my_package.plugin:register` resolves to `plugins/my_plugin/backend/my_package/plugin.py`. Then install the package. Afterwards, you should see the print statement being executed whenever you run `sta serve`.
 
+The CLI discovers plugins when listing commands or resolving an unregistered
+command. Registered commands such as `sta serve` resolve without discovery;
+the application context configures logging before loading their plugins. Each
+plugin registers once per process, with an INFO message naming its entry-point
+target when it is loaded.
+
 ## Plugin Structure
 
 Each plugin lives under the top-level `plugins/` directory as a package with separate backend and frontend halves, corresponding to different application layers:

@@ -15,6 +15,7 @@ Run the installation script from the repository root:
 
 ```sh
 bash scripts/install.sh
+source .venv/bin/activate
 ```
 
 The script runs one root `npm ci`, synchronizes every Python workspace package,
@@ -43,6 +44,7 @@ The standard development workflow is:
 
 ```sh
 bash scripts/install.sh
+source .venv/bin/activate
 bash scripts/serve-dev.sh -c appconfig-postgis.json
 ```
 
@@ -329,7 +331,7 @@ the standalone site. The publishing tools come from the workflow revision,
 while documentation and package sources come from the selected branch or tag.
 Release checkouts must support the current documentation build pipeline.
 
-`uv run --package sta python scripts/package-doc-versions.py site <archive> <version> [--stable]`
+`python scripts/package-doc-versions.py site <archive> <version> [--stable]`
 updates the selected snapshot in an archive checkout. The `docs-site` branch
 stores completed snapshots, Material-compatible `versions.json` metadata, and
 redirects. Older snapshots are preserved without rebuilding them. The site root
@@ -359,7 +361,7 @@ The release publication request needs `actions: write` to dispatch the workflow
 on `main`. A successful request queues publication; the dispatched run's
 deployment determines whether the updated site is published.
 
-`uv run --package sta python scripts/test-doc-versions.py` verifies snapshot preservation,
+`python scripts/test-doc-versions.py` verifies snapshot preservation,
 API reference inclusion, stable alias ordering, and redirects. Pre-release CI
 and the publishing workflow run this check. `doc.sh` builds frontend
 packages in dependency order before TypeDoc discovers their public entry points

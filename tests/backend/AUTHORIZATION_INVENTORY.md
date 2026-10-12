@@ -20,9 +20,9 @@ The structural gates and behavioral authorization suites remain independently
 runnable:
 
 ```sh
-uv run --package sta-integration-tests --directory tests/backend pytest test_authorization_inventory.py
-uv run --package sta --directory core/backend pytest test/api/test_authorization_matrix.py
-uv run --package sta-integration-tests --directory tests/backend pytest test_plugin_authorization_conformance.py
+(cd tests/backend && pytest test_authorization_inventory.py)
+(cd core/backend && pytest test/api/test_authorization_matrix.py)
+(cd tests/backend && pytest test_plugin_authorization_conformance.py)
 npm run test:unit --workspace=sta -- --run test/app/AuthorizationRouteInventory.test.ts
 npm run test:unit --workspace=sta -- --run test/app/routes/AuthorizationMatrix.test.tsx test/app/routes/GuardedMutationRoutes.test.ts
 ```

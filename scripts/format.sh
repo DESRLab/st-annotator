@@ -34,19 +34,18 @@ for plugin_dir in plugins/*/; do
     fi
 done
 
-format_backend() {
-    local package=$1
-    local project=$2
+format_backend() (
+    local project=$1
 
-    uv run --package "$package" --directory "$project" ruff format .
-}
+    cd "$project"
+    ruff format .
+)
 
-# Standalone Python that belongs to no package of its own is formatted through
-# the integration test environment, mirroring lint.sh's ruff invocation.
+# Standalone Python uses the shared activated environment, like package sources.
 format_standalone_python() {
     local project=$1
 
-    uv run --package sta-integration-tests --directory tests/backend ruff format \
+    ruff format \
         "$REPO_ROOT/$project"
 }
 
@@ -76,7 +75,7 @@ format_plugins() {
             if [[ "$side" == "frontend" ]]; then
                 npm run "$action" --workspace="sta-$plugin"
             else
-                format_backend "sta_$plugin" "plugins/$plugin/backend"
+                format_backend "plugins/$plugin/backend"
             fi
         ) 2>&1 | sed -u "s/^/[FORMAT $side:$plugin] /" &
         pids+=("$!")
@@ -125,13 +124,13 @@ fi
 
 if $RUN_BACKEND; then
     echo "=== [FORMAT] Backend library ==="
-    format_backend sta core/backend
+    format_backend core/backend
 
     format_plugins backend
 
     echo "=== [FORMAT] Backend integration ==="
     format_standalone_python scripts
-    format_backend sta-integration-tests tests/backend
+    format_backend tests/backend
 fi
 
 echo "=== RESULT ==="

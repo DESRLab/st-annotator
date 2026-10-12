@@ -7,7 +7,7 @@ BACKEND_PATH=localhost:8000
 
 cd "$REPO_ROOT"
 
-uv run --package sta sta serve -c appconfig-postgis.json \
+sta serve -c appconfig-postgis.json \
     --$BACKEND_SCHEME "$BACKEND_PATH" --debug --testing &
 backend_pid=$!
 
