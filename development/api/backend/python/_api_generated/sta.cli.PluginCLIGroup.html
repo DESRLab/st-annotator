@@ -3081,18 +3081,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sta.cli.PluginCLIGroup.invoke" class="md-nav__link">
-    
-      <span aria-label="Python method" class="objinfo-icon objinfo-icon__procedure" title="Python method">M</span>
-    
-    <span class="md-ellipsis">
-      <span title="sta.cli.PluginCLIGroup.invoke (Python method) — Given a context, this invokes the attached callback (if it exists) in the right way."><span>invoke</span></span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#sta.cli.PluginCLIGroup.list_commands" class="md-nav__link">
     
       <span aria-label="Python method" class="objinfo-icon objinfo-icon__procedure" title="Python method">M</span>
@@ -15718,18 +15706,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sta.cli.PluginCLIGroup.invoke" class="md-nav__link">
-    
-      <span aria-label="Python method" class="objinfo-icon objinfo-icon__procedure" title="Python method">M</span>
-    
-    <span class="md-ellipsis">
-      <span title="sta.cli.PluginCLIGroup.invoke (Python method) — Given a context, this invokes the attached callback (if it exists) in the right way."><span>invoke</span></span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#sta.cli.PluginCLIGroup.list_commands" class="md-nav__link">
     
       <span aria-label="Python method" class="objinfo-icon objinfo-icon__procedure" title="Python method">M</span>
@@ -15959,17 +15935,14 @@
 <dt class="sig sig-object highlight py" id="sta.cli.PluginCLIGroup">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sta.cli.</span></span><span class="sig-name descname"><span class="pre">PluginCLIGroup</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span><a class="n reference internal" href="#sta.cli.PluginCLIGroup" title="sta.cli.PluginCLIGroup.__init__.args (Python parameter)"><span class="n"><span class="pre">args</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a></span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><a class="n reference internal" href="#sta.cli.PluginCLIGroup" title="sta.cli.PluginCLIGroup.__init__.kwargs (Python parameter)"><span class="n"><span class="pre">kwargs</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a></span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sta/cli.html#PluginCLIGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sta.cli.PluginCLIGroup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></p>
-<p>Load plugin entry points before Click lists, resolves, or invokes commands.</p>
+<p>Discover plugins when listing commands or resolving an unknown command.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils data align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#sta.cli.PluginCLIGroup.get_command" title="sta.cli.PluginCLIGroup.get_command (Python method) — Given a context and a command name, this returns a Command object if it exists or returns None."><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_command</span></code></a>(ctx, cmd_name)</p></td>
 <td><p>Given a context and a command name, this returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code> object if it exists or returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sta.cli.PluginCLIGroup.invoke" title="sta.cli.PluginCLIGroup.invoke (Python method) — Given a context, this invokes the attached callback (if it exists) in the right way."><code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke</span></code></a>(ctx)</p></td>
-<td><p>Given a context, this invokes the attached callback (if it exists) in the right way.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sta.cli.PluginCLIGroup.list_commands" title="sta.cli.PluginCLIGroup.list_commands (Python method) — Returns a list of subcommand names in the order they should appear."><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_commands</span></code></a>(ctx)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sta.cli.PluginCLIGroup.list_commands" title="sta.cli.PluginCLIGroup.list_commands (Python method) — Returns a list of subcommand names in the order they should appear."><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_commands</span></code></a>(ctx)</p></td>
 <td><p>Returns a list of subcommand names in the order they should appear.</p></td>
 </tr>
 </tbody>
@@ -15979,13 +15952,6 @@
 <span class="sig-name descname"><span class="pre">get_command</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.cli.PluginCLIGroup.get_command" title="sta.cli.PluginCLIGroup.get_command.ctx (Python parameter)"><span class="n"><span class="pre">ctx</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><span class="pre">Context</span></span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.cli.PluginCLIGroup.get_command" title="sta.cli.PluginCLIGroup.get_command.cmd_name (Python parameter)"><span class="n"><span class="pre">cmd_name</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sta/cli.html#PluginCLIGroup.get_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sta.cli.PluginCLIGroup.get_command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a context and a command name, this returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code>
 object if it exists or returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</dd></dl>
-
-<dl class="py method objdesc">
-<dt class="sig sig-object highlight py" id="sta.cli.PluginCLIGroup.invoke">
-<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.cli.PluginCLIGroup.invoke" title="sta.cli.PluginCLIGroup.invoke.ctx (Python parameter)"><span class="n"><span class="pre">ctx</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><span class="pre">Context</span></span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sta/cli.html#PluginCLIGroup.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sta.cli.PluginCLIGroup.invoke" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a context, this invokes the attached callback (if it exists)
-in the right way.</p>
 </dd></dl>
 
 <dl class="py method objdesc">

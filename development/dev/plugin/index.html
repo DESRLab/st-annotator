@@ -1437,6 +1437,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dataset-import-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset import plugin
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2091,6 +2102,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dataset-import-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset import plugin
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2131,6 +2153,11 @@
 registry = "my_package.plugin:register"
 </code></pre></div>
 <p>The value names an importable module and function, so <code>my_package.plugin:register</code> resolves to <code>plugins/my_plugin/backend/my_package/plugin.py</code>. Then install the package. Afterwards, you should see the print statement being executed whenever you run <code>sta serve</code>.</p>
+<p>The CLI discovers plugins when listing commands or resolving an unregistered
+command. Registered commands such as <code>sta serve</code> resolve without discovery;
+the application context configures logging before loading their plugins. Each
+plugin registers once per process, with an INFO message naming its entry-point
+target when it is loaded.</p>
 <h2 id="plugin-structure">Plugin Structure</h2>
 <p>Each plugin lives under the top-level <code>plugins/</code> directory as a package with separate backend and frontend halves, corresponding to different application layers:</p>
 <div class="highlight"><pre><span></span><code>plugins/
@@ -2346,6 +2373,21 @@ production build commands.</p>
 </ul>
 <p>You can apply an operation by calling <code>EditableBranch.apply()</code> with your operation, typically through the label data view's mutator methods. This immediately applies the operation client-side. When the user saves their changes, the operation is also applied server-side, which invokes the corresponding <code>apply()</code> method in Python (described above).</p>
 <p>Note that once an operation has been applied server-side, it can no longer be undone in the annotation editor.</p>
+<h2 id="dataset-import-plugin">Dataset import plugin</h2>
+<p><code>plugins/datasets/backend</code> is a backend-only package (<code>sta-datasets</code>, module
+<code>sta_datasets</code>). Its plugin entry point registers the <code>datasets</code> command group,
+with SemanticKITTI and 3RScan importers. The same group is available through the
+<code>sta-datasets</code> executable without requiring a repository checkout. It contributes
+no API routes or frontend workspace.</p>
+<p>Dataset readers and orchestration live in separate modules. <code>sta_datasets.common</code>
+owns coordinate quantization, fitted geometry, object-class and label-branch
+creation, label batch writes, and failed-import cleanup. Importers depend on that
+module rather than each other. Package tests live under its <code>test/</code> directory;
+new importers register with <code>sta_datasets.cli</code> and declare any additional reader
+dependencies in the package's <code>pyproject.toml</code>.</p>
+<p>Repository lint, format, and test commands check each plugin's existing backend
+and frontend directories, so backend-only plugins participate without requiring
+an empty npm workspace.</p>
 
 
 

@@ -1698,7 +1698,8 @@
    workspaces and regenerate the frontend API client. Frontend builds also
    regenerate the client. Each command briefly starts a testing server, so the
    configured database must already be reachable.</li>
-<li>Verify the backend setup with <code>uv run --package sta sta --help</code>, then run
+<li>Activate the workspace environment with <code>source .venv/bin/activate</code>.
+   Verify the backend setup with <code>sta --help</code>, then run
    <code>bash ./scripts/build-prod.sh</code> to clean and rebuild the frontend packages
    and full application distribution. For a clean package-only development
    build, use <code>bash ./scripts/build-dev.sh</code>.</li>

@@ -15,12 +15,10 @@ PluginCLIGroup
    .. autosummary::
    
       ~PluginCLIGroup.get_command
-      ~PluginCLIGroup.invoke
       ~PluginCLIGroup.list_commands
 
    
    .. automethod:: PluginCLIGroup.get_command
-   .. automethod:: PluginCLIGroup.invoke
    .. automethod:: PluginCLIGroup.list_commands
    
    

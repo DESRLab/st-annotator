@@ -1798,10 +1798,8 @@ sta serve -c &lt;config&gt; --http &lt;host&gt;:&lt;port&gt;
 # Serve over HTTPS
 sta serve -c &lt;config&gt; --https &lt;host&gt;:&lt;port&gt;,&lt;cert&gt;,&lt;key&gt;
 </code></pre></div>
-<p>The <code>sta</code> command is installed into whichever Python environment holds the
-backend package. Inside a checkout that is the workspace virtual environment, so
-either activate it first or prefix any command here with <code>uv run --package sta</code>
-(which is what the repository's scripts do).</p>
+<p>The CLI commands and repository scripts assume the workspace virtual environment
+is activated with <code>source .venv/bin/activate</code> from the repository root.</p>
 <h3 id="options_1">Options</h3>
 <ul>
 <li><code>--http</code> and <code>--https</code> are mutually exclusive and one of them is required; a

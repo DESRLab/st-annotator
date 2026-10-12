@@ -1811,6 +1811,7 @@ npm workspace and its single <code>package-lock.json</code>.</p>
 <h2 id="set-up-the-workspace">Set up the workspace</h2>
 <p>Run the installation script from the repository root:</p>
 <div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/install.sh
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </code></pre></div>
 <p>The script runs one root <code>npm ci</code>, synchronizes every Python workspace package,
 starts a temporary backend on <code>localhost:8000</code> from <code>appconfig-postgis.json</code>,
@@ -1831,6 +1832,7 @@ Workspace packages are linked by npm, and the root lockfile is the reproducible
 record of the complete frontend development environment.</p>
 <p>The standard development workflow is:</p>
 <div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/install.sh
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 bash<span class="w"> </span>scripts/serve-dev.sh<span class="w"> </span>-c<span class="w"> </span>appconfig-postgis.json
 </code></pre></div>
 <p><code>install.sh</code> installs dependencies and generates the API client. <code>serve-dev.sh</code>
@@ -2051,7 +2053,7 @@ temporary MkDocs configuration written by
 the standalone site. The publishing tools come from the workflow revision,
 while documentation and package sources come from the selected branch or tag.
 Release checkouts must support the current documentation build pipeline.</p>
-<p><code>uv run --package sta python scripts/package-doc-versions.py site &lt;archive&gt; &lt;version&gt; [--stable]</code>
+<p><code>python scripts/package-doc-versions.py site &lt;archive&gt; &lt;version&gt; [--stable]</code>
 updates the selected snapshot in an archive checkout. The <code>docs-site</code> branch
 stores completed snapshots, Material-compatible <code>versions.json</code> metadata, and
 redirects. Older snapshots are preserved without rebuilding them. The site root
@@ -2078,7 +2080,7 @@ frontend tests and does not run on pull requests.
 The release publication request needs <code>actions: write</code> to dispatch the workflow
 on <code>main</code>. A successful request queues publication; the dispatched run's
 deployment determines whether the updated site is published.</p>
-<p><code>uv run --package sta python scripts/test-doc-versions.py</code> verifies snapshot preservation,
+<p><code>python scripts/test-doc-versions.py</code> verifies snapshot preservation,
 API reference inclusion, stable alias ordering, and redirects. Pre-release CI
 and the publishing workflow run this check. <code>doc.sh</code> builds frontend
 packages in dependency order before TypeDoc discovers their public entry points

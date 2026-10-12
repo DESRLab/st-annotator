@@ -657,6 +657,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#3rscan-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3RScan dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#custom-data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1756,6 +1767,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#3rscan-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3RScan dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#custom-data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1882,8 +1904,15 @@ STA_JWT_PRIVATE_KEY_PATH=jwt-signing.key
 (You may have to first manually connect to the database server with an admin account and grant permissions to non-admin users.)</p>
 </div>
 <h3 id="import-data">Import data</h3>
+<p>The <code>sta-datasets</code> backend plugin provides dataset commands independently of the
+repository scripts. The workspace installation includes it. Run
+<code>sta-datasets --help</code> from the
+repository root to list importers. Installed deployments can also use
+<code>sta plugins -c &lt;config&gt; datasets &lt;dataset&gt; &lt;data-dir&gt;</code>; the importer inherits
+the host's configuration. The original <code>scripts/import_*.py</code> paths remain thin
+launchers for these commands.</p>
 <h4 id="semantickitti-dataset">SemanticKITTI dataset</h4>
-<p>The repository includes a dedicated importer for SemanticKITTI point clouds,
+<p>The <code>sta-datasets</code> backend plugin provides a dedicated importer for SemanticKITTI point clouds,
 point-wise segmentation labels, and instance-derived bounding boxes. Use
 <code>appconfig-postgis.json</code> when importing segmentation labels.</p>
 <ol>
@@ -1914,7 +1943,7 @@ point-wise segmentation labels, and instance-derived bounding boxes. Use
    must remain accessible through <code>FILESYSTEM_ROOT</code>.
 3. From the repository root, import the labeled sequences <code>00</code> through <code>10</code>:</p>
 <pre><code>```bash
-python scripts/import_semantickitti.py \
+sta-datasets semantickitti \
     data/SemanticKITTI/dataset \
     -c appconfig-postgis.json
 ```
@@ -1926,7 +1955,7 @@ python scripts/import_semantickitti.py \
 4. For a smaller initial import, select one or more sequences. The option may
    be repeated or receive comma-separated IDs:</p>
 <pre><code>```bash
-python scripts/import_semantickitti.py \
+sta-datasets semantickitti \
     data/SemanticKITTI/dataset \
     -c appconfig-postgis.json \
     --sequence 00,01
@@ -1936,7 +1965,7 @@ python scripts/import_semantickitti.py \
 <ul>
 <li>
 <p>Import only point clouds, including unlabeled test sequences:</p>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>scripts/import_semantickitti.py<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>semantickitti<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>data/SemanticKITTI/dataset<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-c<span class="w"> </span>appconfig-postgis.json<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--sequence<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="se">\</span>
@@ -1953,8 +1982,37 @@ python scripts/import_semantickitti.py \
 <li>Use <code>--source-group-name</code>, <code>--label-group-name</code>, and <code>--label-branch-name</code> to
   choose names other than the defaults. This is particularly useful for
   separate imports of different sequence sets.</li>
-<li>Run <code>python scripts/import_semantickitti.py --help</code> for the complete option list.</li>
+<li>Run <code>sta-datasets semantickitti --help</code> for the complete option list.</li>
 </ul>
+<h4 id="3rscan-dataset">3RScan dataset</h4>
+<p>The <code>sta-datasets 3rscan</code> command imports the <a href="https://github.com/WaldJohannaU/3RScan">3RScan dataset</a> at <code>data/3RScan</code>.
+Each annotated scan directory contains <code>labels.instances.annotated.v2.ply</code> and
+<code>semseg.v2.json</code>. The importer reads vertex <code>objectId</code> values from the PLY and
+class names from the JSON's <code>segGroups</code>. Directories without an annotated PLY
+are excluded from the default selection.</p>
+<p>From the repository root, validate one scan without database writes:</p>
+<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>3rscan<span class="w"> </span>data/3RScan<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--scan<span class="w"> </span>00d42bed-778d-2ac6-86a7-0e0e5f5f5660<span class="w"> </span>--dry-run
+</code></pre></div>
+<p>Import all annotated scans, logging in with an ST Annotator account at the prompt:</p>
+<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>3rscan<span class="w"> </span>data/3RScan<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-c<span class="w"> </span>appconfig-postgis.json
+</code></pre></div>
+<p>The dataset must be accessible under the configured filesystem root. The
+command creates source and label groups named <code>3RScan</code> and a <code>main</code> label
+branch. Sources reference the original PLY files, so keep those files in place.
+PLY RGB channels contain annotation colors. Textured meshes, photographic RGB-D
+frames, camera poses, and rescan registration are not imported. Coordinates stay
+in each scan's local frame, with a separate placeholder timestamp per scan.</p>
+<p>Segmentation is imported by default. To include upright boxes fitted from the
+object vertices, pass <code>--label-type segmentation --label-type bbox</code>. These boxes
+are estimates; the JSON's general oriented bounding boxes are not imported.
+<code>--skip-labels</code> imports sources without requiring annotation JSON files.
+<code>--scan</code> accepts repeated or comma-separated scan IDs, and <code>--name</code> changes the
+group names. <code>--dry-run</code> checks all selected point clouds and mappings without
+login. Unannotated vertices (<code>objectId</code> zero) receive no label. Failed imports
+remove their database groups while preserving the raw dataset. Each invocation
+creates new groups rather than resuming an earlier import.</p>
 <h4 id="custom-data">Custom data</h4>
 <p>For custom data, first use <code>scripts/generate_st_data_info.py</code> to generate the
 spatiotemporal metadata CSV consumed by the plugin importers.</p>
