@@ -12,6 +12,7 @@ from click.testing import CliRunner
 
 import pytest
 
+from sta import plugin as plugin_module
 from sta.cli import cli as sta_cli, init as init_module
 from sta.common.database import PostgresDatabaseConfig
 from sta.common.filesystem import FilesystemConfig
@@ -78,7 +79,13 @@ def mock_database_setup(monkeypatch) -> SimpleNamespace:
     engine = MagicMock(name="engine")
     create_tables = MagicMock(name="create_tables")
     insert_default_user = MagicMock(name="insert_default_user")
+    load_plugins = MagicMock(name="load_plugins")
+    setup_order = MagicMock()
+    setup_order.attach_mock(load_plugins, "load_plugins")
+    setup_order.attach_mock(create_db, "create_db")
+    setup_order.attach_mock(create_tables, "create_tables")
 
+    monkeypatch.setattr(plugin_module, "load_plugins", load_plugins)
     monkeypatch.setattr(PostgresDatabaseConfig, "create_db", create_db)
     monkeypatch.setattr(init_module, "get_engine", lambda config: engine)
     monkeypatch.setattr(init_module, "create_tables", create_tables)
@@ -89,6 +96,8 @@ def mock_database_setup(monkeypatch) -> SimpleNamespace:
         engine=engine,
         create_tables=create_tables,
         insert_default_user=insert_default_user,
+        load_plugins=load_plugins,
+        setup_order=setup_order,
     )
 
 
@@ -128,6 +137,12 @@ def test_init_creates_database_and_default_user(
     assert result.exit_code == 0, result.output
     assert "Creating database..." in result.output
     assert "Finished creating database." in result.output
+    mock_database_setup.load_plugins.assert_called_once_with()
+    assert [call[0] for call in mock_database_setup.setup_order.mock_calls] == [
+        "load_plugins",
+        "create_db",
+        "create_tables",
+    ]
     mock_database_setup.create_db.assert_called_once_with(drop_if_exists=False)
     mock_database_setup.create_tables.assert_called_once_with(mock_database_setup.engine)
     mock_database_setup.insert_default_user.assert_called_once_with(

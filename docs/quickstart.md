@@ -60,6 +60,7 @@ If you run DynamicSAM on another host or port, set the URL to the address reacha
 ### Create the database
 
 1. Run `sta init -c <config>` to create the database.
+    - Installed backend plugins are loaded before table creation, so their tables are included.
     - The command first asks you to type the name of the configured database to confirm the operation, and stops when the typed name does not match it.
     - Follow the prompts in the command line to create a default account on the ST Annotator platform to access the website with full privileges.
       - This account is separate from the account on the database server.

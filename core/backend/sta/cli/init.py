@@ -34,6 +34,11 @@ def init_command(*, config_path: str, drop_if_exists: bool = False) -> None:
         msg = "Incorrect database"
         raise ValueError(msg)
 
+    # Plugin models must join the metadata before creating any tables.
+    from ..plugin import load_plugins
+
+    load_plugins()
+
     click.echo("Creating database...")
     db_config.create_db(drop_if_exists=drop_if_exists)
 
