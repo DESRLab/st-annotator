@@ -19,11 +19,11 @@
   "devDependencies": {
     "@playwright/test": "1.61.1",
     "@types/node": "^20",
-    "sta": "^1.0.0",
-    "sta-bbox": "^1.0.0",
-    "sta-config": "^1.0.0",
-    "sta-segmentation": "^1.0.0",
-    "sta-vector": "^1.0.0",
+    "sta": "^1.1.0",
+    "sta-bbox": "^1.1.0",
+    "sta-config": "^1.1.0",
+    "sta-segmentation": "^1.1.0",
+    "sta-vector": "^1.1.0",
     "zod": "^3.22.4"
   },
   "engines": {

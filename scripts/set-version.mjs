@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile } from "node:fs/promises";
+import { readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
@@ -27,12 +27,25 @@ const directories = async (parent) =>
 
 const plugins = await directories("plugins");
 const distributions = await directories("distributions");
+// A plugin may supply only one language package; empty directories are not packages.
+const packageFiles = async (parents, suffix) => {
+  const files = [];
+  for (const parent of parents) {
+    const file = `${parent}/${suffix}`;
+    try {
+      if ((await stat(path.join(root, file))).isFile()) files.push(file);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
+  }
+  return files;
+};
 const frontendFiles = [
   "package.json",
   "config/js/package.json",
   "core/frontend/package.json",
-  ...plugins.map((dir) => `${dir}/frontend/package.json`),
-  ...distributions.map((dir) => `${dir}/frontend/package.json`),
+  ...(await packageFiles(plugins, "frontend/package.json")),
+  ...(await packageFiles(distributions, "frontend/package.json")),
   "tests/frontend/package.json",
 ];
 const manifests = await Promise.all(
@@ -68,7 +81,7 @@ for (const { file, before, manifest } of manifests) {
 
 const backendFiles = [
   "core/backend/pyproject.toml",
-  ...plugins.map((dir) => `${dir}/backend/pyproject.toml`),
+  ...(await packageFiles(plugins, "backend/pyproject.toml")),
   "tests/backend/pyproject.toml",
 ];
 const backendNames = new Set();
