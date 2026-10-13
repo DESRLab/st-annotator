@@ -2102,6 +2102,10 @@ version. Before a release:</p>
 <li>build and inspect Python distributions and npm tarballs; and</li>
 <li>publish prerequisites before packages that depend on them.</li>
 </ol>
+<p>The version script discovers frontend and backend plugin packages independently,
+so plugins may provide either or both. Directories without package manifests are
+skipped. Run <code>node --test scripts/test-set-version.mjs</code> to check package discovery,
+dry runs, and lockfile preservation in an isolated fixture.</p>
 <p>For the current full composition, a safe frontend publication order is core,
 <code>sta-pcd</code>, <code>sta-gmesh</code>, then the plugins that depend on them (<code>sta-bbox</code>,
 <code>sta-segmentation</code>, and <code>sta-vector</code>). Publish only packages changed by the
