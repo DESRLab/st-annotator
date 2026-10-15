@@ -2119,6 +2119,10 @@ registry before building or deploying the full composition.</p>
 release-environment concerns and are not encoded in this repository today. A
 future automated release workflow should preserve the same package-build,
 isolated-install, composition-build, and publication-order gates.</p>
+<p>When publishable frontend packages have already been rebuilt,
+<code>node scripts/test-frontend-packages.mjs --skip-build</code> runs the isolated package
+consumer checks without starting a development backend. The default command
+rebuilds packages before checking them.</p>
 
 
 
