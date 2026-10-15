@@ -1880,9 +1880,13 @@ Cleaning is also part of each package's <code>build:package</code> command. Cons
 direct <code>npm pack</code>/<code>npm publish</code> builds cannot retain files for deleted or
 renamed sources, and retrying an interrupted build starts that package from an
 empty output directory.</p>
-<p>While <code>serve-dev.sh</code> is running, its watcher recompiles changed packages
-without deleting <code>dist/</code> first. This keeps package entry points available to
-Vite during a reload. Run <code>bash scripts/build-dev.sh</code> with the dev server
+<p>While <code>serve-dev.sh</code> is running, its watcher compiles plugin packages into a
+temporary sibling of <code>dist/</code>, copies assets and normalizes ESM imports there,
+then atomically replaces only files whose contents changed. Unchanged modules
+keep their timestamps, so a small edit does not trigger reloads for the entire
+package. Failed plugin builds leave the live output intact. Core retains its
+composition-selection and route-typegen package pipeline, preserving <code>dist/</code>
+during live rebuilds. Run <code>bash scripts/build-dev.sh</code> with the dev server
 stopped when deleted or renamed sources require a fully clean output tree.</p>
 <p>The core package has no frontend plugin dependency and is valid by itself.
 Plugin manifests describe their own runtime closure. Installing a plugin with
