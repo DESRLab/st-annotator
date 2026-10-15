@@ -405,3 +405,8 @@ The exact registry, credentials, signing, tags, and deployment destination are
 release-environment concerns and are not encoded in this repository today. A
 future automated release workflow should preserve the same package-build,
 isolated-install, composition-build, and publication-order gates.
+
+When publishable frontend packages have already been rebuilt,
+`node scripts/test-frontend-packages.mjs --skip-build` runs the isolated package
+consumer checks without starting a development backend. The default command
+rebuilds packages before checking them.
