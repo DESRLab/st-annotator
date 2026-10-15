@@ -100,6 +100,9 @@ if $RUN_FRONTEND; then
 
     test_plugins frontend
 
+    echo "=== [TEST] Development package builds ==="
+    node --test scripts/test-build-frontend-dev-package.mjs
+
     echo "=== [TEST] Shared JavaScript configuration ==="
     npm run test:unit --workspace=sta-config
 fi

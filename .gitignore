@@ -1,7 +1,7 @@
 __pycache__/
 
+.sta-dev-dist-*/
 build/
-coverage/
 dist/
 node_modules/
 

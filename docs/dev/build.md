@@ -106,9 +106,13 @@ direct `npm pack`/`npm publish` builds cannot retain files for deleted or
 renamed sources, and retrying an interrupted build starts that package from an
 empty output directory.
 
-While `serve-dev.sh` is running, its watcher recompiles changed packages
-without deleting `dist/` first. This keeps package entry points available to
-Vite during a reload. Run `bash scripts/build-dev.sh` with the dev server
+While `serve-dev.sh` is running, its watcher compiles plugin packages into a
+temporary sibling of `dist/`, copies assets and normalizes ESM imports there,
+then atomically replaces only files whose contents changed. Unchanged modules
+keep their timestamps, so a small edit does not trigger reloads for the entire
+package. Failed plugin builds leave the live output intact. Core retains its
+composition-selection and route-typegen package pipeline, preserving `dist/`
+during live rebuilds. Run `bash scripts/build-dev.sh` with the dev server
 stopped when deleted or renamed sources require a fully clean output tree.
 
 The core package has no frontend plugin dependency and is valid by itself.

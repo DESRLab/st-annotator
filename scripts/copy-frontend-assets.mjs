@@ -10,6 +10,9 @@ import path from "node:path";
 import process from "node:process";
 
 const packageDir = path.resolve(process.argv[2] ?? ".");
+const outputDir = path.resolve(
+  process.argv[3] ?? path.join(packageDir, "dist"),
+);
 const assetExtensions = new Set([
   ".css",
   ".glsl",
@@ -38,7 +41,7 @@ async function copyAssets(sourceDir) {
     if (!assetExtensions.has(path.extname(entry.name))) continue;
 
     const relativePath = path.relative(packageDir, sourcePath);
-    const destinationPath = path.join(packageDir, "dist", relativePath);
+    const destinationPath = path.join(outputDir, relativePath);
     await mkdir(path.dirname(destinationPath), { recursive: true });
     await cp(sourcePath, destinationPath);
   }
@@ -106,7 +109,5 @@ async function rewriteRelativeImports(file) {
 }
 
 await Promise.all(
-  (await listJavaScript(path.join(packageDir, "dist"))).map(
-    rewriteRelativeImports,
-  ),
+  (await listJavaScript(outputDir)).map(rewriteRelativeImports),
 );

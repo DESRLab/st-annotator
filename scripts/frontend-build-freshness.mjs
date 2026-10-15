@@ -2,6 +2,7 @@
 
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
+import process from "node:process";
 import {
   existsSync,
   readFileSync,
@@ -26,6 +27,7 @@ const sharedPaths = [
   "config/js",
   "scripts/clean-frontend-dist.mjs",
   "scripts/copy-frontend-assets.mjs",
+  "scripts/build-frontend-dev-package.mjs",
   "scripts/select-frontend-config.mjs",
 ];
 function sourceFiles(relative) {
@@ -35,6 +37,7 @@ function sourceFiles(relative) {
   return readdirSync(absolute, { withFileTypes: true }).flatMap((entry) => {
     if (
       entry.name.startsWith(".env") ||
+      entry.name.startsWith(".sta-dev-dist-") ||
       [
         "dist",
         "build",
@@ -104,9 +107,17 @@ function buildChangedPackages({ preserveDist = false } = {}) {
     if (!stale && !dependencies.some((dependency) => rebuilt.has(dependency)))
       continue;
     process.stdout.write(`Rebuilding ${name} for the development server...\n`);
+    // Core owns composition selection and route typegen in its package script.
+    // Plugins can compile off the live tree and publish only changed outputs.
+    const staged = preserveDist && name !== "sta";
     const result = spawnSync(
-      "npm",
-      ["run", "build:package", `--workspace=${name}`],
+      staged ? process.execPath : "npm",
+      staged
+        ? [
+            path.join(root, "scripts/build-frontend-dev-package.mjs"),
+            path.join(root, directory),
+          ]
+        : ["run", "build:package", `--workspace=${name}`],
       {
         cwd: root,
         env: {
@@ -152,6 +163,7 @@ function productionFingerprint() {
     "scripts/export-openapi-client-types.mjs",
     "scripts/clean-frontend-dist.mjs",
     "scripts/copy-frontend-assets.mjs",
+    "scripts/build-frontend-dev-package.mjs",
     "scripts/select-frontend-config.mjs",
     "package-lock.json",
   ];
