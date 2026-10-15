@@ -138,6 +138,12 @@ Rules that constrain frontend work anywhere. How one component, pane, or plugin
 scaffold behaves belongs in
 [docs/dev/conventions.md](docs/dev/conventions.md) or in the source it describes.
 
+### Menu styling
+
+All UI elements inside menus, including the editor’s Layers menu, must follow
+Tweakpane styling. Reuse the shared Tweakpane pane hosts and control factories
+for buttons, selectors, inputs, and other controls.
+
 ### Backend access
 
 Access to the backend should be done via `sta/client`. Whenever changes to the backend are made,
@@ -182,8 +188,10 @@ normative. The load-bearing constraints:
   root (`runtime.ts`) names no plugin. The main frontend imports plugin packages
   **only** in `sta.config.ts` (lint-enforced), and a distribution's
   `sta.config.ts` is what activates a plugin — installing never does. Registering
-  a plugin touches its `file:` dependency (and the lockfile) plus that config
-  file; nothing per-plugin belongs in the runtime.
+  a plugin adds its version-range dependency (matching the other workspace
+  packages) and updates the lockfile plus that config file. npm links matching
+  local workspace packages automatically; do not use `file:` dependencies.
+  Nothing per-plugin belongs in the runtime.
 - The whole editor and plugin module graph must stay Node-import-safe (no DOM at
   import time), because the SSR bundle includes it without stubs.
 - Every `sta` and `sta-*` package `exports` subpath targets a built `dist/`
