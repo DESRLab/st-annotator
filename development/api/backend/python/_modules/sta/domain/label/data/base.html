@@ -6954,6 +6954,84 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_6_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../_api_generated/sta.domain.label.data.endpoints.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>sta.<wbr>domain.<wbr>label.<wbr>data.<wbr>endpoints</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_6_6_1_2" id="__nav_1_6_6_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_6_6_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6_6_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>sta.<wbr>domain.<wbr>label.<wbr>data.<wbr>endpoints</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../_api_generated/sta.domain.label.data.endpoints.LabelElementReference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Label<wbr>Element<wbr>Reference</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15413,7 +15491,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.sql.expression</span><span class="w"> </span><span class="kn">import</span> <span class="n">Select</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.sql.expression</span><span class="w"> </span><span class="kn">import</span> <span class="n">Select</span><span class="p">,</span> <span class="n">false</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.sql.schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">Column</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sqlmodel</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span><span class="p">,</span> <span class="n">and_</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">insert</span><span class="p">,</span> <span class="n">literal</span><span class="p">,</span> <span class="n">or_</span><span class="p">,</span> <span class="n">select</span><span class="p">,</span> <span class="n">update</span>
 
@@ -15570,41 +15648,34 @@
 
         <span class="n">dist_query</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">select</span><span class="p">(</span><span class="n">table_cls</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">table_cls</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">table_cls</span><span class="o">.</span><span class="n">commit_hash</span><span class="p">,</span> <span class="n">h2d</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">add_columns</span><span class="p">(</span>
+                <span class="n">func</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">h2d</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">partition_by</span><span class="o">=</span><span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">table_cls</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="n">sql_column</span><span class="p">(</span><span class="n">table_cls</span><span class="o">.</span><span class="n">group_id</span><span class="p">)))</span>
+                <span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s2">"min_distance"</span><span class="p">),</span>
+            <span class="p">)</span>
             <span class="o">.</span><span class="n">join</span><span class="p">(</span>
                 <span class="n">h2d</span><span class="p">,</span>
                 <span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">h2d</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span> <span class="o">==</span> <span class="n">table_cls</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
                 <span class="o">&amp;</span> <span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">h2d</span><span class="o">.</span><span class="n">src_hash</span><span class="p">)</span> <span class="o">==</span> <span class="n">table_cls</span><span class="o">.</span><span class="n">commit_hash</span><span class="p">),</span>
             <span class="p">)</span>
-            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">h2d</span><span class="o">.</span><span class="n">group_id</span> <span class="o">==</span> <span class="n">group_id</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">h2d</span><span class="o">.</span><span class="n">dst_hash</span> <span class="o">==</span> <span class="n">commit_hash</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">h2d</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span> <span class="o">==</span> <span class="n">group_id</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">h2d</span><span class="o">.</span><span class="n">dst_hash</span><span class="p">)</span> <span class="o">==</span> <span class="n">commit_hash</span><span class="p">)</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">candidate_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="c1"># This CTE has two consumers. Filter it here so materialization does</span>
-            <span class="c1"># not enumerate every historical state before the outer WHERE runs.</span>
+            <span class="c1"># Narrow by object ID before resolving its closest state, preserving</span>
+            <span class="c1"># all ancestor states of each candidate for the distance comparison.</span>
             <span class="n">dist_query</span> <span class="o">=</span> <span class="n">dist_query</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">table_cls</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">candidate_ids</span><span class="p">))</span>
 
-        <span class="n">dist_by_id_hash</span> <span class="o">=</span> <span class="n">dist_query</span><span class="o">.</span><span class="n">cte</span><span class="p">()</span>
-
-        <span class="n">min_dist_by_id</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">select</span><span class="p">(</span>
-                <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-                <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span>
-                <span class="n">func</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s2">"min_distance"</span><span class="p">),</span>
-            <span class="p">)</span>
-            <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">subquery</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="c1"># A window aggregate avoids joining a materialized state set to itself.</span>
+        <span class="c1"># Underestimated row counts otherwise lead to repeated scans of the</span>
+        <span class="c1"># entire revision for each label, especially after a large import.</span>
+        <span class="n">dist_by_id_hash</span> <span class="o">=</span> <span class="n">dist_query</span><span class="o">.</span><span class="n">subquery</span><span class="p">()</span>
 
         <span class="c1"># Merge commits prevent the situation where multiple commits have the same closest distance</span>
         <span class="n">closest_hash_by_id</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">select</span><span class="p">(</span><span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">commit_hash</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                <span class="n">min_dist_by_id</span><span class="p">,</span>
-                <span class="p">(</span><span class="n">min_dist_by_id</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-                <span class="o">&amp;</span> <span class="p">(</span><span class="n">min_dist_by_id</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">group_id</span> <span class="o">==</span> <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
-                <span class="o">&amp;</span> <span class="p">(</span><span class="n">min_dist_by_id</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">min_distance</span> <span class="o">==</span> <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">distance</span><span class="p">),</span>
-            <span class="p">)</span>
+            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">distance</span> <span class="o">==</span> <span class="n">dist_by_id_hash</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">min_distance</span><span class="p">)</span>
             <span class="o">.</span><span class="n">subquery</span><span class="p">()</span>
         <span class="p">)</span>
 
@@ -15815,6 +15886,31 @@
         <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">record</span></div>
+
+<div class="viewcode-block" id="LabelDataDomain.build_filtered_list_query"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelDataDomain.html#sta.domain.label.data.base.LabelDataDomain.build_filtered_list_query">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_filtered_list_query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">current_user</span><span class="p">:</span> <span class="n">UserPublic</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">commit_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">filters</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Narrow ancestor candidates, then recheck filters on their visible states.</span>
+
+<span class="sd">        An older state matching a filter only identifies a candidate. The final</span>
+<span class="sd">        filter and tombstone checks must still apply to the resolved revision.</span>
+<span class="sd">        """</span>
+        <span class="n">candidate_ids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">filters</span> <span class="ow">and</span> <span class="n">_use_ancestor_candidates</span><span class="p">():</span>
+            <span class="n">candidate_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_ancestor_ids_matching</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">,</span> <span class="o">*</span><span class="n">filters</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_list_query</span><span class="p">(</span>
+            <span class="n">current_user</span><span class="p">,</span>
+            <span class="n">session</span><span class="p">,</span>
+            <span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span>
+            <span class="n">commit_hash</span><span class="o">=</span><span class="n">commit_hash</span><span class="p">,</span>
+            <span class="n">candidate_ids</span><span class="o">=</span><span class="n">candidate_ids</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">*</span><span class="n">filters</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="LabelDataDomain.build_list_query"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelDataDomain.html#sta.domain.label.data.base.LabelDataDomain.build_list_query">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_list_query</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -16090,8 +16186,22 @@
             <span class="n">session</span><span class="o">.</span><span class="n">flush</span><span class="p">([</span><span class="n">record</span><span class="p">])</span>
 
         <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data_to_update</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"is_deleted"</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_notify_deleted_elements</span><span class="p">(</span><span class="n">current_user</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="p">{</span><span class="nb">id</span><span class="p">},</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">record</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_notify_deleted_elements</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">current_user</span><span class="p">:</span> <span class="n">UserPublic</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span>
+        <span class="n">ids</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">],</span>
+        <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">commit_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">notify_element_delete</span>
+
+        <span class="n">notify_element_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_user</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">)</span>
 
 <div class="viewcode-block" id="LabelDataDomain.delete_data"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelDataDomain.html#sta.domain.label.data.base.LabelDataDomain.delete_data">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">delete_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -16135,7 +16245,8 @@
             <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
             <span class="n">session</span><span class="o">.</span><span class="n">flush</span><span class="p">([</span><span class="n">record</span><span class="p">])</span>
 
-        <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></div>
+        <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_notify_deleted_elements</span><span class="p">(</span><span class="n">current_user</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="p">{</span><span class="nb">id</span><span class="p">},</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="LabelDataDomain.bulk_create_datas"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelDataDomain.html#sta.domain.label.data.base.LabelDataDomain.bulk_create_datas">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">bulk_create_datas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -16218,7 +16329,10 @@
             <span class="p">)</span>
 
             <span class="k">with</span> <span class="n">add_perf</span> <span class="ow">or</span> <span class="n">nullcontext</span><span class="p">():</span>
-                <span class="n">execute_statement</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span></div>
+                <span class="n">execute_statement</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">data_to_update</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"is_deleted"</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_notify_deleted_elements</span><span class="p">(</span><span class="n">current_user</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="LabelDataDomain.bulk_delete_datas"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelDataDomain.html#sta.domain.label.data.base.LabelDataDomain.bulk_delete_datas">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">bulk_delete_datas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -16263,7 +16377,9 @@
         <span class="p">)</span>
 
         <span class="k">with</span> <span class="n">add_perf</span> <span class="ow">or</span> <span class="n">nullcontext</span><span class="p">():</span>
-            <span class="n">execute_statement</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span></div>
+            <span class="n">execute_statement</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_notify_deleted_elements</span><span class="p">(</span><span class="n">current_user</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="LabelDataDomain.refresh_states"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelDataDomain.html#sta.domain.label.data.base.LabelDataDomain.refresh_states">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">refresh_states</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -16384,21 +16500,13 @@
         <span class="n">entity_filter</span> <span class="o">=</span> <span class="n">sql_column</span><span class="p">(</span><span class="n">entity_table</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">referenced_ids</span><span class="p">)</span> <span class="o">|</span> <span class="n">sql_column</span><span class="p">(</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">entity_table</span><span class="p">)</span><span class="o">.</span><span class="n">has_children</span>
         <span class="p">)</span><span class="o">.</span><span class="n">is_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">candidate_ids</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">_use_ancestor_candidates</span><span class="p">():</span>
-            <span class="n">candidate_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_ancestor_ids_matching</span><span class="p">(</span>
-                <span class="n">group_id</span><span class="p">,</span>
-                <span class="n">commit_hash</span><span class="p">,</span>
-                <span class="n">entity_filter</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_list_query</span><span class="p">(</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_filtered_list_query</span><span class="p">(</span>
             <span class="n">current_user</span><span class="p">,</span>
             <span class="n">session</span><span class="p">,</span>
             <span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span>
             <span class="n">commit_hash</span><span class="o">=</span><span class="n">commit_hash</span><span class="p">,</span>
-            <span class="n">candidate_ids</span><span class="o">=</span><span class="n">candidate_ids</span><span class="p">,</span>
+            <span class="n">filters</span><span class="o">=</span><span class="p">[</span><span class="n">entity_filter</span><span class="p">],</span>
         <span class="p">)</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">entity_filter</span><span class="p">)</span>
         <span class="n">records</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">,</span> <span class="s2">"entities"</span><span class="p">)</span></div></div>
 
@@ -16688,7 +16796,7 @@
             <span class="n">query_closest_states_perf</span><span class="o">=</span><span class="n">query_closest_states_perf</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="LabelElementDomain.list_datas_in_any_bounds"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelElementDomain.html#sta.domain.label.data.base.LabelElementDomain.list_datas_in_any_bounds">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">list_datas_in_any_bounds</span><span class="p">(</span>
+<div class="viewcode-block" id="LabelElementDomain.build_list_query_in_any_bounds"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelElementDomain.html#sta.domain.label.data.base.LabelElementDomain.build_list_query_in_any_bounds">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_list_query_in_any_bounds</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">current_user</span><span class="p">:</span> <span class="n">UserPublic</span><span class="p">,</span>
@@ -16696,12 +16804,8 @@
         <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">commit_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">st_bounds</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">PartialSTBounds</span><span class="p">],</span>
-        <span class="n">query_closest_states_perf</span><span class="p">:</span> <span class="n">PerformanceCounter</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">_ET</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""List elements intersecting any supplied bound with one revision query."""</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">st_bounds</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[]</span>
-
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Build a revision-correct query narrowed to the supplied frame bounds."""</span>
         <span class="n">table_cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_cls</span>
         <span class="n">bounds_filters</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">bounds</span> <span class="ow">in</span> <span class="n">st_bounds</span><span class="p">:</span>
@@ -16748,9 +16852,32 @@
         <span class="k">if</span> <span class="n">bounds_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">bounds_filter</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">st_bounds</span><span class="p">:</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">false</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">q</span></div>
+
+<div class="viewcode-block" id="LabelElementDomain.list_datas_in_any_bounds"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelElementDomain.html#sta.domain.label.data.base.LabelElementDomain.list_datas_in_any_bounds">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">list_datas_in_any_bounds</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">current_user</span><span class="p">:</span> <span class="n">UserPublic</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span>
+        <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">commit_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">st_bounds</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">PartialSTBounds</span><span class="p">],</span>
+        <span class="n">query_closest_states_perf</span><span class="p">:</span> <span class="n">PerformanceCounter</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">_ET</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""List elements intersecting any supplied bound with one revision query."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">st_bounds</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_list_query_in_any_bounds</span><span class="p">(</span>
+            <span class="n">current_user</span><span class="o">=</span><span class="n">current_user</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+            <span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span>
+            <span class="n">commit_hash</span><span class="o">=</span><span class="n">commit_hash</span><span class="p">,</span>
+            <span class="n">st_bounds</span><span class="o">=</span><span class="n">st_bounds</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">with</span> <span class="n">query_closest_states_perf</span> <span class="ow">or</span> <span class="n">nullcontext</span><span class="p">():</span>
             <span class="n">records</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">,</span> <span class="s2">"items"</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="LabelElementDomain.create_data"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.label.data.base.LabelElementDomain.html#sta.domain.label.data.base.LabelElementDomain.create_data">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_data</span><span class="p">(</span>

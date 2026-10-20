@@ -14,6 +14,7 @@ LabelDataDomain
 
    .. autosummary::
    
+      ~LabelDataDomain.build_filtered_list_query
       ~LabelDataDomain.build_list_query
       ~LabelDataDomain.bulk_create_datas
       ~LabelDataDomain.bulk_delete_datas
@@ -36,6 +37,7 @@ LabelDataDomain
       ~LabelDataDomain.update_data
 
    
+   .. automethod:: LabelDataDomain.build_filtered_list_query
    .. automethod:: LabelDataDomain.build_list_query
    .. automethod:: LabelDataDomain.bulk_create_datas
    .. automethod:: LabelDataDomain.bulk_delete_datas

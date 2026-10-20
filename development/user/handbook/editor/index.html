@@ -1569,6 +1569,89 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-grouped-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Grouped Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2627,6 +2710,89 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw-mode_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Draw Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-mode_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-grouped-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Grouped Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preferences_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2648,8 +2814,8 @@
 
 
 <h1 id="annotation-editor">Annotation Editor</h1>
-<p>The annotation editor is used to perform annotation tasks.</p>
-<p>The interface has various menus that facilitate the user experience. Here is a list of common menus:</p>
+<p>Use the annotation editor to create, review, and edit labels for your assigned tasks.</p>
+<p>The main menus are:</p>
 <ul>
 <li><code>Project</code>: Manages project navigation and changes to the labelset. It provides a <code>Task</code>, <code>Scene</code> and <code>Frame</code> tab.</li>
 <li><code>Controls</code>: Lists the keyboard shortcuts available to the user under a <code>General</code> tab, and the shortcuts of one layer under a <code>Layer</code> tab (the layer is chosen with the <code>Configure Layer:</code> dropdown).</li>
@@ -2657,15 +2823,18 @@
 <li><code>Tools</code>: Includes settings for interacting with the active layer.</li>
 <li><code>Preferences</code>: Includes settings to customize the general user experience. It provides a <code>Main Camera</code> tab plus a <code>Layer</code> tab holding the settings of one layer (the layer is chosen with the <code>Configure Layer:</code> dropdown).</li>
 </ul>
-<p>To avoid clutter, you can reposition each menu (by click and dragging the header bar) and even minimize them (by clicking on the minus icon on the header bar).</p>
+<p>Drag a menu's header to move it. Click the minus icon in the header to minimize it.</p>
 <p>While a frame is loading, a <code>Loading frame data</code> overlay reports the progress of the process (e.g. <code>2 of 3 layers ready</code>). Once the frame is displayed, a hint bar at the top of the scene describes how to interact with the currently selected layer.</p>
-<p>Below is a comprehensive list of workflows that can be performed in the annotation editor.</p>
+<p>Labels with no timestamp are timeless: bounding boxes, vectors, and segmentation
+selections can appear in every frame whose spatial bounds include them. Labels
+with a timestamp must also match the frame's time bounds. This lets static maps
+remain visible while navigating timestamped point-cloud sweeps.</p>
 <h2 id="permissions">Permissions</h2>
 <p>The annotation editor can only access projects and tasks where at least one frame has been assigned to that user through <a href="../project/">Project Management</a>.</p>
 <p>What you may do with the label branch of a frame follows its access level: <code>Read</code> lets you open the branch and look at its labels, while saving changes requires <code>Write</code>. See <a href="../data/#branch-access-levels">Branch Access Levels</a>.</p>
 <h2 id="workflows">Workflows</h2>
 <h3 id="project-navigation">Project Navigation</h3>
-<p>The project to open is determined by the URL used to open the annotation interface. Further navigation can be conducted through the <code>Project</code> menu, as explained below.</p>
+<p>The editor opens the project you selected. Use the <code>Project</code> menu to choose a task, scene, or frame.</p>
 <h4 id="task-navigation">Task Navigation</h4>
 <p>The active task can be set through the <code>Project &gt; Task</code> tab; the list of tasks depends on the active project (see above).</p>
 <p>To open a task, select a task via the corresponding dropdown. Then, select the source group and label branch for the frames you want to work on under the active task.</p>
@@ -2684,26 +2853,26 @@
 <p>To conveniently review the annotated examples, you can use the <code>Play/Pause video</code> (<code>Space</code>) keyboard shortcut or the corresponding button in the <code>Project &gt; Scene &gt; Playback</code> folder to play a video of the frames, which repeatedly loads the next frame in the current path.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Adjusting the <code>FPS</code> to a smaller value can help load the data more consistently as fewer concurrent requests are sent to the backend.</p>
+<p>Lower <code>FPS</code> if playback struggles to keep up.</p>
 </div>
 <h3 id="managing-changes">Managing Changes</h3>
 <h4 id="labelset-history">Labelset History</h4>
-<p>The <code>Project &gt; Task &gt; History</code> folder displays a history of each operation made to the active labelset in the current session:</p>
+<p>The <code>Project &gt; Task &gt; History</code> folder lists your changes in the current session:</p>
 <ul>
-<li>The blue entry represents the current operation; the active state of the labelset refers to the state immediately after applying that operation.</li>
-<li>Green entries represent saved operations.</li>
-<li>Grey entries represent undone operations.</li>
+<li>The blue entry marks your current position in the history.</li>
+<li>Green entries are saved changes.</li>
+<li>Grey entries are undone changes.</li>
 </ul>
-<p>You can use the <code>Undo change</code> (<code>Ctrl+Z</code>) and <code>Redo change</code> (<code>Ctrl+Y</code>) keyboard shortcuts to undo/redo operations. Clicking on an item in the history sets the current operation to the corresponding one.</p>
+<p>Press <code>Ctrl+Z</code> to undo a change or <code>Ctrl+Y</code> to redo it. Click a history entry to return to that point.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Unless saved, operations only persist for the current session and will be discarded if you reload the page.</p>
+<p>Reloading the page discards unsaved changes.</p>
 </div>
 <h4 id="save-changes">Save Changes</h4>
-<p>You can use the <code>Save changes</code> (<code>Ctrl+S</code>) keyboard shortcut or the <code>Save Changes</code> button in the <code>Project &gt; Task</code> tab (listed just below the <code>History</code> folder) to save each operation up to the current one. Doing so applies the changes to the remote server.</p>
+<p>Press <code>Ctrl+S</code> or click <code>Save Changes</code> below the <code>History</code> folder in <code>Project &gt; Task</code> to save your changes up to the current history entry.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Once saved, operations can no longer be undone through the annotation editor.</p>
+<p>Saved changes can no longer be undone through the annotation editor.</p>
 </div>
 <h4 id="complete-frame">Complete Frame</h4>
 <p>After finishing your task for a frame, you can mark that frame as completed either without a keyboard by selecting <code>Complete</code> in the <code>Frame Status</code> control of the <code>Project &gt; Frame</code> tab, or with the <code>Cycle frame status; step previous frame</code> (<code>Shift+Z</code>) and <code>Cycle frame status; step next frame</code> (<code>Shift+C</code>) keyboard shortcuts, which also move to the previous/next frame. Doing so will update the progress that is displayed in the <code>Project &gt; Task</code> tab.</p>
@@ -2724,45 +2893,45 @@
 <p>Data is only displayed for enabled layers. There is no limit to the number of enabled layers at any given time.</p>
 <p>You can enable/disable a layer by toggling the <code>Enabled</code> checkbox. The button below the table enables (<code>Enable All</code>) or disables (<code>Disable All</code>) every layer of the current tab at once.</p>
 <h4 id="select-layer">Select Layer</h4>
-<p>User can only interact with selected layers. Only one layer can be selected at any given time. Also, a disabled layer is automatically deselected.</p>
+<p>Select a layer to use its tools. Only one layer can be selected at a time. Disabling the selected layer also deselects it.</p>
 <p>You can select a layer by clicking on its name in the list of layers.</p>
 <h4 id="layer-actions">Layer Actions</h4>
 <p>Each layer may further define <code>Actions</code> which represent common operations to be performed on that layer. They are only available when the layer is selected.</p>
 <h3 id="plugins">Plugins</h3>
 <h4 id="point-cloud">Point Cloud</h4>
-<p>The point cloud plugin adds the <code>Point Cloud</code> source data layer which displays point clouds in the annotation editor.</p>
-<p>Upon navigating to a scene, any point clouds that occur in the corresponding frame are loaded. They cannot be modified in the annotation editor.</p>
+<p>The <code>Point Cloud</code> layer displays the scene's point clouds.</p>
+<p>The layer shows point clouds for the current frame. You can inspect them but cannot edit them here.</p>
 <p><a id="pcd-preferences"></a></p>
 <h5 id="preferences">Preferences</h5>
 <p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
 <ul>
-<li><code>RemoveBG</code>: Toggles whether <code>remove-bg</code> preprocessors are applied. You can also toggle it with the <code>Toggle RemoveBG</code> (<code>J</code>) keyboard shortcut.</li>
-<li><code>CropArea</code>: Toggles whether <code>crop-box</code> and <code>crop-polygon</code> preprocessors are applied. You can also toggle it with the <code>Toggle CropArea</code> (<code>K</code>) keyboard shortcut.</li>
+<li><code>RemoveBG</code>: Applies the project's background-removal settings. Toggle it with <code>J</code> (<code>Toggle RemoveBG</code>).</li>
+<li><code>CropArea</code>: Limits the displayed points to the project's configured crop areas. Toggle it with <code>K</code> (<code>Toggle CropArea</code>).</li>
 <li><code>Point Size</code>: Adjusts the point size to avoid visual clutter when the point cloud is too dense.</li>
-<li><code>Blender Type</code>: Controls how the display color of each point is computed. The sub-controls below it depend on the selected type:<ul>
+<li><code>Blender Type</code>: Chooses how points are colored. The available settings depend on the selected type:<ul>
 <li><code>ApplyColormap</code>: Sets the display color by applying a colormap on the values along a single channel. Its sub-controls are <code>Colormap</code> (the colormap to apply), <code>Channel</code> (the channel to read), and <code>Use Z-Score</code> (which switches the two range inputs between <code>Min. Z-Score</code>/<code>Max. Z-Score</code> and <code>Min. Value</code>/<code>Max. Value</code>).</li>
 <li><code>ComposeRGB</code>: Sets the display color using the values along three channels. Its <code>Red</code>, <code>Green</code> and <code>Blue</code> tabs each provide the channel and range controls described above for one color component.</li>
 </ul>
 </li>
 </ul>
 <h4 id="ground-mesh">Ground Mesh</h4>
-<p>The ground mesh plugin adds the <code>Ground Mesh</code> source data layer which displays triangle meshes in the annotation editor.</p>
-<p>Upon navigating to a scene, any meshes that occur in the corresponding frame are loaded. They cannot be modified in the annotation editor.</p>
+<p>The <code>Ground Mesh</code> layer displays the scene's triangle meshes.</p>
+<p>The layer shows meshes for the current frame. You can inspect them but cannot edit them here.</p>
 <p><a id="gmesh-preferences"></a></p>
 <h5 id="preferences_1">Preferences</h5>
 <p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
 <ul>
 <li><code>Show Wireframe</code>: Toggles whether meshes are displayed with solid faces, to avoid visual clutter when a <a href="#point-cloud">point cloud</a> is also available in the current frame.</li>
 <li><code>Opacity</code>: Adjusts the opacity of meshes to avoid visual clutter.</li>
-<li><code>Blender Type</code>: Controls how the display color of each vertex is computed. The sub-controls below it depend on the selected type:<ul>
+<li><code>Blender Type</code>: Chooses how the mesh is colored. The available settings depend on the selected type:<ul>
 <li><code>ApplyColormap</code>: Sets the display color by applying a colormap on the values along a single channel. Its sub-controls are <code>Colormap</code> (the colormap to apply), <code>Channel</code> (the channel to read), and <code>Use Z-Score</code> (which switches the two range inputs between <code>Min. Z-Score</code>/<code>Max. Z-Score</code> and <code>Min. Value</code>/<code>Max. Value</code>).</li>
 <li><code>ComposeRGB</code>: Sets the display color using the values along three channels. Its <code>Red</code>, <code>Green</code> and <code>Blue</code> tabs each provide the channel and range controls described above for one color component.</li>
 </ul>
 </li>
 </ul>
 <h4 id="bounding-box-labels">Bounding Box Labels</h4>
-<p>The bounding box labels plugin adds the <code>Bounding Box</code> label data layer which enables the user to edit bounding boxes and associated object tracks in the annotation editor.</p>
-<p>Upon navigating to a scene, any labels that occur in the corresponding frame as well as other frames within the <a href="#bbox-preferences">time-path range</a> are loaded. While the layer is selected, the collection of labels can be modified via the following <a href="#layer-actions">actions</a>:</p>
+<p>Use the <code>Bounding Box</code> layer to draw and edit boxes and their associated object tracks.</p>
+<p>The layer shows labels for the current frame and nearby frames within the <a href="#bbox-preferences">time-path range</a>. Select it to use these <a href="#layer-actions">actions</a>:</p>
 <ul>
 <li><a href="#bbox-draw">(D)raw</a> a new bounding box.</li>
 <li><a href="#bbox-select">(S)elect</a> an existing bounding box and <a href="#bbox-edit">editing</a> it.</li>
@@ -2802,7 +2971,7 @@
 <p><a id="bbox-edit"></a></p>
 <h5 id="edit-mode">Edit Mode</h5>
 <p>The edit mode is automatically activated when you select a bounding box (through <a href="#bbox-select">select mode</a> or directly via the <code>Bounding Box</code> menu). Upon entering this mode, the selected bounding box in the <code>Bounding Box</code> menu is updated accordingly, and the selected object track in the <code>Object Track</code> menu is updated to its associated object track. While in edit mode, you can directly update the properties of the selected bounding box and object track via their corresponding menus.</p>
-<p>Use <strong>Hide in scene</strong> in the <code>Bounding Box</code> menu or press <code>H</code> while editing a selected box to temporarily make a box’s faces transparent and its edges dashed. Hidden boxes have no tooltip and their center and visible edges respond to hover and selection. Select the center or an edge (or choose the box in the menu) and clear the checkbox to unhide it. Hidden box IDs remain remembered when navigating between frames during the editor session; this setting is not saved to the backend.</p>
+<p>Use <strong>Hide in scene</strong> in the <code>Bounding Box</code> menu or press <code>H</code> while editing a selected box to temporarily make a box's faces transparent and its edges dashed. Hidden boxes have no tooltip and their center and visible edges respond to hover and selection. Select the center or an edge (or choose the box in the menu) and clear the checkbox to unhide it. Boxes stay hidden as you move between frames during the current session. Hiding a box does not change its saved annotation.</p>
 <p>Also, a transform widget appears on the selected bounding box which can be manipulated to modify its pose based on the <a href="#main-camera">camera mode</a>:</p>
 <ul>
 <li>In 2D mode, you can adjust the pose along the horizontal plane.</li>
@@ -2816,7 +2985,7 @@
 <p>When not in <a href="#bbox-draw">draw mode</a> or <a href="#bbox-select">select mode</a>, you can use the <code>Paste box</code> (<code>Ctrl+V</code>) keyboard shortcut or click on the corresponding button in <code>Tools &gt; Clipboard</code> to create a new bounding box with the same data (except for timestamp, which is always set to that of the current frame).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This is similar in function to left-clicking and dragging a reference box in <a href="#bbox-draw">draw mode</a>. Nevertheless, using the clipboard is preferred when the reference box is located many frames away from the current frame as doing so avoids the need to load the data for each frame in between.</p>
+<p>Use the clipboard to reuse a box from a distant frame. For a nearby box, you can also copy it by dragging from it in <a href="#bbox-draw">draw mode</a>.</p>
 </div>
 <p><a id="bbox-preferences"></a></p>
 <h5 id="preferences_2">Preferences</h5>
@@ -2836,8 +3005,8 @@
 <li><code>Select color</code>: Controls the display color of bounding boxes when selected.</li>
 </ul>
 <h4 id="vector-labels">Vector Labels</h4>
-<p>The vector labels plugin adds the <code>Vector</code> label data layer which enables the user to edit polylines, polygons and single points in the annotation editor.</p>
-<p>Upon navigating to a scene, any vertices of vector labels are loaded that occur in the corresponding frame's timestamp and boundary coordinate. While the layer is selected, the collection of labels can be modified via the following <a href="#layer-actions">actions</a>:</p>
+<p>Use the <code>Vector</code> layer to draw and edit polylines, polygons, and single points.</p>
+<p>The layer shows vector labels for the current frame. Select it to use these <a href="#layer-actions">actions</a>:</p>
 <ul>
 <li><a href="#vector-draw">(D)raw</a> a new vector object.</li>
 <li><a href="#vector-select">(S)elect</a> an existing vector object and <a href="#vector-edit">editing</a> it.</li>
@@ -2846,11 +3015,9 @@
 <h5 id="draw-mode_1">Draw Mode</h5>
 <p>The draw mode is activated by pressing <code>D</code> or clicking on the corresponding <a href="#layer-actions">action</a>. While in draw mode, you can create any type of vector labels by selecting the label type from the setting <code>Tools &gt; Draw</code> widgets or the keyboard shortcuts below:</p>
 <ul>
-<li><code>line</code>: Activated by pressing <code>L</code> (<code>Draw line</code>), the position of each vertex of polyline is
-determined by the mouse left click on the scene and to finish drawing press <code>G</code> (<code>finish draw vector</code>).</li>
-<li><code>Polygon</code>: Activated by pressing <code>K</code> (<code>Draw Polygon</code>), the position of each vertex of polygon is
-determined by the mouse left click on the scene and to finish drawing press <code>G</code> (<code>finish draw vector</code>).</li>
-<li><code>Point</code>: Activated by pressing <code>P</code> (<code>Draw Point</code>), the position of a point vertex is determined once the mouse left click is released and the draw is finished automatically.</li>
+<li><code>Polygon</code>: Selected by default; activated by pressing <code>K</code> (<code>Draw polygon</code>). Click to place vertices, then double-click or press <code>G</code> to finish.</li>
+<li><code>Line</code>: Activated by pressing <code>L</code> (<code>Draw line</code>). Click to place vertices, then double-click or press <code>G</code> to finish.</li>
+<li><code>Point</code>: Activated by pressing <code>P</code> (<code>Draw point</code>), the position of a point vertex is determined once the mouse left click is released and the draw is finished automatically.</li>
 </ul>
 <p>At any point you can abandon the vector being drawn with the <code>cancel draw vector</code> (<code>Esc</code>) keyboard shortcut.</p>
 <p>After selecting a vector object, you are automatically sent into <a href="#vector-edit">edit mode</a> which enables you to further edit it.</p>
@@ -2861,10 +3028,11 @@ determined by the mouse left click on the scene and to finish drawing press <cod
 <p><a id="vector-edit"></a></p>
 <h5 id="edit-mode_1">Edit Mode</h5>
 <p>The edit mode is activated after selecting or drawing a vector object, you can modify the vertices by translating the vertex/vertices of vector objects only in <a href="#main-camera">2D mode</a>.</p>
+<p>Use <strong>Hide in scene</strong> in the vector inspector or press <code>H</code> while editing a selected vector to hide its geometry and tooltip. A clickable centroid marker remains visible for points, polylines, and polygons. Select the marker and press <code>H</code>, or clear <strong>Hide in scene</strong> in the inspector, to show the vector again.</p>
 <p>The vertices of polygon and polyline can be modified in two ways as below:</p>
 <ul>
 <li>In 2D mode, translate each individual vertex at a time.</li>
-<li>In 2D mode, translate all the vertices at the same time via translating a 2D plane helper.</li>
+<li>In 2D mode, translate all the vertices at the same time by dragging the translucent plane or its centroid point. The plane highlights when hovered.</li>
 </ul>
 <p>The above modes of translations can be toggled with the <code>Translation Modes</code> control (<code>Vertex</code> / <code>Vertices</code>) in the <code>Tools &gt; Transform</code> folder, or with the <code>Toggle translate single vertex</code> (<code>W</code>) and <code>Toggle translate all vertices</code> (<code>E</code>) keyboard shortcuts.</p>
 <p>To discard the selected vector object, use the <code>Delete vector</code> (<code>Delete</code>) keyboard shortcut. To leave edit mode without selecting another vector object, use the <code>Cancel edit vector</code> (<code>Esc</code>) keyboard shortcut.</p>
@@ -2876,16 +3044,16 @@ determined by the mouse left click on the scene and to finish drawing press <cod
 <h5 id="preferences_3">Preferences</h5>
 <p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
 <ul>
-<li><code>Show tooltips</code>: Toggles whether tooltips are displayed for each vector object.</li>
+<li><code>Show tooltips</code>: Toggles tooltips at each vector object's centroid marker. You can also toggle it with the <code>Toggle vector tooltips</code> (<code>T</code>) keyboard shortcut.</li>
 <li><code>Show Vector ID</code>: Toggles whether the ID of the vector object is displayed in each tooltip.</li>
 <li><code>stroke width</code>: Controls the width size of vector objects in draw mode.</li>
-<li><code>stroke color</code>: Controls the display color of vector objects in draw mode.</li>
+<li><code>Stroke color</code>: Controls the display color of vector objects in draw mode.</li>
 <li><code>Hover color</code>: Controls the display color of vector objects when hovered over.</li>
 <li><code>Select color</code>: Controls the display color of vector objects when selected.</li>
 </ul>
 <h4 id="segmentation-labels">Segmentation Labels</h4>
-<p>The segmentation labels plugin adds the <code>Segmentation</code> label data layer which enables the user to edit selection points and associated object instance in the annotation editor.</p>
-<p>Upon navigating to a scene, any labels that occur in the corresponding frame as well as other frames within the <a href="#segmentation-preferences">time-path range</a> are loaded. While the layer is selected, the collection of labels can be modified via the following <a href="#layer-actions">actions</a>:</p>
+<p>Use the <code>Segmentation</code> layer to select groups of points and edit their associated object instances.</p>
+<p>The layer shows labels for the current frame and nearby frames within the <a href="#segmentation-preferences">time-path range</a>. Select it to use these <a href="#layer-actions">actions</a>:</p>
 <ul>
 <li><a href="#selection-draw">(D)raw</a> a new points selection.</li>
 <li><a href="#selection-select">(S)elect</a> an existing point selection and <a href="#selection-edit">editing</a> it.</li>
@@ -2904,7 +3072,7 @@ determined by the mouse left click on the scene and to finish drawing press <cod
 <p>After drawing a selection, you are automatically sent into <a href="#selection-edit">edit mode</a> which enables you to further edit it.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In edit mode the selection <a href="#layer-actions">action</a> is still on draw since a selection is made via drawing objects in the scene to query the points inside drawn object. To differentiate whether you are drawing a new selection or editing an existing object, check the widgets for this data layer.</p>
+<p>The <code>Draw</code> action remains active while editing. Check the selection inspector to see which selection you are modifying.</p>
 </div>
 <p><a id="selection-select"></a></p>
 <h5 id="select-mode_2">Select Mode</h5>
@@ -2913,6 +3081,7 @@ determined by the mouse left click on the scene and to finish drawing press <cod
 <p><a id="selection-edit"></a></p>
 <h5 id="edit-mode_2">Edit Mode</h5>
 <p>The edit mode is activated after selecting or drawing a point selection, you can modify points of a selection by adding more points or removing some points from a selection, to do so, you can follow the same steps in <a href="#selection-draw">draw mode</a> section, with a small difference that the mode of the modification is set by the <code>Edit Mode</code> control in the <code>Tools &gt; Modify</code> folder, which offers the <code>Add</code> and <code>Erase</code> options. To add points to a selection, select <code>Add</code>; to remove points from a selection, select <code>Erase</code>.</p>
+<p>Use <strong>Hide in scene</strong> in the selection inspector or press <code>H</code> while editing a selected point selection to hide its points and tooltip. A clickable centroid marker remains visible. Select the marker and press <code>H</code>, or clear <strong>Hide in scene</strong> in the inspector, to show the points again.</p>
 <p>To discard the selected point selection, use the <code>Delete selection</code> (<code>Delete</code>) keyboard shortcut.</p>
 <p><a id="selection-assistant"></a></p>
 <h5 id="assistant">Assistant</h5>
@@ -2926,15 +3095,15 @@ determined by the mouse left click on the scene and to finish drawing press <cod
 <p>While editing an existing selection, prompts in <code>Foreground</code> mode add points to it and prompts in <code>Background</code> mode remove points from it.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This feature is unavailable unless an operator has configured a labeling assistant service for your deployment; see the <a href="../../host/">hosting guide</a> for the operator-side configuration.</p>
+<p>Ask your administrator to enable a labeling assistant if it is unavailable.</p>
 </div>
 <p><a id="segmentation-preferences"></a></p>
 <h5 id="preferences_4">Preferences</h5>
 <p>The following settings can be adjusted via the <code>Preferences</code> menu:</p>
 <ul>
-<li><code>Use Assistant</code>: Toggles the <a href="#selection-assistant">labeling assistant</a> preference used to predict a selection from point prompts. The checkbox remains editable while data loads or the assistant is unavailable; predictions run only when the configured service is available.</li>
+<li><code>Use Assistant</code>: Enable the <a href="#selection-assistant">labeling assistant</a> to predict selections from foreground and background points when an assistant is available.</li>
 <li><code>Time-path Range</code>: Adjusts the number of frames from the current one in the time-sorted frame path for which to load selection points and object instances, facilitating access to labels in nearby timestamps.</li>
-<li><code>Show tooltips</code>: Toggles whether tooltips are displayed for each point selection.</li>
+<li><code>Show tooltips</code>: Toggles tooltips at each point selection's centroid marker. You can also toggle it with the <code>Toggle selection tooltips</code> (<code>T</code>) keyboard shortcut.</li>
 <li><code>Show Occlusion</code>: Toggles whether the occlusion level is displayed in each tooltip.</li>
 <li><code>Show Distinctiveness</code>: Toggles whether the distinctiveness level is displayed in each tooltip.</li>
 <li><code>Show Timestamp Diff.</code>: Toggles whether each tooltip shows the time difference from the current frame.</li>
@@ -2944,10 +3113,99 @@ determined by the mouse left click on the scene and to finish drawing press <cod
 <li><code>Point opacity</code>: Sets the opacity of selection points from 0 (invisible) to 1 (opaque) when <code>Transparent Points</code> is enabled.</li>
 <li><code>Brush Diameter</code>: Controls the diameter of the brush used to query points for a selection.</li>
 <li><code>Brush Hue</code>: Controls how strongly the area painted by the brush is highlighted.</li>
-<li><code>stroke color</code>: Controls the display color of drawn objects/shapes to query points for a selection.</li>
+<li><code>Stroke color</code>: Controls the display color of drawn objects/shapes to query points for a selection.</li>
 <li><code>Hover color</code>: Controls the display color of point selections when hovered over.</li>
 <li><code>Select color</code>: Controls the display color of point selections when selected.</li>
 </ul>
+<h2 id="relations">Relations</h2>
+<p>Use the <code>Relations</code> layer to describe how two labels are related, such as
+"supports", "beside", or "behind". An arrow points from the source label to
+the target label. For vector and segmentation labels, the arrow connects their
+centroid markers.</p>
+<p>Select the <code>Relations</code> layer to use these <a href="#layer-actions">actions</a>:</p>
+<ul>
+<li><a href="#relation-draw">(D)raw</a> a relation between two labels.</li>
+<li><a href="#relation-select">(S)elect</a> an existing relation to inspect or edit it.</li>
+</ul>
+<p><a id="relation-draw"></a></p>
+<h3 id="draw-mode_3">Draw Mode</h3>
+<p>Press <code>D</code> or click <strong>D</strong> in the Layers menu to enter Draw mode. Choose a relation
+class in the inspector, then click the source label followed by the target label.
+The two labels can be different types. After selecting the source, it no longer
+intercepts pointer hits, so you can choose a target behind it. Yellow highlights
+show the source and the target you are pointing at.</p>
+<p>Completing the relation selects it and leaves Draw mode. Press <code>Escape</code> to cancel
+before choosing both labels. Both labels must be visible in the current branch;
+a relation cannot connect to another relation. The <strong>D</strong> button beside the
+inspector's search field also toggles Draw mode.</p>
+<p><a id="relation-select"></a></p>
+<h3 id="select-mode_3">Select Mode</h3>
+<p>Press <code>S</code> or click <strong>S</strong> in the Layers menu to enter Select mode, then click a
+relation to select it and leave Select mode. Hovering highlights the relation and
+its two labels. Press <code>Escape</code> to leave Select mode without choosing a relation.</p>
+<p>You can also select a relation by typing part of its ID in the inspector's search
+field and choosing a result.</p>
+<h3 id="review-relations">Review Relations</h3>
+<p>Press <code>Tab</code> with the Relations layer active to review relations one at a time.
+The current relation and its two labels remain visible while other labels are
+hidden. Press <code>Tab</code> again to move to the next group; after the last group, it
+returns to the first.</p>
+<p>You can also enable <strong>Isolate current relation</strong> in the <code>Tools</code> menu to focus on
+the selected relation. The <strong>Relations</strong> list shows the review order and
+highlights the selected group. Click a row to jump to that group. Groups whose
+labels are outside the current view are omitted, but groups hidden with
+<strong>Hide in scene</strong> remain available.</p>
+<p>Clear <strong>Isolate current relation</strong> or press <code>Escape</code> to restore the normal view.
+Changing tools or layers, or moving to another frame, also ends the review.
+Each label returns to its previous visibility. Reviewing does not change your
+annotations.</p>
+<p>To hide a selected relation, press <code>H</code> or enable <strong>Hide in scene</strong> in its inspector.
+This hides the line, arrowheads, and tooltip. Choose the relation in the inspector
+and press <code>H</code> again, or clear the checkbox, to show it.</p>
+<h3 id="read-grouped-relations">Read Grouped Relations</h3>
+<p>Several relations between the same two labels share one line. Arrowheads at both
+ends indicate relations in both directions. Tooltips group names by direction,
+for example <strong>(in front of / beside) / (behind)</strong>. Repeated categories show a count,
+such as <strong>beside [x3]</strong>. Counts are separate for each direction. Relation lists
+show the same grouping and counts without colors.</p>
+<p>Press <code>T</code> to show or hide tooltips. Category names use their class colors; the
+parentheses and separators stay white.</p>
+<h3 id="edit-relations">Edit Relations</h3>
+<p>Select a group, then use <strong>Direction</strong> to choose which direction to edit. Each
+option shows the source and target object classes and the number of relations in
+that direction. Labels without a class appear as <strong>(Unclassified)</strong>.</p>
+<p>The inspector's <strong>Relations</strong> folder lists the entries for that direction, each
+with its own ID and class. Click an entry to make it the current relation:</p>
+<ul>
+<li>Change its class using the class selector.</li>
+<li>Click <strong>Add relation</strong> to add another relation for the same pair and direction
+  using the current class. Change the new entry's class if needed.</li>
+<li>Press <code>Delete</code> to remove only the current entry. Another entry is selected if
+  any remain.</li>
+</ul>
+<p>Use the <strong>Source</strong> and <strong>Target</strong> folders to inspect or replace the connected
+labels. Each folder shows the label's ID and object class. To replace a label,
+choose its type and search by ID or object class, then choose a result. You can
+also click <strong>Replace source</strong> or <strong>Replace target</strong> and pick a label in the scene.
+Only labels visible in the current branch are offered, and you cannot choose
+the same label for both ends. Replacement affects only the chosen direction.</p>
+<p>Arrows follow their labels when you move them. Deleting a label also deletes its
+relations, including those outside the current frame. Undo restores them together.
+Use <strong>Save Changes</strong> to keep your edits.</p>
+<h3 id="preferences_5">Preferences</h3>
+<p>Under <strong>Preferences &gt; Layer &gt; Relations</strong>:</p>
+<ul>
+<li><strong>Hover color</strong> sets the highlight color when pointing at a relation (red by default).</li>
+<li><strong>Select color</strong> sets the highlight color for the selected relation (blue by default).</li>
+<li><strong>Line thickness</strong> adjusts the line and arrowhead size (2 pixels by default).</li>
+<li><strong>Show tooltips</strong> displays category names beside relation lines. Tooltips are off
+  by default; press <code>T</code> to toggle them for the active Relations layer.</li>
+</ul>
+<p>A data manager can choose relation classes and their colors under
+<strong>Label Specifications</strong>. Relation classes are separate from object classes.
+If all categories have the default white color, tooltips use distinct colors
+automatically. To choose specific colors, update the relation classes under
+<strong>Label Specifications</strong>. Existing relations can still display retired classes.</p>
 
 
 

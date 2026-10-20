@@ -1598,10 +1598,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#batch-edit" class="md-nav__link">
+  <a href="#batch-editing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Batch Edit
+        Batch Editing
       
     </span>
   </a>
@@ -1659,21 +1659,19 @@
 <li><a href="editor/">Annotation Editor</a></li>
 </ul>
 <h3 id="signing-in">Signing In</h3>
-<p>Signing in lands on the Welcome page, which greets you by name and shows when
-you last signed in. It reports any account or session message from the previous
-action, and offers nothing else: reach the work through the navigation bar
-described in the workflows above.</p>
-<p>An account with no roles can sign in but sees no pages. Give an account the
-roles it needs as described in <a href="account/">Account Management</a>.</p>
+<p>After signing in, the Welcome page shows your name, your last sign-in time, and
+any account or session messages. Use the navigation bar to open your work.</p>
+<p>If no work pages are available, ask an administrator to check your
+<a href="account/">account roles</a>.</p>
 <h2 id="common-widgets">Common Widgets</h2>
 <h3 id="data-table">Data Table</h3>
-<p>This table is used to list data entries and allow the user to edit them. The same table is used wherever entries are listed — projects, users, groups, tasks, frames and so on — and works the same way throughout the platform.</p>
+<p>Data tables list projects, accounts, groups, tasks, frames, and other entries. Use them to find entries, view details, and make changes where your permissions allow.</p>
 <h4 id="toolbar">Toolbar</h4>
-<p>A toolbar is placed above the table to provide access to functions that do not require any selected rows.</p>
+<p>Use the toolbar above a table to create entries and select rows.</p>
 <p>Each kind of entry is created with its own button whose label names the entry, such as <code>Create Project</code> on the Projects page or <code>Create User</code> on the Accounts page. Clicking such a button opens an empty form to fill in.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The toolbar holds entry creation and row selection only. Anything that changes several entries at once is a command in the <a href="#context-menu">context menu</a>, so a bulk change has exactly one way to reach it and the toolbar cannot offer a narrower version of it by accident.</p>
+<p>To change several entries together, select their rows and right-click to open the <a href="#context-menu">context menu</a>.</p>
 </div>
 <h4 id="row-selection">Row Selection</h4>
 <p>There are a few ways to select rows in the table:</p>
@@ -1700,17 +1698,31 @@ roles it needs as described in <a href="account/">Account Management</a>.</p>
 <li>The <code>Delete</code> command opens a form to delete the item in the current selection. Where a table allows several items to be deleted at once, selecting two or more rows replaces it with <code>Batch Delete</code>.</li>
 </ul>
 <p>The command names depend on the table you are looking at. The same place in the menu may be occupied by <code>Batch Edit Details</code>, <code>Open Details</code> or <code>Edit Completion</code>, and commands such as <code>Open</code> lead to another page rather than to a form.</p>
-<p>Where a table supports bulk changes, this menu is the only way to start one: it offers <code>Batch Edit Details</code> once two or more rows are selected, and <code>Batch Delete</code> on the tables that can delete a selection. Both open the dialog described in <a href="#batch-edit">Batch Edit</a>. A command that changes a single entry disappears while several rows are selected, so a multi-row selection can never quietly narrow itself to the row you happened to right-click; <code>Open</code> and <code>View Details</code> stay, because reading one entry changes nothing, and a table with no bulk command for you at all keeps its single-entry commands whatever you have selected.</p>
+<p>For tables that support bulk changes, select two or more rows to use
+<code>Batch Edit Details</code> or <code>Batch Delete</code>. These open a dialog for the selected
+entries. Single-entry editing commands are unavailable during a bulk selection.
+Commands for opening or viewing one entry may still be available.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>On tables whose rows lead to another page, such as the Projects page, you can double-click a row instead of choosing <code>Open</code> in the context menu.</p>
 </div>
 <p>The available operations may vary depending on your permissions as well as the current selection. Some cannot be performed in batch mode and thus only appear in the context menu when a single row is being selected.</p>
-<h4 id="batch-edit">Batch Edit</h4>
-<p>A batch dialog changes every selected entry at once. Each attribute it can change has its own checkbox, and only the attributes you tick are written; the footer of the dialog names how many entries the write covers, such as <code>Apply to 4 Projects</code>. That footer stays disabled until you tick at least one attribute, since a batch with nothing ticked would change nothing.</p>
-<p>Each selected entry receives the same value, so an attribute you enable <strong>replaces</strong> what the entry already holds rather than adding to it. The empty case is a value like any other: ticking an assignment section and leaving its picker empty removes everyone from every selected entry, and ticking a text field and leaving it empty clears that field everywhere -- unless an entry cannot exist without that value, in which case nothing is cleared: the reason appears in the dialog and no entry changes.</p>
-<p>What a dialog offers depends on the entries it acts on. An attribute that has to stay unique, such as a project's name, is not offered, and an attribute that only makes sense for one entry is left to the single-row form. Every table drops its single-row commands while several rows are selected, leaving <code>Batch Edit Details</code> in their place.</p>
-<p>The write goes out as a single request, and the whole batch is checked before any of it is stored, so a rejection changes nothing and reports the reason in the dialog for you to correct and retry. On success the dialog closes and the table reloads with the new values.</p>
+<h4 id="batch-editing">Batch Editing</h4>
+<p>Use a batch dialog to apply the same changes to all selected entries:</p>
+<ol>
+<li>Tick the checkbox for each field you want to change.</li>
+<li>Enter the new values. Unticked fields keep their existing values.</li>
+<li>Check the number of affected entries in the apply button, such as <code>Apply to 4 Projects</code>, then apply the changes.</li>
+</ol>
+<p>An enabled field <strong>replaces</strong> its existing value on every selected entry. For
+example, an assignment picker replaces everyone's current assignments with the
+list you choose. Leaving it empty removes all assignments. An enabled empty text
+field clears that field, unless a value is required.</p>
+<p>The available fields depend on the table. Unique names and other fields that
+must be edited individually are available in the single-entry form instead.</p>
+<p>If any change is invalid, no selected entries change. The dialog explains what
+to correct before trying again. After a successful change, it closes and the
+table shows the updated values.</p>
 <h4 id="filtering-sorting-and-paging">Filtering, Sorting and Paging</h4>
 <p>A row of filters is placed directly below the column headers:</p>
 <ul>

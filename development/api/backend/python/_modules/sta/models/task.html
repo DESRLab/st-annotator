@@ -6954,6 +6954,84 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_6_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../_api_generated/sta.domain.label.data.endpoints.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>sta.<wbr>domain.<wbr>label.<wbr>data.<wbr>endpoints</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_6_6_1_2" id="__nav_1_6_6_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_6_6_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6_6_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>sta.<wbr>domain.<wbr>label.<wbr>data.<wbr>endpoints</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../_api_generated/sta.domain.label.data.endpoints.LabelElementReference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Label<wbr>Element<wbr>Reference</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15408,6 +15486,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Optional</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.sql.schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">UniqueConstraint</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.sql.sqltypes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Date</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">SmallInteger</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Text</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sqlmodel</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">Relationship</span><span class="p">,</span> <span class="n">SQLModel</span>
 
@@ -15474,7 +15553,7 @@
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">_TaskBase</span><span class="p">(</span><span class="n">OptimisticLockingSQLModel</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="n">Name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">sa_type</span><span class="o">=</span><span class="n">sqlmodel_sa_type</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">)),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">sa_type</span><span class="o">=</span><span class="n">sqlmodel_sa_type</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">)),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">sa_type</span><span class="o">=</span><span class="n">Text</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
     <span class="n">deadline</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">sa_type</span><span class="o">=</span><span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
@@ -15484,6 +15563,7 @@
 
 <div class="viewcode-block" id="Task"><a class="viewcode-back" href="../../../_api_generated/sta.models.task.Task.html#sta.models.task.Task">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Task</span><span class="p">(</span><span class="n">_TaskBase</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">__tablename__</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"task"</span>
+    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">(</span><span class="n">UniqueConstraint</span><span class="p">(</span><span class="s2">"project_id"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"uq_task_project_id_name"</span><span class="p">),)</span>
 
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>

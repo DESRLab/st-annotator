@@ -7103,6 +7103,84 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_6_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="sta.domain.label.data.endpoints.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>sta.<wbr>domain.<wbr>label.<wbr>data.<wbr>endpoints</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_6_6_1_2" id="__nav_1_6_6_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_1_6_6_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6_6_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>sta.<wbr>domain.<wbr>label.<wbr>data.<wbr>endpoints</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sta.domain.label.data.endpoints.LabelElementReference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Label<wbr>Element<wbr>Reference</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15573,7 +15651,7 @@
 
 <h1 id="module-sta.benchmarks.perf_ancestor_candidates"><span id="sta-benchmarks-perf-ancestor-candidates"></span>sta.benchmarks.perf_ancestor_candidates<a class="headerlink" href="#module-sta.benchmarks.perf_ancestor_candidates" title="Permalink to this heading">¶</a></h1>
 <p>Query-plan comparison for the ancestor-candidate predicate.</p>
-<p><cite>_select_ancestor_ids_matching</cite> pre-narrows the closest-state CTE of a filtered
+<p><cite>_select_ancestor_ids_matching</cite> pre-narrows the closest-state query of a filtered
 revision read, and <cite>STA_USE_ANCESTOR_CANDIDATES</cite> switches it off. This benchmark
 seeds a deep linear commit graph in a scratch database and runs each affected read
 with the predicate on and off, reporting what the driver actually sends, Postgres’

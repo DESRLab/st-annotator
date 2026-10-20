@@ -1448,6 +1448,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cross-plugin-label-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-plugin label relations
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2113,6 +2124,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cross-plugin-label-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-plugin label relations
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2347,6 +2369,7 @@ production build commands.</p>
 <h5 id="data-view">Data View</h5>
 <p>Define a concrete implementation of <code>DataView</code> (<code>SourceDataView</code> for source data; <code>LabelDataView</code> for label data), which exposes the data from <code>DataLoader</code> for the current frame.</p>
 <p>For label data, you should also define methods to apply the various <a href="#frontend-labelset-operations">operations</a> to the active data. Each such mutator wraps the operation and applies it through the current frame's <code>EditableBranch</code> (e.g. <code>this.currentBranch?.apply(op)</code>).</p>
+<p>Validate the target against the displayed data when accepting a mutation, then retain the unfiltered index of that branch for applying, undoing, and redoing it. Frame bounds control visibility: moving a label outside those bounds does not delete it or invalidate an edit already queued for the same label. History must continue to address that label even while it is outside the displayed frame.</p>
 <h5 id="data-layer">Data Layer</h5>
 <p>Define a concrete implementation of <code>DataLayer</code> (<code>SourceDataLayer</code> for source data; <code>LabelDataLayer</code> for label data), through which the user can interact with the data that is exposed by <code>DataView</code>.</p>
 <ul>
@@ -2376,7 +2399,7 @@ production build commands.</p>
 <h2 id="dataset-import-plugin">Dataset import plugin</h2>
 <p><code>plugins/datasets/backend</code> is a backend-only package (<code>sta-datasets</code>, module
 <code>sta_datasets</code>). Its plugin entry point registers the <code>datasets</code> command group,
-with SemanticKITTI and 3RScan importers. The same group is available through the
+with SemanticKITTI, 3RScan, and Argoverse 2 Sensor importers. The same group is available through the
 <code>sta-datasets</code> executable without requiring a repository checkout. It contributes
 no API routes or frontend workspace.</p>
 <p>Dataset readers and orchestration live in separate modules. <code>sta_datasets.common</code>
@@ -2388,6 +2411,69 @@ dependencies in the package's <code>pyproject.toml</code>.</p>
 <p>Repository lint, format, and test commands check each plugin's existing backend
 and frontend directories, so backend-only plugins participate without requiring
 an empty npm workspace.</p>
+<h2 id="cross-plugin-label-relations">Cross-plugin label relations</h2>
+<p>Endpoint providers implement <code>setHighlights(owner, elements)</code> for transient,
+owner-scoped highlighting. <code>LabelElementHighlights</code> filters requests by label
+type and compares resolved IDs. Layers render these requests using their hover
+appearance while preserving selection priority. An optional RGB <code>color</code> argument
+overrides that appearance for interaction previews, including selected endpoints.
+Color-only changes also invalidate the endpoint scene. Empty requests release only that
+owner's highlights. Highlight changes invalidate the endpoint scene; they do not
+change selection or interaction mode. The relation layer releases its requests
+when hover ends, interaction becomes unavailable, or the layer is disposed.</p>
+<p>Endpoint providers also implement <code>setIsolation(owner, elements)</code> through
+<code>LabelElementIsolation</code>. A non-null request restricts scene labels to its
+endpoints, including explicitly showing an endpoint with a local hidden
+preference; an empty list hides every label of that provider. Null releases
+only that owner's request. The layer applies the resulting visibility through
+the label model's transient display API and suppresses auxiliary track or
+instance labels and editing controls while isolation is active. Local hidden
+preferences remain unchanged. The relation layer uses these filters while
+cycling grouped relations with <code>Tab</code>, and releases them on cancellation,
+navigation, tool or layer changes, loss of the current relation or its endpoints,
+and disposal.</p>
+<p>Label layers that support relation endpoints expose <code>labelElementProvider</code> with
+branch identity, visibility, element iteration, and a tracked subscription.
+Each element provides a typed logical reference, its assigned object-class name
+(<code>objectClassName</code>, or <code>null</code> when unclassified), its center in scene coordinates,
+and raycasting. The class includes track or instance inheritance. The relation
+inspector reads this metadata even when an endpoint layer is hidden.
+The relation layer discovers these providers structurally;
+future label plugins implement the same contract rather than adding imports to
+core or the relation plugin. Register providers before the relation layer in the
+frontend composition.</p>
+<p>Backend plugins call <code>register_element_domain(type, domain)</code> from
+<code>sta.domain.label.data.endpoints</code> during registration. The type identifies a
+concrete element kind, rather than an entity or source-data kind. Relation
+operations resolve both endpoints in their own label group and commit. Domain
+single and bulk deletion paths notify registered dependent-label listeners
+inside the same transaction; updating <code>is_deleted</code> uses the same notification.</p>
+<p>Local element-delete operations expose <code>deletedElements</code>, which their view
+operations forward. <code>EditableBranch.operationEffectFactories</code> captures dependent
+local effects before applying an operation and stores them with its history
+entry. A factory may await data loading. Effects participate in
+undo/redo without changing the operation's backend payload or placeholder result.
+View operations expose <code>isNoop</code> when a queued edit loses its target before local
+application. These entries remain in local undo/redo history, but saving omits
+them and dependent effects do not run for them. Plugins must forward this status
+through operation wrappers so skipped edits never reach the backend.
+The relation plugin loads relations whose two endpoints intersect the current
+frame and uses these effects to remove attached relations from cached frames
+atomically with endpoint deletion. The backend also deletes attached relations
+outside those cached frames. Entity deletion retains each plugin's existing child policy.</p>
+<p>Relation bulk loading resolves frame-local endpoint IDs through
+<code>LabelElementDomain.build_list_query_in_any_bounds</code>, without loading endpoint
+geometry. It then uses <code>LabelDataDomain.build_filtered_list_query</code> to narrow
+relation candidates before resolving their revision states. Ancestor matches
+identify candidates only: the resolved state must still pass the endpoint
+filters and tombstone checks. Frames without visible endpoints skip relation
+history entirely. Other endpoint plugins use the same bounded query builder
+through <code>list_datas_in_any_bounds</code>.</p>
+<p>Shared revision queries resolve the minimum ancestor distance with a window
+aggregate partitioned by label ID and group. This avoids repeatedly joining the
+revision's states to themselves when the database underestimates the number of
+labels after an import. Candidate narrowing happens before revision resolution;
+spatial, temporal, and tombstone filters still apply to the resolved state.</p>
 
 
 

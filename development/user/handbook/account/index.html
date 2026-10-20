@@ -1702,8 +1702,8 @@
 
 
 <h1 id="account-management">Account Management</h1>
-<p>Accounts are used to identify users and access the ST Annotator Platform. The process of managing them is critical to the operation of the web platform.</p>
-<p>The permissions given to each user are represented by its roles:</p>
+<p>Use your account to sign in and access your assigned work. Administrators can create accounts and choose which pages and tools each person can use.</p>
+<p>Account roles determine access:</p>
 <ul>
 <li><code>admin</code>: Full access to all users, including account creation, account deletion and role management.</li>
 <li><code>data-manager</code>: Full access to all data (source data and label data).</li>
@@ -1711,9 +1711,8 @@
 <li><code>supervisor</code>: Can supervise for a task in any project.</li>
 <li><code>annotator</code>: Can annotate for a task in any project.</li>
 </ul>
-<p>Each user can have any number of roles. These roles are intentionally orthogonal to each other; for a user to have full access to the platform, it should be given all roles.</p>
-<p>When <a href="../../../cli/#initialize-st-annotator">initializing the web platform</a>, a default account is created with all available roles. This account should create additional accounts via <a href="#manage-accounts-admin-only">Manage Accounts</a> for others to access the web platform.</p>
-<p>Below is a comprehensive list of workflows that relate to account management.</p>
+<p>An account can have several roles. Each role grants separate permissions; assign all roles to give someone full access to the platform.</p>
+<p>The initial administrator account (see <a href="../../../cli/#initialize-st-annotator">initializing the web platform</a>) has all roles. Use <a href="#manage-accounts-admin-only">Manage Accounts</a> to create a separate account for each person.</p>
 <h2 id="permissions">Permissions</h2>
 <p>Each user can manage their own account.</p>
 <p>Users with the <code>admin</code> role can also manage other accounts.</p>
@@ -1726,20 +1725,32 @@
 <p>Navigate to the Profile page (<code>Account &gt; Profile</code>) to view your account profile.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>This page is currently a placeholder.</p>
+<p>Profile details are not yet available on this page.</p>
 </div>
 <h3 id="edit-settings">Edit Settings</h3>
 <p>Navigate to the Settings page (<code>Account &gt; Settings</code>) to manage your settings:</p>
 <ul>
-<li>Profile: WIP</li>
-<li>Account: Change your username</li>
-<li>Authentication: Change your password</li>
-<li>Preferences: Placeholder. In the future, you could use this page to assign keybinds.</li>
+<li><code>Account</code>: Change your username.</li>
+<li><code>Authentication</code>: Change your password.</li>
 </ul>
+<p>The <code>Profile</code> and <code>Preferences</code> sections have no settings yet.</p>
 <h3 id="manage-accounts-admin-only">Manage Accounts (<code>admin</code> only)</h3>
 <p>Navigate to the Accounts page (<code>Administration &gt; Manage accounts</code>) to add, modify and delete accounts via a <a href="../#data-table">data table</a>.</p>
-<p><code>Preferences</code> opens as two tabs. The platform does not yet define any account preference, so the <code>Preferences</code> tab says so -- <code>Nothing to configure just yet!</code> -- and the value is entered as JSON under <code>Preferences (Raw JSON)</code>. Entering nothing means <code>{}</code>.</p>
-<p>You may select several accounts and choose <code>Batch Edit Details</code> to set <code>Roles</code> or <code>Preferences</code> for all of them at once. Ticking <code>Update Roles</code> gives every selected account exactly the roles you tick, so anyone you leave out loses every role you omit, and with it the pages that role unlocks. <code>Update Preferences</code> writes the JSON you enter as the preferences of every selected account; leaving the box empty writes the default <code>{}</code> to all of them. A username and password are not batch-editable. A batch that includes your own account applies to it like any other, so leave nothing unticked that you still need: the roles you omit are taken from you too, and a batch that drops your <code>admin</code> role is refused outright. The write also restamps every account it touches, so selecting yourself spends the session you are working in and you sign in again to continue. See <a href="../#batch-edit">Batch Edit</a> for how the dialog works.</p>
+<p>The account form has two preference tabs. <code>Preferences</code> currently has no
+settings. Use <code>Preferences (Raw JSON)</code> if you need to enter preferences directly;
+leaving it empty uses <code>{}</code>.</p>
+<p>To change several accounts, select them and choose <code>Batch Edit Details</code>:</p>
+<ul>
+<li><code>Update Roles</code> replaces each account's roles with exactly the roles you select.
+  Omitted roles are removed, along with access to the pages they allow.</li>
+<li><code>Update Preferences</code> replaces each account's preferences with the JSON you
+  enter. An empty field resets them to <code>{}</code>.</li>
+</ul>
+<p>Usernames and passwords must be changed individually. If you include your own
+account, the same changes apply to you. You cannot remove your own <code>admin</code> role.
+Updating your own account in a batch also signs you out; sign in again to
+continue.</p>
+<p>See <a href="../#batch-editing">Batch Editing</a> for the shared dialog controls.</p>
 
 
 

@@ -30,4 +30,5 @@ sta.domain.label.data
    :recursive:
 
    sta.domain.label.data.base
+   sta.domain.label.data.endpoints
 

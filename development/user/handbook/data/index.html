@@ -2014,13 +2014,15 @@
 
 
 <h1 id="data-management">Data Management</h1>
-<p>Datasets on the ST Annotator Platform are divided into source data and label data:</p>
+<p>Prepare source data and label data before assigning annotation work:</p>
 <ul>
-<li>Source data are inputted to the ML model.</li>
-<li>Label data are the expected outputs of the ML model.</li>
+<li><strong>Source data</strong> are the scans and other inputs that annotators inspect.</li>
+<li><strong>Label data</strong> are the annotations they create, such as boxes, vectors,
+  segmentations, and relations.</li>
 </ul>
-<p>In the context of annotation, humans refer to source data to create label data. Before annotation can begin, source data must first be <a href="#source-data">registered</a> and label data <a href="#label-data">configured</a> on the platform.</p>
-<p>Below is a comprehensive list of workflows that relate to data management.</p>
+<p><a href="#source-data">Register source data</a> so it can appear in the editor, then
+<a href="#label-data">configure label data</a> to choose the available classes and where
+annotations are saved.</p>
 <h2 id="permissions">Permissions</h2>
 <p>The <code>data-manager</code> role is required to manage source and label data.</p>
 <p>Users with the <code>project-manager</code> role can access source and label data pages in read-only mode, but cannot use the file explorer; nor can they create, modify or delete data.</p>
@@ -2028,10 +2030,10 @@
 <h3 id="source-data">Source Data</h3>
 <p>To set up source data for a project, follow these steps:</p>
 <ol>
-<li>Use <a href="#source-data-groups">Manage Data Groups</a> to create a new group.</li>
-<li>Use <a href="#source-file-explorer">File Explorer</a> to select the files to include in the group; each file you register becomes a new data item.</li>
-<li>Use <a href="#source-data-items">Manage Data Items</a> to review those items and to change the group of any that are already registered.</li>
-<li>Use <a href="#source-data-specifications">Manage Data Specifications</a> to create the specifications of the relevant data type; each specification lists the groups it applies to under its <code>Source Groups</code> field.</li>
+<li>Use <a href="#source-data-groups">Manage Data Groups</a> to create a group.</li>
+<li>Use <a href="#source-data-specifications">Manage Data Specifications</a> to describe how to read that data type and select the group under <code>Source Groups</code>.</li>
+<li>Use <a href="#source-file-explorer">File Explorer</a> to register files in the group. Each registered file becomes a data item.</li>
+<li>Use <a href="#source-data-items">Manage Data Items</a> to review or edit registered items and move them between groups.</li>
 </ol>
 <p>More details are provided below.</p>
 <p><a id="source-data-groups"></a></p>
@@ -2040,54 +2042,80 @@
 <p>Users with the <code>data-manager</code> role can also add, modify and delete groups.</p>
 <p><a id="source-file-explorer"></a></p>
 <h5 id="file-explorer-data-manager-only">File Explorer (<code>data-manager</code> only)</h5>
-<p>Navigate the filesystem and register source data files to source groups via a <a href="../#data-table">data table</a>.</p>
+<p>Open the File Explorer to browse available files and register them in source groups using a <a href="../#data-table">data table</a>.</p>
 <p>The file explorer only creates new assignments. A file may be registered to several groups, and registering a file that another group already uses leaves that group untouched, but the explorer never changes or removes an item that is already registered. To reallocate an existing item, use <a href="#source-data-items">Manage Data Items</a>.</p>
 <p>When importing source metadata:</p>
 <ul>
-<li>The <code>Timestamp Range</code> fieldset lets you detect timestamps from filenames or enter a range by hand. <code>Detect timestamps from filenames</code> assigns each detected timestamp as both the minimum and maximum for that file. With the pattern input blank, detection recognizes <code>YYYY_MM_DD=HH_mm_ss_fff</code> (or six fractional digits) and a 13-digit Unix epoch timestamp in milliseconds. Enter a Python strftime style pattern such as <code>scan_%Y%m%d_%H%M%S</code> for another filename convention; numeric <code>%Y</code>, <code>%m</code>, <code>%d</code>, <code>%H</code>, <code>%M</code>, <code>%S</code>, and <code>%f</code> directives are supported. The pattern matches the whole filename stem, excluding directories and the extension. The dialog shows the number of matches; unmatched names get null timestamps. Turn off detection to enter timestamps by hand.</li>
+<li>The <code>Timestamp Range</code> fieldset lets you detect timestamps from filenames or enter a range by hand. <code>Detect timestamps from filenames</code> assigns each detected timestamp as both the minimum and maximum for that file. With the pattern input blank, detection recognizes <code>YYYY_MM_DD=HH_mm_ss_fff</code> (or six fractional digits) and a 13-digit Unix epoch timestamp in milliseconds. For other filename conventions, enter a pattern such as <code>scan_%Y%m%d_%H%M%S</code>. Use <code>%Y</code> for year, <code>%m</code> for month, <code>%d</code> for day, <code>%H</code> for hour, <code>%M</code> for minute, <code>%S</code> for second, and <code>%f</code> for fractional seconds. The pattern matches the whole filename stem, excluding directories and the extension. The dialog shows the number of matches; unmatched files have no timestamp. Turn off detection to enter timestamps by hand.</li>
 <li>In the <code>Spatial Bounds</code> fieldset, <code>Derive spatial bounds</code> calculates bounds from each scan; turn it off to enter bounds by hand.</li>
 <li>The <code>Transform</code> fieldset holds translation, rotation and scale.</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can double-click on a directory to open it without having to use the context menu. Double-clicking a file does nothing; its actions live in the context menu. While the next directory loads, the current listing stays on screen under an <code>Opening &lt;directory&gt;</code> indicator and ignores further activations, so a slow directory load is visible rather than silent.</p>
+<p>Double-click a directory to open it. Right-click a file to see its actions. An <code>Opening &lt;directory&gt;</code> indicator appears while a directory loads; wait for it to finish before opening another.</p>
 </div>
 <p><a id="source-data-items"></a></p>
 <h5 id="manage-data-items">Manage Data Items</h5>
 <p>Navigate to the Source Data Storage page (<code>Source Data &gt; Data Storage</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with to view its data items via a <a href="../#data-table">data table</a>. The items of a group are loaded once you select that group under <code>Source Group</code>.</p>
 <p>Users with the <code>data-manager</code> role can also add, modify and delete data items.</p>
-<p>You may edit the <code>Timestamp Range</code>, <code>Spatial Bounds</code>, and <code>Transform</code> of existing items, similar to the <a href="#source-file-explorer">File Explorer</a>. Each attribute you enable <strong>replaces</strong> what the selected items already hold, except for <code>Update Timestamp Range</code> and <code>Update Bounds Derivation</code> which automatically calculates <code>Timestamp Range</code> and <code>Spatial Bounds</code> for each item independently.</p>
-<p>Source group allocations of existing items are changed here rather than in the <a href="#source-file-explorer">File Explorer</a>: select the items and choose <code>Batch Edit Details</code>, then set the new group under <code>Update Source Group</code>. An item belongs to exactly one group, so a batch moves items between groups rather than taking them out of one: applying <code>Update Source Group</code> while its list is still unset reports that in the dialog and sends no request. The <code>Edit Details</code> form of a single item shows its group but keeps it fixed.</p>
-<p>Re-deriving spatial bounds means reading the item's stored data again, which is too much to ask of a save that touches a whole group, so those recomputations happen in the background instead: an item whose bounds a change has invalidated is marked as awaiting derivation and refreshed a moment later. A bounds is therefore allowed to lag the change that invalidated it -- which matters because a bounds decides which frames an item appears in -- and an item that cannot be refreshed at all (its group has no point cloud specification, or its stored file has gone) keeps the bounds it had rather than losing it. See <a href="#source-background-jobs">Background Jobs</a> for where that delay becomes visible.</p>
-<p>The <code>Update Source Group</code> list of the point cloud tab greys out a group that no point cloud specification lists yet, labelling it <code>(missing point cloud source)</code>, since an item there cannot be parsed without one. See <a href="../#batch-edit">Batch Edit</a> for how the dialog works.</p>
+<p>Edit an item's <code>Timestamp Range</code>, <code>Spatial Bounds</code>, and <code>Transform</code> using the same controls as the <a href="#source-file-explorer">File Explorer</a>. In a batch edit, enabled fields replace the current values on every selected item. Timestamp detection and bounds derivation calculate values separately for each item.</p>
+<p>Source group allocations of existing items are changed here rather than in the <a href="#source-file-explorer">File Explorer</a>: select the items and choose <code>Batch Edit Details</code>, then set the new group under <code>Update Source Group</code>. An item belongs to exactly one group, so a batch moves items between groups rather than taking them out of one: you must choose a group before applying <code>Update Source Group</code>. The <code>Edit Details</code> form of a single item shows its group but keeps it fixed.</p>
+<p>Changes that affect spatial bounds may take time to appear in the editor.
+Until recalculation finishes, an item keeps its previous bounds, which determine
+which frames include it. If its file is unavailable or its group has no suitable
+specification, the previous bounds remain. Use
+<a href="#source-background-jobs">Background Jobs</a> to check progress.</p>
+<p>The <code>Update Source Group</code> list of the point cloud tab greys out a group that no point cloud specification lists yet, labelling it <code>(missing point cloud source)</code>. Add a point cloud specification for the group before moving items into it. See <a href="../#batch-editing">Batch Editing</a> for how the dialog works.</p>
 <p><a id="source-data-specifications"></a></p>
 <h5 id="manage-data-specifications">Manage Data Specifications</h5>
 <p>Navigate to the Source Specifications page (<code>Source Data &gt; Specifications</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with to view its data specifications via a <a href="../#data-table">data table</a>.</p>
 <p>Users with the <code>data-manager</code> role can also add, modify and delete data specifications.</p>
-<p>A specification lists every group it parses under its <code>Source Groups</code> field, so one specification can serve several groups. The relationship is single-valued in the other direction: a group is listed by at most one specification of its data type, so adding a group that another specification already lists is rejected, and <code>Batch Edit Details</code> assigns groups to one selected specification at a time. Unlisting every group leaves the specification unassigned, parsing nothing until a group is added.</p>
-<p>A point cloud specification's <code>Preprocessors</code> open as two tabs: one card per operation, in the order they are applied, under <code>Preprocessors</code>, and the JSON that is actually saved under <code>Preprocessors (Raw JSON)</code>. Each card names its operation and shows only that operation's parameters, so switching the operation replaces them, and an empty list says so instead of showing nothing. The raw text is authoritative: while it holds something that does not parse as a preprocessor list, that tab is marked <code>invalid</code> and the cards keep showing the last list that did until it is fixed.</p>
-<p>You may select several specifications and choose <code>Batch Edit Details</code> to set <code>Name</code>, <code>Description</code>, <code>Source Groups</code>, and so on. The single-specification rule still holds under a batch: naming any group while more than one specification is selected keeps the dialog from applying the write, since the same list would be handed to each of them, and unassigning a group from its current owner is required first. Untick <code>Update Source Groups</code> to batch the other attributes over several specifications, or leave its picker empty to unassign every selected one. See <a href="../#batch-edit">Batch Edit</a> for how the dialog works.</p>
-<p>Because registering a data item needs a group that already has a specification of that type, create the specification before the group holds any items.</p>
-<p>Saving a specification adds, drops or replaces the groups it lists, and every group it touched -- the ones it left as well as the ones it joined -- has its data items re-derived against whatever specification owns them now. Removing a group therefore refreshes nothing in the group that stayed, and a group left without a specification keeps the boxes its items already hold until a specification lists it again.</p>
+<p>Choose the groups that use a specification under <code>Source Groups</code>. One
+specification can serve several groups, but a group can use only one
+specification for each data type. Remove a group from its previous specification
+before assigning it to another. A specification with no groups is unused.</p>
+<p>For point clouds, use the <code>Preprocessors</code> tab to choose operations and adjust
+their settings. Operations run in the order shown. Changing an operation also
+changes the settings available on its card. Use <code>Preprocessors (Raw JSON)</code> to
+edit the list directly. Invalid JSON is marked <code>invalid</code>; correct it to use the
+cards again.</p>
+<p>To edit several specifications, select them and choose <code>Batch Edit Details</code>.
+Enabled fields replace the values on every selected specification. You can
+assign nonempty <code>Source Groups</code> only when one specification is selected. With
+several selected, leave <code>Update Source Groups</code> unticked to keep their groups, or
+tick it with an empty picker to remove all their group assignments.
+See <a href="../#batch-editing">Batch Editing</a> for the shared dialog controls.</p>
+<p>Create a specification and assign its groups before registering files. Changes
+to specifications or their group assignments can trigger spatial-bounds
+recalculation for affected items. Items in a group left without a specification
+keep their previous bounds until a specification is assigned again.</p>
 <p><a id="source-background-jobs"></a></p>
 <h5 id="background-jobs-data-manager-only">Background Jobs (<code>data-manager</code> only)</h5>
-<p>Navigate to the Background Jobs page (<code>Source Data &gt; Background Jobs</code>) to see the work the platform has queued rather than performed inside a save.</p>
-<p>The page lists every job by default, with its description, its state (<code>pending</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code> or <code>cancelled</code>), how far it has got, when it was created, started and finished, and -- for a job that failed or was cancelled -- the <code>Error</code> that ended it. Use the <code>State</code> filter to narrow the inventory; clearing it returns to all states. The page refreshes itself while anything is still queued or running, and stops refreshing once the queue is idle. A data manager can cancel a running job from its row menu; the command is absent for every other state. Cancellation does not undo work the job already checkpointed, and blocking work already executing may continue until it returns, but it cannot change the row back from <code>cancelled</code>. The page offers no retry: work is queued again the next time you change the data it covers.</p>
-<p>Below the list, the page counts the data items still awaiting a spatial-bounds derivation, one row per data type, each linking to that type's Data Storage tab. That count is the durable measure of what is owed: a job row only reports progress, so a job lost to a restart leaves its items counted here all the same. A count that falls between refreshes is a sweep working through the group; a count that stays put means those items cannot be derived as things stand -- their group has no specification of that data type, or their stored file cannot be read -- and each keeps the bounds it already had until that changes.</p>
-<p>A save that starts work says so on the page you made it: it reports how many jobs the queue took on and links to exactly those, in whatever state they have since reached. A save that queued nothing says nothing, which is an answer rather than an omission -- a change that cannot move a derived box, or one whose work is already waiting, starts no job to look at.</p>
+<p>Open <code>Source Data &gt; Background Jobs</code> to check imports and data updates that
+continue after you save.</p>
+<p>The table shows each job's description, progress, timing, and state:
+<code>pending</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code>, or <code>cancelled</code>. Failed or cancelled
+jobs also show an <code>Error</code>. Use the <code>State</code> filter to focus on particular states.
+The page refreshes automatically while jobs are pending or running.</p>
+<p>To cancel a running job, right-click its row and choose the cancellation command.
+Cancellation keeps work already completed and may take time to stop an operation
+in progress. There is no retry button; a later change to the affected data can
+start new work.</p>
+<p>When saving starts background work, a message links to the jobs it created.
+A save that needs no new background work shows no job message.</p>
 <h3 id="label-data">Label Data</h3>
 <p>To set up label data for a project, follow these steps:</p>
 <ol>
 <li>Use <a href="#label-data-groups">Manage Data Groups</a> to create a new group.</li>
 <li>Use <a href="#label-data-specifications">Manage Data Specifications</a> to define the object classes that may be labelled, and to select the object classes to include for that group; each selection lists the groups it applies to under its <code>Label Groups</code> field.</li>
-<li>Use <a href="#labelset-branches">Manage Labelset Branches</a> to create the branch for each annotator and reviewer, granting each of them <code>Write</code> access to the branches they will save to.<ul>
+<li>Use <a href="#labelset-branches">Manage Labelset Branches</a> to create the branch for each annotator and reviewer, granting annotators <code>Write</code> access and reviewers <code>Write Elevated</code> access to the branches they will save to.<ul>
 <li>To avoid conflicts between users, each annotator should have their own branch, while each supervisor should have access to the branch of each annotator they plan to review. Supervisors should also avoid editing the dataset while reviewing an annotator's work.</li>
 </ul>
 </li>
 </ol>
 <p>To view the annotated labels from a project, follow these steps:</p>
 <ol>
-<li>Use <a href="#label-data-items">View Data Items</a> to view the data at the head commit of each labelset branch.</li>
+<li>Use <a href="#label-data-items">View Data Items</a> to view the latest saved labels on each branch.</li>
 <li>Use <a href="#labelset-commits">View Labelset Commits</a> for a more detailed view of the annotation operations involved.</li>
 </ol>
 <p>More details are provided below.</p>
@@ -2097,16 +2125,17 @@
 <p>Users with the <code>data-manager</code> role can also add, modify and delete groups.</p>
 <p><a id="label-data-items"></a></p>
 <h5 id="view-data-items">View Data Items</h5>
-<p>Navigate to the Label Data Storage page (<code>Label Data &gt; Data Storage</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with, then select the group under <code>Label Group</code> and the commit under <code>Commit</code> (each commit is named after the branch whose head or checkpoint it is) to view its data items via a <a href="../#data-table">data table</a>.</p>
+<p>Navigate to the Label Data Storage page (<code>Label Data &gt; Data Storage</code>), which lists one tab for each data type available on your deployment. Choose a data type and a <code>Label Group</code>, then choose a saved version under <code>Commit</code> to view its labels in a <a href="../#data-table">data table</a>. The version names identify the branch or checkpoint they belong to.</p>
 <p><a id="label-data-specifications"></a></p>
 <h5 id="manage-data-specifications_1">Manage Data Specifications</h5>
 <p>Navigate to the Label Specifications page (<code>Label Data &gt; Specifications</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with to view its data specifications via a <a href="../#data-table">data table</a>. Users with the <code>data-manager</code> role can also add, modify and delete data specifications.</p>
-<p>Object classes are the only label specifications that the platform provides out of the box, and are managed on the <code>Object Classes</code> page (<code>Label Data &gt; Specifications &gt; Object Classes</code>), which provides two tabs:</p>
+<p>Use <code>Label Data &gt; Specifications &gt; Object Classes</code> to configure the classes annotators can assign to objects. The page has two tabs:</p>
 <ul>
 <li><code>Definitions</code> sets the details of each object class.</li>
 <li><code>Selections</code> sets the object classes to include for each label group.</li>
 </ul>
-<p>A selection applies to every group it lists under <code>Label Groups</code>, so one selection can serve several groups, and a group is listed by at most one selection. Leaving <code>Label Groups</code> empty keeps the selection unassigned; a group with no selection offers no object classes to label.</p>
+<p>Choose the groups that use a selection under <code>Label Groups</code>. One selection can serve several groups, but a group can use only one selection. A selection with no groups is unused. A group with no selection offers no object classes in the editor.</p>
+<p>If the Relations layer is available, use its label specifications to configure relation classes separately from object classes.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Create the object class definitions under <code>Definitions</code> first, so that they can be included in a selection under <code>Selections</code>.</p>
@@ -2126,14 +2155,14 @@
 <ul>
 <li><code>None</code>: the branch is invisible to that user, unless one of the role overrides below grants them a level on every branch.</li>
 <li><code>Read</code>: the branch and its commits can be viewed, and its labels can be opened in the annotation editor, but nothing can be saved to it.</li>
-<li><code>Write</code>: commits can be saved to the branch, and label data can be created, updated and deleted at its commits. This is the level an annotator needs.</li>
-<li><code>Write Elevated</code>: offered between the two levels above. Behaves like <code>Write</code> with access to additional operations such as merging datasets (to be implemented in the future). This is the level a reviewer needs.</li>
+<li><code>Write</code>: create, edit, delete, and save labels on the branch. This is the level an annotator needs.</li>
+<li><code>Write Elevated</code>: edit and save labels with the access required for review assignments.</li>
 <li><code>Admin</code>: everything above, plus renaming and deleting the branch and editing its <code>Permissions</code>.</li>
 </ul>
 <p>A role adds to whatever level is assigned to a user. A <code>data-manager</code> holds every level on every branch without a grant of their own, which is what the <code>Your Access</code> column shows for them. A <code>project-manager</code> holds <code>Read</code> on every branch without a grant of their own, so every branch of a repository appears in their <code>Branches</code> page, and the ones carrying no grant for them show <code>None</code> in <code>Your Access</code> and open as <code>View Branch</code>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Granting someone their first access to a repository can require an <code>admin</code> or <code>data-manager</code>. Accounts listed in the <code>Permissions</code> picker are the ones the editor may see: <code>admin</code> users get every account, while <code>data-manager</code>s only get their own account plus accounts that already hold a grant on some branch of that repository.</p>
+<p>If an account is missing from the <code>Permissions</code> picker, ask an administrator to grant its first access to the repository. Administrators can choose any account. Data managers can choose themselves and accounts that already have access to a branch in that repository.</p>
 </div>
 <h6 id="granting-branch-access">Granting Branch Access</h6>
 <ol>
@@ -2146,7 +2175,7 @@
 <p><a id="labelset-commits"></a></p>
 <h5 id="view-labelset-commits">View Labelset Commits</h5>
 <p>Navigate to the <code>Commits</code> page to view the commit graph of that repository.</p>
-<p>Hover over an tag or commit in the graph to view more details.</p>
+<p>Hover over a tag or commit in the graph to view more details.</p>
 
 
 

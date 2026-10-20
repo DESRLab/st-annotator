@@ -14,7 +14,9 @@ LabelElementDomain
 
    .. autosummary::
    
+      ~LabelElementDomain.build_filtered_list_query
       ~LabelElementDomain.build_list_query
+      ~LabelElementDomain.build_list_query_in_any_bounds
       ~LabelElementDomain.bulk_create_datas
       ~LabelElementDomain.bulk_delete_datas
       ~LabelElementDomain.bulk_update_datas
@@ -39,7 +41,9 @@ LabelElementDomain
       ~LabelElementDomain.update_data
 
    
+   .. automethod:: LabelElementDomain.build_filtered_list_query
    .. automethod:: LabelElementDomain.build_list_query
+   .. automethod:: LabelElementDomain.build_list_query_in_any_bounds
    .. automethod:: LabelElementDomain.bulk_create_datas
    .. automethod:: LabelElementDomain.bulk_delete_datas
    .. automethod:: LabelElementDomain.bulk_update_datas
