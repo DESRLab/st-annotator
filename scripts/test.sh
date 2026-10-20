@@ -52,8 +52,9 @@ test_backend() (
 )
 test_frontend() {
     local workspace=$1
+    shift
     # Istanbul coverage currently leaves Vitest open after tests finish.
-    npm run test:unit --workspace="$workspace"
+    npm run test:unit --workspace="$workspace" -- "$@"
 }
 
 # Run independent plugin suites concurrently while preserving live,
@@ -70,7 +71,9 @@ test_plugins() {
         (
             echo "=== [TEST] ${side^} of $plugin plugin ==="
             if [[ "$side" == "frontend" ]]; then
-                test_frontend "sta-$plugin"
+                # Suites already run concurrently. A separate worker pool per
+                # plugin oversubscribes CI and can time out DOM-heavy tests.
+                test_frontend "sta-$plugin" --maxWorkers=1 --minWorkers=1
             else
                 # Five concurrent plugins at the default eight workers would
                 # create 40 worker processes before accounting for connection
