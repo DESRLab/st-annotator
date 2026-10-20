@@ -2,7 +2,15 @@ import { expect } from "chai";
 import * as THREE from "three";
 import { describe, it } from "vitest";
 
-import { EditorConfig, Placeholder, ProjectConfig } from "sta/app/editor";
+import {
+  EditableFrame,
+  EditorConfig,
+  FrameState,
+  Placeholder,
+  ProjectConfig,
+  TaskState,
+} from "sta/app/editor";
+import type { EditorViews } from "sta/app/editor";
 import { Timestamp } from "sta/common";
 
 import {
@@ -27,6 +35,46 @@ function makeView(frames = [frame]) {
 }
 
 describe("SegmentationIndexView", () => {
+  it("shows timeless labels across dated frames while preserving spatial and dated filtering", () => {
+    const { index } = makeView();
+    const add = (id: string, x: number, timestamp: Timestamp | null) =>
+      index.addLabelSelection({
+        id,
+        timestamp,
+        points: [new THREE.Vector3(x, 0, 0)],
+      });
+    add("static", 0, null);
+    add("outside-space", 10, null);
+    add("dated", 0, new Timestamp(10_000));
+    const expected = ["static"];
+    for (const time of [10_000, 20_000]) {
+      const boundedFrame = new EditableFrame(
+        {} as EditorViews,
+        FrameState.fromJSON({
+          id: time,
+          task: TaskState.fromJSON({ id: 1, project_id: 1, name: "task" }),
+          account_id: 1,
+          source_group_id: 2,
+          label_branch_id: 3,
+          work_type: "annotate",
+          min_x: -1,
+          min_y: -1,
+          min_z: -1,
+          max_x: 1,
+          max_y: 1,
+          max_z: 1,
+          min_timestamp: new Date(time).toISOString(),
+          max_timestamp: new Date(time).toISOString(),
+        }),
+      );
+      const filtered = new SegmentationIndexView(index, [boundedFrame]);
+      expect(
+        [...filtered.iterLabelSelections()].map((label) => label.id),
+      ).to.deep.equal(time === 10_000 ? [...expected, "dated"] : expected);
+      filtered.dispose();
+    }
+  });
+
   it("reconciles a server-loaded instance and its selection relationships", async () => {
     const { index, view } = makeView();
     const instanceId = new Placeholder<string>();

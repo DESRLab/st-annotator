@@ -3,6 +3,7 @@
 import fullConfig from "../../../distributions/full/frontend/sta.config";
 
 import type { EditorIntentsContributor } from "sta/app/editor";
+import type { RelationPluginIntents } from "sta-relation/app";
 
 type Plugins = typeof fullConfig.plugins;
 type EditorModule<K extends keyof Plugins> = Awaited<
@@ -25,7 +26,8 @@ type DerivedPluginIntents = {
   ]: IntentsOf<LayerOfModule<EditorModule<K>>>;
 };
 
-type ExpectedKeys = "bbox" | "gmesh" | "pcd" | "segmentation" | "vector";
+type ExpectedKeys =
+  "bbox" | "gmesh" | "pcd" | "segmentation" | "vector" | "relation";
 type AssertKeys = keyof DerivedPluginIntents extends ExpectedKeys
   ? ExpectedKeys extends keyof DerivedPluginIntents
     ? true
@@ -34,4 +36,10 @@ type AssertKeys = keyof DerivedPluginIntents extends ExpectedKeys
 
 const keys: AssertKeys = true;
 
-export { keys };
+type RelationGroup = IntentsOf<LayerOfModule<EditorModule<"relation">>>;
+type AssertRelationGroup = RelationGroup extends RelationPluginIntents
+  ? true
+  : never;
+const relationGroup: AssertRelationGroup = true;
+
+export { keys, relationGroup };

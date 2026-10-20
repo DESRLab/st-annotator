@@ -43,3 +43,7 @@ protected	/projects/:projectId/tasks	./routes/project/tasks.tsx
 protected	/projects/:projectId/tasks/:taskId	./routes/project/task/index.ts
 protected	/projects/:projectId/tasks/:taskId/recent/:workType?	./routes/project/task/recent.tsx
 protected	/projects/:projectId/tasks/:taskId/frames/:workType?	./routes/project/task/frames.tsx
+protected	/label/data/relation	relation:label/data/relations
+protected	/label/specs/relation-class	relation:label/specs/index
+protected	/label/specs/relation-class/definitions	relation:label/specs/definitions
+protected	/label/specs/relation-class/selections	relation:label/specs/selections

@@ -106,7 +106,7 @@ combine-as-imports = true
 "data-3d" = ["CSF", "open3d", "laspy", "pypcd4", "plyfile", "shapely"]
 "db" = ["pydantic", "pydantic_core", "fastapi", "starlette", "sqlalchemy", "psycopg2", "geoalchemy2", "sqlmodel"]
 "test" = ["hypothesis", "pytest", "jsoncomparison"]
-"sta" = ["sta", "sta_pcd", "sta_gmesh", "sta_bbox", "sta_vector", "sta_segmentation"]
+"sta" = ["sta", "sta_pcd", "sta_gmesh", "sta_bbox", "sta_vector", "sta_segmentation", "sta_relation"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"

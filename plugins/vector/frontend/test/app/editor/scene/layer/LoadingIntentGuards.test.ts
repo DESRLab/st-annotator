@@ -14,6 +14,7 @@ describe("vector loading intent guards", () => {
     const { context, dataView, vectorCreators, key } =
       createInteractContextFixture();
     expect(context.disabled).toBe(true);
+    context.setDrawMode("polyline");
     const creator = vectorCreators.polyline;
 
     // Toolbar/pane route: action changes are dropped while disabled.
@@ -106,6 +107,7 @@ describe("vector loading intent guards", () => {
       applyLayerGate,
       key,
     } = createInteractContextFixture();
+    context.setDrawMode("polyline");
     const creator = vectorCreators.polyline;
 
     setSourceData({});
@@ -149,6 +151,7 @@ describe("vector loading intent guards", () => {
       applyLayerGate,
       key,
     } = createInteractContextFixture();
+    context.setDrawMode("polyline");
     const creator = vectorCreators.polyline;
 
     setSourceData({});

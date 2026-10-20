@@ -35,6 +35,7 @@ import type {
 } from "./LabelSelectionSelectionPane.ts";
 
 export interface LabelSelectionInspectorInputtedData {
+  hidden?: boolean;
   selection: LabelSelectionSelectionPaneControllerParams["inputtedData"];
   relations: LabelSelectionRelationsPaneControllerParams["inputtedData"];
   descriptors: LabelSelectionDescriptorsPaneControllerParams["inputtedData"];
@@ -146,6 +147,7 @@ export function getLabelSelectionInspectorOutputData(
 export const labelSelectionInspectorPaneFactoryParams: PaneElementParams<LabelSelectionInspectorPaneControllerParams> =
   {
     inputtedData: {
+      hidden: false,
       selection: labelSelectionSelectionPaneDefaultParams.inputtedData,
       relations: labelSelectionRelationsPaneFactoryParams.inputtedData,
       descriptors: labelSelectionDescriptorsPaneFactoryParams.inputtedData,
@@ -281,6 +283,15 @@ export function createLabelSelectionInspectorPaneElementFactory(
         }),
       },
     ),
+    builder.input(["inputtedData", "hidden"], {
+      options: (params) => ({
+        label: "Hide in scene",
+        disabled:
+          params.settings.disabled ||
+          params.inputtedData.selection.selectionId == null,
+        hidden: params.settings.hidden,
+      }),
+    }),
     builder.separator({
       options: ({ settings: { disabled, hidden } }) => ({
         disabled,

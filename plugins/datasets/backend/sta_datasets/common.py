@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from colorsys import hls_to_rgb
 from datetime import datetime, timedelta, timezone
 from decimal import ROUND_DOWN, Decimal
+from hashlib import sha256
 from pathlib import Path
 from typing import Any, TypeVar
 from uuid import UUID
@@ -36,6 +38,8 @@ from sta.entrypoints import app_ctx
 from sta.models.label.group import LabelGroupCreate
 from sta.models.label.repo import LabelsetBranchPublic
 from sta.models.label.spec.objclass import (
+    ObjectClass,
+    ObjectClassBulkUpdate,
     ObjectClassCreate,
     ObjectClassSelectionAssociation,
     ObjectClassSelectionCreate,
@@ -63,6 +67,7 @@ from sta_segmentation.models.label.data import (
     LabelSelection,
     SelectionType,
 )
+from sta_vector.models.label.data import LabelVector
 
 DUMMY_TIMESTAMP_START = datetime(1970, 1, 1, tzinfo=timezone.utc)
 
@@ -106,6 +111,14 @@ def st_items_from_rows(rows: list[STInfoRow]):
     ]
 
 
+def _object_class_color(name: str) -> int:
+    """Return a stable, bright category color independent of import order."""
+    digest = sha256(name.encode("utf-8")).digest()
+    hue = int.from_bytes(digest[:4], "big") / (1 << 32)
+    red, green, blue = (round(channel * 255) for channel in hls_to_rgb(hue, 0.65, 0.8))
+    return (red << 16) | (green << 8) | blue
+
+
 def get_or_create_object_class(
     *,
     current_user: UserPublic,
@@ -113,6 +126,17 @@ def get_or_create_object_class(
     name: str,
     created_ids: set[int] | None = None,
 ):
+    """Reuse a shared class, reactivate an unused retired class, or create one.
+
+    Classes are global; each import creates a fresh label group whose selection
+    spec references them. New classes receive stable name-based colors; reused
+    and reactivated classes retain their existing colors. A retired class is
+    soft-deleted: ``is_deleted=True`` hides it from normal listings, but its row
+    and globally unique name remain.
+    Failed-import cleanup retires unused classes, so a retry must reactivate
+    them rather than insert duplicate names. Classes with remaining references
+    stay retired. Reactivated IDs are tracked for cleanup if this import fails.
+    """
     existing = objclass_definitions.list_objclasses(
         current_user=current_user,
         session=session,
@@ -121,10 +145,26 @@ def get_or_create_object_class(
     if existing:
         return existing[0]
 
+    retired = session.exec(select(ObjectClass).where(ObjectClass.name == name)).one_or_none()
+    if retired is not None:
+        assert retired.id is not None
+        if object_class_has_external_references(session, retired.id):
+            msg = f"Object class is retired: {name}"
+            raise ValueError(msg)
+        objclass_definitions.bulk_update_objclasses(
+            current_user=current_user,
+            session=session,
+            ids={retired.id},
+            data=ObjectClassBulkUpdate(is_deleted=False),
+        )
+        if created_ids is not None:
+            created_ids.add(retired.id)
+        return retired
+
     created = objclass_definitions.create_objclass(
         current_user=current_user,
         session=session,
-        data=ObjectClassCreate(name=name),
+        data=ObjectClassCreate(name=name, color_rgb=_object_class_color(name)),
     )
     if created_ids is not None:
         assert created.id is not None
@@ -375,6 +415,7 @@ def object_class_has_external_references(session: Session, objclass_id: int) -> 
         LabelSelection.perceived_class_id,
         LabelTrack.gt_class_id,
         LabelBox.perceived_class_id,
+        LabelVector.gt_class_id,
     )
     return any(
         session.exec(select(column).where(column == objclass_id).limit(1)).first() is not None
@@ -420,7 +461,16 @@ def cleanup_failed_import_in_session(
     label_group_id: int | None,
     created_objclass_ids: set[int],
 ) -> set[int]:
-    """Delete failed-import resources in the caller's transaction."""
+    """Delete failed-import groups and retire unused classes in this transaction.
+
+    Retiring an object class sets ``is_deleted=True`` instead of deleting its
+    row. Normal listings hide it, but its globally unique name remains reserved.
+    Classes are shared across label groups, so classes still referenced outside
+    this import are retained and their IDs returned. A later import creates a
+    fresh group and can reactivate an unused retired class.
+
+    The 3RScan caller applies the same retirement policy to relation classes.
+    """
     retained_objclass_ids: set[int] = set()
 
     if label_group_id is not None:

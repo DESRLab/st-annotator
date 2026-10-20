@@ -12,6 +12,7 @@ import type { LabelVectorInspectorPaneControllerParams } from "../widgets/LabelV
  * class), so it is recomputed on every mapping rather than cached.
  */
 export interface VectorEntity {
+  readonly hidden?: boolean;
   readonly id: UUID;
   readonly text: string;
   readonly gtClassId: number | null;
@@ -100,6 +101,7 @@ export function projectVectorEntity(vector: ReadonlyLabelVector): VectorEntity {
     id: vector.id,
     text: getLabelVectorSelectionItemText(vector),
     gtClassId: vector.gtClassId,
+    hidden: vector.hidden,
   };
 }
 
@@ -114,7 +116,12 @@ export function projectVectorClassEntity(
 }
 
 function sameVectorEntity(a: VectorEntity, b: VectorEntity): boolean {
-  return a.id === b.id && a.text === b.text && a.gtClassId === b.gtClassId;
+  return (
+    a.hidden === b.hidden &&
+    a.id === b.id &&
+    a.text === b.text &&
+    a.gtClassId === b.gtClassId
+  );
 }
 
 function sameVectorClassEntity(

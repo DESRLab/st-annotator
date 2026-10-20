@@ -221,6 +221,43 @@ describe("vector delete versus edit races (item 14)", () => {
     ]);
   });
 
+  it.each([false, true])(
+    "undoes geometry outside the frame with queued class edit=%s",
+    async (queueClass) => {
+      const { view, branch } = await makeViewFixture(defaultFrameData());
+      const label = view.getLabelVector("vector-a");
+      const original = label.vertices.map((point) => point.toArray());
+      const initial = branch.getHistory()[0].id;
+      const geometry = view.updateLabelVectorGeometry(
+        label,
+        "vertex",
+        "LineString",
+        [
+          new THREE.Vector3(1000, 1000, 1000),
+          new THREE.Vector3(1001, 1001, 1001),
+        ],
+      );
+      const classEdit = queueClass
+        ? view.updateLabelVectorGtClass(label, {
+            id: CLASS_PEDESTRIAN.id,
+          } as never)
+        : Promise.resolve();
+      await Promise.all([geometry, classEdit]);
+      expect(view.hasLabelVector(label.id)).to.equal(false);
+      if (queueClass) expect(label.gtClassId).to.equal(CLASS_PEDESTRIAN.id);
+      const edited = branch.getHistory().at(-1)!.id;
+      await branch.rebase(initial);
+      expect(view.hasLabelVector(label.id)).to.equal(true);
+      expect(label.vertices.map((point) => point.toArray())).to.deep.equal(
+        original,
+      );
+      expect(label.gtClassId).to.equal(CLASS_CAR.id);
+      await branch.rebase(edited);
+      expect(view.hasLabelVector(label.id)).to.equal(false);
+      if (queueClass) expect(label.gtClassId).to.equal(CLASS_PEDESTRIAN.id);
+    },
+  );
+
   const staleOps: [
     string,
     (view: VectorView, vector: ReadonlyLabelVector) => Promise<void>,
@@ -277,6 +314,16 @@ describe("vector delete versus edit races (item 14)", () => {
       await branch.rebase(history[2].id); // redo both
       expect(view.hasLabelVector("vector-a")).to.equal(false);
       expect(vectorB.gtClassId).to.equal(CLASS_CAR.id);
+
+      const push = vi.spyOn(branch.views, "pushCommits").mockResolvedValue({
+        op_results: [null],
+        branch: LabelsetBranchState.fromJSON(makeBranchStateJson(3)),
+      });
+      await branch.pushActive(1);
+      expect(
+        push.mock.calls[0][2].commits.map((commit) => commit.op_name),
+      ).to.deep.equal(["vector-delete"]);
+      expect(branch.hasUnsavedChanges).to.equal(false);
     },
   );
 
@@ -311,6 +358,23 @@ describe("vector delete versus edit races (item 14)", () => {
     await branch.rebase(history[0].id);
     expect(view.hasLabelVector("vector-a")).to.equal(true);
     expect(view.getLabelVector("vector-a").gtClassId).to.equal(CLASS_CAR.id);
+  });
+
+  it("keeps a deleted vector absent when stale frame data is merged before saving", async () => {
+    const data = defaultFrameData();
+    const { view, branch, frame } = await makeViewFixture({
+      ...data,
+      2: data[1],
+    });
+    await view.deleteLabelVector(view.getLabelVector("vector-a"));
+    const deletion = branch.getHistory().at(-1)!;
+    await view.setFrame(makeFrame(2, branch.id));
+    await view.setFrame(frame);
+    expect(view.hasLabelVector("vector-a")).to.equal(false);
+    await branch.rebase(branch.getHistory()[0].id);
+    expect(view.hasLabelVector("vector-a")).to.equal(true);
+    await branch.rebase(deletion.id);
+    expect(view.hasLabelVector("vector-a")).to.equal(false);
   });
 
   it("does not edit a vector across a branch switch that reuses the id", async () => {
@@ -363,6 +427,12 @@ describe("vector delete versus edit races (item 14)", () => {
         id: CLASS_PEDESTRIAN.id,
       }),
     );
+    // Navigation can leave the current view empty while an accepted edit runs.
+    await view.setFrame(null);
+    updateOp.applyLocal();
+    expect(vectorA.gtClassId).to.equal(CLASS_PEDESTRIAN.id);
+    updateOp.undoLocal();
+    expect(vectorA.gtClassId).to.equal(CLASS_CAR.id);
     await view.setFrame(makeFrame(2, 4));
     const forkedLabel = view.getLabelVector("vector-a");
 

@@ -8,7 +8,7 @@ from itertools import groupby
 from typing import Any, Generic, TypeVar, cast
 
 from fastapi import HTTPException
-from sqlalchemy.sql.expression import Select
+from sqlalchemy.sql.expression import Select, false
 from sqlalchemy.sql.schema import Column
 from sqlmodel import Session, and_, func, insert, literal, or_, select, update
 
@@ -165,41 +165,34 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
 
         dist_query = (
             select(table_cls.id, table_cls.group_id, table_cls.commit_hash, h2d.distance)
+            .add_columns(
+                func.min(h2d.distance)
+                .over(partition_by=(sql_column(table_cls.id), sql_column(table_cls.group_id)))
+                .label("min_distance"),
+            )
             .join(
                 h2d,
                 (sql_column(h2d.group_id) == table_cls.group_id)
                 & (sql_column(h2d.src_hash) == table_cls.commit_hash),
             )
-            .where(h2d.group_id == group_id)
-            .where(h2d.dst_hash == commit_hash)
+            .where(sql_column(h2d.group_id) == group_id)
+            .where(sql_column(h2d.dst_hash) == commit_hash)
         )
 
         if candidate_ids is not None:
-            # This CTE has two consumers. Filter it here so materialization does
-            # not enumerate every historical state before the outer WHERE runs.
+            # Narrow by object ID before resolving its closest state, preserving
+            # all ancestor states of each candidate for the distance comparison.
             dist_query = dist_query.where(sql_column(table_cls.id).in_(candidate_ids))
 
-        dist_by_id_hash = dist_query.cte()
-
-        min_dist_by_id = (
-            select(
-                dist_by_id_hash.c.id,
-                dist_by_id_hash.c.group_id,
-                func.min(dist_by_id_hash.c.distance).label("min_distance"),
-            )
-            .group_by(dist_by_id_hash.c.id, dist_by_id_hash.c.group_id)
-            .subquery()
-        )
+        # A window aggregate avoids joining a materialized state set to itself.
+        # Underestimated row counts otherwise lead to repeated scans of the
+        # entire revision for each label, especially after a large import.
+        dist_by_id_hash = dist_query.subquery()
 
         # Merge commits prevent the situation where multiple commits have the same closest distance
         closest_hash_by_id = (
             select(dist_by_id_hash.c.id, dist_by_id_hash.c.group_id, dist_by_id_hash.c.commit_hash)
-            .join(
-                min_dist_by_id,
-                (min_dist_by_id.c.id == dist_by_id_hash.c.id)
-                & (min_dist_by_id.c.group_id == dist_by_id_hash.c.group_id)
-                & (min_dist_by_id.c.min_distance == dist_by_id_hash.c.distance),
-            )
+            .where(dist_by_id_hash.c.distance == dist_by_id_hash.c.min_distance)
             .subquery()
         )
 
@@ -410,6 +403,31 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
         session.refresh(record)
 
         return record
+
+    def build_filtered_list_query(
+        self,
+        current_user: UserPublic,
+        session: Session,
+        *,
+        group_id: int,
+        commit_hash: str,
+        filters: Sequence[Any],
+    ):
+        """Narrow ancestor candidates, then recheck filters on their visible states.
+
+        An older state matching a filter only identifies a candidate. The final
+        filter and tombstone checks must still apply to the resolved revision.
+        """
+        candidate_ids = None
+        if filters and _use_ancestor_candidates():
+            candidate_ids = self._select_ancestor_ids_matching(group_id, commit_hash, *filters)
+        return self.build_list_query(
+            current_user,
+            session,
+            group_id=group_id,
+            commit_hash=commit_hash,
+            candidate_ids=candidate_ids,
+        ).where(*filters)
 
     def build_list_query(
         self,
@@ -685,8 +703,22 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
             session.flush([record])
 
         session.refresh(record)
+        if data_to_update.get("is_deleted") is True:
+            self._notify_deleted_elements(current_user, session, {id}, group_id, commit_hash)
 
         return record
+
+    def _notify_deleted_elements(
+        self,
+        current_user: UserPublic,
+        session: Session,
+        ids: Set[uuid.UUID],
+        group_id: int,
+        commit_hash: str,
+    ) -> None:
+        from .endpoints import notify_element_delete
+
+        notify_element_delete(self, current_user, session, ids, group_id, commit_hash)
 
     def delete_data(
         self,
@@ -731,6 +763,7 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
             session.flush([record])
 
         session.refresh(record)
+        self._notify_deleted_elements(current_user, session, {id}, group_id, commit_hash)
 
     def bulk_create_datas(
         self,
@@ -815,6 +848,9 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
             with add_perf or nullcontext():
                 execute_statement(session, q)
 
+        if data_to_update.get("is_deleted") is True:
+            self._notify_deleted_elements(current_user, session, ids, group_id, commit_hash)
+
     def bulk_delete_datas(
         self,
         *,
@@ -859,6 +895,8 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
 
         with add_perf or nullcontext():
             execute_statement(session, q)
+
+        self._notify_deleted_elements(current_user, session, ids, group_id, commit_hash)
 
     def refresh_states(
         self,
@@ -979,21 +1017,13 @@ class LabelEntityDomain(LabelDataDomain[_NT, _NC, _NP, _NU, _NBU]):
         entity_filter = sql_column(entity_table.id).in_(referenced_ids) | sql_column(
             cast(Any, entity_table).has_children
         ).is_(False)
-        candidate_ids = None
-        if _use_ancestor_candidates():
-            candidate_ids = self._select_ancestor_ids_matching(
-                group_id,
-                commit_hash,
-                entity_filter,
-            )
-        q = self.build_list_query(
+        q = self.build_filtered_list_query(
             current_user,
             session,
             group_id=group_id,
             commit_hash=commit_hash,
-            candidate_ids=candidate_ids,
+            filters=[entity_filter],
         )
-        q = q.where(entity_filter)
         records = session.exec(q).all()
         return self._validate_records(records, None, group_id, commit_hash, "entities")
 
@@ -1283,7 +1313,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
             query_closest_states_perf=query_closest_states_perf,
         )
 
-    def list_datas_in_any_bounds(
+    def build_list_query_in_any_bounds(
         self,
         *,
         current_user: UserPublic,
@@ -1291,12 +1321,8 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         group_id: int,
         commit_hash: str,
         st_bounds: Sequence[PartialSTBounds],
-        query_closest_states_perf: PerformanceCounter | None = None,
-    ) -> Sequence[_ET]:
-        """List elements intersecting any supplied bound with one revision query."""
-        if not st_bounds:
-            return []
-
+    ):
+        """Build a revision-correct query narrowed to the supplied frame bounds."""
         table_cls = self.table_cls
         bounds_filters = []
         for bounds in st_bounds:
@@ -1343,9 +1369,32 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         if bounds_filter is not None:
             q = q.where(bounds_filter)
 
+        if not st_bounds:
+            q = q.where(false())
+        return q
+
+    def list_datas_in_any_bounds(
+        self,
+        *,
+        current_user: UserPublic,
+        session: Session,
+        group_id: int,
+        commit_hash: str,
+        st_bounds: Sequence[PartialSTBounds],
+        query_closest_states_perf: PerformanceCounter | None = None,
+    ) -> Sequence[_ET]:
+        """List elements intersecting any supplied bound with one revision query."""
+        if not st_bounds:
+            return []
+        q = self.build_list_query_in_any_bounds(
+            current_user=current_user,
+            session=session,
+            group_id=group_id,
+            commit_hash=commit_hash,
+            st_bounds=st_bounds,
+        )
         with query_closest_states_perf or nullcontext():
             records = session.exec(q).all()
-
         return self._validate_records(records, None, group_id, commit_hash, "items")
 
     def create_data(

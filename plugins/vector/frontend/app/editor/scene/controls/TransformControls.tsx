@@ -232,11 +232,21 @@ export class TransformControls extends THREE.Object3D<
       case "vertex":
         if (controls.vertices.enabled) {
           this.#controls.vertices.object = event.obj;
+          const handles = controls.vertices.draggableGroup?.objects ?? [];
+          for (const handle of handles) {
+            handle.position.copy(event.obj.centerPoint);
+          }
         }
         break;
       case "vertices":
         if (controls.vertex.enabled) {
           this.#controls.vertex.object = event.obj;
+          // The geometry is mutated in place, so assigning the same object
+          // does not recreate its handles. Move them with the live vertices.
+          const handles = [...(controls.vertex.draggableGroup?.objects ?? [])];
+          handles.forEach((handle, index) => {
+            handle.position.copy(event.obj.vectorCoords[index]);
+          });
         }
         break;
       default:

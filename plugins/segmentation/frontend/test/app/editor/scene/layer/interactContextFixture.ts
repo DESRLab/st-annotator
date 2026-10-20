@@ -123,6 +123,10 @@ export class FakeSegmentationLabelsView extends VanillaEventDispatcher<{
     return this.selections.get(id);
   }
 
+  setSelectionHidden = vi.fn((id: string, hidden: boolean) => {
+    this.selections.get(id).setHidden(hidden);
+  });
+
   addLabelSelectionLocalOnly = vi.fn((params: any) => {
     const selection = new LabelSelection({
       config: EDITOR_CONFIG,

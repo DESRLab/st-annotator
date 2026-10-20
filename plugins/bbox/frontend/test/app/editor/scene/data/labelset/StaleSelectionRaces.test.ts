@@ -244,6 +244,39 @@ describe("bbox delete versus edit/copy/paste races (item 14)", () => {
     expect(boxB.center.toArray()).to.deep.equal([1, 2, 3]);
   });
 
+  it.each([false, true])(
+    "undoes geometry outside the frame with queued class edit=%s",
+    async (queueClass) => {
+      const { view, branch } = await makeViewFixture(defaultFrameData());
+      const label = view.getLabelBox("box-a");
+      const original = label.center.toArray();
+      const initial = branch.getHistory()[0].id;
+      const geometry = view.updateLabelBoxTransform(label, "translate", {
+        center: new THREE.Vector3(1000, 1000, 1000),
+        angle: label.angle,
+        size: label.size,
+      });
+      const classEdit = queueClass
+        ? view.updateLabelBoxPerceivedClass(label, {
+            id: CLASS_PEDESTRIAN.id,
+          } as never)
+        : Promise.resolve();
+      await Promise.all([geometry, classEdit]);
+      expect(view.hasLabelBox(label.id)).to.equal(false);
+      if (queueClass)
+        expect(label.perceivedClassId).to.equal(CLASS_PEDESTRIAN.id);
+      const edited = branch.getHistory().at(-1)!.id;
+      await branch.rebase(initial);
+      expect(view.hasLabelBox(label.id)).to.equal(true);
+      expect(label.center.toArray()).to.deep.equal(original);
+      expect(label.perceivedClassId).to.equal(CLASS_CAR.id);
+      await branch.rebase(edited);
+      expect(view.hasLabelBox(label.id)).to.equal(false);
+      if (queueClass)
+        expect(label.perceivedClassId).to.equal(CLASS_PEDESTRIAN.id);
+    },
+  );
+
   const staleOps: [
     string,
     (view: BBoxView, box: ReadonlyLabelBox) => Promise<void>,
@@ -306,6 +339,16 @@ describe("bbox delete versus edit/copy/paste races (item 14)", () => {
       expect(view.hasLabelBox("box-a")).to.equal(false);
       expect(view.hasLabelBox("box-b")).to.equal(true);
       expect(boxB.perceivedClassId).to.equal(CLASS_CAR.id);
+
+      const push = vi.spyOn(branch.views, "pushCommits").mockResolvedValue({
+        op_results: [null],
+        branch: LabelsetBranchState.fromJSON(makeBranchStateJson(3)),
+      });
+      await branch.pushActive(1);
+      expect(
+        push.mock.calls[0][2].commits.map((commit) => commit.op_name),
+      ).to.deep.equal(["box-delete"]);
+      expect(branch.hasUnsavedChanges).to.equal(false);
     },
   );
 
@@ -487,6 +530,12 @@ describe("bbox relationship changes against disappearing targets (item 15)", () 
       view,
       BoxOps.AssignClass.fromParams(boxA, { id: CLASS_PEDESTRIAN.id }),
     );
+    // Navigation can leave the current view empty while an accepted edit runs.
+    await view.setFrame(null);
+    updateOp.applyLocal();
+    expect(boxA.perceivedClassId).to.equal(CLASS_PEDESTRIAN.id);
+    updateOp.undoLocal();
+    expect(boxA.perceivedClassId).to.equal(CLASS_CAR.id);
     await view.setFrame(makeFrame(2, 4));
     const forkedLabel = view.getLabelBox("box-a");
 

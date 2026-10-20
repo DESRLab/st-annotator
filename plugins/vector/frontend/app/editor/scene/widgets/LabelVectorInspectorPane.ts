@@ -27,6 +27,7 @@ import type {
 } from "./LabelVectorSelectionPane.ts";
 
 export interface LabelVectorInspectorInputtedData {
+  hidden?: boolean;
   selection: LabelVectorSelectionPaneControllerParams["inputtedData"];
   relations: LabelVectorRelationsPaneControllerParams["inputtedData"];
 }
@@ -122,6 +123,7 @@ export function getLabelVectorInspectorOutputData(
 export const labelVectorInspectorPaneFactoryParams: LabelVectorInspectorPaneElementParams =
   {
     inputtedData: {
+      hidden: false,
       selection: labelVectorSelectionPaneDefaultParams.inputtedData,
       relations: labelVectorRelationsPaneFactoryParams.inputtedData,
     },
@@ -237,6 +239,15 @@ export function createLabelVectorInspectorPaneElementFactory(
         }),
       },
     ),
+    builder.input(["inputtedData", "hidden"], {
+      options: (params) => ({
+        label: "Hide in scene",
+        disabled:
+          params.settings.disabled ||
+          params.inputtedData.selection.vectorId == null,
+        hidden: params.settings.hidden,
+      }),
+    }),
     builder.separator({
       options: ({ settings: { disabled, hidden } }) => ({
         disabled,

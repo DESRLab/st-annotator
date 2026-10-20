@@ -1,6 +1,7 @@
 from datetime import date, datetime, timedelta, timezone
 
 from fastapi import HTTPException
+from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, select
 
 import pytest
@@ -2393,3 +2394,62 @@ def test_list_tasks_manager_and_dual_role_access(root_user: UserPublic, session:
     with pytest.raises(HTTPException) as exc_info:
         read_task(current_user=dual_role_user, session=session, id=unassigned_task.id)
     assert exc_info.value.status_code == 404
+
+
+@pytest.mark.parametrize("rename", [False, True])
+@pytest.mark.parametrize("same_project", [False, True])
+def test_task_names_are_unique_within_project(
+    root_user: UserPublic,
+    session: Session,
+    *,
+    rename: bool,
+    same_project: bool,
+):
+    projects = [
+        create_project(
+            current_user=root_user,
+            session=session,
+            data=ProjectCreate(name=f"task-name-project-{index}"),
+        )
+        for index in range(2)
+    ]
+    create_task(
+        current_user=root_user,
+        session=session,
+        data=TaskCreate(name="shared-name", project_id=projects[0].id),
+    )
+    project = projects[0] if same_project else projects[1]
+    candidate = None
+    if rename:
+        candidate = create_task(
+            current_user=root_user,
+            session=session,
+            data=TaskCreate(name="original-name", project_id=project.id),
+        )
+    session.commit()
+
+    def save_task():
+        if candidate is not None:
+            return update_task(
+                current_user=root_user,
+                session=session,
+                id=candidate.id,
+                data=TaskUpdate(name="shared-name"),
+            )
+        return create_task(
+            current_user=root_user,
+            session=session,
+            data=TaskCreate(name="shared-name", project_id=project.id),
+        )
+
+    if same_project:
+        with pytest.raises(IntegrityError):
+            save_task()
+            session.flush()
+        session.rollback()
+    else:
+        saved = save_task()
+        session.commit()
+        assert saved.name == "shared-name"
+        assert saved.project_id == project.id
+        assert count_tasks(current_user=root_user, session=session, name="shared-name") == 2

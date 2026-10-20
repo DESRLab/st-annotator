@@ -18,6 +18,8 @@ In code, an operation's parameters are held in `opParams`, while its return valu
 
 When `EditableBranch` saves active local commits, it walks every operation parameter recursively. Each unresolved `Placeholder` is replaced by its stable `wireKey`, a braced UUID string such as `{2ee540cd-6aa4-4adc-a02f-18e99c1b81ab}`. Repeated references to the same object use the same key. The request declares every key once in `placeholder_keys` and puts the key that an operation will produce in that instruction's `result_placeholder_key`.
 
+Discarded redo operations in `overwrites` are retained only as audit metadata. Their unresolved placeholders serialize as wire keys but are not added to `placeholder_keys`, because the server does not execute those operations.
+
 Resolved placeholders serialize as their resolved values instead. Placeholders can be nested in plain objects and arrays; the frontend converts the entire parameter tree before sending it. The `Placeholder` object itself never crosses the network.
 
 A create-then-edit batch is therefore shaped conceptually like this:

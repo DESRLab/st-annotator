@@ -172,16 +172,21 @@ export class DrawVectorState<
         if (isCreatingVector) {
           return (
             <>
-              Double click pointer to finish drawing, or press <kbd>Esc</kbd> to
-              abort
+              {activatedVectorCreator?.vectorType === "Point"
+                ? "Move the pointer"
+                : "Double-click"}{" "}
+              or press <kbd>G</kbd> to finish drawing, or press <kbd>Esc</kbd>{" "}
+              to abort
             </>
           );
         }
 
         return (
           <>
-            Click and drag to draw {activatedVectorCreator?.vectorType}, or
-            press <kbd>Esc</kbd> to cancel
+            {activatedVectorCreator?.vectorType === "Point"
+              ? "Click and drag to draw a point"
+              : "Click to place vertices"}
+            , or press <kbd>Esc</kbd> to cancel
           </>
         );
       },

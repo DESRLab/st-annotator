@@ -288,8 +288,12 @@ export class LabelBoxInspector implements LabelBoxInspectorHandle {
     if (this.#disabled !== value) {
       this.#disabled = value;
 
-      // Need to update the settings
-      this.#render();
+      // Disabling controls must preserve draft annotation attributes.
+      this.#settings = {
+        ...this.#settings,
+        disabled: value || this.labelsView.data == null,
+      };
+      this.#notifyRender();
     }
   }
 
@@ -325,8 +329,9 @@ export class LabelBoxInspector implements LabelBoxInspectorHandle {
     if (this.#drawBoxActive !== value) {
       this.#drawBoxActive = value;
 
-      // Need to update the settings
-      this.#render();
+      // A tool toggle changes settings, not the draft annotation attributes.
+      this.#settings = { ...this.#settings, drawBoxActive: value };
+      this.#notifyRender();
     }
   }
 

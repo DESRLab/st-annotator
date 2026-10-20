@@ -154,6 +154,7 @@ export function VectorInspectorView(): React.JSX.Element {
             selection: { vectorId: null },
           }
         : {
+            hidden: selectedVector.hidden ?? false,
             selection: { vectorId: selectedVector.id },
             relations: {
               classSelect: { classId: selectedVector.gtClassId },

@@ -132,7 +132,7 @@ export function createVectorSettingsPaneElementFactory(): PaneElementFactory<Vec
       builder.input(["inputtedData", "strokeColor"], {
         options: ({ settings: { disabled, hidden } }) => ({
           color: { alpha: false, type: "float" },
-          label: "stroke color",
+          label: "Stroke color",
           disabled: disabled,
           hidden: hidden,
         }),

@@ -27,6 +27,11 @@ function makeContext() {
     finish: vi.fn(),
   };
   const context = {
+    hideInSceneKeybind: {
+      keyCombo: "h",
+      name: "Toggle hide in scene",
+      handler: vi.fn(),
+    },
     drawMode: "polyline",
     activatedVectorCreator: creator,
     vectorInspector: {
@@ -55,6 +60,19 @@ function makeContext() {
 }
 
 describe("vector interaction states", () => {
+  it("defaults to Polygon and cycles through Line and Point in pane order", () => {
+    const { context } = createInteractContextFixture();
+    expect(context.drawMode).toBe("polygon");
+    const changed = vi.fn();
+    context.addEventListener("draw-mode-change", changed);
+    for (const expected of ["polyline", "point", "polygon"]) {
+      context.cycleDrawMode();
+      expect(context.drawMode).toBe(expected);
+    }
+    expect(changed).toHaveBeenCalledTimes(3);
+    context.dispose();
+  });
+
   it("draw cancellation and finish route only to the active creator and disposal aborts it", () => {
     const { context, creator } = makeContext();
     const state = new DrawVectorState(context);
@@ -129,6 +147,7 @@ describe("vector gesture cancellation and stale callbacks across navigation", ()
   it("cancels an in-progress draw when navigation starts before the gesture finishes", () => {
     const { context, dataView, vectorCreators, setSourceData, applyLayerGate } =
       createInteractContextFixture();
+    context.setDrawMode("polyline");
     const creator = vectorCreators.polyline;
     setSourceData({});
     dataView.data = createLoadedIndex();
@@ -164,6 +183,7 @@ describe("vector gesture cancellation and stale callbacks across navigation", ()
   it("does not start a gesture when navigation begins before the first pointer event", () => {
     const { context, dataView, vectorCreators, setSourceData, applyLayerGate } =
       createInteractContextFixture();
+    context.setDrawMode("polyline");
     const creator = vectorCreators.polyline;
     setSourceData({});
     dataView.data = createLoadedIndex();
@@ -289,6 +309,7 @@ describe("vector gesture cancellation and stale callbacks across navigation", ()
       applyLayerGate,
       key,
     } = createInteractContextFixture();
+    context.setDrawMode("polyline");
     const creator = vectorCreators.polyline;
     setSourceData({});
     dataView.data = createLoadedIndex();
@@ -351,6 +372,7 @@ describe("vector double-create from duplicate input routes", () => {
     "commits exactly one vector when %s in the same tick",
     async (_description, first, second) => {
       const { context, dataView, vectorCreators, key } = makeReadyDrawFixture();
+      context.setDrawMode("polyline");
       const creator = vectorCreators.polyline;
       creator.addVertex(new THREE.Vector3(0, 0, 0));
       creator.addVertex(new THREE.Vector3(1, 1, 1));
@@ -377,6 +399,7 @@ describe("vector double-create from duplicate input routes", () => {
 
   it("commits distinct labels for two separate gestures", async () => {
     const { context, dataView, vectorCreators, key } = makeReadyDrawFixture();
+    context.setDrawMode("polyline");
     const creator = vectorCreators.polyline;
 
     creator.addVertex(new THREE.Vector3(0, 0, 0));
@@ -585,6 +608,7 @@ describe("vector pointer/keyboard conflict during transform (plan item 22)", () 
           applyLayerGate,
           key,
         } = fixture;
+        context.setDrawMode("polyline");
         const creator = vectorCreators.polyline;
 
         applyLayerGate(false);
@@ -635,6 +659,7 @@ describe("vector pointer/keyboard conflict during transform (plan item 22)", () 
           applyLayerGate,
           key,
         } = fixture;
+        context.setDrawMode("polyline");
         const creator = vectorCreators.polyline;
 
         // The next frame begins loading: the labels unload and the
@@ -678,4 +703,31 @@ describe("vector pointer/keyboard conflict during transform (plan item 22)", () 
       expectGestureSettled(fixture);
     },
   );
+});
+
+describe("hide-in-scene shortcut", () => {
+  it("uses H to hide and show the inspected label", async () => {
+    const { context, dataView, setSourceData, applyLayerGate, key } =
+      createInteractContextFixture();
+    expect(
+      context.contextKeybinds.filter((binding) => binding.keyCombo === "h"),
+    ).toEqual([context.hideInSceneKeybind]);
+    const label = createLabelVectorFixture();
+    dataView.data = createLoadedIndex();
+    dataView.vectors.set(String(label.id), label);
+    setSourceData({});
+    applyLayerGate(true);
+    await context.transitionEditVector({ vectorId: label.id, vector: label });
+    expect(
+      context.contextKeybinds.filter((binding) => binding.keyCombo === "h"),
+    ).toEqual([context.hideInSceneKeybind]);
+    key("h");
+    expect(dataView.setVectorHidden).toHaveBeenLastCalledWith(label.id, true);
+    expect(label.hidden).toBe(true);
+    key("h");
+    expect(dataView.setVectorHidden).toHaveBeenLastCalledWith(label.id, false);
+    expect(label.hidden).toBe(false);
+    context.currentState?.dispose();
+    label.dispose();
+  });
 });

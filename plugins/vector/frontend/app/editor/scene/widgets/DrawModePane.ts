@@ -9,7 +9,7 @@ import type {
   PaneElementParams,
 } from "sta/app/editor";
 
-export type DrawMode = "polyline" | "polygon" | "point";
+export type DrawMode = "polygon" | "polyline" | "point";
 
 export interface DrawModeInputtedData {
   drawMode: DrawMode;
@@ -40,18 +40,18 @@ type DrawModePaneElementParams =
  *
  */
 export const drawModePaneFactoryParams: DrawModePaneElementParams = {
-  inputtedData: { drawMode: "polyline" },
+  inputtedData: { drawMode: "polygon" },
   computedData: {},
   settings: { disabled: false, hidden: false },
 };
 export const drawModePaneModes: readonly DrawMode[] = [
-  "polyline",
   "polygon",
+  "polyline",
   "point",
 ];
 export const drawModePaneLabels: readonly string[] = [
-  "line",
   "Polygon",
+  "Line",
   "Point",
 ];
 

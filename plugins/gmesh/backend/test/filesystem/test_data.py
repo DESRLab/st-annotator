@@ -7,6 +7,7 @@ import pytest
 
 from sta_gmesh.filesystem import GroundMeshData
 from sta_pcd.filesystem import PointCloudData
+from sta_pcd.ops.preprocessing import Denoise
 
 # A 5x5 planar grid spanning [0, 4] x [0, 4] at z = 0. With the default
 # cloth_resolution=1.0, CSF lays out an 8x8 cloth grid over this point cloud
@@ -52,15 +53,28 @@ def _assert_ground_mesh(gmesh: GroundMeshData) -> None:
     assert max_coords.y == pytest.approx(5.0)
 
 
-def test_from_pcd_generates_ground_mesh():
-    gmesh = GroundMeshData.from_pcd(_make_grid_pcd(), denoise_pcd=False)
-    _assert_ground_mesh(gmesh)
+@pytest.mark.parametrize(
+    ("kwargs", "expected_denoise_calls"),
+    [pytest.param({}, 1, id="default"), pytest.param({"denoise_pcd": False}, 0, id="disabled")],
+)
+def test_from_pcd_generates_ground_mesh_and_respects_denoising(
+    monkeypatch, kwargs, expected_denoise_calls
+):
+    pcd = _make_grid_pcd()
+    calls = []
+    original_apply = Denoise.apply
 
+    def record_denoise(operation, data):
+        calls.append(data)
+        return original_apply(operation, data)
 
-def test_from_pcd_denoises_point_cloud_by_default():
-    # Denoising must not change the outcome for a clean, planar point cloud
-    gmesh = GroundMeshData.from_pcd(_make_grid_pcd())
+    monkeypatch.setattr(Denoise, "apply", record_denoise)
+    gmesh = GroundMeshData.from_pcd(pcd, **kwargs)
+
     _assert_ground_mesh(gmesh)
+    assert len(calls) == expected_denoise_calls
+    if calls:
+        assert calls[0] is pcd
 
 
 def test_from_pcd_uses_resolution_when_building_triangle_stride():

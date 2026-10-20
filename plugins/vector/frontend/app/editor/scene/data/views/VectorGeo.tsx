@@ -17,13 +17,74 @@ export interface VectorGeoParams<G extends Line | Point> {
 export abstract class VectorGeo<G extends Line | Point> {
   #geo: G;
 
+  #center: Point | null = null;
+
+  readonly #centerPoint = new THREE.Vector3();
+
+  /** The centroid shared by the marker and relation endpoints. */
+  get centerPoint(): Readonly<THREE.Vector3> {
+    return this.#centerPoint;
+  }
+
+  #hidden = false;
+
+  /** Adds a centroid handle to label geometry; transient control clones omit it. */
+  enableCenter(): void {
+    this.#center = new THREE.Points(
+      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3()]),
+      new THREE.PointsMaterial({
+        color: this.color,
+        size: 10,
+        sizeAttenuation: false,
+        depthTest: false,
+        depthWrite: false,
+      }),
+    );
+    this.#center.renderOrder = 1;
+    this.#geo.add(this.#center);
+    this.#updateCenter();
+  }
+
+  #updateCenter(): void {
+    if (this.#center == null) return;
+    const points = this.isClosed
+      ? this.vectorCoords.slice(0, -1)
+      : this.vectorCoords;
+    this.#center.visible = points.length > 0;
+    const center = this.#centerPoint.set(0, 0, 0);
+    for (const point of points) center.add(point);
+    if (points.length > 0) center.multiplyScalar(1 / points.length);
+    const position = this.#center.geometry.getAttribute("position");
+    position.setXYZ(0, center.x, center.y, center.z);
+    position.needsUpdate = true;
+    this.#center.geometry.computeBoundingSphere();
+  }
+
+  /** Hides the vector surface while retaining its centroid handle. */
+  setHidden(hidden: boolean): void {
+    this.#hidden = hidden;
+    this.#geo.material.visible = !hidden;
+  }
+
+  dispose(): void {
+    this.#center?.geometry.dispose();
+    this.#center?.material.dispose();
+    this.#center?.removeFromParent();
+    this.#geo.geometry.dispose();
+    this.#geo.material.dispose();
+  }
+
   get geo(): G {
     return this.#geo;
   }
 
   set geo(value: G) {
     if (this.#geo !== value) {
+      this.#geo.geometry.dispose();
+      this.#geo.material.dispose();
       this.#geo = value;
+      this.setHidden(this.#hidden);
+      if (this.#center != null) this.#geo.add(this.#center);
     }
   }
 
@@ -54,6 +115,7 @@ export abstract class VectorGeo<G extends Line | Point> {
         this.#vectorCoords = [...value];
 
         this.updateVector();
+        this.#updateCenter();
         this.#geo.geometry.computeBoundingBox();
         this.#geo.geometry.computeBoundingSphere();
       }
@@ -74,6 +136,7 @@ export abstract class VectorGeo<G extends Line | Point> {
 
   set color(value: THREE.Color) {
     this.#geo.material.color.copy(value);
+    this.#center?.material.color.copy(value);
   }
 
   /**
@@ -112,7 +175,10 @@ export abstract class VectorGeo<G extends Line | Point> {
     raycaster: THREE.Raycaster,
     intersects: THREE.Intersection[] = [],
   ): THREE.Intersection[] {
-    return raycaster.intersectObject(this.#geo, false, intersects);
+    const targets: THREE.Object3D[] = [];
+    if (!this.#hidden) targets.push(this.#geo);
+    if (this.#center?.visible) targets.push(this.#center);
+    return raycaster.intersectObjects(targets, false, intersects);
   }
 }
 

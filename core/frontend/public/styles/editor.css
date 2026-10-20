@@ -163,20 +163,20 @@ main kbd {
     background-color: var(--btn-bg-a);
 }
 
-.frame-path .scrolllist-item {
+.scrolllist .scrolllist-item {
     border: 2px solid transparent;
     padding: 2px;
 }
 
-.frame-path .scrolllist-item.complete {
+.scrolllist .scrolllist-item.complete {
     background-color: green;
 }
 
-.frame-path .scrolllist-item.selected {
+.scrolllist .scrolllist-item.selected {
     border: 2px solid white;
 }
 
-.frame-path .scrolllist-item:hover:not(.selected) {
+.scrolllist .scrolllist-item:hover:not(.selected) {
     border: 2px dotted white;
 }
 

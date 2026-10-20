@@ -96,6 +96,10 @@ export class FakeVectorLabelsView extends VanillaEventDispatcher {
     return this.classes.get(id);
   }
 
+  setVectorHidden = vi.fn((id: string, hidden: boolean) => {
+    this.vectors.get(id).setHidden(hidden);
+  });
+
   addLabelVectorLocalOnly = vi.fn((params: any) => {
     const vector = { ...params };
     this.localVectors.add(vector);
@@ -308,7 +312,7 @@ export function createInteractContextFixture(): InteractContextFixture {
     vectorCreators: vectorCreators as any,
     vectorSelector: vectorSelector as any,
     vectorTransformer: vectorTransformer as any,
-    vectorMonitor: { vector: null } as any,
+    vectorMonitor: { vector: null, dispose: vi.fn() } as any,
     vectorClipboard: Object.assign(new THREE.EventDispatcher(), {
       disabled: true,
       select: vi.fn(),

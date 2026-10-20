@@ -22,6 +22,7 @@ from sta.common.filesystem import FileSystemPath
 from sta.common.logging import get_logger
 from sta.common.spatial import PartialSTBounds
 from sta.domain.editor.loader import LABEL_DATA_LOADERS, register_data_loader
+from sta.domain.label.data.endpoints import register_element_domain
 from sta.domain.label.repo.ops import OP_REGISTRY
 from sta.domain.label.spec.objclass import selections as objclass_domain
 from sta.models.label.repo import LabelsetBranchPublic
@@ -61,6 +62,8 @@ def _get_read_write_fn(
 
 
 def register():
+    register_element_domain("box", element_domain)
+
     data.router.include_router(data_bbox.router)
 
     register_track_ops(OP_REGISTRY)

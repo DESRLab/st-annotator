@@ -47,13 +47,15 @@ test("deep-link hydration selects the requested project, task, branch, frame, an
     await expect(editorPanel(page, panelTitle)).toBeVisible();
   }
   const project = editorPanel(page, "Project");
-  await expect(selectControl(project, "Task:")).toContainText(
-    fixture.task.name,
-  );
-  await expect(selectControl(project, "Source Group:")).toContainText(
-    "E2E Point Clouds",
-  );
-  await expect(selectControl(project, "Label Branch:")).toContainText("main");
+  for (const [label, expected] of [
+    ["Task:", fixture.task.id],
+    ["Source Group:", fixture.frame.source_group_id],
+    ["Label Branch:", fixture.frame.label_branch_id],
+  ] as const) {
+    await expect(
+      selectControl(project, label).locator("option:checked"),
+    ).toContainText(`[#${expected}]`);
+  }
   await expectCurrentFrame(page, fixture.frame.id);
 
   await selectActiveLayer(page, "Label Data", "Bounding Box");
@@ -86,6 +88,10 @@ test("label inspector overlays mount without resizing the editor", async ({
 
   await openEditor(page);
 
+  const display = page.locator("#display-container");
+  const bounds = await display.boundingBox();
+  expect(bounds).not.toBeNull();
+
   for (const [layerName, inspectorTitle] of [
     ["Bounding Box", "Bounding Box"],
     ["Vector", "Vector Objects"],
@@ -93,6 +99,7 @@ test("label inspector overlays mount without resizing the editor", async ({
   ] as const) {
     await selectActiveLayer(page, "Label Data", layerName);
     await expect(editorPanel(page, inspectorTitle)).toBeVisible();
+    await expect.poll(() => display.boundingBox()).toEqual(bounds);
   }
 
   await expect(editorPanel(page, "Selection Points")).toBeVisible();

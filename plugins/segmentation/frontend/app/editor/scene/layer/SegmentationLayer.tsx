@@ -1,8 +1,7 @@
-import { default as React } from "react";
-import { PointCloudLayer } from "sta-pcd/app";
-import { Color, Raycaster, type Object3D, type Vector3 } from "three";
-
 import {
+  LabelElementHighlights,
+  LabelElementIsolation,
+  EventSubscriptions,
   LabelDataLayer,
   WindowPointer,
   SceneObjectsGroup,
@@ -11,12 +10,17 @@ import {
   isE2EProbeEnabled,
 } from "sta/app/editor";
 import type {
+  LabelElementProvider,
   EditorE2EProbeTargetsContributor,
   EditorOverlayViewsContributor,
   EditorSliceContributor,
   LayerCollectionEventMap,
   SceneContext,
 } from "sta/app/editor";
+import { default as React } from "react";
+import { PointCloudLayer } from "sta-pcd/app";
+import { Color, Raycaster, Vector3, type Object3D } from "three";
+
 import { ThreeUtils } from "sta/common";
 
 import { getSettings } from "../../config";
@@ -89,13 +93,16 @@ export function getSegmentationInteractionColor(
   hoveredSelection: ReadonlyLabelSelection | null,
   selectedColor: Readonly<{ r: number; g: number; b: number }>,
   hoveredColor: Readonly<{ r: number; g: number; b: number }>,
+  externallyHovered = false,
+  externalColor: Readonly<{ r: number; g: number; b: number }> | null = null,
 ): Color | null {
   const color =
-    selection === selectedSelection
+    externalColor ??
+    (selection === selectedSelection
       ? selectedColor
-      : selection === hoveredSelection
+      : externallyHovered || selection === hoveredSelection
         ? hoveredColor
-        : null;
+        : null);
   return color == null ? null : new Color(color.r, color.g, color.b);
 }
 
@@ -362,6 +369,17 @@ export class SegmentationLayer<WM extends MainWindowMapper>
 
   readonly PREFS_KEYDOWN_BINDS = [
     {
+      keyCombo: "t",
+      name: "Toggle selection tooltips",
+      handler: () => {
+        if (this.#settingsPaneSettings.disabled) return;
+        this.#onSettingsChange({
+          ...this.#settingsInputtedData,
+          showTooltips: !this.#settingsInputtedData.showTooltips,
+        });
+      },
+    },
+    {
       keyCombo: "q",
       name: "Toggle selection transparency",
       handler: () => {
@@ -407,7 +425,7 @@ export class SegmentationLayer<WM extends MainWindowMapper>
       { title: "Preferences", keybinds: this.PREFS_KEYDOWN_BINDS },
       {
         title: "Context",
-        keybinds: [...interactState.keydownHandler.iterSubtreeKeybinds()],
+        keybinds: this.#interactContext.contextKeybinds,
       },
     ]);
   };
@@ -598,6 +616,54 @@ export class SegmentationLayer<WM extends MainWindowMapper>
   /** Renders the brush cursor view inside the `brushCursor` overlay slot DOM. */
   get editorOverlayViews(): Readonly<Record<string, React.ReactNode>> {
     return { brushCursor: this.overlaySnapshot.brushCursorView };
+  }
+
+  readonly #elementIsolation = new LabelElementIsolation("selection", () =>
+    this.#markLabelsDirty(),
+  );
+
+  readonly #elementHighlights = new LabelElementHighlights("selection", () =>
+    this.#markLabelsDirty(),
+  );
+
+  get labelElementProvider(): LabelElementProvider {
+    const getBranch = () => this.dataView.currentBranch;
+    const isVisible = () =>
+      this.state.enabled &&
+      this.state.isVisible("main") &&
+      !this.dataView.isLoading;
+    return {
+      get branch() {
+        return getBranch();
+      },
+      get visible() {
+        return isVisible();
+      },
+      setIsolation: (owner, elements) =>
+        this.#elementIsolation.set(owner, elements),
+      setHighlights: (owner, elements, color) =>
+        this.#elementHighlights.set(owner, elements, color),
+      elements: () =>
+        [...this.dataView.iterLabelSelections()].map((label) => ({
+          reference: { type: "selection", id: label.id },
+          objectClassName: label.gtClass?.name ?? null,
+          center: label.centerPoint.clone(),
+          raycast: (raycaster) => label.raycast(raycaster),
+        })),
+      subscribe: (listener) => {
+        const subscriptions = new EventSubscriptions();
+        this.addEventListener("render-request", listener);
+        this.state.addEventListener("change", listener);
+        subscriptions.addDisposer(() =>
+          this.removeEventListener("render-request", listener),
+        );
+        subscriptions.addDisposer(() =>
+          this.state.removeEventListener("change", listener),
+        );
+        subscriptions.addDisposer(this.subscribeEditorSlice(listener));
+        return () => subscriptions.dispose();
+      },
+    };
   }
 
   get actionsView(): React.JSX.Element {
@@ -1286,6 +1352,9 @@ export class SegmentationLayer<WM extends MainWindowMapper>
    * Updates how a selection is displayed.
    */
   #renderSelection(selection: ReadonlyLabelSelection) {
+    selection.setDisplayVisibility(
+      this.#elementIsolation.visibility(selection.id),
+    );
     const dataView = this.#interactContext.dataView;
     const pcd = this.pointCloudLayer.dataView?.data;
     const {
@@ -1299,7 +1368,8 @@ export class SegmentationLayer<WM extends MainWindowMapper>
     let showPointSize = pcd ? pcd.pointSize : 0.5;
 
     const isHovered =
-      selection === this.#interactContext.selectionSelector.hoveredObj &&
+      (selection === this.#interactContext.selectionSelector.hoveredObj ||
+        this.#elementHighlights.has(selection.id)) &&
       selection !== this.#interactContext.selectionSelector.selectedObj;
     const showColor = getSegmentationInteractionColor(
       selection,
@@ -1307,6 +1377,8 @@ export class SegmentationLayer<WM extends MainWindowMapper>
       this.#interactContext.selectionSelector.hoveredObj,
       selectedSelectionColor,
       hoveredSelectionColor,
+      this.#elementHighlights.has(selection.id),
+      this.#elementHighlights.color(selection.id),
     );
     if (isHovered) {
       showPointSize += 1;
@@ -1357,7 +1429,9 @@ export class SegmentationLayer<WM extends MainWindowMapper>
       displayClassName: selection.displayClass?.name ?? null,
       occlusionName: selection.occlusionLv.name,
       distinctivenessName: selection.distinctiveLv.name,
-      showTooltips,
+      showTooltips:
+        showTooltips &&
+        (this.#elementIsolation.visibility(selection.id) ?? !selection.hidden),
       showTrackSegId,
       showTimestampDiff,
       showOcclusion,
@@ -1418,12 +1492,14 @@ export class SegmentationLayer<WM extends MainWindowMapper>
       for (const instanceId of instanceIds) {
         const instance = dataView.getLabelInstance(instanceId);
         this.#renderInstance(instance);
-        this.objects.add(instance.asObject3D());
+        if (!this.#elementIsolation.active)
+          this.objects.add(instance.asObject3D());
       }
 
       const assistedController =
         this.#interactContext.assistedSelectionController;
-      this.objects.add(assistedController.prompts.asObject3D());
+      if (!this.#elementIsolation.active)
+        this.objects.add(assistedController.prompts.asObject3D());
       this.refreshObjects();
     } else {
       // Only the camera has moved while the tooltips are visible, so

@@ -331,6 +331,16 @@ class FakeSegmentationView extends VanillaEventDispatcher {
     this.calls.push(["updateLabelInstanceIsBlack", instance, value]);
   }
 
+  setSelectionHidden(id: string, hidden: boolean): void {
+    this.selections.get(id).hidden = hidden;
+    this.calls.push(["setSelectionHidden", id, hidden]);
+    (this.data as any).dispatchEvent({
+      type: "selection-update",
+      obj: this.selections.get(id),
+      propertyKey: "hidden",
+    });
+  }
+
   async updateLabelSelectionParentInstance(
     selection: any,
     instance: any,
@@ -379,6 +389,31 @@ afterEach(() => {
 });
 
 describe("segmentation inspector coordinators", () => {
+  it("keeps draft class choices when draw mode changes", () => {
+    const labelsView = new FakeSegmentationView({ classes: [CLASS_CAR] });
+    const inspector = new LabelSelectionInspector({
+      labelsView: labelsView as never,
+    });
+    const input = cloneLabelSelectionInspectorInputtedData(
+      inspector.paneParams.inputtedData,
+    );
+    input.relations.classSelect.classId = CLASS_CAR.id;
+    inspector.onInputChange(input);
+    expect(inspector.getSelectionParams().perceivedClassId).toBe(CLASS_CAR.id);
+    inspector.drawSelectionActive = true;
+    expect(inspector.getSelectionParams().perceivedClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.drawSelectionActive).toBe(true);
+    inspector.drawSelectionActive = false;
+    expect(inspector.getSelectionParams().perceivedClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.drawSelectionActive).toBe(false);
+    inspector.disabled = true;
+    expect(inspector.getSelectionParams().perceivedClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.disabled).toBe(true);
+    inspector.disabled = false;
+    expect(inspector.getSelectionParams().perceivedClassId).toBe(CLASS_CAR.id);
+    inspector.dispose();
+  });
+
   it("preserves placeholder IDs in segmentation inspector input", () => {
     const selectionId = new Placeholder<string>();
     const instanceId = new Placeholder<string>();
@@ -561,6 +596,32 @@ describe("segmentation inspector coordinators", () => {
     await selectOption(selectionSelect!, "B{");
 
     expect(inspector.selectedId).toBe(SELECTION_ID);
+    const hideRow = [...dom.querySelectorAll(".tp-lblv")].find(
+      (row) => row.querySelector(".tp-lblv_l")?.textContent === "Hide in scene",
+    )!;
+    const hideCheckbox = hideRow.querySelector<HTMLInputElement>(
+      'input[type="checkbox"]',
+    )!;
+    await act(async () => hideCheckbox.click());
+    expect(labelsView.calls).toContainEqual([
+      "setSelectionHidden",
+      SELECTION_ID,
+      true,
+    ]);
+    const updatedHideRow = [...dom.querySelectorAll(".tp-lblv")].find(
+      (row) => row.querySelector(".tp-lblv_l")?.textContent === "Hide in scene",
+    )!;
+    await act(async () =>
+      updatedHideRow
+        .querySelector<HTMLInputElement>('input[type="checkbox"]')!
+        .click(),
+    );
+    expect(labelsView.calls).toContainEqual([
+      "setSelectionHidden",
+      SELECTION_ID,
+      false,
+    ]);
+
     expect(selectionEvents.at(-1)).toBe(selection);
 
     await act(async () => {

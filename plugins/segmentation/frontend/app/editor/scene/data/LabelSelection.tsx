@@ -24,7 +24,7 @@ interface LabelSelectionViewParams {
   color?: Readonly<THREE.Color>;
   /** The opacity of selection points over source points. */
   opacity?: number;
-  /** `false` (default) if center of a selection is visibile, otherwise, `false`. */
+  /** Displays only the centroid instead of selection points when `true`. */
   showCenter?: boolean;
 }
 
@@ -79,7 +79,7 @@ class LabelSelectionView {
     return this.#selection.centerPoint;
   }
 
-  /** `true` if the center of the selection is visible; otherwise, `false`. */
+  /** Whether only the centroid is displayed instead of selection points. */
   get showCenter(): boolean {
     return this.#selection.showCenter;
   }
@@ -154,7 +154,7 @@ export interface LabelSelectionParams {
   showPerceivedClass?: boolean;
   /** If given, displays the given color for the selection, regardless of `showPerceivedClass`. */
   showColor?: Readonly<THREE.Color> | null;
-  /** `false` (default) if center of a selection is visibile, otherwise, `false`. */
+  /** Displays only the centroid instead of selection points when `true`. */
   showCenter?: boolean;
 }
 
@@ -166,7 +166,8 @@ export interface LabelSelectionParams {
 export interface PropertyChangeEvent {
   type: string;
   obj: LabelSelection;
-  propertyKey: Exclude<keyof LabelSelectionParams, "config" | "labels">;
+  propertyKey:
+    Exclude<keyof LabelSelectionParams, "config" | "labels"> | "hidden";
 }
 
 /** Defines each event that can be dispatched by {@link LabelSelection}. */
@@ -180,6 +181,9 @@ export type ReadonlyLabelSelection = Pick<
   | "asObject3D"
   | "centerAsObject3D"
   | "raycast"
+  | "setDisplayVisibility"
+  | "hidden"
+  | "setHidden"
   | keyof LabelSelectionParams
   | "entity"
   | "gtClass"
@@ -196,6 +200,29 @@ export type ReadonlyLabelSelection = Pick<
 /** Represents a selection in the scene. */
 export class LabelSelection extends THREE.EventDispatcher<LabelSelectionEventMap> {
   readonly #view: LabelSelectionView;
+
+  #displayVisibility: boolean | null = null;
+
+  /** Applies a transient scene filter without changing local hidden preferences. */
+  setDisplayVisibility(visible: boolean | null): void {
+    this.#displayVisibility = visible;
+    this.asObject3D().visible = visible !== false;
+    this.#view.selection.setPointsHidden(!(visible ?? !this.hidden));
+  }
+
+  #hidden = false;
+
+  /** Session-local visibility, independent of saved label data. */
+  get hidden(): boolean {
+    return this.#hidden;
+  }
+
+  setHidden(value: boolean): void {
+    if (this.#hidden === value) return;
+    this.#hidden = value;
+    this.setDisplayVisibility(this.#displayVisibility);
+    this.dispatchEvent({ type: "change", obj: this, propertyKey: "hidden" });
+  }
 
   #packedDatabasePoints: Float32Array;
 
@@ -218,6 +245,7 @@ export class LabelSelection extends THREE.EventDispatcher<LabelSelectionEventMap
     raycaster: THREE.Raycaster,
     intersects: THREE.Intersection[] = [],
   ): THREE.Intersection[] {
+    if (this.#displayVisibility === false) return intersects;
     return this.#view.raycast(raycaster, intersects);
   }
 
@@ -538,7 +566,7 @@ export class LabelSelection extends THREE.EventDispatcher<LabelSelectionEventMap
     }
   }
 
-  /** `true` if the faces and edges of this bounding box are visible; otherwise, `false`. */
+  /** Whether only the centroid is displayed instead of selection points. */
   get showCenter(): boolean {
     return this.#view.showCenter;
   }
@@ -640,6 +668,7 @@ export class LabelSelection extends THREE.EventDispatcher<LabelSelectionEventMap
 
   /** Updates the view according to the data in this object. */
   render(): void {
+    this.setDisplayVisibility(this.#displayVisibility);
     const { showPointSize } = this;
     const view = this.#view;
     const labels = this.#labels;

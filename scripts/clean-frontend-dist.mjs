@@ -15,6 +15,7 @@ const allowedPackageDirs = new Set([
   path.join(repoRoot, "plugins/pcd/frontend"),
   path.join(repoRoot, "plugins/segmentation/frontend"),
   path.join(repoRoot, "plugins/vector/frontend"),
+  path.join(repoRoot, "plugins/relation/frontend"),
 ]);
 
 if (!allowedPackageDirs.has(packageDir)) {

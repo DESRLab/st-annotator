@@ -528,12 +528,12 @@ def test_different_label_spec_types_can_share_group(root_user: UserPublic, sessi
         session=session,
         data=ObjectClassCreate(name="shared-type-objclass"),
     )
-    base_spec_domain.create_spec(
+    base_spec = base_spec_domain.create_spec(
         current_user=root_user,
         session=session,
         data=MockSpecCreate(name="base", group_ids=[group.id]),
     )
-    selections.create_spec(
+    selection = selections.create_spec(
         current_user=root_user,
         session=session,
         data=selections.create_cls(
@@ -542,6 +542,14 @@ def test_different_label_spec_types_can_share_group(root_user: UserPublic, sessi
             objclass_ids=[objclass.id],
         ),
     )
+
+    session.commit()
+    session.expire_all()
+
+    assert {linked.id for linked in session.get(MockSpec, base_spec.id).groups} == {group.id}
+    stored_selection = session.get(selections.table_cls, selection.id)
+    assert {linked.id for linked in stored_selection.groups} == {group.id}
+    assert {linked.id for linked in stored_selection.objclasses} == {objclass.id}
 
 
 @pytest.mark.parametrize("field", ["group_ids", "objclass_ids"])

@@ -36,13 +36,7 @@ export class EditState<WM extends MainWindowMapper> extends InteractState<WM> {
     super({
       context: context,
       keydownBinds: [
-        {
-          keyCombo: "h",
-          name: "Toggle hide in scene",
-          handler: () => {
-            this.context.toggleSelectedBoxHidden();
-          },
-        },
+        context.hideInSceneKeybind,
         {
           keyCombo: "escape",
           name: "Cancel edit box",

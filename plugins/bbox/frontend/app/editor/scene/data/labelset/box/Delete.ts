@@ -24,6 +24,10 @@ export class Delete extends BBoxOperation<DeleteParams, null> {
     return null;
   }
 
+  get deletedElements() {
+    return [{ type: "box", id: this.opParams.box_id }];
+  }
+
   #deletedBoxParams: _Box | undefined = undefined;
 
   /**

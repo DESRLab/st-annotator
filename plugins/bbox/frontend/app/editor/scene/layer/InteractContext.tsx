@@ -289,6 +289,23 @@ export class InteractContext<
     if (box != null) this.setBoxHidden(box.id, !box.hidden);
   }
 
+  /** Visibility shortcut listed in Controls even without an edited label. */
+  readonly hideInSceneKeybind = {
+    keyCombo: "h",
+    name: "Toggle hide in scene",
+    handler: () => this.toggleSelectedBoxHidden(),
+  };
+
+  /** Context controls remain discoverable outside label editing. */
+  get contextKeybinds() {
+    return [
+      this.hideInSceneKeybind,
+      ...[
+        ...(this.currentState?.keydownHandler.iterSubtreeKeybinds() ?? []),
+      ].filter((binding) => binding !== this.hideInSceneKeybind),
+    ];
+  }
+
   /** Whether the draw-box button of the box inspector is active. */
   get drawBoxActive(): boolean {
     return this.#boxInspector.drawBoxActive;

@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from decimal import Decimal
 from math import isinf, isnan
-from typing import Any, Literal, TypeAlias, cast
+from typing import Literal, TypeAlias, cast
 
 import uuid6
 
@@ -14,7 +14,6 @@ from pydantic import BaseModel, StrictInt, StrictStr
 from sta.common.filesystem import FileSystemPath, JSONFileIO
 from sta.common.spatial import DecimalCoord3, Vector3
 from sta.common.utils.json import JSONType
-from sta.models.label.data import LabelElementSQLModel
 
 from .models.label.data import VectorType
 
@@ -55,10 +54,10 @@ class GeomConverters:
     @classmethod
     def coords_from_geom(cls, geom: Geom, *, include_z: bool = True) -> Sequence[Sequence[Decimal]]:
         all_coords = get_coordinates(geom, include_z=include_z).tolist()
-        ndigits = cast(Any, LabelElementSQLModel.COORD_TYPE).scale
 
+        # Domain coordinate models normalize precision; SQL Float has no scale.
         return [
-            [Decimal(0) if isnan(c) or isinf(c) else round(Decimal(c), ndigits) for c in coords]
+            [Decimal(0) if isnan(c) or isinf(c) else Decimal(str(c)) for c in coords]
             for coords in all_coords
         ]
 

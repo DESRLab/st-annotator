@@ -127,6 +127,7 @@ export class DrawSelectionState<
     super({
       context: context,
       keydownBinds: [
+        context.hideInSceneKeybind,
         {
           keyCombo: "escape",
           name: "cancel create/edit selection",
@@ -658,7 +659,10 @@ export class DrawSelectionState<
     selectionPoints: readonly THREE.Vector3[],
   ): ReadonlyLabelSelection | null {
     if (selectionPoints.length === 0) return null;
-    const { sceneContext, dataView, pointCloudUtils } = this.context;
+    const { sceneContext, dataView, pointCloudUtils, selectionInspector } =
+      this.context;
+    const { perceivedClassId, distinctiveLv, occlusionLv } =
+      selectionInspector.getSelectionParams();
 
     const format = sceneContext.config.coordinateFormat;
     const currentTimestamp =
@@ -672,6 +676,9 @@ export class DrawSelectionState<
       points: points,
       timestamp: currentTimestamp,
       entityId: null,
+      perceivedClassId,
+      distinctiveLv,
+      occlusionLv,
       showPointSize: pointCloudUtils?.pointSize,
     };
 
@@ -705,14 +712,14 @@ export class DrawSelectionState<
               return (
                 <>
                   Release left pointer to pause drawing, or press <kbd>Esc</kbd>{" "}
-                  to abort, or press <kbd>g</kbd> to finish
+                  to abort, or press <kbd>G</kbd> to finish
                 </>
               );
             default:
               return (
                 <>
                   Release left pointer to finish drawing, or press{" "}
-                  <kbd>Esc</kbd> to abort, or press <kbd>g</kbd> to finish
+                  <kbd>Esc</kbd> to abort, or press <kbd>G</kbd> to finish
                 </>
               );
           }

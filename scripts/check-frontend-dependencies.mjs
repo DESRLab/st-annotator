@@ -11,6 +11,7 @@ const packagePaths = {
   "sta-pcd": "plugins/pcd/frontend/package.json",
   "sta-segmentation": "plugins/segmentation/frontend/package.json",
   "sta-vector": "plugins/vector/frontend/package.json",
+  "sta-relation": "plugins/relation/frontend/package.json",
 };
 const manifests = Object.fromEntries(
   await Promise.all(
@@ -73,6 +74,7 @@ for (const [name, manifest] of Object.entries(manifests)) {
 }
 
 const prerequisites = {
+  "sta-relation": [],
   "sta-bbox": ["sta-gmesh", "sta-pcd"],
   "sta-gmesh": [],
   "sta-pcd": [],

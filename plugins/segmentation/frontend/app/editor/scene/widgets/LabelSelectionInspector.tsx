@@ -76,6 +76,7 @@ export function getLabelSelectionInspectorPaneParams(
           selection: { selectionId: null },
         }
       : {
+          hidden: selectedSelection.hidden ?? false,
           selection: { selectionId: selectedSelection.id },
           relations: {
             instanceSelect: {
@@ -207,8 +208,12 @@ export class LabelSelectionInspector implements LabelSelectionInspectorHandle {
     if (this.#disabled !== value) {
       this.#disabled = value;
 
-      // Need to update the settings
-      this.#render();
+      // Disabling controls must preserve draft annotation attributes.
+      this.#settings = {
+        ...this.#settings,
+        disabled: value || this.labelsView.data == null,
+      };
+      this.#notifyRender();
     }
   }
 
@@ -244,8 +249,9 @@ export class LabelSelectionInspector implements LabelSelectionInspectorHandle {
     if (this.#drawSelectionActive !== value) {
       this.#drawSelectionActive = value;
 
-      // Need to update the settings
-      this.#render();
+      // A tool toggle changes settings, not the draft annotation attributes.
+      this.#settings = { ...this.#settings, drawSelectionActive: value };
+      this.#notifyRender();
     }
   }
 
@@ -289,8 +295,16 @@ export class LabelSelectionInspector implements LabelSelectionInspectorHandle {
   async #updateSelection() {
     const { labelsView, selectedSelection } = this;
     if (selectedSelection == null) return;
-
     const { instanceId, classId, distinctiveLv, occlusionLv } = this.outputData;
+    if (
+      (selectedSelection.hidden ?? false) !==
+      (this.#inputtedData.hidden ?? false)
+    ) {
+      labelsView.setSelectionHidden(
+        selectedSelection.id,
+        this.#inputtedData.hidden ?? false,
+      );
+    }
 
     if (selectedSelection.entityId !== instanceId) {
       const instance =

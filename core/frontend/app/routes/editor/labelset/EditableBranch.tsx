@@ -1,3 +1,7 @@
+import {
+  withLocalOperationEffects,
+  type LocalOperationEffectFactory,
+} from "../labelElements";
 import { Queue } from "async-await-queue";
 import _ from "lodash";
 
@@ -389,7 +393,18 @@ export class EditableBranch
    *
    * (Use `this.pushAll()` to apply operations to the remote data.)
    */
-  #apply(op: Operation<any, any>): void {
+  /** Plugin effects are captured once when an operation enters local history. */
+  readonly operationEffectFactories = new Set<LocalOperationEffectFactory>();
+
+  async #apply(op: Operation<any, any>): Promise<void> {
+    const effects = (
+      await Promise.all(
+        [...this.operationEffectFactories].map(
+          async (factory) => await factory(op),
+        ),
+      )
+    ).filter((effect) => effect != null);
+    op = withLocalOperationEffects(op, effects);
     // Apply first: a failing operation must not destroy redo history or move heads.
     op.applyLocal();
 
@@ -502,11 +517,23 @@ export class EditableBranch
     // the first was still in flight) must not send an empty push.
     if (entriesToPush.length === 0) return;
 
-    const commitsToPush = entriesToPush.map(([, commit]) => commit);
+    const commitsToPush = entriesToPush
+      .map(([, commit]) => commit)
+      .filter((commit) => !commit.op.isNoop);
+    if (commitsToPush.length === 0) {
+      this.#remoteHead = this.#localHead;
+      this.#savedEndIdx = this.#activeEndIdx;
+      return;
+    }
 
     const keyedPlaceholders = new Map<Placeholder<any>, string>();
 
-    const placeholderToKey = (placeholder: Placeholder<any>): string => {
+    const placeholderToKey = (
+      placeholder: Placeholder<any>,
+      executable: boolean,
+    ): string => {
+      // Discarded redo history is audit metadata, never executed by the server.
+      if (!executable) return placeholder.wireKey;
       const existing = keyedPlaceholders.get(placeholder);
       if (existing != null) return existing;
       keyedPlaceholders.set(placeholder, placeholder.wireKey);
@@ -516,34 +543,43 @@ export class EditableBranch
     const isPlainObject = (v: unknown): v is Record<string, unknown> =>
       _.isPlainObject(v);
 
-    const deepPlaceholderToKey = (v: unknown): unknown => {
+    const deepPlaceholderToKey = (v: unknown, executable: boolean): unknown => {
       if (Placeholder.isPlaceholder(v))
-        return v.orElseGet(() => placeholderToKey(v));
+        return v.orElseGet(() => placeholderToKey(v, executable));
 
-      if (_.isArray(v)) return v.map(deepPlaceholderToKey);
+      if (_.isArray(v))
+        return v.map((value) => deepPlaceholderToKey(value, executable));
 
-      if (isPlainObject(v)) return _.mapValues(v, deepPlaceholderToKey);
+      if (isPlainObject(v))
+        return _.mapValues(v, (value) =>
+          deepPlaceholderToKey(value, executable),
+        );
 
       return v;
     };
 
     const commitToInstruction = (
       commit: LabelsetCommit<any, any>,
+      executable: boolean,
     ): LabelsetCommitInstruction => {
       const { opName, opParams, opResult } = commit.op;
       const { timestamp, overwrites } = commit;
 
       return {
         op_name: opName,
-        op_params: deepPlaceholderToKey(opParams),
+        op_params: deepPlaceholderToKey(opParams, executable),
         result_placeholder_key:
-          opResult == null ? null : placeholderToKey(opResult),
+          opResult == null ? null : placeholderToKey(opResult, executable),
         timestamp: timestamp,
-        overwrites: overwrites.map(commitToInstruction),
+        overwrites: overwrites.map((commit) =>
+          commitToInstruction(commit, false),
+        ),
       };
     };
 
-    const commitInstructions = commitsToPush.map(commitToInstruction);
+    const commitInstructions = commitsToPush.map((commit) =>
+      commitToInstruction(commit, true),
+    );
     const placeholderKeys = [...keyedPlaceholders.values()];
 
     const result = await this.views.pushCommits(taskId, this.id, {

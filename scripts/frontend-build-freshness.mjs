@@ -21,6 +21,7 @@ const packages = [
   ["sta-bbox", "plugins/bbox/frontend"],
   ["sta-segmentation", "plugins/segmentation/frontend"],
   ["sta-vector", "plugins/vector/frontend"],
+  ["sta-relation", "plugins/relation/frontend"],
 ];
 const sharedPaths = [
   "package-lock.json",

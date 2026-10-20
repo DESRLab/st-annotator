@@ -340,6 +340,7 @@ export function SegmentationSelectionInspectorView(): React.JSX.Element {
             selection: { selectionId: null },
           }
         : {
+            hidden: selectedSelection.hidden ?? false,
             selection: { selectionId: selectedSelection.id },
             relations: {
               instanceSelect: {

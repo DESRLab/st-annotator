@@ -47,6 +47,7 @@ export interface SegmentationInstanceEntity {
  * recomputed on every mapping rather than cached.
  */
 export interface SegmentationSelectionEntity {
+  readonly hidden?: boolean;
   readonly id: UUID;
   readonly text: string;
   readonly entityId: UUID | null;
@@ -170,6 +171,7 @@ export function projectSegmentationSelectionEntity(
     text: getLabelSelectionSelectionItemText(selection),
     entityId: selection.entityId,
     perceivedClassId: selection.perceivedClassId,
+    hidden: selection.hidden,
     distinctiveLv: selection.distinctiveLv.value as QualityLevelValue,
     occlusionLv: selection.occlusionLv.value as QualityLevelValue,
   };
@@ -205,6 +207,7 @@ function sameSegmentationSelectionEntity(
     a.id === b.id &&
     a.text === b.text &&
     a.entityId === b.entityId &&
+    a.hidden === b.hidden &&
     a.perceivedClassId === b.perceivedClassId &&
     a.distinctiveLv === b.distinctiveLv &&
     a.occlusionLv === b.occlusionLv

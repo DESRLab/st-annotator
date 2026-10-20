@@ -1,0 +1,70 @@
+[build-system]
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+
+[project]
+name = "sta-relation"
+version = "1.1.0"
+description = "ST Annotator Relation Plugin"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Cyrus Leung", email = "tlleungac@connect.ust.hk"},
+    { name = "Maral Bahari", email = "mbahari@connect.ust.hk"},
+]
+keywords = [
+    "computer-vision",
+    "3d", "spatiotemporal", "spatio-temporal", "spatial-temporal",
+    "polygon", "polyline", "point",
+    "annotation", "annotation-tool",
+    "labeling", "labeling-tool",
+]
+dependencies = ["sta", "pydantic>=2.6,<3", "pydantic-extra-types>=2.6,<3", "fastapi[standard]>=0.115.13,<0.116", "sqlmodel>=0.0.24,<0.1", "SQLAlchemy>=2.0,<3"]
+
+[project.urls]
+homepage = "https://github.com/DESRLab/st-annotator"
+repository = "https://github.com/DESRLab/st-annotator"
+
+[project.entry-points."sta.plugins"]
+registry = "sta_relation.plugin:register"
+
+[tool.uv.sources]
+sta = { workspace = true }
+
+[dependency-groups]
+dev = ["deptry>=0.14", "ruff>=0.3", "pyright>=1.1.354", "pytest>=7.0", "pytest-cov>=3.0", "pytest-xdist>=3.5"]
+
+[tool.deptry]
+extend_exclude = ["\\.coverage/", "test", "__pycache__", "node_modules"]
+
+[tool.deptry.per_rule_ignores]
+DEP001 = ["_typeshed"]
+
+[tool.ruff]
+extend = "../../../config/python/pyproject.toml"
+
+[tool.pytest.ini_options]
+addopts = "--cov=sta_relation --cov=sta --cov-report=term-missing --cov-report html:coverage --cov-branch --cov-context=test"
+testpaths = ["test"]
+markers = ["in_memory_db: use the shared SQLite test environment without spatial plugins"]
+
+[tool.coverage.html]
+show_contexts = true
+
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol(\\[.*\\])?\\):",
+    "@(abc\\.)?abstractmethod",
+    "@(typing\\.)?overload",
+]

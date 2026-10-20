@@ -2,6 +2,18 @@
 
 These Playwright tests run the real backend and frontend, then exercise handbook workflows through the browser.
 
+Row command helpers retry opening the context menu together with clicking its
+command when a grid refresh removes the menu. They select the row only once,
+preserving batch selections, and bound retries independently of the workflow's
+test timeout. `ui-helpers.spec.ts` exercises menu removal with synthetic HTML.
+Pane-control helpers match the control's own label, so option text in another
+dropdown cannot select the wrong control; the same spec covers this collision.
+
+Numeric-input helpers compare the committed number rather than a substring of its
+formatted text, so clamping to another value fails the test. Pixel comparisons
+capture their baseline immediately before the setting being checked; separate
+channel and range assertions so one successful setting cannot mask another.
+
 ## Run
 
 ```sh
@@ -177,7 +189,11 @@ the redundant scenario rather than keeping it as insurance.
   label window and projections stay null forever.
 - **Synchronise, don't sleep.** Pixel assertions wait on the demand renderer's
   generation (`getEditorRenderState`, `waitForEditorRenderAfter`,
-  `waitForEditorRenderSettled`). Every data load resets interaction state and closes
+  `waitForEditorRenderSettled`). For channel-color comparisons, establish explicit
+  baseline and target channels with fixed normalization; require a newer render
+  after the selection and poll the canvas pixels for the visual change. An idle
+  renderer alone can still describe the frame from before the settings update.
+  Every data load resets interaction state and closes
   the input gate, so wait for bulk activity to settle before asserting a gesture or
   hotkey, and blur `document.activeElement` first — hotkeys are swallowed while a
   form or Tweakpane control holds focus. To assert a *gated* state, wait for the
@@ -218,12 +234,13 @@ The data-backed suite currently includes:
 
 - `with-data/handbook-editor.spec.ts`: annotation editor point cloud layer/preferences controls and bounding box actions, tools, preferences, selection, and clipboard controls.
 - `with-data/editor-load.spec.ts`: workspace loading plus application/inspector panel gestures and minimap window move/resize contracts.
-- `with-data/editor-state-regression.spec.ts`: the editor initializes from the URL into the matching project/task/branch/frame state and mirrors layer, enabled, and preference state.
+- `with-data/editor-state-regression.spec.ts`: the editor gates creation during label loading, reloads data when switching tasks, and applies aggregate layer enable/disable controls to the rendered scene.
 - `with-data/grid-filtering.spec.ts`: server-side grid filtering and sorting across the frames, projects, and source/label group grids.
 - `with-data/interaction-cursors.spec.ts`: label layers apply their interaction cursors without fighting over them.
 - `with-data/editor-rendering-and-label-workflows.spec.ts`: rendered preference effects plus pointer-driven bbox, vector, and segmentation creation, inspection, editing, history, and persistence workflows.
 - `with-data/editor-hotkeys.spec.ts`: behavioral hotkey coverage, including active-layer isolation for overlapping shortcuts.
-- `with-data/editor-frame-status.spec.ts`: Complete/Incomplete frame status updates persist across reloads.
+- `with-data/editor-label-saving.spec.ts`: creation and class persistence for all label plugins, geometry round-trips for bbox/vector/segmentation, later class edits, bbox/vector geometry edits, bbox/vector/relation deletion, vector deletion across frame navigation before saving, undo of a bbox moved outside frame bounds before a later save, and track/instance class persistence.
+- `with-data/editor-frame-status.spec.ts`: Complete/Incomplete frame status updates change progress by exactly one and persist across reloads; status hotkeys also navigate between frames.
 - `with-data/editor-project-navigation.spec.ts`: frame-ID/index and frame-row navigation, row status actions, path sorting/stride/display, playback, FPS, and read-only frame bounds.
 - `with-data/editor-pointer-gestures.spec.ts`: main-camera zoom/orbit/pan and minimap pan/coordinate-tooltip behavior.
 - `with-data/assistant-labeling.spec.ts`: point-cloud assistant encoding, left/right-click prompting, segmentation creation and inspection, and failure integrity.

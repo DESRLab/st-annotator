@@ -35,19 +35,34 @@ describe("DrawModePaneView", () => {
       />,
     );
 
-    expect(
-      vector.container.querySelectorAll<HTMLInputElement>(
-        'input[type="radio"]',
-      )[0].checked,
-    ).toBe(true);
+    const items = [
+      ...vector.container.querySelectorAll<HTMLElement>(".tp-radv"),
+    ];
+    expect(items.map((item) => item.textContent)).toEqual([
+      "Polygon",
+      "Line",
+      "Point",
+    ]);
+    const radios = items.map((item) =>
+      item.querySelector<HTMLInputElement>('input[type="radio"]')!,
+    );
+    expect(radios.map((radio) => radio.checked)).toEqual([true, false, false]);
+    expect(drawModePaneFactoryParams.inputtedData.drawMode).toBe("polygon");
 
-    await act(async () => {
-      vector.container
-        .querySelectorAll<HTMLInputElement>('input[type="radio"]')[2]
-        .click();
-    });
+    for (const index of [1, 2]) {
+      await act(async () => {
+        const currentRadios =
+          vector.container.querySelectorAll<HTMLInputElement>(
+            'input[type="radio"]',
+          );
+        currentRadios[index].click();
+      });
+    }
 
-    expect(vectorChanges).toEqual([{ drawMode: "point" }]);
+    expect(vectorChanges).toEqual([
+      { drawMode: "polyline" },
+      { drawMode: "point" },
+    ]);
     await vector.unmount();
   });
 });

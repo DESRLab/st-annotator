@@ -296,6 +296,30 @@ export class InteractContext<
     return this.#selectionInspector.selectedId;
   }
 
+  /** Toggles the inspected label's session-local visibility. */
+  toggleSelectedSelectionHidden(): void {
+    const label = this.#selectionInspector.selectedSelection;
+    if (label != null)
+      this.dataView.setSelectionHidden(label.id, !label.hidden);
+  }
+
+  /** Visibility shortcut listed in Controls even without an edited label. */
+  readonly hideInSceneKeybind = {
+    keyCombo: "h",
+    name: "Toggle hide in scene",
+    handler: () => this.toggleSelectedSelectionHidden(),
+  };
+
+  /** Context controls remain discoverable outside label editing. */
+  get contextKeybinds() {
+    return [
+      this.hideInSceneKeybind,
+      ...[
+        ...(this.currentState?.keydownHandler.iterSubtreeKeybinds() ?? []),
+      ].filter((binding) => binding !== this.hideInSceneKeybind),
+    ];
+  }
+
   /** Whether the draw-selection button of the selection inspector is active. */
   get drawSelectionActive(): boolean {
     return this.#selectionInspector.drawSelectionActive;

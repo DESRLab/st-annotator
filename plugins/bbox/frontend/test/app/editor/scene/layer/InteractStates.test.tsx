@@ -20,6 +20,11 @@ function makeContext() {
   const box = { id: "box-1" };
   const currentTime = new Date("2026-08-15T12:00:00Z");
   const context = {
+    hideInSceneKeybind: {
+      keyCombo: "h",
+      name: "Toggle hide in scene",
+      handler: vi.fn(),
+    },
     drawMode: "corner2corner",
     boxCreator: {
       isCreating: false,
@@ -146,6 +151,9 @@ describe("bbox interaction states", () => {
   it("H toggles the selected box locally and publishes visibility changes", () => {
     const fixture = createInteractContextFixture();
     const { context, dataView } = fixture;
+    expect(
+      context.contextKeybinds.filter((binding) => binding.keyCombo === "h"),
+    ).toEqual([context.hideInSceneKeybind]);
     const box = createLabelBoxFixture();
     dataView.boxes.set("box-1", box);
     dataView.data = createLoadedIndex();
@@ -154,6 +162,9 @@ describe("bbox interaction states", () => {
     context.transitionEdit({ trackId: null, boxId: "box-1" });
     const notify = vi.fn();
     context.addEventListener("box-visibility-change", notify);
+    expect(
+      context.contextKeybinds.filter((binding) => binding.keyCombo === "h"),
+    ).toEqual([context.hideInSceneKeybind]);
     fixture.key("h");
     expect(box.hidden).toBe(true);
     fixture.key("h");

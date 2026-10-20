@@ -421,15 +421,15 @@ export abstract class Controls<
       this.applyTransform(initPointerWorldPos, nextPointerWorldPos);
 
       this.dispatchEvent({ type: "objectChange", obj: object });
+    }
 
-      for (const element of draggableGroup.objects) {
-        if (element === draggedElement) {
-          element.state = "dragged";
-        } else if (element === hoveredElement) {
-          element.state = "hovered";
-        } else {
-          element.state = "none";
-        }
+    for (const element of draggableGroup?.objects ?? []) {
+      if (element === draggedElement) {
+        element.state = "dragged";
+      } else if (element === hoveredElement) {
+        element.state = "hovered";
+      } else {
+        element.state = "none";
       }
     }
     return this;

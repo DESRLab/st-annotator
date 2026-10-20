@@ -10,7 +10,7 @@ doc_frontend() {
     # TypeDoc discovers package entry points through exports, which target dist/.
     # Build core and then plugins in dependency order, including route typegen,
     # so a fresh checkout documents the same public API as a package consumer.
-    for workspace in sta sta-pcd sta-gmesh sta-bbox sta-segmentation sta-vector; do
+    for workspace in sta sta-pcd sta-gmesh sta-bbox sta-segmentation sta-vector sta-relation; do
         npm run build:package --workspace="$workspace"
     done
     npx typedoc --options typedoc.json

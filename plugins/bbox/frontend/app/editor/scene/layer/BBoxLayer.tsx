@@ -1,16 +1,6 @@
-import { default as React } from "react";
-import { Transformer, TransformerSettingsView } from "sta-gmesh/app";
-import { Color, Raycaster, type Object3D, type Vector3 } from "three";
-
-import type {
-  Axis,
-  EditorE2EProbeTargetsContributor,
-  EditorSliceContributor,
-  LayerCollectionEventMap,
-  SceneContext,
-  WindowMapper,
-} from "sta/app/editor";
 import {
+  LabelElementHighlights,
+  LabelElementIsolation,
   LabelDataLayer,
   WindowPointer,
   SceneObjectsGroup,
@@ -23,6 +13,19 @@ import {
   ClipboardToolView,
   EventSubscriptions,
 } from "sta/app/editor";
+import type {
+  LabelElementProvider,
+  Axis,
+  EditorE2EProbeTargetsContributor,
+  EditorSliceContributor,
+  LayerCollectionEventMap,
+  SceneContext,
+  WindowMapper,
+} from "sta/app/editor";
+import { default as React } from "react";
+import { Transformer, TransformerSettingsView } from "sta-gmesh/app";
+import { Color, Raycaster, type Object3D, type Vector3 } from "three";
+
 import { ThreeUtils } from "sta/common";
 
 import { getAutoTracks, getSettings } from "../../config";
@@ -72,13 +75,16 @@ export function getBBoxInteractionColor(
   hoveredBox: ReadonlyLabelBox | null,
   selectedColor: Readonly<{ r: number; g: number; b: number }>,
   hoveredColor: Readonly<{ r: number; g: number; b: number }>,
+  externallyHovered = false,
+  externalColor: Readonly<{ r: number; g: number; b: number }> | null = null,
 ): Color | null {
   const color =
-    box === selectedBox
+    externalColor ??
+    (box === selectedBox
       ? selectedColor
-      : box === hoveredBox
+      : externallyHovered || box === hoveredBox
         ? hoveredColor
-        : null;
+        : null);
   return color == null ? null : new Color(color.r, color.g, color.b);
 }
 
@@ -446,7 +452,7 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
       { title: "Preferences", keybinds: this.PREFS_KEYDOWN_BINDS },
       {
         title: "Context",
-        keybinds: [...interactState.keydownHandler.iterSubtreeKeybinds()],
+        keybinds: this.#interactContext.contextKeybinds,
       },
     ]);
   };
@@ -524,6 +530,56 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
    * (editor-intent target). */
   trackInspectorPaneEvent(event: { type: string }): void {
     this.#interactContext.trackInspector.onPaneEvent(event);
+  }
+
+  readonly #elementIsolation = new LabelElementIsolation("box", () =>
+    this.#invalidateScene(),
+  );
+
+  readonly #elementHighlights = new LabelElementHighlights("box", () =>
+    this.#invalidateScene(),
+  );
+
+  get labelElementProvider(): LabelElementProvider {
+    const getBranch = () => this.dataView.currentBranch;
+    const isVisible = () =>
+      this.state.enabled &&
+      this.state.isVisible("main") &&
+      !this.dataView.isLoading;
+    return {
+      get branch() {
+        return getBranch();
+      },
+      get visible() {
+        return isVisible();
+      },
+      setIsolation: (owner, elements) =>
+        this.#elementIsolation.set(owner, elements),
+      setHighlights: (owner, elements, color) =>
+        this.#elementHighlights.set(owner, elements, color),
+      elements: () =>
+        [...this.dataView.iterLabelBoxes()].map((label) => ({
+          reference: { type: "box", id: label.id },
+          objectClassName: label.gtClass?.name ?? null,
+          center: this.context.config.coordinateFormat.toThreeJSCoords(
+            label.center,
+          ),
+          raycast: (raycaster) => label.raycast(raycaster),
+        })),
+      subscribe: (listener) => {
+        const subscriptions = new EventSubscriptions();
+        this.addEventListener("render-request", listener);
+        this.state.addEventListener("change", listener);
+        subscriptions.addDisposer(() =>
+          this.removeEventListener("render-request", listener),
+        );
+        subscriptions.addDisposer(() =>
+          this.state.removeEventListener("change", listener),
+        );
+        subscriptions.addDisposer(this.subscribeEditorSlice(listener));
+        return () => subscriptions.dispose();
+      },
+    };
   }
 
   get actionsView(): React.JSX.Element {
@@ -1042,6 +1098,7 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
 
   /** Updates how a bounding box is displayed. */
   #renderBox(box: ReadonlyLabelBox): ReadonlyLabelBox {
+    box.setDisplayVisibility(this.#elementIsolation.visibility(box.id));
     const dataView = this.#interactContext.dataView;
     const {
       selectedBoxColor,
@@ -1056,6 +1113,8 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
       this.#interactContext.boxSelector.hoveredObj,
       selectedBoxColor,
       hoveredBoxColor,
+      this.#elementHighlights.has(box.id),
+      this.#elementHighlights.color(box.id),
     );
 
     const currentFrame = this.context.currentFrame;
@@ -1097,7 +1156,9 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
       displayClassName: box.displayClass?.name ?? null,
       occlusionName: box.occlusionLv.name,
       distinctivenessName: box.distinctiveLv.name,
-      showTooltips: showTooltips && !box.hidden,
+      showTooltips:
+        showTooltips &&
+        (this.#elementIsolation.visibility(box.id) ?? !box.hidden),
       showTrackBoxId,
       showTimestampDiff,
       showOcclusion,
@@ -1165,13 +1226,16 @@ export class BBoxLayer<WM extends WindowMapper & MainWindowMapper>
 
         // Cannot use track.elements as we want it to be based on the boxes
         // instead of the vertices
-        if (data.getLabelTrackElements(track.id).size > 0) {
+        if (
+          !this.#elementIsolation.active &&
+          data.getLabelTrackElements(track.id).size > 0
+        ) {
           this.objects.add(track.asObject3D());
         }
       }
 
       const boxTransformerControls = boxTransformer.getControls();
-      if (boxTransformerControls != null) {
+      if (!this.#elementIsolation.active && boxTransformerControls != null) {
         this.objects.add(boxTransformerControls);
       }
 

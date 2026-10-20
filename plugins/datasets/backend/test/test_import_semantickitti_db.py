@@ -191,6 +191,9 @@ def test_create_label_import_branch(root_user: UserPublic, session: Session):
     assert selection.name == "SemanticKITTI labels object classes"
     assert {objclass.name for objclass in selection.objclasses} == set(labels_by_id.values())
     assert created_objclass_ids == {objclass.id for objclass in selection.objclasses}
+    colors = {objclass.color_rgb for objclass in selection.objclasses}
+    assert 0xFFFFFF not in colors
+    assert len(colors) == len(labels_by_id)
 
 
 def test_get_or_create_object_class_is_idempotent(root_user: UserPublic, session: Session):

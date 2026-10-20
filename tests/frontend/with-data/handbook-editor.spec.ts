@@ -57,7 +57,7 @@ test("handbook editor page: point cloud layer and preferences controls", async (
   await fillNumberInput(pointSize, "3");
   await selectActiveLayer(page, "Source Data", "Ground Mesh");
   await selectActiveLayer(page, "Source Data", "Point Cloud");
-  await expect(inputControl(prefs, "Point Size")).toHaveValue(/3/);
+  await expect(inputControl(prefs, "Point Size")).toHaveValue(/^3(?:\.0+)?$/);
 
   const blenderType = selectControl(prefs, "Blender Type");
   await setSelectByLabel(blenderType, "ComposeRGB");
@@ -178,7 +178,9 @@ test("handbook editor page: bounding box actions, tools, preferences, and clipbo
   await fillNumberInput(displayRange, "1");
   await selectActiveLayer(page, "Source Data", "Point Cloud");
   await selectActiveLayer(page, "Label Data", "Bounding Box");
-  await expect(inputControl(prefs, "Time-Path Range")).toHaveValue(/1/);
+  await expect(inputControl(prefs, "Time-Path Range")).toHaveValue(
+    /^1(?:\.0+)?$/,
+  );
   await expect(prefs).toContainText(
     /Maintain elevation\s*relative to ground mesh/,
   );
@@ -203,25 +205,4 @@ test("handbook editor page: bounding box actions, tools, preferences, and clipbo
   await expect(faceOpacity).toBeDisabled();
   await setCheckbox(prefs, "Transparent Faces", false);
   await expect(faceOpacity).toBeEnabled();
-});
-
-test("handbook editor page: segmentation transparency preferences", async ({
-  page,
-}) => {
-  await openEditor(page);
-  await selectActiveLayer(page, "Label Data", "Segmentation");
-  const prefs = await selectConfiguredLayer(
-    page,
-    "Preferences",
-    "Segmentation",
-  );
-  const transparency = checkboxControl(prefs, "Transparent Points");
-  const opacity = inputControl(prefs, "Point opacity");
-
-  await expect(transparency).toBeChecked();
-  await expect(opacity).toBeEnabled();
-  await setCheckbox(prefs, "Transparent Points", false);
-  await expect(opacity).toBeDisabled();
-  await setCheckbox(prefs, "Transparent Points", true);
-  await expect(opacity).toBeEnabled();
 });

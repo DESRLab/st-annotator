@@ -389,6 +389,44 @@ describe("EditableBranch", () => {
     );
   });
 
+  it("keeps discarded create results out of the executable placeholder declarations", async () => {
+    const pushCommits = vi.fn().mockResolvedValue({
+      op_results: ["saved-id"],
+      branch: LabelsetBranchState.fromJSON(makeBranchStateJson()),
+    });
+    const { branch } = makeBranch(pushCommits);
+    const create = (result: Placeholder<string>, params: object = {}) => ({
+      displayName: "Create label",
+      opName: "label-create",
+      opParams: params,
+      opResult: result,
+      applyLocal() {},
+      undoLocal() {},
+    });
+    const initial = branch.getHistory()[0].id;
+    const discarded = new Placeholder<string>();
+    await branch.apply(create(discarded));
+    await branch.apply(new RecordingOperation("Discarded edit"));
+    await branch.rebase(initial);
+    // Keep a nested reference in the audit history, as with create-then-edit.
+    await branch.apply(create(new Placeholder<string>(), { id: discarded }));
+    await branch.rebase(initial);
+    const saved = new Placeholder<string>();
+    await branch.apply(create(saved));
+    await branch.pushActive(1);
+
+    const data = pushCommits.mock.calls[0][2] as PushCommitsData;
+    expect(data.placeholder_keys).toEqual([saved.wireKey]);
+    expect(data.commits[0].result_placeholder_key).toBe(saved.wireKey);
+    const overwritten = data.commits[0].overwrites![0];
+    expect(overwritten.op_params).toEqual({ id: discarded.wireKey });
+    expect(overwritten.overwrites![0].result_placeholder_key).toBe(
+      discarded.wireKey,
+    );
+    expect(discarded.isResolved).toBe(false);
+    await expect(saved.getAsync()).resolves.toBe("saved-id");
+  });
+
   describe("save races", () => {
     function deferred<T>() {
       let resolve!: (value: T) => void;
@@ -561,50 +599,108 @@ describe("EditableBranch", () => {
     });
   });
 
-  it("keys nested placeholders inside op params onto the wire", async () => {
+  it("saves create-then-edit references and uses permanent IDs on the next save", async () => {
+    const result = new Placeholder<string>();
     const pushCommits = vi.fn().mockResolvedValue({
-      op_results: [{}, { new_id: "child-id" }],
+      op_results: ["saved-id", null],
       branch: LabelsetBranchState.fromJSON(makeBranchStateJson()),
     });
     const { branch } = makeBranch(pushCommits);
-
-    const parentResult = new Placeholder<{}>();
-    const childId = new Placeholder<string>();
-    const op = new (class implements Operation<Record<string, unknown>, {}> {
-      get displayName(): string {
-        return "Create Parent With Child";
-      }
-      get opName(): string {
-        return "parent-create";
-      }
-      get opParams(): Record<string, unknown> {
-        return {
-          parent: parentResult,
-          child: { id: childId },
-          plain: "value",
-        };
-      }
-      get opResult(): null {
-        return null;
-      }
-      applyLocal(): void {}
-      undoLocal(): void {}
-    })();
-
-    await branch.apply(op);
-    expect(branch.getHistory()[1].details).toContain(parentResult.wireKey);
-    expect(branch.getHistory()[1].details).toContain(childId.wireKey);
+    const create: Operation<object, string> = {
+      displayName: "Create label",
+      opName: "label-create",
+      opParams: {},
+      opResult: result,
+      applyLocal() {},
+      undoLocal() {},
+    };
+    const edit: Operation<object, null> = {
+      displayName: "Edit label",
+      opName: "label-update",
+      opParams: { id: result, endpoints: [{ id: result }], plain: "value" },
+      opResult: null,
+      applyLocal() {},
+      undoLocal() {},
+    };
+    await branch.apply(create);
+    await branch.apply(edit);
     await branch.pushActive(1);
 
-    const data = pushCommits.mock.calls[0][2] as PushCommitsData;
-    expect(data.placeholder_keys).toHaveLength(2);
-    const serialized = JSON.parse(
-      JSON.stringify(data.commits[0].op_params),
-    ) as Record<string, any>;
-    expect(serialized.plain).toBe("value");
-    expect(data.placeholder_keys).toContain(serialized.parent);
-    expect(data.placeholder_keys).toContain(serialized.child.id);
-    expect(serialized.parent).toBe(parentResult.wireKey);
-    expect(serialized.child.id).toBe(childId.wireKey);
+    const first = pushCommits.mock.calls[0][2] as PushCommitsData;
+    expect(first.placeholder_keys).toEqual([result.wireKey]);
+    expect(first.commits[0].result_placeholder_key).toBe(result.wireKey);
+    expect(first.commits[1].op_params).toEqual({
+      id: result.wireKey,
+      endpoints: [{ id: result.wireKey }],
+      plain: "value",
+    });
+    await branch.apply(edit);
+    pushCommits.mockResolvedValueOnce({
+      op_results: [null],
+      branch: LabelsetBranchState.fromJSON(makeBranchStateJson()),
+    });
+    await branch.pushActive(1);
+    const second = pushCommits.mock.calls[1][2] as PushCommitsData;
+    expect(second.placeholder_keys).toEqual([]);
+    expect(second.commits[0].op_params).toEqual({
+      id: "saved-id",
+      endpoints: [{ id: "saved-id" }],
+      plain: "value",
+    });
+  });
+
+  it.each([0, 1, 2])(
+    "matches create results when a skipped edit is at position %i",
+    async (position) => {
+      const pushCommits = vi.fn().mockResolvedValue({
+        op_results: ["first-id", "second-id"],
+        branch: LabelsetBranchState.fromJSON(makeBranchStateJson()),
+      });
+      const { branch } = makeBranch(pushCommits);
+      const results = [new Placeholder<string>(), new Placeholder<string>()];
+      const operations: Operation<object, string | null>[] = results.map(
+        (result) => ({
+          displayName: "Create label",
+          opName: "label-create",
+          opParams: {},
+          opResult: result,
+          applyLocal() {},
+          undoLocal() {},
+        }),
+      );
+      operations.splice(position, 0, {
+        displayName: "Skipped edit",
+        opName: "label-update",
+        opParams: {},
+        opResult: null,
+        isNoop: true,
+        applyLocal() {},
+        undoLocal() {},
+      });
+      for (const operation of operations) await branch.apply(operation);
+      await branch.pushActive(1);
+      expect(results[0].orElse("unresolved")).toBe("first-id");
+      expect(results[1].orElse("unresolved")).toBe("second-id");
+      expect(branch.hasUnsavedChanges).toBe(false);
+      expect(
+        (pushCommits.mock.calls[0][2] as PushCommitsData).commits,
+      ).toHaveLength(2);
+    },
+  );
+
+  it("does not send a push when every pending operation was skipped locally", async () => {
+    const { branch, pushCommits } = makeBranch();
+    await branch.apply({
+      displayName: "Skipped edit",
+      opName: "label-update",
+      opParams: {},
+      opResult: null,
+      isNoop: true,
+      applyLocal() {},
+      undoLocal() {},
+    });
+    await branch.pushActive(1);
+    expect(pushCommits).not.toHaveBeenCalled();
+    expect(branch.hasUnsavedChanges).toBe(false);
   });
 });

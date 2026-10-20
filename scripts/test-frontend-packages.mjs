@@ -5,6 +5,11 @@ import process from "node:process";
 import { spawnSync } from "node:child_process";
 
 const root = process.cwd();
+const arguments_ = process.argv.slice(2);
+if (arguments_.some((argument) => argument !== "--skip-build")) {
+  throw new Error("Usage: node scripts/test-frontend-packages.mjs [--skip-build]");
+}
+const skipBuild = arguments_.includes("--skip-build");
 const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "sta-packages-"));
 const packageDirectories = {
   sta: "core/frontend",
@@ -13,6 +18,7 @@ const packageDirectories = {
   "sta-bbox": "plugins/bbox/frontend",
   "sta-segmentation": "plugins/segmentation/frontend",
   "sta-vector": "plugins/vector/frontend",
+  "sta-relation": "plugins/relation/frontend",
 };
 
 function run(command, args, options = {}) {
@@ -35,7 +41,9 @@ function run(command, args, options = {}) {
 }
 
 try {
-  run("bash", ["scripts/build-dev.sh"]);
+  // An already rebuilt checkout can validate package consumers without
+  // starting the development backend or resetting its testing database.
+  if (!skipBuild) run("bash", ["scripts/build-dev.sh"]);
   const tarballs = {};
   for (const [name, directory] of Object.entries(packageDirectories)) {
     run(
@@ -57,6 +65,7 @@ try {
 
   const scenarios = {
     core: ["sta"],
+    relation: ["sta", "sta-relation"],
     pcd: ["sta", "sta-pcd"],
     gmesh: ["sta", "sta-gmesh"],
     bbox: ["sta", "sta-pcd", "sta-gmesh", "sta-bbox"],

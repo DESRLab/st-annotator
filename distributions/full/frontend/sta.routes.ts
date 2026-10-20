@@ -1,6 +1,7 @@
 import bboxRoutes from "../../../plugins/bbox/frontend/app/routes";
 import gmeshRoutes from "../../../plugins/gmesh/frontend/app/routes";
 import pcdRoutes from "../../../plugins/pcd/frontend/app/routes";
+import relationRoutes from "../../../plugins/relation/frontend/app/routes";
 import segmentationRoutes from "../../../plugins/segmentation/frontend/app/routes";
 import vectorRoutes from "../../../plugins/vector/frontend/app/routes";
 
@@ -20,6 +21,9 @@ export default {
     },
     vector: {
       routes: vectorRoutes,
+    },
+    relation: {
+      routes: relationRoutes,
     },
   },
 };

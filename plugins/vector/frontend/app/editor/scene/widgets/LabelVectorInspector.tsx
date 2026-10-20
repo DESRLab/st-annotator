@@ -41,6 +41,7 @@ import {
  */
 export interface VectorInspectorLabelsView extends SourceEventTarget {
   readonly data: ReadonlyVectorIndex | null;
+  setVectorHidden(id: UUID, hidden: boolean): void;
 
   iterLabelVectors(): IterableIterator<ReadonlyLabelVector>;
   iterLabelClasses(): IterableIterator<ReadonlyLabelClass>;
@@ -102,6 +103,7 @@ export function getLabelVectorInspectorPaneParams(
           selection: { vectorId: null },
         }
       : {
+          hidden: selectedVector.hidden ?? false,
           selection: { vectorId: selectedVector.id },
           relations: {
             classSelect: { classId: selectedVector.gtClassId },
@@ -220,8 +222,12 @@ export class LabelVectorInspector implements LabelVectorInspectorHandle {
     if (this.#disabled !== value) {
       this.#disabled = value;
 
-      // Need to update the settings
-      this.#render();
+      // Disabling controls must preserve draft annotation attributes.
+      this.#settings = {
+        ...this.#settings,
+        disabled: value || this.labelsView.data == null,
+      };
+      this.#notifyRender();
     }
   }
 
@@ -238,8 +244,9 @@ export class LabelVectorInspector implements LabelVectorInspectorHandle {
     if (this.#drawVectorActive !== value) {
       this.#drawVectorActive = value;
 
-      // Need to update the settings
-      this.#render();
+      // A tool toggle changes settings, not the draft annotation attributes.
+      this.#settings = { ...this.#settings, drawVectorActive: value };
+      this.#notifyRender();
     }
   }
 
@@ -267,8 +274,15 @@ export class LabelVectorInspector implements LabelVectorInspectorHandle {
   async #updateVector() {
     const { labelsView, selectedVector } = this;
     if (selectedVector == null) return;
-
     const { classId } = this.outputData;
+    if (
+      (selectedVector.hidden ?? false) !== (this.#inputtedData.hidden ?? false)
+    ) {
+      labelsView.setVectorHidden(
+        selectedVector.id,
+        this.#inputtedData.hidden ?? false,
+      );
+    }
 
     if (selectedVector.gtClassId !== classId) {
       const labelClass =

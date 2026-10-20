@@ -59,3 +59,5 @@ export type {
   EditorSceneContext,
   EditorWindowMapper,
 } from "./runtime";
+
+export * from "./labelElements";

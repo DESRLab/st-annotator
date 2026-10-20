@@ -116,7 +116,7 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
         (labelClass) => !branchData.hasLabelClass(labelClass.id, true),
       ),
       vectors: [...data.iterLabelVectors()].filter(
-        (vector) => !branchData.hasLabelVector(vector.id),
+        (vector) => !branchData.hasLabelVector(vector.id, true),
       ),
     });
     return branchData;
@@ -136,6 +136,16 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
     if (data == null) return null;
 
     const branchData = this.#mergeIntoBranch(frame, data);
+    this.#resolveHiddenIds();
+    for (const label of branchData.iterLabelVectors()) {
+      label.setHidden(
+        this.#hiddenLabels.has(
+          Placeholder.isPlaceholder(label.id) && label.id.isResolved
+            ? label.id.orElse("")
+            : label.id,
+        ),
+      );
+    }
 
     const validFrames = this.#loader.getFramesInWindow(frame);
     return new VectorIndexView(branchData, validFrames);
@@ -146,6 +156,27 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
     if (index == null) return null;
 
     return index as unknown as VectorIndex;
+  }
+
+  readonly #hiddenLabels = new Set<UUID>();
+
+  #resolveHiddenIds(): void {
+    for (const id of this.#hiddenLabels) {
+      if (Placeholder.isPlaceholder(id) && id.isResolved) {
+        this.#hiddenLabels.delete(id);
+        this.#hiddenLabels.add(id.orElse(""));
+      }
+    }
+  }
+
+  /** Retains visibility across loads for this editor session. */
+  setVectorHidden(id: UUID, hidden: boolean): void {
+    this.#resolveHiddenIds();
+    const key =
+      Placeholder.isPlaceholder(id) && id.isResolved ? id.orElse("") : id;
+    if (hidden) this.#hiddenLabels.add(key);
+    else this.#hiddenLabels.delete(key);
+    if (this.hasLabelVector(id)) this.getLabelVector(id).setHidden(hidden);
   }
 
   readonly #emptyIndex: VectorIndex;
@@ -275,6 +306,10 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
     any,
     any
   > {
+    get deletedElements() {
+      return this.op.deletedElements;
+    }
+
     readonly op: VectorOperation<any, any>;
 
     get displayName(): string {
@@ -293,14 +328,20 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
       super(dataView, op.opParams);
 
       this.op = op;
-      this.#acceptedIndex = dataView.#index;
+      const frame = dataView.frame;
+      this.#acceptedIndex =
+        frame == null || dataView.#index == null
+          ? null
+          : dataView.#branchIndexes.getValue(frame.label_branch_id);
     }
 
     /**
-     * The labels index this operation was accepted against. The
+     * The unfiltered branch index this operation was accepted against. The
      * operation applies to this revision even if the view navigates
      * to another frame/branch before the queued application runs, so
-     * it can never be redirected to another revision's labels.
+     * it can never be redirected to another revision's labels. Frame bounds
+     * only control visibility; an edit that moves its target outside them
+     * must remain undoable and must not invalidate already queued edits.
      */
     readonly #acceptedIndex: VectorIndex | null = null;
 
@@ -310,6 +351,10 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
      * as well, so the branch history can always be undone/redone.
      */
     #skippedStale = false;
+
+    get isNoop(): boolean {
+      return this.#skippedStale;
+    }
 
     /**
      * Applies this operation to the local data.
@@ -322,7 +367,7 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
      * corrupt the branch history.
      */
     applyLocal() {
-      const index = this.dataView.#index;
+      const index = this.#acceptedIndex ?? this.dataView.#index;
       if (index == null) {
         console.warn(
           "Attempted to apply operation when there is no available data:",
@@ -332,7 +377,7 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
       }
 
       try {
-        this.op.applyIndex(this.#acceptedIndex ?? index);
+        this.op.applyIndex(index);
       } catch (error) {
         if (error instanceof StaleTargetError) {
           console.warn("Skipped operation whose target label disappeared:");
@@ -351,7 +396,7 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
      * Reverts the changes applied by this operation to the local data.
      */
     undoLocal() {
-      const index = this.dataView.#index;
+      const index = this.#acceptedIndex ?? this.dataView.#index;
       if (index == null) {
         console.warn(
           "Attempted to apply operation when there is no available data:",
@@ -366,7 +411,7 @@ export class VectorView extends LabelDataView<ReadonlyVectorIndex> {
       }
 
       // Revert on the same revision the operation applied to.
-      this.op.undoIndex(this.#acceptedIndex ?? index);
+      this.op.undoIndex(index);
     }
   };
 

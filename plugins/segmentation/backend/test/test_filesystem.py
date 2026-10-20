@@ -118,3 +118,13 @@ def test_geom_converters_wkb_to_geojson_returns_geojson():
         "type": "MultiPoint",
         "coordinates": [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]],
     }
+
+
+def test_fractional_points_survive_geometry_round_trip():
+    points = [
+        DecimalCoord3(x="1.234567", y="-2.500001", z="3.125"),
+        DecimalCoord3(x="4.125", y="5.875", z="6.375"),
+    ]
+    geom = GeomConverters.geom_from_points(points)
+    assert GeomConverters.points_from_geom(geom) == points
+    assert GeomConverters.points_from_wkb(GeomConverters.geom_to_wkb(geom)) == points

@@ -123,3 +123,34 @@ describe("LabelBox", () => {
     });
   });
 });
+
+it("temporarily isolates boxes without replacing their local hidden preference", () => {
+  const { box } = makeBox();
+  box.setHidden(true);
+  box.setDisplayVisibility(true);
+  box.asObject3D().traverse((object) => {
+    if (
+      object instanceof THREE.Mesh &&
+      object.material instanceof THREE.MeshBasicMaterial
+    )
+      expect(object.material.opacity).to.be.greaterThan(0);
+    if (object instanceof THREE.LineSegments)
+      expect(object.material).not.to.be.instanceOf(THREE.LineDashedMaterial);
+  });
+  expect(box.hidden).to.equal(true);
+  expect(box.asObject3D().visible).to.equal(true);
+  box.setDisplayVisibility(false);
+  expect(box.asObject3D().visible).to.equal(false);
+  expect(box.raycast(new THREE.Raycaster())).to.deep.equal([]);
+  box.setDisplayVisibility(null);
+  expect(box.hidden).to.equal(true);
+  expect(box.asObject3D().visible).to.equal(true);
+  box.asObject3D().traverse((object) => {
+    if (
+      object instanceof THREE.Mesh &&
+      object.material instanceof THREE.MeshBasicMaterial
+    )
+      expect(object.material.opacity).to.equal(0);
+  });
+  box.dispose();
+});

@@ -28,6 +28,7 @@ import type {
   ListSelectionsLabelSpecObjclassSelectionsGetResponses,
   SegmentationData,
   VectorData,
+  RelationData,
 } from "sta/client";
 
 import type {
@@ -61,7 +62,7 @@ export interface LabelBulkResponseConformance {
   ResponseIsTypedUnion: AssertTrue<
     AssertExtends<
       LabelBulkResponse,
-      (BBoxData | VectorData | SegmentationData)[]
+      (BBoxData | VectorData | SegmentationData | RelationData)[]
     >
   >;
   /**
@@ -203,6 +204,28 @@ export interface ClassSelectionConformance {
     AssertExtends<
       ObjectClassSelectionPublic,
       z.input<typeof SegmentationClassSelectionState.PLAIN_SCHEMA>
+    >
+  >;
+}
+
+/** Relations retain a typed bulk payload with dynamic endpoint references. */
+export interface RelationConformance {
+  EndpointIdentity: AssertTrue<
+    AssertExtends<
+      RelationData["relations"][number]["source"],
+      { type: string; id: string }
+    >
+  >;
+  RequiredClass: AssertTrue<
+    AssertExtends<
+      RelationData["relations"][number]["relation_class_id"],
+      number
+    >
+  >;
+  ClassesAreIndependent: AssertTrue<
+    AssertExtends<
+      RelationData["classes"][number],
+      { id: number; name: string; color_rgb: number }
     >
   >;
 }

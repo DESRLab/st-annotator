@@ -46,6 +46,7 @@ export class EditState<WM extends MainWindowMapper> extends InteractState<WM> {
     super({
       context: context,
       keydownBinds: [
+        context.hideInSceneKeybind,
         {
           keyCombo: "escape",
           name: "Cancel edit vector",

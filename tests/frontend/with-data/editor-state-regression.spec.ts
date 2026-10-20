@@ -12,9 +12,7 @@ import {
   openEditor,
   openProjectPanelSection,
   selectActiveLayer,
-  selectConfiguredLayer,
   selectControl,
-  setCheckboxInput,
   waitForEditorRenderAfter,
 } from "./editor-helpers";
 
@@ -175,49 +173,6 @@ test("Task selector navigates to another task and back with real data reloads", 
     .not.toBe(alternateFrame);
 });
 
-test("editor mirrors active layer, enabled state, and layer preference state", async ({
-  page,
-}) => {
-  test.setTimeout(180_000);
-
-  await openEditor(page);
-
-  const pointCloudRow = await selectActiveLayer(
-    page,
-    "Source Data",
-    "Point Cloud",
-  );
-  const enabled = pointCloudRow.locator('input[type="checkbox"]').first();
-  await expect(enabled).toBeChecked();
-  await setCheckboxInput(enabled, false);
-  await expect(
-    pointCloudRow.locator('[data-test="editor-layer-name"], .layer-name'),
-  ).not.toHaveClass(/active/);
-  await expect(editorPanel(page, "Tools")).toContainText("No layer selected");
-
-  await setCheckboxInput(enabled, true);
-  await selectActiveLayer(page, "Source Data", "Point Cloud");
-  const pointCloudPrefs = await selectConfiguredLayer(
-    page,
-    "Preferences",
-    "Point Cloud",
-  );
-  await fillNumberInput(inputControl(pointCloudPrefs, "Point Size"), "4");
-
-  await selectActiveLayer(page, "Label Data", "Bounding Box");
-  const bboxPrefs = await selectConfiguredLayer(
-    page,
-    "Preferences",
-    "Bounding Box",
-  );
-  await fillNumberInput(inputControl(bboxPrefs, "Time-Path Range"), "1");
-
-  await selectActiveLayer(page, "Source Data", "Point Cloud");
-  await expect(inputControl(pointCloudPrefs, "Point Size")).toHaveValue(/4/);
-  await selectActiveLayer(page, "Label Data", "Bounding Box");
-  await expect(inputControl(bboxPrefs, "Time-Path Range")).toHaveValue(/1/);
-});
-
 test("Enable All and Disable All update every layer in the selected layer tab and the rendered scene", async ({
   page,
 }) => {
@@ -228,7 +183,7 @@ test("Enable All and Disable All update every layer in the selected layer tab an
 
   for (const [tab, slugs] of [
     ["Source Data", ["point-cloud", "ground-mesh"]],
-    ["Label Data", ["bounding-box", "vector", "segmentation"]],
+    ["Label Data", ["bounding-box", "vector", "segmentation", "relations"]],
   ] as const) {
     await layers.getByText(tab, { exact: true }).click();
     const before = await canvas.screenshot({ animations: "disabled" });

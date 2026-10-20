@@ -1,4 +1,4 @@
-import type { Placeholder } from "sta/app/editor";
+import type { LabelElementReference, Placeholder } from "sta/app/editor";
 
 import type { SegmentationIndex } from "../SegmentationIndex";
 
@@ -16,6 +16,11 @@ export class StaleTargetError extends Error {}
  * segmentation labels.
  */
 export abstract class SegmentationOperation<P, R extends {} | null = null> {
+  /** Elements deleted by this operation, for dependent-label history effects. */
+  get deletedElements(): readonly LabelElementReference[] {
+    return [];
+  }
+
   /**
    * The display name of this operation.
    */

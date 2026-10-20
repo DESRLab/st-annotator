@@ -331,6 +331,7 @@ export type ReadonlyLabelBox = Pick<
   | keyof THREE.EventDispatcher<LabelBoxEventMap>
   | "asObject3D"
   | "raycast"
+  | "setDisplayVisibility"
   | keyof LabelBoxParams
   | "entity"
   | "gtClass"
@@ -351,6 +352,15 @@ export type ReadonlyLabelBox = Pick<
  */
 export class LabelBox extends THREE.EventDispatcher<LabelBoxEventMap> {
   readonly #view: LabelBoxView;
+
+  #displayVisibility: boolean | null = null;
+
+  /** Applies a transient scene filter without changing local hidden preferences. */
+  setDisplayVisibility(visible: boolean | null): void {
+    this.#displayVisibility = visible;
+    this.#view.hidden = visible === true ? false : this.#hidden;
+    this.asObject3D().visible = visible !== false;
+  }
 
   /**
    * Returns a `three.js` representation of this bounding box.
@@ -373,6 +383,7 @@ export class LabelBox extends THREE.EventDispatcher<LabelBoxEventMap> {
     raycaster: THREE.Raycaster,
     intersects: THREE.Intersection[] = [],
   ): THREE.Intersection[] {
+    if (this.#displayVisibility === false) return intersects;
     return this.#view.raycast(raycaster, intersects);
   }
 
@@ -709,15 +720,16 @@ export class LabelBox extends THREE.EventDispatcher<LabelBoxEventMap> {
     }
   }
 
-  /**
-   * The opacity of the faces in this bounding box.
-   */
+  #hidden: boolean;
+
+  /** The session-local hide preference, independent of transient display filters. */
   get hidden(): boolean {
-    return this.#view.hidden;
+    return this.#hidden;
   }
   set hidden(value: boolean) {
-    if (this.#view.hidden === value) return;
-    this.#view.hidden = value;
+    if (this.#hidden === value) return;
+    this.#hidden = value;
+    this.setDisplayVisibility(this.#displayVisibility);
     this.dispatchEvent({ type: "change", obj: this, propertyKey: "hidden" });
   }
 
@@ -1086,6 +1098,7 @@ export class LabelBox extends THREE.EventDispatcher<LabelBoxEventMap> {
     this.#showPerceivedClass = params.showPerceivedClass ?? true;
     this.#showColor = params.showColor?.clone() ?? null;
 
+    this.#hidden = params.hidden ?? false;
     this.#view = new LabelBoxView({
       boxBuilder: LabelBox.#getBoxBuilder(params.boxType),
       position: LabelBox.#getPosition(this.config, params.center),

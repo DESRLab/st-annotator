@@ -235,6 +235,40 @@ describe("segmentation delete versus edit races (item 14)", () => {
     expect(selectionB.points).to.have.length(2);
   });
 
+  it.each([false, true])(
+    "undoes geometry outside the frame with queued class edit=%s",
+    async (queueClass) => {
+      const { view, branch } = await makeViewFixture(defaultFrameData());
+      const label = view.getLabelSelection("selection-a");
+      const original = label.points.map((point) => point.toArray());
+      const initial = branch.getHistory()[0].id;
+      const geometry = view.updateLabelPointSelection(label, "add", [
+        new THREE.Vector3(1000, 1000, 1000),
+        new THREE.Vector3(1001, 1001, 1001),
+      ]);
+      const classEdit = queueClass
+        ? view.updateLabelSelectionPerceivedClass(label, {
+            id: CLASS_PEDESTRIAN.id,
+          } as never)
+        : Promise.resolve();
+      await Promise.all([geometry, classEdit]);
+      expect(view.hasLabelSelection(label.id)).to.equal(false);
+      if (queueClass)
+        expect(label.perceivedClassId).to.equal(CLASS_PEDESTRIAN.id);
+      const edited = branch.getHistory().at(-1)!.id;
+      await branch.rebase(initial);
+      expect(view.hasLabelSelection(label.id)).to.equal(true);
+      expect(label.points.map((point) => point.toArray())).to.deep.equal(
+        original,
+      );
+      expect(label.perceivedClassId).to.equal(CLASS_CAR.id);
+      await branch.rebase(edited);
+      expect(view.hasLabelSelection(label.id)).to.equal(false);
+      if (queueClass)
+        expect(label.perceivedClassId).to.equal(CLASS_PEDESTRIAN.id);
+    },
+  );
+
   const staleOps: [
     string,
     (
@@ -302,6 +336,16 @@ describe("segmentation delete versus edit races (item 14)", () => {
       await branch.rebase(history[2].id); // redo both
       expect(view.hasLabelSelection("selection-a")).to.equal(false);
       expect(selectionB.perceivedClassId).to.equal(CLASS_CAR.id);
+
+      const push = vi.spyOn(branch.views, "pushCommits").mockResolvedValue({
+        op_results: [null],
+        branch: LabelsetBranchState.fromJSON(makeBranchStateJson(3)),
+      });
+      await branch.pushActive(1);
+      expect(
+        push.mock.calls[0][2].commits.map((commit) => commit.op_name),
+      ).to.deep.equal(["selection-delete"]);
+      expect(branch.hasUnsavedChanges).to.equal(false);
     },
   );
 
@@ -415,6 +459,12 @@ describe("segmentation delete versus edit races (item 14)", () => {
         id: CLASS_PEDESTRIAN.id,
       } as never),
     );
+    // Navigation can leave the current view empty while an accepted edit runs.
+    await view.setFrame(null);
+    updateOp.applyLocal();
+    expect(selectionA.perceivedClassId).to.equal(CLASS_PEDESTRIAN.id);
+    updateOp.undoLocal();
+    expect(selectionA.perceivedClassId).to.equal(CLASS_CAR.id);
     await view.setFrame(makeFrame(2, 4));
     const forkedLabel = view.getLabelSelection("selection-a");
 

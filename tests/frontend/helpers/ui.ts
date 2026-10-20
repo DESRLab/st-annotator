@@ -257,15 +257,22 @@ export async function expectNonPaginatedMultiSelectButtons(
   await expect(selectAll).toBeVisible();
 }
 
-async function clickVisibleCommand(page: Page, commandText: string) {
-  const menu = page.getByRole("menu");
-  if (await menu.isVisible().catch(() => false)) {
-    await menu.getByText(commandText, { exact: true }).click();
-    return;
-  }
-
-  // The menu is portalled, so a host that dropped the role still shows the text.
-  await page.getByText(commandText, { exact: true }).click();
+async function openContextMenuCommand(
+  page: Page,
+  row: Locator,
+  commandText: string,
+) {
+  // A grid refresh can remove the portalled menu between opening and clicking
+  // it. Retry the opening gesture too; retrying only the missing item hangs.
+  // Selection happens outside the retry so batch selections stay intact.
+  await expect(async () => {
+    await row.click({ button: "right", timeout: 5_000 });
+    const menu = page.getByRole("menu");
+    const command = (await menu.isVisible())
+      ? menu.getByText(commandText, { exact: true })
+      : page.getByText(commandText, { exact: true });
+    await command.click({ timeout: 5_000 });
+  }).toPass({ timeout: 30_000 });
 }
 
 export async function openRowCommand(
@@ -282,8 +289,7 @@ export async function openRowCommand(
   if (!options.keepSelection) {
     await row.click();
   }
-  await row.click({ button: "right" });
-  await clickVisibleCommand(page, commandText);
+  await openContextMenuCommand(page, row, commandText);
 }
 
 /**
@@ -298,8 +304,7 @@ export async function openSelectionCommand(
   commandText: string,
 ) {
   await expect(row).toBeVisible();
-  await row.click({ button: "right" });
-  await clickVisibleCommand(page, commandText);
+  await openContextMenuCommand(page, row, commandText);
 }
 
 /**

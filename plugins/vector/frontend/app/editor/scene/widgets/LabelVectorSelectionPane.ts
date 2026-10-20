@@ -59,7 +59,9 @@ export const renderTriggers = {
 
   "vector-resolveId": true,
   "vector-update": (e: VectorIndexEventMap["vector-update"]) =>
-    e.propertyKey === "id" || e.propertyKey === "gtClassId",
+    e.propertyKey === "hidden" ||
+    e.propertyKey === "id" ||
+    e.propertyKey === "gtClassId",
   "class-update": (e: VectorIndexEventMap["class-update"]) =>
     e.propertyKey === "name",
 };

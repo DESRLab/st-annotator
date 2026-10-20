@@ -2,7 +2,7 @@
 
 import click
 
-from . import rscan, semantickitti
+from . import argoverse2, rscan, semantickitti
 
 
 @click.group()
@@ -12,3 +12,4 @@ def cli() -> None:
 
 cli.add_command(semantickitti.cli, "semantickitti")
 cli.add_command(rscan.cli, "3rscan")
+cli.add_command(argoverse2.cli, "argoverse2")

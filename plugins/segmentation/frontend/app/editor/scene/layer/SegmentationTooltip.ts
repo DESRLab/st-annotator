@@ -99,7 +99,7 @@ export function getSegmentationTooltipContent(
     .join(" | ");
 
   return {
-    className: "selection-tooltip",
+    className: "segmentation-tooltip",
     lines: [idText, tsText, classText, descriptorText].filter(
       (s) => s.length > 0,
     ),

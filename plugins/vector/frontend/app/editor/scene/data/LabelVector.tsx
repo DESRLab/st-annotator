@@ -53,7 +53,9 @@ class LabelVectorView {
   set vectorBuilder(value: VectorBuilder) {
     if (this.#vectorBuilder !== value) {
       this.#vectorBuilder = value;
-      this.#vectorGeo = LabelVectorView.#createVector(value, this);
+      const next = LabelVectorView.#createVector(value, this);
+      this.#vectorGeo.dispose();
+      this.#vectorGeo = next;
     }
   }
 
@@ -61,7 +63,9 @@ class LabelVectorView {
     builder: VectorBuilder,
     params: LabelVectorViewParams | VectorBuilderParams,
   ): VectorGeo<Line | Point> {
-    return builder.createVector(params as VectorBuilderParams);
+    const geometry = builder.createVector(params as VectorBuilderParams);
+    geometry.enableCenter();
+    return geometry;
   }
 
   // The display color of the object vector.
@@ -111,7 +115,7 @@ export interface LabelVectorParams {
 
 export interface PropertyChangeEvent {
   obj: LabelVector;
-  propertyKey: Exclude<keyof LabelVectorParams, "config" | "labels">;
+  propertyKey: Exclude<keyof LabelVectorParams, "config" | "labels"> | "hidden";
 }
 
 export interface LabelVectorEventMap {
@@ -123,7 +127,11 @@ export type ReadonlyLabelVector = Pick<
   | keyof THREE.EventDispatcher<LabelVectorEventMap>
   | "asObject3D"
   | "getGeo"
+  | "centerPoint"
   | "raycast"
+  | "setDisplayVisibility"
+  | "hidden"
+  | "setHidden"
   | "rollbackCoords"
   | keyof LabelVectorParams
   | "gtClass"
@@ -139,12 +147,40 @@ export type ReadonlyLabelVector = Pick<
 export class LabelVector extends THREE.EventDispatcher<LabelVectorEventMap> {
   readonly #view: LabelVectorView;
 
+  #displayVisibility: boolean | null = null;
+
+  /** Applies a transient scene filter without changing local hidden preferences. */
+  setDisplayVisibility(visible: boolean | null): void {
+    this.#displayVisibility = visible;
+    this.asObject3D().visible = visible !== false;
+    this.#view.vectorGeo.setHidden(!(visible ?? !this.hidden));
+  }
+
+  #hidden = false;
+
+  /** Session-local visibility, independent of saved label data. */
+  get hidden(): boolean {
+    return this.#hidden;
+  }
+
+  setHidden(value: boolean): void {
+    if (this.#hidden === value) return;
+    this.#hidden = value;
+    this.setDisplayVisibility(this.#displayVisibility);
+    this.dispatchEvent({ type: "change", obj: this, propertyKey: "hidden" });
+  }
+
   asObject3D(): THREE.Object3D {
     return this.#view.asObject3D();
   }
 
   getGeo(): VectorGeo<Line | Point> {
     return this.#view.vectorGeo;
+  }
+
+  /** The centroid in scene coordinates, shared with the clickable marker. */
+  get centerPoint(): Readonly<THREE.Vector3> {
+    return this.#view.vectorGeo.centerPoint;
   }
 
   /**
@@ -170,6 +206,7 @@ export class LabelVector extends THREE.EventDispatcher<LabelVectorEventMap> {
     raycaster: THREE.Raycaster,
     intersects: THREE.Intersection[] = [],
   ): THREE.Intersection[] {
+    if (this.#displayVisibility === false) return intersects;
     return this.#view.raycast(raycaster, intersects);
   }
 
@@ -342,6 +379,7 @@ export class LabelVector extends THREE.EventDispatcher<LabelVectorEventMap> {
     const view = this.#view;
     const labels = this.#labels;
     view.vectorBuilder = LabelVector.#getVectorBuilder(vectorType);
+    this.setDisplayVisibility(this.#displayVisibility);
 
     if (labels == null) return;
 
@@ -450,6 +488,7 @@ export class LabelVector extends THREE.EventDispatcher<LabelVectorEventMap> {
   }
 
   dispose() {
+    this.#view.vectorGeo.dispose();
     this.#labels?.removeEventListener("vector-add", this.#onVectorChange);
     this.#labels?.removeEventListener("vector-delete", this.#onVectorChange);
     this.#labels?.removeEventListener("vector-update", this.#onVectorChange);

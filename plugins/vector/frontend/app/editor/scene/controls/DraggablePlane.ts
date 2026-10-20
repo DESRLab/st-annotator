@@ -3,53 +3,23 @@ import * as THREE from "three";
 import { DraggableElement } from "sta/app/editor";
 import type { Axis } from "sta/app/editor";
 
+/** A planar drag target for the vector's existing centroid marker. */
 export class DraggablePlane extends DraggableElement {
-  /**
-   * The plane that can be dragged.
-   */
-  #plane: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>;
+  // Picking geometry only: the label already renders the centroid point.
+  readonly #target: THREE.Points;
 
-  /**
-   * This method is invoked whenever the state of this element is changed.
-   */
+  readonly #plane: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
+
   onStateChanged() {
-    switch (this.state) {
-      case "none":
-        this.#plane.material.color.setColorName("gray");
-        break;
-      case "hovered":
-        this.#plane.material.color.setColorName("lightgray");
-        break;
-      case "dragged":
-        this.#plane.material.color.setColorName("white");
-        break;
-      default:
-        throw new Error(`Invalid state: ${this.state}`);
-    }
+    this.#plane.material.color.setColorName(
+      this.state === "dragged"
+        ? "white"
+        : this.state === "hovered"
+          ? "lightgray"
+          : "gray",
+    );
   }
 
-  /**
-   * Displays the local `x` axis.
-   */
-  #axisXHelper: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>;
-
-  /**
-   * Displays the local `y` axis.
-   */
-  #axisYHelper: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>;
-
-  /**
-   * Creates a new vertex in a {@link TransformControls} that can be dragged to resize an object.
-   *
-   * @param axes The axes along which transformation can take place when the
-   * element is clicked and dragged, in terms of the model space of the object being transformed.
-   * @param draggableAxes The axes along which this element can be dragged,
-   * in terms of the model space of the object being transformed.
-   * @param position The coordinates of the plane in model space, where the set
-   * of controls has unit dimensions.
-   * @param height The height of the plane.
-   * @param width The width of the plane.
-   */
   constructor(
     axes: readonly Axis[],
     draggableAxes: readonly Axis[],
@@ -58,51 +28,29 @@ export class DraggablePlane extends DraggableElement {
     width = 1,
   ) {
     super(axes, draggableAxes, position);
-
-    const planeMaterial = new THREE.MeshBasicMaterial({
-      color: "gray",
-      transparent: true,
-      opacity: 0.1,
-      side: THREE.DoubleSide,
-    });
+    this.#target = new THREE.Points(
+      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3()]),
+      new THREE.PointsMaterial({ visible: false }),
+    );
     this.#plane = new THREE.Mesh(
       new THREE.PlaneGeometry(width, height),
-      planeMaterial,
+      new THREE.MeshBasicMaterial({
+        color: "gray",
+        transparent: true,
+        opacity: 0.1,
+        side: THREE.DoubleSide,
+      }),
     );
-    this.add(this.#plane);
-
-    const axisMaterial = new THREE.MeshBasicMaterial({
-      color: "yellow",
-      transparent: true,
-      opacity: 0.1,
-      side: THREE.DoubleSide,
-    });
-    this.#axisXHelper = new THREE.Mesh(
-      new THREE.PlaneGeometry(1, 0.5),
-      axisMaterial,
-    );
-    this.#axisYHelper = new THREE.Mesh(
-      new THREE.PlaneGeometry(0.5, 1),
-      axisMaterial,
-    );
-    this.add(this.#axisXHelper, this.#axisYHelper);
+    this.add(this.#plane, this.#target);
   }
 
-  /**
-   * Performs raycasting against this object.
-   *
-   * @param raycaster The caster of the ray.
-   * @returns Refer to the `raycast` method of {@link THREE.Object3D}.
-   */
-  raycast(raycaster: THREE.Raycaster) {
+  raycast(raycaster: THREE.Raycaster): THREE.Intersection[] {
     if (!this.visible) return [];
-
-    const intersects = raycaster.intersectObject(this.#axisXHelper, false);
-
-    if (intersects.length > 0) {
-      intersects[0].object = this;
-    }
-
+    const intersects = raycaster.intersectObjects(
+      [this.#plane, this.#target],
+      false,
+    );
+    for (const intersection of intersects) intersection.object = this;
     return intersects;
   }
 }

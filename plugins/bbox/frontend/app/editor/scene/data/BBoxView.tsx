@@ -553,6 +553,10 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
       /**
        * The wrapped operation.
        */
+      get deletedElements() {
+        return this.op.deletedElements;
+      }
+
       readonly op: BBoxOperation<any, any>;
 
       /**
@@ -579,10 +583,12 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
       }
 
       /**
-       * The labels index this operation was accepted against. The
+       * The unfiltered branch index this operation was accepted against. The
        * operation applies to this revision even if the view navigates
        * to another frame/branch before the queued application runs, so
-       * it can never be redirected to another revision's labels.
+       * it can never be redirected to another revision's labels. Frame bounds
+       * only control visibility; an edit that moves its target outside them
+       * must remain undoable and must not invalidate already queued edits.
        */
       readonly #acceptedIndex: BBoxIndex | null;
 
@@ -593,6 +599,10 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
        */
       #skippedStale = false;
 
+      get isNoop(): boolean {
+        return this.#skippedStale;
+      }
+
       /**
        * Creates a new operation by wrapping an operation that acts on
        * bounding box labels.
@@ -601,7 +611,11 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
         super(dataView, op.opParams);
 
         this.op = op;
-        this.#acceptedIndex = dataView.#index;
+        const frame = dataView.frame;
+        this.#acceptedIndex =
+          frame == null || dataView.#index == null
+            ? null
+            : dataView.#branchIndexes.getValue(frame.label_branch_id);
       }
 
       /**
@@ -617,7 +631,7 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
       applyLocal(): void {
         // We apply the operation in this roundabout way to avoid exposing
         // the mutable index
-        const index = this.dataView.#index;
+        const index = this.#acceptedIndex ?? this.dataView.#index;
         if (index == null) {
           console.warn(
             "Attempted to apply operation when there is no available data:",
@@ -627,7 +641,7 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
         }
 
         try {
-          this.op.applyIndex(this.#acceptedIndex ?? index);
+          this.op.applyIndex(index);
         } catch (error) {
           if (error instanceof StaleTargetError) {
             console.warn("Skipped operation whose target label disappeared:");
@@ -648,7 +662,7 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
       undoLocal(): void {
         // We apply the operation in this roundabout way to avoid exposing
         // the mutable index
-        const index = this.dataView.#index;
+        const index = this.#acceptedIndex ?? this.dataView.#index;
         if (index == null) {
           console.warn(
             "Attempted to apply operation when there is no available data:",
@@ -663,7 +677,7 @@ export class BBoxView extends LabelDataView<ReadonlyBBoxIndex> {
         }
 
         // Revert on the same revision the operation applied to.
-        this.op.undoIndex(this.#acceptedIndex ?? index);
+        this.op.undoIndex(index);
       }
     };
 

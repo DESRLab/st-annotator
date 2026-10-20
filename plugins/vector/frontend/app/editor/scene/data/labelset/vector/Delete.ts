@@ -32,6 +32,10 @@ export class Delete extends VectorOperation<DeleteVectorParams, null> {
     return null;
   }
 
+  get deletedElements() {
+    return [{ type: "vector", id: this.opParams.vector_id }];
+  }
+
   #deletedVectorParams: any = undefined;
 
   /**

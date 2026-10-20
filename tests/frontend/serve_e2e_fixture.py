@@ -64,6 +64,11 @@ from sta_pcd.domain.source.data import metadata as pcd_metadata_domain
 from sta_pcd.domain.source.spec import specs as pcd_specs_domain
 from sta_pcd.models.source.data import PointCloudMetadata, PointCloudMetadataCreate
 from sta_pcd.models.source.spec import PointCloudConfig, PointCloudSpecCreate
+from sta_relation.domain.classes import (
+    definitions as relation_definitions,
+    selections as relation_selections,
+)
+from sta_relation.models.classes import RelationClassCreate, RelationClassSelectionCreate
 from sta_segmentation.domain.label.data import element as seg_element_domain
 from sta_segmentation.models.label.data import LabelSelection
 from sta_vector.domain.label.data import element as vector_element_domain
@@ -408,6 +413,26 @@ def create_e2e_label_branch(
             description="Synthetic e2e object classes",
             group_ids=[label_group.id],
             objclass_ids=[objclass.id for objclass in objclasses],
+        ),
+    )
+
+    relation_class = relation_definitions.create_relclass(
+        current_user=current_user,
+        session=session,
+        data=RelationClassCreate(name="supports", color_rgb=0xFFAA00),
+    )
+    reverse_relation_class = relation_definitions.create_relclass(
+        current_user=current_user,
+        session=session,
+        data=RelationClassCreate(name="behind", color_rgb=0x00AAFF),
+    )
+    relation_selections.create_spec(
+        current_user=current_user,
+        session=session,
+        data=RelationClassSelectionCreate(
+            name="E2E relation classes",
+            group_ids=[label_group.id],
+            relclass_ids=[relation_class.id, reverse_relation_class.id],
         ),
     )
 

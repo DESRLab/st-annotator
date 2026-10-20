@@ -10,6 +10,10 @@ import {
   inputControl,
   isButtonSelected,
   isEditorDataResponse,
+  loadEditorFixture,
+  projectLabelPoint,
+  SEED_IDS,
+  setCameraMode,
   openEditor,
   openProjectPanelSection,
   readCurrentFrameId,
@@ -231,21 +235,55 @@ test.describe("annotation editor hotkeys", () => {
       .toBe(transparentBeforeDeactivation);
   });
 
-  test("bbox T toggles tooltips while the bbox layer is active", async ({
-    page,
-  }) => {
-    await openEditor(page);
-    await selectActiveLayer(page, "Label Data", "Bounding Box");
-    const prefs = await selectConfiguredLayer(
+  for (const layerName of ["Bounding Box", "Vector", "Segmentation"]) {
+    test(`${layerName} T toggles tooltips while its layer is active`, async ({
       page,
-      "Preferences",
-      "Bounding Box",
-    );
-    const tooltips = checkboxControl(prefs, "Show tooltips");
-    const initialTooltips = await tooltips.isChecked();
-    await pressEditorKey(page, "t");
-    await expect.poll(() => tooltips.isChecked()).toBe(!initialTooltips);
-  });
+    }) => {
+      const fixture = await loadEditorFixture(page);
+      await openEditor(page, fixture.frames[2]);
+      await setCameraMode(page, "2D");
+      await selectActiveLayer(page, "Label Data", layerName);
+      const prefs = await selectConfiguredLayer(page, "Preferences", layerName);
+      const tooltips = checkboxControl(prefs, "Show tooltips");
+      await expect(tooltips).toBeEnabled();
+      const initialTooltips = await tooltips.isChecked();
+      const tooltipClass =
+        layerName === "Bounding Box"
+          ? "bbox-tooltip"
+          : layerName === "Vector"
+            ? "vector-tooltip"
+            : "segmentation-tooltip";
+      const tooltip = page.locator(`.${tooltipClass}`).first();
+      await pressEditorKey(page, "t");
+      await expect.poll(() => tooltips.isChecked()).toBe(!initialTooltips);
+      await expect(tooltip).toBeVisible({ visible: !initialTooltips });
+      if (layerName === "Vector" && !initialTooltips) {
+        const centroid = await projectLabelPoint(page, {
+          layer: "vector",
+          id: SEED_IDS.polyline,
+          index: 1,
+        });
+        const bounds = await tooltip.boundingBox();
+        expect(bounds).not.toBeNull();
+        expect(
+          Math.abs(bounds!.x + bounds!.width / 2 - centroid.x),
+        ).toBeLessThan(2);
+        expect(
+          Math.abs(bounds!.y + bounds!.height + 12 - centroid.y),
+        ).toBeLessThan(2);
+      }
+      await pressEditorKey(page, "t");
+      await expect.poll(() => tooltips.isChecked()).toBe(initialTooltips);
+      const controls = await selectConfiguredLayer(page, "Controls", layerName);
+      const binding =
+        layerName === "Bounding Box"
+          ? "Toggle box tooltips"
+          : layerName === "Vector"
+            ? "Toggle vector tooltips"
+            : "Toggle selection tooltips";
+      await expect(controls).toContainText(binding);
+    });
+  }
 
   test("bbox Shift constrains drawing while held", async ({ page }) => {
     test.setTimeout(180_000);
@@ -424,7 +462,7 @@ test.describe("annotation editor hotkeys", () => {
     const vectorRow = layers.locator('[data-test="editor-layer-row-vector"]');
     for (const [key, mode] of [
       ["k", "Polygon"],
-      ["l", "line"],
+      ["l", "Line"],
       ["p", "Point"],
     ] as const) {
       await pressEditorKey(page, key);

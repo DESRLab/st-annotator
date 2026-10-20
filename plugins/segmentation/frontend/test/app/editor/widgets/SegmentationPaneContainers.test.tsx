@@ -424,7 +424,7 @@ describe("segmentation pane containers", () => {
     await view.unmount();
   });
 
-  it("disables point opacity when transparent points are turned off", async () => {
+  it("disables and re-enables point opacity with transparent points", async () => {
     const view = await renderPane(
       createSegmentationSlice(),
       createRecordingIntents(),
@@ -449,6 +449,14 @@ describe("segmentation pane containers", () => {
     expect(
       row("Point opacity")?.querySelector<HTMLInputElement>("input")?.disabled,
     ).toBe(true);
+    await act(async () => {
+      row("Transparent Points")
+        ?.querySelector<HTMLInputElement>('input[type="checkbox"]')
+        ?.click();
+    });
+    expect(
+      row("Point opacity")?.querySelector<HTMLInputElement>("input")?.disabled,
+    ).toBe(false);
     await view.unmount();
   });
 

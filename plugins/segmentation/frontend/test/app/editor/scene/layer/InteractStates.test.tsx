@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { describe, expect, it, vi } from "vitest";
 
 import { Timestamp } from "sta/common";
+import { DistinctiveLevel, OcclusionLevel } from "../../../../../models";
 
 import { DrawSelectionState } from "../../../../../app/editor/scene/layer/DrawSelectionState";
 import { NavigationState } from "../../../../../app/editor/scene/layer/NavigationState";
@@ -274,6 +275,25 @@ describe("segmentation double-create from duplicate input routes", () => {
     fixture.context.setAction("draw");
     return fixture;
   }
+
+  it("carries the chosen selection class and descriptors into manual creation", async () => {
+    const { context, dataView, selectionController } = makeReadyDrawFixture();
+    vi.spyOn(context.selectionInspector, "getSelectionParams").mockReturnValue({
+      entityId: null,
+      perceivedClassId: 7,
+      distinctiveLv: DistinctiveLevel.Excellent,
+      occlusionLv: OcclusionLevel.Satisfactory,
+    });
+    expect(selectionController.startGesture("box")).toBe(true);
+    expect(selectionController.finishGesture(GESTURE_POINTS)).toBe(true);
+    await vi.waitFor(() =>
+      expect(dataView.addLabelSelection).toHaveBeenCalledOnce(),
+    );
+    const selection = dataView.addLabelSelection.mock.calls[0][0];
+    expect(selection.perceivedClassId).toBe(7);
+    expect(selection.distinctiveLv).toBe(DistinctiveLevel.Excellent);
+    expect(selection.occlusionLv).toBe(OcclusionLevel.Satisfactory);
+  });
 
   it.each([["the hotkey arrives first"], ["the canvas release arrives first"]])(
     "commits exactly one selection when %s in the same tick",
@@ -712,4 +732,41 @@ describe("segmentation pointer/keyboard conflict during selection edit (plan ite
       expectGestureSettled(fixture);
     },
   );
+});
+
+describe("hide-in-scene shortcut", () => {
+  it("uses H to hide and show the inspected label", async () => {
+    const { context, dataView, setPointCloudUtils, applyLayerGate, key } =
+      createInteractContextFixture();
+    expect(
+      context.contextKeybinds.filter((binding) => binding.keyCombo === "h"),
+    ).toEqual([context.hideInSceneKeybind]);
+    const label = createLabelSelectionFixture();
+    dataView.data = createLoadedIndex();
+    dataView.selections.set(String(label.id), label);
+    setPointCloudUtils(pointCloudUtils);
+    applyLayerGate(true);
+    await context.transitionEditSelection({
+      selectionId: label.id,
+      selection: label,
+      promptedData: null,
+    });
+    expect(
+      context.contextKeybinds.filter((binding) => binding.keyCombo === "h"),
+    ).toEqual([context.hideInSceneKeybind]);
+    key("h");
+    expect(dataView.setSelectionHidden).toHaveBeenLastCalledWith(
+      label.id,
+      true,
+    );
+    expect(label.hidden).toBe(true);
+    key("h");
+    expect(dataView.setSelectionHidden).toHaveBeenLastCalledWith(
+      label.id,
+      false,
+    );
+    expect(label.hidden).toBe(false);
+    context.currentState?.dispose();
+    label.dispose();
+  });
 });

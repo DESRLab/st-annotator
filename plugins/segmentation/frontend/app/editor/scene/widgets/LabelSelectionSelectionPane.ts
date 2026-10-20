@@ -61,6 +61,7 @@ export const renderTriggers: InspectorPaneRenderTrigger<SegmentationIndexEventMa
     // Display text is changed
     "selection-resolveId": true,
     "selection-update": (e) =>
+      e.propertyKey === "hidden" ||
       e.propertyKey === "id" ||
       e.propertyKey === "entityId" ||
       e.propertyKey === "perceivedClassId",

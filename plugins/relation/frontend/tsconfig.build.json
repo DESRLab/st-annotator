@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["app", "models"],
+  "exclude": ["dist", "node_modules", "test", "**/*.test.ts", "**/*.test.tsx"],
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "declaration": true,
+    "declarationMap": true,
+    "jsx": "react-jsx",
+    "noEmit": false,
+    "outDir": "dist",
+    "paths": {
+      "mathjs": ["../../node_modules/mathjs"],
+      "slickgrid-react": ["node_modules/slickgrid-react/dist/index.d.ts"],
+      "sta/app": ["./dist/app/plugin"],
+      "sta/*": ["./dist/*"]
+    },
+    "rootDir": ".",
+    "rewriteRelativeImportExtensions": true,
+    "sourceMap": true
+  }
+}

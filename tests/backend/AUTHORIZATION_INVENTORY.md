@@ -100,6 +100,23 @@ only; their commented mutation sketches are not registered HTTP operations and
 therefore are not inventory entries. GMesh and PCD do not expose separate custom
 editor endpoints—the core editor bulk source-data operation supplies their data.
 
+## Label relation operations
+
+Relation data is read through `GET /label/data/relation/` with label-group
+visibility checks. Relation creation, class/endpoint replacement, and deletion
+use the protected labelset push endpoint and require WRITE access to the branch.
+Endpoint resolution uses the same group and revision as the relation.
+
+Relation-class definitions under `/label/spec/relation-class/definitions` are
+readable by authenticated users. Definition and selection writes, including
+bulk operations, require `data-manager`. Selection reads under
+`/label/spec/relation-class/selections` follow label-group visibility. Both
+families expose filtered `/ids` reads for whole-list selection. Definition
+deletion is soft, so historical relation labels retain their class names.
+
+The relation-data page is read-only. Class forms show mutation controls only
+for data managers; project managers can inspect them without saving changes.
+
 ## Frontend-only boundaries
 
 The tests named here are the auditable Phase 3 map. Plugin pages inherit the

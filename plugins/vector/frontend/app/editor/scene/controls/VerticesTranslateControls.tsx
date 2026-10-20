@@ -1,7 +1,6 @@
 import * as THREE from "three";
 
 import type { WindowPointer } from "sta/app/editor";
-import { ThreeUtils } from "sta/common";
 
 import { Controls } from "./Controls";
 import { DraggablePlane } from "./DraggablePlane";
@@ -11,37 +10,28 @@ import { DraggablePlane } from "./DraggablePlane";
  */
 export class VerticesTranslateControls extends Controls<DraggablePlane> {
   /**
-   * Creates the elements pf this set of cpntrols.
+   * Creates the centroid drag handle.
    *
    * @param vectorCoords The vertices of vector object
    * in threejs coordinates system.
-   * @returns The requested elemetns.
+   * @returns The centroid handle.
    */
   static createElements(vectorCoords: readonly THREE.Vector3[]) {
-    const draggableElements: DraggablePlane[] = [];
+    // A polygon repeats its first vertex to close the ring; count it once.
+    const points =
+      vectorCoords.length > 3 &&
+      vectorCoords[0].equals(vectorCoords[vectorCoords.length - 1])
+        ? vectorCoords.slice(0, -1)
+        : vectorCoords;
+    const centroid = new THREE.Vector3();
+    for (const point of points) centroid.add(point);
+    centroid.divideScalar(points.length);
 
-    const { min, max } = ThreeUtils.findMinMax(vectorCoords);
-    const minCoords = min.clone();
-    const maxCoords = max.clone();
-
-    const width = maxCoords.clone().x - minCoords.clone().x;
-    const height = maxCoords.clone().z - minCoords.clone().z;
-
-    const centerCoords = maxCoords
-      .clone()
-      .add(minCoords.clone())
-      .divideScalar(2);
-
-    const draggablePlane = new DraggablePlane(
-      ["X", "Z"],
-      ["X", "Z"],
-      centerCoords,
-      height,
-      width,
-    );
-    draggableElements.push(draggablePlane);
-
-    return draggableElements;
+    const bounds = new THREE.Box3().setFromPoints([...vectorCoords]);
+    const size = bounds.getSize(new THREE.Vector3());
+    return [
+      new DraggablePlane(["X", "Z"], ["X", "Z"], centroid, size.z, size.x),
+    ];
   }
 
   /**
@@ -77,13 +67,6 @@ export class VerticesTranslateControls extends Controls<DraggablePlane> {
     if (draggedElement == null || object == null || initObjectState == null)
       return;
 
-    const newPos = nextPointerWorldPos.clone();
-    if (!this.isAxisVisible("X")) newPos.x = 0;
-    if (!this.isAxisVisible("Y")) newPos.y = 0;
-    if (!this.isAxisVisible("Z")) newPos.z = 0;
-
-    draggedElement.position.copy(newPos);
-
     const deltaWorld = nextPointerWorldPos.clone().sub(initPointerWorldPos);
 
     if (!this.isAxisVisible("X")) deltaWorld.x = 0;
@@ -102,6 +85,7 @@ export class VerticesTranslateControls extends Controls<DraggablePlane> {
     obj3D.geometry.getAttribute("position").needsUpdate = true;
 
     object.vectorCoords = newCoords;
+    draggedElement.position.copy(object.centerPoint);
   }
 
   /**

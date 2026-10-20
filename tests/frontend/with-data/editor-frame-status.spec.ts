@@ -45,7 +45,7 @@ async function selectFrameStatus(
   await expect(radio).toBeChecked();
 }
 
-test("Incomplete/Complete frame status persists across page reloads", async ({
+test("frame status updates progress and persists across page reloads", async ({
   page,
 }) => {
   test.setTimeout(240_000);
@@ -54,7 +54,19 @@ test("Incomplete/Complete frame status persists across page reloads", async ({
   const changedStatus =
     initialStatus === "Complete" ? "Incomplete" : "Complete";
 
+  const project = editorPanel(page, "Project");
+  await clickElement(exactButton(project, "Task"));
+  const progress = inputControl(project, "Frame Progress");
+  const before = await progress.inputValue();
+  const counts = /^(\d+)\/(\d+) /.exec(before)!;
+  const completed = Number(counts[1]);
+  const total = Number(counts[2]);
+  const changedCompleted = completed + (fixture.frame.is_complete ? -1 : 1);
+  const changedProgress = `${changedCompleted}/${total} (${((changedCompleted / total) * 100).toPrecision(3)}%) completed`;
+
   await selectFrameStatus(page, changedStatus);
+  await clickElement(exactButton(project, "Task"));
+  await expect(progress).toHaveValue(changedProgress);
   await page.reload();
   await expect(page.locator("#main-window")).toBeVisible({ timeout: 60_000 });
   await clickElement(exactButton(editorPanel(page, "Project"), "Frame"));
@@ -64,6 +76,9 @@ test("Incomplete/Complete frame status persists across page reloads", async ({
       exact: true,
     }),
   ).toBeChecked();
+
+  await clickElement(exactButton(project, "Task"));
+  await expect(progress).toHaveValue(changedProgress);
 
   // Restore the fixture so this persistence test is order-independent.
   await selectFrameStatus(page, initialStatus);
@@ -76,26 +91,6 @@ test("Incomplete/Complete frame status persists across page reloads", async ({
       exact: true,
     }),
   ).toBeChecked();
-});
-
-test("Frame Progress content updates when the current frame status changes", async ({
-  page,
-}) => {
-  test.setTimeout(180_000);
-  const fixture = await openEditor(page);
-  const project = editorPanel(page, "Project");
-  await clickElement(exactButton(project, "Task"));
-  const progress = inputControl(project, "Frame Progress");
-  const before = await progress.inputValue();
-  const initialStatus = fixture.frame.is_complete ? "Complete" : "Incomplete";
-  const changedStatus =
-    initialStatus === "Complete" ? "Incomplete" : "Complete";
-  await selectFrameStatus(page, changedStatus);
-  await clickElement(exactButton(project, "Task"));
-  await expect(progress).not.toHaveValue(before);
-  expect(await progress.inputValue()).toMatch(/^\d+\/\d+ \(.+%\) completed$/);
-
-  await selectFrameStatus(page, initialStatus);
   await clickElement(exactButton(project, "Task"));
   await expect(progress).toHaveValue(before);
 });

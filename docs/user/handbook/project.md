@@ -1,6 +1,6 @@
 # Project Management
 
-Projects are responsible for organizing the annotation workload on the ST Annotator Platform.
+Use projects to organize annotation work into tasks and assign frames to annotators and reviewers.
 
 To set up a project, follow these steps:
 
@@ -9,13 +9,11 @@ To set up a project, follow these steps:
 2. Use [Edit Tasks](#edit-tasks) to create the tasks to be completed under that project.
     - Assign annotators and supervisors to each task.
 3. Use [Edit Frames](#edit-frames) to create the frames to be completed under each task.
-    - Each frame represents a scene in the annotation editor. Any source and label data that exist within the frame's spatiotemporal boundaries are included in the scene, and will be automatically loaded and displayed to the user.
+    - Each frame defines the time range and area shown in the annotation editor. The editor displays source data and labels within those boundaries.
     - Select the account, source group and label branch for each frame when the frame is created.
     - Frames are not shared between users. You should create a batch of frames for each annotator and supervisor separately.
     - Annotator frames should usually use the annotator's own label branch.
     - Reviewer frames (the `Reviewer Frames` tab) should use the branches that the supervisor needs to review, and can only be assigned to users assigned as supervisors for that task on the [Tasks page](#edit-tasks).
-
-Below is a comprehensive list of workflows that relate to project management.
 
 ## Permissions
 
@@ -34,9 +32,19 @@ Only users with the `admin` role can delete a project; the `Delete` command does
 
 You can assign users as project members so that they can access that project even without the `project-manager` role.
 
-A project's `Configuration` opens as two tabs: the fields the platform recognises -- the frame cache size, auto tracks, and the editor's initial camera position and target -- under `Configuration`, and the JSON that is actually saved under `Configuration (Raw JSON)`. The raw text is authoritative. While it holds something that is not a valid JSON object, that tab is marked `invalid` and the other tab keeps showing the last value that parsed, locked until it is fixed.
+Use the `Configuration` tab to set the frame cache size, automatic tracks, and
+the editor's initial camera position and target. Use `Configuration (Raw JSON)`
+to edit the configuration directly. Invalid JSON is marked `invalid`; correct it
+to use the other tab again.
 
-You may select several projects and choose `Batch Edit Details` to change `Description`, `Members` or `Configuration` for all of them at once. Each attribute you enable **replaces** what the selected projects already hold rather than adding to it: the same member list is applied to every selected project, and anyone left out of it loses access to all of them -- including you, if you omit yourself. A project's name is not batch-editable, because names must stay unique. The dialog shows the members currently assigned across the selection and names those the change would remove before you apply it. See [Batch Edit](./index.md#batch-edit) for how the dialog works.
+To update several projects, select them and choose `Batch Edit Details`. You can
+change `Description`, `Members`, or `Configuration`. Enabled fields replace the
+current values on every selected project. Review the member list carefully:
+anyone omitted loses their membership, including you if you leave yourself out.
+The dialog lists the members who would be removed before you apply the change.
+Project names must be edited individually.
+
+See [Batch Editing](./index.md#batch-editing) for the shared dialog controls.
 
 ### Open Project
 
@@ -48,13 +56,13 @@ Navigate to the Projects page (`Projects`), then right-click a row in the [data 
 <a id="edit-tasks"></a>
 ##### Edit Tasks (`project-manager` only)
 
-Inside the site of a project, navigate to the Tasks page (`Tasks`) to add, modify and delete tasks via a [data table](./index.md#data-table).
+Inside the site of a project, navigate to the Tasks page (`Tasks`) to add, modify and delete tasks via a [data table](./index.md#data-table). Task names must be unique within a project; different projects can use the same task name.
 
 You can assign project members with the relevant role as annotators (`annotator` role) and/or supervisors (`supervisor` role) so that they can access that task and contribute to it accordingly. Only project members holding the matching role can be assigned, and both are required: the role and the project membership.
 
-An assignment is also checked against the label branches already used by the frames of that task and its subtasks: each assigned annotator needs at least `Write` access to those branches, and each assigned supervisor needs `Write Elevated`. Grant access before assigning, as described in [Granting Branch Access](./data.md#granting-branch-access). The Tasks page reports the problem per row under an `Invalid task branch permissions` heading, naming each account, the level it lacks, and the branch, and saving the assignment is rejected until the grants are in place. A task that has no frames yet is accepted without this check.
+An assignment is also checked against the label branches already used by the frames of that task and its subtasks: each assigned annotator needs at least `Write` access to those branches, and each assigned supervisor needs `Write Elevated`. Grant access before assigning, as described in [Granting Branch Access](./data.md#granting-branch-access). If access is missing, the Tasks page shows `Invalid task branch permissions` with the affected accounts and branches. Grant the required access, then save the assignment again. A task with no frames does not need branch access yet.
 
-You may select several tasks and choose `Batch Edit Details` to reassign `Supervisors` or `Annotators` for all of them at once. Each attribute you enable **replaces** what the selected tasks already hold, so every task ends up with exactly the list you pick and ticking a section with an empty picker unassigns everyone from all of them. A task's name, description and deadline are not batch-editable. The checks above are made per task in the batch as well: one task that would end up with an account lacking the role, the membership, or the branch access rejects the whole write and stores nothing. See [Batch Edit](./index.md#batch-edit) for how the dialog works.
+You may select several tasks and choose `Batch Edit Details` to reassign `Supervisors` or `Annotators` for all of them at once. Each attribute you enable **replaces** what the selected tasks already hold, so every task ends up with exactly the list you pick and ticking a section with an empty picker unassigns everyone from all of them. A task's name, description and deadline are not batch-editable. Every assignment must meet the role, membership, and branch-access requirements. If any assignment is invalid, none of the selected tasks change. See [Batch Editing](./index.md#batch-editing) for how the dialog works.
 
 !!! tip
     You can drag and drop tasks or use the edit menu to create multiple levels of tasks, enabling inheritance of supervisors and annotators (meaning that a child task will also have those of its parent task).
@@ -74,16 +82,28 @@ Inside the site of a task, navigate to the Recent Frames page (`Recent Frames`) 
 
 Inside the site of a task, navigate to the All Frames page (`All Frames`) to view all frames which are assigned to you via a [data table](./index.md#data-table), under the same `Annotator Frames` and `Reviewer Frames` tabs.
 
-You may select several of your own frames and choose `Batch Edit Details` to set their completion status all at once, which is the same single attribute the `Edit Completion` form of one frame offers. See [Batch Edit](./index.md#batch-edit) for how the dialog works.
+You may select several of your own frames and choose `Batch Edit Details` to set their completion status all at once, which is the same single attribute the `Edit Completion` form of one frame offers. See [Batch Editing](./index.md#batch-editing) for how the dialog works.
 
 <a id="edit-frames"></a>
 ###### Edit Frames (`project-manager` only)
 
 Inside the site of a task, navigate to the All Frames page (`All Frames`) to add, modify and delete frames assigned to each user via a [data table](./index.md#data-table), selecting the `Annotator Frames` or `Reviewer Frames` tab for the work type you are managing. The table can be filtered by the frame's owner, so you can work through one user's frames at a time.
 
-For a project manager who also has the `data-manager` role, selecting a user reveals the expandable `Initialize a label branch` section above the table controls. It starts expanded when the user has no branch with enough access for the active tab. Select any current label repository, then adjust the suggested `<username>-annotate` or `<username>-review` branch name if needed. When initializing a reviewer branch, you can optionally select an existing branch from that repository as the reference whose current head becomes the new branch's starting point. The access-level field shows the selected user's fixed grant: `Write` for annotation or `Write Elevated` for review. The current user receives `Admin` access implicitly; when the current user selects their own account, the field shows `Admin` and the branch stores that single grant. Creating the branch refreshes the frame form's label-branch options immediately, including for tasks that existed before the repository or branch was created.
+If you also have the `data-manager` role, select a user to open
+`Initialize a label branch` above the table. This section starts expanded if the
+user needs a branch for the active tab.
 
-You may select several frames and choose `Batch Edit Details` to set their `Complete` status for the whole selection at once. The dialog offers nothing else: which account a frame belongs to, and the source group and label branch it reads, are per-frame choices that stay with the single-frame form. See [Batch Edit](./index.md#batch-edit) for how the dialog works.
+1. Choose a label repository.
+2. Keep or change the suggested `<username>-annotate` or `<username>-review` name.
+3. For a reviewer branch, optionally choose a reference branch to start with a
+   copy of its current labels.
+4. Create the branch, then select it when creating frames.
+
+The selected user receives `Write` access for annotation or `Write Elevated` for
+review. You receive `Admin` access to manage the branch. If you are creating a
+branch for yourself, your access is `Admin`.
+
+You may select several frames and choose `Batch Edit Details` to set their `Complete` status for the whole selection at once. The dialog offers nothing else: which account a frame belongs to, and the source group and label branch it reads, are per-frame choices that stay with the single-frame form. See [Batch Editing](./index.md#batch-editing) for how the dialog works.
 
 Unlike in other data tables, the `Create Frames` button in this table offers generation methods that build the list of frames for you: `Generate from range`, `Generate and set cells`, `Generate from data`, and `Generate from meshgrid`.
 

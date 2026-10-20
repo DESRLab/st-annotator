@@ -25,6 +25,7 @@ members = [
     "sta-gmesh",
     "sta-integration-tests",
     "sta-pcd",
+    "sta-relation",
     "sta-segmentation",
     "sta-vector",
 ]
@@ -4569,6 +4570,7 @@ dependencies = [
     { name = "sta" },
     { name = "sta-bbox" },
     { name = "sta-pcd" },
+    { name = "sta-relation" },
     { name = "sta-segmentation" },
     { name = "tqdm" },
 ]
@@ -4592,6 +4594,7 @@ requires-dist = [
     { name = "sta", editable = "core/backend" },
     { name = "sta-bbox", editable = "plugins/bbox/backend" },
     { name = "sta-pcd", editable = "plugins/pcd/backend" },
+    { name = "sta-relation", editable = "plugins/relation/backend" },
     { name = "sta-segmentation", editable = "plugins/segmentation/backend" },
     { name = "tqdm", specifier = ">=4.23" },
 ]
@@ -4677,6 +4680,7 @@ dependencies = [
     { name = "sta-datasets" },
     { name = "sta-gmesh" },
     { name = "sta-pcd" },
+    { name = "sta-relation" },
     { name = "sta-segmentation" },
     { name = "sta-vector" },
 ]
@@ -4699,6 +4703,7 @@ requires-dist = [
     { name = "sta-datasets", editable = "plugins/datasets/backend" },
     { name = "sta-gmesh", editable = "plugins/gmesh/backend" },
     { name = "sta-pcd", editable = "plugins/pcd/backend" },
+    { name = "sta-relation", editable = "plugins/relation/backend" },
     { name = "sta-segmentation", editable = "plugins/segmentation/backend" },
     { name = "sta-vector", editable = "plugins/vector/backend" },
 ]
@@ -4782,6 +4787,49 @@ requires-dist = [
 dev = [
     { name = "deptry", specifier = ">=0.14" },
     { name = "pandas-stubs", specifier = ">=2.2" },
+    { name = "pyright", specifier = ">=1.1.354" },
+    { name = "pytest", specifier = ">=7.0" },
+    { name = "pytest-cov", specifier = ">=3.0" },
+    { name = "pytest-xdist", specifier = ">=3.5" },
+    { name = "ruff", specifier = ">=0.3" },
+]
+
+[[package]]
+name = "sta-relation"
+version = "1.1.0"
+source = { editable = "plugins/relation/backend" }
+dependencies = [
+    { name = "fastapi", extra = ["standard"] },
+    { name = "pydantic" },
+    { name = "pydantic-extra-types" },
+    { name = "sqlalchemy" },
+    { name = "sqlmodel" },
+    { name = "sta" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "deptry" },
+    { name = "pyright" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "pytest-xdist" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.115.13,<0.116" },
+    { name = "pydantic", specifier = ">=2.6,<3" },
+    { name = "pydantic-extra-types", specifier = ">=2.6,<3" },
+    { name = "sqlalchemy", specifier = ">=2.0,<3" },
+    { name = "sqlmodel", specifier = ">=0.0.24,<0.1" },
+    { name = "sta", editable = "core/backend" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "deptry", specifier = ">=0.14" },
     { name = "pyright", specifier = ">=1.1.354" },
     { name = "pytest", specifier = ">=7.0" },
     { name = "pytest-cov", specifier = ">=3.0" },

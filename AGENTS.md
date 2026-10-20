@@ -140,9 +140,27 @@ scaffold behaves belongs in
 
 ### Menu styling
 
-All UI elements inside menus, including the editor’s Layers menu, must follow
+All UI elements inside menus, including the editor's Layers menu, must follow
 Tweakpane styling. Reuse the shared Tweakpane pane hosts and control factories
 for buttons, selectors, inputs, and other controls.
+
+Custom React content such as lists must live inside a native Tweakpane
+container: use `TweakpanePaneHost` slots with `builder.htmlContainer`, and a
+native folder where appropriate (see the frame list in `FramePathPane.ts`).
+Rendering a list beside a pane or copying its row classes does not give it
+Tweakpane styling. Ensure custom content uses the pane's theme variables,
+including foreground color, rather than relying on page-level inheritance.
+Verify menu appearance in a browser with the actual Tweakpane host; DOM
+structure and unit tests alone do not establish visual consistency.
+
+### Hotkey discoverability
+
+When adding or changing an editor hotkey, verify both its behavior and its entry
+in the Controls menu for every applicable plugin. Keep shortcuts listed even
+when no label is selected or their editing state is inactive; execution may
+still require a selection. Do not derive the entire Controls list solely from
+the current interaction state's bindings. Show each shortcut once, and verify
+its presence both before selection and while editing a selected label.
 
 ### Backend access
 
@@ -306,6 +324,11 @@ operations.
   commit narrative, no run tallies. Put completion records in commits or plans,
   not reference documentation.
 - Refresh docs in the same change as the behaviour they describe.
+- Data plugin documentation focuses on data semantics and formats: geometry,
+  coordinate systems, timestamps, relationships, and supported file or payload
+  formats. Keep usage instructions, editor workflows, controls, and shortcuts in
+  the user handbook (`docs/user/handbook/`). Link to the handbook from plugin
+  READMEs instead of duplicating those instructions.
 - `scripts/doc.sh` **is** warning-gated, so a green run means no warning was
   reported: TypeDoc through `treatWarningsAsErrors`, Sphinx through `-W`, and MkDocs
   through `--strict`. Curate a new warning at its cause rather than silencing a stage,

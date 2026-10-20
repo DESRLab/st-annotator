@@ -11,28 +11,26 @@ This handbook provides detailed information on how to operate the web platform.
 
 ### Signing In
 
-Signing in lands on the Welcome page, which greets you by name and shows when
-you last signed in. It reports any account or session message from the previous
-action, and offers nothing else: reach the work through the navigation bar
-described in the workflows above.
+After signing in, the Welcome page shows your name, your last sign-in time, and
+any account or session messages. Use the navigation bar to open your work.
 
-An account with no roles can sign in but sees no pages. Give an account the
-roles it needs as described in [Account Management](./account.md).
+If no work pages are available, ask an administrator to check your
+[account roles](./account.md).
 
 ## Common Widgets
 
 ### Data Table
 
-This table is used to list data entries and allow the user to edit them. The same table is used wherever entries are listed — projects, users, groups, tasks, frames and so on — and works the same way throughout the platform.
+Data tables list projects, accounts, groups, tasks, frames, and other entries. Use them to find entries, view details, and make changes where your permissions allow.
 
 #### Toolbar
 
-A toolbar is placed above the table to provide access to functions that do not require any selected rows.
+Use the toolbar above a table to create entries and select rows.
 
 Each kind of entry is created with its own button whose label names the entry, such as `Create Project` on the Projects page or `Create User` on the Accounts page. Clicking such a button opens an empty form to fill in.
 
 !!! tip
-    The toolbar holds entry creation and row selection only. Anything that changes several entries at once is a command in the [context menu](#context-menu), so a bulk change has exactly one way to reach it and the toolbar cannot offer a narrower version of it by accident.
+    To change several entries together, select their rows and right-click to open the [context menu](#context-menu).
 
 #### Row Selection
 
@@ -60,22 +58,35 @@ Usually, you can use it to perform the following operations:
 
 The command names depend on the table you are looking at. The same place in the menu may be occupied by `Batch Edit Details`, `Open Details` or `Edit Completion`, and commands such as `Open` lead to another page rather than to a form.
 
-Where a table supports bulk changes, this menu is the only way to start one: it offers `Batch Edit Details` once two or more rows are selected, and `Batch Delete` on the tables that can delete a selection. Both open the dialog described in [Batch Edit](#batch-edit). A command that changes a single entry disappears while several rows are selected, so a multi-row selection can never quietly narrow itself to the row you happened to right-click; `Open` and `View Details` stay, because reading one entry changes nothing, and a table with no bulk command for you at all keeps its single-entry commands whatever you have selected.
+For tables that support bulk changes, select two or more rows to use
+`Batch Edit Details` or `Batch Delete`. These open a dialog for the selected
+entries. Single-entry editing commands are unavailable during a bulk selection.
+Commands for opening or viewing one entry may still be available.
 
 !!! tip
     On tables whose rows lead to another page, such as the Projects page, you can double-click a row instead of choosing `Open` in the context menu.
 
 The available operations may vary depending on your permissions as well as the current selection. Some cannot be performed in batch mode and thus only appear in the context menu when a single row is being selected.
 
-#### Batch Edit
+#### Batch Editing
 
-A batch dialog changes every selected entry at once. Each attribute it can change has its own checkbox, and only the attributes you tick are written; the footer of the dialog names how many entries the write covers, such as `Apply to 4 Projects`. That footer stays disabled until you tick at least one attribute, since a batch with nothing ticked would change nothing.
+Use a batch dialog to apply the same changes to all selected entries:
 
-Each selected entry receives the same value, so an attribute you enable **replaces** what the entry already holds rather than adding to it. The empty case is a value like any other: ticking an assignment section and leaving its picker empty removes everyone from every selected entry, and ticking a text field and leaving it empty clears that field everywhere -- unless an entry cannot exist without that value, in which case nothing is cleared: the reason appears in the dialog and no entry changes.
+1. Tick the checkbox for each field you want to change.
+2. Enter the new values. Unticked fields keep their existing values.
+3. Check the number of affected entries in the apply button, such as `Apply to 4 Projects`, then apply the changes.
 
-What a dialog offers depends on the entries it acts on. An attribute that has to stay unique, such as a project's name, is not offered, and an attribute that only makes sense for one entry is left to the single-row form. Every table drops its single-row commands while several rows are selected, leaving `Batch Edit Details` in their place.
+An enabled field **replaces** its existing value on every selected entry. For
+example, an assignment picker replaces everyone's current assignments with the
+list you choose. Leaving it empty removes all assignments. An enabled empty text
+field clears that field, unless a value is required.
 
-The write goes out as a single request, and the whole batch is checked before any of it is stored, so a rejection changes nothing and reports the reason in the dialog for you to correct and retry. On success the dialog closes and the table reloads with the new values.
+The available fields depend on the table. Unique names and other fields that
+must be edited individually are available in the single-entry form instead.
+
+If any change is invalid, no selected entries change. The dialog explains what
+to correct before trying again. After a successful change, it closes and the
+table shows the updated values.
 
 #### Filtering, Sorting and Paging
 

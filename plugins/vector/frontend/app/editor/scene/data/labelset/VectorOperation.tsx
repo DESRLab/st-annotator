@@ -1,3 +1,4 @@
+import type { LabelElementReference } from "sta/app/editor";
 import { Placeholder } from "sta/app/editor";
 
 /**
@@ -14,6 +15,11 @@ export class StaleTargetError extends Error {}
  * vector labels.
  */
 export class VectorOperation<P, R extends {} | null> {
+  /** Elements deleted by this operation, for dependent-label history effects. */
+  get deletedElements(): readonly LabelElementReference[] {
+    return [];
+  }
+
   /**
    * The display name of this operation.
    */

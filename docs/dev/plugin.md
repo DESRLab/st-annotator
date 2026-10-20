@@ -280,6 +280,8 @@ Define a concrete implementation of `DataView` (`SourceDataView` for source data
 
 For label data, you should also define methods to apply the various [operations](#frontend-labelset-operations) to the active data. Each such mutator wraps the operation and applies it through the current frame's `EditableBranch` (e.g. `this.currentBranch?.apply(op)`).
 
+Validate the target against the displayed data when accepting a mutation, then retain the unfiltered index of that branch for applying, undoing, and redoing it. Frame bounds control visibility: moving a label outside those bounds does not delete it or invalidate an edit already queued for the same label. History must continue to address that label even while it is outside the displayed frame.
+
 ##### Data Layer
 
 Define a concrete implementation of `DataLayer` (`SourceDataLayer` for source data; `LabelDataLayer` for label data), through which the user can interact with the data that is exposed by `DataView`.
@@ -317,7 +319,7 @@ Note that once an operation has been applied server-side, it can no longer be un
 
 `plugins/datasets/backend` is a backend-only package (`sta-datasets`, module
 `sta_datasets`). Its plugin entry point registers the `datasets` command group,
-with SemanticKITTI and 3RScan importers. The same group is available through the
+with SemanticKITTI, 3RScan, and Argoverse 2 Sensor importers. The same group is available through the
 `sta-datasets` executable without requiring a repository checkout. It contributes
 no API routes or frontend workspace.
 
@@ -331,3 +333,75 @@ dependencies in the package's `pyproject.toml`.
 Repository lint, format, and test commands check each plugin's existing backend
 and frontend directories, so backend-only plugins participate without requiring
 an empty npm workspace.
+
+## Cross-plugin label relations
+
+Endpoint providers implement `setHighlights(owner, elements)` for transient,
+owner-scoped highlighting. `LabelElementHighlights` filters requests by label
+type and compares resolved IDs. Layers render these requests using their hover
+appearance while preserving selection priority. An optional RGB `color` argument
+overrides that appearance for interaction previews, including selected endpoints.
+Color-only changes also invalidate the endpoint scene. Empty requests release only that
+owner's highlights. Highlight changes invalidate the endpoint scene; they do not
+change selection or interaction mode. The relation layer releases its requests
+when hover ends, interaction becomes unavailable, or the layer is disposed.
+
+Endpoint providers also implement `setIsolation(owner, elements)` through
+`LabelElementIsolation`. A non-null request restricts scene labels to its
+endpoints, including explicitly showing an endpoint with a local hidden
+preference; an empty list hides every label of that provider. Null releases
+only that owner's request. The layer applies the resulting visibility through
+the label model's transient display API and suppresses auxiliary track or
+instance labels and editing controls while isolation is active. Local hidden
+preferences remain unchanged. The relation layer uses these filters while
+cycling grouped relations with `Tab`, and releases them on cancellation,
+navigation, tool or layer changes, loss of the current relation or its endpoints,
+and disposal.
+
+Label layers that support relation endpoints expose `labelElementProvider` with
+branch identity, visibility, element iteration, and a tracked subscription.
+Each element provides a typed logical reference, its assigned object-class name
+(`objectClassName`, or `null` when unclassified), its center in scene coordinates,
+and raycasting. The class includes track or instance inheritance. The relation
+inspector reads this metadata even when an endpoint layer is hidden.
+The relation layer discovers these providers structurally;
+future label plugins implement the same contract rather than adding imports to
+core or the relation plugin. Register providers before the relation layer in the
+frontend composition.
+
+Backend plugins call `register_element_domain(type, domain)` from
+`sta.domain.label.data.endpoints` during registration. The type identifies a
+concrete element kind, rather than an entity or source-data kind. Relation
+operations resolve both endpoints in their own label group and commit. Domain
+single and bulk deletion paths notify registered dependent-label listeners
+inside the same transaction; updating `is_deleted` uses the same notification.
+
+Local element-delete operations expose `deletedElements`, which their view
+operations forward. `EditableBranch.operationEffectFactories` captures dependent
+local effects before applying an operation and stores them with its history
+entry. A factory may await data loading. Effects participate in
+undo/redo without changing the operation's backend payload or placeholder result.
+View operations expose `isNoop` when a queued edit loses its target before local
+application. These entries remain in local undo/redo history, but saving omits
+them and dependent effects do not run for them. Plugins must forward this status
+through operation wrappers so skipped edits never reach the backend.
+The relation plugin loads relations whose two endpoints intersect the current
+frame and uses these effects to remove attached relations from cached frames
+atomically with endpoint deletion. The backend also deletes attached relations
+outside those cached frames. Entity deletion retains each plugin's existing child policy.
+
+
+Relation bulk loading resolves frame-local endpoint IDs through
+`LabelElementDomain.build_list_query_in_any_bounds`, without loading endpoint
+geometry. It then uses `LabelDataDomain.build_filtered_list_query` to narrow
+relation candidates before resolving their revision states. Ancestor matches
+identify candidates only: the resolved state must still pass the endpoint
+filters and tombstone checks. Frames without visible endpoints skip relation
+history entirely. Other endpoint plugins use the same bounded query builder
+through `list_datas_in_any_bounds`.
+
+Shared revision queries resolve the minimum ancestor distance with a window
+aggregate partitioned by label ID and group. This avoids repeatedly joining the
+revision's states to themselves when the database underestimates the number of
+labels after an import. Candidate narrowing happens before revision resolution;
+spatial, temporal, and tombstone filters still apply to the resolved state.

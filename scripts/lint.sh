@@ -126,7 +126,7 @@ lint_plugins() {
             if [[ "$side" == "frontend" ]]; then
                 lint_plugin_frontend "sta-$plugin"
             else
-                lint_backend "plugins/$plugin/backend" "sta_$plugin"
+                lint_backend "plugins/$plugin/backend" "sta_${plugin//-/_}"
             fi
         ) 2>&1 | sed -u "s/^/[LINT $side:$plugin] /" &
         pids+=("$!")

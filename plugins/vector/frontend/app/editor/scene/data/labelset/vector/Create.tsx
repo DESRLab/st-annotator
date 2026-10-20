@@ -16,7 +16,7 @@ export interface CreateVectorParamsData {
   entity_id: UUID | null;
   vertices: VectorVertices;
   timestamp: string | null;
-  gtClassId: number | null;
+  gt_class_id: number | null;
 }
 
 export class Create extends VectorOperation<CreateVectorParamsData, string> {
@@ -64,7 +64,7 @@ export class Create extends VectorOperation<CreateVectorParamsData, string> {
           DecimalVector3Data.fromVector3(v),
         ),
       },
-      gtClassId: params.gtClassId ?? null,
+      gt_class_id: params.gtClassId ?? null,
     });
   }
 
@@ -85,7 +85,7 @@ export class Create extends VectorOperation<CreateVectorParamsData, string> {
       vertices: params.vertices.coords.map((vertex: DecimalVector3Data) =>
         vertex.toVector3(),
       ),
-      gtClassId: params.gtClassId,
+      gtClassId: params.gt_class_id,
     });
   }
 

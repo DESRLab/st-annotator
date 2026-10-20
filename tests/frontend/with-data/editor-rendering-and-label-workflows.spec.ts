@@ -170,32 +170,51 @@ test.describe("editor rendering and label workflows", () => {
     expectRenderChanged(firstColors, secondColors);
 
     const channel = selectControl(prefs, "Channel");
-    const beforeChannelChange = await renderSnapshot(page);
-    // The synthetic fixture's fourth channel is intensity. Unlike selecting
-    // an arbitrary alternative, switching from elevation to this known
-    // channel is guaranteed to produce a different point-color field.
+    const elevationChannel = await channel
+      .locator("option")
+      .filter({ hasText: /^2\s*\(/ })
+      .evaluate((option: HTMLOptionElement) => option.value);
     const intensityChannel = await channel
       .locator("option")
       .filter({ hasText: /^3\s*\(/ })
       .evaluate((option: HTMLOptionElement) => option.value);
-    await channel.selectOption(intensityChannel, { force: true });
-    expectRenderChanged(beforeChannelChange, await renderSnapshot(page));
-
-    const useZScore = prefs
-      .locator(".tp-lblv:visible")
-      .filter({ hasText: "Use Z-Score" })
-      .locator('input[type="checkbox"]')
-      .first();
+    await channel.selectOption(elevationChannel, { force: true });
+    await expect(channel).toHaveValue(elevationChannel);
+    // Use a known monotonic map and fixed raw bounds: per-channel z-score
+    // normalization can make different source values produce similar colors.
+    await setSelectByLabel(colormap, "greys");
+    const useZScore = checkboxControl(prefs, "Use Z-Score");
     if (await useZScore.isChecked()) await setCheckboxInput(useZScore, false);
-    const beforeRangeChange = await renderSnapshot(page);
     const visibleValueInput = (label: string) =>
       prefs
         .locator(".tp-lblv:visible")
-        .filter({ hasText: label })
+        .filter({
+          has: page.locator(".tp-lblv_l").filter({ hasText: exactText(label) }),
+        })
         .locator("input")
         .first();
-    await fillNumberInput(visibleValueInput("Min. Value"), "0");
-    await fillNumberInput(visibleValueInput("Max. Value"), "1");
+    // Both channels support these bounds; intensity spans 0.05 through 0.9.
+    await fillNumberInput(visibleValueInput("Min. Value"), "0.1");
+    await fillNumberInput(visibleValueInput("Max. Value"), "0.8");
+    const beforeChannelChange = await renderSnapshot(page);
+    const beforeChannelRender = await getEditorRenderState(page);
+    await channel.selectOption(intensityChannel, { force: true });
+    await expect(channel).toHaveValue(intensityChannel);
+    // Idle alone can still describe the old frame before the setting commits.
+    await waitForEditorRenderAfter(page, beforeChannelRender.generation);
+    await expect
+      .poll(
+        async () => (await renderSnapshot(page)).equals(beforeChannelChange),
+        {
+          message:
+            "the channel change should alter the pixels rendered in the scene",
+        },
+      )
+      .toBe(false);
+
+    const beforeRangeChange = await renderSnapshot(page);
+    await fillNumberInput(visibleValueInput("Min. Value"), "0.2");
+    await fillNumberInput(visibleValueInput("Max. Value"), "0.7");
     expectRenderChanged(beforeRangeChange, await renderSnapshot(page));
 
     const beforeComposeRgb = await renderSnapshot(page);
@@ -240,6 +259,7 @@ test.describe("editor rendering and label workflows", () => {
       .first();
     const initialRemoveBackground = await removeBackground.isChecked();
     const initialCropArea = await cropArea.isChecked();
+    const beforeFiltering = await renderSnapshot(page);
     const dataResponse = page.waitForResponse((response) => {
       const url = new URL(response.url());
       const body = response.request().postData() ?? "";
@@ -254,7 +274,7 @@ test.describe("editor rendering and label workflows", () => {
     await setCheckboxInput(cropArea, !initialCropArea);
     expect((await dataResponse).ok()).toBe(true);
     const differentlyFiltered = await renderSnapshot(page);
-    expectRenderChanged(secondColors, differentlyFiltered);
+    expectRenderChanged(beforeFiltering, differentlyFiltered);
     expect(errors).toEqual([]);
   });
 
@@ -309,28 +329,40 @@ test.describe("editor rendering and label workflows", () => {
     await colormap.selectOption(alternateMap!, { force: true });
     expectRenderChanged(beforeColormap, await renderSnapshot(page));
 
-    const beforeApply = await renderSnapshot(page);
     const channel = selectControl(prefs, "Channel");
-    const alternate = await channel
+    // This mesh's elevation varies with x. Normalized x and elevation can be
+    // equivalent, so compare elevation with the independent y channel instead.
+    const elevationChannel = await channel
       .locator("option")
-      .evaluateAll(
-        (options, current) =>
-          (options as HTMLOptionElement[]).find(
-            (option) => option.value !== current,
-          )?.value,
-        await channel.inputValue(),
-      );
-    expect(alternate).toBeTruthy();
-    await channel.selectOption(alternate!, { force: true });
+      .filter({ hasText: /^2\s*\(/ })
+      .evaluate((option: HTMLOptionElement) => option.value);
+    const yChannel = await channel
+      .locator("option")
+      .filter({ hasText: /^1\s*\(/ })
+      .evaluate((option: HTMLOptionElement) => option.value);
+    await channel.selectOption(elevationChannel, { force: true });
+    await expect(channel).toHaveValue(elevationChannel);
+    const beforeChannel = await renderSnapshot(page);
+    const channelRender = await getEditorRenderState(page);
+    await channel.selectOption(yChannel, { force: true });
+    await expect(channel).toHaveValue(yChannel);
+    await waitForEditorRenderAfter(page, channelRender.generation);
+    await expect
+      .poll(async () => (await renderSnapshot(page)).equals(beforeChannel))
+      .toBe(false);
+
+    const beforeRange = await renderSnapshot(page);
     const visibleControl = (label: string) =>
       prefs
         .locator(".tp-lblv:visible")
-        .filter({ hasText: label })
+        .filter({
+          has: page.locator(".tp-lblv_l").filter({ hasText: exactText(label) }),
+        })
         .locator("input")
         .first();
     await fillNumberInput(visibleControl("Min. Z-Score"), "-0.5");
     await fillNumberInput(visibleControl("Max. Z-Score"), "0.5");
-    expectRenderChanged(beforeApply, await renderSnapshot(page));
+    expectRenderChanged(beforeRange, await renderSnapshot(page));
 
     const beforeCompose = await renderSnapshot(page);
     await setSelectByLabel(blender, "ComposeRGB");
@@ -583,7 +615,9 @@ test.describe("editor rendering and label workflows", () => {
     for (const label of ["Center", "Size"]) {
       const input = inspector
         .locator(".tp-lblv")
-        .filter({ hasText: label })
+        .filter({
+          has: page.locator(".tp-lblv_l").filter({ hasText: exactText(label) }),
+        })
         .locator("input")
         .first();
       const current = Number(await input.inputValue());
@@ -657,7 +691,7 @@ test.describe("editor rendering and label workflows", () => {
     await clickElement(exactButton(row, "D"));
     const tools = editorPanel(page, "Tools");
 
-    await selectRadio(tools, "line");
+    await selectRadio(tools, "Line");
     const abortVertex = await scenePoint(page, 0.28, 0.16);
     await page.mouse.click(abortVertex.x, abortVertex.y);
     await page.keyboard.press("Escape");
@@ -678,16 +712,16 @@ test.describe("editor rendering and label workflows", () => {
     const countAfterPoint = await selection.locator("option").count();
 
     await clickElement(exactButton(row, "D"));
-    await selectRadio(tools, "line");
-    for (const [fx, fy] of [
-      [0.28, 0.16],
-      [0.46, 0.25],
-      [0.66, 0.16],
+    await selectRadio(tools, "Line");
+    for (const [fx, fy, finish] of [
+      [0.28, 0.16, false],
+      [0.46, 0.25, false],
+      [0.66, 0.16, true],
     ] as const) {
       const vertex = await scenePoint(page, fx, fy);
-      await page.mouse.click(vertex.x, vertex.y);
+      if (finish) await page.mouse.dblclick(vertex.x, vertex.y);
+      else await page.mouse.click(vertex.x, vertex.y);
     }
-    await page.keyboard.press("g");
     await expect
       .poll(() => selection.locator("option").count(), {
         timeout: 30_000,
@@ -697,15 +731,15 @@ test.describe("editor rendering and label workflows", () => {
 
     await clickElement(exactButton(row, "D"));
     await selectRadio(tools, "Polygon");
-    for (const [fx, fy] of [
-      [0.3, 0.18],
-      [0.48, 0.32],
-      [0.68, 0.18],
+    for (const [fx, fy, finish] of [
+      [0.3, 0.18, false],
+      [0.48, 0.32, false],
+      [0.68, 0.18, true],
     ] as const) {
       const vertex = await scenePoint(page, fx, fy);
-      await page.mouse.click(vertex.x, vertex.y);
+      if (finish) await page.mouse.dblclick(vertex.x, vertex.y);
+      else await page.mouse.click(vertex.x, vertex.y);
     }
-    await page.keyboard.press("g");
     await expect
       .poll(() => selection.locator("option").count(), {
         timeout: 30_000,
@@ -722,7 +756,7 @@ test.describe("editor rendering and label workflows", () => {
     const thinVector = await renderSnapshot(page);
     await fillNumberInput(strokeWidth, "10");
     expectRenderChanged(thinVector, await renderSnapshot(page));
-    const strokeColor = inputControl(vectorPrefs, "stroke color");
+    const strokeColor = inputControl(vectorPrefs, "Stroke color");
     const redVector = await renderSnapshot(page);
     await fillColorInput(strokeColor, "{r: 0.00, g: 1.00, b: 0.00}");
     expectRenderChanged(redVector, await renderSnapshot(page));
@@ -810,45 +844,6 @@ test.describe("editor rendering and label workflows", () => {
     ).toContainText("Assign Ground Truth Class");
   });
 
-  test("vector Delete removes the vector currently being edited", async ({
-    page,
-  }) => {
-    test.setTimeout(180_000);
-    await openEditor(page);
-    await selectActiveLayer(page, "Label Data", "Vector");
-    const inspector = editorPanel(page, "Vector Objects");
-    const selection = inspector.locator("select").first();
-    const initialCount = await selection.locator("option").count();
-    const row = editorPanel(page, "Layers").locator(
-      '[data-test="editor-layer-row-vector"]',
-    );
-    await clickElement(exactButton(row, "D"));
-    await selectRadio(editorPanel(page, "Tools"), "Point");
-    const point = await scenePoint(page, 0.43, 0.3);
-    await page.mouse.move(point.x, point.y);
-    await page.mouse.down({ button: "left" });
-    await page.mouse.move(point.x + 2, point.y + 2);
-    await page.mouse.up({ button: "left" });
-    await expect
-      .poll(() => selection.locator("option").count(), {
-        timeout: 30_000,
-      })
-      .toBeGreaterThan(initialCount);
-    await expect(exactButton(editorPanel(page, "Tools"), "Copy")).toBeEnabled();
-    const beforeDelete = await renderSnapshot(page);
-
-    await page.evaluate(() =>
-      (document.activeElement as HTMLElement | null)?.blur(),
-    );
-    await page.keyboard.press("Delete");
-    await expect
-      .poll(() => selection.locator("option").count(), {
-        timeout: 30_000,
-      })
-      .toBe(initialCount);
-    expectRenderChanged(beforeDelete, await renderSnapshot(page));
-  });
-
   test("undo and redo remove and restore a newly created vector in the scene", async ({
     page,
   }) => {
@@ -933,16 +928,17 @@ test.describe("editor rendering and label workflows", () => {
     );
     await clickElement(exactButton(row, "D"));
     await selectRadio(editorPanel(page, "Tools"), "Point");
-    const point = await scenePoint(page, 0.34, 0.22);
+    const point = await scenePoint(page, 0.43, 0.3);
     await page.mouse.click(point.x, point.y);
     await page.mouse.move(point.x + 3, point.y + 3);
     await expect
       .poll(() => selection.locator("option").count(), {
         timeout: 30_000,
       })
-      .toBeGreaterThan(initialCount);
+      .toBe(initialCount + 1);
     await expect(exactButton(editorPanel(page, "Tools"), "Copy")).toBeEnabled();
 
+    const drawnId = await selection.inputValue();
     const countBeforePaste = await selection.locator("option").count();
     await page.keyboard.press("Control+c");
     await expect(
@@ -953,28 +949,46 @@ test.describe("editor rendering and label workflows", () => {
       .poll(() => selection.locator("option").count(), {
         timeout: 30_000,
       })
-      .toBeGreaterThan(countBeforePaste);
+      .toBe(countBeforePaste + 1);
     const countAfterPaste = await selection.locator("option").count();
+    const pastedId = await selection.inputValue();
+    const pastedOption = selection.locator(`option[value="${pastedId}"]`);
+    await expect(pastedOption).toHaveCount(1);
     await expect(exactButton(editorPanel(page, "Tools"), "Copy")).toBeEnabled();
     await page.keyboard.press("Delete");
     await expect
       .poll(() => selection.locator("option").count(), {
         timeout: 30_000,
       })
-      .toBeLessThan(countAfterPaste);
+      .toBe(countAfterPaste - 1);
+    await expect(pastedOption).toHaveCount(0);
     const countAfterDelete = await selection.locator("option").count();
     await page.keyboard.press("Control+z");
     await expect
       .poll(() => selection.locator("option").count(), {
         timeout: 30_000,
       })
-      .toBeGreaterThan(countAfterDelete);
+      .toBe(countAfterDelete + 1);
+    await expect(pastedOption).toHaveCount(1);
     await page.keyboard.press("Control+y");
     await expect
       .poll(() => selection.locator("option").count(), {
         timeout: 30_000,
       })
       .toBe(countAfterDelete);
+    await expect(pastedOption).toHaveCount(0);
+
+    // Pasted geometry overlaps the original. Delete the remaining original to
+    // verify visible removal without another copy masking its pixels.
+    await selection.selectOption(drawnId, { force: true });
+    await expect(exactButton(editorPanel(page, "Tools"), "Copy")).toBeEnabled();
+    await page.evaluate(() =>
+      (document.activeElement as HTMLElement | null)?.blur(),
+    );
+    const beforeDelete = await renderSnapshot(page);
+    await page.keyboard.press("Delete");
+    await expect(selection.locator("option")).toHaveCount(initialCount);
+    expectRenderChanged(beforeDelete, await renderSnapshot(page));
   });
 
   test("a user can create segmentation selections with brush, rectangle, lasso, and polygon queries", async ({
@@ -1012,7 +1026,7 @@ test.describe("editor rendering and label workflows", () => {
     await expect((await rangeReload).ok()).toBe(true);
     await selectActiveLayer(page, "Source Data", "Point Cloud");
     await selectActiveLayer(page, "Label Data", "Segmentation");
-    await expect(displayRange).toHaveValue(/2/);
+    await expect(displayRange).toHaveValue(/^2(?:\.0+)?$/);
     const brushDiameter = inputControl(segmentationPrefs, "Brush Diameter");
     await fillNumberInput(brushDiameter, "20");
     await fillNumberInput(brushDiameter, "80");
@@ -1140,7 +1154,7 @@ test.describe("editor rendering and label workflows", () => {
     // relationships folder visibility are covered by the pane container and
     // tooltip-formatting unit tests.
 
-    const strokeColor = inputControl(segmentationPrefs, "stroke color");
+    const strokeColor = inputControl(segmentationPrefs, "Stroke color");
     const beforeStrokeColor = await renderSnapshot(page);
     await fillColorInput(strokeColor, "{r: 1.00, g: 0.00, b: 1.00}");
     expectRenderChanged(beforeStrokeColor, await renderSnapshot(page));

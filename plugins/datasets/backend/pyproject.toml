@@ -11,7 +11,7 @@ version = "1.1.0"
 description = "ST Annotator dataset import plugin"
 license = "Apache-2.0"
 requires-python = ">=3.10"
-dependencies = ["sta", "sta-bbox", "sta-pcd", "sta-segmentation", "click>=8.1", "numpy>=1.26,<2.3", "plyfile>=1.0.3", "shapely>=2.0", "sqlmodel>=0.0.24,<0.1", "tqdm>=4.23"]
+dependencies = ["sta", "sta-bbox", "sta-relation", "sta-pcd", "sta-segmentation", "sta-vector", "click>=8.1", "numpy>=1.26,<2.3", "plyfile>=1.0.3", "pyarrow>=14", "shapely>=2.0", "sqlmodel>=0.0.24,<0.1", "tqdm>=4.23"]
 
 [project.scripts]
 sta-datasets = "sta_datasets.cli:cli"
@@ -22,8 +22,10 @@ registry = "sta_datasets.plugin:register"
 [tool.uv.sources]
 sta = { workspace = true }
 sta-bbox = { workspace = true }
+sta-relation = { workspace = true }
 sta-pcd = { workspace = true }
 sta-segmentation = { workspace = true }
+sta-vector = { workspace = true }
 
 [dependency-groups]
 dev = ["deptry>=0.14", "ruff>=0.12", "pyright>=1.1.354", "pytest>=7.0", "pytest-xdist>=3.5"]

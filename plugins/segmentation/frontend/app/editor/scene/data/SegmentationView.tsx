@@ -207,6 +207,16 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
     if (data == null) return null;
 
     const branchData = this.#mergeIntoBranch(frame, data);
+    this.#resolveHiddenIds();
+    for (const label of branchData.iterLabelSelections()) {
+      label.setHidden(
+        this.#hiddenLabels.has(
+          Placeholder.isPlaceholder(label.id) && label.id.isResolved
+            ? label.id.orElse("")
+            : label.id,
+        ),
+      );
+    }
 
     const validFrames = this.#loader.getFramesInWindow(frame);
     return new SegmentationIndexView(branchData, validFrames);
@@ -218,6 +228,28 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
 
     // We avoid exposing the modifiable version to external classes
     return index as SegmentationIndex;
+  }
+
+  readonly #hiddenLabels = new Set<UUID>();
+
+  #resolveHiddenIds(): void {
+    for (const id of this.#hiddenLabels) {
+      if (Placeholder.isPlaceholder(id) && id.isResolved) {
+        this.#hiddenLabels.delete(id);
+        this.#hiddenLabels.add(id.orElse(""));
+      }
+    }
+  }
+
+  /** Retains visibility across loads for this editor session. */
+  setSelectionHidden(id: UUID, hidden: boolean): void {
+    this.#resolveHiddenIds();
+    const key =
+      Placeholder.isPlaceholder(id) && id.isResolved ? id.orElse("") : id;
+    if (hidden) this.#hiddenLabels.add(key);
+    else this.#hiddenLabels.delete(key);
+    if (this.hasLabelSelection(id))
+      this.getLabelSelection(id).setHidden(hidden);
   }
 
   #emptyIndex: SegmentationIndex;
@@ -522,6 +554,10 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
        */
       op: SegmentationOperation<P, R>;
 
+      get deletedElements() {
+        return this.op.deletedElements;
+      }
+
       /**
        * The display name of this operation.
        */
@@ -546,10 +582,12 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
       }
 
       /**
-       * The labels index this operation was accepted against. The
+       * The unfiltered branch index this operation was accepted against. The
        * operation applies to this revision even if the view navigates
        * to another frame/branch before the queued application runs, so
-       * it can never be redirected to another revision's labels.
+       * it can never be redirected to another revision's labels. Frame bounds
+       * only control visibility; an edit that moves its target outside them
+       * must remain undoable and must not invalidate already queued edits.
        */
       readonly #acceptedIndex: SegmentationIndex | null;
 
@@ -560,6 +598,10 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
        */
       #skippedStale = false;
 
+      get isNoop(): boolean {
+        return this.#skippedStale;
+      }
+
       /**
        * Creates a new operation by wrapping an operation that acts on
        * object instanceing labels.
@@ -568,7 +610,11 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
         super(dataView, op.opParams);
 
         this.op = op;
-        this.#acceptedIndex = dataView.#index;
+        const frame = dataView.frame;
+        this.#acceptedIndex =
+          frame == null || dataView.#index == null
+            ? null
+            : dataView.#branchIndexes.getValue(frame.label_branch_id);
       }
 
       /**
@@ -584,7 +630,7 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
       applyLocal(): void {
         // We apply the operation in this roundabout way to avoid exposing
         // the mutable index
-        const index = this.dataView.#index;
+        const index = this.#acceptedIndex ?? this.dataView.#index;
         if (index == null) {
           console.warn(
             "Attempted to apply operation when there is no available data:",
@@ -594,7 +640,7 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
         }
 
         try {
-          this.op.applyIndex(this.#acceptedIndex ?? index);
+          this.op.applyIndex(index);
         } catch (error) {
           if (error instanceof StaleTargetError) {
             console.warn("Skipped operation whose target label disappeared:");
@@ -615,7 +661,7 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
       undoLocal(): void {
         // We apply the operation in this roundabout way to avoid exposing
         // the mutable index
-        const index = this.dataView.#index;
+        const index = this.#acceptedIndex ?? this.dataView.#index;
         if (index == null) {
           console.warn(
             "Attempted to apply operation when there is no available data:",
@@ -630,7 +676,7 @@ export class SegmentationView extends LabelDataView<ReadonlySegmentationIndex> {
         }
 
         // Revert on the same revision the operation applied to.
-        this.op.undoIndex(this.#acceptedIndex ?? index);
+        this.op.undoIndex(index);
       }
     };
 

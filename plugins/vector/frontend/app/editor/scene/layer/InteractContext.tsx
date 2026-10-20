@@ -33,6 +33,10 @@ import type {
 } from "../widgets";
 import { LabelVectorInspector } from "../widgets";
 import { baseAction } from "../widgets/ActionPane.ts";
+import {
+  drawModePaneFactoryParams,
+  drawModePaneModes,
+} from "../widgets/DrawModePane.ts";
 
 import { DrawVectorState } from "./DrawVectorState";
 import { EditState } from "./EditVectorState";
@@ -242,7 +246,7 @@ export class InteractContext<
    */
   readonly vectorCreators: VectorCreators;
 
-  #drawMode: DrawMode = "polyline";
+  #drawMode: DrawMode = drawModePaneFactoryParams.inputtedData.drawMode;
 
   #drawModeSettings: { disabled: boolean; hidden: boolean } = {
     disabled: false,
@@ -261,7 +265,7 @@ export class InteractContext<
   }
 
   cycleDrawMode() {
-    const modes: DrawMode[] = ["polyline", "polygon", "point"];
+    const modes = drawModePaneModes;
     this.setDrawMode(modes[(modes.indexOf(this.#drawMode) + 1) % modes.length]);
   }
 
@@ -310,6 +314,29 @@ export class InteractContext<
    */
   get selectedVectorId(): UUID | null {
     return this.#vectorInspector.selectedId;
+  }
+
+  /** Toggles the inspected label's session-local visibility. */
+  toggleSelectedVectorHidden(): void {
+    const label = this.#vectorInspector.selectedVector;
+    if (label != null) this.dataView.setVectorHidden(label.id, !label.hidden);
+  }
+
+  /** Visibility shortcut listed in Controls even without an edited label. */
+  readonly hideInSceneKeybind = {
+    keyCombo: "h",
+    name: "Toggle hide in scene",
+    handler: () => this.toggleSelectedVectorHidden(),
+  };
+
+  /** Context controls remain discoverable outside label editing. */
+  get contextKeybinds() {
+    return [
+      this.hideInSceneKeybind,
+      ...[
+        ...(this.currentState?.keydownHandler.iterSubtreeKeybinds() ?? []),
+      ].filter((binding) => binding !== this.hideInSceneKeybind),
+    ];
   }
 
   /** Whether the draw-vector button of the vector inspector is active. */

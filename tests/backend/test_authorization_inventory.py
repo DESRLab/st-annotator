@@ -96,13 +96,14 @@ def test_every_shipped_plugin_frontend_route_has_an_explicit_classification():
             if marker not in source or section_marker not in source:
                 continue
             block = source.split(section_marker, 1)[1].split("]", 1)[0]
-            path = block.split('path: "', 1)[1].split('"', 1)[0]
-            module = block.split('routeModule("./', 1)[1].split('"', 1)[0]
-            discovered.add((f"/{area}/{section}/{path}", f"{plugin}:{module}"))
+            for path, module in re.findall(
+                r'path:\s*"([^"]+)"[\s\S]*?module:\s*(?:routeModule\(\s*|pluginRouteModule\(\s*import\.meta\.url,\s*)"\./([^"]+)"',
+                block,
+            ):
+                discovered.add((f"/{area}/{section}/{path}", f"{plugin}:{module}"))
 
-        # The parser intentionally supports one contribution per section. This
-        # assertion makes a second declaration fail closed instead of silently
-        # leaving the new route outside the manifest.
+        # Every route declaration must be matched, including sections with
+        # multiple contributions and pluginRouteModule's source/built resolver.
         assert source.count('path: "') == len(discovered) - discovered_before
 
     assert classified == discovered

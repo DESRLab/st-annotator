@@ -1,18 +1,20 @@
 """Tests for the row-building logic of ``generate_st_data_info.py``.
 
-Only the per-file row construction (``_get_st_info_row``) and the CLI surface
+The per-file row construction (``_get_st_info_row``), CSV output, and CLI validation
 are covered here. The command bodies themselves load an application config
 (which reads the database/filesystem environment) and are therefore left to
-manual runs; see the final test report notes.
+manual runs.
 """
 
 from __future__ import annotations
 
+import csv
 from datetime import datetime
+from decimal import Decimal
 from pathlib import Path
 
-import click
 import scripts.generate_st_data_info as generate_st_data_info_module
+from click.testing import CliRunner
 
 from sta.common.filesystem import FileSystemPath
 
@@ -74,20 +76,30 @@ def test_generate_st_data_info_writes_csv_relative_to_current_working_directory(
     monkeypatch,
 ):
     monkeypatch.chdir(tmp_path)
-    row = generate_st_data_info_module.STInfoRow(file_uri="data/example.pcd")
+    rows = [
+        generate_st_data_info_module.STInfoRow(
+            file_uri="data/example, first.pcd", translate_x=1.25, scale_z=2
+        ),
+        generate_st_data_info_module.STInfoRow(file_uri="data/second.pcd"),
+    ]
 
-    generate_st_data_info_module._write_data_info_csv("metadata/data_info.csv", [row])
+    generate_st_data_info_module._write_data_info_csv("metadata/data_info.csv", rows)
 
     output = tmp_path / "metadata" / "data_info.csv"
     assert output.is_file()
-    assert output.read_text().splitlines()[1].startswith("data/example.pcd,")
+    with output.open(newline="") as stream:
+        reader = csv.DictReader(stream)
+        assert reader.fieldnames == list(generate_st_data_info_module.STInfoRow.model_fields)
+        written = list(reader)
+    assert [row["file_uri"] for row in written] == [row.file_uri for row in rows]
+    assert written[0]["translate_x"] == "1.25"
+    assert Decimal(written[0]["scale_z"]) == 2
+    assert written[1]["translate_x"] == ""
 
 
-def test_cli_command_exposes_the_expected_interface():
-    command = generate_st_data_info_module.generate_st_data_info
+def test_cli_requires_output_before_loading_application_config():
+    result = CliRunner().invoke(generate_st_data_info_module.generate_st_data_info, ["data"])
 
-    assert isinstance(command, click.Command)
-    assert command.name == "generate-st-data-info"
-
-    parameter_names = {parameter.name for parameter in command.params}
-    assert {"data_uri", "output_path", "config_path"} <= parameter_names
+    assert result.exit_code == 2
+    assert "Missing option" in result.output
+    assert "--output" in result.output

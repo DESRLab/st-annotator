@@ -226,6 +226,7 @@ export class EditableFrame
 
   /**
    * Tests whether a timestamp exists in this frame.
+   * A null timestamp represents timeless data and matches every frame.
    *
    * @param timestamp The query timestamp.
    * @returns `true` if the given timestamp exists in the given frame;
@@ -233,10 +234,7 @@ export class EditableFrame
    */
   containsTimestamp(timestamp: Timestamp | null): boolean {
     if (timestamp == null) {
-      return (
-        this.st_bounds.min_timestamp == null &&
-        this.st_bounds.max_timestamp == null
-      );
+      return true;
     }
 
     return this.getTimestampBounds().contains(timestamp.getTime());

@@ -16,7 +16,8 @@
     "sta-gmesh": "^1.1.0",
     "sta-pcd": "^1.1.0",
     "sta-segmentation": "^1.1.0",
-    "sta-vector": "^1.1.0"
+    "sta-vector": "^1.1.0",
+    "sta-relation": "^1.1.0"
   },
   "devDependencies": {
     "sta-config": "^1.1.0"

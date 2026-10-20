@@ -28,10 +28,15 @@ function createInput(
 }
 
 describe("getSegmentationTooltipContent", () => {
+  it("uses the styled segmentation tooltip class", () => {
+    expect(getSegmentationTooltipContent(createInput()).className).toBe(
+      "segmentation-tooltip",
+    );
+  });
   it("formats the instance and selection ids with the settings display flags", () => {
     const content = getSegmentationTooltipContent(createInput());
 
-    expect(content.className).toBe("selection-tooltip");
+    expect(content.className).toBe("segmentation-tooltip");
     expect(content.visible).toBe(true);
     // ShortUUID shows the last 6 characters of each id.
     expect(content.lines[0]).toBe("T{0000a1} | B{000001}");

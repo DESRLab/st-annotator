@@ -1,3 +1,4 @@
+import relationPlugin from "sta-relation/app";
 import bboxPlugin from "sta-bbox/app";
 import gmeshPlugin from "sta-gmesh/app";
 import pcdPlugin from "sta-pcd/app";
@@ -13,5 +14,6 @@ export default {
     bbox: bboxPlugin,
     segmentation: segmentationPlugin,
     vector: vectorPlugin,
+    relation: relationPlugin,
   },
 } satisfies STAConfig;

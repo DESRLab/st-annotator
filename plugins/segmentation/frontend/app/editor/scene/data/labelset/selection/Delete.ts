@@ -39,6 +39,10 @@ export class Delete extends SegmentationOperation<DeleteParams, null> {
     return null;
   }
 
+  get deletedElements() {
+    return [{ type: "selection", id: this.opParams.selection_id }];
+  }
+
   #deletedSelectionParams: SelectionParams | undefined = undefined;
 
   /**

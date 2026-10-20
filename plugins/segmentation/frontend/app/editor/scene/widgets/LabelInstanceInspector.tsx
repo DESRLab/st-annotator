@@ -41,6 +41,7 @@ import {
  * structurally.
  */
 export interface SegmentationInspectorLabelsView extends SourceEventTarget {
+  setSelectionHidden(id: UUID, hidden: boolean): void;
   readonly data: ReadonlySegmentationIndex | null;
 
   iterLabelSelections(): IterableIterator<ReadonlyLabelSelection>;

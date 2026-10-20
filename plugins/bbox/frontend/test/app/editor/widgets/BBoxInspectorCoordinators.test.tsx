@@ -403,6 +403,31 @@ afterEach(() => {
 });
 
 describe("bbox inspector coordinators", () => {
+  it("keeps draft class choices when draw mode changes", () => {
+    const labelsView = new FakeBBoxView({ classes: [CLASS_CAR] });
+    const inspector = new LabelBoxInspector({
+      labelsView: labelsView as never,
+    });
+    const input = cloneLabelBoxInspectorInputtedData(
+      inspector.paneParams.inputtedData,
+    );
+    input.relations.classSelect.classId = CLASS_CAR.id;
+    inspector.onInputChange(input);
+    expect(inspector.getBoxParams().perceivedClassId).toBe(CLASS_CAR.id);
+    inspector.drawBoxActive = true;
+    expect(inspector.getBoxParams().perceivedClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.drawBoxActive).toBe(true);
+    inspector.drawBoxActive = false;
+    expect(inspector.getBoxParams().perceivedClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.drawBoxActive).toBe(false);
+    inspector.disabled = true;
+    expect(inspector.getBoxParams().perceivedClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.disabled).toBe(true);
+    inspector.disabled = false;
+    expect(inspector.getBoxParams().perceivedClassId).toBe(CLASS_CAR.id);
+    inspector.dispose();
+  });
+
   it("preserves placeholder IDs in bbox inspector input", () => {
     const boxId = new Placeholder<string>();
     const trackId = new Placeholder<string>();

@@ -157,7 +157,8 @@ def test_import_persists_sources_and_scan_scoped_objects(
         for path in tmp_path.glob(f"*/{importer.ANNOTATION_NAME}"):
             path.unlink()
     result = CliRunner().invoke(
-        importer.cli, [str(tmp_path / "a" / ".."), "-c", str(config_path), *options]
+        importer.cli,
+        [str(tmp_path / "a" / ".."), "--workers", "1", "-c", str(config_path), *options],
     )
     assert result.exit_code == 0, (result.output, result.exception)
     sources = session.exec(
@@ -184,15 +185,26 @@ def test_import_persists_sources_and_scan_scoped_objects(
             assert {point.coords[0] for point in geometry.geoms} == {(1, 2, 3), (2, 3, 4)}
     assert len(session.exec(select(LabelTrack)).all()) == expected_boxes
     assert len(session.exec(select(LabelBox)).all()) == expected_boxes
+    classes = session.exec(select(ObjectClass)).all()
+    if expected_segmentation or expected_boxes:
+        assert classes
+        assert all(record.color_rgb != 0xFFFFFF for record in classes)
+    else:
+        assert classes == []
 
 
+@pytest.mark.parametrize("relations", [False, True])
 def test_failure_removes_committed_groups_and_classes_but_keeps_raw_files(
     tmp_path: Path,
     root_user: UserPublic,
     session: Session,
     monkeypatch: pytest.MonkeyPatch,
+    *,
+    relations: bool,
 ):
     config_path = prepare_cli(tmp_path, root_user, session, monkeypatch)
+    if relations:
+        (tmp_path / "relationships.json").write_text(json.dumps({"scans": []}))
     before = set(tmp_path.rglob("*"))
     original = importer.read_points
 
@@ -203,7 +215,17 @@ def test_failure_removes_committed_groups_and_classes_but_keeps_raw_files(
         return original(path)
 
     monkeypatch.setattr(importer, "read_points", fail_second)
-    result = CliRunner().invoke(importer.cli, [str(tmp_path), "-c", str(config_path)])
+    result = CliRunner().invoke(
+        importer.cli,
+        [
+            str(tmp_path),
+            "--workers",
+            "1",
+            "-c",
+            str(config_path),
+            *(["--label-type", "relations"] if relations else []),
+        ],
+    )
     assert result.exit_code != 0
     assert "invalid second scan" in result.output
     assert session.exec(select(SourceGroup).where(SourceGroup.name == "3rscan")).first() is None
@@ -212,3 +234,147 @@ def test_failure_removes_committed_groups_and_classes_but_keeps_raw_files(
     objclass = session.exec(select(ObjectClass).where(ObjectClass.name == "chair")).one()
     assert objclass.is_deleted
     assert set(tmp_path.rglob("*")) == before
+    monkeypatch.setattr(importer, "read_points", original)
+    retry = CliRunner().invoke(
+        importer.cli,
+        [
+            str(tmp_path),
+            "--workers",
+            "1",
+            "-c",
+            str(config_path),
+            *(["--label-type", "relations"] if relations else []),
+        ],
+    )
+    assert retry.exit_code == 0, (retry.output, retry.exception)
+    session.expire_all()
+    assert not session.get(ObjectClass, objclass.id).is_deleted
+    if relations:
+        from sta_relation.models.classes import RelationClass, RelationClassSelection
+
+        assert len(session.exec(select(RelationClassSelection)).all()) == 1
+        assert all(not record.is_deleted for record in session.exec(select(RelationClass)).all())
+
+
+def write_relations(root: Path) -> Path:
+    path = root / "relationships.json"
+    edge = [7, 8, 2, "left"]
+    path.write_text(
+        json.dumps(
+            {
+                "scans": [
+                    {"scan": "a", "relationships": [edge, [7, 8, 6, "close by"]]},
+                    {"scan": "a", "relationships": [edge]},
+                    {"scan": "unselected", "relationships": [[1, 2, 999, "invalid"]]},
+                ]
+            }
+        )
+    )
+    return path
+
+
+def test_relations_merge_subgraphs_and_preserve_direction(tmp_path: Path):
+    path = write_relations(tmp_path)
+    assert importer.read_relations(path, ["a", "b"]) == {
+        "a": [(7, 8, "close by"), (7, 8, "left")],
+        "b": [],
+    }
+
+
+@pytest.mark.parametrize("edge", [[7, 8, 2, "right"], [7, 8, -1, "left"], [0, 7, 2, "left"]])
+def test_invalid_relation_is_rejected(tmp_path: Path, edge: list):
+    path = tmp_path / "relationships.json"
+    path.write_text(json.dumps({"scans": [{"scan": "a", "relationships": [edge]}]}))
+    with pytest.raises(ValueError, match="Invalid 3DSSG"):
+        importer.read_relations(path, ["a"])
+
+
+def test_missing_relations_requests_download(tmp_path: Path):
+    dataset(tmp_path)
+    result = CliRunner().invoke(
+        importer.cli, [str(tmp_path), "--dry-run", "--label-type", "relations"]
+    )
+    assert result.exit_code != 0
+    assert "Download relationships.json" in result.output
+    assert str(tmp_path / "relationships.json") in result.output
+    assert (
+        "https://www.campar.in.tum.de/public_datasets/3DSSG/3DSSG_subset/relationships.json"
+        in result.output
+    )
+    assert "relationships.txt" not in result.output
+
+
+def test_relations_dry_run_skips_missing_geometry(tmp_path: Path):
+    dataset(tmp_path)
+    write_relations(tmp_path)
+    result = CliRunner().invoke(
+        importer.cli, [str(tmp_path), "--dry-run", "--label-type", "relations"]
+    )
+    assert result.exit_code == 0, result.output
+    assert (
+        "Skipping 2 relations in scan a: missing endpoint geometry for objects [8]" in result.output
+    )
+
+
+@pytest.mark.parametrize("geometry", ["segmentation", "bbox"])
+def test_import_persists_directed_relations(
+    tmp_path: Path,
+    root_user: UserPublic,
+    session: Session,
+    monkeypatch: pytest.MonkeyPatch,
+    geometry: str,
+):
+    from sta_relation.models.classes import RelationClass, RelationClassSelection
+    from sta_relation.models.data import Relation
+
+    config = prepare_cli(tmp_path, root_user, session, monkeypatch)
+    # Give each scan a second object with geometry.
+    for scan in ("a", "b"):
+        path = tmp_path / scan / importer.PLY_NAME
+        vertices = PlyData.read(str(path))["vertex"].data.copy()
+        vertices["objectId"][-1] = 8
+        PlyData([PlyElement.describe(vertices, "vertex")], text=True).write(str(path))
+        (tmp_path / scan / importer.ANNOTATION_NAME).write_text(
+            json.dumps(
+                {
+                    "segGroups": [
+                        {"objectId": 7, "label": "chair"},
+                        {"objectId": 8, "label": "table"},
+                    ]
+                }
+            )
+        )
+    relation_path = write_relations(tmp_path)
+    graphs = json.loads(relation_path.read_text())
+    graphs["scans"][0]["relationships"].append([7, 99, 2, "left"])
+    relation_path.write_text(json.dumps(graphs))
+    options = [] if geometry == "segmentation" else ["--label-type", "bbox"]
+    result = CliRunner().invoke(
+        importer.cli,
+        [str(tmp_path), "--workers", "1", "-c", str(config), "--label-type", "relations", *options],
+    )
+    assert result.exit_code == 0, (result.output, result.exception)
+    assert "missing endpoint geometry for objects [99]" in result.output
+    relations = session.exec(select(Relation)).all()
+    assert len(relations) == 2
+    kind = "selection" if geometry == "segmentation" else "box"
+    assert all(edge.source_type == edge.target_type == kind for edge in relations)
+    assert all(edge.source_id == importer.label_uuid(kind, "a", 7) for edge in relations)
+    assert all(edge.target_id == importer.label_uuid(kind, "a", 8) for edge in relations)
+    assert {session.get(RelationClass, edge.relation_class_id).name for edge in relations} == {
+        "left",
+        "close by",
+    }
+    selection = session.exec(select(RelationClassSelection)).one()
+    assert {record.name for record in selection.relclasses} == set(importer.RELATION_CLASSES)
+
+
+def test_self_relations_are_skipped_with_a_warning(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+):
+    path = tmp_path / "relationships.json"
+    path.write_text(
+        json.dumps({"scans": [{"scan": "a", "relationships": [[7, 7, 1, "supported by"]]}]})
+    )
+    assert importer.read_relations(path, ["a"]) == {"a": []}
+    assert "Skipping self-relation" in capsys.readouterr().err

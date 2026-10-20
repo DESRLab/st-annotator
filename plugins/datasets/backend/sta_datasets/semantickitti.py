@@ -841,7 +841,7 @@ def run_sequence_imports(
     "label_types",
     type=click.Choice(LABEL_TYPE_CHOICES, case_sensitive=False),
     multiple=True,
-    help="Label type to import when labels are enabled. Repeat to import multiple types.",
+    help="Label type to import when labels are enabled. Repeat to import multiple types. Default: segmentation and bbox.",
 )
 @click.option(
     "--learning-map",

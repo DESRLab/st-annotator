@@ -555,7 +555,15 @@ export async function selectActiveLayer(
 }
 
 export function paneRow(scope: Locator, label: string | RegExp) {
-  return scope.locator(".tp-lblv").filter({ hasText: label }).first();
+  // Match the label itself: option text such as "ApplyColormap" must not
+  // make the Blender Type row match a request for the Colormap control.
+  const controlLabel = scope
+    .page()
+    .locator(".tp-lblv_l")
+    .filter({
+      hasText: typeof label === "string" ? exactText(label) : label,
+    });
+  return scope.locator(".tp-lblv").filter({ has: controlLabel }).first();
 }
 
 export function checkboxControl(scope: Locator, label: string | RegExp) {
@@ -591,7 +599,13 @@ export async function fillNumberInput(input: Locator, value: string) {
   await expect(input).toBeEnabled();
   await input.fill(value);
   await input.press("Enter");
-  await expect(input).toHaveValue(new RegExp(escapeRegex(value)));
+  // Compare numeric values, not substrings: "0" must not match a clamped "0.9".
+  await expect
+    .poll(async () => {
+      const actual = (await input.inputValue()).trim();
+      return actual === "" ? null : Number(actual);
+    })
+    .toBe(Number(value));
 }
 
 export function exactButton(scope: Locator, label: string) {

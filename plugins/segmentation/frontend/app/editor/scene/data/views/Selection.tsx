@@ -9,7 +9,7 @@ export interface SelectionParams {
   color: Readonly<THREE.Color>;
   /** The opacity of selection points over source points. */
   opacity?: number;
-  /** `false` (default) if center of a selection is visibile, otherwise, `true`. */
+  /** Displays only the centroid instead of selection points when `true`. */
   showCenter?: boolean;
 }
 
@@ -82,9 +82,17 @@ export class Selection {
     return count === 0 ? center : center.multiplyScalar(1 / count);
   }
 
+  #pointsHidden = false;
+
+  /** Hides the selection surface while retaining its centroid marker. */
+  setPointsHidden(hidden: boolean): void {
+    this.#pointsHidden = hidden;
+    this.#updateVisibility();
+  }
+
   #showCenter: boolean;
 
-  /** Whether the center this selection is visible. */
+  /** Whether only the centroid is displayed instead of selection points. */
   get showCenter(): boolean {
     return this.#showCenter;
   }
@@ -101,8 +109,8 @@ export class Selection {
    * Updates the visibility of the components of this object.
    */
   #updateVisibility(): void {
-    this.#center.visible = this.showCenter;
-    this.#points.visible = !this.showCenter;
+    this.#center.visible = this.#packedPointCoords.length > 0;
+    this.#points.visible = !this.showCenter && !this.#pointsHidden;
   }
 
   /**
@@ -209,9 +217,13 @@ export class Selection {
       color: (this.color as THREE.Color).clone(),
       size: 10,
       sizeAttenuation: false,
+      depthTest: false,
+      depthWrite: false,
     });
 
-    return new THREE.Points(point, material);
+    const marker = new THREE.Points(point, material);
+    marker.renderOrder = 1;
+    return marker;
   }
 
   /**
@@ -279,8 +291,10 @@ export class Selection {
     raycaster: THREE.Raycaster,
     intersects: THREE.Intersection[] = [],
   ): THREE.Intersection[] {
-    const target = this.showCenter ? this.#center : this.#points;
-    return raycaster.intersectObject(target, false, intersects);
+    const targets = [this.#center, this.#points].filter(
+      (target) => target.visible,
+    );
+    return raycaster.intersectObjects(targets, false, intersects);
   }
 
   dispose(): void {

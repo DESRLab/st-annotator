@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "../../../config/js/tsconfig.json",
+        "../../../core/frontend/tsconfig.paths.json"
+    ],
+    "include": [
+        "app",
+        "models",
+        "test",
+        "../../../core/frontend/lib/types.d.ts"
+    ],
+}

@@ -1,4 +1,4 @@
-import type { Placeholder } from "sta/app/editor";
+import type { LabelElementReference, Placeholder } from "sta/app/editor";
 
 import type { _BBoxIndex } from "../BBoxIndex";
 
@@ -16,6 +16,11 @@ export class StaleTargetError extends Error {}
  * bounding box labels.
  */
 export abstract class BBoxOperation<P, R extends {} | null> {
+  /** Elements deleted by this operation, for dependent-label history effects. */
+  get deletedElements(): readonly LabelElementReference[] {
+    return [];
+  }
+
   /**
    * The display name of this operation.
    */

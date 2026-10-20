@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 from sta.common.filesystem import FilesystemConfig, FileSystemPath, JSONFileIO, fs_ctx
-from sta.common.spatial import Vector3
+from sta.common.spatial import DecimalCoord3, Vector3
 from sta_vector.filesystem import (
     GeoFeatureCollection,
     GeomConverters,
@@ -239,3 +239,18 @@ def test_geom_converters_point_round_trip():
 
     assert GeomConverters.vertices_from_geom(geom) == [vertex]
     assert GeomConverters.vertices_from_wkb(GeomConverters.geom_to_wkb(geom)) == [vertex]
+
+
+@pytest.mark.parametrize("vector_type", list(VectorType))
+def test_fractional_vertices_survive_geometry_round_trip(vector_type):
+    points = [
+        DecimalCoord3(x="1.234567", y="-2.500001", z="3.125"),
+        DecimalCoord3(x="4.125", y="5.875", z="6.375"),
+        DecimalCoord3(x="7.625", y="8.125", z="9.25"),
+    ]
+    if vector_type == VectorType.POINT:
+        points = points[:1]
+    geom = GeomConverters.geom_from_vector_data(vector_type, points)
+    expected = [*points, points[0]] if vector_type == VectorType.POLYGON else points
+    assert GeomConverters.vertices_from_geom(geom) == expected
+    assert GeomConverters.vertices_from_wkb(GeomConverters.geom_to_wkb(geom)) == expected

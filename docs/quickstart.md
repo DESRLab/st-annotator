@@ -33,9 +33,9 @@ Get started with ST Annotator by hosting the example application.
     STA_JWT_PRIVATE_KEY_PATH=jwt-signing.key
     ```
 
-5. Select a `.json` configuration file for the example application. The file supplies only the database and filesystem factory paths. Which plugins are active is decided elsewhere: backend plugins come from the installed `sta.plugins` entry points, and frontend plugins from the selected `sta.config.ts` application composition. Both bundled files select the same filesystem factory and differ only in the database factory, which decides whether the PostGIS extension is created in the new database:
-    - `appconfig-postgis.json` uses `PostGISDatabaseConfig`, which requires PostGIS to be available on the database server and creates the extension in the database.
-    - `appconfig-postgres.json` uses `PostgresDatabaseConfig`, which does not create the extension. The geometry-backed tables of the `vector` and `segmentation` plugins are still created, so this file applies when PostGIS is already installed in the target database.
+5. Select a `.json` configuration file for the example application:
+    - `appconfig-postgis.json` enables PostGIS in the database. PostGIS must be available on the database server.
+    - `appconfig-postgres.json` is for a database where PostGIS is already enabled.
 
     Use `appconfig-postgis.json` unless you install the PostGIS extension separately. Pass the selected file to `<config>` in each `sta` command, and to the serve scripts used in [Host the platform](#host-the-platform) with the required `-c <config>` option.
 
@@ -72,18 +72,17 @@ If you run DynamicSAM on another host or port, set the URL to the address reacha
 
 ### Import data
 
-The `sta-datasets` backend plugin provides dataset commands independently of the
-repository scripts. The workspace installation includes it. Run
-`sta-datasets --help` from the
-repository root to list importers. Installed deployments can also use
-`sta plugins -c <config> datasets <dataset> <data-dir>`; the importer inherits
-the host's configuration. The original `scripts/import_*.py` paths remain thin
-launchers for these commands.
+Run `sta-datasets --help` from the repository root to list dataset importers.
+The repository installation includes this command. Installed deployments can
+also use `sta plugins -c <config> datasets <dataset> <data-dir>`.
+
+New object classes receive stable colors derived from their names. All dataset
+importers reuse existing classes and preserve their configured colors. Existing
+imports are not recolored.
 
 #### SemanticKITTI dataset
 
-The `sta-datasets` backend plugin provides a dedicated importer for SemanticKITTI point clouds,
-point-wise segmentation labels, and instance-derived bounding boxes. Use
+Import SemanticKITTI point clouds, segmentation labels, and bounding boxes. Use
 `appconfig-postgis.json` when importing segmentation labels.
 
 1. Download the KITTI Odometry Benchmark Velodyne point clouds and the
@@ -159,9 +158,7 @@ Additional useful variants include:
 
 The `sta-datasets 3rscan` command imports the [3RScan dataset](https://github.com/WaldJohannaU/3RScan) at `data/3RScan`.
 Each annotated scan directory contains `labels.instances.annotated.v2.ply` and
-`semseg.v2.json`. The importer reads vertex `objectId` values from the PLY and
-class names from the JSON's `segGroups`. Directories without an annotated PLY
-are excluded from the default selection.
+`semseg.v2.json`. Only scans with an annotated PLY file are selected by default.
 
 From the repository root, validate one scan without database writes:
 
@@ -177,27 +174,56 @@ sta-datasets 3rscan data/3RScan \
     -c appconfig-postgis.json
 ```
 
-The dataset must be accessible under the configured filesystem root. The
-command creates source and label groups named `3RScan` and a `main` label
-branch. Sources reference the original PLY files, so keep those files in place.
-PLY RGB channels contain annotation colors. Textured meshes, photographic RGB-D
-frames, camera poses, and rescan registration are not imported. Coordinates stay
-in each scan's local frame, with a separate placeholder timestamp per scan.
+Place the dataset under the configured filesystem root and keep the original
+PLY files in place after importing. PLY colors are annotation colors;
+textured meshes and RGB-D sequences are not imported.
 
-Segmentation is imported by default. To include upright boxes fitted from the
-object vertices, pass `--label-type segmentation --label-type bbox`. These boxes
-are estimates; the JSON's general oriented bounding boxes are not imported.
+Segmentation is imported by default. To include estimated bounding boxes,
+pass `--label-type segmentation --label-type bbox`.
+To import scene graph relationships from [3DSSG](https://github.com/ShunChengWu/3DSSG),
+download [relationships.json](https://www.campar.in.tum.de/public_datasets/3DSSG/3DSSG_subset/relationships.json)
+to `data/3RScan/relationships.json` and add `--label-type relations`.
+This also imports segmentation labels by default. Use
+`--label-type relations --label-type bbox` to import relationships with boxes instead.
+Relationships whose endpoints have no PLY geometry are skipped with a warning.
+
 `--skip-labels` imports sources without requiring annotation JSON files.
 `--scan` accepts repeated or comma-separated scan IDs, and `--name` changes the
 group names. `--dry-run` checks all selected point clouds and mappings without
-login. Unannotated vertices (`objectId` zero) receive no label. Failed imports
-remove their database groups while preserving the raw dataset. Each invocation
-creates new groups rather than resuming an earlier import.
+login. Each invocation creates new groups rather than resuming an earlier import.
+
+#### Argoverse 2 Sensor dataset
+
+The `sta-datasets argoverse2` command imports LiDAR sweeps and static vector map
+labels from extracted [Argoverse 2 Sensor logs](https://argoverse.github.io/user-guide/datasets/sensor.html).
+It accepts log directories directly under the input directory or within split
+directories (`train`, `val`, `test`). Start with a single log and a few frames:
+
+```bash
+sta-datasets argoverse2 data/argoverse2-sensor \
+    --log <log-id> --max-frames 10 --dry-run
+sta-datasets argoverse2 data/argoverse2-sensor \
+    -c appconfig-postgis.json --log <log-id> --max-frames 10
+```
+
+Each log gets separate source and label groups. Use the matching groups to
+create a task. Lane boundaries become polylines, while crosswalks and drivable
+areas become polygons. Map labels have no timestamp and are available across
+frames. LiDAR and map coordinates share city axes, translated to place the
+first selected vehicle position at the origin.
+
+Keep the generated `.sta-imports/` directory inside each log while using its
+sources. Raw files are preserved. `--stride N` selects every Nth sweep;
+`--skip-labels` imports point clouds without requiring map files. Imports commit
+each complete log independently, using eight worker processes by default.
+Use `--workers N` to change the process count or `--workers 1` to run serially.
+Completed logs remain if another log fails. See
+`sta-datasets argoverse2 --help` for the full option list.
 
 #### Custom data
 
-For custom data, first use `scripts/generate_st_data_info.py` to generate the
-spatiotemporal metadata CSV consumed by the plugin importers.
+For custom data, first use `scripts/generate_st_data_info.py` to generate a
+metadata CSV for import.
 
 1. Place the data files in a directory under `FILESYSTEM_ROOT`. The generator
    scans only the immediate contents of that directory, not its subdirectories.
@@ -224,10 +250,8 @@ spatiotemporal metadata CSV consumed by the plugin importers.
         -c appconfig-postgis.json
     ```
 
-   Each generated row references one data file and assigns its filename-derived
-   timestamp as both the minimum and maximum timestamp. The transform fields
-   are left unset; edit the CSV before importing if the data requires explicit
-   translation, rotation, or scaling metadata.
+   Edit the CSV before importing if the data requires translation, rotation,
+   or scaling.
 4. Run `sta plugins -c <config>` to list the available plugins, then inspect a
    plugin's commands with `sta plugins -c <config> <plugin> --help`.
 5. Import the generated CSV with the plugin's `import-by-st` command.

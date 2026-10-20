@@ -104,7 +104,7 @@ function StartupLoadingOverlay({
       ? ["Loading project", "Preparing the annotation editor…"]
       : phase === "preparing-frame"
         ? ["Preparing frame", "Loading task and scene information…"]
-        : ["Loading frame data", "Loading the selected frame’s layers…"];
+        : ["Loading frame data", "Loading the selected frame's layers…"];
   return (
     <div
       aria-labelledby="project-loading-title"

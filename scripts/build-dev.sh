@@ -18,13 +18,14 @@ rm -rf \
     plugins/gmesh/frontend/dist \
     plugins/pcd/frontend/dist \
     plugins/segmentation/frontend/dist \
-    plugins/vector/frontend/dist
+    plugins/vector/frontend/dist \
+    plugins/relation/frontend/dist
 
 echo "=== [BUILD] OpenAPI client ==="
 bash "$REPO_ROOT/scripts/generate-openapi-client.sh"
 
 echo "=== [BUILD] Frontend packages ==="
-for workspace in sta sta-pcd sta-gmesh sta-bbox sta-segmentation sta-vector; do
+for workspace in sta sta-pcd sta-gmesh sta-bbox sta-segmentation sta-vector sta-relation; do
     npm run build:package --workspace="$workspace"
 done
 

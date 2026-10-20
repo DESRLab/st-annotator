@@ -1,3 +1,4 @@
+import type { LabelElementReference } from "../labelElements";
 import type { LabelDataView } from "../data";
 
 import type { Placeholder } from "./Placeholder";
@@ -24,6 +25,12 @@ export interface Operation<P, R extends {} | null> {
    * It is resolved with the value returned from the backend after it is pushed there.
    */
   readonly opResult: Placeholder<R> | null;
+
+  /** Whether local application skipped this operation; skipped work is not saved. */
+  readonly isNoop?: boolean;
+
+  /** Elements removed by this operation, for atomic dependent-label effects. */
+  readonly deletedElements?: readonly LabelElementReference[];
 
   /** Applies this operation to the local data. */
   applyLocal(): void;

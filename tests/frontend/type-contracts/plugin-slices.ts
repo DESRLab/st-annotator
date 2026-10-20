@@ -23,7 +23,8 @@ type DerivedSlices = {
   ]: SliceOf<LayerOfModule<EditorModule<K>>>;
 };
 
-type ExpectedKeys = "bbox" | "gmesh" | "pcd" | "segmentation" | "vector";
+type ExpectedKeys =
+  "bbox" | "gmesh" | "pcd" | "segmentation" | "vector" | "relation";
 type AssertKeys = keyof DerivedSlices extends ExpectedKeys
   ? ExpectedKeys extends keyof DerivedSlices
     ? true
@@ -37,6 +38,7 @@ const bboxSlice: AssertSlice<"bbox"> = true;
 const groundMeshSlice: AssertSlice<"gmesh"> = true;
 const vectorSlice: AssertSlice<"vector"> = true;
 const pointCloudSlice: AssertSlice<"pcd"> = true;
+const relationSlice: AssertSlice<"relation"> = true;
 const segmentationSlice: AssertSlice<"segmentation"> = true;
 
 export {
@@ -46,4 +48,5 @@ export {
   vectorSlice,
   pointCloudSlice,
   segmentationSlice,
+  relationSlice,
 };

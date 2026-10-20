@@ -196,6 +196,16 @@ class FakeVectorView extends VanillaEventDispatcher {
     return this.vectors.get(id);
   }
 
+  setVectorHidden(id: string, hidden: boolean): void {
+    this.vectors.get(id).hidden = hidden;
+    this.calls.push(["setVectorHidden", id, hidden]);
+    (this.data as any).dispatchEvent({
+      type: "vector-update",
+      obj: this.vectors.get(id),
+      propertyKey: "hidden",
+    });
+  }
+
   async updateLabelVectorGtClass(vector: any, labelClass: any): Promise<void> {
     vector.gtClassId = labelClass?.id ?? null;
     vector.gtClass = labelClass ?? null;
@@ -208,6 +218,31 @@ afterEach(() => {
 });
 
 describe("vector inspector coordinators", () => {
+  it("keeps draft class choices when draw mode changes", () => {
+    const labelsView = new FakeVectorView({ classes: [CLASS_CAR] });
+    const inspector = new LabelVectorInspector({
+      labelsView: labelsView as never,
+    });
+    const input = cloneLabelVectorInspectorInputtedData(
+      inspector.paneParams.inputtedData,
+    );
+    input.relations.classSelect.classId = CLASS_CAR.id;
+    inspector.onInputChange(input);
+    expect(inspector.getVectorParams().gtClassId).toBe(CLASS_CAR.id);
+    inspector.drawVectorActive = true;
+    expect(inspector.getVectorParams().gtClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.drawVectorActive).toBe(true);
+    inspector.drawVectorActive = false;
+    expect(inspector.getVectorParams().gtClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.drawVectorActive).toBe(false);
+    inspector.disabled = true;
+    expect(inspector.getVectorParams().gtClassId).toBe(CLASS_CAR.id);
+    expect(inspector.paneParams.settings.disabled).toBe(true);
+    inspector.disabled = false;
+    expect(inspector.getVectorParams().gtClassId).toBe(CLASS_CAR.id);
+    inspector.dispose();
+  });
+
   it("preserves placeholder IDs while cloning locally-created vector inspector input", () => {
     const vectorId = new Placeholder<string>();
     const inputtedData = {
@@ -262,6 +297,32 @@ describe("vector inspector coordinators", () => {
     await selectOption(vectorSelect!, "P{");
 
     expect(inspector.selectedId).toBe(VECTOR_ID);
+    const hideRow = [...dom.querySelectorAll(".tp-lblv")].find(
+      (row) => row.querySelector(".tp-lblv_l")?.textContent === "Hide in scene",
+    )!;
+    const hideCheckbox = hideRow.querySelector<HTMLInputElement>(
+      'input[type="checkbox"]',
+    )!;
+    await act(async () => hideCheckbox.click());
+    expect(labelsView.calls).toContainEqual([
+      "setVectorHidden",
+      VECTOR_ID,
+      true,
+    ]);
+    const updatedHideRow = [...dom.querySelectorAll(".tp-lblv")].find(
+      (row) => row.querySelector(".tp-lblv_l")?.textContent === "Hide in scene",
+    )!;
+    await act(async () =>
+      updatedHideRow
+        .querySelector<HTMLInputElement>('input[type="checkbox"]')!
+        .click(),
+    );
+    expect(labelsView.calls).toContainEqual([
+      "setVectorHidden",
+      VECTOR_ID,
+      false,
+    ]);
+
     expect(events.at(-1)).toBe(vector);
 
     await act(async () => {

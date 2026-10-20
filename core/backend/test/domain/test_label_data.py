@@ -5,11 +5,13 @@ Exercises ``sta.domain/label/data/base.py`` (``LabelDataDomain``,
 entity/element domains, without going through any plugin.
 """
 
+import sqlite3
 import uuid
 from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
 from http import HTTPStatus
+from typing import cast
 
 from fastapi import HTTPException
 from pydantic import BaseModel
@@ -199,6 +201,53 @@ def test_iter_cruds_includes_registered_domains():
     assert cruds[MockEntity] is entity_domain
     assert cruds[MockElement] is element_domain
     assert cruds[MockOrphanElement] is orphan_element_domain
+
+
+def test_closest_states_bounds_database_work_without_automatic_indexes(
+    test_app_config: AppConfig,
+    labelset_branch: LabelsetBranchPublic,
+):
+    """Resolve a wide revision without repeatedly scanning all visible states.
+
+    Disabling SQLite's temporary indexes exposes repeated scans independently of
+    planner statistics. A virtual-machine instruction budget is deterministic,
+    unlike a wall-clock deadline on the shared test machine.
+    """
+    ids = {uuid.uuid4() for _ in range(256)}
+    with session_ctx(test_app_config) as session:
+        session.add_all(
+            MockEntity(
+                id=id,
+                group_id=labelset_branch.group_id,
+                commit_hash=labelset_branch.head_hash,
+                name="label",
+            )
+            for id in ids
+        )
+        session.commit()
+        connection = session.connection()
+        connection.exec_driver_sql("PRAGMA automatic_index=OFF")
+        driver = cast(sqlite3.Connection, connection.connection.driver_connection)
+        instruction_batches = 0
+
+        def stop_excessive_work() -> int:
+            nonlocal instruction_batches
+            instruction_batches += 1
+            return int(instruction_batches > 1_000)
+
+        driver.set_progress_handler(stop_excessive_work, 100)
+        try:
+            records = session.exec(
+                entity_domain._select_closest_states(
+                    labelset_branch.group_id,
+                    labelset_branch.head_hash,
+                )
+            ).all()
+        finally:
+            driver.set_progress_handler(None, 0)
+            connection.exec_driver_sql("PRAGMA automatic_index=ON")
+
+        assert {record.id for record in records} == ids
 
 
 @pytest.mark.parametrize("use_delta_encoding", [True, False])

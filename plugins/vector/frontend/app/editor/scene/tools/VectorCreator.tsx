@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+import { EventSubscriptions } from "sta/app/editor";
 import type {
   CoordinateFormatSpec,
   InteractController,
@@ -64,6 +65,10 @@ export class VectorCreator extends THREE.EventDispatcher<VectorCreatorEventMap> 
   readonly format: CoordinateFormatSpec;
 
   readonly #interactor: InteractController<unknown>;
+
+  readonly #subscriptions = new EventSubscriptions();
+
+  #lastPointerDownAddedVertex = false;
 
   /**
    * Raycasts the pointer to the rendered scene.
@@ -332,16 +337,44 @@ export class VectorCreator extends THREE.EventDispatcher<VectorCreatorEventMap> 
 
     this.#interactor.addEventListener("pointerdown", this.#onPointerDown);
     this.#interactor.addEventListener("pointermove", this.#onPointerMove);
+
+    // Double-click is a mouse event, so the pointer-only interactor does not
+    // forward it. Its two pointer presses have already placed the final vertex.
+    const dom = this.#interactor.window.dom;
+    dom.addEventListener("dblclick", this.#onDoubleClick);
+    this.#subscriptions.addDisposer(() =>
+      dom.removeEventListener("dblclick", this.#onDoubleClick),
+    );
   }
 
   /**
    * Disposes of this object. Do not use it afterwards.
    */
   dispose() {
+    this.#subscriptions.dispose();
     this.#interactor.removeEventListener("pointermove", this.#onPointerMove);
     this.#interactor.removeEventListener("pointerdown", this.#onPointerDown);
     this.#interactor.dispose();
   }
+
+  #onDoubleClick = (event: MouseEvent) => {
+    if (!this.enabled || !this.isCreating || this.vectorType === "Point")
+      return;
+    if (event.button !== 0) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.#lastPointerDownAddedVertex) {
+      // Native double-clicks allow slight movement between their two presses.
+      // Keep the vertex placed by the first press, even if the second press
+      // landed at a different world coordinate.
+      this.#newVectorData = {
+        verticesPixelPos: this.#newVectorData.verticesPixelPos.slice(0, -1),
+        verticesWorldPos: this.#newVectorData.verticesWorldPos.slice(0, -1),
+      };
+    }
+    this.finish();
+  };
 
   /**
    * Triggered when the pointer is pressed down on this object's base element.
@@ -356,7 +389,10 @@ export class VectorCreator extends THREE.EventDispatcher<VectorCreatorEventMap> 
 
     const pointerPixelPos = this.#getPointerPixelPos(event);
     const pointerWorldPos = this.#getPointerWorldPosByIntersection();
+    const previousVertexCount = this.newVectorWorldVertices.length;
     this.#updateState(pointerWorldPos, pointerPixelPos);
+    this.#lastPointerDownAddedVertex =
+      this.newVectorWorldVertices.length > previousVertexCount;
     this.startDrawInContext();
   };
 

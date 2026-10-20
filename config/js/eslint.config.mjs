@@ -199,6 +199,8 @@ export function createConfig(...configs) {
   return defineConfig([
     globalIgnores([
       ".react-router/**",
+      // The dev watcher publishes and removes these generated build trees.
+      ".sta-dev-dist-*/**",
       "build/**",
       "coverage/**",
       "dist/**",

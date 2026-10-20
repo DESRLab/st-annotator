@@ -2,7 +2,15 @@ import { expect } from "chai";
 import * as THREE from "three";
 import { describe, it } from "vitest";
 
-import { EditorConfig, Placeholder, ProjectConfig } from "sta/app/editor";
+import {
+  EditableFrame,
+  EditorConfig,
+  FrameState,
+  Placeholder,
+  ProjectConfig,
+  TaskState,
+} from "sta/app/editor";
+import type { EditorViews } from "sta/app/editor";
 import { OptionalVector3, Timestamp } from "sta/common";
 
 import {
@@ -27,6 +35,49 @@ function makeView() {
 }
 
 describe("BBoxIndexView", () => {
+  it("shows timeless labels across dated frames while preserving spatial and dated filtering", () => {
+    const { index } = makeView();
+    const add = (id: string, x: number, timestamp: Timestamp | null) =>
+      index.addLabelBox({
+        id,
+        timestamp,
+        boxType: "cuboid",
+        center: new THREE.Vector3(x, 0, 0),
+        angle: 0,
+        size: new THREE.Vector3(0.1, 0.1, 0.1),
+      });
+    add("static", 0, null);
+    add("outside-space", 10, null);
+    add("dated", 0, new Timestamp(10_000));
+    const expected = ["static"];
+    for (const time of [10_000, 20_000]) {
+      const boundedFrame = new EditableFrame(
+        {} as EditorViews,
+        FrameState.fromJSON({
+          id: time,
+          task: TaskState.fromJSON({ id: 1, project_id: 1, name: "task" }),
+          account_id: 1,
+          source_group_id: 2,
+          label_branch_id: 3,
+          work_type: "annotate",
+          min_x: -1,
+          min_y: -1,
+          min_z: -1,
+          max_x: 1,
+          max_y: 1,
+          max_z: 1,
+          min_timestamp: new Date(time).toISOString(),
+          max_timestamp: new Date(time).toISOString(),
+        }),
+      );
+      const filtered = new BBoxIndexView(index, [boundedFrame]);
+      expect(
+        [...filtered.iterLabelBoxes()].map((label) => label.id),
+      ).to.deep.equal(time === 10_000 ? [...expected, "dated"] : expected);
+      filtered.dispose();
+    }
+  });
+
   it("reconciles bulk-loaded tracks and boxes when placeholders resolve", async () => {
     const { index, view } = makeView();
     const trackId = new Placeholder<string>();

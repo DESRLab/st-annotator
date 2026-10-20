@@ -1,6 +1,6 @@
 """Query-plan comparison for the ancestor-candidate predicate.
 
-`_select_ancestor_ids_matching` pre-narrows the closest-state CTE of a filtered
+`_select_ancestor_ids_matching` pre-narrows the closest-state query of a filtered
 revision read, and `STA_USE_ANCESTOR_CANDIDATES` switches it off. This benchmark
 seeds a deep linear commit graph in a scratch database and runs each affected read
 with the predicate on and off, reporting what the driver actually sends, Postgres'

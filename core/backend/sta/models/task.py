@@ -3,6 +3,7 @@ from datetime import date
 from enum import Enum
 from typing import Any, ClassVar, Optional
 
+from sqlalchemy.sql.schema import UniqueConstraint
 from sqlalchemy.sql.sqltypes import Date, Integer, SmallInteger, String, Text
 from sqlmodel import Field, Relationship, SQLModel
 
@@ -69,7 +70,7 @@ class TaskAnnotator(SQLModel, table=True):
 
 
 class _TaskBase(OptimisticLockingSQLModel):
-    name: Name = Field(sa_type=sqlmodel_sa_type(String(255)), nullable=False, unique=True)
+    name: Name = Field(sa_type=sqlmodel_sa_type(String(255)), nullable=False)
     description: str = Field(sa_type=Text, nullable=False, default="")
     deadline: date | None = Field(sa_type=Date, default=None)
 
@@ -79,6 +80,7 @@ class _TaskBase(OptimisticLockingSQLModel):
 
 class Task(_TaskBase, table=True):
     __tablename__: ClassVar[Any] = "task"
+    __table_args__ = (UniqueConstraint("project_id", "name", name="uq_task_project_id_name"),)
 
     id: int | None = Field(
         default=None,

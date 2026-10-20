@@ -1,15 +1,7 @@
-import { default as React } from "react";
-import { GroundMeshLayer } from "sta-gmesh/app";
-import { PointCloudLayer } from "sta-pcd/app";
-import { Color, Raycaster, type Object3D, type Vector3 } from "three";
-
-import type {
-  EditorE2EProbeTargetsContributor,
-  EditorSliceContributor,
-  SceneContext,
-  WindowMapper,
-} from "sta/app/editor";
 import {
+  LabelElementHighlights,
+  LabelElementIsolation,
+  EventSubscriptions,
   LabelDataLayer,
   WindowPointer,
   SceneObjectsGroup,
@@ -19,6 +11,18 @@ import {
   isE2EProbeEnabled,
   ClipboardToolView,
 } from "sta/app/editor";
+import type {
+  LabelElementProvider,
+  EditorE2EProbeTargetsContributor,
+  EditorSliceContributor,
+  SceneContext,
+  WindowMapper,
+} from "sta/app/editor";
+import { default as React } from "react";
+import { GroundMeshLayer } from "sta-gmesh/app";
+import { PointCloudLayer } from "sta-pcd/app";
+import { Color, Raycaster, Vector3, type Object3D } from "three";
+
 import { ThreeUtils } from "sta/common";
 
 import { getSettings } from "../../config";
@@ -67,13 +71,16 @@ export function getVectorInteractionColor(
   hoveredVector: ReadonlyLabelVector | null,
   selectedColor: Readonly<{ r: number; g: number; b: number }>,
   hoveredColor: Readonly<{ r: number; g: number; b: number }>,
+  externallyHovered = false,
+  externalColor: Readonly<{ r: number; g: number; b: number }> | null = null,
 ): Color | null {
   const color =
-    vector === selectedVector
+    externalColor ??
+    (vector === selectedVector
       ? selectedColor
-      : vector === hoveredVector
+      : externallyHovered || vector === hoveredVector
         ? hoveredColor
-        : null;
+        : null);
   return color == null ? null : new Color(color.r, color.g, color.b);
 }
 
@@ -105,7 +112,7 @@ function findVectorVertexHandles(controls: Object3D): DraggableVertex[] {
   return handles;
 }
 
-/** Collects the visible whole-object plane handles of a vector gizmo. */
+/** Collects the visible whole-object centroid handles of a vector gizmo. */
 function findVectorPlaneHandles(controls: Object3D): DraggablePlane[] {
   const handles: DraggablePlane[] = [];
   controls.traverse((object) => {
@@ -357,7 +364,7 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
   readonly TOOLS_KEYDOWN_BINDS = [
     {
       keyCombo: "k",
-      name: "Draw Polygon",
+      name: "Draw polygon",
       handler: () => {
         this.#interactContext.setDrawMode("polygon");
       },
@@ -371,7 +378,7 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
     },
     {
       keyCombo: "p",
-      name: "Draw Point",
+      name: "Draw point",
       handler: () => {
         this.#interactContext.setDrawMode("point");
       },
@@ -404,6 +411,20 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
       },
     }));
 
+  readonly PREFS_KEYDOWN_BINDS = [
+    {
+      keyCombo: "t",
+      name: "Toggle vector tooltips",
+      handler: () => {
+        if (this.#settingsPaneSettings.disabled) return;
+        this.#onSettingsChange({
+          ...this.#settingsInputtedData,
+          showTooltips: !this.#settingsInputtedData.showTooltips,
+        });
+      },
+    },
+  ];
+
   /**
    * Updates the controls menu to display the keybinds in an interaction state,
    * replacing those of the previous interaction state.
@@ -417,9 +438,10 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
     this.setControlsSections([
       { title: "Tools", keybinds: this.TOOLS_KEYDOWN_BINDS },
       { title: "Actions", keybinds: this.ACTIONS_KEYDOWN_BINDS },
+      { title: "Preferences", keybinds: this.PREFS_KEYDOWN_BINDS },
       {
         title: "Context",
-        keybinds: [...interactState.keydownHandler.iterSubtreeKeybinds()],
+        keybinds: this.#interactContext.contextKeybinds,
       },
     ]);
   };
@@ -581,6 +603,54 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
     this.#interactContext.vectorInspector.onPaneEvent(event);
   }
 
+  readonly #elementIsolation = new LabelElementIsolation("vector", () =>
+    this.#markLabelsDirty(),
+  );
+
+  readonly #elementHighlights = new LabelElementHighlights("vector", () =>
+    this.#markLabelsDirty(),
+  );
+
+  get labelElementProvider(): LabelElementProvider {
+    const getBranch = () => this.dataView.currentBranch;
+    const isVisible = () =>
+      this.state.enabled &&
+      this.state.isVisible("main") &&
+      !this.dataView.isLoading;
+    return {
+      get branch() {
+        return getBranch();
+      },
+      get visible() {
+        return isVisible();
+      },
+      setIsolation: (owner, elements) =>
+        this.#elementIsolation.set(owner, elements),
+      setHighlights: (owner, elements, color) =>
+        this.#elementHighlights.set(owner, elements, color),
+      elements: () =>
+        [...this.dataView.iterLabelVectors()].map((label) => ({
+          reference: { type: "vector", id: label.id },
+          objectClassName: label.gtClass?.name ?? null,
+          center: label.centerPoint.clone(),
+          raycast: (raycaster) => label.raycast(raycaster),
+        })),
+      subscribe: (listener) => {
+        const subscriptions = new EventSubscriptions();
+        this.addEventListener("render-request", listener);
+        this.state.addEventListener("change", listener);
+        subscriptions.addDisposer(() =>
+          this.removeEventListener("render-request", listener),
+        );
+        subscriptions.addDisposer(() =>
+          this.state.removeEventListener("change", listener),
+        );
+        subscriptions.addDisposer(this.subscribeEditorSlice(listener));
+        return () => subscriptions.dispose();
+      },
+    };
+  }
+
   get actionsView(): React.JSX.Element {
     return <VectorActionsView />;
   }
@@ -710,6 +780,7 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
     for (const keybind of [
       ...this.TOOLS_KEYDOWN_BINDS,
       ...this.ACTIONS_KEYDOWN_BINDS,
+      ...this.PREFS_KEYDOWN_BINDS,
     ]) {
       this.keydownHandler.register(keybind);
     }
@@ -888,8 +959,8 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
    *
    * For the `vertex` mode, `vertex` selects the vertex handle by index,
    * defaulting to `1` (the middle handle of the default three-vertex
-   * fixture line). For the `vertices` mode, the whole-object plane
-   * handle at the vertices' bounding box center is returned. Read-only.
+   * fixture line). For the `vertices` mode, the whole-object
+   * handle at the vertices' centroid is returned. Read-only.
    */
   getE2EProbeTransformHandle(
     mode: string,
@@ -1082,6 +1153,7 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
    * Updates how a vector object is displayed
    */
   #renderVector(vector: ReadonlyLabelVector) {
+    vector.setDisplayVisibility(this.#elementIsolation.visibility(vector.id));
     const dataView = this.#interactContext.dataView;
     const { selectedVectorColor, hoveredVectorColor } = this.settingsOutput;
 
@@ -1091,6 +1163,8 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
       this.#interactContext.vectorSelector.hoveredObj,
       selectedVectorColor,
       hoveredVectorColor,
+      this.#elementHighlights.has(vector.id),
+      this.#elementHighlights.color(vector.id),
     );
 
     dataView.setLabelVectorDisplayParams(vector, { showColor });
@@ -1105,22 +1179,15 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
     const mainCamera = this.#interactContext.mainWindow.getCamera();
     const { showTooltips, showVectorId } = this.settingsOutput;
 
-    const vectorFirstVertexNDC = vector.vectorCoords
-      .at(0)
-      ?.clone()
-      .project(mainCamera);
-    if (vectorFirstVertexNDC == null) {
-      throw Error(
-        `Not a valid vector object with empty vertices ${JSON.stringify(vector.vectorCoords)}`,
-      );
-    }
-
-    const relPos = ThreeUtils.getNDCRelPos(vectorFirstVertexNDC);
+    const centroidNDC = vector.centerPoint.clone().project(mainCamera);
+    const relPos = ThreeUtils.getNDCRelPos(centroidNDC);
 
     const { className, lines, visible } = getVectorTooltipContent({
       vectorId: vector.id,
       displayClassName: vector.gtClass?.name ?? null,
-      showTooltips,
+      showTooltips:
+        showTooltips &&
+        (this.#elementIsolation.visibility(vector.id) ?? !vector.hidden),
       showVectorId,
     });
 
@@ -1164,7 +1231,7 @@ export class VectorLayer<WM extends WindowMapper & MainWindowMapper>
     this.#renderOverlay();
 
     const vectorTransformerControls = vectorTransformer.getControls();
-    if (vectorTransformerControls != null) {
+    if (!this.#elementIsolation.active && vectorTransformerControls != null) {
       this.objects.add(vectorTransformerControls);
     }
     this.refreshObjects();
