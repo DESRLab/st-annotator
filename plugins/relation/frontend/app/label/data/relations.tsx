@@ -7,12 +7,14 @@ import {
   sortLabelGroups,
   parseOptionalInteger,
   normalizeError,
+  formatClassName,
 } from "sta/app/plugins";
 import { createPageContent } from "sta/app/templates";
 import {
   listGroupsLabelGroupsGet,
   listBranchesLabelRepoBranchesGet,
   listRelationsLabelDataRelationGet,
+  listRelclassesLabelSpecRelationClassDefinitionsGet,
 } from "sta/client";
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -41,14 +43,25 @@ export async function loader({ request }: LoaderFunctionArgs) {
           auth: token.access_token,
           query: { group_id: groupId, commit_hash: commitHash },
         });
+  const classesResponse =
+    groupId == null || commitHash === ""
+      ? null
+      : await listRelclassesLabelSpecRelationClassDefinitionsGet({
+          auth: token.access_token,
+        });
+  const classNames: Record<number, string> = Object.fromEntries(
+    (classesResponse?.data ?? []).map((item) => [item.id, item.name]),
+  );
+  const error = response?.error ?? classesResponse?.error;
   return {
+    classNames,
     groups,
     branches: branchesResponse?.data ?? [],
     commitOptions,
     groupId,
     commitHash,
     rows: response?.data ?? [],
-    error: response?.error == null ? null : normalizeError(response.error),
+    error: error == null ? null : normalizeError(error),
   };
 }
 
@@ -91,7 +104,9 @@ export default function Relations() {
                 <td>
                   {relation.target_type}: {relation.target_id}
                 </td>
-                <td>{relation.relation_class_id}</td>
+                <td>
+                  {formatClassName(relation.relation_class_id, data.classNames)}
+                </td>
                 <td>{relation.is_deleted ? "Yes" : "No"}</td>
               </tr>
             ))}

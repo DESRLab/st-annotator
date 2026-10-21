@@ -52,6 +52,14 @@ export function formatUnknown(value: unknown): string {
   return "-";
 }
 
+/** Resolve a stored class reference for data grids and detail forms. */
+export function formatClassName(
+  id: number | null | undefined,
+  classNames: Record<number, string>,
+): string {
+  return id == null ? "-" : (classNames[id] ?? String(id));
+}
+
 export function formatBoolean(value: boolean | null | undefined): string {
   if (value == null) return "-";
   return value ? "Yes" : "No";

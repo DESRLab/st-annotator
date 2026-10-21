@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({
   groups: vi.fn(),
+  classes: vi.fn().mockResolvedValue({ data: [{ id: 42, name: "Chair" }] }),
   branches: vi.fn(),
   elements: vi.fn(),
 }));
@@ -21,6 +22,7 @@ vi.mock("sta/app/loaders", async (importOriginal) => ({
 vi.mock("sta/client", async (importOriginal) => ({
   ...(await importOriginal<typeof import("sta/client")>()),
   listGroupsLabelGroupsGet: api.groups,
+  listObjclassesLabelSpecObjclassDefinitionsGet: api.classes,
   listBranchesLabelRepoBranchesGet: api.branches,
   listElementSummariesLabelDataVectorElementSummaryGet: api.elements,
 }));
@@ -81,6 +83,8 @@ describe("vector label-data route adapter", () => {
       ),
     } as any)) as any;
     expect(result.elements).toEqual([{ id: "vector-1" }]);
+    expect(result.classNames).toEqual({ 42: "Chair" });
+    expect(api.classes).toHaveBeenCalledWith({ auth: "access" });
     expect(JSON.stringify(result)).not.toContain('"accessToken"');
     expect(JSON.stringify(result)).not.toContain('"token"');
     expect(result.loaderError).toContain("partial failure");

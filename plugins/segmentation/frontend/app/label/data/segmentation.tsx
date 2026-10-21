@@ -35,6 +35,7 @@ import {
   asSlickgridModule,
   formatBoolean,
   formatUnknown,
+  formatClassName,
   getCommitOptions,
   LabelDataFilterForm,
   normalizeError,
@@ -48,6 +49,7 @@ import {
   listElementSummariesLabelDataSegmentationElementSummaryGet,
   listEntitiesLabelDataSegmentationEntityGet,
   listGroupsLabelGroupsGet,
+  listObjclassesLabelSpecObjclassDefinitionsGet,
   readElementLabelDataSegmentationElementIdGet,
   readEntityLabelDataSegmentationEntityIdGet,
   type LabelInstancePublic as SegmentationEntity,
@@ -169,16 +171,27 @@ export async function loader({ request }: Route.LoaderArgs) {
           }),
         )
       : emptyPage;
+  const classesRes =
+    selectedGroupId != null && selectedCommitHash !== ""
+      ? await listObjclassesLabelSpecObjclassDefinitionsGet({
+          auth: token.access_token,
+        })
+      : { data: [], error: undefined };
+  const classNames: Record<number, string> = Object.fromEntries(
+    (classesRes.data ?? []).map((item) => [item.id, item.name]),
+  );
   const loaderError =
     groupsRes.error ??
     branchesRes.error ??
     elementsRes.error ??
-    entitiesRes.error;
+    entitiesRes.error ??
+    classesRes.error;
 
   return {
     activeTab,
     groups,
     branches,
+    classNames,
     elements: elementsRes.data ?? [],
     entities: entitiesRes.data ?? [],
     elementsPagination: elementsRes.pagination,
@@ -192,7 +205,9 @@ export async function loader({ request }: Route.LoaderArgs) {
 export const clientLoader =
   createSlickgridClientLoader<Route.ClientLoaderArgs>();
 
-function createElementColumns(): Column<SegmentationElement>[] {
+function createElementColumns(
+  classNames: Record<number, string>,
+): Column<SegmentationElement>[] {
   return [
     {
       id: "id",
@@ -250,7 +265,9 @@ function createElementColumns(): Column<SegmentationElement>[] {
   ];
 }
 
-function createEntityColumns(): Column<SegmentationEntity>[] {
+function createEntityColumns(
+  classNames: Record<number, string>,
+): Column<SegmentationEntity>[] {
   return [
     {
       id: "id",
@@ -267,7 +284,8 @@ function createEntityColumns(): Column<SegmentationEntity>[] {
       type: "integer",
       filterable: true,
       sortable: true,
-      formatter: (_row, _cell, value) => formatUnknown(value),
+      formatter: (_row, _cell, value) =>
+        formatClassName(value as number | null, classNames),
     },
     {
       id: "is_black",
@@ -351,8 +369,10 @@ function DetailTextArea({ label, value }: { label: string; value: unknown }) {
 
 function SegmentationSelectionDetails({
   data,
+  classNames,
 }: {
   data: SegmentationElementDetail;
+  classNames: Record<number, string>;
 }) {
   return (
     <>
@@ -386,7 +406,10 @@ function SegmentationSelectionDetails({
       </Row>
 
       <Row>
-        <DetailField label="Perceived Class" value={data.perceived_class_id} />
+        <DetailField
+          label="Perceived Class"
+          value={formatClassName(data.perceived_class_id, classNames)}
+        />
         <DetailField label="Quality" value={data.quality_rank} />
         <DetailField label="Distinctive" value={data.distinctive_lv} />
         <DetailField label="Occlusion" value={data.occlusion_lv} />
@@ -400,7 +423,13 @@ function SegmentationSelectionDetails({
   );
 }
 
-function SegmentationInstanceDetails({ data }: { data: SegmentationEntity }) {
+function SegmentationInstanceDetails({
+  data,
+  classNames,
+}: {
+  data: SegmentationEntity;
+  classNames: Record<number, string>;
+}) {
   return (
     <>
       <Row>
@@ -417,7 +446,11 @@ function SegmentationInstanceDetails({ data }: { data: SegmentationEntity }) {
       </Row>
       <Row>
         <DetailField label="Last Edited" value={data.last_edit_at} md={6} />
-        <DetailField label="Class" value={data.gt_class_id} md={6} />
+        <DetailField
+          label="Class"
+          value={formatClassName(data.gt_class_id, classNames)}
+          md={6}
+        />
         <DetailField label="Low Reflectivity" value={data.is_black} md={6} />
       </Row>
     </>
@@ -426,11 +459,13 @@ function SegmentationInstanceDetails({ data }: { data: SegmentationEntity }) {
 
 function ElementsGrid({
   SG,
+  classNames,
   elements,
   pagination,
   onViewDetails,
 }: {
   SG: SlickgridModule;
+  classNames: Record<number, string>;
   elements: SegmentationElement[];
   pagination: GridPagination;
   onViewDetails: (element: SegmentationElement) => void;
@@ -461,7 +496,7 @@ function ElementsGrid({
     ];
 
     return {
-      columns: createElementColumns(),
+      columns: createElementColumns(classNames),
       options: {
         ...createLabelDataGridOptions(containerId),
         ...(selectableConfig({
@@ -493,11 +528,13 @@ function ElementsGrid({
 
 function EntitiesGrid({
   SG,
+  classNames,
   entities,
   pagination,
   onViewDetails,
 }: {
   SG: SlickgridModule;
+  classNames: Record<number, string>;
   entities: SegmentationEntity[];
   pagination: GridPagination;
   onViewDetails: (entity: SegmentationEntity) => void;
@@ -528,7 +565,7 @@ function EntitiesGrid({
     ];
 
     return {
-      columns: createEntityColumns(),
+      columns: createEntityColumns(classNames),
       options: {
         ...createLabelDataGridOptions(containerId),
         ...(selectableConfig({
@@ -575,6 +612,7 @@ export default function SegmentationData() {
     selectedGroupId,
     selectedCommitHash,
     loaderError,
+    classNames,
   } = useLoaderData<typeof clientLoader>();
   const SG = asSlickgridModule(rawSG);
   const [filterValue, setFilterValue] = useState({
@@ -699,6 +737,7 @@ export default function SegmentationData() {
             {activeTab === "elements" ? (
               <ElementsGrid
                 SG={SG}
+                classNames={classNames}
                 elements={elements}
                 pagination={elementsPagination}
                 onViewDetails={(element) => {
@@ -708,6 +747,7 @@ export default function SegmentationData() {
             ) : (
               <EntitiesGrid
                 SG={SG}
+                classNames={classNames}
                 entities={entities}
                 pagination={entitiesPagination}
                 onViewDetails={(entity) => {
@@ -728,10 +768,16 @@ export default function SegmentationData() {
             {detailError && <Alert variant="danger">{detailError}</Alert>}
             {detailLoading && <div className="mb-3">Loading details...</div>}
             {detail?.type === "Selection" && (
-              <SegmentationSelectionDetails data={detail.data} />
+              <SegmentationSelectionDetails
+                data={detail.data}
+                classNames={classNames}
+              />
             )}
             {detail?.type === "Instance" && (
-              <SegmentationInstanceDetails data={detail.data} />
+              <SegmentationInstanceDetails
+                data={detail.data}
+                classNames={classNames}
+              />
             )}
           </Modal.Body>
           <Modal.Footer>

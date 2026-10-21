@@ -4,6 +4,7 @@ const state = vi.hoisted(() => ({
   token: { access_token: "access" } as any,
   user: { id: 1, roles: ["annotator"] } as any,
   groups: vi.fn(),
+  classes: vi.fn().mockResolvedValue({ data: [{ id: 42, name: "Chair" }] }),
   branches: vi.fn(),
   elements: vi.fn(),
   entities: vi.fn(),
@@ -23,6 +24,7 @@ vi.mock("sta/app/loaders", async (importOriginal) => ({
 vi.mock("sta/client", async (importOriginal) => ({
   ...(await importOriginal<typeof import("sta/client")>()),
   listGroupsLabelGroupsGet: state.groups,
+  listObjclassesLabelSpecObjclassDefinitionsGet: state.classes,
   listBranchesLabelRepoBranchesGet: state.branches,
   listElementSummariesLabelDataBboxElementSummaryGet: state.elements,
   listEntitiesLabelDataBboxEntityGet: state.entities,
@@ -94,6 +96,8 @@ describe("bbox label-data route adapter", () => {
     expect(result.activeTab).toBe("entities");
     expect(result.elements).toEqual([]);
     expect(result.entities).toEqual([{ id: "track-1" }]);
+    expect(result.classNames).toEqual({ 42: "Chair" });
+    expect(state.classes).toHaveBeenCalledWith({ auth: "access" });
     expect(JSON.stringify(result)).not.toContain('"accessToken"');
     expect(JSON.stringify(result)).not.toContain('"token"');
     expect(state.entities).toHaveBeenCalledWith({

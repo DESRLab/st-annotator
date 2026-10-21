@@ -35,6 +35,7 @@ import {
   asSlickgridModule,
   formatBoolean,
   formatUnknown,
+  formatClassName,
   getCommitOptions,
   LabelDataFilterForm,
   normalizeError,
@@ -48,6 +49,7 @@ import {
   listElementSummariesLabelDataBboxElementSummaryGet,
   listEntitiesLabelDataBboxEntityGet,
   listGroupsLabelGroupsGet,
+  listObjclassesLabelSpecObjclassDefinitionsGet,
   readElementLabelDataBboxElementIdGet,
   readEntityLabelDataBboxEntityIdGet,
   type LabelBoxSummary,
@@ -169,16 +171,27 @@ export async function loader({ request }: Route.LoaderArgs) {
           }),
         )
       : emptyPage;
+  const classesRes =
+    selectedGroupId != null && selectedCommitHash !== ""
+      ? await listObjclassesLabelSpecObjclassDefinitionsGet({
+          auth: token.access_token,
+        })
+      : { data: [], error: undefined };
+  const classNames: Record<number, string> = Object.fromEntries(
+    (classesRes.data ?? []).map((item) => [item.id, item.name]),
+  );
   const loaderError =
     groupsRes.error ??
     branchesRes.error ??
     elementsRes.error ??
-    entitiesRes.error;
+    entitiesRes.error ??
+    classesRes.error;
 
   return {
     activeTab,
     groups,
     branches,
+    classNames,
     elements: elementsRes.data ?? [],
     entities: entitiesRes.data ?? [],
     elementsPagination: elementsRes.pagination,
@@ -192,7 +205,9 @@ export async function loader({ request }: Route.LoaderArgs) {
 export const clientLoader =
   createSlickgridClientLoader<Route.ClientLoaderArgs>();
 
-function createElementColumns(): Column<BoundingBoxElement>[] {
+function createElementColumns(
+  classNames: Record<number, string>,
+): Column<BoundingBoxElement>[] {
   return [
     {
       id: "id",
@@ -226,7 +241,8 @@ function createElementColumns(): Column<BoundingBoxElement>[] {
       type: "integer",
       filterable: true,
       sortable: true,
-      formatter: (_row, _cell, value) => formatUnknown(value),
+      formatter: (_row, _cell, value) =>
+        formatClassName(value as number | null, classNames),
     },
     {
       id: "quality_rank",
@@ -267,7 +283,9 @@ function createElementColumns(): Column<BoundingBoxElement>[] {
   ];
 }
 
-function createEntityColumns(): Column<BoundingBoxEntity>[] {
+function createEntityColumns(
+  classNames: Record<number, string>,
+): Column<BoundingBoxEntity>[] {
   return [
     {
       id: "id",
@@ -284,7 +302,8 @@ function createEntityColumns(): Column<BoundingBoxEntity>[] {
       type: "integer",
       filterable: true,
       sortable: true,
-      formatter: (_row, _cell, value) => formatUnknown(value),
+      formatter: (_row, _cell, value) =>
+        formatClassName(value as number | null, classNames),
     },
     {
       id: "is_black",
@@ -357,7 +376,13 @@ function DetailTextArea({ label, value }: { label: string; value: unknown }) {
   );
 }
 
-function BoundingBoxDetails({ data }: { data: BoundingBoxElementDetail }) {
+function BoundingBoxDetails({
+  data,
+  classNames,
+}: {
+  data: BoundingBoxElementDetail;
+  classNames: Record<number, string>;
+}) {
   return (
     <>
       <Row>
@@ -459,7 +484,10 @@ function BoundingBoxDetails({ data }: { data: BoundingBoxElementDetail }) {
       </Row>
 
       <Row>
-        <DetailField label="Perceived Class" value={data.perceived_class_id} />
+        <DetailField
+          label="Perceived Class"
+          value={formatClassName(data.perceived_class_id, classNames)}
+        />
         <DetailField label="Quality" value={data.quality_rank} />
         <DetailField label="Distinctive" value={data.distinctive_lv} />
         <DetailField label="Occlusion" value={data.occlusion_lv} />
@@ -472,7 +500,13 @@ function BoundingBoxDetails({ data }: { data: BoundingBoxElementDetail }) {
   );
 }
 
-function BoundingBoxEntityDetails({ data }: { data: BoundingBoxEntity }) {
+function BoundingBoxEntityDetails({
+  data,
+  classNames,
+}: {
+  data: BoundingBoxEntity;
+  classNames: Record<number, string>;
+}) {
   return (
     <>
       <Row>
@@ -489,7 +523,11 @@ function BoundingBoxEntityDetails({ data }: { data: BoundingBoxEntity }) {
       </Row>
       <Row>
         <DetailField label="Last Edited" value={data.last_edit_at} md={6} />
-        <DetailField label="Class" value={data.gt_class_id} md={6} />
+        <DetailField
+          label="Class"
+          value={formatClassName(data.gt_class_id, classNames)}
+          md={6}
+        />
         <DetailField label="Low Reflectivity" value={data.is_black} md={6} />
       </Row>
     </>
@@ -498,11 +536,13 @@ function BoundingBoxEntityDetails({ data }: { data: BoundingBoxEntity }) {
 
 function ElementsGrid({
   SG,
+  classNames,
   elements,
   pagination,
   onViewDetails,
 }: {
   SG: SlickgridModule;
+  classNames: Record<number, string>;
   elements: BoundingBoxElement[];
   pagination: GridPagination;
   onViewDetails: (element: BoundingBoxElement) => void;
@@ -533,7 +573,7 @@ function ElementsGrid({
     ];
 
     return {
-      columns: createElementColumns(),
+      columns: createElementColumns(classNames),
       options: {
         ...createLabelDataGridOptions(containerId),
         ...(selectableConfig({
@@ -565,11 +605,13 @@ function ElementsGrid({
 
 function EntitiesGrid({
   SG,
+  classNames,
   entities,
   pagination,
   onViewDetails,
 }: {
   SG: SlickgridModule;
+  classNames: Record<number, string>;
   entities: BoundingBoxEntity[];
   pagination: GridPagination;
   onViewDetails: (entity: BoundingBoxEntity) => void;
@@ -600,7 +642,7 @@ function EntitiesGrid({
     ];
 
     return {
-      columns: createEntityColumns(),
+      columns: createEntityColumns(classNames),
       options: {
         ...createLabelDataGridOptions(containerId),
         ...(selectableConfig({
@@ -647,6 +689,7 @@ export default function BoundingBoxData() {
     selectedGroupId,
     selectedCommitHash,
     loaderError,
+    classNames,
   } = useLoaderData<typeof clientLoader>();
   const SG = asSlickgridModule(rawSG);
   const [filterValue, setFilterValue] = useState({
@@ -771,6 +814,7 @@ export default function BoundingBoxData() {
             {activeTab === "elements" ? (
               <ElementsGrid
                 SG={SG}
+                classNames={classNames}
                 elements={elements}
                 pagination={elementsPagination}
                 onViewDetails={(element) => {
@@ -780,6 +824,7 @@ export default function BoundingBoxData() {
             ) : (
               <EntitiesGrid
                 SG={SG}
+                classNames={classNames}
                 entities={entities}
                 pagination={entitiesPagination}
                 onViewDetails={(entity) => {
@@ -800,10 +845,13 @@ export default function BoundingBoxData() {
             {detailError && <Alert variant="danger">{detailError}</Alert>}
             {detailLoading && <div className="mb-3">Loading details...</div>}
             {detail?.type === "Box" && (
-              <BoundingBoxDetails data={detail.data} />
+              <BoundingBoxDetails data={detail.data} classNames={classNames} />
             )}
             {detail?.type === "Entity" && (
-              <BoundingBoxEntityDetails data={detail.data} />
+              <BoundingBoxEntityDetails
+                data={detail.data}
+                classNames={classNames}
+              />
             )}
           </Modal.Body>
           <Modal.Footer>

@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({
   groups: vi.fn(),
+  classes: vi.fn().mockResolvedValue({ data: [{ id: 42, name: "Chair" }] }),
   branches: vi.fn(),
   elements: vi.fn(),
   entities: vi.fn(),
@@ -22,6 +23,7 @@ vi.mock("sta/app/loaders", async (importOriginal) => ({
 vi.mock("sta/client", async (importOriginal) => ({
   ...(await importOriginal<typeof import("sta/client")>()),
   listGroupsLabelGroupsGet: api.groups,
+  listObjclassesLabelSpecObjclassDefinitionsGet: api.classes,
   listBranchesLabelRepoBranchesGet: api.branches,
   listElementSummariesLabelDataSegmentationElementSummaryGet: api.elements,
   listEntitiesLabelDataSegmentationEntityGet: api.entities,
@@ -93,6 +95,8 @@ describe("segmentation label-data route adapter", () => {
     expect(result.activeTab).toBe("entities");
     expect(result.elements).toEqual([]);
     expect(result.entities).toEqual([{ id: "instance-1" }]);
+    expect(result.classNames).toEqual({ 42: "Chair" });
+    expect(api.classes).toHaveBeenCalledWith({ auth: "access" });
     expect(JSON.stringify(result)).not.toContain('"accessToken"');
     expect(JSON.stringify(result)).not.toContain('"token"');
     expect(api.entities).toHaveBeenCalledWith({

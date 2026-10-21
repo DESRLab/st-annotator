@@ -33,6 +33,7 @@ import {
   createLabelDataGridOptions,
   asSlickgridModule,
   formatUnknown,
+  formatClassName,
   getCommitOptions,
   LabelDataFilterForm,
   normalizeError,
@@ -45,6 +46,7 @@ import {
   listBranchesLabelRepoBranchesGet,
   listElementSummariesLabelDataVectorElementSummaryGet,
   listGroupsLabelGroupsGet,
+  listObjclassesLabelSpecObjclassDefinitionsGet,
   readElementLabelDataVectorElementIdGet,
   type LabelVectorDataManagerPublic,
   type LabelVectorSummary,
@@ -134,11 +136,25 @@ export async function loader({ request }: Route.LoaderArgs) {
             totalItems: 0,
           } satisfies GridPagination,
         };
-  const loaderError = groupsRes.error ?? branchesRes.error ?? elementsRes.error;
+  const classesRes =
+    selectedGroupId != null && selectedCommitHash !== ""
+      ? await listObjclassesLabelSpecObjclassDefinitionsGet({
+          auth: token.access_token,
+        })
+      : { data: [], error: undefined };
+  const classNames: Record<number, string> = Object.fromEntries(
+    (classesRes.data ?? []).map((item) => [item.id, item.name]),
+  );
+  const loaderError =
+    groupsRes.error ??
+    branchesRes.error ??
+    elementsRes.error ??
+    classesRes.error;
 
   return {
     groups,
     branches,
+    classNames,
     elements: elementsRes.data ?? [],
     elementsPagination: elementsRes.pagination,
     selectedGroupId,
@@ -150,7 +166,9 @@ export async function loader({ request }: Route.LoaderArgs) {
 export const clientLoader =
   createSlickgridClientLoader<Route.ClientLoaderArgs>();
 
-function createElementColumns(): Column<VectorElement>[] {
+function createElementColumns(
+  classNames: Record<number, string>,
+): Column<VectorElement>[] {
   return [
     {
       id: "id",
@@ -184,7 +202,8 @@ function createElementColumns(): Column<VectorElement>[] {
       type: "integer",
       filterable: true,
       sortable: true,
-      formatter: (_row, _cell, value) => formatUnknown(value),
+      formatter: (_row, _cell, value) =>
+        formatClassName(value as number | null, classNames),
     },
     {
       id: "last_edit_at",
@@ -256,7 +275,13 @@ function DetailTextArea({ label, value }: { label: string; value: unknown }) {
   );
 }
 
-function VectorElementDetails({ data }: { data: VectorElementDetail }) {
+function VectorElementDetails({
+  data,
+  classNames,
+}: {
+  data: VectorElementDetail;
+  classNames: Record<number, string>;
+}) {
   return (
     <>
       <Row>
@@ -276,7 +301,11 @@ function VectorElementDetails({ data }: { data: VectorElementDetail }) {
         <DetailField label="Last Edited" value={data.last_edit_at} md={3} />
         <DetailField label="Timestamp" value={data.timestamp} md={6} />
         <DetailField label="Type" value={data.type} md={3} />
-        <DetailField label="Class" value={data.gt_class_id} md={3} />
+        <DetailField
+          label="Class"
+          value={formatClassName(data.gt_class_id, classNames)}
+          md={3}
+        />
       </Row>
 
       <Row>
@@ -326,11 +355,13 @@ function VectorElementDetails({ data }: { data: VectorElementDetail }) {
 
 function ElementsGrid({
   SG,
+  classNames,
   elements,
   pagination,
   onViewDetails,
 }: {
   SG: SlickgridModule;
+  classNames: Record<number, string>;
   elements: VectorElement[];
   pagination: GridPagination;
   onViewDetails: (element: VectorElement) => void;
@@ -361,7 +392,7 @@ function ElementsGrid({
     ];
 
     return {
-      columns: createElementColumns(),
+      columns: createElementColumns(classNames),
       options: {
         ...createLabelDataGridOptions(containerId),
         ...(selectableConfig({
@@ -405,6 +436,7 @@ export default function VectorData() {
     selectedGroupId,
     selectedCommitHash,
     loaderError,
+    classNames,
   } = useLoaderData<typeof clientLoader>();
   const SG = asSlickgridModule(rawSG);
   const [filterValue, setFilterValue] = useState({
@@ -482,6 +514,7 @@ export default function VectorData() {
         {labelDataLoaded && (
           <ElementsGrid
             SG={SG}
+            classNames={classNames}
             elements={elements}
             pagination={elementsPagination}
             onViewDetails={(element) => {
@@ -497,7 +530,9 @@ export default function VectorData() {
           <Modal.Body>
             {detailError && <Alert variant="danger">{detailError}</Alert>}
             {detailLoading && <div className="mb-3">Loading details...</div>}
-            {detail && <VectorElementDetails data={detail} />}
+            {detail && (
+              <VectorElementDetails data={detail} classNames={classNames} />
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={closeDetail}>
