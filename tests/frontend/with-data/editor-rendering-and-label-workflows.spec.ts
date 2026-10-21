@@ -1033,7 +1033,8 @@ test.describe("editor rendering and label workflows", () => {
     // The brush cursor's diameter wiring is covered by the control-component
     // unit tests.
     const brushHue = inputControl(segmentationPrefs, "Brush Hue");
-    await fillNumberInput(brushHue, "0");
+    // Brush Hue keeps the painted area visible with a minimum strength of 0.1.
+    await fillNumberInput(brushHue, "0.1");
     await clickElement(exactButton(row, "D"));
     await selectRadio(tools, "brush");
     const hueProbeStart = await scenePoint(page, 0.48, 0.48);
@@ -1042,7 +1043,7 @@ test.describe("editor rendering and label workflows", () => {
     await page.mouse.move(hueProbeStart.x + 20, hueProbeStart.y + 20, {
       steps: 4,
     });
-    const transparentBrush = await renderSnapshot(page);
+    const faintBrush = await renderSnapshot(page);
     await page.keyboard.press("Escape");
     await page.mouse.up({ button: "left" });
 
@@ -1054,7 +1055,7 @@ test.describe("editor rendering and label workflows", () => {
     await page.mouse.move(hueProbeStart.x + 20, hueProbeStart.y + 20, {
       steps: 4,
     });
-    expectRenderChanged(transparentBrush, await renderSnapshot(page));
+    expectRenderChanged(faintBrush, await renderSnapshot(page));
     await page.keyboard.press("Escape");
     await page.mouse.up({ button: "left" });
 

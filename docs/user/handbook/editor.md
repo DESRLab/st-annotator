@@ -386,7 +386,7 @@ The following settings can be adjusted via the `Preferences` menu:
 - `Transparent Points`: Blends selection points with the point cloud so its colors remain visible. Toggle it with `Toggle selection transparency` (`Q`).
 - `Point opacity`: Sets the opacity of selection points from 0 (invisible) to 1 (opaque) when `Transparent Points` is enabled.
 - `Brush Diameter`: Controls the diameter of the brush used to query points for a selection.
-- `Brush Hue`: Controls how strongly the area painted by the brush is highlighted.
+- `Brush Hue`: Controls how strongly the area painted by the brush is highlighted, with a minimum strength of 0.1.
 - `Stroke color`: Controls the display color of drawn objects/shapes to query points for a selection.
 - `Hover color`: Controls the display color of point selections when hovered over.
 - `Select color`: Controls the display color of point selections when selected.
