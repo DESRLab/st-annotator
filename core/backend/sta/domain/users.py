@@ -7,6 +7,7 @@ from fastapi import HTTPException, Query
 from sqlmodel import Session, delete, exists, insert, select, update
 
 from sta.common.database.execution import execute_statement, sql_column
+from sta.domain.filtering import apply_column_filters
 
 from ..models.account import Account
 from ..models.user import (
@@ -161,6 +162,7 @@ def list_users(
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
     require_auth: bool = True,
+    filters: str | None = None,
 ):
     q = _build_filtered_users_query(
         current_user=current_user,
@@ -178,6 +180,7 @@ def list_users(
         sort_by=sort_by,
         sort_dir=sort_dir,
         require_auth=require_auth,
+        filters=filters,
     )
     q = paginate(
         q,
@@ -201,6 +204,7 @@ def list_user_ids(
     created_at_lt: datetime | None = None,
     current_login_at_ge: datetime | None = None,
     current_login_at_lt: datetime | None = None,
+    filters: str | None = None,
 ) -> list[int]:
     q = _build_filtered_users_query(
         current_user=current_user,
@@ -215,6 +219,7 @@ def list_user_ids(
         created_at_lt=created_at_lt,
         current_login_at_ge=current_login_at_ge,
         current_login_at_lt=current_login_at_lt,
+        filters=filters,
     )
 
     ids = id_query(q, sql_column(User.id))
@@ -238,6 +243,7 @@ def _build_filtered_users_query(
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
     require_auth: bool = True,
+    filters: str | None = None,
 ):
     if require_auth:
         require_user_reader(current_user)
@@ -260,7 +266,7 @@ def _build_filtered_users_query(
         )
     q = apply_sort(q, _USER_SORT_COLUMNS, sort_by, sort_dir)
 
-    return q
+    return apply_column_filters(q, User, filters, allowed_columns={"id", "username"})
 
 
 def count_users(
@@ -278,6 +284,7 @@ def count_users(
     current_login_at_ge: datetime | None = None,
     current_login_at_lt: datetime | None = None,
     require_auth: bool = True,
+    filters: str | None = None,
 ) -> int:
     q = _build_filtered_users_query(
         current_user=current_user,
@@ -293,6 +300,7 @@ def count_users(
         current_login_at_ge=current_login_at_ge,
         current_login_at_lt=current_login_at_lt,
         require_auth=require_auth,
+        filters=filters,
     )
 
     return session.exec(count_query(q)).one()

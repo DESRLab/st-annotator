@@ -44,8 +44,9 @@ describe("jobs route job grid state", () => {
       }),
     ).toEqual({
       id: 12,
-      // `kind` has no containment parameter, so the term is sent as equality.
-      kind: "bounds",
+      filters: JSON.stringify([
+        { columnId: "kind", operator: "Contains", searchTerms: ["bounds"] },
+      ]),
       state: ["failed"],
       sort_by: "created_at",
       sort_dir: "desc",
@@ -151,7 +152,13 @@ describe("jobs route shows every job by default", () => {
         sorters: [],
       }),
     ).toEqual({
-      kind: "pcd.reconcile_bounds",
+      filters: JSON.stringify([
+        {
+          columnId: "kind",
+          operator: "=",
+          searchTerms: ["pcd.reconcile_bounds"],
+        },
+      ]),
       state: [...DEFAULT_VISIBLE_JOB_STATES],
     });
   });

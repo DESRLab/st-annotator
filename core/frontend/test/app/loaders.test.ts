@@ -193,7 +193,7 @@ describe("applyNumericFilterToQuery", () => {
     expect(query).toEqual({ id_ge: 3, id_le: 9 });
   });
 
-  it("ignores unsupported operators and non-numeric terms", () => {
+  it("preserves contains operators and ignores non-numeric equality terms", () => {
     const query = {};
     applyNumericFilterToQuery(
       query,
@@ -210,7 +210,11 @@ describe("applyNumericFilterToQuery", () => {
       { columnId: "id", operator: "", searchTerms: [] },
       "id",
     );
-    expect(query).toEqual({});
+    expect(query).toEqual({
+      filters: JSON.stringify([
+        { columnId: "id", operator: "Contains", searchTerms: ["5"] },
+      ]),
+    });
   });
 
   it("keeps a lone exact value a scalar and names several as a list", () => {
@@ -300,7 +304,15 @@ describe("applyTextFilterToQuery", () => {
       },
       "name",
     );
-    expect(query).toEqual({ name: "SemanticKITTI" });
+    expect(query).toEqual({
+      filters: JSON.stringify([
+        {
+          columnId: "name",
+          operator: "Equals",
+          searchTerms: ["SemanticKITTI"],
+        },
+      ]),
+    });
   });
 
   it("ignores empty terms", () => {
@@ -447,3 +459,26 @@ describe("listGridPage", () => {
     expect(requested).toEqual({ offset: 150, limit: 50 });
   });
 });
+
+it.each([">", "<", "!=", "RangeInclusive"])(
+  "preserves numeric operator %s",
+  (operator) => {
+    const query = {};
+    const filter = {
+      columnId: "id",
+      operator,
+      searchTerms: operator === "RangeInclusive" ? ["2", "8"] : ["2"],
+    };
+    applyNumericFilterToQuery(query, filter as any, "id");
+    expect(query).toEqual({ filters: JSON.stringify([filter]) });
+  },
+);
+it.each(["StartsWith", "EndsWith", "Not_Contains"])(
+  "preserves text operator %s",
+  (operator) => {
+    const query = {};
+    const filter = { columnId: "name", operator, searchTerms: ["needle"] };
+    applyTextFilterToQuery(query, filter as any, "name");
+    expect(query).toEqual({ filters: JSON.stringify([filter]) });
+  },
+);

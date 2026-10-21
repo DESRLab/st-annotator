@@ -69,6 +69,7 @@ def _query_elements(
     ids: Set[uuid.UUID] | None = None,
     group_id: int,
     commit_hash: str,
+    filters: str | None = None,
     min_x: float | None = None,
     min_y: float | None = None,
     min_z: float | None = None,
@@ -87,6 +88,7 @@ def _query_elements(
         ids=ids,
         group_id=group_id,
         commit_hash=commit_hash,
+        filters=filters,
         min_x=min_x,
         min_y=min_y,
         min_z=min_z,
@@ -126,6 +128,8 @@ def list_elements(
     current_user: Annotated[UserPublic, Depends(get_current_user)],
     session: Annotated[Session, Depends(get_session)],
     pagination: Annotated[Pagination, Depends(pagination_params)],
+    include_total: bool = True,
+    filters: Annotated[str | None, Query()] = None,
     ids: Annotated[Set[uuid.UUID] | None, Query()] = None,
     group_id: Annotated[int, Query()],
     commit_hash: Annotated[str, Query()],
@@ -147,6 +151,7 @@ def list_elements(
         ids=ids,
         group_id=group_id,
         commit_hash=commit_hash,
+        filters=filters,
         min_x=min_x,
         min_y=min_y,
         min_z=min_z,
@@ -158,21 +163,26 @@ def list_elements(
         entity_id=entity_id,
     )
 
-    total_elements = domain.count_datas(
-        current_user=current_user,
-        session=session,
-        ids=ids,
-        group_id=group_id,
-        commit_hash=commit_hash,
-        min_x=min_x,
-        min_y=min_y,
-        min_z=min_z,
-        max_x=max_x,
-        max_y=max_y,
-        max_z=max_z,
-        min_timestamp=min_timestamp,
-        max_timestamp=max_timestamp,
-        entity_id=entity_id,
+    total_elements = (
+        domain.count_datas(
+            current_user=current_user,
+            session=session,
+            ids=ids,
+            group_id=group_id,
+            commit_hash=commit_hash,
+            filters=filters,
+            min_x=min_x,
+            min_y=min_y,
+            min_z=min_z,
+            max_x=max_x,
+            max_y=max_y,
+            max_z=max_z,
+            min_timestamp=min_timestamp,
+            max_timestamp=max_timestamp,
+            entity_id=entity_id,
+        )
+        if include_total
+        else None
     )
     set_content_range(
         response,
@@ -192,6 +202,8 @@ def list_element_summaries(
     current_user: Annotated[UserPublic, Depends(get_current_user)],
     session: Annotated[Session, Depends(get_session)],
     pagination: Annotated[Pagination, Depends(pagination_params)],
+    include_total: bool = True,
+    filters: Annotated[str | None, Query()] = None,
     ids: Annotated[Set[uuid.UUID] | None, Query()] = None,
     group_id: Annotated[int, Query()],
     commit_hash: Annotated[str, Query()],
@@ -214,6 +226,7 @@ def list_element_summaries(
             ids=ids,
             group_id=group_id,
             commit_hash=commit_hash,
+            filters=filters,
             min_x=min_x,
             min_y=min_y,
             min_z=min_z,
@@ -251,21 +264,26 @@ def list_element_summaries(
     )
     elements = session.exec(q).all()
 
-    total_elements = domain.count_datas(
-        current_user=current_user,
-        session=session,
-        ids=ids,
-        group_id=group_id,
-        commit_hash=commit_hash,
-        min_x=min_x,
-        min_y=min_y,
-        min_z=min_z,
-        max_x=max_x,
-        max_y=max_y,
-        max_z=max_z,
-        min_timestamp=min_timestamp,
-        max_timestamp=max_timestamp,
-        entity_id=entity_id,
+    total_elements = (
+        domain.count_datas(
+            current_user=current_user,
+            session=session,
+            ids=ids,
+            group_id=group_id,
+            commit_hash=commit_hash,
+            filters=filters,
+            min_x=min_x,
+            min_y=min_y,
+            min_z=min_z,
+            max_x=max_x,
+            max_y=max_y,
+            max_z=max_z,
+            min_timestamp=min_timestamp,
+            max_timestamp=max_timestamp,
+            entity_id=entity_id,
+        )
+        if include_total
+        else None
     )
     set_content_range(
         response,

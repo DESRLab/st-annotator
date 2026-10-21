@@ -337,6 +337,11 @@ operations.
 
 ## Guardrails
 
+- Keep plugin-specific logic in its owning plugin, never in `core/`. Core may
+  provide generic extension points and shared algorithms, but must not enumerate
+  plugin names, fields, formats, or semantics. Plugins supply their own configuration
+  (for example, searchable columns for label-data filtering) through those extension
+  points. Infer generic behavior from types rather than recognizing plugin field names.
 - Never read or print database configuration: no `.env`, no DB environment
   variables, no connection strings. The backend loads its own config; observe
   behaviour through the application instead.

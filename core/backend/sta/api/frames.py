@@ -64,6 +64,7 @@ def list_frames(
     max_timestamp_lt: Annotated[datetime | None, Query()] = None,
     last_viewed_at_ge: Annotated[datetime | None, Query()] = None,
     last_viewed_at_lt: Annotated[datetime | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     frames = domain.list_frames(
         current_user=current_user,
@@ -87,6 +88,7 @@ def list_frames(
         last_viewed_at_lt=last_viewed_at_lt,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_frames = domain.count_frames(
@@ -107,6 +109,7 @@ def list_frames(
         max_timestamp_lt=max_timestamp_lt,
         last_viewed_at_ge=last_viewed_at_ge,
         last_viewed_at_lt=last_viewed_at_lt,
+        filters=filters,
     )
     set_content_range(
         response,
@@ -139,6 +142,7 @@ def list_frame_ids(
     max_timestamp_lt: Annotated[datetime | None, Query()] = None,
     last_viewed_at_ge: Annotated[datetime | None, Query()] = None,
     last_viewed_at_lt: Annotated[datetime | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     return domain.list_frame_ids(
         current_user=current_user,
@@ -158,6 +162,7 @@ def list_frame_ids(
         max_timestamp_lt=max_timestamp_lt,
         last_viewed_at_ge=last_viewed_at_ge,
         last_viewed_at_lt=last_viewed_at_lt,
+        filters=filters,
     )
 
 

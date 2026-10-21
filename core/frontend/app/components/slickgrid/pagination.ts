@@ -11,7 +11,7 @@ import { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router";
 import type { SlickgridReactInstance } from "slickgrid-react";
 
-import type { GridPagination } from "../../loaders";
+import type { GridPagination, LabelDataPagination } from "../../loaders";
 
 export type PaginationGridOptions = Pick<
   GridOption,
@@ -131,7 +131,7 @@ function nextIsoDay(value: string): string {
 }
 
 export function useRoutePaginationGridOptions<T>(
-  pagination: GridPagination | undefined,
+  pagination: GridPagination | LabelDataPagination | undefined,
   dataset: T[],
 ): PaginationGridOptions {
   const location = useLocation();
@@ -190,7 +190,10 @@ export function useRoutePaginationGridOptions<T>(
       data: {
         [ROUTE_DATASET_NAME]: {
           nodes: dataset,
-          totalCount: currentPagination.totalItems,
+          totalCount:
+            "totalItems" in currentPagination
+              ? currentPagination.totalItems
+              : dataset.length,
         },
       },
     });
@@ -249,8 +252,8 @@ export function useRoutePaginationGridOptions<T>(
 
     return {
       backendServiceApi,
-      enablePagination: true,
-      pagination,
+      enablePagination: "totalItems" in pagination,
+      pagination: "totalItems" in pagination ? pagination : undefined,
       presets,
     };
   }, [
@@ -265,10 +268,10 @@ export function useRoutePaginationGridOptions<T>(
 
 export function syncRoutePaginationGrid(
   reactGrid: SlickgridReactInstance | null | undefined,
-  pagination: GridPagination | undefined,
+  pagination: GridPagination | LabelDataPagination | undefined,
 ) {
   reactGrid?.slickGrid?.invalidate();
-  if (pagination == null) return;
+  if (pagination == null || !("totalItems" in pagination)) return;
 
   const paginationService = reactGrid?.paginationService;
   if (!paginationService) return;

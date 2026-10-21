@@ -3,7 +3,7 @@
 import uuid
 from datetime import datetime, timedelta, timezone
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Response
 from pydantic import BaseModel, ValidationError
 
 import pytest
@@ -470,3 +470,58 @@ def test_relation_update_persists_endpoints_and_class(session, root_user, relati
     )
     assert original.source_type == params["source"]["type"]
     assert original.relation_class_id == params["relation_class_id"]
+
+
+@pytest.mark.parametrize("include_total", [True, False])
+def test_relation_page_can_skip_exact_count(monkeypatch, session, root_user, include_total):
+    from unittest.mock import Mock
+
+    from sta.domain.querying import Pagination
+    from sta_relation.api.data import list_relations
+
+    listing = Mock(return_value=[])
+    monkeypatch.setattr(domain, "list_datas", listing)
+    count = Mock(return_value=234606)
+    monkeypatch.setattr(domain, "count_datas", count)
+    response = Response()
+    assert (
+        list_relations(
+            response,
+            current_user=root_user,
+            session=session,
+            pagination=Pagination(offset=25, limit=26),
+            group_id=1,
+            commit_hash="head",
+            include_total=include_total,
+            filters='[{"columnId":"relation_class_id","searchTerms":[42]}]',
+        )
+        == []
+    )
+    assert (
+        response.headers["content-range"] == f"relations 25-25/{234606 if include_total else '*'}"
+    )
+    assert count.call_count == int(include_total)
+
+    assert (
+        listing.call_args.kwargs["filters"]
+        == '[{"columnId":"relation_class_id","searchTerms":[42]}]'
+    )
+
+
+def test_plugin_filters_reach_the_snapshot_query():
+    from unittest.mock import Mock
+
+    user = Mock()
+    user.has_role.return_value = True
+    query = domain.build_list_query(
+        user,
+        Mock(),
+        group_id=7,
+        commit_hash="head",
+        offset=25,
+        limit=26,
+        filters='[{"columnId":"relation_class_id","searchTerms":[2]}]',
+    )
+    compiled = query.compile()
+    assert "relation_class_id IN" in str(compiled)
+    assert [2] in compiled.params.values()

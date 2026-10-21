@@ -9,6 +9,7 @@ from sqlalchemy.orm import selectinload
 from sqlmodel import Session, delete, insert, select, update
 
 from sta.common.database.execution import execute_statement, sql_column, stamp_bulk_edit
+from sta.domain.filtering import apply_column_filters
 
 from ..models.frame import Frame, FrameBulkUpdate, FrameCreate, FrameUpdate
 from ..models.label.repo import BranchPermissionLevel
@@ -307,6 +308,7 @@ def _build_filtered_query(
     last_viewed_at_lt: datetime | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = select(Frame)
     for cond in can_read_frame_filters(current_user):
@@ -349,7 +351,7 @@ def _build_filtered_query(
             sql_column(Frame.id),
         )
 
-    return q
+    return apply_column_filters(q, Frame, filters, allowed_columns={"id"})
 
 
 def list_frames(
@@ -375,6 +377,7 @@ def list_frames(
     last_viewed_at_lt: datetime | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = _build_filtered_query(
         current_user=current_user,
@@ -396,6 +399,7 @@ def list_frames(
         last_viewed_at_lt=last_viewed_at_lt,
         sort_by=sort_by,
         sort_dir=sort_dir,
+        filters=filters,
     )
     q = q.options(*_get_frame_load_options())
     q = paginate(q, Pagination(offset=offset, limit=limit))
@@ -422,6 +426,7 @@ def list_frame_ids(
     max_timestamp_lt: datetime | None = None,
     last_viewed_at_ge: datetime | None = None,
     last_viewed_at_lt: datetime | None = None,
+    filters: str | None = None,
 ) -> list[int]:
     q = _build_filtered_query(
         current_user=current_user,
@@ -441,6 +446,7 @@ def list_frame_ids(
         max_timestamp_lt=max_timestamp_lt,
         last_viewed_at_ge=last_viewed_at_ge,
         last_viewed_at_lt=last_viewed_at_lt,
+        filters=filters,
     )
 
     ids = id_query(q, sql_column(Frame.id))
@@ -466,6 +472,7 @@ def count_frames(
     max_timestamp_lt: datetime | None = None,
     last_viewed_at_ge: datetime | None = None,
     last_viewed_at_lt: datetime | None = None,
+    filters: str | None = None,
 ) -> int:
     q = _build_filtered_query(
         current_user=current_user,
@@ -485,6 +492,7 @@ def count_frames(
         max_timestamp_lt=max_timestamp_lt,
         last_viewed_at_ge=last_viewed_at_ge,
         last_viewed_at_lt=last_viewed_at_lt,
+        filters=filters,
     )
 
     return session.exec(count_query(q)).one()

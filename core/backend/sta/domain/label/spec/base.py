@@ -8,6 +8,7 @@ from sqlalchemy.orm.attributes import set_committed_value
 from sqlmodel import Session, delete, func, insert, select, update
 
 from sta.common.database.execution import execute_statement, sql_column, stamp_bulk_edit
+from sta.domain.filtering import apply_column_filters
 
 from ....models.label.spec import (
     LabelSpecCreateLike,
@@ -207,6 +208,7 @@ class LabelSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         name_contains: str | None = None,
         sort_by: str | None = None,
         sort_dir: SortDirection = "asc",
+        filters: str | None = None,
     ) -> Sequence[_T]:
         q = self._build_list_specs_query(
             current_user=current_user,
@@ -221,6 +223,7 @@ class LabelSpecDomain(Generic[_T, _C, _P, _U, _BU]):
             name_contains=name_contains,
             sort_by=sort_by,
             sort_dir=sort_dir,
+            filters=filters,
         )
 
         records = session.exec(q).all()
@@ -242,6 +245,7 @@ class LabelSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         name_contains: str | None = None,
         sort_by: str | None = None,
         sort_dir: SortDirection = "asc",
+        filters: str | None = None,
     ):
         table_cls = self.table_cls
 
@@ -262,7 +266,9 @@ class LabelSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         q = filter_contains(q, table_cls.name, name_contains)
         q = apply_sort(q, self.get_sort_columns(), sort_by, sort_dir)
 
-        return q
+        return apply_column_filters(
+            q, table_cls, filters, allowed_columns=set(self.get_sort_columns())
+        )
 
     def count_specs(
         self,
@@ -275,6 +281,7 @@ class LabelSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         id_le: int | None = None,
         name: str | None = None,
         name_contains: str | None = None,
+        filters: str | None = None,
     ) -> int:
         q = self._build_list_specs_query(
             current_user=current_user,
@@ -287,6 +294,7 @@ class LabelSpecDomain(Generic[_T, _C, _P, _U, _BU]):
             id_le=id_le,
             name=name,
             name_contains=name_contains,
+            filters=filters,
         )
 
         return session.exec(select(func.count()).select_from(q.subquery())).one()

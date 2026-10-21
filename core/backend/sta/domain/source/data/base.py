@@ -10,6 +10,7 @@ from sqlmodel import Session, delete, func, insert, select, update
 
 from sta.common.database.execution import execute_statement, sql_column, stamp_bulk_edit
 from sta.common.spatial import DecimalCoord, PartialSTBounds
+from sta.domain.filtering import apply_column_filters
 
 from ....models.base import SPATIAL_BOUND_FIELDS, TRANSFORM_FIELDS
 from ....models.source.data import (
@@ -134,6 +135,7 @@ class SourceDataDomain(Generic[_T, _C, _P, _U, _BU]):
         public_cls: type[_P],
         update_cls: type[_U],
         bulk_update_cls: type[_BU],
+        filter_columns: Set[str] | None = None,
     ):
         super().__init__()
 
@@ -142,6 +144,7 @@ class SourceDataDomain(Generic[_T, _C, _P, _U, _BU]):
         self.public_cls = public_cls
         self.update_cls = update_cls
         self.bulk_update_cls = bulk_update_cls
+        self.filter_columns = frozenset(filter_columns or ())
 
     def can_read_data_filters(self, user: UserPublic, session: Session):
         if user.has_role(Role.DATA_MANAGER, Role.PROJECT_MANAGER):
@@ -324,7 +327,7 @@ class SourceDataDomain(Generic[_T, _C, _P, _U, _BU]):
             max_timestamp=max_timestamp,
         )
 
-        return session.exec(select(func.count()).select_from(q.subquery())).one()
+        return session.exec(select(func.count()).select_from(q.order_by(None).subquery())).one()
 
     def list_datas_in_bounds(
         self,
@@ -726,6 +729,7 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
         max_timestamp: datetime | None = None,
         uri: str | None = None,
         bounds_pending: bool | None = None,
+        filters: str | None = None,
     ):
         table_cls = self.table_cls
 
@@ -754,7 +758,12 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
             pending = self._pending_bounds_filter()
             q = q.where(pending if bounds_pending else not_(pending))
 
-        return q
+        return apply_column_filters(
+            q.order_by(sql_column(table_cls.id)),
+            table_cls,
+            filters,
+            allowed_columns=self.filter_columns,
+        )
 
     def list_datas(
         self,
@@ -775,6 +784,7 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
         max_timestamp: datetime | None = None,
         uri: str | None = None,
         bounds_pending: bool | None = None,
+        filters: str | None = None,
     ) -> Sequence[_MT]:
         q = self.build_list_query(
             current_user,
@@ -793,6 +803,7 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
             max_timestamp=max_timestamp,
             uri=uri,
             bounds_pending=bounds_pending,
+            filters=filters,
         )
 
         return session.exec(q).all()
@@ -814,6 +825,7 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
         max_timestamp: datetime | None = None,
         uri: str | None = None,
         bounds_pending: bool | None = None,
+        filters: str | None = None,
     ) -> list[int]:
         q = self.build_list_query(
             current_user,
@@ -832,6 +844,7 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
             max_timestamp=max_timestamp,
             uri=uri,
             bounds_pending=bounds_pending,
+            filters=filters,
         )
         table_cls = self.table_cls
         id_query = q.order_by(None).with_only_columns(sql_column(table_cls.id))
@@ -854,6 +867,7 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
         max_timestamp: datetime | None = None,
         uri: str | None = None,
         bounds_pending: bool | None = None,
+        filters: str | None = None,
     ) -> int:
         q = self.build_list_query(
             current_user,
@@ -870,9 +884,10 @@ class SourceMetadataDomain(SourceDataDomain[_MT, _MC, _MP, _MU, _MBU]):
             max_timestamp=max_timestamp,
             uri=uri,
             bounds_pending=bounds_pending,
+            filters=filters,
         )
 
-        return session.exec(select(func.count()).select_from(q.subquery())).one()
+        return session.exec(select(func.count()).select_from(q.order_by(None).subquery())).one()
 
     def list_datas_in_bounds(
         self,

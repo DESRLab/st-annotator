@@ -51,6 +51,7 @@ def list_relclasses(
     id_le: Annotated[int | None, Query()] = None,
     name: Annotated[str | None, Query()] = None,
     name_contains: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     relclasses = domain.list_relclasses(
         current_user=current_user,
@@ -64,6 +65,7 @@ def list_relclasses(
         name_contains=name_contains,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_relclasses = domain.count_relclasses(
@@ -74,6 +76,7 @@ def list_relclasses(
         id_le=id_le,
         name=name,
         name_contains=name_contains,
+        filters=filters,
     )
     set_content_range(
         response,
@@ -118,6 +121,7 @@ def list_definitions_ids(
     id_le: int | None = None,
     name: str | None = None,
     name_contains: str | None = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     records = domain.list_relclasses(
         current_user=current_user,
@@ -129,6 +133,7 @@ def list_definitions_ids(
         id_le=id_le,
         name=name,
         name_contains=name_contains,
+        filters=filters,
     )
     return [record.id for record in records]
 

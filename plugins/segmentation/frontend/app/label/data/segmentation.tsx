@@ -20,15 +20,17 @@ import type {
 import {
   createSlickgridClientLoader,
   selectableConfig,
+  GRID_FILTERS_PARAM,
+  GRID_SORT_PARAM,
   syncRoutePaginationGrid,
   useRoutePaginationGridOptions,
 } from "sta/app/components";
 import {
   getGridPaginationRequest,
   GRID_PAGE_SIZES,
-  listGridPage,
+  listLabelDataPage,
   loadAuthenticatedSession,
-  type GridPagination,
+  type LabelDataPagination,
 } from "sta/app/loaders";
 import {
   createLabelDataGridOptions,
@@ -38,6 +40,8 @@ import {
   formatClassName,
   getCommitOptions,
   LabelDataFilterForm,
+  createLabelClassFilter,
+  LabelDataPaginationControls,
   normalizeError,
   parseOptionalInteger,
   sortLabelGroups,
@@ -141,13 +145,13 @@ export async function loader({ request }: Route.LoaderArgs) {
       pageNumber: emptyPageRequest.pageNumber,
       pageSize: emptyPageRequest.pageSize,
       pageSizes: [...GRID_PAGE_SIZES],
-      totalItems: 0,
-    } satisfies GridPagination,
+      hasNextPage: false,
+    } satisfies LabelDataPagination,
   };
 
   const elementsRes =
     shouldLoadData && activeTab === "elements"
-      ? await listGridPage(request, (pagination) =>
+      ? await listLabelDataPage(request, (pagination) =>
           listElementSummariesLabelDataSegmentationElementSummaryGet({
             auth: token.access_token,
             query: {
@@ -160,7 +164,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       : emptyPage;
   const entitiesRes =
     shouldLoadData && activeTab === "entities"
-      ? await listGridPage(request, (pagination) =>
+      ? await listLabelDataPage(request, (pagination) =>
           listEntitiesLabelDataSegmentationEntityGet({
             auth: token.access_token,
             query: {
@@ -266,6 +270,7 @@ function createElementColumns(
 }
 
 function createEntityColumns(
+  SG: SlickgridModule,
   classNames: Record<number, string>,
 ): Column<SegmentationEntity>[] {
   return [
@@ -283,6 +288,7 @@ function createEntityColumns(
       field: "gt_class_id",
       type: "integer",
       filterable: true,
+      filter: createLabelClassFilter(SG, classNames),
       sortable: true,
       formatter: (_row, _cell, value) =>
         formatClassName(value as number | null, classNames),
@@ -293,6 +299,14 @@ function createEntityColumns(
       field: "is_black",
       type: "boolean",
       filterable: true,
+      filter: {
+        model: SG.Filters.singleSelect,
+        collection: [
+          { value: "", label: "" },
+          { value: true, label: "Yes" },
+          { value: false, label: "No" },
+        ],
+      },
       sortable: true,
       formatter: (_row, _cell, value) => formatBoolean(value),
     },
@@ -467,7 +481,7 @@ function ElementsGrid({
   SG: SlickgridModule;
   classNames: Record<number, string>;
   elements: SegmentationElement[];
-  pagination: GridPagination;
+  pagination: LabelDataPagination;
   onViewDetails: (element: SegmentationElement) => void;
 }) {
   const { SlickgridReact } = SG;
@@ -522,6 +536,7 @@ function ElementsGrid({
           reactGridRef.current = event.detail;
         }}
       />
+      <LabelDataPaginationControls pagination={pagination} />
     </div>
   );
 }
@@ -536,7 +551,7 @@ function EntitiesGrid({
   SG: SlickgridModule;
   classNames: Record<number, string>;
   entities: SegmentationEntity[];
-  pagination: GridPagination;
+  pagination: LabelDataPagination;
   onViewDetails: (entity: SegmentationEntity) => void;
 }) {
   const { SlickgridReact } = SG;
@@ -565,7 +580,7 @@ function EntitiesGrid({
     ];
 
     return {
-      columns: createEntityColumns(classNames),
+      columns: createEntityColumns(SG, classNames),
       options: {
         ...createLabelDataGridOptions(containerId),
         ...(selectableConfig({
@@ -591,6 +606,7 @@ function EntitiesGrid({
           reactGridRef.current = event.detail;
         }}
       />
+      <LabelDataPaginationControls pagination={pagination} />
     </div>
   );
 }
@@ -641,6 +657,8 @@ export default function SegmentationData() {
   function getTabHref(tab: LabelDataTab) {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("tab", tab);
+    searchParams.delete(GRID_FILTERS_PARAM);
+    searchParams.delete(GRID_SORT_PARAM);
     searchParams.delete("page");
     searchParams.delete("pageSize");
     return `${location.pathname}?${searchParams.toString()}`;

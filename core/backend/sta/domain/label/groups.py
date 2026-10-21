@@ -5,6 +5,7 @@ from fastapi import HTTPException
 from sqlmodel import Session, func, select, update
 
 from sta.common.database.execution import execute_statement, sql_column, stamp_bulk_edit
+from sta.domain.filtering import apply_column_filters
 
 from ...models.frame import Frame
 from ...models.label.group import (
@@ -90,6 +91,7 @@ def list_groups(
     description_contains: str | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = _build_list_groups_query(
         current_user=current_user,
@@ -104,6 +106,7 @@ def list_groups(
         description_contains=description_contains,
         sort_by=sort_by,
         sort_dir=sort_dir,
+        filters=filters,
     )
 
     return session.exec(q).all()
@@ -123,6 +126,7 @@ def _build_list_groups_query(
     description_contains: str | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = select(LabelGroup)
     for cond in can_read_group_filters(current_user, session):
@@ -140,7 +144,9 @@ def _build_list_groups_query(
     q = filter_contains(q, LabelGroup.description, description_contains)
     q = apply_sort(q, _LABEL_GROUP_SORT_COLUMNS, sort_by, sort_dir)
 
-    return q
+    return apply_column_filters(
+        q, LabelGroup, filters, allowed_columns={"id", "name", "description"}
+    )
 
 
 def count_groups(
@@ -153,6 +159,7 @@ def count_groups(
     name: str | None = None,
     name_contains: str | None = None,
     description_contains: str | None = None,
+    filters: str | None = None,
 ) -> int:
     q = _build_list_groups_query(
         current_user=current_user,
@@ -165,6 +172,7 @@ def count_groups(
         name=name,
         name_contains=name_contains,
         description_contains=description_contains,
+        filters=filters,
     )
 
     return session.exec(select(func.count()).select_from(q.subquery())).one()

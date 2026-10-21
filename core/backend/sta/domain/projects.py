@@ -5,6 +5,7 @@ from fastapi import HTTPException
 from sqlmodel import Session, delete, insert, select, update
 
 from sta.common.database.execution import execute_statement, sql_column, stamp_bulk_edit
+from sta.domain.filtering import apply_column_filters
 
 from ..models.project import Project, ProjectBulkUpdate, ProjectCreate, ProjectUpdate
 from ..models.task import Task
@@ -127,6 +128,7 @@ def list_projects(
     member_ids: Sequence[int] | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = _build_filtered_projects_query(
         current_user=current_user,
@@ -140,6 +142,7 @@ def list_projects(
         member_ids=member_ids,
         sort_by=sort_by,
         sort_dir=sort_dir,
+        filters=filters,
     )
     q = paginate(
         q,
@@ -162,6 +165,7 @@ def _build_filtered_projects_query(
     member_ids: Sequence[int] | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = select(Project)
     # ProjectPublic embeds Project.tasks, so relationship loading must use the
@@ -185,7 +189,7 @@ def _build_filtered_projects_query(
         )
     q = apply_sort(q, _PROJECT_SORT_COLUMNS, sort_by, sort_dir)
 
-    return q
+    return apply_column_filters(q, Project, filters, allowed_columns={"id", "name", "description"})
 
 
 def count_projects(
@@ -199,6 +203,7 @@ def count_projects(
     name_contains: str | None = None,
     description_contains: str | None = None,
     member_ids: Sequence[int] | None = None,
+    filters: str | None = None,
 ) -> int:
     q = _build_filtered_projects_query(
         current_user=current_user,
@@ -210,6 +215,7 @@ def count_projects(
         name_contains=name_contains,
         description_contains=description_contains,
         member_ids=member_ids,
+        filters=filters,
     )
 
     return session.exec(count_query(q)).one()
@@ -226,6 +232,7 @@ def list_project_ids(
     name_contains: str | None = None,
     description_contains: str | None = None,
     member_ids: Sequence[int] | None = None,
+    filters: str | None = None,
 ) -> list[int]:
     q = _build_filtered_projects_query(
         current_user=current_user,
@@ -237,6 +244,7 @@ def list_project_ids(
         name_contains=name_contains,
         description_contains=description_contains,
         member_ids=member_ids,
+        filters=filters,
     )
 
     ids = id_query(q, sql_column(Project.id))

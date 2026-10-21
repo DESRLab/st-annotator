@@ -702,3 +702,55 @@ def test_list_recent_frames_filters_and_sorts(root_user: UserPublic, session: Se
             sort_dir="asc",
         )
     ] == [seen_first.id, seen_last.id]
+
+
+@pytest.mark.parametrize("resource", ["projects", "source_groups", "label_groups", "classes"])
+def test_advanced_filters_apply_before_pagination_and_count(root_user, session, resource):
+    import json
+
+    from sta.domain.label import groups as label_groups
+    from sta.domain.label.spec.objclass import definitions
+    from sta.domain.source import groups as source_groups
+
+    create, list_records, count, payload = {
+        "projects": (
+            projects_domain.create_project,
+            projects_domain.list_projects,
+            projects_domain.count_projects,
+            ProjectCreate,
+        ),
+        "source_groups": (
+            source_groups.create_group,
+            source_groups.list_groups,
+            source_groups.count_groups,
+            SourceGroupCreate,
+        ),
+        "label_groups": (
+            label_groups.create_group,
+            label_groups.list_groups,
+            label_groups.count_groups,
+            LabelGroupCreate,
+        ),
+        "classes": (
+            definitions.create_objclass,
+            definitions.list_objclasses,
+            definitions.count_objclasses,
+            ObjectClassCreate,
+        ),
+    }[resource]
+    records = [
+        create(current_user=root_user, session=session, data=payload(name=name))
+        for name in ["needle-alpha", "other-needle-mid", "needle-beta", "needle-gamma"]
+    ]
+    session.commit()
+    filters = json.dumps(
+        [
+            {"columnId": "name", "operator": "StartsWith", "searchTerms": ["needle-"]},
+            {"columnId": "id", "operator": ">", "searchTerms": [records[0].id]},
+        ]
+    )
+    args = dict(current_user=root_user, session=session, filters=filters)
+    assert [row.id for row in list_records(**args, offset=1, limit=1, sort_by="id")] == [
+        records[3].id
+    ]
+    assert count(**args) == 2

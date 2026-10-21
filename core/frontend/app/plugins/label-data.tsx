@@ -1,8 +1,15 @@
 import type { ChangeEvent } from "react";
 import { useState } from "react";
 import { Col, Form, Row, Spinner } from "react-bootstrap";
-import { Form as RouterForm, useNavigation, useSubmit } from "react-router";
-import type { GridOption } from "slickgrid-react";
+import {
+  Form as RouterForm,
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+  useSubmit,
+} from "react-router";
+import type { Column, GridOption } from "slickgrid-react";
 
 import type {
   LabelGroupPublic as LabelGroup,
@@ -14,7 +21,53 @@ import {
   type SlickgridModule,
 } from "../components/slickgrid/client";
 
+import type { LabelDataPagination } from "../loaders";
+
 export { asSlickgridModule, type SlickgridModule };
+
+/** Navigation that does not promise an exact record or page total. */
+export function LabelDataPaginationControls({
+  pagination,
+}: {
+  pagination: LabelDataPagination;
+}) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  function pageHref(page: number, pageSize = pagination.pageSize) {
+    const query = new URLSearchParams(location.search);
+    query.set("page", String(page));
+    query.set("pageSize", String(pageSize));
+    return `${location.pathname}?${query.toString()}`;
+  }
+  return (
+    <nav
+      aria-label="Label data pagination"
+      className="d-flex align-items-center gap-3 mt-3"
+    >
+      {pagination.pageNumber > 1 && (
+        <Link to={pageHref(pagination.pageNumber - 1)}>Previous</Link>
+      )}
+      <span>Page {pagination.pageNumber}</span>
+      {pagination.hasNextPage && (
+        <Link to={pageHref(pagination.pageNumber + 1)}>Next</Link>
+      )}
+      <Form.Select
+        aria-label="Rows per page"
+        className="w-auto"
+        value={pagination.pageSize}
+        onChange={(event) => {
+          void navigate(pageHref(1, Number(event.currentTarget.value)));
+        }}
+      >
+        {pagination.pageSizes.map((size) => (
+          <option key={size} value={size}>
+            {size} rows
+          </option>
+        ))}
+      </Form.Select>
+    </nav>
+  );
+}
 
 export interface CommitOption {
   hash: string;
@@ -104,6 +157,24 @@ export function sortLabelGroups(groups: LabelGroup[]): LabelGroup[] {
   return groups
     .slice()
     .sort((left, right) => String(left.name).localeCompare(String(right.name)));
+}
+
+/** Class-name options keep filtering aligned with the names displayed in cells. */
+export function createLabelClassFilter(
+  SG: SlickgridModule,
+  classNames: Record<number, string>,
+): Column["filter"] {
+  return {
+    model: SG.Filters.singleSelect,
+    options: { filter: true },
+    collection: [
+      { value: "", label: "" },
+      ...Object.entries(classNames).map(([id, name]) => ({
+        value: Number(id),
+        label: name,
+      })),
+    ],
+  };
 }
 
 export function createLabelDataGridOptions(containerId: string): GridOption {

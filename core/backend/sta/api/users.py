@@ -59,6 +59,7 @@ def list_users(
     created_at_lt: Annotated[datetime | None, Query()] = None,
     current_login_at_ge: Annotated[datetime | None, Query()] = None,
     current_login_at_lt: Annotated[datetime | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     users = domain.list_users(
         current_user=current_user,
@@ -77,6 +78,7 @@ def list_users(
         current_login_at_lt=current_login_at_lt,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_users = domain.count_users(
@@ -92,6 +94,7 @@ def list_users(
         created_at_lt=created_at_lt,
         current_login_at_ge=current_login_at_ge,
         current_login_at_lt=current_login_at_lt,
+        filters=filters,
     )
     set_content_range(
         response,
@@ -119,6 +122,7 @@ def list_user_ids(
     created_at_lt: Annotated[datetime | None, Query()] = None,
     current_login_at_ge: Annotated[datetime | None, Query()] = None,
     current_login_at_lt: Annotated[datetime | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     return domain.list_user_ids(
         current_user=current_user,
@@ -133,6 +137,7 @@ def list_user_ids(
         created_at_lt=created_at_lt,
         current_login_at_ge=current_login_at_ge,
         current_login_at_lt=current_login_at_lt,
+        filters=filters,
     )
 
 
@@ -151,6 +156,7 @@ def list_users_roles(
     session: Annotated[Session, Depends(get_session)],
     pagination: Annotated[Pagination, Depends(pagination_params)],
     username: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     users = domain.list_users(
         current_user=current_user,
@@ -158,6 +164,7 @@ def list_users_roles(
         offset=pagination.offset,
         limit=pagination.limit,
         username=username,
+        filters=filters,
     )
 
     total_users = domain.count_users(
@@ -165,6 +172,7 @@ def list_users_roles(
         session=session,
         username=username,
         require_auth=False,
+        filters=filters,
     )
     set_content_range(
         response,

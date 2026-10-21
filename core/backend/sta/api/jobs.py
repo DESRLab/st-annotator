@@ -32,6 +32,7 @@ def list_jobs(
     id: Annotated[list[int] | None, Query()] = None,
     kind: Annotated[str | None, Query()] = None,
     state: Annotated[list[JobState] | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     """List the deferred-work inventory.
 
@@ -49,6 +50,7 @@ def list_jobs(
         state=state,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_jobs = domain.count_jobs(
@@ -57,6 +59,7 @@ def list_jobs(
         id=id,
         kind=kind,
         state=state,
+        filters=filters,
     )
     set_content_range(
         response,

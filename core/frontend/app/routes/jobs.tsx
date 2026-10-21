@@ -28,6 +28,7 @@ import {
 import {
   ALL_JOB_STATES,
   applyNumericFilterToQuery,
+  applyColumnFilterToQuery,
   applySortersToQuery,
   getGridStateRequest,
   listGridPage,
@@ -168,17 +169,6 @@ export function requestedJobStates(
  * no containment parameter, so a partial term must not be rewritten into a parameter the
  * backend would silently ignore.
  */
-function applyExactFilterToQuery(
-  query: GridQuery,
-  filter: CurrentFilter,
-  paramName: string,
-): void {
-  const [term] = getFilterSearchTerms(filter);
-  if (term == null) return;
-
-  query[paramName] = term;
-}
-
 export function buildJobsQuery({
   filters,
   sorters,
@@ -193,9 +183,14 @@ export function buildJobsQuery({
     switch (filter.columnId) {
       case "id":
         applyNumericFilterToQuery(query, filter, "id");
+        if (query.id_ge != null || query.id_le != null) {
+          applyColumnFilterToQuery(query, filter, "id");
+          delete query.id_ge;
+          delete query.id_le;
+        }
         break;
       case "kind":
-        applyExactFilterToQuery(query, filter, "kind");
+        applyColumnFilterToQuery(query, filter, "kind");
         break;
     }
   }

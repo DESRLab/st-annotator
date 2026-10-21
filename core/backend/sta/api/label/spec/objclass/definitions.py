@@ -51,6 +51,7 @@ def list_objclasses(
     id_le: Annotated[int | None, Query()] = None,
     name: Annotated[str | None, Query()] = None,
     name_contains: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     objclasses = domain.list_objclasses(
         current_user=current_user,
@@ -64,6 +65,7 @@ def list_objclasses(
         name_contains=name_contains,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_objclasses = domain.count_objclasses(
@@ -74,6 +76,7 @@ def list_objclasses(
         id_le=id_le,
         name=name,
         name_contains=name_contains,
+        filters=filters,
     )
     set_content_range(
         response,

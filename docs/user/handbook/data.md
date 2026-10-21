@@ -148,6 +148,12 @@ Users with the `data-manager` role can also add, modify and delete groups.
 
 Navigate to the Label Data Storage page (`Label Data > Data Storage`), which lists one tab for each data type available on your deployment. Choose a data type and a `Label Group`, then choose a saved version under `Commit` to view its labels in a [data table](./index.md#data-table). The version names identify the branch or checkpoint they belong to.
 
+Label data loads one page at a time. Use `Previous` and `Next` below the table to browse the selected saved version, and `Rows per page` to change the page size. For performance reasons, only the current page number is shown but not the exact page total.
+
+Column filters search all records in the selected saved version before pagination. Changing a filter returns to the first page; `Previous` and `Next` retain the filters. Use the class selector to filter by class name. The Relations table also lets you filter source and target types and IDs. Switching between elements and entities clears column filters.
+
+Right-click a label row and choose `View Details` to inspect its saved values. Relation details include the class name, source and target types and IDs, and revision information. The details dialog is read-only.
+
 <a id="label-data-specifications"></a>
 ##### Manage Data Specifications
 

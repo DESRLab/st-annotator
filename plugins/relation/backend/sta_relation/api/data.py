@@ -28,22 +28,30 @@ def list_relations(
     group_id: int,
     commit_hash: str,
     ids: Annotated[list[uuid.UUID] | None, Query()] = None,
+    include_total: bool = True,
+    filters: Annotated[str | None, Query()] = None,
 ):
     records = domain.list_datas(
         current_user=current_user,
         session=session,
         group_id=group_id,
         commit_hash=commit_hash,
+        filters=filters,
         ids=None if ids is None else set(ids),
         offset=pagination.offset,
         limit=pagination.limit,
     )
-    total = domain.count_datas(
-        current_user=current_user,
-        session=session,
-        group_id=group_id,
-        commit_hash=commit_hash,
-        ids=None if ids is None else set(ids),
+    total = (
+        domain.count_datas(
+            current_user=current_user,
+            session=session,
+            group_id=group_id,
+            commit_hash=commit_hash,
+            filters=filters,
+            ids=None if ids is None else set(ids),
+        )
+        if include_total
+        else None
     )
     set_content_range(
         response, "relations", pagination=pagination, page_length=len(records), total=total

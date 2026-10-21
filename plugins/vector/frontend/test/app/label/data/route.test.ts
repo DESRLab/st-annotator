@@ -94,8 +94,41 @@ describe("vector label-data route adapter", () => {
         group_id: 7,
         commit_hash: "head",
         offset: 25,
-        limit: 25,
+        limit: 26,
+        include_total: false,
       },
     });
   });
 });
+
+it.each(["elements"])(
+  "forwards column filters before paginating %s",
+  async (tab) => {
+    api.groups.mockResolvedValue({ data: [{ id: 7, name: "Labels" }] });
+    api.branches.mockResolvedValue({
+      data: [{ name: "main", head_hash: "head", checkpoint_hash: "base" }],
+    });
+    api.elements.mockResolvedValue({ data: [] });
+    const filters = JSON.stringify([
+      { columnId: "id", operator: "", searchTerms: ["abc"] },
+    ]);
+    const url = new URL(
+      "http://localhost/label/data/vector?group_id=7&commit_hash=head&page=2&pageSize=25",
+    );
+    url.searchParams.set("tab", tab);
+    url.searchParams.set("filters", filters);
+    await loader({ request: new Request(url) } as any);
+    const load = api.elements;
+    expect(load).toHaveBeenLastCalledWith({
+      auth: "access",
+      query: {
+        group_id: 7,
+        commit_hash: "head",
+        offset: 25,
+        limit: 26,
+        include_total: false,
+        filters,
+      },
+    });
+  },
+);

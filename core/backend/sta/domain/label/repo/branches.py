@@ -6,6 +6,7 @@ from fastapi import HTTPException
 from sqlmodel import Session, delete, func, insert, select
 
 from sta.common.database.execution import execute_statement, sql_column
+from sta.domain.filtering import apply_column_filters
 
 from ....models.label.repo import (
     BranchPermission,
@@ -92,6 +93,7 @@ def _build_list_branches_query(
     last_edit_at_lt: datetime | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = select(LabelsetBranch)
     for cond in can_access_branch_filters(current_user, perm_lv=BranchPermissionLevel.READ):
@@ -115,7 +117,9 @@ def _build_list_branches_query(
     q = filter_range(q, LabelsetBranch.last_edit_at, ge=last_edit_at_ge, lt=last_edit_at_lt)
     q = apply_sort(q, _BRANCH_SORT_COLUMNS, sort_by, sort_dir)
 
-    return q
+    return apply_column_filters(
+        q, LabelsetBranch, filters, allowed_columns={"id", "name", "head_hash", "checkpoint_hash"}
+    )
 
 
 def require_write_branch(
@@ -214,6 +218,7 @@ def list_branches(
     last_edit_at_lt: datetime | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = _build_list_branches_query(
         current_user=current_user,
@@ -233,6 +238,7 @@ def list_branches(
         last_edit_at_lt=last_edit_at_lt,
         sort_by=sort_by,
         sort_dir=sort_dir,
+        filters=filters,
     )
 
     return session.exec(q).all()
@@ -253,6 +259,7 @@ def count_branches(
     checkpoint_hash_contains: str | None = None,
     last_edit_at_ge: datetime | None = None,
     last_edit_at_lt: datetime | None = None,
+    filters: str | None = None,
 ) -> int:
     q = _build_list_branches_query(
         current_user=current_user,
@@ -270,6 +277,7 @@ def count_branches(
         checkpoint_hash_contains=checkpoint_hash_contains,
         last_edit_at_ge=last_edit_at_ge,
         last_edit_at_lt=last_edit_at_lt,
+        filters=filters,
     )
 
     return session.exec(select(func.count()).select_from(q.subquery())).one()

@@ -106,7 +106,8 @@ describe("bbox label-data route adapter", () => {
         group_id: 7,
         commit_hash: "head",
         offset: 25,
-        limit: 25,
+        limit: 26,
+        include_total: false,
       },
     });
     expect(state.elements).not.toHaveBeenCalled();
@@ -118,6 +119,35 @@ describe("bbox label-data route adapter", () => {
       request: new Request("http://localhost/label/data/bbox?tab=elements"),
     } as any)) as any;
     expect(result.loaderError).toContain("groups unavailable");
-    expect(result.elementsPagination.totalItems).toBe(0);
+    expect(result.elementsPagination.hasNextPage).toBe(false);
+    expect(result.elementsPagination).not.toHaveProperty("totalItems");
   });
 });
+
+it.each(["elements", "entities"])(
+  "forwards column filters before paginating %s",
+  async (tab) => {
+    setup();
+    const filters = JSON.stringify([
+      { columnId: "id", operator: "", searchTerms: ["abc"] },
+    ]);
+    const url = new URL(
+      "http://localhost/label/data/bbox?group_id=7&commit_hash=head&page=2&pageSize=25",
+    );
+    url.searchParams.set("tab", tab);
+    url.searchParams.set("filters", filters);
+    await loader({ request: new Request(url) } as any);
+    const load = tab === "entities" ? state.entities : state.elements;
+    expect(load).toHaveBeenLastCalledWith({
+      auth: "access",
+      query: {
+        group_id: 7,
+        commit_hash: "head",
+        offset: 25,
+        limit: 26,
+        include_total: false,
+        filters,
+      },
+    });
+  },
+);

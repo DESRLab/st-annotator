@@ -93,6 +93,7 @@ MockElementBulkUpdate = MockElementSQLModel.get_update_cls()
 
 entity_domain = LabelEntityDomain(
     table_cls=MockEntity,
+    filter_columns=frozenset({"id", "last_edit_at"}),
     create_cls=MockEntityCreate,
     public_cls=MockEntityPublic,
     update_cls=MockEntityUpdate,
@@ -1844,3 +1845,126 @@ def test_annotator_with_frame_can_write_readable_group_only(
                 ),
             )
         assert exc_info.value.status_code == HTTPStatus.FORBIDDEN
+
+
+def test_delta_count_does_not_join_back_to_label_records(
+    monkeypatch: pytest.MonkeyPatch,
+    test_app_config: AppConfig,
+    root_user: UserPublic,
+    labelset_branch: LabelsetBranchPublic,
+):
+    """Counting a snapshot scans revision metadata once, without fetching payloads."""
+    from unittest.mock import patch
+
+    monkeypatch.setenv("STA_USE_DELTA_ENCODING", "true")
+    with session_ctx(test_app_config) as session:
+        group_id = labelset_branch.group_id
+        commit_hash = labelset_branch.head.hash
+        for name in ("first", "second"):
+            entity_domain.create_data(
+                current_user=root_user,
+                session=session,
+                data=MockEntityCreate(group_id=group_id, commit_hash=commit_hash, name=name),
+            )
+        session.commit()
+        with patch.object(session, "exec", wraps=session.exec) as execute:
+            assert (
+                entity_domain.count_datas(
+                    current_user=root_user,
+                    session=session,
+                    group_id=group_id,
+                    commit_hash=commit_hash,
+                )
+                == 2
+            )
+        statement = str(execute.call_args.args[0])
+        assert statement.count("FROM test_label_data_entity") == 1
+        assert "ORDER BY" not in statement
+
+
+@pytest.mark.parametrize("use_delta_encoding", [True, False])
+def test_column_filters_use_current_revision_before_pagination(
+    monkeypatch: pytest.MonkeyPatch,
+    test_app_config: AppConfig,
+    root_user: UserPublic,
+    op_registry: OperationRegistry,
+    labelset_branch: LabelsetBranchPublic,
+    *,
+    use_delta_encoding: bool,
+):
+    monkeypatch.setenv("STA_USE_DELTA_ENCODING", str(use_delta_encoding))
+    _register_no_op(op_registry)
+    with session_ctx(test_app_config) as session:
+        group_id = labelset_branch.group_id
+        h0 = labelset_branch.head.hash
+        session.add_all(
+            MockEntity(
+                id=uuid.UUID(int=i),
+                group_id=group_id,
+                commit_hash=h0,
+                last_edit_at=datetime(2000 if i % 2 == 0 else 2015, 1, 1, tzinfo=timezone.utc),
+            )
+            for i in range(1, 7)
+        )
+        session.commit()
+        branch = _push_no_op(
+            current_user=root_user, session=session, op_registry=op_registry, branch=labelset_branch
+        )
+        entity_domain.update_data(
+            current_user=root_user,
+            session=session,
+            id=uuid.UUID(int=2),
+            group_id=group_id,
+            commit_hash=branch.head.hash,
+            data=MockEntityUpdate(name="updated"),
+        )
+        session.commit()
+        filters = (
+            '[{"columnId":"last_edit_at","operator":"<","searchTerms":["2010-01-01T00:00:00Z"]}]'
+        )
+        kwargs = dict(
+            current_user=root_user,
+            session=session,
+            group_id=group_id,
+            commit_hash=branch.head.hash,
+            filters=filters,
+        )
+        assert [row.id.int for row in entity_domain.list_datas(**kwargs, offset=1, limit=1)] == [6]
+        assert entity_domain.count_datas(**kwargs) == 2
+
+
+def test_column_filter_limits_revision_resolution(
+    monkeypatch, test_app_config, root_user, labelset_branch
+):
+    from sqlmodel import func, select
+
+    monkeypatch.setenv("STA_USE_DELTA_ENCODING", "true")
+    monkeypatch.setenv("STA_USE_ANCESTOR_CANDIDATES", "true")
+    with session_ctx(test_app_config) as session:
+        group_id = labelset_branch.group_id
+        commit_hash = labelset_branch.head.hash
+        session.add_all(
+            MockEntity(id=uuid.UUID(int=i), group_id=group_id, commit_hash=commit_hash)
+            for i in range(1, 65)
+        )
+        session.commit()
+        resolved_counts = []
+        original = entity_domain._select_closest_state_metadata
+
+        def track(group_id, commit_hash, candidate_ids=None):
+            query = original(group_id, commit_hash, candidate_ids)
+            resolved_counts.append(
+                session.exec(select(func.count()).select_from(query.subquery())).one()
+            )
+            return query
+
+        monkeypatch.setattr(entity_domain, "_select_closest_state_metadata", track)
+        rows = entity_domain.list_datas(
+            current_user=root_user,
+            session=session,
+            group_id=group_id,
+            commit_hash=commit_hash,
+            filters='[{"columnId":"id","operator":"Contains","searchTerms":["00000000-0000-0000-0000-00000000002a"]}]',
+        )
+        assert [row.id for row in rows] == [uuid.UUID(int=42)]
+        assert resolved_counts == [1]

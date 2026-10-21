@@ -49,6 +49,8 @@ def list_entities(
     current_user: Annotated[UserPublic, Depends(get_current_user)],
     session: Annotated[Session, Depends(get_session)],
     pagination: Annotated[Pagination, Depends(pagination_params)],
+    include_total: bool = True,
+    filters: Annotated[str | None, Query()] = None,
     ids: Annotated[Set[uuid.UUID] | None, Query()] = None,
     group_id: Annotated[int, Query()],
     commit_hash: Annotated[str, Query()],
@@ -61,14 +63,20 @@ def list_entities(
         ids=ids,
         group_id=group_id,
         commit_hash=commit_hash,
+        filters=filters,
     )
 
-    total_entities = domain.count_datas(
-        current_user=current_user,
-        session=session,
-        ids=ids,
-        group_id=group_id,
-        commit_hash=commit_hash,
+    total_entities = (
+        domain.count_datas(
+            current_user=current_user,
+            session=session,
+            ids=ids,
+            group_id=group_id,
+            commit_hash=commit_hash,
+            filters=filters,
+        )
+        if include_total
+        else None
     )
     set_content_range(
         response,

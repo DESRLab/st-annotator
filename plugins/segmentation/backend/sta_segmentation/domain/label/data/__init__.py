@@ -15,6 +15,7 @@ from ....models.label.data import (
 
 entity = LabelEntityDomain(
     table_cls=LabelInstance,
+    filter_columns=frozenset({"id", "gt_class_id", "is_black", "last_edit_at"}),
     create_cls=LabelInstanceCreate,
     public_cls=LabelInstancePublic,
     update_cls=LabelInstanceUpdate,
@@ -23,6 +24,9 @@ entity = LabelEntityDomain(
 
 element = LabelElementDomain(
     table_cls=LabelSelection,
+    filter_columns=frozenset(
+        {"id", "entity_id", "quality_rank", "distinctive_lv", "occlusion_lv", "last_edit_at"}
+    ),
     create_cls=LabelSelectionCreate,
     public_cls=LabelSelectionPublic,
     update_cls=LabelSelectionUpdate,

@@ -983,6 +983,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   const { token, user } = authenticated;
 
   const url = new URL(request.url);
+  const filters = url.searchParams.get("filters");
+  const columnFilters = filters == null ? {} : { filters };
   const requestedSourceGroupId = parseOptionalInteger(
     url.searchParams.get("group_id"),
   );
@@ -1027,7 +1029,11 @@ export async function loader({ request }: Route.LoaderArgs) {
       : await listGridPage(request, (pagination) =>
           listMetadatasSourceDataGmeshMetadataGet({
             auth: token.access_token,
-            query: { group_id: selectedSourceGroupId, ...pagination },
+            query: {
+              group_id: selectedSourceGroupId,
+              ...pagination,
+              ...columnFilters,
+            },
           }),
         );
 
@@ -1037,7 +1043,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       ? { data: [], error: undefined }
       : await listMetadataIdsSourceDataGmeshMetadataIdsGet({
           auth: token.access_token,
-          query: { group_id: selectedSourceGroupId },
+          query: { group_id: selectedSourceGroupId, ...columnFilters },
         });
   const allSelectableIds = allMetadataIdsRes.data ?? [];
   const loaderError =

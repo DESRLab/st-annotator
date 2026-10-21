@@ -17,6 +17,17 @@ from .classes import selections
 
 domain = LabelDataDomain(
     table_cls=Relation,
+    filter_columns=frozenset(
+        {
+            "id",
+            "source_type",
+            "source_id",
+            "target_type",
+            "target_id",
+            "relation_class_id",
+            "is_deleted",
+        }
+    ),
     create_cls=RelationSQLModel,
     public_cls=RelationPublic,
     update_cls=RelationSQLModel.get_update_cls(),

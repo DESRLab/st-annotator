@@ -49,6 +49,9 @@ class PointCloudMetadataDomain(
 
     def __init__(self) -> None:
         super().__init__(
+            filter_columns=frozenset(
+                {"id", "uri", "min_timestamp", "max_timestamp", "last_edit_at", "weather"}
+            ),
             table_cls=PointCloudMetadata,
             create_cls=PointCloudMetadataCreate,
             public_cls=PointCloudMetadataPublic,

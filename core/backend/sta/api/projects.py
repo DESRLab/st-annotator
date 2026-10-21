@@ -54,6 +54,7 @@ def list_projects(
     name_contains: Annotated[str | None, Query()] = None,
     description_contains: Annotated[str | None, Query()] = None,
     member_id: Annotated[list[int] | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     projects = domain.list_projects(
         current_user=current_user,
@@ -69,6 +70,7 @@ def list_projects(
         member_ids=member_id,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_projects = domain.count_projects(
@@ -81,6 +83,7 @@ def list_projects(
         name_contains=name_contains,
         description_contains=description_contains,
         member_ids=member_id,
+        filters=filters,
     )
     set_content_range(
         response,
@@ -105,6 +108,7 @@ def list_project_ids(
     name_contains: Annotated[str | None, Query()] = None,
     description_contains: Annotated[str | None, Query()] = None,
     member_id: Annotated[list[int] | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     return domain.list_project_ids(
         current_user=current_user,
@@ -116,6 +120,7 @@ def list_project_ids(
         name_contains=name_contains,
         description_contains=description_contains,
         member_ids=member_id,
+        filters=filters,
     )
 
 

@@ -95,7 +95,9 @@ A row of filters is placed directly below the column headers:
 - Type into the filter box of a column to keep only the rows that match it.
 - Other columns provide a drop-down list to pick one or more values from, or two date boxes defining a range.
 
-Rows which do not match every filter are hidden, and applying a filter returns the table to the first page.
+Rows which do not match every filter are hidden, and applying a filter returns the table to the first page. Filters search the full list within the selected project, group, or saved version, including rows on other pages.
+
+In text filters, use `start*` to match a prefix and `*end` to match a suffix. Numeric filters accept comparisons such as `>5`, `<10`, and `!=7`, or an inclusive range such as `2..8`.
 
 Click on the header of a sortable column to sort the table by that column. An arrow in the header shows which column is sorted and in which direction, and clicking the header again reverses it. Applying a sort also returns the table to the first page.
 

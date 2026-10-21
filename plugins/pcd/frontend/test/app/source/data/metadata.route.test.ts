@@ -668,3 +668,26 @@ describe("PCD metadata batch edit", () => {
     expect(api.bulkUpdate).not.toHaveBeenCalled();
   });
 });
+
+it("forwards column filters to both the page and matching ID requests", async () => {
+  api.groups.mockResolvedValue({ data: [{ id: 7, name: "Sources" }] });
+  api.metadata.mockResolvedValue({ data: [] });
+  api.metadataIds.mockResolvedValue({ data: [] });
+  api.specs.mockResolvedValue({ data: [] });
+  const filters = JSON.stringify([
+    { columnId: "uri", operator: "StartsWith", searchTerms: ["scans/"] },
+  ]);
+  const url = new URL(
+    "http://localhost/source/data/pcd?group_id=7&page=2&pageSize=25",
+  );
+  url.searchParams.set("filters", filters);
+  await loader({ request: new Request(url) } as any);
+  expect(api.metadata).toHaveBeenLastCalledWith({
+    auth: "access",
+    query: { group_id: 7, offset: 25, limit: 25, filters },
+  });
+  expect(api.metadataIds).toHaveBeenLastCalledWith({
+    auth: "access",
+    query: { group_id: 7, filters },
+  });
+});

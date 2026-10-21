@@ -8,13 +8,14 @@ from itertools import groupby
 from typing import Any, Generic, TypeVar, cast
 
 from fastapi import HTTPException
-from sqlalchemy.sql.expression import Select, false
+from sqlalchemy.sql.expression import Select, case, false
 from sqlalchemy.sql.schema import Column
 from sqlmodel import Session, and_, func, insert, literal, or_, select, update
 
 from sta.common.database.execution import execute_statement, sql_column
 from sta.common.perf import PerformanceCounter
 from sta.common.spatial import DecimalCoord, PartialSTBounds
+from sta.domain.filtering import apply_column_filters
 from sta.envs import STA_USE_ANCESTOR_CANDIDATES, STA_USE_DELTA_ENCODING
 
 from ....models.label.data import (
@@ -89,6 +90,7 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
         public_cls: type[_P],
         update_cls: type[_U],
         bulk_update_cls: type[_BU],
+        filter_columns: Set[str] | None = None,
     ):
         super().__init__()
 
@@ -99,6 +101,7 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
         self.public_cls = public_cls
         self.update_cls = update_cls
         self.bulk_update_cls = bulk_update_cls
+        self.filter_columns = frozenset(filter_columns or ())
 
     def can_read_data_filters(self, user: UserPublic, session: Session):
         if user.has_role(Role.DATA_MANAGER, Role.PROJECT_MANAGER):
@@ -161,10 +164,37 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
             The hash of the query commit.
         """
         table_cls = self.table_cls
+        dist_by_id_hash = self._select_closest_state_metadata(
+            group_id, commit_hash, candidate_ids
+        ).subquery()
+
+        # Merge commits prevent multiple states at the same closest distance.
+        closest_hash_by_id = (
+            select(dist_by_id_hash.c.id, dist_by_id_hash.c.group_id, dist_by_id_hash.c.commit_hash)
+            .where(dist_by_id_hash.c.distance == dist_by_id_hash.c.min_distance)
+            .subquery()
+        )
+
+        return select(table_cls).join(
+            closest_hash_by_id,
+            (closest_hash_by_id.c.id == sql_column(table_cls.id))
+            & (closest_hash_by_id.c.group_id == table_cls.group_id)
+            & (closest_hash_by_id.c.commit_hash == table_cls.commit_hash),
+        )
+
+    def _select_closest_state_metadata(
+        self,
+        group_id: int,
+        commit_hash: str,
+        candidate_ids: Select[Any] | None = None,
+    ):
+        """Resolve revision distances without fetching full label records."""
+        table_cls = self.table_cls
         h2d = GraphDistance
 
         dist_query = (
             select(table_cls.id, table_cls.group_id, table_cls.commit_hash, h2d.distance)
+            .add_columns(sql_column(table_cls.is_deleted))
             .add_columns(
                 func.min(h2d.distance)
                 .over(partition_by=(sql_column(table_cls.id), sql_column(table_cls.group_id)))
@@ -184,24 +214,7 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
             # all ancestor states of each candidate for the distance comparison.
             dist_query = dist_query.where(sql_column(table_cls.id).in_(candidate_ids))
 
-        # A window aggregate avoids joining a materialized state set to itself.
-        # Underestimated row counts otherwise lead to repeated scans of the
-        # entire revision for each label, especially after a large import.
-        dist_by_id_hash = dist_query.subquery()
-
-        # Merge commits prevent the situation where multiple commits have the same closest distance
-        closest_hash_by_id = (
-            select(dist_by_id_hash.c.id, dist_by_id_hash.c.group_id, dist_by_id_hash.c.commit_hash)
-            .where(dist_by_id_hash.c.distance == dist_by_id_hash.c.min_distance)
-            .subquery()
-        )
-
-        return select(table_cls).join(
-            closest_hash_by_id,
-            (closest_hash_by_id.c.id == sql_column(table_cls.id))
-            & (closest_hash_by_id.c.group_id == table_cls.group_id)
-            & (closest_hash_by_id.c.commit_hash == table_cls.commit_hash),
-        )
+        return dist_query
 
     def _select_ancestor_ids_matching(
         self,
@@ -439,9 +452,26 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
         ids: Set[uuid.UUID] | None = None,
         group_id: int,
         commit_hash: str,
+        filters: str | None = None,
         candidate_ids: Select[Any] | None = None,
     ):
         table_cls = self.table_cls
+        column_predicate = None
+        if filters is not None:
+            filtered = apply_column_filters(
+                select(table_cls), table_cls, filters, allowed_columns=self.filter_columns
+            )
+            column_predicate = filtered.whereclause
+            if (
+                column_predicate is not None
+                and candidate_ids is None
+                and _use_ancestor_candidates()
+            ):
+                # Any matching ancestor only identifies a candidate. Resolve all
+                # its revisions, then recheck the visible state below.
+                candidate_ids = self._select_ancestor_ids_matching(
+                    group_id, commit_hash, column_predicate
+                )
         # Filter tombstones and establish stable order before pagination;
         # otherwise pages can be short, overlapping, or skip live records.
         states = (
@@ -463,6 +493,8 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
         if ids is not None:
             q = q.where(sql_column(table_cls.id).in_(ids))
 
+        if column_predicate is not None:
+            q = q.where(column_predicate)
         return q
 
     def _validate_records(
@@ -503,6 +535,7 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
         ids: Set[uuid.UUID] | None = None,
         group_id: int,
         commit_hash: str,
+        filters: str | None = None,
         exc_noun: str = "items",
         query_closest_states_perf: PerformanceCounter | None = None,
     ) -> Sequence[_T]:
@@ -514,6 +547,7 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
             ids=ids,
             group_id=group_id,
             commit_hash=commit_hash,
+            filters=filters,
         )
 
         with query_closest_states_perf or nullcontext():
@@ -529,9 +563,33 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
         ids: Set[uuid.UUID] | None = None,
         group_id: int,
         commit_hash: str,
+        filters: str | None = None,
         query_closest_states_perf: PerformanceCounter | None = None,
     ) -> int:
         table_cls = self.table_cls
+
+        if filters is None and _use_delta_encoding():
+            metadata = self._select_closest_state_metadata(group_id, commit_hash)
+            for condition in self.can_read_data_filters(current_user, session):
+                metadata = metadata.where(condition)
+            if ids is not None:
+                metadata = metadata.where(sql_column(table_cls.id).in_(ids))
+            # A live closest revision exists exactly when the minimum live
+            # distance equals the minimum overall distance. Aggregate by ID so
+            # counting needs neither a window sort nor a join to full records.
+            states = (
+                metadata.with_only_columns(sql_column(table_cls.id), sql_column(table_cls.group_id))
+                .group_by(sql_column(table_cls.id), sql_column(table_cls.group_id))
+                .having(
+                    func.min(GraphDistance.distance)
+                    == func.min(
+                        case((sql_column(table_cls.is_deleted).is_(False), GraphDistance.distance))
+                    )
+                )
+            ).subquery()
+            count_query = select(func.count()).select_from(states)
+            with query_closest_states_perf or nullcontext():
+                return session.exec(count_query).one()
 
         q = self.build_list_query(
             current_user,
@@ -539,11 +597,12 @@ class LabelDataDomain(Generic[_T, _C, _P, _U, _BU]):
             ids=ids,
             group_id=group_id,
             commit_hash=commit_hash,
+            filters=filters,
         )
         q = q.where(sql_column(table_cls.is_deleted).is_(False))
 
         with query_closest_states_perf or nullcontext():
-            return session.exec(select(func.count()).select_from(q.subquery())).one()
+            return session.exec(select(func.count()).select_from(q.order_by(None).subquery())).one()
 
     def read_data(
         self,
@@ -1044,6 +1103,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         public_cls: type[_EP],
         update_cls: type[_EU],
         bulk_update_cls: type[_EBU],
+        filter_columns: Set[str] | None = None,
         entity_domain: LabelEntityDomain[Any, Any, Any, Any, Any] | None = None,
     ):
         super().__init__(
@@ -1052,6 +1112,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
             public_cls=public_cls,
             update_cls=update_cls,
             bulk_update_cls=bulk_update_cls,
+            filter_columns=filter_columns,
         )
 
         self.entity_domain = entity_domain
@@ -1137,6 +1198,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         ids: Set[uuid.UUID] | None = None,
         group_id: int,
         commit_hash: str,
+        filters: str | None = None,
         candidate_ids: Any = None,
         min_x: CoordFilter | None = None,
         min_y: CoordFilter | None = None,
@@ -1158,6 +1220,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
             ids=ids,
             group_id=group_id,
             commit_hash=commit_hash,
+            filters=filters,
             candidate_ids=candidate_ids,
         )
         if min_x is not None:
@@ -1199,6 +1262,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         ids: Set[uuid.UUID] | None = None,
         group_id: int,
         commit_hash: str,
+        filters: str | None = None,
         min_x: CoordFilter | None = None,
         min_y: CoordFilter | None = None,
         min_z: CoordFilter | None = None,
@@ -1219,6 +1283,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
             ids=ids,
             group_id=group_id,
             commit_hash=commit_hash,
+            filters=filters,
             min_x=min_x,
             min_y=min_y,
             min_z=min_z,
@@ -1243,6 +1308,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         ids: Set[uuid.UUID] | None = None,
         group_id: int,
         commit_hash: str,
+        filters: str | None = None,
         min_x: CoordFilter | None = None,
         min_y: CoordFilter | None = None,
         min_z: CoordFilter | None = None,
@@ -1254,6 +1320,30 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         entity_id: uuid.UUID | None = None,
         query_closest_states_perf: PerformanceCounter | None = None,
     ) -> int:
+        if all(
+            value is None
+            for value in (
+                min_x,
+                min_y,
+                min_z,
+                max_x,
+                max_y,
+                max_z,
+                min_timestamp,
+                max_timestamp,
+                entity_id,
+            )
+        ):
+            return super().count_datas(
+                current_user=current_user,
+                session=session,
+                ids=ids,
+                group_id=group_id,
+                commit_hash=commit_hash,
+                filters=filters,
+                query_closest_states_perf=query_closest_states_perf,
+            )
+
         table_cls = self.table_cls
 
         q = self.build_list_query(
@@ -1262,6 +1352,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
             ids=ids,
             group_id=group_id,
             commit_hash=commit_hash,
+            filters=filters,
             min_x=min_x,
             min_y=min_y,
             min_z=min_z,
@@ -1275,7 +1366,7 @@ class LabelElementDomain(LabelDataDomain[_ET, _EC, _EP, _EU, _EBU]):
         q = q.where(sql_column(table_cls.is_deleted).is_(False))
 
         with query_closest_states_perf or nullcontext():
-            return session.exec(select(func.count()).select_from(q.subquery())).one()
+            return session.exec(select(func.count()).select_from(q.order_by(None).subquery())).one()
 
     def list_datas_in_bounds(
         self,

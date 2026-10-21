@@ -105,9 +105,38 @@ describe("segmentation label-data route adapter", () => {
         group_id: 7,
         commit_hash: "head",
         offset: 25,
-        limit: 25,
+        limit: 26,
+        include_total: false,
       },
     });
     expect(api.elements).not.toHaveBeenCalled();
   });
 });
+
+it.each(["elements", "entities"])(
+  "forwards column filters before paginating %s",
+  async (tab) => {
+    setup();
+    const filters = JSON.stringify([
+      { columnId: "id", operator: "", searchTerms: ["abc"] },
+    ]);
+    const url = new URL(
+      "http://localhost/label/data/segmentation?group_id=7&commit_hash=head&page=2&pageSize=25",
+    );
+    url.searchParams.set("tab", tab);
+    url.searchParams.set("filters", filters);
+    await loader({ request: new Request(url) } as any);
+    const load = tab === "entities" ? api.entities : api.elements;
+    expect(load).toHaveBeenLastCalledWith({
+      auth: "access",
+      query: {
+        group_id: 7,
+        commit_hash: "head",
+        offset: 25,
+        limit: 26,
+        include_total: false,
+        filters,
+      },
+    });
+  },
+);

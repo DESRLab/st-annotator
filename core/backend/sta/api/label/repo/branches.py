@@ -57,6 +57,7 @@ def list_branches(
     checkpoint_hash_contains: Annotated[str | None, Query()] = None,
     last_edit_at_ge: Annotated[datetime | None, Query()] = None,
     last_edit_at_lt: Annotated[datetime | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     branches = domain.list_branches(
         current_user=current_user,
@@ -75,6 +76,7 @@ def list_branches(
         last_edit_at_lt=last_edit_at_lt,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_branches = domain.count_branches(
@@ -90,6 +92,7 @@ def list_branches(
         checkpoint_hash_contains=checkpoint_hash_contains,
         last_edit_at_ge=last_edit_at_ge,
         last_edit_at_lt=last_edit_at_lt,
+        filters=filters,
     )
     set_content_range(
         response,

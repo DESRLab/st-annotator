@@ -221,7 +221,13 @@ describe("buildProjectsQuery", () => {
       }),
     ).toEqual({
       name_contains: "SemanticKITTI",
-      description: "fixture",
+      filters: JSON.stringify([
+        {
+          columnId: "description",
+          operator: "Equals",
+          searchTerms: ["fixture"],
+        },
+      ]),
       id_ge: 5,
     });
   });

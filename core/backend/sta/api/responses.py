@@ -11,11 +11,11 @@ def format_content_range(
     *,
     pagination: Pagination,
     page_length: int,
-    total: int,
+    total: int | None,
 ) -> str:
     """Formats the API's existing half-open pagination range."""
     start = pagination.offset
-    return f"{unit} {start}-{start + page_length}/{total}"
+    return f"{unit} {start}-{start + page_length}/{total if total is not None else '*'}"
 
 
 def set_content_range(
@@ -24,7 +24,7 @@ def set_content_range(
     *,
     pagination: Pagination,
     page_length: int,
-    total: int,
+    total: int | None,
 ) -> None:
     """Adds a paginated collection's range without replacing an override."""
     response.headers.setdefault(

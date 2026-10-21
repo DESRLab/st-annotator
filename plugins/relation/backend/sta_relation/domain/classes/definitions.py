@@ -6,6 +6,7 @@ from sqlmodel import Session, func, select, update
 
 from sta.common.database.execution import execute_statement, sql_column, stamp_bulk_edit
 from sta.domain.auth import require_role
+from sta.domain.filtering import apply_column_filters
 from sta.domain.querying import SortDirection, apply_sort, filter_contains, filter_range
 from sta.models.user import Role, UserPublic
 from sta_relation.models.classes import (
@@ -58,6 +59,7 @@ def list_relclasses(
     name_contains: str | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = _build_list_relclasses_query(
         current_user=current_user,
@@ -71,6 +73,7 @@ def list_relclasses(
         name_contains=name_contains,
         sort_by=sort_by,
         sort_dir=sort_dir,
+        filters=filters,
     )
 
     return session.exec(q).all()
@@ -89,6 +92,7 @@ def _build_list_relclasses_query(
     name_contains: str | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     require_relclass_reader(current_user, session)
 
@@ -105,7 +109,7 @@ def _build_list_relclasses_query(
     q = filter_contains(q, RelationClass.name, name_contains)
     q = apply_sort(q, _RELCLASS_SORT_COLUMNS, sort_by, sort_dir)
 
-    return q
+    return apply_column_filters(q, RelationClass, filters, allowed_columns={"id", "name"})
 
 
 def count_relclasses(
@@ -117,6 +121,7 @@ def count_relclasses(
     id_le: int | None = None,
     name: str | None = None,
     name_contains: str | None = None,
+    filters: str | None = None,
 ) -> int:
     q = _build_list_relclasses_query(
         current_user=current_user,
@@ -128,6 +133,7 @@ def count_relclasses(
         id_le=id_le,
         name=name,
         name_contains=name_contains,
+        filters=filters,
     )
 
     return session.exec(select(func.count()).select_from(q.subquery())).one()

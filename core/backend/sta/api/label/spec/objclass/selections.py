@@ -53,6 +53,7 @@ def list_selections(
     name: Annotated[str | None, Query()] = None,
     name_contains: Annotated[str | None, Query()] = None,
     description_contains: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     selections = domain.list_specs(
         current_user=current_user,
@@ -68,6 +69,7 @@ def list_selections(
         description_contains=description_contains,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_selections = domain.count_specs(
@@ -80,6 +82,7 @@ def list_selections(
         name=name,
         name_contains=name_contains,
         description_contains=description_contains,
+        filters=filters,
     )
     set_content_range(
         response,

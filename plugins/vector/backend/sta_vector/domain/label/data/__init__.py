@@ -10,6 +10,7 @@ from ....models.label.data import (
 
 element = LabelElementDomain(
     table_cls=LabelVector,
+    filter_columns=frozenset({"id", "entity_id", "type", "gt_class_id", "last_edit_at"}),
     create_cls=LabelVectorCreate,
     public_cls=LabelVectorPublic,
     update_cls=LabelVectorUpdate,

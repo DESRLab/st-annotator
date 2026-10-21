@@ -50,6 +50,7 @@ def list_groups(
     name: Annotated[str | None, Query()] = None,
     name_contains: Annotated[str | None, Query()] = None,
     description_contains: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     groups = domain.list_groups(
         current_user=current_user,
@@ -64,6 +65,7 @@ def list_groups(
         description_contains=description_contains,
         sort_by=sorting.sort_by,
         sort_dir=sorting.sort_dir,
+        filters=filters,
     )
 
     total_groups = domain.count_groups(
@@ -75,6 +77,7 @@ def list_groups(
         name=name,
         name_contains=name_contains,
         description_contains=description_contains,
+        filters=filters,
     )
     set_content_range(
         response,

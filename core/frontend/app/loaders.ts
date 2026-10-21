@@ -237,6 +237,14 @@ export interface GridPagination {
   totalItems: number;
 }
 
+/** Page navigation for label collections whose total is intentionally unknown. */
+export interface LabelDataPagination {
+  pageNumber: number;
+  pageSize: number;
+  pageSizes: number[];
+  hasNextPage: boolean;
+}
+
 export interface GridPaginationRequest {
   offset: number;
   limit: number;
@@ -302,6 +310,39 @@ export async function listGridPage<T, E = unknown>(
       pageSizes: [...GRID_PAGE_SIZES],
       totalItems: totalItemsFromContentRange(page.response, fallbackTotalItems),
     } satisfies GridPagination,
+  };
+}
+
+/** Fetch one extra label to detect the next page without scanning for a total. */
+export async function listLabelDataPage<T, E = unknown>(
+  request: Request,
+  loadPage: (pagination: {
+    offset: number;
+    limit: number;
+    include_total: false;
+    filters?: string;
+  }) => Promise<ListPage<T, E>>,
+) {
+  const { offset, limit, pageNumber, pageSize } =
+    getGridPaginationRequest(request);
+  const page = await loadPage({
+    offset,
+    limit: limit + 1,
+    include_total: false,
+    ...(new URL(request.url).searchParams.has(GRID_FILTERS_PARAM)
+      ? { filters: new URL(request.url).searchParams.get(GRID_FILTERS_PARAM)! }
+      : {}),
+  });
+  const rows = page.data ?? [];
+  return {
+    data: rows.slice(0, limit),
+    error: page.error,
+    pagination: {
+      pageNumber,
+      pageSize,
+      pageSizes: [...GRID_PAGE_SIZES],
+      hasNextPage: rows.length > limit,
+    } satisfies LabelDataPagination,
   };
 }
 
@@ -375,19 +416,42 @@ export function reportedJobIds(res: {
   return (res.data?.job_ids ?? []).filter((id): id is number => id != null);
 }
 
-const EXACT_MATCH_OPERATORS = new Set(["=", "EQ", "Equals", "IN"]);
+/** Keep operators outside the legacy query parameters in the shared filter contract. */
+export function applyColumnFilterToQuery(
+  query: GridQuery,
+  filter: CurrentFilter,
+  paramName: string,
+): void {
+  const filters = parseGridFilters(
+    typeof query.filters === "string" ? query.filters : null,
+  );
+  filters.push({ ...filter, columnId: paramName });
+  query.filters = serializeGridFilters(filters);
+}
+
+const EXACT_MATCH_OPERATORS = new Set(["=", "==", "EQ", "Equals", "IN"]);
 const GREATER_EQUAL_OPERATORS = new Set([">=", "GE"]);
 const LESS_EQUAL_OPERATORS = new Set(["<=", "LE"]);
 
 /**
- * Applies a numeric (id) column filter with eq/ge/le semantics; unsupported operators are
- * ignored. An exact match may name several values, a range only its bound.
+ * Applies numeric column filters. Exact and inclusive bounds retain their typed query
+ * parameters; other operators use the shared SQL column-filter contract.
  */
 export function applyNumericFilterToQuery(
   query: GridQuery,
   filter: CurrentFilter,
   paramName: string,
 ): void {
+  const operator = String(filter.operator ?? "");
+  if (
+    !["", "=", "==", "EQ", "Equals", "IN", ">=", "GE", "<=", "LE"].includes(
+      operator,
+    )
+  ) {
+    if (getFilterSearchTerms(filter).length > 0)
+      applyColumnFilterToQuery(query, filter, paramName);
+    return;
+  }
   const values = [
     ...new Set(
       getFilterSearchTerms(filter)
@@ -398,7 +462,6 @@ export function applyNumericFilterToQuery(
   const [first] = values;
   if (first == null) return;
 
-  const operator = String(filter.operator ?? "");
   if (GREATER_EQUAL_OPERATORS.has(operator)) query[`${paramName}_ge`] = first;
   else if (LESS_EQUAL_OPERATORS.has(operator)) query[`${paramName}_le`] = first;
   // An exact match names every value it carries, so one request can ask for the exact
@@ -408,7 +471,7 @@ export function applyNumericFilterToQuery(
     query[paramName] = values.length === 1 ? first : values;
 }
 
-/** Applies a text column filter: exact equality for Equals, containment otherwise. */
+/** Applies text filters, preserving exact, prefix, suffix, and negation operators. */
 export function applyTextFilterToQuery(
   query: GridQuery,
   filter: CurrentFilter,
@@ -418,8 +481,12 @@ export function applyTextFilterToQuery(
   if (term == null) return;
 
   if (EXACT_MATCH_OPERATORS.has(String(filter.operator ?? "")))
-    query[paramName] = term;
-  else query[`${paramName}_contains`] = term;
+    applyColumnFilterToQuery(query, filter, paramName);
+  else if (
+    ["", "*", "Contains", "CONTAINS"].includes(String(filter.operator ?? ""))
+  )
+    query[`${paramName}_contains`] = term;
+  else applyColumnFilterToQuery(query, filter, paramName);
 }
 
 /** Applies a multi-select filter as a repeated (list) param. */

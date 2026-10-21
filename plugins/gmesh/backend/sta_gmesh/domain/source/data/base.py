@@ -44,6 +44,9 @@ class GroundMeshMetadataDomain(
 
     def __init__(self) -> None:
         super().__init__(
+            filter_columns=frozenset(
+                {"id", "uri", "min_timestamp", "max_timestamp", "last_edit_at"}
+            ),
             table_cls=GroundMeshMetadata,
             create_cls=GroundMeshMetadataCreate,
             public_cls=GroundMeshMetadataPublic,

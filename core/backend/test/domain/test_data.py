@@ -287,3 +287,35 @@ class TestImplyBoundsOverride:
         imply_bounds_override(data)
 
         assert data.auto_bounds is True
+
+
+def test_metadata_column_filters_match_pages_counts_and_ids(root_user, session):
+    domain = SourceMetadataDomain(
+        table_cls=MockSourceMetadata,
+        create_cls=MockSourceMetadataCreate,
+        public_cls=MockSourceMetadataPublic,
+        update_cls=MockSourceMetadataUpdate,
+        bulk_update_cls=MockSourceMetadataUpdate,
+        filter_columns={"id", "uri"},
+    )
+    group = create_source_group(
+        current_user=root_user, session=session, data=SourceGroupCreate(name="filtered-metadata")
+    )
+    records = [
+        domain.create_data(
+            current_user=root_user,
+            session=session,
+            data=MockSourceMetadataCreate(group_id=group.id, uri=uri),
+        )
+        for uri in ["scans/first", "archive/scans/middle", "scans/last"]
+    ]
+    session.commit()
+    args = dict(
+        current_user=root_user,
+        session=session,
+        group_id=group.id,
+        filters='[{"columnId":"uri","operator":"StartsWith","searchTerms":["scans/"]}]',
+    )
+    assert [row.id for row in domain.list_datas(**args, offset=1, limit=1)] == [records[2].id]
+    assert domain.count_datas(**args) == 2
+    assert domain.list_data_ids(**args) == [records[0].id, records[2].id]

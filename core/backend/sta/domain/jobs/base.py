@@ -19,6 +19,7 @@ from sta.common.database.execution import execute_statement, sql_column
 from sta.common.logging import get_logger
 from sta.common.utils.registry import Registry
 from sta.domain.auth import get_user, require_role
+from sta.domain.filtering import apply_column_filters
 from sta.domain.querying import SortDirection, apply_sort, count_query, filter_in
 from sta.models.job import Job, JobState
 from sta.models.user import Role, UserPublic
@@ -389,6 +390,7 @@ def _build_list_query(
     state: Sequence[JobState] | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ):
     q = select(Job).offset(offset)
 
@@ -399,7 +401,8 @@ def _build_list_query(
         q = q.where(sql_column(Job.kind) == kind)
     q = filter_in(q, sql_column(Job.state), state)
 
-    return apply_sort(q, _SORTABLE_COLUMNS, sort_by, sort_dir)
+    q = apply_sort(q, _SORTABLE_COLUMNS, sort_by, sort_dir)
+    return apply_column_filters(q, Job, filters, allowed_columns={"id", "kind"})
 
 
 def list_jobs(
@@ -413,6 +416,7 @@ def list_jobs(
     state: Sequence[JobState] | None = None,
     sort_by: str | None = None,
     sort_dir: SortDirection = "asc",
+    filters: str | None = None,
 ) -> Sequence[Job]:
     """Read the job inventory. Deferred work is an operations surface, not a per-user one."""
     require_role(current_user, Role.DATA_MANAGER)
@@ -425,6 +429,7 @@ def list_jobs(
         state=state,
         sort_by=sort_by,
         sort_dir=sort_dir,
+        filters=filters,
     )
 
     return session.exec(q).all()
@@ -437,6 +442,7 @@ def count_jobs(
     id: Sequence[int] | None = None,
     kind: str | None = None,
     state: Sequence[JobState] | None = None,
+    filters: str | None = None,
 ) -> int:
     require_role(current_user, Role.DATA_MANAGER)
 
@@ -446,6 +452,7 @@ def count_jobs(
         id=id,
         kind=kind,
         state=state,
+        filters=filters,
     )
 
     return session.exec(count_query(q)).one()

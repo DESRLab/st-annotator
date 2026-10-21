@@ -67,6 +67,7 @@ def list_metadatas(
     max_timestamp: Annotated[datetime | None, Query()] = None,
     uri: Annotated[str | None, Query()] = None,
     bounds_pending: Annotated[bool | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     metadatas = domain.list_datas(
         current_user=current_user,
@@ -84,6 +85,7 @@ def list_metadatas(
         max_timestamp=max_timestamp,
         uri=uri,
         bounds_pending=bounds_pending,
+        filters=filters,
     )
 
     total_metadatas = domain.count_datas(
@@ -100,6 +102,7 @@ def list_metadatas(
         max_timestamp=max_timestamp,
         uri=uri,
         bounds_pending=bounds_pending,
+        filters=filters,
     )
     set_content_range(
         response,
@@ -128,6 +131,7 @@ def list_metadata_ids(
     max_timestamp: Annotated[datetime | None, Query()] = None,
     uri: Annotated[str | None, Query()] = None,
     bounds_pending: Annotated[bool | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
 ):
     return domain.list_data_ids(
         current_user=current_user,
@@ -143,6 +147,7 @@ def list_metadata_ids(
         max_timestamp=max_timestamp,
         uri=uri,
         bounds_pending=bounds_pending,
+        filters=filters,
     )
 
 
