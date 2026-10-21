@@ -121,9 +121,18 @@ async function expectLabelDataStorageRefreshesCommitsOnGroupChange(
   expect(commitValue).toBeTruthy();
   await commitSelect.selectOption(commitValue!);
   await page.waitForURL((url) => url.searchParams.has("commit_hash"));
-  await expect(
-    gridPager(page, "bbox-elements-grid").locator('[data-test="total-items"]'),
-  ).toHaveText("0");
+  const elementsGrid = page.locator("#bbox-elements-grid");
+  await expect(elementsGrid).toBeVisible();
+  await expect(elementsGrid.locator(".slick-row")).toHaveCount(0);
+  const pagination = page.getByRole("navigation", {
+    name: "Label data pagination",
+  });
+  await expect(pagination).toBeVisible();
+  await expect(pagination).toContainText("Page 1");
+  await expect(pagination.getByRole("link", { name: "Previous" })).toHaveCount(
+    0,
+  );
+  await expect(pagination.getByRole("link", { name: "Next" })).toHaveCount(0);
 
   await commitSelect.selectOption("");
   await page.waitForURL((url) => !url.searchParams.has("commit_hash"));
@@ -541,12 +550,22 @@ test.describe.serial("handbook data workflows", () => {
       "point-cloud-source-grid",
       unassignedSpecName,
     );
-    await page.getByRole("button", { name: "Select All" }).click();
-    await openSelectionCommand(
-      page,
-      page.locator("#point-cloud-source-grid .slick-row").first(),
-      "Batch Edit Details",
-    );
+    // Select these fixtures explicitly: Select All covers the entire list,
+    // including specifications left by earlier workflows or retries.
+    const specRows = page.locator("#point-cloud-source-grid .slick-row");
+    const assignedRow = specRows.filter({
+      hasText: `${pointCloudSpecName}-updated`,
+    });
+    const unassignedRow = specRows.filter({ hasText: unassignedSpecName });
+    await assignedRow.click();
+    await unassignedRow.click({ modifiers: ["ControlOrMeta"] });
+    await expect(
+      page.getByRole("button", {
+        name: "Deselect All (2 selected)",
+        exact: true,
+      }),
+    ).toBeVisible();
+    await openSelectionCommand(page, assignedRow, "Batch Edit Details");
     modal = await visibleModal(page);
     const batchApply = modal.getByRole("button", {
       name: "Apply to 2 Point Cloud Specifications",
