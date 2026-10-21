@@ -1,0 +1,41 @@
+sta.domain.filtering
+====================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.filtering
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      apply_column_filters
+
+   
+   .. autofunction:: apply_column_filters
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      ColumnFilter
+   
+   
+
+   
+   
+   
+
+
+

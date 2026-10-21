@@ -1,0 +1,32 @@
+ColumnFilter
+============
+
+
+
+
+.. currentmodule:: sta.domain.filtering
+
+.. autoclass:: ColumnFilter
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ColumnFilter.model_config
+      ~ColumnFilter.column_id
+      ~ColumnFilter.operator
+      ~ColumnFilter.search_terms
+
+   
+   .. autoattribute:: ColumnFilter.model_config
+   .. autoattribute:: ColumnFilter.column_id
+   .. autoattribute:: ColumnFilter.operator
+   .. autoattribute:: ColumnFilter.search_terms
+   
+   

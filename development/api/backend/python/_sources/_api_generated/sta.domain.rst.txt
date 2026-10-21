@@ -32,6 +32,7 @@ sta.domain
    sta.domain.accounts
    sta.domain.auth
    sta.domain.editor
+   sta.domain.filtering
    sta.domain.frames
    sta.domain.jobs
    sta.domain.label
