@@ -168,7 +168,8 @@ export function ProjectMenuView({
                 isSaving: labelset.isSaving,
               },
               settings: {
-                disabled: isNavigating || isNavigationDisabled,
+                // A task without branches must still allow selecting another task.
+                disabled: isNavigating || labelset.isSaving,
                 hidden: false,
                 disableSave:
                   labelset.branchId == null || !labelset.hasUnsavedChanges,

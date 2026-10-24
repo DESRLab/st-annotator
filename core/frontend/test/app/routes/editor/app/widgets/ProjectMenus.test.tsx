@@ -256,6 +256,44 @@ describe("ProjectMenu", () => {
     };
   }
 
+  it("allows leaving a task without label branches while keeping save disabled", async () => {
+    const context = createProjectContext();
+    context.currentTask = context.tasks.elements[1];
+    context.currentTaskId = context.currentTask.id;
+    context.labelBranches = { elements: [] };
+    context.currentLabelBranch = null;
+    context.currentLabelBranchId = null;
+    context.frames.elements = [];
+    context.currentFrame = null;
+    context.currentFrameId = null;
+
+    const menu = new ProjectMenu(context as any);
+    const { store, intents } = createProjectStore(context);
+    const view = await renderView(
+      <EditorStoreProvider store={store}>
+        <EditorIntentsProvider intents={intents}>
+          <ProjectMenuView playback={menu.playback} />
+        </EditorIntentsProvider>
+      </EditorStoreProvider>,
+    );
+
+    const taskSelect = view.container.querySelector("select")!;
+    expect(taskSelect.disabled).toBe(false);
+    const saveButton = [...view.container.querySelectorAll("button")].find(
+      (button) => button.textContent!.includes("Save Changes"),
+    )!;
+    expect(saveButton.disabled).toBe(true);
+
+    await act(async () => {
+      taskSelect.selectedIndex = 0;
+      taskSelect.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+    expect(context.currentTaskId).toBe(1);
+
+    await view.unmount();
+    await act(async () => menu.dispose());
+  });
+
   it("composes the migrated React project menu panes and preserves menu behavior", async () => {
     const context = createProjectContext();
     let menu: ProjectMenu | undefined;
