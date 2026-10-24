@@ -14,7 +14,7 @@
         <link rel="prev" href="sta.api.accounts.html">
       
       
-        <link rel="next" href="sta.api.auth.CheckPasswordData.html">
+        <link rel="next" href="sta.api.auth.AccountUpdateResponse.html">
       
       
       <link rel="icon" href="../_static/favicon.ico">
@@ -453,6 +453,30 @@
   
   
     <li class="md-nav__item">
+      <a href="sta.api.auth.AccountUpdateResponse.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Account<wbr>Update<wbr>Response</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="sta.api.auth.CheckPasswordData.html" class="md-nav__link">
         
   
@@ -629,12 +653,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sta.api.auth.update_account" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="sta.api.auth.update_account (Python function) — Update the signed-in account and replace its revoked token pair."><span>sta.<wbr>api.<wbr>auth.<wbr>update_<wbr>account</span></span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sta.api.auth.whoami" class="md-nav__link">
     
       <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
     
     <span class="md-ellipsis">
       <span title="sta.api.auth.whoami (Python function)"><span>sta.<wbr>api.<wbr>auth.<wbr>whoami</span></span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="sta.api.auth.AccountUpdateResponse.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Account<wbr>Update<wbr>Response</span>
     </span>
   </a>
   
@@ -15818,6 +15864,18 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sta.api.auth.update_account" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="sta.api.auth.update_account (Python function) — Update the signed-in account and replace its revoked token pair."><span>sta.<wbr>api.<wbr>auth.<wbr>update_<wbr>account</span></span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sta.api.auth.whoami" class="md-nav__link">
     
       <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
@@ -15870,7 +15928,10 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#sta.api.auth.trusted_proxy_networks_from_env" title="sta.api.auth.trusted_proxy_networks_from_env (Python function) — Trusted reverse-proxy networks from STA_TRUSTED_PROXY_IPS, empty when unset."><code class="xref py py-obj docutils literal notranslate"><span class="pre">trusted_proxy_networks_from_env</span></code></a>()</p></td>
 <td><p>Trusted reverse-proxy networks from <cite>STA_TRUSTED_PROXY_IPS</cite>, empty when unset.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sta.api.auth.whoami" title="sta.api.auth.whoami (Python function)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whoami</span></code></a>(current_user)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sta.api.auth.update_account" title="sta.api.auth.update_account (Python function) — Update the signed-in account and replace its revoked token pair."><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_account</span></code></a>(request, response, *, ...)</p></td>
+<td><p>Update the signed-in account and replace its revoked token pair.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sta.api.auth.whoami" title="sta.api.auth.whoami (Python function)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whoami</span></code></a>(current_user)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -15915,6 +15976,12 @@ value cannot raise from every login and refresh response.</p>
 </dd></dl>
 
 <dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="sta.api.auth.update_account">
+<span class="sig-prename descclassname"><span class="pre">sta.api.auth.</span></span><span class="sig-name descname"><span class="pre">update_account</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.api.auth.update_account" title="sta.api.auth.update_account.request (Python parameter)"><span class="n"><span class="pre">request</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><span class="pre">Request</span></span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.api.auth.update_account" title="sta.api.auth.update_account.response (Python parameter)"><span class="n"><span class="pre">response</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><span class="pre">Response</span></span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.api.auth.update_account" title="sta.api.auth.update_account.current_user (Python parameter)"><span class="n"><span class="pre">current_user</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><a class="reference internal" href="sta.models.user.UserPublic.html#sta.models.user.UserPublic" title="sta.models.user.UserPublic (Python class) — Bases: _UserBase"><span class="pre">UserPublic</span></a></span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.api.auth.update_account" title="sta.api.auth.update_account.session (Python parameter)"><span class="n"><span class="pre">session</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><span class="pre">Session</span></span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.api.auth.update_account" title="sta.api.auth.update_account.data (Python parameter)"><span class="n"><span class="pre">data</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><a class="reference internal" href="sta.models.user.UserUpdate.html#sta.models.user.UserUpdate" title="sta.models.user.UserUpdate (Python class) — Bases: OptimisticLockingUpdate"><span class="pre">UserUpdate</span></a></span></span></em></span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="desctype"><a class="reference internal" href="sta.api.auth.AccountUpdateResponse.html#sta.api.auth.AccountUpdateResponse" title="sta.api.auth.AccountUpdateResponse (Python class) — Bases: BaseModel"><span class="pre">AccountUpdateResponse</span></a></span></span></span><a class="reference internal" href="../_modules/sta/api/auth.html#update_account"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sta.api.auth.update_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the signed-in account and replace its revoked token pair.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
 <dt class="sig sig-object highlight py" id="sta.api.auth.whoami">
 <span class="sig-prename descclassname"><span class="pre">sta.api.auth.</span></span><span class="sig-name descname"><span class="pre">whoami</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#sta.api.auth.whoami" title="sta.api.auth.whoami.current_user (Python parameter)"><span class="n"><span class="pre">current_user</span></span></a><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="desctype"><a class="reference internal" href="sta.models.user.UserPublic.html#sta.models.user.UserPublic" title="sta.models.user.UserPublic (Python class) — Bases: _UserBase"><span class="pre">UserPublic</span></a></span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sta/api/auth.html#whoami"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sta.api.auth.whoami" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -15922,10 +15989,13 @@ value cannot raise from every login and refresh response.</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils data align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="sta.api.auth.CheckPasswordData.html#sta.api.auth.CheckPasswordData" title="sta.api.auth.CheckPasswordData (Python class) — Bases: BaseModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CheckPasswordData</span></code></a>(*, password)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="sta.api.auth.AccountUpdateResponse.html#sta.api.auth.AccountUpdateResponse" title="sta.api.auth.AccountUpdateResponse (Python class) — Bases: BaseModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccountUpdateResponse</span></code></a>(*, user, token)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="sta.api.auth.OAuth2Token.html#sta.api.auth.OAuth2Token" title="sta.api.auth.OAuth2Token (Python class) — Bases: BaseModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OAuth2Token</span></code></a>(*, access_token, token_type, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sta.api.auth.CheckPasswordData.html#sta.api.auth.CheckPasswordData" title="sta.api.auth.CheckPasswordData (Python class) — Bases: BaseModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CheckPasswordData</span></code></a>(*, password)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="sta.api.auth.OAuth2Token.html#sta.api.auth.OAuth2Token" title="sta.api.auth.OAuth2Token (Python class) — Bases: BaseModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OAuth2Token</span></code></a>(*, access_token, token_type, ...)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -15984,13 +16054,13 @@ value cannot raise from every login and refresh response.</p>
         
         
           
-          <a href="sta.api.auth.CheckPasswordData.html" class="md-footer__link md-footer__link--next" aria-label="Next: CheckPasswordData">
+          <a href="sta.api.auth.AccountUpdateResponse.html" class="md-footer__link md-footer__link--next" aria-label="Next: AccountUpdateResponse">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                CheckPasswordData
+                AccountUpdateResponse
               </div>
             </div>
             <div class="md-footer__button md-icon">

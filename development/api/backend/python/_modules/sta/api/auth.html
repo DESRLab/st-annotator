@@ -437,6 +437,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../_api_generated/sta.api.auth.AccountUpdateResponse.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Account<wbr>Update<wbr>Response</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../_api_generated/sta.api.auth.CheckPasswordData.html" class="md-nav__link">
         
   
@@ -15574,7 +15598,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">sta.envs</span><span class="w"> </span><span class="kn">import</span> <span class="n">STA_JWT_ACCESS_EXPIRY_SECONDS</span><span class="p">,</span> <span class="n">STA_TRUSTED_PROXY_IPS</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..domain</span><span class="w"> </span><span class="kn">import</span> <span class="n">auth</span> <span class="k">as</span> <span class="n">domain</span><span class="p">,</span> <span class="n">users</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..models.user</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">UserPublic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..models.user</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">UserPublic</span><span class="p">,</span> <span class="n">UserUpdate</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..session</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_session</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">SuccessResponse</span>
 
@@ -15884,6 +15908,34 @@
     <span class="n">domain</span><span class="o">.</span><span class="n">auth_user</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">current_user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
     <span class="c1"># Only success reaches this line. Failed guesses remain in the bucket.</span>
     <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">login_rate_limiter</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">rate_limit_key</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AccountUpdateResponse"><a class="viewcode-back" href="../../../_api_generated/sta.api.auth.AccountUpdateResponse.html#sta.api.auth.AccountUpdateResponse">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">AccountUpdateResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">user</span><span class="p">:</span> <span class="n">UserPublic</span>
+    <span class="n">token</span><span class="p">:</span> <span class="n">OAuth2Token</span></div>
+
+
+<div class="viewcode-block" id="update_account"><a class="viewcode-back" href="../../../_api_generated/sta.api.auth.html#sta.api.auth.update_account">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">"/account"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_account</span><span class="p">(</span>
+    <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span>
+    <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">current_user</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">UserPublic</span><span class="p">,</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">)],</span>
+    <span class="n">session</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Session</span><span class="p">,</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)],</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">UserUpdate</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AccountUpdateResponse</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Update the signed-in account and replace its revoked token pair."""</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">update_user</span><span class="p">(</span>
+        <span class="n">current_user</span><span class="o">=</span><span class="n">current_user</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">current_user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+    <span class="p">)</span>
+    <span class="c1"># Password changes clear the login marker. Restore it for this authenticated</span>
+    <span class="c1"># session while the new edit epoch keeps every previous token revoked.</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">login_user</span><span class="p">(</span><span class="n">current_user</span><span class="o">=</span><span class="n">current_user</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">current_user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">AccountUpdateResponse</span><span class="p">(</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">UserPublic</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">record</span><span class="p">),</span> <span class="n">token</span><span class="o">=</span><span class="n">_set_tokens</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+    <span class="p">)</span></div>
 </code></pre></div>
 
 
