@@ -986,6 +986,11 @@ function RelationClassSelectionsTable({
               </strong>
               ?
             </p>
+            <p>
+              Links to label groups and relation class definitions will be
+              removed. The groups, class definitions, and existing relations
+              will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

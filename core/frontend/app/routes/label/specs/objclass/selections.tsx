@@ -979,6 +979,11 @@ function ObjectClassSelectionsTable({
                 />
               </>
             )}
+            <p>
+              Links to label groups and object class definitions will be
+              removed. The groups, class definitions, and existing labels will
+              be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

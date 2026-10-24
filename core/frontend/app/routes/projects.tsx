@@ -1371,6 +1371,11 @@ function ProjectTable({
               Are you sure you want to delete the project{" "}
               <strong>{projectToDelete?.name}</strong>?
             </p>
+            <p>
+              All tasks and subtasks in this project, their frames, and project
+              membership links will also be deleted. Member accounts, source
+              data, and labels will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

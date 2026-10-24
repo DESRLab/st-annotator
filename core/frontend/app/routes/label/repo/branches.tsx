@@ -1138,6 +1138,11 @@ function BranchTable({
               Are you sure you want to delete the branch{" "}
               <strong>{branchToDelete?.name}</strong>?
             </p>
+            <p>
+              Branch permissions will also be deleted. Frames will be kept with
+              their label branch cleared. Commits, label history, and
+              annotations will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

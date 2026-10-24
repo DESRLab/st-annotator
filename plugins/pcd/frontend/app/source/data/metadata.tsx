@@ -2269,6 +2269,11 @@ function PointCloudMetadataTable({
                 />
               </>
             )}
+            <p>
+              Only the selected point cloud metadata records will be deleted.
+              Source groups, specifications, frames, annotations, and files on
+              disk will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

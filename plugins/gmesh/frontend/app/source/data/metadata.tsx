@@ -2179,6 +2179,11 @@ function GroundMeshMetadataTable({
                 />
               </>
             )}
+            <p>
+              Only the selected ground mesh metadata records will be deleted.
+              Source groups, frames, annotations, and files on disk will be
+              kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

@@ -602,6 +602,12 @@ function LabelGroupTable({
               Are you sure you want to delete the group{" "}
               <strong>{String(labelGroupToDelete?.name ?? "")}</strong>?
             </p>
+            <p>
+              All labels, branches, commits, and label history in this group
+              will also be deleted, along with branch permissions and
+              specification links. Frames will be kept with their label branch
+              cleared. Class definitions and selections will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

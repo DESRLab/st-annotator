@@ -54,7 +54,7 @@ Usually, you can use it to perform the following operations:
 
 - The `Edit Details` command opens a form to view and modify the details of each item in the current selection.
     - If you do not have permissions to modify them, the command changes to `View Details` which provides read-only access.
-- The `Delete` command opens a form to delete the item in the current selection. Where a table allows several items to be deleted at once, selecting two or more rows replaces it with `Batch Delete`.
+- The `Delete` command opens a form to delete the item in the current selection. Where a table allows several items to be deleted at once, selecting two or more rows replaces it with `Batch Delete`. The confirmation dialog explains which related records will be deleted, which links will be cleared, and which records will be kept.
 
 The command names depend on the table you are looking at. The same place in the menu may be occupied by `Batch Edit Details`, `Open Details` or `Edit Completion`, and commands such as `Open` lead to another page rather than to a form.
 

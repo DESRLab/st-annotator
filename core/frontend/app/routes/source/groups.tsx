@@ -601,6 +601,11 @@ function SourceGroupTable({
               Are you sure you want to delete the group{" "}
               <strong>{String(sourceGroupToDelete?.name ?? "")}</strong>?
             </p>
+            <p>
+              All source data records in this group and its specification links
+              will also be deleted. Frames will be kept with their source group
+              cleared. Source specifications and files on disk will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

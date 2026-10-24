@@ -1567,6 +1567,10 @@ export function FrameTable({
                 itemName="frame"
                 pluralItemName="frames"
               />
+              <p>
+                Only the selected frames will be deleted. Their tasks, accounts,
+                source groups, label branches, and annotations will be kept.
+              </p>
               <p className="text-muted small">This action cannot be undone.</p>
             </Modal.Body>
             <Modal.Footer>

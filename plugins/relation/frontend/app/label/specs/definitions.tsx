@@ -801,6 +801,11 @@ function RelationClassDefinitionsTable({
               </strong>
               ?
             </p>
+            <p>
+              These class definitions will be marked as deleted and hidden from
+              available classes. Existing relations and selection memberships
+              will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

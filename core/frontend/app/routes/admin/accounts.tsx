@@ -910,6 +910,11 @@ function UserTable({
               </strong>
               ?
             </p>
+            <p>
+              The user's account, frames, project memberships, task assignments,
+              and label branch permissions will also be deleted. Projects,
+              tasks, source data, and annotations will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

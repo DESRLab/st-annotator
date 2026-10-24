@@ -1672,6 +1672,12 @@ function PointCloudSpecsTable({
                 />
               </>
             )}
+            <p>
+              Links to source groups will be removed. Source groups, point cloud
+              records, and files on disk will be kept. Affected groups will have
+              no point cloud specification, so automatic bounds cannot be
+              derived until a specification is assigned.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>

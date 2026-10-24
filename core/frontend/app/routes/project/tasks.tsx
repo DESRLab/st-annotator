@@ -1062,6 +1062,11 @@ function TaskTable({
               Are you sure you want to delete the task{" "}
               <strong>{taskToDelete?.name}</strong>?
             </p>
+            <p>
+              All subtasks and frames in this task tree will also be deleted.
+              Supervisor and annotator assignments will be removed. Accounts,
+              source data, and labels will be kept.
+            </p>
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>
