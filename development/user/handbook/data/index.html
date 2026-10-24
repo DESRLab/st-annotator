@@ -2070,6 +2070,10 @@ specification, the previous bounds remain. Use
 <h5 id="manage-data-specifications">Manage Data Specifications</h5>
 <p>Navigate to the Source Specifications page (<code>Source Data &gt; Specifications</code>), which lists one tab for each data type available on your deployment. Select the tab of the data type you are working with to view its data specifications via a <a href="../#data-table">data table</a>.</p>
 <p>Users with the <code>data-manager</code> role can also add, modify and delete data specifications.</p>
+<p>Specification tables use page navigation and a page-size selector. Column filters
+and sorting apply across the full table. In multi-select tables, <code>Select Current
+Page</code> selects the displayed rows, while <code>Select All</code> selects every matching row
+across pages.</p>
 <p>Choose the groups that use a specification under <code>Source Groups</code>. One
 specification can serve several groups, but a group can use only one
 specification for each data type. Remove a group from its previous specification
@@ -2085,6 +2089,9 @@ assign nonempty <code>Source Groups</code> only when one specification is select
 several selected, leave <code>Update Source Groups</code> unticked to keep their groups, or
 tick it with an empty picker to remove all their group assignments.
 See <a href="../#batch-editing">Batch Editing</a> for the shared dialog controls.</p>
+<p>To delete several specifications, select them and choose <code>Batch Delete</code> from
+the row menu. The confirmation counts every selected record, including rows
+selected on other pages.</p>
 <p>Create a specification and assign its groups before registering files. Changes
 to specifications or their group assignments can trigger spatial-bounds
 recalculation for affected items. Items in a group left without a specification
@@ -2138,6 +2145,12 @@ A save that needs no new background work shows no job message.</p>
 <li><code>Selections</code> sets the object classes to include for each label group.</li>
 </ul>
 <p>Choose the groups that use a selection under <code>Label Groups</code>. One selection can serve several groups, but a group can use only one selection. A selection with no groups is unused. A group with no selection offers no object classes in the editor.</p>
+<p>Object-class definition and selection tables offer <code>Select Current Page</code>,
+<code>Select All</code>, and <code>Deselect All</code> beside the create button. <code>Select All</code> includes
+all rows matching the current filters across pages. Select multiple specifications
+and choose <code>Batch Delete</code> from the row menu to delete the selection. The
+confirmation shows the number of records, including matching rows on other
+pages. Deleting an object-class definition preserves its historical label data.</p>
 <p>If the Relations layer is available, use its label specifications to configure relation classes separately from object classes.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>

@@ -15602,6 +15602,8 @@
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">....models.user</span><span class="w"> </span><span class="kn">import</span> <span class="n">Role</span><span class="p">,</span> <span class="n">UserPublic</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">...auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">require_role</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...filtering</span><span class="w"> </span><span class="kn">import</span> <span class="n">apply_column_filters</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...querying</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortDirection</span><span class="p">,</span> <span class="n">apply_sort</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..groups</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_valid_group_ids</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"SourceSpecDomain"</span><span class="p">]</span>
@@ -15781,6 +15783,9 @@
         <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ids</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">filters</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sort_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sort_dir</span><span class="p">:</span> <span class="n">SortDirection</span> <span class="o">=</span> <span class="s2">"asc"</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">_T</span><span class="p">]:</span>
         <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_list_specs_query</span><span class="p">(</span>
             <span class="n">current_user</span><span class="o">=</span><span class="n">current_user</span><span class="p">,</span>
@@ -15789,6 +15794,9 @@
             <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
             <span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span>
+            <span class="n">sort_by</span><span class="o">=</span><span class="n">sort_by</span><span class="p">,</span>
+            <span class="n">sort_dir</span><span class="o">=</span><span class="n">sort_dir</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">records</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
@@ -15804,6 +15812,9 @@
         <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ids</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">filters</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sort_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sort_dir</span><span class="p">:</span> <span class="n">SortDirection</span> <span class="o">=</span> <span class="s2">"asc"</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="n">table_cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_cls</span>
 
@@ -15819,7 +15830,9 @@
         <span class="k">if</span> <span class="n">ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">table_cls</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">ids</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">q</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">apply_column_filters</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">table_cls</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">allowed_columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">})</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">apply_sort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">table_cls</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="n">table_cls</span><span class="o">.</span><span class="n">name</span><span class="p">},</span> <span class="n">sort_by</span><span class="p">,</span> <span class="n">sort_dir</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">q</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">sql_column</span><span class="p">(</span><span class="n">table_cls</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
 
 <div class="viewcode-block" id="SourceSpecDomain.count_specs"><a class="viewcode-back" href="../../../../../_api_generated/sta.domain.source.spec.base.SourceSpecDomain.html#sta.domain.source.spec.base.SourceSpecDomain.count_specs">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">count_specs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -15828,6 +15841,7 @@
         <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span>
         <span class="n">ids</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">filters</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_list_specs_query</span><span class="p">(</span>
             <span class="n">current_user</span><span class="o">=</span><span class="n">current_user</span><span class="p">,</span>
@@ -15836,6 +15850,7 @@
             <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">count</span><span class="p">())</span><span class="o">.</span><span class="n">select_from</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">subquery</span><span class="p">()))</span><span class="o">.</span><span class="n">one</span><span class="p">()</span></div>

@@ -15,17 +15,21 @@ sta.api.label.spec.objclass.selections
 
    .. autosummary::
    
+      bulk_delete_selections
       bulk_update_selections
       create_selection
       delete_selection
+      list_selection_ids
       list_selections
       read_selection
       update_selection
 
    
+   .. autofunction:: bulk_delete_selections
    .. autofunction:: bulk_update_selections
    .. autofunction:: create_selection
    .. autofunction:: delete_selection
+   .. autofunction:: list_selection_ids
    .. autofunction:: list_selections
    .. autofunction:: read_selection
    .. autofunction:: update_selection

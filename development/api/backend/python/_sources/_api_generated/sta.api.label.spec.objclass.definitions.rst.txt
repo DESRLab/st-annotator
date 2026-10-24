@@ -15,17 +15,21 @@ sta.api.label.spec.objclass.definitions
 
    .. autosummary::
    
+      bulk_delete_objclasses
       bulk_update_objclasses
       create_objclass
       delete_objclass
+      list_objclass_ids
       list_objclasses
       read_objclass
       update_objclass
 
    
+   .. autofunction:: bulk_delete_objclasses
    .. autofunction:: bulk_update_objclasses
    .. autofunction:: create_objclass
    .. autofunction:: delete_objclass
+   .. autofunction:: list_objclass_ids
    .. autofunction:: list_objclasses
    .. autofunction:: read_objclass
    .. autofunction:: update_objclass
