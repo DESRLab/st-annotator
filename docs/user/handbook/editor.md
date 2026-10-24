@@ -498,6 +498,6 @@ Under **Preferences > Layer > Relations**:
 
 A data manager can choose relation classes and their colors under
 **Label Specifications**. Relation classes are separate from object classes.
-If all categories have the default white color, tooltips use distinct colors
-automatically. To choose specific colors, update the relation classes under
-**Label Specifications**. Existing relations can still display retired classes.
+Relation tooltips use the defined class colors, including white. To choose colors,
+update the relation classes under **Label Specifications**. Existing relations can
+still display retired classes.

@@ -34,7 +34,7 @@ it("counts duplicates by category and direction and preserves each category colo
   ]);
 });
 
-it("colors an all-white default category set consistently without changing definitions", () => {
+it("preserves white category colors even when every category is white", () => {
   const source = { type: "box", id: "source" };
   const target = { type: "vector", id: "target" };
   const index = new RelationIndex(
@@ -53,9 +53,7 @@ it("colors an all-white default category set consistently without changing defin
   const colors = parts
     .filter((part) => part.text === "beside" || part.text === "behind")
     .map((part) => part.color);
-  expect(colors).toHaveLength(2);
-  expect(colors.every((color) => color !== 0xffffff)).toBe(true);
-  expect(new Set(colors).size).toBe(2);
+  expect(colors).toEqual([0xffffff, 0xffffff]);
   expect(
     getRelationTooltipParts(group, new Map([...index.classes].reverse())),
   ).toEqual(parts);
