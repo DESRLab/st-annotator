@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 
 import {
   loginWith,
+  logout,
   setRoleCheckboxes,
   validUsername,
 } from "./helpers/accounts";
@@ -196,13 +197,17 @@ test.describe.serial("handbook account workflows", () => {
       .click();
     await page.getByLabel("Username:").fill(accountPanelUsername);
     await page.getByRole("button", { name: "Update username" }).click();
-    await expect(page).toHaveURL(/\/login(?:\?returnTo=.*)?$/);
+    await expect(page).toHaveURL("/settings/account");
     await expect(
-      page.getByText("Your session has expired. Please log in again."),
+      page.getByText("Update successful.", { exact: true }),
     ).toBeVisible();
-    await loginWith(page, accountPanelUsername, adminPanelPassword);
-
-    await openAccountMenu(page, "Settings");
+    await expect(page.getByLabel("Username:")).toHaveValue(
+      accountPanelUsername,
+    );
+    await page.reload();
+    await expect(page.getByLabel("Username:")).toHaveValue(
+      accountPanelUsername,
+    );
 
     // Verify a user can update their own password from authentication settings.
     await page
@@ -215,13 +220,16 @@ test.describe.serial("handbook account workflows", () => {
       .fill(accountPanelPassword);
     await page.getByLabel("Confirm new password:").fill(accountPanelPassword);
     await page.getByRole("button", { name: "Update password" }).click();
-    await expect(page).toHaveURL("/login");
+    await expect(page).toHaveURL("/settings/authentication");
     await expect(
-      page.getByText("Password updated. Please log in again."),
+      page.getByText("Password updated.", { exact: true }),
     ).toBeVisible();
+    await page.reload();
+    await expect(page.getByLabel("Current password:")).toBeVisible();
 
-    // The password change revokes the active session; verify the new
-    // self-service username and password can establish a fresh session.
+    // The current session survives both changes. Explicitly sign out to verify
+    // the new self-service credentials can also establish a fresh session.
+    await logout(page);
     await loginWith(page, accountPanelUsername, accountPanelPassword);
     await openAccountMenu(page, "Profile");
     await expect(
