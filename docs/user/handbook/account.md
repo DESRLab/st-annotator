@@ -39,6 +39,8 @@ Navigate to the Settings page (`Account > Settings`) to manage your settings:
 - `Account`: Change your username.
 - `Authentication`: Change your password.
 
+Changing your username or password in Settings signs out other sessions.
+
 The `Profile` and `Preferences` sections have no settings yet.
 
 ### Manage Accounts (`admin` only)

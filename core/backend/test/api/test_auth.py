@@ -447,3 +447,81 @@ def test_check_password_is_rate_limited(test_app: AppUnderTest):
         json={"password": "wrong"},
     )
     assert blocked.status_code == 429
+
+
+@pytest.mark.parametrize(
+    "changes",
+    [
+        {"username": "renamed-admin"},
+        {"password": "new-admin-password", "current_password": "admin"},
+    ],
+)
+def test_account_update_keeps_current_session_and_signs_out_other_sessions(
+    test_app: AppUnderTest, changes: dict
+):
+    client = TestClient(
+        build_api(frontend_url="https://frontend.test"), base_url="https://backend.test"
+    )
+    old = client.post("/auth/login", data={"username": "admin", "password": "admin"}).json()
+    other_client = TestClient(client.app, base_url="https://backend.test")
+    other = other_client.post("/auth/login", data={"username": "admin", "password": "admin"}).json()
+    # Both sessions work before the account change.
+    for active_client, token in [(client, old), (other_client, other)]:
+        assert (
+            active_client.get(
+                "/auth/whoami", headers={"Authorization": f"Bearer {token['access_token']}"}
+            ).status_code
+            == 200
+        )
+    changed = client.patch(
+        "/auth/account", headers={"Authorization": f"Bearer {old['access_token']}"}, json=changes
+    )
+    assert changed.status_code == 200
+    result = changed.json()
+    assert result["user"]["id"] == 1
+    new = result["token"]
+    assert client.get(
+        "/auth/whoami", headers={"Authorization": f"Bearer {new['access_token']}"}
+    ).json()["username"] == changes.get("username", "admin")
+    assert (
+        client.post(
+            "/auth/refresh", headers={"Cookie": f"refresh_token={new['refresh_token']}"}
+        ).status_code
+        == 200
+    )
+    # The independent session cannot make authenticated requests or renew itself.
+    assert (
+        other_client.get(
+            "/auth/whoami", headers={"Authorization": f"Bearer {other['access_token']}"}
+        ).status_code
+        == 401
+    )
+    assert (
+        other_client.post(
+            "/auth/refresh", headers={"Cookie": f"refresh_token={other['refresh_token']}"}
+        ).status_code
+        == 401
+    )
+    # Rejected requests from the other session do not sign out the current one.
+    assert (
+        client.get(
+            "/auth/whoami", headers={"Authorization": f"Bearer {new['access_token']}"}
+        ).status_code
+        == 200
+    )
+
+
+def test_account_update_requires_authentication_and_current_password(test_app: AppUnderTest):
+    client = TestClient(
+        build_api(frontend_url="https://frontend.test"), base_url="https://backend.test"
+    )
+    assert client.patch("/auth/account", json={"username": "renamed"}).status_code == 401
+    old = client.post("/auth/login", data={"username": "admin", "password": "admin"}).json()
+    headers = {"Authorization": f"Bearer {old['access_token']}"}
+    rejected = client.patch(
+        "/auth/account",
+        headers=headers,
+        json={"password": "new-admin-password", "current_password": "wrong"},
+    )
+    assert rejected.status_code == 403
+    assert client.get("/auth/whoami", headers=headers).status_code == 200

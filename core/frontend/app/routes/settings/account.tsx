@@ -3,14 +3,13 @@ import { Button, Form } from "react-bootstrap";
 import { Form as RouterForm, useNavigation } from "react-router";
 
 import type { UserPublic as User } from "../../../client";
-import { updateUserUsersIdPatch } from "../../../client/sdk.gen";
+import { updateAccountAuthAccountPatch } from "../../../client/sdk.gen";
 import { normalizeError } from "../../errors";
 import {
   dataAndCommit,
   loadAccessTokenSession,
   loadAuthenticatedSession,
   redirectAndCommit,
-  refreshUser,
 } from "../../loaders";
 import { Username } from "../../models/user";
 
@@ -98,7 +97,6 @@ export default function Account({
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
-  const userId = formData.get("userId") as string;
   const username = formData.get("username") as string;
 
   const errors: Record<string, string> = {};
@@ -116,26 +114,20 @@ export async function action({ request }: Route.ActionArgs) {
   if (authenticated instanceof Response) return authenticated;
   const { session, token } = authenticated;
 
-  const res = await updateUserUsersIdPatch({
+  const res = await updateAccountAuthAccountPatch({
     auth: token.access_token,
-    path: { id: Number.parseInt(userId, 10) },
     body: {
       issued_at: formData.get("issued_at") as string,
       username,
     },
   });
-  if (res.error) {
+  if (res.error || !res.data) {
     session.flash("error", normalizeError(res.error));
     return redirectAndCommit("/settings/account", session);
   }
 
-  const user = res.data?.username ? res.data : await refreshUser(session);
-  if (!user) {
-    session.flash("error", "Username update did not return user information.");
-    return redirectAndCommit("/settings/account", session);
-  }
-
-  session.set("user", user);
+  session.set("token", res.data.token);
+  session.set("user", res.data.user);
 
   session.flash("success", "Update successful.");
   return redirectAndCommit("/settings/account", session);

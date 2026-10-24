@@ -13,7 +13,7 @@ from sqlmodel import Session
 from sta.envs import STA_JWT_ACCESS_EXPIRY_SECONDS, STA_TRUSTED_PROXY_IPS
 
 from ..domain import auth as domain, users
-from ..models.user import User, UserPublic
+from ..models.user import User, UserPublic, UserUpdate
 from ..session import get_session
 from .responses import SuccessResponse
 
@@ -323,3 +323,31 @@ def check_password(
     domain.auth_user(session, username=current_user.username, password=data.password)
     # Only success reaches this line. Failed guesses remain in the bucket.
     request.app.state.login_rate_limiter.reset(rate_limit_key)
+
+
+class AccountUpdateResponse(BaseModel):
+    user: UserPublic
+    token: OAuth2Token
+
+
+@router.patch("/account")
+def update_account(
+    request: Request,
+    response: Response,
+    *,
+    current_user: Annotated[UserPublic, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)],
+    data: UserUpdate,
+) -> AccountUpdateResponse:
+    """Update the signed-in account and replace its revoked token pair."""
+    record = users.update_user(
+        current_user=current_user, session=session, id=current_user.id, data=data
+    )
+    # Password changes clear the login marker. Restore it for this authenticated
+    # session while the new edit epoch keeps every previous token revoked.
+    record = users.login_user(current_user=current_user, session=session, id=current_user.id)
+    session.commit()
+    session.refresh(record)
+    return AccountUpdateResponse(
+        user=UserPublic.model_validate(record), token=_set_tokens(request, record, response)
+    )

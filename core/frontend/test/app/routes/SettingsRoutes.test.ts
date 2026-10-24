@@ -2,12 +2,14 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 const sdk = vi.hoisted(() => ({
   updateUser: vi.fn(),
+  updateAccount: vi.fn(),
   whoami: vi.fn(),
 }));
 
 vi.mock("../../../client/sdk.gen", async (importOriginal) => ({
   ...(await importOriginal<typeof import("../../../client/sdk.gen")>()),
   updateUserUsersIdPatch: sdk.updateUser,
+  updateAccountAuthAccountPatch: sdk.updateAccount,
   whoamiAuthWhoamiGet: sdk.whoami,
 }));
 
@@ -97,7 +99,7 @@ describe("account settings action", () => {
       }),
     } as any);
     expect((malformed as any).errors.username).toBeTruthy();
-    expect(sdk.updateUser).not.toHaveBeenCalled();
+    expect(sdk.updateAccount).not.toHaveBeenCalled();
   });
 
   it("handles expired sessions and upstream validation errors", async () => {
@@ -109,7 +111,7 @@ describe("account settings action", () => {
     } as any)) as Response;
     expect(expired.headers.get("Location")).toBe("/login");
 
-    sdk.updateUser.mockResolvedValue({
+    sdk.updateAccount.mockResolvedValue({
       error: { detail: "Username already exists" },
     });
     const response = (await accountAction({
@@ -123,15 +125,24 @@ describe("account settings action", () => {
     expect(
       (await getSession(response.headers.get("Set-Cookie"))).get("error"),
     ).toBe("Username already exists");
-    expect(sdk.updateUser).toHaveBeenCalledWith({
+    expect(sdk.updateAccount).toHaveBeenCalledWith({
       auth: "access",
-      path: { id: 4 },
       body: { username: "alex2", issued_at: issuedAt },
     });
   });
 
   it("refreshes session identity after a successful mutation", async () => {
-    sdk.updateUser.mockResolvedValue({ data: {} });
+    sdk.updateAccount.mockResolvedValue({
+      data: {
+        user: { id: 4, username: "alex2", roles: ["annotator"] },
+        token: {
+          access_token: "new-access",
+          refresh_token: "new-refresh",
+          token_type: "bearer",
+          expires_in: 3600,
+        },
+      },
+    });
     sdk.whoami.mockResolvedValue({
       data: { id: 4, username: "alex2", roles: ["annotator"] },
     });
@@ -145,6 +156,8 @@ describe("account settings action", () => {
     const session = await getSession(response.headers.get("Set-Cookie"));
     expect(response.headers.get("Location")).toBe("/settings/account");
     expect(session.get("user").username).toBe("alex2");
+    expect(session.get("token").access_token).toBe("new-access");
+    expect(session.get("token").refresh_token).toBe("new-refresh");
     expect(session.get("success")).toBe("Update successful.");
   });
 });
@@ -170,11 +183,11 @@ describe("authentication settings action", () => {
     expect(result.errors.currentPassword).toBeTruthy();
     expect(result.errors.newPassword).toBeTruthy();
     expect(result.errors.confirmPassword).toBe("Passwords do not match");
-    expect(sdk.updateUser).not.toHaveBeenCalled();
+    expect(sdk.updateAccount).not.toHaveBeenCalled();
   });
 
   it("rejects an incorrect old password without updating the user", async () => {
-    sdk.updateUser.mockResolvedValue({
+    sdk.updateAccount.mockResolvedValue({
       error: { detail: "Current password is incorrect." },
     });
     const response = (await authenticationAction({
@@ -188,9 +201,8 @@ describe("authentication settings action", () => {
     expect(
       (await getSession(response.headers.get("Set-Cookie"))).get("error"),
     ).toBe("Current password is incorrect.");
-    expect(sdk.updateUser).toHaveBeenCalledWith({
+    expect(sdk.updateAccount).toHaveBeenCalledWith({
       auth: "access",
-      path: { id: 4 },
       body: {
         password: valid.newPassword,
         current_password: valid.currentPassword,
@@ -200,7 +212,17 @@ describe("authentication settings action", () => {
   });
 
   it("updates a valid password with bearer authentication", async () => {
-    sdk.updateUser.mockResolvedValue({ data: {} });
+    sdk.updateAccount.mockResolvedValue({
+      data: {
+        user: { id: 4, username: "alex2", roles: ["annotator"] },
+        token: {
+          access_token: "new-access",
+          refresh_token: "new-refresh",
+          token_type: "bearer",
+          expires_in: 3600,
+        },
+      },
+    });
     sdk.whoami.mockResolvedValue({
       data: { id: 4, username: "alex", roles: ["annotator"] },
     });
@@ -211,21 +233,19 @@ describe("authentication settings action", () => {
         await authCookie(),
       ),
     } as any)) as Response;
-    expect(sdk.updateUser).toHaveBeenCalledWith({
+    expect(sdk.updateAccount).toHaveBeenCalledWith({
       auth: "access",
-      path: { id: 4 },
       body: {
         password: valid.newPassword,
         current_password: valid.currentPassword,
         issued_at: valid.issued_at,
       },
     });
-    expect(response.headers.get("Location")).toBe("/login");
+    expect(response.headers.get("Location")).toBe("/settings/authentication");
     const session = await getSession(response.headers.get("Set-Cookie"));
-    expect(session.get("token")).toBeUndefined();
-    expect(session.get("user")).toBeUndefined();
-    expect(session.get("success")).toBe(
-      "Password updated. Please log in again.",
-    );
+    expect(session.get("token").access_token).toBe("new-access");
+    expect(session.get("token").refresh_token).toBe("new-refresh");
+    expect(session.get("user").id).toBe(4);
+    expect(session.get("success")).toBe("Password updated.");
   });
 });

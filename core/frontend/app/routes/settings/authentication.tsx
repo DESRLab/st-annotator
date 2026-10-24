@@ -2,11 +2,10 @@ import { Button, Form } from "react-bootstrap";
 import { useFetcher } from "react-router";
 
 import type { UserPublic as User } from "../../../client";
-import { updateUserUsersIdPatch } from "../../../client/sdk.gen";
+import { updateAccountAuthAccountPatch } from "../../../client/sdk.gen";
 import { normalizeError } from "../../errors";
 import {
   dataAndCommit,
-  clearUser,
   loadAuthenticatedSession,
   redirectAndCommit,
 } from "../../loaders";
@@ -143,25 +142,23 @@ export async function action({ request }: Route.ActionArgs) {
 
   const authenticated = await loadAuthenticatedSession(request);
   if (authenticated instanceof Response) return authenticated;
-  const { session, token, user: currentUser } = authenticated;
+  const { session, token } = authenticated;
 
-  const res = await updateUserUsersIdPatch({
+  const res = await updateAccountAuthAccountPatch({
     auth: token.access_token,
-    path: { id: currentUser.id },
     body: {
       issued_at: formData.get("issued_at") as string,
       password: newPassword,
       current_password: currentPassword,
     },
   });
-  if (res.error) {
+  if (res.error || !res.data) {
     session.flash("error", normalizeError(res.error));
     return redirectAndCommit("/settings/authentication", session);
   }
 
-  // The backend revokes all existing tokens after a password change.
-  clearUser(session);
-  session.unset("token");
-  session.flash("success", "Password updated. Please log in again.");
-  return redirectAndCommit("/login", session);
+  session.set("token", res.data.token);
+  session.set("user", res.data.user);
+  session.flash("success", "Password updated.");
+  return redirectAndCommit("/settings/authentication", session);
 }
