@@ -473,6 +473,7 @@ test.describe.serial("handbook data workflows", () => {
     ).toBeVisible();
 
     await clickItemTypeLink(page, "Point Cloud Specifications");
+    await expectGridPageSizeControl(page, "point-cloud-source-grid");
     const pointCloudSpecPrefix = uniqueName("pcd-spec");
     const pointCloudSpecName = `${pointCloudSpecPrefix}-assigned`;
     const pointCloudSpecDescription = "Description preserved across a UI edit.";

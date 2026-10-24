@@ -78,6 +78,8 @@ protected\tGET /label/repo/graph
 protected\tPOST /label/repo/init
 protected\tPOST /label/repo/push
 protected\tGET /label/spec/objclass/definitions/
+protected\tGET /label/spec/objclass/definitions/ids
+protected\tDELETE /label/spec/objclass/definitions/bulk
 protected\tPOST /label/spec/objclass/definitions/
 protected\tPATCH /label/spec/objclass/definitions/bulk
 protected\tPUT /label/spec/objclass/definitions/bulk
@@ -86,6 +88,8 @@ protected\tGET /label/spec/objclass/definitions/{id}
 protected\tPATCH /label/spec/objclass/definitions/{id}
 protected\tPUT /label/spec/objclass/definitions/{id}
 protected\tGET /label/spec/objclass/selections/
+protected\tGET /label/spec/objclass/selections/ids
+protected\tDELETE /label/spec/objclass/selections/bulk
 protected\tPOST /label/spec/objclass/selections/
 protected\tPATCH /label/spec/objclass/selections/bulk
 protected\tPUT /label/spec/objclass/selections/bulk
@@ -133,6 +137,7 @@ protected\tGET /source/groups/{id}
 protected\tPATCH /source/groups/{id}
 protected\tPUT /source/groups/{id}
 protected\tGET /source/spec/pcd/specs/
+protected\tGET /source/spec/pcd/specs/ids
 protected\tPOST /source/spec/pcd/specs/
 protected\tDELETE /source/spec/pcd/specs/bulk
 protected\tPATCH /source/spec/pcd/specs/bulk

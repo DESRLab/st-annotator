@@ -596,3 +596,33 @@ def test_update_spec_config_preserves_pinned_bounds(
         "max_y": 100.0,
         "max_z": 100.0,
     }
+
+
+def test_spec_pagination_filters_sorting_and_matching_ids(
+    client: TestClient, auth_headers: dict[str, str], test_app: TestApp
+):
+    """Filter and sort before slicing, and select matching ids beyond that page."""
+    del test_app
+    ids = {}
+    for name in ("Zulu", "Alpha", "Alpine"):
+        response = client.post(
+            "/source/spec/pcd/specs/",
+            headers=auth_headers,
+            json={"name": name, "group_ids": [], "config": PointCloudConfig.default().model_dump()},
+        )
+        assert response.status_code == 200, response.text
+        ids[name] = written_spec(response)["id"]
+    filters = json.dumps([{"columnId": "name", "operator": "Contains", "searchTerms": ["Al"]}])
+    response = client.get(
+        "/source/spec/pcd/specs/",
+        headers=auth_headers,
+        params={"offset": 1, "limit": 1, "sort_by": "name", "sort_dir": "desc", "filters": filters},
+    )
+    assert response.status_code == 200, response.text
+    assert [row["id"] for row in response.json()] == [ids["Alpha"]]
+    assert response.headers["Content-Range"] == "specs 1-2/2"
+    response = client.get(
+        "/source/spec/pcd/specs/ids", headers=auth_headers, params={"filters": filters}
+    )
+    assert response.status_code == 200, response.text
+    assert set(response.json()) == {ids["Alpha"], ids["Alpine"]}

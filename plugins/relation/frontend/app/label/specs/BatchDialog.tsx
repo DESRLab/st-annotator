@@ -1,3 +1,7 @@
+import {
+  BatchDeleteMessage,
+  DeleteConfirmationTitle,
+} from "sta/app/components";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { Form as RouterForm, useNavigation } from "react-router";
 
@@ -19,9 +23,11 @@ export function BatchDialog({
   return (
     <Modal show={ids != null} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>
-          {deleting ? "Batch Delete" : "Batch Edit Details"}
-        </Modal.Title>
+        {deleting ? (
+          <DeleteConfirmationTitle count={ids?.length ?? 0} />
+        ) : (
+          <Modal.Title>Batch Edit Details</Modal.Title>
+        )}
       </Modal.Header>
       <RouterForm method="post">
         <Modal.Body>
@@ -32,17 +38,26 @@ export function BatchDialog({
             value={deleting ? "batch_delete" : "batch_update"}
           />
           <input type="hidden" name="ids" value={JSON.stringify(ids ?? [])} />
-          <p>{ids?.length ?? 0} selected records</p>
           {deleting ? (
-            <p>
-              Delete the selected{" "}
-              {definitions
-                ? "relation class definitions"
-                : "relation class selections"}
-              ?
-            </p>
+            <>
+              <BatchDeleteMessage
+                count={ids?.length ?? 0}
+                itemName={
+                  definitions
+                    ? "relation class definition"
+                    : "relation class selection"
+                }
+                pluralItemName={
+                  definitions
+                    ? "relation class definitions"
+                    : "relation class selections"
+                }
+              />
+              <p className="text-muted small">This action cannot be undone.</p>
+            </>
           ) : (
             <>
+              <p>{ids?.length ?? 0} selected records</p>
               <Form.Label htmlFor="batch-relation-description">
                 Description
               </Form.Label>

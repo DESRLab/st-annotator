@@ -7,7 +7,15 @@ import {
   useRoutePaginationGridOptions,
 } from "sta/app/components";
 import { useEffect, useRef, useState } from "react";
-import { Alert, Breadcrumb, Button, Form, Modal, Nav } from "react-bootstrap";
+import {
+  Alert,
+  Breadcrumb,
+  Button,
+  ButtonGroup,
+  Form,
+  Modal,
+  Nav,
+} from "react-bootstrap";
 import { Form as RouterForm, useLocation } from "react-router";
 import type {
   Column,
@@ -312,7 +320,12 @@ export async function action({ request }: Route.ActionArgs) {
           });
     return response.error
       ? { error: normalizeError(response.error) }
-      : { success: "Selected records updated." };
+      : {
+          success:
+            actionType === "batch_delete"
+              ? "Selected records deleted."
+              : "Selected records updated.",
+        };
   }
 
   if (actionType === "create") {
@@ -595,15 +608,14 @@ function RelationClassDefinitionsTable({
         Set the details of each relation class.
       </div>
 
-      <div className="mb-3">
-        {canManage && (
-          <Button variant="primary" onClick={handleCreate}>
-            Create Relation Class Definition
-          </Button>
-        )}
-      </div>
-
-      <div className="mb-3">
+      <div className="mb-3 d-flex gap-2">
+        <ButtonGroup className="justify-content-start me-auto">
+          {canManage && (
+            <Button variant="primary" onClick={handleCreate}>
+              Create Relation Class Definition
+            </Button>
+          )}
+        </ButtonGroup>
         <GridSelectionButtons
           selectedCount={selectedIds.length}
           currentPageCount={dataset.length}

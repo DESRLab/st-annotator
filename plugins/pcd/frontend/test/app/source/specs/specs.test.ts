@@ -10,9 +10,16 @@ const api = vi.hoisted(() => ({
   createSpec: vi.fn(),
   updateSpec: vi.fn(),
   bulkUpdateSpec: vi.fn(),
+  specs: vi.fn(),
+  ids: vi.fn(),
+  groups: vi.fn(),
 }));
 vi.mock("sta/app/loaders", async (importOriginal) => ({
   ...(await importOriginal<typeof import("sta/app/loaders")>()),
+  loadAuthenticatedSession: async () => ({
+    token: { access_token: "access" },
+    user: { id: 1, roles: ["data-manager"] },
+  }),
   loadAccessTokenSession: async () => ({
     session: {},
     token: { access_token: "access" },
@@ -20,15 +27,24 @@ vi.mock("sta/app/loaders", async (importOriginal) => ({
 }));
 vi.mock("sta/client", async (importOriginal) => ({
   ...(await importOriginal<typeof import("sta/client")>()),
+  listSpecsSourceSpecPcdSpecsGet: api.specs,
+  listSpecIdsSourceSpecPcdSpecsIdsGet: api.ids,
+  listGroupsSourceGroupsGet: api.groups,
   createSpecSourceSpecPcdSpecsPost: api.createSpec,
   updateSpecSourceSpecPcdSpecsIdPatch: api.updateSpec,
   bulkUpdateSpecsSourceSpecPcdSpecsBulkPatch: api.bulkUpdateSpec,
+}));
+
+vi.mock("sta/app/models", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("sta/app/models")>()),
+  getOpenApiJson: async () => ({ components: { schemas: {} } }),
 }));
 
 import type { SourceSpecPublic as PointCloudSpec } from "sta/client";
 
 import {
   action,
+  loader,
   describeBatchGroupConflicts,
   describeGroupOwnerConflicts,
 } from "../../../../app/source/specs/specs";
@@ -417,5 +433,66 @@ describe("point cloud specification batch edit", () => {
       name: "roof sweep",
       description: "reprocessed",
     });
+  });
+});
+
+describe("specification pagination", () => {
+  it("pages and sorts matching rows while retaining off-page group ownership and selection ids", async () => {
+    const current = spec(2, "Alpha", [20]);
+    const offPage = spec(1, "Zulu", [10]);
+    api.specs.mockImplementation(async ({ query }) =>
+      query
+        ? {
+            data: [current],
+            response: new Response(null, {
+              headers: { "Content-Range": "specs 25-26/51" },
+            }),
+          }
+        : { data: [offPage, current] },
+    );
+    api.ids.mockResolvedValue({ data: [1, 2, 3] });
+    api.groups.mockResolvedValue({ data: [] });
+    const filters = [
+      { columnId: "name", operator: "Contains", searchTerms: ["a"] },
+    ];
+    const params = new URLSearchParams({
+      page: "2",
+      pageSize: "25",
+      sort: "name:desc",
+      filters: JSON.stringify(filters),
+    });
+    const result = await loader({
+      request: new Request(`http://localhost/source/specs/pcd?${params}`),
+    } as any);
+    expect(result).not.toBeInstanceOf(Response);
+    if (result instanceof Response) throw new Error("Unexpected redirect");
+    expect(result.dataset).toEqual([current]);
+    expect(result.pagination).toMatchObject({
+      pageNumber: 2,
+      pageSize: 25,
+      totalItems: 51,
+    });
+    expect(api.specs).toHaveBeenCalledWith({
+      auth: "access",
+      query: {
+        offset: 25,
+        limit: 25,
+        sort_by: "name",
+        sort_dir: "desc",
+        filters: JSON.stringify(filters),
+      },
+    });
+    expect(api.ids).toHaveBeenCalledWith({
+      auth: "access",
+      query: {
+        sort_by: "name",
+        sort_dir: "desc",
+        filters: JSON.stringify(filters),
+      },
+    });
+    expect(result.allSelectableIds).toEqual([1, 2, 3]);
+    expect(
+      describeGroupOwnerConflicts([10], result.allSpecifications, 2),
+    ).toContain("Zulu");
   });
 });

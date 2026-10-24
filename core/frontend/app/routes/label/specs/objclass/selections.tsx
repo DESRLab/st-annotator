@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Alert, Breadcrumb, Button, Form, Modal, Nav } from "react-bootstrap";
+import {
+  Alert,
+  Breadcrumb,
+  Button,
+  ButtonGroup,
+  Form,
+  Modal,
+  Nav,
+} from "react-bootstrap";
 import { Form as RouterForm, useLocation, useNavigation } from "react-router";
 import type {
   Column,
@@ -9,6 +17,8 @@ import type {
 } from "slickgrid-react";
 
 import {
+  bulkDeleteSelectionsLabelSpecObjclassSelectionsBulkDelete,
+  listSelectionIdsLabelSpecObjclassSelectionsIdsGet,
   createSelectionLabelSpecObjclassSelectionsPost,
   deleteSelectionLabelSpecObjclassSelectionsIdDelete,
   listGroupsLabelGroupsGet,
@@ -23,6 +33,11 @@ import {
   updateSelectionLabelSpecObjclassSelectionsIdPatch,
 } from "../../../../../client";
 import { SelectMultiplePicker } from "../../../../components/SelectMultiplePicker";
+import {
+  BatchDeleteMessage,
+  DeleteConfirmationTitle,
+} from "../../../../components/DeleteConfirmation";
+import { GridSelectionButtons } from "../../../../components/GridSelectionButtons";
 import { createSlickgridClientLoader } from "../../../../components/slickgrid/client";
 import { selectableConfig } from "../../../../components/slickgrid/options";
 import {
@@ -30,7 +45,7 @@ import {
   useRoutePaginationGridOptions,
 } from "../../../../components/slickgrid/pagination";
 import { normalizeError } from "../../../../errors";
-import { trimFormValue } from "../../../../forms";
+import { identifierArraySchema, trimFormValue } from "../../../../forms";
 import {
   applyNumericFilterToQuery,
   applySortersToQuery,
@@ -411,6 +426,10 @@ export async function loader({ request }: Route.LoaderArgs) {
     }),
   ]);
 
+  const idsRes = await listSelectionIdsLabelSpecObjclassSelectionsIdsGet({
+    auth: token.access_token,
+    query: buildSelectionsQuery(getGridStateRequest(request)),
+  });
   const dataset = selectionsRes.data ?? [];
   const labelGroups = (labelGroupsRes.data ?? [])
     .slice()
@@ -423,11 +442,15 @@ export async function loader({ request }: Route.LoaderArgs) {
       formatUnknown(left.name).localeCompare(formatUnknown(right.name)),
     );
   const loaderError =
-    selectionsRes.error ?? labelGroupsRes.error ?? objectClassesRes.error;
+    selectionsRes.error ??
+    labelGroupsRes.error ??
+    objectClassesRes.error ??
+    idsRes.error;
 
   return {
     user,
     dataset,
+    allSelectableIds: idsRes.data ?? [],
     pagination: selectionsRes.pagination,
     labelGroups,
     objectClasses,
@@ -445,6 +468,25 @@ export async function action({ request }: Route.ActionArgs) {
 
   const formData = await request.formData();
   const actionType = formData.get("_action");
+
+  if (actionType === "batch_delete") {
+    const parsed = identifierArraySchema.safeParse(formData.get("selectedIds"));
+    if (!parsed.success || new Set(parsed.data).size < 2) {
+      return { error: "Select at least two valid records to delete." };
+    }
+    const ids = [...new Set(parsed.data)];
+    const res = await bulkDeleteSelectionsLabelSpecObjclassSelectionsBulkDelete(
+      {
+        auth: token.access_token,
+        body: ids,
+      },
+    );
+    return res.error
+      ? { error: normalizeError(res.error) }
+      : {
+          success: `${ids.length} object class selections deleted successfully.`,
+        };
+  }
 
   if (actionType === "create") {
     const payload = createPayloadFromFormData(formData);
@@ -518,6 +560,7 @@ function ObjectClassSelectionsTable({
   user,
   dataset,
   pagination,
+  allSelectableIds,
   labelGroups,
   objectClasses,
   actionData,
@@ -526,6 +569,7 @@ function ObjectClassSelectionsTable({
   user: User;
   dataset: ObjectClassSelection[];
   pagination: GridPagination;
+  allSelectableIds: number[];
   labelGroups: LabelGroup[];
   objectClasses: ObjectClass[];
   actionData?: Route.ComponentProps["actionData"];
@@ -538,12 +582,15 @@ function ObjectClassSelectionsTable({
   const [editingSelection, setEditingSelection] =
     useState<ObjectClassSelection | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteIds, setDeleteIds] = useState<number[] | null>(null);
   const [selectionToDelete, setSelectionToDelete] =
     useState<ObjectClassSelection | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] =
     useState<ObjectClassSelectionFormState>(EMPTY_FORM);
   const reactGridRef = useRef<SlickgridReactInstance | null>(null);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const selectedAllIdsRef = useRef<number[] | null>(null);
   const paginationGridOptions = useRoutePaginationGridOptions(
     pagination,
     dataset,
@@ -562,7 +609,12 @@ function ObjectClassSelectionsTable({
 
   useEffect(() => {
     syncRoutePaginationGrid(reactGridRef.current, pagination);
-  }, [dataset, pagination]);
+    if (selectedAllIdsRef.current != null) {
+      selectIds(allSelectableIds, true);
+    } else {
+      selectIds([], false);
+    }
+  }, [dataset, pagination, allSelectableIds]);
 
   useEffect(() => {
     if (!actionData) {
@@ -586,9 +638,11 @@ function ObjectClassSelectionsTable({
     }
 
     if (actionData.success) {
+      selectIds([], false);
       setError(null);
       setShowModal(false);
       setShowDeleteModal(false);
+      setDeleteIds(null);
       setEditingSelection(null);
       setSelectionToDelete(null);
       setFormData(EMPTY_FORM);
@@ -613,8 +667,42 @@ function ObjectClassSelectionsTable({
 
   function handleDelete(selection: ObjectClassSelection) {
     setSelectionToDelete(selection);
+    setDeleteIds(null);
     setError(null);
     setShowDeleteModal(true);
+  }
+
+  function getSelectedIds(): number[] {
+    return (
+      selectedAllIdsRef.current ??
+      (reactGridRef.current?.dataView.getAllSelectedItems() ?? []).map(
+        (item) => item.id,
+      )
+    );
+  }
+
+  function handleBatchDelete() {
+    setDeleteIds([...getSelectedIds()]);
+    setError(null);
+    setShowDeleteModal(true);
+  }
+
+  function selectIds(ids: number[], all: boolean) {
+    selectedAllIdsRef.current = all ? ids : null;
+    setSelectedIds(ids);
+    reactGridRef.current?.gridService.setSelectedRows(
+      dataset.flatMap((row, index) => (ids.includes(row.id) ? [index] : [])),
+    );
+  }
+
+  function onGridStateChanged() {
+    const items = reactGridRef.current?.dataView.getAllSelectedItems() ?? [];
+    if (selectedAllIdsRef.current != null && items.length === dataset.length) {
+      setSelectedIds(selectedAllIdsRef.current);
+      return;
+    }
+    selectedAllIdsRef.current = null;
+    setSelectedIds(items.map((item) => item.id));
   }
 
   function defineGrid() {
@@ -626,16 +714,28 @@ function ObjectClassSelectionsTable({
           ? "fas fa-edit fa-fw"
           : "fas fa-info-circle fa-fw",
         action: (_event, args) => handleEdit(args.dataContext),
+        itemVisibilityOverride: () =>
+          !canManage || getSelectedIds().length === 1,
       },
     ];
 
     if (canManage) {
-      commandItems.push({
-        command: "delete",
-        title: "Delete",
-        iconCssClass: "fas fa-trash fa-fw",
-        action: (_event, args) => handleDelete(args.dataContext),
-      });
+      commandItems.push(
+        {
+          command: "delete",
+          title: "Delete",
+          iconCssClass: "fas fa-trash fa-fw",
+          action: (_event, args) => handleDelete(args.dataContext),
+          itemVisibilityOverride: () => getSelectedIds().length === 1,
+        },
+        {
+          command: "batch_delete",
+          title: "Batch Delete",
+          iconCssClass: "fas fa-trash fa-fw",
+          action: handleBatchDelete,
+          itemVisibilityOverride: () => getSelectedIds().length > 1,
+        },
+      );
     }
 
     setColumns([
@@ -690,7 +790,7 @@ function ObjectClassSelectionsTable({
     setGridOptions({
       ...(selectableConfig({
         commandItems: commandItems as never,
-        multiSelect: false,
+        multiSelect: true,
       }) as unknown as GridOption),
       ...paginationGridOptions,
       autoResize: { container: "#grid-container" },
@@ -729,12 +829,27 @@ function ObjectClassSelectionsTable({
         Select which object classes you want to include for each label group.
       </div>
 
-      <div className="mb-3">
-        {canManage && (
-          <Button variant="primary" onClick={handleCreate}>
-            Create Object Class Selection
-          </Button>
-        )}
+      <div className="mb-3 d-flex gap-2">
+        <ButtonGroup className="justify-content-start me-auto">
+          {canManage && (
+            <Button variant="primary" onClick={handleCreate}>
+              Create Object Class Selection
+            </Button>
+          )}
+        </ButtonGroup>
+        <GridSelectionButtons
+          selectedCount={selectedIds.length}
+          currentPageCount={dataset.length}
+          allSelectableCount={allSelectableIds.length}
+          onSelectCurrentPage={() =>
+            selectIds(
+              dataset.map((row) => row.id),
+              false,
+            )
+          }
+          onSelectAll={() => selectIds(allSelectableIds, true)}
+          onDeselectAll={() => selectIds([], false)}
+        />
       </div>
 
       <div className="slickgrid-container" id="grid-container">
@@ -745,6 +860,7 @@ function ObjectClassSelectionsTable({
             options={gridOptions}
             dataset={dataset}
             onReactGridCreated={(event) => reactGridReady(event.detail)}
+            onGridStateChanged={onGridStateChanged}
           />
         )}
       </div>
@@ -817,7 +933,7 @@ function ObjectClassSelectionsTable({
 
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
+          <DeleteConfirmationTitle count={deleteIds?.length} />
         </Modal.Header>
         <RouterForm method="post">
           <Modal.Body>
@@ -830,19 +946,39 @@ function ObjectClassSelectionsTable({
                 {error}
               </Alert>
             )}
-            <input type="hidden" name="_action" value="delete" />
-            <input
-              type="hidden"
-              name="id"
-              value={selectionToDelete?.id ?? ""}
-            />
-            <p>
-              Are you sure you want to delete object class selection{" "}
-              <strong>
-                {selectionToDelete ? formatUnknown(selectionToDelete.name) : ""}
-              </strong>
-              ?
-            </p>
+            {deleteIds == null ? (
+              <>
+                <input type="hidden" name="_action" value="delete" />
+                <input
+                  type="hidden"
+                  name="id"
+                  value={selectionToDelete?.id ?? ""}
+                />
+                <p>
+                  Are you sure you want to delete object class selection{" "}
+                  <strong>
+                    {selectionToDelete
+                      ? formatUnknown(selectionToDelete.name)
+                      : ""}
+                  </strong>
+                  ?
+                </p>
+              </>
+            ) : (
+              <>
+                <input type="hidden" name="_action" value="batch_delete" />
+                <input
+                  type="hidden"
+                  name="selectedIds"
+                  value={JSON.stringify(deleteIds)}
+                />
+                <BatchDeleteMessage
+                  count={deleteIds.length}
+                  itemName="object class selection"
+                  pluralItemName="object class selections"
+                />
+              </>
+            )}
             <p className="text-muted small">This action cannot be undone.</p>
           </Modal.Body>
           <Modal.Footer>
@@ -875,6 +1011,7 @@ export default function ObjectClassSelections({
     user,
     dataset,
     pagination,
+    allSelectableIds,
     labelGroups,
     objectClasses,
     loaderError,
@@ -901,6 +1038,7 @@ export default function ObjectClassSelections({
           user={user}
           dataset={dataset}
           pagination={pagination}
+          allSelectableIds={allSelectableIds}
           labelGroups={labelGroups}
           objectClasses={objectClasses}
           actionData={actionData}

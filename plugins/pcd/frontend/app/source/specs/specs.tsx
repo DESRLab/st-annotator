@@ -1,3 +1,7 @@
+import {
+  BatchDeleteMessage,
+  DeleteConfirmationTitle,
+} from "sta/app/components";
 import { useEffect, useRef, useState } from "react";
 import {
   Alert,
@@ -24,10 +28,18 @@ import {
   SelectMultiplePicker,
   createSlickgridClientLoader,
   selectableConfig,
+  syncRoutePaginationGrid,
+  useRoutePaginationGridOptions,
   type ConfigEditorState,
 } from "sta/app/components";
 import {
   jobsQueueHref,
+  applySortersToQuery,
+  getGridStateRequest,
+  listGridPage,
+  type GridPagination,
+  type GridStateRequest,
+  type GridQuery,
   loadAccessTokenSession,
   loadAuthenticatedSession,
   reportedJobIds,
@@ -47,6 +59,7 @@ import {
   deleteSpecSourceSpecPcdSpecsIdDelete,
   listGroupsSourceGroupsGet,
   listSpecsSourceSpecPcdSpecsGet,
+  listSpecIdsSourceSpecPcdSpecsIdsGet,
   type PointCloudConfig,
   type PointCloudSpecUpdate,
   type SourceSpecCreate as PointCloudSpecCreate,
@@ -716,14 +729,33 @@ function preprocessorEditor({
   );
 }
 
+export function buildSpecsQuery({
+  filters,
+  sorters,
+}: GridStateRequest): GridQuery {
+  const query: GridQuery = { filters: JSON.stringify(filters) };
+  applySortersToQuery(query, sorters, new Set(["id", "name"]));
+  query.sort_by ??= "name";
+  query.sort_dir ??= "asc";
+  return query;
+}
+
 export async function loader({ request }: Route.LoaderArgs) {
   const authenticated = await loadAuthenticatedSession(request);
   if (authenticated instanceof Response) return authenticated;
   const { token, user } = authenticated;
 
-  const [sourcesRes, sourceGroupsRes] = await Promise.all([
-    listSpecsSourceSpecPcdSpecsGet({ auth: token.access_token }),
+  const query = buildSpecsQuery(getGridStateRequest(request));
+  const [sourcesRes, sourceGroupsRes, allSpecsRes, idsRes] = await Promise.all([
+    listGridPage(request, (pagination) =>
+      listSpecsSourceSpecPcdSpecsGet({
+        auth: token.access_token,
+        query: { ...query, ...pagination },
+      }),
+    ),
     listGroupsSourceGroupsGet({ auth: token.access_token }),
+    listSpecsSourceSpecPcdSpecsGet({ auth: token.access_token }),
+    listSpecIdsSourceSpecPcdSpecsIdsGet({ auth: token.access_token, query }),
   ]);
   const openApiJson = await getOpenApiJson();
   const preprocessorSchema = expandOpenApiSchema(
@@ -732,21 +764,24 @@ export async function loader({ request }: Route.LoaderArgs) {
       ?.preprocessors ?? {},
   );
 
-  const dataset = (sourcesRes.data ?? [])
-    .slice()
-    .sort((left, right) =>
-      formatUnknown(left.name).localeCompare(formatUnknown(right.name)),
-    );
+  const dataset = sourcesRes.data ?? [];
   const sourceGroups = (sourceGroupsRes.data ?? [])
     .slice()
     .sort((left, right) =>
       formatUnknown(left.name).localeCompare(formatUnknown(right.name)),
     );
-  const loaderError = sourcesRes.error ?? sourceGroupsRes.error;
+  const loaderError =
+    sourcesRes.error ??
+    sourceGroupsRes.error ??
+    allSpecsRes.error ??
+    idsRes.error;
 
   return {
     user,
     dataset,
+    pagination: sourcesRes.pagination,
+    allSpecifications: allSpecsRes.data ?? [],
+    allSelectableIds: idsRes.data ?? [],
     sourceGroups,
     preprocessorSchema,
     loaderError: loaderError ? normalizeError(loaderError) : undefined,
@@ -905,6 +940,9 @@ function PointCloudSpecsTable({
   SG,
   user,
   dataset,
+  pagination,
+  allSpecifications,
+  allSelectableIds,
   sourceGroups,
   preprocessorSchema,
   actionData,
@@ -912,6 +950,9 @@ function PointCloudSpecsTable({
   SG: typeof import("slickgrid-react");
   user: User;
   dataset: PointCloudSpec[];
+  pagination: GridPagination;
+  allSpecifications: PointCloudSpec[];
+  allSelectableIds: number[];
   sourceGroups: SourceGroupPublic[];
   preprocessorSchema: OpenAPIJSONSchema;
   actionData?: Route.ComponentProps["actionData"];
@@ -935,6 +976,12 @@ function PointCloudSpecsTable({
     useState<BatchPointCloudSpecFormState>(EMPTY_BATCH_FORM);
   const reactGridRef = useRef<SlickgridReactInstance | null>(null);
 
+  const selectedAllIdsRef = useRef<number[] | null>(null);
+  const paginationGridOptions = useRoutePaginationGridOptions(
+    pagination,
+    dataset,
+  );
+
   const { SlickgridReact } = SG;
   const canManage = user.roles.includes("data-manager");
   const navigation = useNavigation();
@@ -942,11 +989,15 @@ function PointCloudSpecsTable({
 
   const groupConflict = describeGroupOwnerConflicts(
     formData.group_ids,
-    dataset,
+    allSpecifications,
     editingSpecification?.id ?? null,
   );
   const batchGroupConflict = batchFormData.update_groups
-    ? describeBatchGroupConflicts(selectedIds, batchFormData.group_ids, dataset)
+    ? describeBatchGroupConflicts(
+        selectedIds,
+        batchFormData.group_ids,
+        allSpecifications,
+      )
     : null;
   const batchFieldsSelected =
     batchFormData.update_name ||
@@ -955,10 +1006,19 @@ function PointCloudSpecsTable({
     batchFormData.update_config;
 
   useEffect(() => {
-    reactGridRef.current?.gridService.setSelectedRows([]);
-    setSelectedIds([]);
+    syncRoutePaginationGrid(reactGridRef.current, pagination);
+    if (selectedAllIdsRef.current != null) {
+      selectedAllIdsRef.current = allSelectableIds;
+      reactGridRef.current?.gridService.setSelectedRows(
+        dataset.map((_, index) => index),
+      );
+      setSelectedIds(allSelectableIds);
+    } else {
+      reactGridRef.current?.gridService.setSelectedRows([]);
+      setSelectedIds([]);
+    }
     reactGridRef.current?.slickGrid.invalidate();
-  }, [dataset]);
+  }, [dataset, pagination, allSelectableIds]);
 
   useEffect(() => {
     if (!actionData) {
@@ -982,6 +1042,7 @@ function PointCloudSpecsTable({
     }
 
     if (actionData.success) {
+      selectedAllIdsRef.current = null;
       setError(null);
       setShowModal(false);
       setShowBatchEditModal(false);
@@ -1006,6 +1067,12 @@ function PointCloudSpecsTable({
   function getAllSelectedItems(): PointCloudSpec[] {
     const items = reactGridRef.current?.dataView.getAllSelectedItems() ?? [];
     return items.filter((item): item is PointCloudSpec => item != null);
+  }
+
+  function getSelectedIds(): number[] {
+    return (
+      selectedAllIdsRef.current ?? getAllSelectedItems().map((item) => item.id)
+    );
   }
 
   function handleCreate() {
@@ -1052,7 +1119,7 @@ function PointCloudSpecsTable({
         // A read-only user has no batch command to take its place, and viewing
         // the right-clicked row is not the narrowing the gate exists to stop.
         itemVisibilityOverride: () =>
-          !canManage || getAllSelectedItems().length === 1,
+          !canManage || getSelectedIds().length === 1,
       },
     ];
 
@@ -1062,21 +1129,21 @@ function PointCloudSpecsTable({
         title: "Batch Edit Details",
         iconCssClass: "fas fa-layer-group fa-fw",
         action: () => handleBatchEdit(),
-        itemVisibilityOverride: () => getAllSelectedItems().length > 1,
+        itemVisibilityOverride: () => getSelectedIds().length > 1,
       });
       commandItems.push({
         command: "batch_delete",
         title: "Batch Delete",
         iconCssClass: "fas fa-trash fa-fw",
         action: () => handleBatchDelete(),
-        itemVisibilityOverride: () => getAllSelectedItems().length > 1,
+        itemVisibilityOverride: () => getSelectedIds().length > 1,
       });
       commandItems.push({
         command: "delete",
         title: "Delete",
         iconCssClass: "fas fa-trash fa-fw",
         action: (_event, args) => handleDelete(args.dataContext),
-        itemVisibilityOverride: () => getAllSelectedItems().length === 1,
+        itemVisibilityOverride: () => getSelectedIds().length === 1,
       });
     }
 
@@ -1147,25 +1214,40 @@ function PointCloudSpecsTable({
       }) as unknown as GridOption),
       autoResize: { container: "#grid-container" },
       enableAutoResize: true,
+      ...paginationGridOptions,
     });
   }
 
-  function onSelectAll() {
-    const numFiltered =
-      reactGridRef.current?.dataView.getFilteredItemCount() ?? 0;
+  function onSelectCurrentPage() {
+    selectedAllIdsRef.current = null;
     reactGridRef.current?.gridService.setSelectedRows(
-      Array.from({ length: numFiltered }, (_, index) => index),
+      dataset.map((_, index) => index),
     );
     setSelectedIds(dataset.map((item) => item.id));
   }
 
+  function onSelectAll() {
+    selectedAllIdsRef.current = allSelectableIds;
+    reactGridRef.current?.gridService.setSelectedRows(
+      dataset.map((_, index) => index),
+    );
+    setSelectedIds(allSelectableIds);
+  }
+
   function onDeselectAll() {
+    selectedAllIdsRef.current = null;
     reactGridRef.current?.gridService.setSelectedRows([]);
     setSelectedIds([]);
   }
 
   function onGridStateChanged() {
-    setSelectedIds(getAllSelectedItems().map((item) => item.id));
+    const items = getAllSelectedItems();
+    if (selectedAllIdsRef.current != null && items.length === dataset.length) {
+      setSelectedIds(selectedAllIdsRef.current);
+      return;
+    }
+    selectedAllIdsRef.current = null;
+    setSelectedIds(items.map((item) => item.id));
   }
 
   function reactGridReady(reactGrid: SlickgridReactInstance) {
@@ -1198,7 +1280,7 @@ function PointCloudSpecsTable({
 
   useEffect(() => {
     defineGrid();
-  }, [canManage]);
+  }, [canManage, paginationGridOptions]);
 
   return (
     <>
@@ -1230,7 +1312,9 @@ function PointCloudSpecsTable({
         </ButtonGroup>
         <GridSelectionButtons
           selectedCount={selectedIds.length}
-          allSelectableCount={dataset.length}
+          currentPageCount={dataset.length}
+          allSelectableCount={allSelectableIds.length}
+          onSelectCurrentPage={onSelectCurrentPage}
           onSelectAll={onSelectAll}
           onDeselectAll={onDeselectAll}
         />
@@ -1549,7 +1633,9 @@ function PointCloudSpecsTable({
 
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
+          <DeleteConfirmationTitle
+            count={sourceToDelete ? undefined : selectedIds.length}
+          />
         </Modal.Header>
         <RouterForm method="post">
           <Modal.Body>
@@ -1579,13 +1665,11 @@ function PointCloudSpecsTable({
                   name="selectedIds"
                   value={JSON.stringify(selectedIds)}
                 />
-                <p>
-                  Are you sure you want to delete {selectedIds.length} selected{" "}
-                  {selectedIds.length === 1
-                    ? "point cloud source"
-                    : "point cloud sources"}
-                  ?
-                </p>
+                <BatchDeleteMessage
+                  count={selectedIds.length}
+                  itemName="point cloud specification"
+                  pluralItemName="point cloud specifications"
+                />
               </>
             )}
             <p className="text-muted small">This action cannot be undone.</p>
@@ -1615,8 +1699,17 @@ export default function PointCloudSpecs({
   loaderData,
   actionData,
 }: Route.ComponentProps) {
-  const { SG, user, dataset, sourceGroups, preprocessorSchema, loaderError } =
-    loaderData;
+  const {
+    SG,
+    user,
+    dataset,
+    pagination,
+    allSpecifications,
+    allSelectableIds,
+    sourceGroups,
+    preprocessorSchema,
+    loaderError,
+  } = loaderData;
 
   return createPageContent({
     title: "Point Cloud Specifications",
@@ -1636,6 +1729,9 @@ export default function PointCloudSpecs({
         SG={SG}
         user={user}
         dataset={dataset}
+        pagination={pagination}
+        allSpecifications={allSpecifications}
+        allSelectableIds={allSelectableIds}
         sourceGroups={sourceGroups}
         preprocessorSchema={preprocessorSchema}
         actionData={actionData}

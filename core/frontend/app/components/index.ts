@@ -7,3 +7,4 @@ export * from "./VectorInputFields";
 export * from "./slickgrid/client";
 export * from "./slickgrid/options";
 export * from "./slickgrid/pagination";
+export * from "./DeleteConfirmation";

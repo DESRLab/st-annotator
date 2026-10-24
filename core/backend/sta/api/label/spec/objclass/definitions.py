@@ -89,6 +89,50 @@ def list_objclasses(
     return objclasses
 
 
+@router.get("/ids", response_model=list[int])
+def list_objclass_ids(
+    *,
+    current_user: Annotated[UserPublic, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)],
+    id: Annotated[int | None, Query()] = None,
+    id_ge: Annotated[int | None, Query()] = None,
+    id_le: Annotated[int | None, Query()] = None,
+    name: Annotated[str | None, Query()] = None,
+    name_contains: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
+):
+    """Return all readable IDs matching the specification grid filters."""
+    records = domain.list_objclasses(
+        current_user=current_user,
+        session=session,
+        offset=None,
+        limit=None,
+        id=id,
+        id_ge=id_ge,
+        id_le=id_le,
+        name=name,
+        name_contains=name_contains,
+        filters=filters,
+    )
+
+    return [record.id for record in records]
+
+
+@router.delete("/bulk", response_model=SuccessResponse)
+def bulk_delete_objclasses(
+    *,
+    current_user: Annotated[UserPublic, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)],
+    ids: Annotated[list[int], Body()],
+):
+    """Delete the selected records in one transaction using single-record rules."""
+    domain.require_objclass_writer(current_user, session)
+    for id in sorted(set(ids)):
+        domain.delete_objclass(current_user=current_user, session=session, id=id)
+    session.commit()
+    return SuccessResponse()
+
+
 # NOTE: Order matters for path parameters
 @router.put("/bulk", response_model=SuccessResponse)
 @router.patch("/bulk", response_model=SuccessResponse)

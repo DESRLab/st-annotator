@@ -1,8 +1,20 @@
-import type { RouteConfig } from "@react-router/dev/routes";
+import type { RouteConfig, RouteConfigEntry } from "@react-router/dev/routes";
 import { index, prefix, route, layout } from "@react-router/dev/routes";
 
-import type { PluginRoutes } from "./config";
+import type { PluginRoutes, RoutePlugin } from "./config";
 import routesConfig from "./sta-routes-config.shim";
+
+// Prefixes group URLs without requiring a parent page to render an Outlet.
+function pluginRoutes(entries: RoutePlugin[]): RouteConfigEntry[] {
+  return entries.flatMap((entry) =>
+    entry.children?.length
+      ? prefix(entry.path, [
+          index(entry.module),
+          ...pluginRoutes(entry.children),
+        ])
+      : [route(entry.path, entry.module)],
+  );
+}
 
 const pluginsArr: PluginRoutes[] = Array.from(
   Object.values(routesConfig.plugins),
@@ -35,15 +47,15 @@ export default [
         route("files", "./routes/source/files.tsx"),
         ...prefix("data", [
           index("./routes/source/data/dashboard.tsx"),
-          ...pluginsArr
-            .flatMap((p) => p.routes.source?.data ?? [])
-            .map((d) => route(d.path, d.module)),
+          ...pluginsArr.flatMap((p) =>
+            pluginRoutes(p.routes.source?.data ?? []),
+          ),
         ]),
         ...prefix("specs", [
           index("./routes/source/specs/dashboard.tsx"),
-          ...pluginsArr
-            .flatMap((p) => p.routes.source?.specs ?? [])
-            .map((d) => route(d.path, d.module)),
+          ...pluginsArr.flatMap((p) =>
+            pluginRoutes(p.routes.source?.specs ?? []),
+          ),
         ]),
       ]),
     ]),
@@ -54,9 +66,9 @@ export default [
         route("repos", "./routes/label/repos.tsx"),
         ...prefix("data", [
           index("./routes/label/data/dashboard.tsx"),
-          ...pluginsArr
-            .flatMap((p) => p.routes.label?.data ?? [])
-            .map((d) => route(d.path, d.module)),
+          ...pluginsArr.flatMap((p) =>
+            pluginRoutes(p.routes.label?.data ?? []),
+          ),
         ]),
         ...prefix("specs", [
           index("./routes/label/specs/dashboard.tsx"),
@@ -68,9 +80,9 @@ export default [
               "./routes/label/specs/objclass/definitions.tsx",
             ),
           ]),
-          ...pluginsArr
-            .flatMap((p) => p.routes.label?.specs ?? [])
-            .map((d) => route(d.path, d.module)),
+          ...pluginsArr.flatMap((p) =>
+            pluginRoutes(p.routes.label?.specs ?? []),
+          ),
         ]),
       ]),
     ]),

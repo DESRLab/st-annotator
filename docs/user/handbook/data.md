@@ -78,6 +78,11 @@ Navigate to the Source Specifications page (`Source Data > Specifications`), whi
 
 Users with the `data-manager` role can also add, modify and delete data specifications.
 
+Specification tables use page navigation and a page-size selector. Column filters
+and sorting apply across the full table. In multi-select tables, `Select Current
+Page` selects the displayed rows, while `Select All` selects every matching row
+across pages.
+
 Choose the groups that use a specification under `Source Groups`. One
 specification can serve several groups, but a group can use only one
 specification for each data type. Remove a group from its previous specification
@@ -95,6 +100,10 @@ assign nonempty `Source Groups` only when one specification is selected. With
 several selected, leave `Update Source Groups` unticked to keep their groups, or
 tick it with an empty picker to remove all their group assignments.
 See [Batch Editing](./index.md#batch-editing) for the shared dialog controls.
+
+To delete several specifications, select them and choose `Batch Delete` from
+the row menu. The confirmation counts every selected record, including rows
+selected on other pages.
 
 Create a specification and assign its groups before registering files. Changes
 to specifications or their group assignments can trigger spatial-bounds
@@ -165,6 +174,13 @@ Use `Label Data > Specifications > Object Classes` to configure the classes anno
 - `Selections` sets the object classes to include for each label group.
 
 Choose the groups that use a selection under `Label Groups`. One selection can serve several groups, but a group can use only one selection. A selection with no groups is unused. A group with no selection offers no object classes in the editor.
+
+Object-class definition and selection tables offer `Select Current Page`,
+`Select All`, and `Deselect All` beside the create button. `Select All` includes
+all rows matching the current filters across pages. Select multiple specifications
+and choose `Batch Delete` from the row menu to delete the selection. The
+confirmation shows the number of records, including matching rows on other
+pages. Deleting an object-class definition preserves its historical label data.
 
 If the Relations layer is available, use its label specifications to configure relation classes separately from object classes.
 

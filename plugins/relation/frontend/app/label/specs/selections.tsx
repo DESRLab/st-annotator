@@ -8,7 +8,15 @@ import {
   useRoutePaginationGridOptions,
 } from "sta/app/components";
 import { useEffect, useRef, useState } from "react";
-import { Alert, Breadcrumb, Button, Form, Modal, Nav } from "react-bootstrap";
+import {
+  Alert,
+  Breadcrumb,
+  Button,
+  ButtonGroup,
+  Form,
+  Modal,
+  Nav,
+} from "react-bootstrap";
 import { Form as RouterForm, useLocation, useNavigation } from "react-router";
 import type {
   Column,
@@ -487,7 +495,12 @@ export async function action({ request }: Route.ActionArgs) {
           });
     return response.error
       ? { error: normalizeError(response.error) }
-      : { success: "Selected records updated." };
+      : {
+          success:
+            actionType === "batch_delete"
+              ? "Selected records deleted."
+              : "Selected records updated.",
+        };
   }
 
   if (actionType === "create") {
@@ -823,15 +836,14 @@ function RelationClassSelectionsTable({
         Select which relation classes you want to include for each label group.
       </div>
 
-      <div className="mb-3">
-        {canManage && (
-          <Button variant="primary" onClick={handleCreate}>
-            Create Relation Class Selection
-          </Button>
-        )}
-      </div>
-
-      <div className="mb-3">
+      <div className="mb-3 d-flex gap-2">
+        <ButtonGroup className="justify-content-start me-auto">
+          {canManage && (
+            <Button variant="primary" onClick={handleCreate}>
+              Create Relation Class Selection
+            </Button>
+          )}
+        </ButtonGroup>
         <GridSelectionButtons
           selectedCount={selectedIds.length}
           currentPageCount={dataset.length}

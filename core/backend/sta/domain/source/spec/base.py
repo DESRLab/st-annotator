@@ -17,6 +17,8 @@ from ....models.source.spec import (
 )
 from ....models.user import Role, UserPublic
 from ...auth import require_role
+from ...filtering import apply_column_filters
+from ...querying import SortDirection, apply_sort
 from ..groups import get_valid_group_ids
 
 __all__ = ["SourceSpecDomain"]
@@ -196,6 +198,9 @@ class SourceSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         limit: int | None = None,
         ids: Set[int] | None = None,
         name: str | None = None,
+        filters: str | None = None,
+        sort_by: str | None = None,
+        sort_dir: SortDirection = "asc",
     ) -> Sequence[_T]:
         q = self._build_list_specs_query(
             current_user=current_user,
@@ -204,6 +209,9 @@ class SourceSpecDomain(Generic[_T, _C, _P, _U, _BU]):
             limit=limit,
             ids=ids,
             name=name,
+            filters=filters,
+            sort_by=sort_by,
+            sort_dir=sort_dir,
         )
 
         records = session.exec(q).all()
@@ -219,6 +227,9 @@ class SourceSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         limit: int | None = None,
         ids: Set[int] | None = None,
         name: str | None = None,
+        filters: str | None = None,
+        sort_by: str | None = None,
+        sort_dir: SortDirection = "asc",
     ):
         table_cls = self.table_cls
 
@@ -234,7 +245,9 @@ class SourceSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         if ids is not None:
             q = q.where(sql_column(table_cls.id).in_(ids))
 
-        return q
+        q = apply_column_filters(q, table_cls, filters, allowed_columns={"id", "name"})
+        q = apply_sort(q, {"id": table_cls.id, "name": table_cls.name}, sort_by, sort_dir)
+        return q.order_by(sql_column(table_cls.id))
 
     def count_specs(
         self,
@@ -243,6 +256,7 @@ class SourceSpecDomain(Generic[_T, _C, _P, _U, _BU]):
         session: Session,
         ids: Set[int] | None = None,
         name: str | None = None,
+        filters: str | None = None,
     ) -> int:
         q = self._build_list_specs_query(
             current_user=current_user,
@@ -251,6 +265,7 @@ class SourceSpecDomain(Generic[_T, _C, _P, _U, _BU]):
             limit=None,
             ids=ids,
             name=name,
+            filters=filters,
         )
 
         return session.exec(select(func.count()).select_from(q.subquery())).one()

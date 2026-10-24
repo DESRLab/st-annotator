@@ -1,3 +1,13 @@
+import {
+  BatchDeleteMessage,
+  DeleteConfirmationTitle,
+  BatchSection,
+  GridSelectionButtons,
+  createSlickgridClientLoader,
+  selectableConfig,
+  syncRoutePaginationGrid,
+  useRoutePaginationGridOptions,
+} from "sta/app/components";
 import { useEffect, useRef, useState } from "react";
 import {
   Alert,
@@ -22,14 +32,6 @@ import type {
   SlickgridReactInstance,
 } from "slickgrid-react";
 
-import {
-  BatchSection,
-  GridSelectionButtons,
-  createSlickgridClientLoader,
-  selectableConfig,
-  syncRoutePaginationGrid,
-  useRoutePaginationGridOptions,
-} from "sta/app/components";
 import { VectorInputFields, type VectorField } from "sta/app/components";
 import {
   getGridPaginationRequest,
@@ -2131,7 +2133,9 @@ function GroundMeshMetadataTable({
 
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
+          <DeleteConfirmationTitle
+            count={groundMeshMetadataToDelete ? undefined : selectedIds.length}
+          />
         </Modal.Header>
         <RouterForm method="post">
           <Modal.Body>
@@ -2168,13 +2172,11 @@ function GroundMeshMetadataTable({
                   name="selectedIds"
                   value={JSON.stringify(selectedIds)}
                 />
-                <p>
-                  Are you sure you want to delete {selectedIds.length} selected{" "}
-                  {selectedIds.length === 1
-                    ? "ground mesh entry"
-                    : "ground mesh entries"}
-                  ?
-                </p>
+                <BatchDeleteMessage
+                  count={selectedIds.length}
+                  itemName="ground mesh entry"
+                  pluralItemName="ground mesh entries"
+                />
               </>
             )}
             <p className="text-muted small">This action cannot be undone.</p>

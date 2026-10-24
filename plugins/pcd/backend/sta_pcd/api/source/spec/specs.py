@@ -7,7 +7,7 @@ from sqlmodel import Session
 from sta.api.auth import get_current_user
 from sta.api.crud import commit_queued_jobs, commit_record
 from sta.api.responses import QueuedJobsResponse, set_content_range
-from sta.domain.querying import Pagination, pagination_params
+from sta.domain.querying import Pagination, Sorting, pagination_params, sorting_params
 from sta.models.user import UserPublic
 from sta.session import get_session
 
@@ -65,6 +65,8 @@ def list_specs(
     session: Annotated[Session, Depends(get_session)],
     pagination: Annotated[Pagination, Depends(pagination_params)],
     name: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
+    sorting: Annotated[Sorting, Depends(sorting_params)],
 ):
     specs = domain.list_specs(
         current_user=current_user,
@@ -72,12 +74,16 @@ def list_specs(
         offset=pagination.offset,
         limit=pagination.limit,
         name=name,
+        filters=filters,
+        sort_by=sorting.sort_by,
+        sort_dir=sorting.sort_dir,
     )
 
     total_specs = domain.count_specs(
         current_user=current_user,
         session=session,
         name=name,
+        filters=filters,
     )
     set_content_range(
         response,
@@ -88,6 +94,26 @@ def list_specs(
     )
 
     return specs
+
+
+@router.get("/ids", response_model=list[int])
+def list_spec_ids(
+    *,
+    current_user: Annotated[UserPublic, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)],
+    name: Annotated[str | None, Query()] = None,
+    filters: Annotated[str | None, Query()] = None,
+):
+    """Return every readable specification id matching the grid filters."""
+    records = domain.list_specs(
+        current_user=current_user,
+        session=session,
+        offset=None,
+        limit=None,
+        name=name,
+        filters=filters,
+    )
+    return [record.id for record in records]
 
 
 # NOTE: Order matters for path parameters

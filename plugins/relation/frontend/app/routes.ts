@@ -13,16 +13,24 @@ const routes = {
         path: "relation-class",
         module: pluginRouteModule(import.meta.url, "./label/specs/index"),
         title: "Relation Classes",
-      },
-      {
-        path: "relation-class/definitions",
-        module: pluginRouteModule(import.meta.url, "./label/specs/definitions"),
-        title: "Relation Class Definitions",
-      },
-      {
-        path: "relation-class/selections",
-        module: pluginRouteModule(import.meta.url, "./label/specs/selections"),
-        title: "Relation Class Selections",
+        children: [
+          {
+            path: "definitions",
+            module: pluginRouteModule(
+              import.meta.url,
+              "./label/specs/definitions",
+            ),
+            title: "Relation Class Definitions",
+          },
+          {
+            path: "selections",
+            module: pluginRouteModule(
+              import.meta.url,
+              "./label/specs/selections",
+            ),
+            title: "Relation Class Selections",
+          },
+        ],
       },
     ],
   },

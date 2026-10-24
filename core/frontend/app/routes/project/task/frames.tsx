@@ -1,3 +1,7 @@
+import {
+  BatchDeleteMessage,
+  DeleteConfirmationTitle,
+} from "../../../components/DeleteConfirmation";
 import _ from "lodash";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import {
@@ -1546,7 +1550,9 @@ export function FrameTable({
       {canManageFrames && (
         <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
           <Modal.Header closeButton>
-            <Modal.Title>Confirm Delete</Modal.Title>
+            <DeleteConfirmationTitle
+              count={selectedIds.length > 1 ? selectedIds.length : undefined}
+            />
           </Modal.Header>
           <RouterForm action={framesActionUrl} method="post">
             <Modal.Body>
@@ -1556,10 +1562,11 @@ export function FrameTable({
                 name="selectedIds"
                 value={JSON.stringify(selectedIds)}
               />
-              <p>
-                Are you sure you want to delete {selectedIds.length} selected{" "}
-                {selectedIds.length === 1 ? "frame" : "frames"}?
-              </p>
+              <BatchDeleteMessage
+                count={selectedIds.length}
+                itemName="frame"
+                pluralItemName="frames"
+              />
               <p className="text-muted small">This action cannot be undone.</p>
             </Modal.Body>
             <Modal.Footer>

@@ -1,3 +1,13 @@
+import {
+  BatchDeleteMessage,
+  DeleteConfirmationTitle,
+  BatchSection,
+  createSlickgridClientLoader,
+  GridSelectionButtons,
+  selectableConfig,
+  syncRoutePaginationGrid,
+  useRoutePaginationGridOptions,
+} from "sta/app/components";
 import { useEffect, useRef, useState } from "react";
 import {
   Alert,
@@ -17,14 +27,6 @@ import type {
   SlickgridReactInstance,
 } from "slickgrid-react";
 
-import {
-  BatchSection,
-  createSlickgridClientLoader,
-  GridSelectionButtons,
-  selectableConfig,
-  syncRoutePaginationGrid,
-  useRoutePaginationGridOptions,
-} from "sta/app/components";
 import { VectorInputFields, type VectorField } from "sta/app/components";
 import {
   getGridPaginationRequest,
@@ -2221,7 +2223,9 @@ function PointCloudMetadataTable({
 
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
+          <DeleteConfirmationTitle
+            count={pointCloudMetadataToDelete ? undefined : selectedIds.length}
+          />
         </Modal.Header>
         <RouterForm method="post">
           <Modal.Body>
@@ -2258,10 +2262,11 @@ function PointCloudMetadataTable({
                   name="selectedIds"
                   value={JSON.stringify(selectedIds)}
                 />
-                <p>
-                  Are you sure you want to delete {selectedIds.length} selected{" "}
-                  {selectedIds.length === 1 ? "point cloud" : "point clouds"}?
-                </p>
+                <BatchDeleteMessage
+                  count={selectedIds.length}
+                  itemName="point cloud"
+                  pluralItemName="point clouds"
+                />
               </>
             )}
             <p className="text-muted small">This action cannot be undone.</p>

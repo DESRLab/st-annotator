@@ -79,6 +79,35 @@ def test_every_classified_protected_operation_rejects_anonymous_requests(
     assert failures == []
 
 
+def _route_entries(source: str, prefix: str = "") -> Iterator[tuple[str, str]]:
+    """Read route objects recursively, preserving each child's URL prefix."""
+    # Route declarations use literal paths and module helper calls. Track object
+    # depth so a child's fields cannot be mistaken for its parent's fields.
+    depth = 0
+    start = 0
+    for offset, char in enumerate(source):
+        if char == "{":
+            if depth == 0:
+                start = offset
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth != 0:
+                continue
+            entry = source[start : offset + 1]
+            path = re.search(r'path:\s*"([^"]+)"', entry)
+            module = re.search(
+                r'module:\s*(?:routeModule\(\s*|pluginRouteModule\(\s*import\.meta\.url,\s*)"\./([^"]+)"',
+                entry,
+            )
+            assert path is not None and module is not None
+            url = f"{prefix}/{path[1]}"
+            yield url, module[1]
+            children = entry.find("children:")
+            if children != -1:
+                yield from _route_entries(entry[children:], url)
+
+
 def test_every_shipped_plugin_frontend_route_has_an_explicit_classification():
     """Match plugin route contributions to their classified public URL patterns."""
     rows = _read_manifest(FRONTEND_MANIFEST, columns=3)
@@ -95,12 +124,16 @@ def test_every_shipped_plugin_frontend_route_has_an_explicit_classification():
             section_marker = f"{section}: ["
             if marker not in source or section_marker not in source:
                 continue
-            block = source.split(section_marker, 1)[1].split("]", 1)[0]
-            for path, module in re.findall(
-                r'path:\s*"([^"]+)"[\s\S]*?module:\s*(?:routeModule\(\s*|pluginRouteModule\(\s*import\.meta\.url,\s*)"\./([^"]+)"',
-                block,
-            ):
-                discovered.add((f"/{area}/{section}/{path}", f"{plugin}:{module}"))
+            block_start = source.index(section_marker) + len(section_marker)
+            depth = 1
+            block_end = block_start
+            while depth:
+                char = source[block_end]
+                depth += (char == "[") - (char == "]")
+                block_end += 1
+            block = source[block_start : block_end - 1]
+            for path, module in _route_entries(block):
+                discovered.add((f"/{area}/{section}{path}", f"{plugin}:{module}"))
 
         # Every route declaration must be matched, including sections with
         # multiple contributions and pluginRouteModule's source/built resolver.

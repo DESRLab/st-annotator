@@ -4,6 +4,8 @@ export interface RoutePlugin {
   path: string;
   module: string;
   title: string;
+  /** Subpages use relative paths and do not appear in the dashboard. */
+  children?: RoutePlugin[];
 }
 
 /** The kind of DOM element the editor shell creates for an overlay slot. */
