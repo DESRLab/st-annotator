@@ -256,9 +256,16 @@ def test_spec_reads_are_scoped_to_visible_groups(
         )
 
 
-@pytest.mark.parametrize(
-    ("spec_domain", "group_model", "create_group", "group_cls", "get_valid_group_ids", "prefix"),
-    [
+def test_spec_writers_see_every_group_they_replace(
+    root_user: UserPublic,
+    session: Session,
+):
+    """A write rebuilds the link rows from the submitted group ids, so a writer
+    whose visible groups are a subset would persist a list missing the rest and
+    unassign them without an error. Only roles that resolve to the complete group
+    set may therefore write a specification.
+    """
+    for spec_domain, group_model, create_group, group_cls, get_valid_group_ids, prefix in [
         (
             base_spec_domain,
             LabelGroup,
@@ -275,50 +282,34 @@ def test_spec_reads_are_scoped_to_visible_groups(
             get_valid_source_group_ids,
             "source",
         ),
-    ],
-)
-def test_spec_writers_see_every_group_they_replace(
-    root_user: UserPublic,
-    session: Session,
-    spec_domain,
-    group_model,
-    create_group,
-    group_cls,
-    get_valid_group_ids,
-    prefix: str,
-):
-    """A write rebuilds the link rows from the submitted group ids, so a writer
-    whose visible groups are a subset would persist a list missing the rest and
-    unassign them without an error. Only roles that resolve to the complete group
-    set may therefore write a specification.
-    """
-    create_group(
-        current_user=root_user,
-        session=session,
-        data=group_cls(name=f"{prefix}-writer-coupling"),
-    )
-    all_group_ids = set(session.exec(select(group_model.id)).all())
-    assert all_group_ids
+    ]:
+        create_group(
+            current_user=root_user,
+            session=session,
+            data=group_cls(name=f"{prefix}-writer-coupling"),
+        )
+        all_group_ids = set(session.exec(select(group_model.id)).all())
+        assert all_group_ids
 
-    users = {
-        role: UserPublic(id=index, username=f"{prefix}-{role.value}", roles={role})
-        for index, role in enumerate(Role, start=10_000)
-    }
-    writable = [role for role in Role if _can_write_specs(spec_domain, users[role], session)]
+        users = {
+            role: UserPublic(id=index, username=f"{prefix}-{role.value}", roles={role})
+            for index, role in enumerate(Role, start=10_000)
+        }
+        writable = [role for role in Role if _can_write_specs(spec_domain, users[role], session)]
 
-    # Neither direction may be vacuous: the gate has to admit someone, and
-    # visibility has to exclude someone, or the coupling below proves nothing.
-    assert writable
-    assert len(writable) < len(list(Role))
+        # Neither direction may be vacuous: the gate has to admit someone, and
+        # visibility has to exclude someone, or the coupling below proves nothing.
+        assert writable
+        assert len(writable) < len(list(Role))
 
-    for role in writable:
-        assert get_valid_group_ids(users[role], session) == all_group_ids
+        for role in writable:
+            assert get_valid_group_ids(users[role], session) == all_group_ids
 
-    assert any(
-        get_valid_group_ids(users[role], session) != all_group_ids
-        for role in Role
-        if role not in writable
-    )
+        assert any(
+            get_valid_group_ids(users[role], session) != all_group_ids
+            for role in Role
+            if role not in writable
+        )
 
 
 def test_label_group_has_at_most_one_spec_per_type(root_user: UserPublic, session: Session):
@@ -552,30 +543,30 @@ def test_different_label_spec_types_can_share_group(root_user: UserPublic, sessi
     assert {linked.id for linked in stored_selection.objclasses} == {objclass.id}
 
 
-@pytest.mark.parametrize("field", ["group_ids", "objclass_ids"])
-def test_selection_rejects_null_relationship_collections(
-    root_user: UserPublic,
-    session: Session,
-    field: str,
-):
+def test_selection_rejects_null_relationship_collections(root_user: UserPublic, session: Session):
     group = create_label_group(
-        current_user=root_user,
-        session=session,
-        data=LabelGroupCreate(name=f"null-{field}-group"),
+        current_user=root_user, session=session, data=LabelGroupCreate(name="null-collection-group")
     )
     spec = selections.create_spec(
         current_user=root_user,
         session=session,
         data=selections.create_cls(name="null-links", group_ids=[group.id], objclass_ids=[]),
     )
-    with pytest.raises(HTTPException) as exc_info:
-        selections.update_spec(
-            current_user=root_user,
-            session=session,
-            id=spec.id,
-            data=selections.update_cls(**{field: None}),
-        )
-    assert exc_info.value.status_code == 422
+    session.commit()
+    for field in ("group_ids", "objclass_ids"):
+        with pytest.raises(HTTPException) as exc_info:
+            selections.update_spec(
+                current_user=root_user,
+                session=session,
+                id=spec.id,
+                data=selections.update_cls(**{field: None}),
+            )
+        assert exc_info.value.status_code == 422, field
+        session.expire_all()
+        stored = session.get(selections.table_cls, spec.id)
+        assert stored is not None
+        assert {linked.id for linked in stored.groups} == {group.id}
+        assert stored.objclasses == []
 
 
 def test_deleted_objclass_is_preserved_but_not_currently_selectable(

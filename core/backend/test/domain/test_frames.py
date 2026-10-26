@@ -343,34 +343,27 @@ def _serialize_page(root_user: UserPublic, session: Session, *, recent: bool) ->
         FramePublicWithParents.model_validate(record)
 
 
-@pytest.mark.parametrize("recent", [False, True])
 def test_frame_list_serialization_has_bounded_query_count(
     root_user: UserPublic,
     session: Session,
-    *,
-    recent: bool,
 ):
-    """
-    Reading and serializing a page costs the same number of queries however many
-    rows the page holds. The second page has three times as many frames as the
-    first, so per-row lazy loading cannot hide behind a fixed page.
-    """
+    """Both listing modes serialize small and large pages with a fixed query budget."""
     branch_id = _create_branch(session, root_user, name="frames-listed-branch").id
     _seed_frames(session, root_user, branch_id=branch_id, count=2)
     session.commit()
-    small_page = _measure_statements(
-        session,
-        lambda: _serialize_page(root_user, session, recent=recent),
-    )
-
+    small_pages = {
+        recent: _measure_statements(
+            session, lambda recent=recent: _serialize_page(root_user, session, recent=recent)
+        )
+        for recent in (False, True)
+    }
     _seed_frames(session, root_user, branch_id=branch_id, count=6, start=2)
     session.commit()
-    large_page = _measure_statements(
-        session,
-        lambda: _serialize_page(root_user, session, recent=recent),
-    )
-
-    assert small_page == large_page == _LIST_STATEMENTS
+    for recent in (False, True):
+        large_page = _measure_statements(
+            session, lambda recent=recent: _serialize_page(root_user, session, recent=recent)
+        )
+        assert small_pages[recent] == large_page == _LIST_STATEMENTS, recent
 
 
 def test_frame_payload_keeps_assigned_accounts_but_not_the_task_tree(

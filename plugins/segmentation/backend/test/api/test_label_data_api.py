@@ -7,7 +7,7 @@ from sta.api.root import build_api
 from sta.testing.config import TestApp
 
 
-def test_committed_segmentation_data_has_no_direct_write_routes(test_app: TestApp):
+def test_production_segmentation_api_exposes_reads_without_direct_mutations(test_app: TestApp):
     client = TestClient(build_api(frontend_url="http://localhost:5174"))
     paths = (
         "/label/data/segmentation/element/",
@@ -25,10 +25,6 @@ def test_committed_segmentation_data_has_no_direct_write_routes(test_app: TestAp
         assert client.patch(path, json={}).status_code == HTTPStatus.METHOD_NOT_ALLOWED
         assert client.put(path, json={}).status_code == HTTPStatus.METHOD_NOT_ALLOWED
         assert client.delete(path).status_code == HTTPStatus.METHOD_NOT_ALLOWED
-
-
-def test_segmentation_read_routes_remain_available(test_app: TestApp):
-    client = TestClient(build_api(frontend_url="http://localhost:5174"))
 
     # Authentication is evaluated by the registered GET handlers. A removed
     # route would return 404/405 instead.

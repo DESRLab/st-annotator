@@ -187,33 +187,24 @@ def test_assistant_headers_forward_point_cloud_id_and_use_authenticated_user():
     }
 
 
-@pytest.mark.parametrize(
-    ("method", "path", "headers"),
-    [
-        ("GET", "/editor/segmentation/assistant/health", {}),
-        (
-            "POST",
-            "/editor/segmentation/encode_pcd",
-            {"X-Num-Points": "10", "X-Pcd-Id": "99"},
-        ),
-        (
-            "POST",
-            "/editor/segmentation/predict_mask",
-            {"X-Num-Points": "10", "X-Pcd-Id": "99", "X-Labels": "1,0"},
-        ),
-    ],
-)
-def test_assistant_public_routes_require_authentication(
-    test_app: TestApp,
-    method: str,
-    path: str,
-    headers: dict[str, str],
-):
+def test_assistant_public_routes_require_authentication(test_app: TestApp):
     del test_app
     with TestClient(build_api(frontend_url="http://localhost:5174")) as client:
-        response = client.request(method, path, headers=headers, content=b"points")
-
-    assert response.status_code == 401
+        for method, path, headers in [
+            ("GET", "/editor/segmentation/assistant/health", {}),
+            (
+                "POST",
+                "/editor/segmentation/encode_pcd",
+                {"X-Num-Points": "10", "X-Pcd-Id": "99"},
+            ),
+            (
+                "POST",
+                "/editor/segmentation/predict_mask",
+                {"X-Num-Points": "10", "X-Pcd-Id": "99", "X-Labels": "1,0"},
+            ),
+        ]:
+            response = client.request(method, path, headers=headers, content=b"points")
+            assert response.status_code == 401, path
 
 
 def test_assistant_health_public_route_uses_authenticated_probe(
@@ -233,44 +224,9 @@ def test_assistant_health_public_route_uses_authenticated_probe(
     probe.assert_awaited_once_with()
 
 
-@pytest.mark.parametrize(
-    ("path", "expected_method", "expected_endpoint", "request_headers", "upstream_headers"),
-    [
-        (
-            "/editor/segmentation/encode_pcd",
-            "POST",
-            "encode_pcd",
-            {"X-Num-Points": "10", "X-Pcd-Id": "99"},
-            {
-                "Content-Type": "application/octet-stream",
-                "X-Num-Points": "10",
-                "X-Pcd-Id": "99",
-                "X-User-Id": "42",
-            },
-        ),
-        (
-            "/editor/segmentation/predict_mask",
-            "PUT",
-            "predict_mask",
-            {"X-Num-Points": "10", "X-Pcd-Id": "99", "X-Labels": "1,0"},
-            {
-                "Content-Type": "application/octet-stream",
-                "X-Num-Points": "10",
-                "X-Pcd-Id": "99",
-                "X-Labels": "1,0",
-                "X-User-Id": "42",
-            },
-        ),
-    ],
-)
 def test_assistant_public_routes_forward_method_and_authenticated_headers(
     monkeypatch,
     test_app: TestApp,
-    path: str,
-    expected_method: str,
-    expected_endpoint: str,
-    request_headers: dict[str, str],
-    upstream_headers: dict[str, str],
 ):
     app = build_api(frontend_url="http://localhost:5174")
     app.dependency_overrides[get_current_user] = lambda: _user()
@@ -278,13 +234,40 @@ def test_assistant_public_routes_forward_method_and_authenticated_headers(
     monkeypatch.setattr(editor, "_proxy_assistant_request", proxy)
 
     with TestClient(app) as client:
-        response = client.post(path, headers=request_headers, content=b"points")
-
-    assert response.status_code == 200
-    assert response.content == b"result"
-    proxy.assert_awaited_once()
-    call = proxy.await_args.kwargs
-    assert call["method"] == expected_method
-    assert call["endpoint"] == expected_endpoint
-    assert call["headers"] == upstream_headers
-    assert call["request"].scope["path"] == path
+        for path, expected_method, expected_endpoint, request_headers, upstream_headers in [
+            (
+                "/editor/segmentation/encode_pcd",
+                "POST",
+                "encode_pcd",
+                {"X-Num-Points": "10", "X-Pcd-Id": "99"},
+                {
+                    "Content-Type": "application/octet-stream",
+                    "X-Num-Points": "10",
+                    "X-Pcd-Id": "99",
+                    "X-User-Id": "42",
+                },
+            ),
+            (
+                "/editor/segmentation/predict_mask",
+                "PUT",
+                "predict_mask",
+                {"X-Num-Points": "10", "X-Pcd-Id": "99", "X-Labels": "1,0"},
+                {
+                    "Content-Type": "application/octet-stream",
+                    "X-Num-Points": "10",
+                    "X-Pcd-Id": "99",
+                    "X-Labels": "1,0",
+                    "X-User-Id": "42",
+                },
+            ),
+        ]:
+            proxy.reset_mock()
+            response = client.post(path, headers=request_headers, content=b"points")
+            assert response.status_code == 200
+            assert response.content == b"result"
+            proxy.assert_awaited_once()
+            call = proxy.await_args.kwargs
+            assert call["method"] == expected_method
+            assert call["endpoint"] == expected_endpoint
+            assert call["headers"] == upstream_headers
+            assert call["request"].scope["path"] == path

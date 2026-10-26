@@ -100,20 +100,20 @@ def test_read_supported_formats(fs_root: Path, uri: str, writer) -> None:
     pcd = read(uri)
 
     assert pcd.channel_headers == tuple(CHANNEL_HEADERS)
+    assert pcd.num_channels == len(CHANNEL_HEADERS)
     assert pcd.num_points == 2
     assert_array_equal(pcd.pointwise_data.astype(np.float32), EXPECTED_POINTS)
 
 
 def test_read_bin_is_interpreted_using_the_configured_dtype(fs_root: Path) -> None:
-    # 8 float64 values laid out as 4 float32 pairs would be misread; write float32 explicitly.
-    write_bin("data.bin")
-
+    with FileSystemPath.from_uri("float64.bin").open("wb") as file:
+        EXPECTED_POINTS.astype(np.float64).tofile(file)
     pcd = PointCloudFileIO().read(
-        "data.bin", dtype="float32", channel_headers=list(CHANNEL_HEADERS)
+        "float64.bin", dtype="float64", channel_headers=list(CHANNEL_HEADERS)
     )
-
     assert pcd.num_points == 2
     assert pcd.num_channels == 4
+    assert_array_equal(pcd.pointwise_data, EXPECTED_POINTS)
 
 
 def test_read_npy_with_more_columns_than_headers_truncates(fs_root: Path) -> None:

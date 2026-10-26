@@ -28,88 +28,11 @@ declare global {
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 Element.prototype.scrollIntoView = vi.fn();
 
-async function renderView(node: React.ReactNode) {
-  const container = document.createElement("div");
-  document.body.appendChild(container);
-  const root = createRoot(container);
-
-  await act(async () => {
-    root.render(node);
-  });
-
-  return {
-    container,
-    unmount: async () => {
-      await act(async () => root.unmount());
-      container.remove();
-    },
-  };
-}
-
 afterEach(() => {
   document.body.replaceChildren();
 });
 
 describe("MainCameraPreferencesMenu", () => {
-  it("preserves menu keybinds while composing React preference tabs", async () => {
-    const layers = new LayerCollection({});
-    const mainWindow = { viewMode: "2D", overrideOrbitTarget: null };
-    const pcdLayer = { overrideOrbitTarget: { x: 1, y: 2, z: 3 } };
-    let menu: MainCameraPreferencesMenu | undefined;
-
-    await act(async () => {
-      menu = new MainCameraPreferencesMenu(
-        layers,
-        mainWindow as unknown as ConstructorParameters<
-          typeof MainCameraPreferencesMenu
-        >[1],
-        pcdLayer as unknown as ConstructorParameters<
-          typeof MainCameraPreferencesMenu
-        >[2],
-      );
-    });
-
-    // The pane containers read the pcd slice from the editor state store.
-    const pcdSlice: PointCloudSlice = {
-      camera: { viewMode: "2D", orbitPoint: false },
-      settings: {
-        values: {} as PointCloudSlice["settings"]["values"],
-        disabled: false,
-        target: null,
-      },
-    };
-    const store = createEditorStore(() =>
-      createEditorStateFixture({
-        layerDescriptors: [{ key: "pcd", name: "Point Cloud", kind: "source" }],
-        layers: {
-          pcd: pcdSlice,
-        } as unknown as Partial<LayersDomainSlice>,
-      }),
-    );
-    const view = await renderView(
-      <EditorStoreProvider store={store}>
-        <EditorIntentsProvider intents={noopEditorIntents}>
-          <MainCameraPreferencesMenuView />
-        </EditorIntentsProvider>
-      </EditorStoreProvider>,
-    );
-
-    expect((menu! as any).layers).toBe(layers);
-    expect(view.container.textContent).toContain("Main Camera");
-    expect(mainWindow.viewMode).toBe("2D");
-
-    await act(async () => {
-      menu!.keydownHandler.handle({ keyCombo: "x" } as any);
-      menu!.keydownHandler.handle({ keyCombo: "o" } as any);
-    });
-
-    expect(mainWindow.viewMode).toBe("3D");
-    expect(mainWindow.overrideOrbitTarget).toBe(pcdLayer.overrideOrbitTarget);
-
-    await view.unmount();
-    await act(async () => menu!.dispose());
-  });
-
   it("hosts the composed preferences menu with React and preserves camera bindings", async () => {
     const layers = new LayerCollection({});
     const mainWindow = { viewMode: "2D", overrideOrbitTarget: null };
@@ -162,6 +85,7 @@ describe("MainCameraPreferencesMenu", () => {
     });
 
     expect(menu!.layers).toBe(layers);
+    expect(mainWindow.viewMode).toBe("2D");
     expect(host.textContent).toContain("Main Camera");
     expect(host.textContent).toContain("Layer");
 

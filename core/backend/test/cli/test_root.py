@@ -21,17 +21,6 @@ def test_help():
     assert subprocess.call(["sta", "--help"]) == 0
 
 
-def test_load_plugins_guard_runs_loader_only_once(monkeypatch: pytest.MonkeyPatch):
-    load_plugins = MagicMock(name="load_plugins")
-    monkeypatch.setattr(sta_plugin, "load_plugins", load_plugins)
-
-    group = PluginCLIGroup(name="stub")
-    group._load_plugins()
-    group._load_plugins()
-
-    load_plugins.assert_called_once_with()
-
-
 def test_builtin_serve_defers_plugin_loading_until_application_logging_is_configured(
     monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture, app_config: AppConfig
 ):

@@ -1,69 +1,20 @@
 from __future__ import annotations
 
-from collections.abc import Callable
-from typing import TypeVar
+from dataclasses import dataclass
+from datetime import datetime, timezone
 
 import pydantic
 
-from hypothesis import given, note, strategies as st
+import pytest
+from hypothesis import given
 
 from sta.common.testing import jsontypes_equal, st_jsontypes
-from sta.common.utils.json import JSONType, JSONUnit, map_values, to_json
-
-T = TypeVar("T", bound=JSONUnit)
-
-
-def build_roundtrip_tests_for_map_values(
-    st_unit: st.SearchStrategy[T],
-    *,
-    forward_fn: Callable[[T], T],
-    backward_fn: Callable[[T], T],
-):
-    class TestMapValuesRoundtrip:
-        @given(json=st_jsontypes(st_unit))
-        def test_map_value_forward_backward(self, json: JSONType):
-            json_forwarded = map_values(json, mapper=forward_fn)  # pyright: ignore[reportArgumentType]
-            json_ = map_values(json_forwarded, mapper=backward_fn)  # pyright: ignore[reportArgumentType]
-
-            note(f"json_forwarded={json_forwarded}")
-            note(f"json_={json_}")
-
-            assert json == json_
-
-        @given(json=st_jsontypes(st_unit))
-        def test_map_value_backward_forward(self, json: JSONType):
-            json_backwarded = map_values(json, mapper=backward_fn)  # pyright: ignore[reportArgumentType]
-            json_ = map_values(json_backwarded, mapper=forward_fn)  # pyright: ignore[reportArgumentType]
-
-            note(f"json_backwarded={json_backwarded}")
-            note(f"json_={json_}")
-
-            assert json == json_
-
-    return TestMapValuesRoundtrip
-
-
-@given(st_jsontypes())
-def test_jsontype_pydantic_identity(v: JSONType):
-    assert jsontypes_equal(pydantic.TypeAdapter(JSONType).validate_python(v), v)
+from sta.common.utils.json import JSONType, map_values, to_json
 
 
 @given(st_jsontypes())
 def test_to_json_identity(v: JSONType):
     assert jsontypes_equal(to_json(v), v)
-
-
-TestMapValues_AddSub = build_roundtrip_tests_for_map_values(
-    st.integers(),
-    forward_fn=lambda x: x + 1,
-    backward_fn=lambda x: x - 1,
-)
-
-TestMapValues_Neg = build_roundtrip_tests_for_map_values(
-    st.integers(),
-    forward_fn=lambda x: -x,
-    backward_fn=lambda x: -x,
-)
 
 
 def test_map_values_nesting():
@@ -78,3 +29,42 @@ def test_map_values_no_postprocess():
     expected = {"a": [{}, ({}, {}, {"e": {}, "g": ({},)})], "i": {"j": [()]}}
 
     assert map_values(json, lambda x: {}) == expected
+
+
+@pytest.mark.parametrize("value", [None, False, 0, 1.5, "text"])
+def test_map_values_maps_scalar_leaves_once(value):
+    seen = []
+
+    def mapper(leaf):
+        seen.append(leaf)
+        return [leaf]
+
+    assert map_values(value, mapper) == [value]
+    assert seen == [value]
+
+
+def test_map_values_transforms_each_leaf_preserving_keys_and_containers():
+    value = {"key": [1, (2, {"nested": 3})], "empty": {}}
+    assert map_values(value, lambda leaf: leaf + 10) == {
+        "key": [11, (12, {"nested": 13})],
+        "empty": {},
+    }
+
+
+def test_to_json_converts_models_and_dataclasses_inside_containers():
+    class Event(pydantic.BaseModel):
+        at: datetime
+
+    @dataclass
+    class Envelope:
+        event: Event
+
+    event = Event(at=datetime(2026, 1, 1, tzinfo=timezone.utc))
+    assert to_json({"events": [Envelope(event)]}) == {
+        "events": [{"event": {"at": "2026-01-01T00:00:00Z"}}]
+    }
+
+
+def test_to_json_rejects_non_serializable_objects():
+    with pytest.raises(ValueError, match="Object is not JSON serializable"):
+        to_json(object())

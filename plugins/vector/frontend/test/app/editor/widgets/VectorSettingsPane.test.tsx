@@ -1,9 +1,11 @@
 /* @vitest-environment jsdom */
 
+import { act, default as React } from "react";
 import { beforeAll, describe, expect, it } from "vitest";
+import { renderTestView } from "../../../../../../../core/frontend/lib/common/lib/testing/react";
 
 import {
-  getTransformationSelectSettings,
+  TransformerSettingsPaneView,
   transformerSettingsPaneDataProcessor,
 } from "../../../../app/editor/scene/widgets/TransformerSettingsPane.react.tsx";
 import {
@@ -40,23 +42,37 @@ beforeAll(() => {
 });
 
 describe("TransformerSettingsPane", () => {
-  it("uses the vector-specific Tweakpane controller API for vector controls", async () => {
+  it("renders transformer options and forwards native selections through the React host", async () => {
     const paneParams = {
-      inputtedData: {
-        isTransformSelected: { vertex: true, vertices: true },
-      },
+      inputtedData: { isTransformSelected: { vertex: true, vertices: true } },
       computedData: {},
       settings: { disabled: false, hidden: false },
     };
-
-    expect(getTransformationSelectSettings(paneParams).cells(1)).toEqual({
-      title: "Vertices",
-      value: "vertices",
-    });
+    const changes: unknown[] = [];
+    const view = await renderTestView(
+      <TransformerSettingsPaneView
+        paneParams={paneParams}
+        onInputChange={(value) => changes.push(value)}
+      />,
+    );
+    expect(view.container.querySelector(".tp-rotv")).not.toBeNull();
+    const buttons = [
+      ...view.container.querySelectorAll<HTMLButtonElement>(".tp-selectbtnv_b"),
+    ];
+    expect(buttons.map((button) => button.textContent)).toEqual([
+      "Vertex",
+      "Vertices",
+    ]);
     expect(
       transformerSettingsPaneDataProcessor.outputData(paneParams)
         .isTransformSelected.vertex,
     ).toBe(true);
+    await act(async () => buttons[0].click());
+    expect(changes).toEqual([
+      { isTransformSelected: { vertex: false, vertices: true } },
+    ]);
+    await view.unmount();
+    expect(view.container.innerHTML).toBe("");
   });
 });
 

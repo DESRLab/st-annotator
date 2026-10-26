@@ -1072,9 +1072,12 @@ def _create_frame_write_targets(
     return task.id
 
 
-@pytest.mark.parametrize(
-    ("bounds", "reason"),
-    [
+def test_create_frame_rejects_inverted_bounds(
+    root_user: UserPublic,
+    session: Session,
+):
+    task_id = _create_frame_write_targets(root_user, session, "frame-create-bounds")
+    for bounds, reason in [
         ({"min_x": 20, "max_x": 10}, "minimum coordinates"),
         (
             {
@@ -1083,33 +1086,24 @@ def _create_frame_write_targets(
             },
             "minimum timestamp",
         ),
-    ],
-)
-def test_create_frame_rejects_inverted_bounds(
-    root_user: UserPublic,
-    session: Session,
-    bounds: dict,
-    reason: str,
-):
-    task_id = _create_frame_write_targets(root_user, session, "frame-create-bounds")
+    ]:
+        with pytest.raises(HTTPException) as exc_info:
+            create_frame(
+                current_user=root_user,
+                session=session,
+                data=FrameCreate(
+                    task_id=task_id,
+                    account_id=root_user.id,
+                    source_group_id=None,
+                    label_branch_id=None,
+                    work_type=WorkType.ANNOTATE,
+                    **bounds,
+                ),
+            )
 
-    with pytest.raises(HTTPException) as exc_info:
-        create_frame(
-            current_user=root_user,
-            session=session,
-            data=FrameCreate(
-                task_id=task_id,
-                account_id=root_user.id,
-                source_group_id=None,
-                label_branch_id=None,
-                work_type=WorkType.ANNOTATE,
-                **bounds,
-            ),
-        )
-
-    assert exc_info.value.status_code == 422
-    assert reason in exc_info.value.detail
-    assert session.exec(select(Frame)).all() == []
+        assert exc_info.value.status_code == 422
+        assert reason in exc_info.value.detail
+        assert session.exec(select(Frame)).all() == []
 
 
 def test_update_frame_rejects_bounds_inverting_the_retained_maximum(

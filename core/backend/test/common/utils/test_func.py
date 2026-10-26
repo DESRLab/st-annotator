@@ -1,215 +1,62 @@
 from __future__ import annotations
 
-from collections.abc import Callable, Sequence
+from collections.abc import Callable
+from unittest.mock import Mock, call
 
 import pytest
-from hypothesis import assume, given, note, strategies as st
+from hypothesis import given, strategies as st
 
 from sta.common.utils.func import OptionalEquals, T, retry
 
 
-def st_any() -> st.SearchStrategy[object]:
-    return st.none() | st.booleans() | st.binary() | st.integers() | st.floats() | st.functions()
+@pytest.mark.parametrize(
+    "kwargs, message",
+    [
+        ({"count": 0}, "positive integer"),
+        ({"count": -1}, "positive integer"),
+        ({"delay_secs": -0.1}, "non-negative number"),
+    ],
+)
+def test_retry_invalid_arguments(kwargs, message):
+    with pytest.raises(ValueError, match=message):
+        retry(ValueError, **kwargs)
 
 
-def st_count(
-    *,
-    valid_value: bool = True,
-    min_valid: int = 1,
-    max_valid: int = 8,
-) -> st.SearchStrategy[int]:
-    if valid_value:
-        return st.integers(min_value=min_valid, max_value=max_valid)
+@pytest.mark.parametrize("on", [ValueError, (TypeError, ValueError)])
+@pytest.mark.parametrize("count, failures", [(1, 0), (1, 1), (4, 0), (4, 1), (4, 3), (4, 4)])
+def test_retry_attempts_and_delays(monkeypatch, on, count, failures):
+    # Exercise the real decorator; only the wall-clock wait is replaced.
+    sleep = Mock()
+    monkeypatch.setattr("sta.common.utils.func.time.sleep", sleep)
+    errors = [ValueError(f"attempt {i}") for i in range(failures)]
+    operation = Mock(side_effect=[*errors, "result"])
+    wrapped = retry(on, count=count, delay_secs=0.25)(operation)
 
-    return st.integers(max_value=0)
-
-
-def st_values_with_delay(
-    st_value: st.SearchStrategy[T],
-    *,
-    min_size: int = 1,
-    max_size: int = 16,
-    delay_multiple: float = 1e-5,
-) -> st.SearchStrategy[Sequence[tuple[T, float]]]:
-    @st.composite
-    def build_st(draw: st.DrawFn) -> Sequence[tuple[T, float]]:
-        values = draw(
-            st.lists(st_value, min_size=min_size, max_size=max_size, unique=True), label="values"
-        )
-        random = draw(st.randoms(), label="random")
-
-        idxs = list(range(len(values)))
-        random.shuffle(idxs)
-        note(f"idxs={idxs}")
-
-        return [(value, idx * delay_multiple) for value, idx in zip(values, idxs, strict=True)]
-
-    return build_st()
-
-
-def st_delay_secs(*, valid: bool = True, max_valid: float = 1e-5) -> st.SearchStrategy[float]:
-    if valid:
-        return st.floats(min_value=0, max_value=max_valid, allow_nan=False)
-
-    return st.floats(max_value=0, exclude_max=True)
-
-
-def st_exc_or_tuple(*, min_size: int = 0) -> st.SearchStrategy[Exception | tuple[Exception, ...]]:
-    return st.one_of(
-        st.from_type(Exception),
-        st.lists(st.from_type(Exception), min_size=min_size).map(lambda x: tuple(x)),
-    )
-
-
-@given(st_exc_or_tuple(), st_count(valid_value=False), st_delay_secs())
-def test_retry_invalid_count_value(
-    exc_or_tuple: Exception | tuple[Exception, ...],
-    count: int,
-    delay_secs: float,
-):
-    if isinstance(exc_or_tuple, Exception):
-        on = type(exc_or_tuple)
+    if failures == count:
+        with pytest.raises(ValueError) as raised:
+            wrapped("argument", flag=True)
+        assert raised.value is errors[-1]
     else:
-        on = tuple(type(exc) for exc in exc_or_tuple)
+        assert wrapped("argument", flag=True) == "result"
 
-    with pytest.raises(ValueError):
-
-        @retry(on, count=count, delay_secs=delay_secs)
-        def identity(x: T) -> T:
-            return x
+    attempts = min(failures + 1, count)
+    assert operation.call_args_list == [call("argument", flag=True)] * attempts
+    assert sleep.call_args_list == [call(0.25)] * (attempts - 1)
 
 
-@given(st_exc_or_tuple(), st_count(), st_delay_secs(valid=False))
-def test_retry_invalid_delay_value(
-    exc_or_tuple: Exception | tuple[Exception, ...],
-    count: int,
-    delay_secs: float,
-):
-    if isinstance(exc_or_tuple, Exception):
-        on = type(exc_or_tuple)
-    else:
-        on = tuple(type(exc) for exc in exc_or_tuple)
+@pytest.mark.parametrize("on", [ValueError, (ValueError,), ()])
+def test_retry_propagates_unmatched_exception_without_waiting(monkeypatch, on):
+    sleep = Mock()
+    monkeypatch.setattr("sta.common.utils.func.time.sleep", sleep)
+    error = TypeError("unmatched")
+    operation = Mock(side_effect=error)
 
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError) as raised:
+        retry(on, count=4, delay_secs=0.25)(operation)()
 
-        @retry(on, count=count, delay_secs=delay_secs)
-        def identity(x: T) -> T:
-            return x
-
-
-@given(st_exc_or_tuple(), st_count(), st_delay_secs())
-def test_retry_success_no_retry(
-    exc_or_tuple: Exception | tuple[Exception, ...],
-    count: int,
-    delay_secs: float,
-):
-    if isinstance(exc_or_tuple, Exception):
-        on = type(exc_or_tuple)
-    else:
-        on = tuple(type(exc) for exc in exc_or_tuple)
-
-    attempt_count = 0
-
-    @retry(on, count=count, delay_secs=delay_secs)
-    def identity(x: T) -> T:
-        nonlocal attempt_count
-        attempt_count += 1
-
-        return x
-
-    assert identity(1) == 1, "Incorrect value"
-    assert attempt_count == 1, "Incorrect number of attempts"
-
-
-@given(st_exc_or_tuple(min_size=1), st_count(min_valid=2), st_delay_secs())
-def test_retry_success_on_retry(
-    exc_or_tuple: Exception | tuple[Exception, ...],
-    count: int,
-    delay_secs: float,
-):
-    if isinstance(exc_or_tuple, Exception):
-        on = type(exc_or_tuple)
-        exc = exc_or_tuple
-    else:
-        on = tuple(type(exc) for exc in exc_or_tuple)
-        exc = exc_or_tuple[0]
-
-    attempt_count = 0
-    is_fail = True
-
-    @retry(on, count=count, delay_secs=delay_secs)
-    def identity(x: T) -> T:
-        nonlocal attempt_count
-        attempt_count += 1
-
-        nonlocal is_fail
-
-        if is_fail:
-            is_fail = False
-            raise exc
-
-        return x
-
-    assert identity(1) == 1, "Incorrect value"
-    assert attempt_count == 2, "Incorrect number of attempts"
-
-
-@given(st_exc_or_tuple(min_size=1), st_count(), st_delay_secs())
-def test_retry_fail_exc_type_mismatch(
-    exc_or_tuple: Exception | tuple[Exception, ...],
-    count: int,
-    delay_secs: float,
-):
-    if isinstance(exc_or_tuple, Exception):
-        on = ()
-        exc = exc_or_tuple
-    else:
-        on = tuple(type(exc) for exc in exc_or_tuple[1:])
-        exc = exc_or_tuple[0]
-
-    assume(type(exc) not in on)
-
-    attempt_count = 0
-
-    @retry(on, count=count, delay_secs=delay_secs)
-    def identity(x: T) -> T:
-        nonlocal attempt_count
-        attempt_count += 1
-
-        raise exc
-
-    with pytest.raises(type(exc)):
-        identity(1)
-
-    assert attempt_count == 1, "Incorrect number of attempts"
-
-
-@given(st_exc_or_tuple(min_size=1), st_count(), st_delay_secs())
-def test_retry_fail_out_of_attempts(
-    exc_or_tuple: Exception | tuple[Exception, ...],
-    count: int,
-    delay_secs: float,
-):
-    if isinstance(exc_or_tuple, Exception):
-        on = type(exc_or_tuple)
-        exc = exc_or_tuple
-    else:
-        on = tuple(type(exc) for exc in exc_or_tuple)
-        exc = exc_or_tuple[0]
-
-    attempt_count = 0
-
-    @retry(on, count=count, delay_secs=delay_secs)
-    def identity(x: T) -> T:
-        nonlocal attempt_count
-        attempt_count += 1
-
-        raise exc
-
-    with pytest.raises(type(exc)):
-        identity(1)
-
-    assert attempt_count == count, "Incorrect number of attempts"
+    assert raised.value is error
+    operation.assert_called_once_with()
+    sleep.assert_not_called()
 
 
 def build_tests_for_optional_equals(

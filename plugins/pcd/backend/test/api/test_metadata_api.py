@@ -18,8 +18,6 @@ import numpy as np
 from fastapi.testclient import TestClient
 from sqlmodel import Session
 
-import pytest
-
 from sta.common.filesystem import FileSystemPath
 from sta.domain.jobs import run_pending_jobs
 from sta.models.source.group import SourceGroupPublic
@@ -610,7 +608,6 @@ def test_bulk_update_rejects_a_minimum_past_a_retained_maximum(
     assert float(read_response.json()["min_x"]) == 0.0
 
 
-@pytest.mark.parametrize("field", ["uri", "group_id", "translate_x", "scale_x"])
 def test_bulk_update_cannot_blank_a_required_column(
     client: TestClient,
     auth_headers: dict[str, str],
@@ -618,7 +615,6 @@ def test_bulk_update_cannot_blank_a_required_column(
     session: Session,
     source_group: SourceGroupPublic,
     tmp_fs: None,
-    field: str,
 ):
     """A batch may clear an optional attribute, never the columns a row cannot exist without.
 
@@ -632,7 +628,7 @@ def test_bulk_update_cannot_blank_a_required_column(
         test_app=test_app,
         session=session,
         source_group=source_group,
-        uri_stem=f"required_blank_bulk_{field}",
+        uri_stem="required_blank_bulk",
     )
     create_response = client.post(
         "/source/data/pcd/metadata/",
@@ -654,26 +650,27 @@ def test_bulk_update_cannot_blank_a_required_column(
     )
     assert optional_response.status_code == 200, optional_response.text
 
-    rejected_response = client.patch(
-        "/source/data/pcd/metadata/bulk",
-        headers=auth_headers,
-        json={"ids": [metadata_id], "data": {field: None}},
-    )
-    assert rejected_response.status_code == 422, rejected_response.text
-    # The refusal names the offending field, so a client can tell which section to fill in.
-    assert [error["loc"][-1] for error in rejected_response.json()["detail"]] == [field]
+    for field in ("uri", "group_id", "translate_x", "scale_x"):
+        rejected_response = client.patch(
+            "/source/data/pcd/metadata/bulk",
+            headers=auth_headers,
+            json={"ids": [metadata_id], "data": {field: None}},
+        )
+        assert rejected_response.status_code == 422, rejected_response.text
+        # The refusal names the offending field, so a client can tell which section to fill in.
+        assert [error["loc"][-1] for error in rejected_response.json()["detail"]] == [field]
 
-    read_response = client.get(
-        f"/source/data/pcd/metadata/{metadata_id}",
-        headers=auth_headers,
-    )
-    assert read_response.status_code == 200, read_response.text
-    stored = read_response.json()
-    assert stored["weather"] is None
-    assert stored["uri"] == uri
-    assert stored["group_id"] == source_group.id
-    assert float(stored["translate_x"]) == 0.0
-    assert float(stored["scale_x"]) == 1.0
+        read_response = client.get(
+            f"/source/data/pcd/metadata/{metadata_id}",
+            headers=auth_headers,
+        )
+        assert read_response.status_code == 200, read_response.text
+        stored = read_response.json()
+        assert stored["weather"] is None
+        assert stored["uri"] == uri
+        assert stored["group_id"] == source_group.id
+        assert float(stored["translate_x"]) == 0.0
+        assert float(stored["scale_x"]) == 1.0
 
 
 def test_inverted_box_still_switches_back_to_derivation(

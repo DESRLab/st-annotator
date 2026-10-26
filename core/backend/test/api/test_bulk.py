@@ -791,30 +791,31 @@ def test_bulk_update_accounts_empty_forms_change_nothing(
 # --- request contract -------------------------------------------------------
 
 
-@pytest.mark.parametrize(
-    "path",
-    ["/projects/bulk", "/tasks/bulk", "/users/bulk", "/accounts/bulk"],
-)
-def test_bulk_routes_accept_both_verbs_with_an_ids_and_data_body(path: str):
+def test_bulk_routes_accept_both_verbs_with_an_ids_and_data_body():
     schema = build_api(frontend_url="http://localhost:5174").openapi()
-    operations = schema["paths"][path]
+    for path in ["/projects/bulk", "/tasks/bulk", "/users/bulk", "/accounts/bulk"]:
+        operations = schema["paths"][path]
 
-    assert {"put", "patch"} <= set(operations)
+        assert {"put", "patch"} <= set(operations)
 
-    for verb in ("put", "patch"):
-        body = operations[verb]["requestBody"]["content"]["application/json"]["schema"]
-        body_schema = schema["components"]["schemas"][body["$ref"].rsplit("/", 1)[1]]
-        assert set(body_schema["required"]) == {"ids", "data"}
-        assert set(body_schema["properties"]) == {"ids", "data"}
-        assert body_schema["properties"]["ids"]["items"]["type"] == "integer"
+        for verb in ("put", "patch"):
+            body = operations[verb]["requestBody"]["content"]["application/json"]["schema"]
+            body_schema = schema["components"]["schemas"][body["$ref"].rsplit("/", 1)[1]]
+            assert set(body_schema["required"]) == {"ids", "data"}
+            assert set(body_schema["properties"]) == {"ids", "data"}
+            assert body_schema["properties"]["ids"]["items"]["type"] == "integer"
 
-        success = operations[verb]["responses"]["200"]["content"]["application/json"]["schema"]
-        assert success["$ref"].endswith("/SuccessResponse")
+            success = operations[verb]["responses"]["200"]["content"]["application/json"]["schema"]
+            assert success["$ref"].endswith("/SuccessResponse")
 
 
-@pytest.mark.parametrize(
-    ("path", "body", "missing"),
-    [
+def test_bulk_routes_reject_a_body_missing_ids_or_data(
+    client: TestClient,
+    auth_headers: dict[str, str],
+):
+    # Both halves of the payload are separate body parameters, so validation
+    # fails before any role gate or domain call is reached.
+    for path, body, missing in [
         ("/projects/bulk", {"ids": [1]}, "data"),
         ("/projects/bulk", {"data": {"description": "x"}}, "ids"),
         ("/tasks/bulk", {"ids": [1]}, "data"),
@@ -823,18 +824,8 @@ def test_bulk_routes_accept_both_verbs_with_an_ids_and_data_body(path: str):
         ("/users/bulk", {"data": {"roles": []}}, "ids"),
         ("/accounts/bulk", {"ids": [1]}, "data"),
         ("/accounts/bulk", {"data": {"preferences": {}}}, "ids"),
-    ],
-)
-def test_bulk_routes_reject_a_body_missing_ids_or_data(
-    client: TestClient,
-    auth_headers: dict[str, str],
-    path: str,
-    body: dict,
-    missing: str,
-):
-    # Both halves of the payload are separate body parameters, so validation
-    # fails before any role gate or domain call is reached.
-    response = client.patch(path, headers=auth_headers, json=body)
+    ]:
+        response = client.patch(path, headers=auth_headers, json=body)
 
-    assert response.status_code == 422
-    assert [error["loc"] for error in response.json()["detail"]] == [["body", missing]]
+        assert response.status_code == 422
+        assert [error["loc"] for error in response.json()["detail"]] == [["body", missing]]

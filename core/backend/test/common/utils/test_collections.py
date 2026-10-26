@@ -1,34 +1,25 @@
 from __future__ import annotations
 
 import uuid
-from collections.abc import Sequence
 
 import pytest
 from hypothesis import given, strategies as st
 
-from sta.common.testing import st_with_idx, st_with_idxs
 from sta.common.utils.collections import SizedIterator, take
 
 
-@given(st_with_idxs(st.lists(st.uuids())))
-def test_take_len(lst_with_idxs: tuple[Sequence[uuid.UUID], Sequence[int]]):
-    lst, idxs = lst_with_idxs
-
-    assert len(take(lst, idxs)) == len(idxs)
-
-
-@given(st_with_idx(st.lists(st.uuids(), min_size=1)))
-def test_take_item(lst_with_idx: tuple[Sequence[uuid.UUID], int]):
-    lst, idx = lst_with_idx
-
-    assert take(lst, [idx])[0] == lst[idx]
-
-
-@given(st_with_idxs(st.lists(st.uuids(), min_size=1), idxs_min_size=1))
-def test_take_ordering(lst_with_idxs: tuple[Sequence[uuid.UUID], Sequence[int]]):
-    lst, idxs = lst_with_idxs
-
-    assert take(lst, idxs) == take(lst, idxs[::-1])[::-1]
+@pytest.mark.parametrize(
+    "values, indices, expected",
+    [
+        ([], [], []),
+        (["a", "b", "c"], [], []),
+        (["a", "b", "c"], [1], ["b"]),
+        (["a", "b", "c"], [2, 0, 1], ["c", "a", "b"]),
+        (["a", "b", "c"], [1, 0, 1], ["b", "a", "b"]),
+    ],
+)
+def test_take_preserves_requested_values_order_and_duplicates(values, indices, expected):
+    assert take(values, indices) == expected
 
 
 @given(st.lists(st.uuids()))
@@ -39,10 +30,10 @@ def test_sized_iterator_wrap_valid(lst: list[uuid.UUID]):
     assert len(lst) == len(SizedIterator(iter(lst), len(lst)))
 
 
-@given(st.lists(st.uuids()), st.integers(min_value=1))
-def test_sized_iterator_wrap_invalid_length_negative(lst: list[uuid.UUID], offset: int):
+@pytest.mark.parametrize("length", [-1, -100])
+def test_sized_iterator_wrap_invalid_length_negative(length):
     with pytest.raises(ValueError, match="The length must be non-negative"):
-        SizedIterator(iter(lst), -offset)
+        SizedIterator(iter([]), length)
 
 
 @given(st.lists(st.uuids(), min_size=1), st.data())

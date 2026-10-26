@@ -17,7 +17,18 @@ import type {
   GroundMeshIntents,
   GroundMeshSlice,
 } from "../../../../app/editor/scene/layer/GroundMeshSlice";
-import { groundMeshSettingsPaneFactoryParams } from "../../../../app/editor/scene/widgets/GroundMeshSettingsPane.react.tsx";
+
+import {
+  createGroundMeshSettingsPaneElementFactory,
+  groundMeshSettingsPaneDataProcessor,
+  groundMeshSettingsPaneFactoryParams,
+} from "../../../../app/editor/scene/widgets/GroundMeshSettingsPane.react.tsx";
+import {
+  createTransformerSettingsPaneElementFactory as createGroundMeshTransformerSettingsPaneElementFactory,
+  getTransformationSelectSettings as getGroundMeshTransformationSelectSettings,
+  transformerSettingsPaneDataProcessor as groundMeshTransformerSettingsPaneDataProcessor,
+} from "../../../../app/editor/scene/widgets/TransformerSettingsPane.react.tsx";
+import type { TransformerSettingsPaneControllerParams } from "../../../../app/editor/scene/widgets/TransformerSettingsPane.react.tsx";
 
 declare global {
   var IS_REACT_ACT_ENVIRONMENT: boolean | undefined;
@@ -303,5 +314,73 @@ describe("gmesh pane containers", () => {
     expect(intents.gmesh.setSettings).toHaveBeenCalledTimes(3);
 
     await view.unmount();
+  });
+});
+
+function transformerParams(
+  overrides: Partial<{
+    inputtedData: Partial<
+      TransformerSettingsPaneControllerParams["inputtedData"]
+    >;
+    settings: Partial<TransformerSettingsPaneControllerParams["settings"]>;
+  }> = {},
+) {
+  return {
+    inputtedData: {
+      isTransformSelected: {
+        translate: true,
+        rotate: true,
+        scale: true,
+        ...overrides.inputtedData?.isTransformSelected,
+      },
+    },
+    computedData: {},
+    settings: {
+      disabled: false,
+      hidden: false,
+      ...overrides.settings,
+    },
+  };
+}
+
+describe("GroundMeshSettingsPane", () => {
+  it("preserves the ground-mesh descriptor and output contract", async () => {
+    const paneParams = {
+      inputtedData: {
+        ...groundMeshSettingsPaneFactoryParams.inputtedData,
+        showWireframe: false,
+        opacity: 0.8,
+      },
+      computedData: groundMeshSettingsPaneFactoryParams.computedData,
+      internalData: null,
+      settings: groundMeshSettingsPaneFactoryParams.settings,
+    };
+
+    expect(createGroundMeshSettingsPaneElementFactory()).toHaveProperty(
+      "attach",
+    );
+    expect(
+      groundMeshSettingsPaneDataProcessor.outputData(paneParams).showWireframe,
+    ).toBe(false);
+    expect(
+      groundMeshSettingsPaneDataProcessor.outputData(paneParams).opacity,
+    ).toBe(0.8);
+  });
+});
+
+describe("TransformerSettingsPane", () => {
+  it("preserves the transformer descriptor and output contract", async () => {
+    const paneParams = transformerParams();
+
+    expect(
+      createGroundMeshTransformerSettingsPaneElementFactory(),
+    ).toHaveProperty("attach");
+    expect(
+      getGroundMeshTransformationSelectSettings(transformerParams()).cells(2),
+    ).toEqual({ title: "Scale", value: "scale" });
+    expect(
+      groundMeshTransformerSettingsPaneDataProcessor.outputData(paneParams)
+        .isTransformSelected.scale,
+    ).toBe(true);
   });
 });

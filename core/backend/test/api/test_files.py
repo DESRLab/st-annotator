@@ -291,27 +291,23 @@ def test_download_zip_keeps_same_basename_paths_distinct(
         assert zf.read("other/inner.bin") == b"other-content"
 
 
-@pytest.mark.parametrize(
-    "paths",
-    [
-        ["notes.txt", "notes.txt"],
-        ["data", "data/inner.bin"],
-    ],
-)
 def test_download_zip_rejects_duplicate_or_overlapping_paths(
     seeded_root: Path,
     client: TestClient,
     manager_headers: dict[str, str],
-    paths: list[str],
 ):
-    response = client.post(
-        "/files/download-zip",
-        headers=manager_headers,
-        json={"paths": paths},
-    )
+    for paths in [
+        ["notes.txt", "notes.txt"],
+        ["data", "data/inner.bin"],
+    ]:
+        response = client.post(
+            "/files/download-zip",
+            headers=manager_headers,
+            json={"paths": paths},
+        )
 
-    assert response.status_code == 400
-    assert response.json()["detail"] == "ZIP paths must be unique and non-overlapping"
+        assert response.status_code == 400
+        assert response.json()["detail"] == "ZIP paths must be unique and non-overlapping"
 
 
 def test_download_file_allows_provisioned_symlink(

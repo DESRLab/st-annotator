@@ -4,7 +4,6 @@ import { describe, it } from "vitest";
 
 import {
   checkValue,
-  floatApprox,
   makeEquatableTests,
   makeHashableTests,
 } from "../../../lib/common/lib/testing";
@@ -16,14 +15,28 @@ import { Timestamp } from "../../../lib/common/lib/utils";
 
 describe("Timestamp", () => {
   describe("#constructor()", () => {
-    it("instances should be frozen", () => {
-      expect(new Timestamp()).to.be.frozen;
-    });
-    it("should default to valid timestamp", () => {
+    it("defaults to a frozen timestamp with a valid Date", () => {
       const timestamp = new Timestamp();
-
+      expect(timestamp).to.be.frozen;
       expect(timestamp.getDate().getTime(), "Invalid date").to.not.be.NaN;
       expect(timestamp.getTime(), "Invalid time").to.not.be.NaN;
+    });
+    it("preserves fractional milliseconds through construction and cloning", () => {
+      for (const value of [0.125, -0.125, 1700000000000.25]) {
+        const timestamp = new Timestamp(value);
+        const clone = timestamp.clone();
+        expect(timestamp.getTime()).to.equal(value);
+        expect(clone.getTime()).to.equal(value);
+        expect(clone.toISOString()).to.equal(timestamp.toISOString());
+        expect(
+          Math.abs(timestamp.getTime() - timestamp.getDate().getTime()),
+        ).to.be.lessThan(1);
+      }
+      const timestamp = new Timestamp("1970-01-01T00:00:00.000125Z");
+      expect(timestamp.getTime()).to.equal(0.125);
+      expect(timestamp.clone().toISOString()).to.equal(
+        "1970-01-01T00:00:00.000125Z",
+      );
     });
     it("should preserve Unix timestamp", () => {
       fc.assert(
@@ -93,27 +106,15 @@ describe("Timestamp", () => {
   makeEquatableTests(makeTimestampArbitrary());
   makeHashableTests(makeTimestampArbitrary());
 
-  describe("#getDate(), #getTime()", () => {
-    it("should have a resolution no less than that of Date", () => {
-      fc.property(makeTimestampArbitrary(), fc.context(), (timestamp, ctx) => {
-        expect(
-          checkValue(
-            timestamp.getTime(),
-            timestamp.getDate().getTime(),
-            ctx,
-            (a, b) => floatApprox(a, b, { atol: 0.5 }),
-          ),
-        ).to.be.true;
-      });
-    });
-  });
-
   describe("#clone()", () => {
     it("should return a new Timestamp that is equal to the original", () => {
       fc.assert(
         fc.property(makeTimestampArbitrary(), fc.context(), (date, ctx) => {
-          expect(checkValue(date, date.clone(), ctx, (a, b) => a.equals(b))).to
-            .be.true;
+          const clone = date.clone();
+          expect(clone).not.to.equal(date);
+          expect(clone.toISOString()).to.equal(date.toISOString());
+          expect(checkValue(date, clone, ctx, (a, b) => a.equals(b))).to.be
+            .true;
         }),
       );
     });

@@ -451,27 +451,21 @@ def test_list_project_tasks_excludes_unassigned_tasks_with_frames(
     assert tasks == []
 
 
-@pytest.mark.parametrize(
-    ("path", "scope_param"),
-    [
+def test_editor_mode_is_required_by_task_endpoints(
+    test_app: TestApp,
+):
+    app = build_api(frontend_url="http://localhost:5174")
+    app.dependency_overrides[get_current_user] = lambda: test_app.root_user
+    for path, scope_param in [
         ("/editor/tasks", "project_id"),
         ("/editor/task/source/groups", "task_id"),
         ("/editor/task/label/branches", "task_id"),
         ("/editor/task/frames", "task_id"),
-    ],
-)
-def test_editor_mode_is_required_by_task_endpoints(
-    test_app: TestApp,
-    path: str,
-    scope_param: str,
-):
-    app = build_api(frontend_url="http://localhost:5174")
-    app.dependency_overrides[get_current_user] = lambda: test_app.root_user
+    ]:
+        response = TestClient(app).get(path, params={scope_param: 1})
 
-    response = TestClient(app).get(path, params={scope_param: 1})
-
-    assert response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
-    assert any(error["loc"][-1] == "work_type" for error in response.json()["detail"])
+        assert response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
+        assert any(error["loc"][-1] == "work_type" for error in response.json()["detail"])
 
 
 def test_task_resource_lists_are_scoped_to_the_task(

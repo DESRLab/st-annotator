@@ -22,11 +22,23 @@ import type {
   PointCloudIntents,
   PointCloudSlice,
 } from "../../../../app/editor/scene/layer/PointCloudSlice";
-import { pointCloudSettingsPaneFactoryParams } from "../../../../app/editor/scene/widgets/PointCloudSettingsPane.react.tsx";
+import { MainCameraSettingsView } from "../../../../app/editor/widgets/MainCameraPreferencesMenu.react.tsx";
+
 import {
-  MainCameraPreferencesMenuView,
-  MainCameraSettingsView,
-} from "../../../../app/editor/widgets/MainCameraPreferencesMenu.react.tsx";
+  createMainCameraSettingsPaneElementFactory,
+  mainCameraSettingsPaneDataProcessor,
+  mainCameraSettingsPaneFactoryParams,
+  getMainCameraViewModeSelectSettings,
+  getOrbitPointCheckboxSettings,
+} from "../../../../app/editor/scene/widgets/MainCameraSettingsPane.react.tsx";
+import {
+  createPointCloudSettingsPaneElementFactory,
+  pointCloudSettingsPaneDataProcessor,
+  getCropAreaCheckboxSettings,
+  getRemoveBackgroundCheckboxSettings,
+  pointCloudSettingsPaneFactoryParams,
+} from "../../../../app/editor/scene/widgets/PointCloudSettingsPane.react.tsx";
+import type { PointCloudSettingsPaneControllerParams } from "../../../../app/editor/scene/widgets/PointCloudSettingsPane.react.tsx";
 
 declare global {
   var IS_REACT_ACT_ENVIRONMENT: boolean | undefined;
@@ -375,21 +387,6 @@ describe("pcd pane containers", () => {
     await view.unmount();
   });
 
-  it("composes the preferences menu with the main camera tab and the generated layer tab", async () => {
-    const intents = createRecordingIntents();
-    const view = await renderPane(
-      createPcdSlice(),
-      intents,
-      <MainCameraPreferencesMenuView />,
-    );
-
-    expect(view.container.textContent).toContain("Main Camera");
-    expect(view.container.textContent).toContain("Layer");
-    expect(findLabeledCheckbox(view.container, "Orbit Point")).toBeTruthy();
-
-    await view.unmount();
-  });
-
   it("renders the ComposeRGB tabs with per-tab channel options from the point-cloud target", async () => {
     const intents = createRecordingIntents();
     const slice = createPcdSlice();
@@ -477,5 +474,76 @@ describe("pcd pane containers", () => {
     }
 
     await view.unmount();
+  });
+});
+
+function pointCloudParams(
+  overrides: Partial<{
+    inputtedData: Partial<
+      PointCloudSettingsPaneControllerParams["inputtedData"]
+    >;
+    settings: Partial<PointCloudSettingsPaneControllerParams["settings"]>;
+  }> = {},
+) {
+  return {
+    inputtedData: {
+      ...pointCloudSettingsPaneFactoryParams.inputtedData,
+      ...overrides.inputtedData,
+    },
+    computedData: pointCloudSettingsPaneFactoryParams.computedData,
+    settings: {
+      disabled: false,
+      hidden: false,
+      ...overrides.settings,
+    },
+  };
+}
+
+describe("MainCameraSettingsPane", () => {
+  it("preserves the camera descriptor and output contract", () => {
+    const paneParams = {
+      inputtedData: { viewMode: "3D" as const, orbitPoint: true },
+      computedData: {},
+      settings: mainCameraSettingsPaneFactoryParams.settings,
+    };
+
+    expect(createMainCameraSettingsPaneElementFactory()).toHaveProperty(
+      "attach",
+    );
+    expect(getMainCameraViewModeSelectSettings(paneParams).label).toBe(
+      "View Mode",
+    );
+    expect(getOrbitPointCheckboxSettings(paneParams).label).toBe("Orbit Point");
+    expect(mainCameraSettingsPaneDataProcessor.outputData(paneParams)).toEqual({
+      viewMode: "3D",
+      orbitPoint: true,
+    });
+  });
+});
+
+describe("PointCloudSettingsPane", () => {
+  it("preserves the point-cloud descriptor and output contract", async () => {
+    const paneParams = pointCloudParams({
+      inputtedData: { removeBackground: false, pointSize: 3 },
+      settings: { hidden: true },
+    });
+
+    expect(createPointCloudSettingsPaneElementFactory()).toHaveProperty(
+      "attach",
+    );
+    expect(getRemoveBackgroundCheckboxSettings(pointCloudParams()).label).toBe(
+      "RemoveBG",
+    );
+    expect(getCropAreaCheckboxSettings(pointCloudParams()).label).toBe(
+      "CropArea",
+    );
+
+    expect(
+      pointCloudSettingsPaneDataProcessor.outputData(paneParams)
+        .removeBackground,
+    ).toBe(false);
+    expect(
+      pointCloudSettingsPaneDataProcessor.outputData(paneParams).pointSize,
+    ).toBe(3);
   });
 });

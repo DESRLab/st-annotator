@@ -134,23 +134,14 @@ describe("MathUtils.getStd()", () => {
       "The input is not numeric",
     );
   });
-  it("should be consistent with mathjs.std() when precomputedMean is not specified", () => {
+  it("matches population standard deviation with implicit and supplied means", () => {
     fc.assert(
       fc.property(makeArrArbitrary(), fc.context(), (arr, ctx) => {
-        const result = MathUtils.getStd(arr);
-        const expectedResult = std([...arr], "uncorrected");
-
-        return checkValue(result, expectedResult, ctx);
-      }),
-    );
-  });
-  it("should be consistent with mathjs.std() when precomputedMean is specified correctly", () => {
-    fc.assert(
-      fc.property(makeArrArbitrary(), fc.context(), (arr, ctx) => {
-        const result = MathUtils.getStd(arr, _.mean(arr));
-        const expectedResult = std([...arr], "uncorrected");
-
-        return checkValue(result, expectedResult, ctx);
+        const expected = std([...arr], "uncorrected");
+        return (
+          checkValue(MathUtils.getStd(arr), expected, ctx) &&
+          checkValue(MathUtils.getStd(arr, _.mean(arr)), expected, ctx)
+        );
       }),
     );
   });

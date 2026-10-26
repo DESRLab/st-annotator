@@ -155,23 +155,35 @@ def test_cross_type_relation_history_and_endpoint_deletion(session, root_user, r
     )
 
 
-@pytest.mark.parametrize("mutation", ["unknown", "missing", "self", "class", "relation"])
-def test_invalid_reference_is_rejected_and_rolls_back(session, relation_fixture, mutation):
-    params, push, _, _, _, _, _, _ = relation_fixture
-    if mutation == "unknown":
-        params["target"]["type"] = "absent-plugin"
-    if mutation == "missing":
-        params["target"]["id"] = str(uuid.uuid4())
-    if mutation == "self":
-        params["target"] = params["source"]
-    if mutation == "class":
-        params["relation_class_id"] = 999999
-    if mutation == "relation":
-        params["target"]["type"] = "relation"
-    with pytest.raises(HTTPException) as exc:
-        push("relation-create", params)
-    assert exc.value.status_code in {404, 422}
-    session.rollback()
+def test_invalid_reference_is_rejected_and_rolls_back(session, root_user, relation_fixture):
+    original, push, _, _, group, head, _, branch_id = relation_fixture
+    for mutation in ("unknown", "missing", "self", "class", "relation"):
+        params = {
+            **original,
+            "source": dict(original["source"]),
+            "target": dict(original["target"]),
+        }
+        if mutation == "unknown":
+            params["target"]["type"] = "absent-plugin"
+        elif mutation == "missing":
+            params["target"]["id"] = str(uuid.uuid4())
+        elif mutation == "self":
+            params["target"] = params["source"]
+        elif mutation == "class":
+            params["relation_class_id"] = 999999
+        else:
+            params["target"]["type"] = "relation"
+        with pytest.raises(HTTPException) as exc:
+            push("relation-create", params)
+        assert exc.value.status_code in {404, 422}, mutation
+        session.rollback()
+        assert read_branch(current_user=root_user, session=session, id=branch_id).head_hash == head
+        assert (
+            domain.list_datas(
+                current_user=root_user, session=session, group_id=group, commit_hash=head
+            )
+            == []
+        )
 
 
 def test_membership_omission_preserves_and_null_is_rejected(session, root_user, relation_fixture):

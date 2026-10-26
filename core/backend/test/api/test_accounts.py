@@ -151,19 +151,18 @@ def test_list_accounts_count_uses_the_same_filters_as_the_page(
     assert response.headers["Content-Range"] == "accounts 0-1/1"
 
 
-@pytest.mark.parametrize("parameter", ["offset", "limit"])
 def test_list_accounts_rejects_negative_pagination_parameters(
     client: TestClient,
     auth_headers: dict[str, str],
-    parameter: str,
 ):
-    response = client.get(
-        "/accounts/",
-        params={parameter: -1},
-        headers=auth_headers,
-    )
+    for parameter in ["offset", "limit"]:
+        response = client.get(
+            "/accounts/",
+            params={parameter: -1},
+            headers=auth_headers,
+        )
 
-    assert response.status_code == 422
+        assert response.status_code == 422
 
 
 SUMMARY_REF = "#/components/schemas/AccountPublicSummary"

@@ -87,18 +87,23 @@ def test_login_logout(root_user: UserPublic, session: Session):
     assert record.current_login_at is None, "Should clear current login (idempotent)"
 
 
-@pytest.mark.parametrize("action", [domain.login_user, domain.logout_user])
 def test_login_logout_rejects_mismatched_authenticated_user(
-    action,
     root_user: UserPublic,
     session: Session,
 ):
     other_user = _create_test_user(session, root_user, username="auth_mismatch", roles=set())
+    domain.login_user(current_user=other_user, session=session, id=other_user.id)
+    session.commit()
+    before = {record.id: record.model_dump() for record in session.exec(select(User)).all()}
 
-    with pytest.raises(HTTPException) as exc_info:
-        action(current_user=root_user, session=session, id=other_user.id)
-
-    assert exc_info.value.status_code == 403
+    for action in (domain.login_user, domain.logout_user):
+        with pytest.raises(HTTPException) as exc_info:
+            action(current_user=root_user, session=session, id=other_user.id)
+        assert exc_info.value.status_code == 403, action.__name__
+        session.expire_all()
+        assert {
+            record.id: record.model_dump() for record in session.exec(select(User)).all()
+        } == before
 
 
 def test_read_user_requires_reader_role_or_self(root_user: UserPublic, session: Session):

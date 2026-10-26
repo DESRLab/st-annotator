@@ -121,25 +121,20 @@ def test_self_password_change_still_enforces_the_optimistic_locking_token(
     assert _login(client, plain_user.username, "password")
 
 
-@pytest.mark.parametrize(
-    "payload",
-    [
-        {"username": "forbidden-rename"},
-        {"roles": [Role.ADMIN]},
-    ],
-)
 def test_non_admin_cannot_change_own_administrative_fields(
     client: TestClient,
     session: Session,
     root_user: UserPublic,
-    payload: dict[str, object],
 ):
     plain_user = _create_plain_user(session, root_user)
     headers = _login(client, plain_user.username, "password")
+    for payload in [
+        {"username": "forbidden-rename"},
+        {"roles": [Role.ADMIN]},
+    ]:
+        response = client.patch(f"/users/{plain_user.id}", headers=headers, json=payload)
 
-    response = client.patch(f"/users/{plain_user.id}", headers=headers, json=payload)
-
-    assert response.status_code == 403
+        assert response.status_code == 403
 
 
 def test_non_admin_cannot_update_another_user(

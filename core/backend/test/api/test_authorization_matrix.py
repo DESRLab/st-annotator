@@ -80,92 +80,60 @@ def profile_headers(
     return result
 
 
-@pytest.mark.parametrize(
-    ("method", "path", "minimum_profile", "forbidden_profile", "json"),
-    [
-        pytest.param("GET", "/accounts/", "admin", "no-roles", None, id="accounts-read"),
-        pytest.param("GET", "/users/", "project-manager", "no-roles", None, id="users-read"),
-        pytest.param(
-            "POST",
-            "/projects/",
-            "project-manager",
-            "data-manager",
-            {"name": "matrix-project"},
-            id="projects-create",
-        ),
-        pytest.param(
+def test_operation_families_use_the_minimum_documented_application_role(
+    client: TestClient,
+    profile_headers: dict[str, dict[str, str]],
+):
+    """Role checks distinguish read and write authority at the HTTP boundary."""
+    for method, path, minimum_profile, forbidden_profile, json in [
+        ("GET", "/accounts/", "admin", "no-roles", None),
+        ("GET", "/users/", "project-manager", "no-roles", None),
+        ("POST", "/projects/", "project-manager", "data-manager", {"name": "matrix-project"}),
+        (
             "POST",
             "/source/groups/",
             "data-manager",
             "project-manager",
             {"name": "matrix-source-group"},
-            id="source-write",
         ),
-        pytest.param("GET", "/jobs/", "data-manager", "project-manager", None, id="jobs-read"),
-    ],
-)
-def test_operation_families_use_the_minimum_documented_application_role(
-    client: TestClient,
-    profile_headers: dict[str, dict[str, str]],
-    method: str,
-    path: str,
-    minimum_profile: str,
-    forbidden_profile: str,
-    json: dict[str, str] | None,
-):
-    """Role checks distinguish read and write authority at the HTTP boundary."""
-    anonymous = client.request(method, path, json=json)
-    forbidden = client.request(
-        method,
-        path,
-        headers=profile_headers[forbidden_profile],
-        json=json,
-    )
-    allowed = client.request(
-        method,
-        path,
-        headers=profile_headers[minimum_profile],
-        json=json,
-    )
+        ("GET", "/jobs/", "data-manager", "project-manager", None),
+    ]:
+        anonymous = client.request(method, path, json=json)
+        forbidden = client.request(
+            method,
+            path,
+            headers=profile_headers[forbidden_profile],
+            json=json,
+        )
+        allowed = client.request(
+            method,
+            path,
+            headers=profile_headers[minimum_profile],
+            json=json,
+        )
 
-    assert anonymous.status_code == 401
-    assert forbidden.status_code == 403
-    assert allowed.status_code == 200, allowed.text
+        assert anonymous.status_code == 401, path
+        assert forbidden.status_code == 403, path
+        assert allowed.status_code == 200, (path, allowed.text)
 
 
-@pytest.mark.parametrize(
-    ("path", "payload", "table"),
-    [
-        pytest.param(
-            "/projects/",
-            {"name": "refused-project"},
-            Project,
-            id="project-manager-write",
-        ),
-        pytest.param(
-            "/source/groups/",
-            {"name": "refused-source-group"},
-            SourceGroup,
-            id="data-manager-write",
-        ),
-    ],
-)
 def test_refused_collection_mutations_change_no_rows(
     client: TestClient,
     profile_headers: dict[str, dict[str, str]],
     session: Session,
-    path: str,
-    payload: dict[str, str],
-    table: type[Project] | type[SourceGroup],
 ):
     """Authentication and role refusals occur before a mutation is persisted."""
-    before = len(session.exec(select(table)).all())
+    for path, payload, table in [
+        ("/projects/", {"name": "refused-project"}, Project),
+        ("/source/groups/", {"name": "refused-source-group"}, SourceGroup),
+    ]:
+        before = len(session.exec(select(table)).all())
 
-    assert client.post(path, json=payload).status_code == 401
-    assert client.post(path, headers=profile_headers["no-roles"], json=payload).status_code == 403
-
-    session.expire_all()
-    assert len(session.exec(select(table)).all()) == before
+        for headers, status in ((None, 401), (profile_headers["no-roles"], 403)):
+            response = client.post(path, headers=headers, json=payload)
+            assert response.status_code == status, (path, response.text)
+            session.expire_all()
+            assert len(session.exec(select(table)).all()) == before, path
 
 
 def test_admin_user_creation_refusal_changes_no_accounts(

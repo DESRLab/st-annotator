@@ -32,31 +32,17 @@ const matrix3sFromArrays: (
   arrays.map((arr) => new THREE.Matrix3().fromArray(arr));
 
 describe("ThreeUtils.sumMatrix3()", () => {
-  it("should throw error when matrix contains null elements", () => {
-    fc.assert(
-      fc.property(makeMatArraysArbitrary(), (arrays) => {
-        const [mat, ...mats] = matrix3sFromArrays(arrays);
-        // @ts-expect-error - intentionally assigning null to test the error path
-        (mats[0] ?? mat).elements[1] = null;
-
-        expect(() => ThreeUtils.sumMatrix3(mat, ...mats)).to.throw(
+  it("rejects non-numeric elements in the first and additional matrices", () => {
+    for (const invalid of [null, undefined]) {
+      for (const index of [0, 1]) {
+        const matrices = [new THREE.Matrix3(), new THREE.Matrix3()];
+        // @ts-expect-error - exercise the numeric validation boundary.
+        matrices[index].elements[1] = invalid;
+        expect(() => ThreeUtils.sumMatrix3(matrices[0], matrices[1])).to.throw(
           "The input is not numeric",
         );
-      }),
-    );
-  });
-  it("should throw error when matrix contains undefined elements", () => {
-    fc.assert(
-      fc.property(makeMatArraysArbitrary(), (arrays) => {
-        const [mat, ...mats] = matrix3sFromArrays(arrays);
-        // @ts-expect-error - intentionally assigning undefined to test the error path
-        (mats[0] ?? mat).elements[1] = undefined;
-
-        expect(() => ThreeUtils.sumMatrix3(mat, ...mats)).to.throw(
-          "The input is not numeric",
-        );
-      }),
-    );
+      }
+    }
   });
   it("should return same result as _.unzip()", () => {
     fc.assert(
@@ -155,61 +141,24 @@ describe("ThreeUtils.setFromColors()", () => {
   });
 });
 
-describe("ThreeUtils.checkSize()", () => {
-  it("should return 0 if size is NaN", () => {
-    expect(ThreeUtils.checkSize(NaN)).to.equal(0);
-  });
-  it("should return -size if size < 0", () => {
-    fc.assert(
-      fc.property(
-        fc.double({ max: 0, noNaN: true }).filter((v) => v < 0),
-        fc.context(),
-        (size, ctx) => checkValue(ThreeUtils.checkSize(size), -size, ctx),
-      ),
-    );
-  });
-  it("should return size >= 0", () => {
-    fc.assert(
-      fc.property(
-        fc.double({ min: 0, noNaN: true }),
-        fc.context(),
-        (size, ctx) => checkValue(ThreeUtils.checkSize(size), size, ctx),
-      ),
-    );
-  });
-});
-
-describe("ThreeUtils.checkOpacity()", () => {
-  it("should return 0 if opacity is NaN", () => {
-    expect(ThreeUtils.checkOpacity(NaN)).to.equal(0);
-  });
-  it("should return 0 if opacity < 0", () => {
-    fc.assert(
-      fc.property(
-        fc.double({ max: 0, noNaN: true }).filter((v) => v < 0),
-        fc.context(),
-        (opacity, ctx) => checkValue(ThreeUtils.checkOpacity(opacity), 0, ctx),
-      ),
-      { examples: [[NaN]] },
-    );
-  });
-  it("should return opacity if 0 <= opacity <= 1", () => {
-    fc.assert(
-      fc.property(
-        fc.double({ min: 0, max: 1, noNaN: true }),
-        fc.context(),
-        (opacity, ctx) =>
-          checkValue(ThreeUtils.checkOpacity(opacity), opacity, ctx),
-      ),
-    );
-  });
-  it("should return 1 if opacity > 1", () => {
-    fc.assert(
-      fc.property(
-        fc.double({ min: 1, noNaN: true }).filter((v) => v > 1),
-        fc.context(),
-        (opacity, ctx) => checkValue(ThreeUtils.checkOpacity(opacity), 1, ctx),
-      ),
-    );
+describe("size and opacity normalization", () => {
+  it("handles NaN, signed zero, infinities, and range boundaries", () => {
+    for (const [input, size, opacity] of [
+      [NaN, 0, 0],
+      [-Infinity, Infinity, 0],
+      [-2, 2, 0],
+      [-Number.MIN_VALUE, Number.MIN_VALUE, 0],
+      [-0, 0, 0],
+      [0, 0, 0],
+      [Number.MIN_VALUE, Number.MIN_VALUE, Number.MIN_VALUE],
+      [0.25, 0.25, 0.25],
+      [1, 1, 1],
+      [1.0001, 1.0001, 1],
+      [2, 2, 1],
+      [Infinity, Infinity, 1],
+    ]) {
+      expect(ThreeUtils.checkSize(input)).to.equal(size);
+      expect(ThreeUtils.checkOpacity(input)).to.equal(opacity);
+    }
   });
 });

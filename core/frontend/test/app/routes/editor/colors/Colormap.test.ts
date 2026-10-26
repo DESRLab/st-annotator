@@ -1,112 +1,40 @@
-import { expect } from "chai";
-import fc from "fast-check";
-import { describe, it } from "vitest";
+import { Color } from "three";
+import { describe, expect, it } from "vitest";
 
-import { Colormap } from "../../../../../app/routes/editor";
-import {
-  checkArray,
-  checkValue,
-  makeColorArbitrary,
-} from "../../../../../lib/common/lib/testing";
+import { Colormap } from "../../../../../app/routes/editor/colors/data/Colormap";
 
 describe("Colormap", () => {
-  describe("#constructor()", () => {
-    it("instances should be frozen", () => {
-      expect(new Colormap("", [])).to.be.frozen;
-    });
+  it("maps endpoints and rounding boundaries in input order", () => {
+    const cmap = new Colormap("primary", ["red", "green", "blue"]);
+    expect(Object.isFrozen(cmap)).toBe(true);
+    expect(cmap.name).toBe("primary");
+    const colors = cmap.apply([1, 0, 0.249, 0.25, 0.5, 0.749, 0.75]);
+    expect(colors).toEqual(
+      ["blue", "red", "red", "green", "green", "green", "blue"].map(
+        (color) => new Color(color),
+      ),
+    );
+    expect(colors.every(Object.isFrozen)).toBe(true);
+    expect(cmap.apply([])).toEqual([]);
   });
 
-  describe("#apply()", () => {
-    it("number of mapped colors should equal number of input values", () => {
-      fc.assert(
-        fc.property(
-          fc.string(),
-          fc.array(makeColorArbitrary()),
-          fc.array(fc.double()),
-          makeColorArbitrary(),
-          fc.context(),
-          (name, colors, values, badColor, ctx) => {
-            const cmap = new Colormap(name, colors);
-            const mappedColors = cmap.apply(values, badColor);
-
-            return checkValue(mappedColors.length, values.length, ctx);
-          },
-        ),
+  it("uses the fallback for invalid values and for an empty palette", () => {
+    const invalid = [NaN, -Infinity, Infinity, -0.001, 1.001];
+    for (const palette of [[], ["red"], ["red", "blue"]]) {
+      const cmap = new Colormap("", palette);
+      const values = palette.length ? invalid : [...invalid, 0, 0.5, 1];
+      expect(cmap.apply(values, "magenta")).toEqual(
+        values.map(() => new Color("magenta")),
       );
-    });
-    it("should return badColor if the colormap is empty", () => {
-      fc.assert(
-        fc.property(
-          fc.array(fc.double({ min: 0, max: 1, noNaN: true })),
-          makeColorArbitrary(),
-          fc.context(),
-          (values, badColor, ctx) => {
-            const cmap = new Colormap("", []);
-            const mappedColors = cmap.apply(values, badColor);
+      expect(cmap.apply(values)).toEqual(values.map(() => new Color("black")));
+    }
+  });
 
-            return checkArray(
-              mappedColors,
-              mappedColors.map(() => badColor),
-              ctx,
-              (a, b) => a.equals(b),
-            );
-          },
-        ),
-      );
-    });
-    it("should return badColor for invalid input values", () => {
-      fc.assert(
-        fc.property(
-          fc.string(),
-          fc.array(makeColorArbitrary(), { minLength: 1 }),
-          fc.array(
-            fc.oneof(
-              fc.constant(NaN),
-              fc.double({ max: 0, noNaN: true }).filter((v) => v < 0),
-              fc.double({ min: 1, noNaN: true }).filter((v) => v > 1),
-            ),
-          ),
-          makeColorArbitrary(),
-          fc.context(),
-          (name, colors, values, badColor, ctx) => {
-            const cmap = new Colormap(name, colors);
-            const mappedColors = cmap.apply(values, badColor);
-
-            return checkArray(
-              mappedColors,
-              mappedColors.map(() => badColor),
-              ctx,
-              (a, b) => a.equals(b),
-            );
-          },
-        ),
-      );
-    });
-    it("should return closest color in colormap", () => {
-      fc.assert(
-        fc.property(
-          fc.string(),
-          fc.array(makeColorArbitrary(), {
-            minLength: 2,
-            maxLength: 2,
-          }),
-          fc
-            .array(fc.double({ min: 0, max: 1, noNaN: true }))
-            .map((arr) => arr.sort((a, b) => a - b)),
-          fc.context(),
-          (name, [color1, color2], values, ctx) => {
-            const cmap = new Colormap(name, [color1, color2]);
-            const mappedColors = cmap.apply(values);
-
-            return checkArray(
-              mappedColors,
-              values.map((v) => (v < 0.5 ? color1 : color2)),
-              ctx,
-              (a, b) => a.equals(b),
-            );
-          },
-        ),
-      );
-    });
+  it("uses a single palette color throughout the valid range", () => {
+    expect(new Colormap("", ["red"]).apply([0, 0.5, 1])).toEqual([
+      new Color("red"),
+      new Color("red"),
+      new Color("red"),
+    ]);
   });
 });

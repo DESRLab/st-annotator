@@ -1,390 +1,146 @@
 import { expect } from "chai";
-import fc from "fast-check";
 import * as THREE from "three";
 import { describe, it } from "vitest";
 
-import { ThreeUtils } from "sta/common";
-import {
-  checkValue,
-  floatApprox,
-  makeColorArbitrary,
-  makeEulerArbitrary,
-  makeVector3Arbitrary,
-  tensorApprox,
-} from "sta/common/testing";
+import { BoundingCuboidBuilder } from "../../../../../app/editor/scene/data/views/BoundingCuboid";
+import { BoundingCylinderBuilder } from "../../../../../app/editor/scene/data/views/BoundingCylinder";
 
-import { BoundingBoxBuilder } from "../../../../../app/editor/scene/data/views";
-
-export class MyBoundingBoxBuilder extends BoundingBoxBuilder {
-  makeFaces(
-    color: THREE.Color,
-    opacity: number,
-  ): THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial> {
-    const faces = new THREE.BufferGeometry().setFromPoints([]);
-    const material = new THREE.MeshBasicMaterial({ color, opacity });
-    return new THREE.Mesh(faces, material);
-  }
-
-  makeForwardIndicatorFaces(
-    color: THREE.Color,
-    opacity: number,
-  ): THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial> {
-    const faces = new THREE.BufferGeometry().setFromPoints([]);
-    const material = new THREE.MeshBasicMaterial({ color, opacity });
-    return new THREE.Mesh(faces, material);
-  }
-}
-
-const MIN_ABS = Math.sqrt(ThreeUtils.EPSILON);
-const MAX_ABS = 1 / MIN_ABS;
-
-const makeOtherComponentArbitrary = () =>
-  fc.double({ min: -MAX_ABS, max: MAX_ABS, noNaN: true });
-
-const makeSizeComponentArbitrary = () =>
-  fc.double({ min: 0, max: MAX_ABS, noNaN: true });
-
-export const makeBoundingBoxParamsArbitrary = () =>
-  fc.record({
-    position: makeVector3Arbitrary(makeOtherComponentArbitrary),
-    rotation: makeEulerArbitrary(makeOtherComponentArbitrary),
-    scale: makeVector3Arbitrary(makeSizeComponentArbitrary),
-    color: makeColorArbitrary(),
-    opacity: fc.double({ min: 0, max: 1, noNaN: true }),
-    showForwardIndicator: fc.boolean(),
-    showFrame: fc.boolean(),
+// Keep the shared contract here: importing a *.test module from another spec
+// registers all of its tests again, including unrelated regression scenarios.
+describe.each([
+  ["cuboid", new BoundingCuboidBuilder()],
+  ["cylinder", new BoundingCylinderBuilder()],
+] as const)("BoundingBox (%s)", (_name, builder) => {
+  it("constructs and updates the rendered pose and materials", () => {
+    const params = {
+      position: new THREE.Vector3(1, -2, 3),
+      rotation: new THREE.Euler(0.1, -0.2, 0.3),
+      scale: new THREE.Vector3(2, 3, 4),
+      color: new THREE.Color("red"),
+      opacity: 0.4,
+      showFrame: true,
+      showForwardIndicator: true,
+    };
+    const box = builder.createBox(params);
+    try {
+      const group = box.asObject3D();
+      expect(group).to.be.instanceOf(THREE.Group);
+      expect(box.position.equals(params.position)).to.equal(true);
+      expect(box.rotation.equals(params.rotation)).to.equal(true);
+      expect(box.scale.equals(params.scale)).to.equal(true);
+      expect(group.position.equals(params.position)).to.equal(true);
+      expect(group.rotation.equals(params.rotation)).to.equal(true);
+      expect(group.scale.equals(params.scale)).to.equal(true);
+      expect(box.showFrame).to.equal(true);
+      expect(box.showForwardIndicator).to.equal(true);
+      expect(box.opacity).to.equal(0.4);
+      expect(box.color.equals(params.color)).to.equal(true);
+      expect(group.children).to.have.length(5);
+      for (const child of group.children) {
+        expect(child.visible).to.equal(true);
+        if (
+          child instanceof THREE.Mesh ||
+          child instanceof THREE.Points ||
+          child instanceof THREE.LineSegments
+        ) {
+          expect(child.material.color.equals(params.color)).to.equal(true);
+          expect(
+            child.geometry.getAttribute("position").count,
+          ).to.be.greaterThan(0);
+          if (child instanceof THREE.Mesh) {
+            expect(child.material.opacity).to.equal(0.4);
+          }
+        }
+      }
+      box.position = new THREE.Vector3(-4, 5, 6);
+      box.rotation = new THREE.Euler(-0.3, 0.2, -0.1);
+      box.scale = new THREE.Vector3(5, 6, 7);
+      box.color = new THREE.Color("blue");
+      box.opacity = 0.7;
+      expect(group.position.toArray()).to.deep.equal([-4, 5, 6]);
+      expect(group.rotation.equals(new THREE.Euler(-0.3, 0.2, -0.1))).to.equal(
+        true,
+      );
+      expect(group.scale.toArray()).to.deep.equal([5, 6, 7]);
+      for (const child of group.children) {
+        if (
+          child instanceof THREE.Mesh ||
+          child instanceof THREE.Points ||
+          child instanceof THREE.LineSegments
+        ) {
+          expect(child.material.color.equals(new THREE.Color("blue"))).to.equal(
+            true,
+          );
+          if (child instanceof THREE.Mesh)
+            expect(child.material.opacity).to.equal(0.7);
+        }
+      }
+    } finally {
+      box.dispose();
+    }
   });
 
-/**
- * Creates a test suite for {@link BoundingBoxBuilder#createBox}.
- *
- * @param builder The builder to use for the test.
- * @returns The new test suite.
- */
-export function makeConstructorTest(
-  builder: BoundingBoxBuilder,
-): ReturnType<typeof describe> {
-  return describe("#constructor()", () => {
-    it("should set properties according to passed arguments", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          fc.context(),
-          (params, ctx) => {
-            const box = builder.createBox(params);
-
-            expect(
-              checkValue(box.position, params.position, ctx, (a, b) =>
-                tensorApprox(a, b),
-              ),
-              "Incorrect value of position",
-            ).to.be.true;
-
-            expect(
-              checkValue(box.rotation, params.rotation, ctx, (a, b) =>
-                tensorApprox(a, b),
-              ),
-              "Incorrect value of rotation",
-            ).to.be.true;
-
-            expect(
-              checkValue(box.scale, params.scale, ctx, (a, b) =>
-                tensorApprox(a, b),
-              ),
-              "Incorrect value of scale",
-            ).to.be.true;
-
-            expect(
-              checkValue(box.color.getHex(), params.color.getHex(), ctx),
-              "Incorrect value of color",
-            ).to.be.true;
-
-            expect(
-              checkValue(box.opacity, params.opacity, ctx, floatApprox),
-              "Incorrect value of opacity",
-            ).to.be.true;
-
-            expect(
-              checkValue(box.showFrame, params.showFrame, ctx),
-              "Incorrect value of showFrame",
-            ).to.be.true;
-
-            expect(
-              checkValue(
-                box.showForwardIndicator,
-                params.showForwardIndicator,
-                ctx,
-              ),
-              "Incorrect value of showForwardIndicator",
-            ).to.be.true;
-          },
-        ),
-      );
-    });
-  });
-}
-
-/**
- * Creates a test suite for {@link BoundingBoxBuilder#makeCenter}.
- *
- * @param builder The builder to test.
- * @returns The new test suite.
- */
-export function makeCenterTest(
-  builder: BoundingBoxBuilder,
-): ReturnType<typeof describe> {
-  return describe("#makeCenter()", () => {
-    it("should return a material with the given color", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeColorArbitrary(),
-          fc.context(),
-          (params, color, ctx) => {
-            const material = builder.makeCenter(color).material;
-
-            return checkValue(material.color.getHex(), color.getHex(), ctx);
-          },
-        ),
-      );
-    });
-  });
-}
-
-/**
- * Creates a test suite for {@link BoundingBoxBuilder#makeFaces}.
- *
- * @param builder The builder to test.
- * @returns The new test suite.
- */
-export function makeFacesTest(
-  builder: BoundingBoxBuilder,
-): ReturnType<typeof describe> {
-  return describe("#makeFaces()", () => {
-    it("should return a material with the given color", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeColorArbitrary(),
-          fc.double(),
-          fc.context(),
-          (params, color, opacity, ctx) => {
-            const material = builder.makeFaces(color, opacity).material;
-
-            return checkValue(material.color.getHex(), color.getHex(), ctx);
-          },
-        ),
-      );
-    });
-    it("should return a material with the given opacity", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeColorArbitrary(),
-          fc.double(),
-          fc.context(),
-          (params, color, opacity, ctx) => {
-            const material = builder.makeFaces(color, opacity).material;
-
-            return checkValue(material.opacity, opacity, ctx);
-          },
-        ),
-      );
-    });
-  });
-}
-
-/**
- * Creates a test suite for {@link BoundingBoxBuilder#makeForwardIndicatorFaces}.
- *
- * @param builder The builder to test.
- * @returns The new test suite.
- */
-export function makeForwardIndicatorFacesTest(
-  builder: BoundingBoxBuilder,
-): ReturnType<typeof describe> {
-  return describe("#makeFaces()", () => {
-    it("should return a material with the given color", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeColorArbitrary(),
-          fc.double(),
-          fc.context(),
-          (params, color, opacity, ctx) => {
-            const material = builder.makeForwardIndicatorFaces(
-              color,
-              opacity,
-            ).material;
-
-            return checkValue(material.color.getHex(), color.getHex(), ctx);
-          },
-        ),
-      );
-    });
-    it("should return a material with the given opacity", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeColorArbitrary(),
-          fc.double(),
-          fc.context(),
-          (params, color, opacity, ctx) => {
-            const material = builder.makeForwardIndicatorFaces(
-              color,
-              opacity,
-            ).material;
-
-            return checkValue(material.opacity, opacity, ctx);
-          },
-        ),
-      );
-    });
-  });
-}
-
-describe("BoundingBox", () => {
-  const testBuilder = new MyBoundingBoxBuilder();
-
-  makeConstructorTest(testBuilder);
-  describe("#position", () => {
-    it("should have consistent getter and setter", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeVector3Arbitrary(makeOtherComponentArbitrary),
-          fc.context(),
-          (params, position, ctx) => {
-            const box = testBuilder.createBox(params);
-
-            box.position = position;
-
-            return checkValue(box.position, position, ctx, (a, b) =>
-              tensorApprox(a, b),
-            );
-          },
-        ),
-      );
-    });
-  });
-  describe("#rotation", () => {
-    it("should have consistent getter and setter", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeEulerArbitrary(makeOtherComponentArbitrary),
-          fc.context(),
-          (params, rotation, ctx) => {
-            const box = testBuilder.createBox(params);
-
-            box.rotation = rotation;
-
-            return checkValue(box.rotation, rotation, ctx, (a, b) =>
-              tensorApprox(a, b),
-            );
-          },
-        ),
-      );
-    });
-  });
-  describe("#scale", () => {
-    it("should have consistent getter and setter", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeVector3Arbitrary(makeSizeComponentArbitrary),
-          fc.context(),
-          (params, scale, ctx) => {
-            const box = testBuilder.createBox(params);
-
-            box.scale = scale;
-
-            return checkValue(box.scale, scale, ctx, (a, b) =>
-              tensorApprox(a, b),
-            );
-          },
-        ),
-      );
-    });
-  });
-  describe("#color", () => {
-    it("should have consistent getter and setter", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          makeColorArbitrary(),
-          fc.context(),
-          (params, color, ctx) => {
-            const box = testBuilder.createBox(params);
-
-            box.color = color;
-
-            return checkValue(box.color.getHex(), color.getHex(), ctx);
-          },
-        ),
-      );
-    });
-  });
-  describe("#asObject3D()", () => {
-    it("should return an instance of Object3D", () => {
-      fc.assert(
-        fc.property(
-          makeBoundingBoxParamsArbitrary(),
-          fc.context(),
-          (params, ctx) => {
-            const box = testBuilder.createBox(params);
-
-            expect(box.asObject3D()).to.be.an.instanceof(THREE.Object3D);
-          },
-        ),
-      );
-    });
-  });
-  describe("#raycast()", () => {
-    const box = testBuilder.createBox({
+  it("toggles frame and forward-indicator visibility independently", () => {
+    const box = builder.createBox({
       position: new THREE.Vector3(),
       rotation: new THREE.Euler(),
-      scale: new THREE.Vector3().setScalar(1),
+      scale: new THREE.Vector3(1, 1, 1),
+      color: new THREE.Color("red"),
+      opacity: 0.4,
+    });
+    try {
+      for (const showFrame of [false, true]) {
+        for (const showForwardIndicator of [false, true]) {
+          box.showFrame = showFrame;
+          box.showForwardIndicator = showForwardIndicator;
+          expect(
+            box.asObject3D().children.map((child) => child.visible),
+          ).to.deep.equal([
+            true,
+            showFrame,
+            showFrame,
+            showFrame && showForwardIndicator,
+            showFrame && showForwardIndicator,
+          ]);
+        }
+      }
+    } finally {
+      box.dispose();
+    }
+  });
+
+  it("raycasts production faces when framed and the center otherwise", () => {
+    const box = builder.createBox({
+      position: new THREE.Vector3(),
+      rotation: new THREE.Euler(),
+      scale: new THREE.Vector3(1, 1, 1),
       color: new THREE.Color(),
       opacity: 0,
     });
-    const raycaster = new THREE.Raycaster();
-
-    it("should raycast against faces when showFrame=true", () => {
+    try {
+      const group = box.asObject3D();
+      group.updateMatrixWorld(true);
+      const caster = new THREE.Raycaster(
+        new THREE.Vector3(0.1, 0.2, 5),
+        new THREE.Vector3(0, 0, -1),
+      );
+      caster.params.Points.threshold = 0.00001;
       box.showFrame = true;
-
-      // faces is an empty buffer so there should be no results
-      const intersects = box.raycast(raycaster);
-      expect(intersects.length).to.equal(
-        0,
-        "incorrect number of intersections",
+      const hits = box.raycast(caster);
+      expect(hits.length).to.be.greaterThan(0);
+      expect(hits.every((hit) => hit.object === group.children[1])).to.equal(
+        true,
       );
-    });
-    it("should raycast against center when showFrame=false", () => {
       box.showFrame = false;
-
-      const intersects = box.raycast(raycaster);
-      expect(intersects.length).to.equal(
-        1,
-        "incorrect number of intersections",
-      );
-
-      const [intersect] = intersects;
-      expect(intersect.object).to.be.an.instanceof(
-        THREE.Points,
-        "incorrect intersection object",
-      );
-
-      expect(
-        checkValue(
-          intersect.point,
-          new THREE.Vector3(),
-          undefined,
-          tensorApprox,
-        ),
-        "incorrect intersection position",
-      ).to.be.true;
-    });
+      expect(box.raycast(caster)).to.have.length(0);
+      caster.set(new THREE.Vector3(0, 0, 5), new THREE.Vector3(0, 0, -1));
+      const centerHits = box.raycast(caster);
+      expect(centerHits).to.have.length(1);
+      expect(centerHits[0].object).to.equal(group.children[0]);
+      expect(centerHits[0].point.equals(new THREE.Vector3())).to.equal(true);
+    } finally {
+      box.dispose();
+    }
   });
 });
 
