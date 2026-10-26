@@ -174,8 +174,12 @@ export async function expectSingleSelectGridOnly(
   );
 }
 
-export async function expectMultiSelectButtons(page: Page, gridId: string) {
-  await expectGridPaginationFooter(page, gridId, 1);
+export async function expectMultiSelectButtons(
+  page: Page,
+  gridId: string,
+  minimumTotalItems = 1,
+) {
+  await expectGridPaginationFooter(page, gridId, minimumTotalItems);
   const pager = gridPager(page, gridId);
   const currentPath = new URL(page.url()).pathname;
 
@@ -196,6 +200,19 @@ export async function expectMultiSelectButtons(page: Page, gridId: string) {
     10,
   );
   const currentPageCount = Math.min(totalItems, pageSize);
+
+  if (totalItems === 0) {
+    await expect(
+      page.getByRole("button", { name: "Select Current Page", exact: true }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", { name: "Select All (0)", exact: true }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", { name: /Deselect All/ }),
+    ).toHaveCount(0);
+    return;
+  }
 
   await page.getByRole("button", { name: "Select Current Page" }).click();
   await expect(

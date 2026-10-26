@@ -11,6 +11,7 @@ import {
   backendUrl,
   expectGridContains,
   expectGridDoesNotContain,
+  expectMultiSelectButtons,
   gridPager,
   expectNonPaginatedMultiSelectButtons,
   expectGridPageSizeControl,
@@ -640,12 +641,12 @@ test.describe.serial("handbook data workflows", () => {
     await page.getByRole("link", { name: "Object Classes" }).click();
     await expect(page).toHaveURL(/\/label\/specs\/objclass\/selections$/);
     await expect(page.locator("#object-class-selections-grid")).toBeVisible();
-    await expectSingleSelectGridOnly(page, "object-class-selections-grid", 0);
+    await expectMultiSelectButtons(page, "object-class-selections-grid", 0);
     await expectGridPageSizeControl(page, "object-class-selections-grid");
 
     await page.getByRole("link", { name: "Definitions" }).click();
     await expect(page.locator("#object-class-definitions-grid")).toBeVisible();
-    await expectSingleSelectGridOnly(page, "object-class-definitions-grid", 0);
+    await expectMultiSelectButtons(page, "object-class-definitions-grid", 0);
     await expectGridPageSizeControl(page, "object-class-definitions-grid");
 
     // Branch permission pickers list user accounts, a read reserved for admins
