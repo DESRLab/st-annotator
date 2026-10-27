@@ -14,12 +14,19 @@ from sta_datasets.cli import cli
 def test_standalone_commands_are_available_without_configuration():
     result = CliRunner().invoke(cli, ["--help"])
     assert result.exit_code == 0
-    assert "3rscan" in result.output
-    assert "semantickitti" in result.output
-    for command in ("3rscan", "semantickitti"):
-        result = CliRunner().invoke(cli, [command, "--help"])
+    assert set(cli.commands) == {"import", "generate"}
+    for group, commands in (
+        ("import", ("3rscan", "semantickitti", "argoverse2")),
+        ("generate", ("st-data-info",)),
+    ):
+        result = CliRunner().invoke(cli, [group, "--help"])
         assert result.exit_code == 0, result.output
-        assert "--config" in result.output
+        group_help = result.output
+        for command in commands:
+            assert command in group_help
+            result = CliRunner().invoke(cli, [group, command, "--help"])
+            assert result.exit_code == 0, result.output
+            assert "--config" in result.output
 
 
 def test_register_adds_the_same_group_to_the_plugin_host():

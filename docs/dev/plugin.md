@@ -319,7 +319,9 @@ Note that once an operation has been applied server-side, it can no longer be un
 
 `plugins/datasets/backend` is a backend-only package (`sta-datasets`, module
 `sta_datasets`). Its plugin entry point registers the `datasets` command group,
-with SemanticKITTI, 3RScan, and Argoverse 2 Sensor importers. The same group is available through the
+with `import` and `generate` subgroups. `import` contains the SemanticKITTI,
+3RScan, and Argoverse 2 Sensor importers; `generate st-data-info` creates custom
+metadata CSVs. The same group is available through the
 `sta-datasets` executable without requiring a repository checkout. It contributes
 no API routes or frontend workspace.
 

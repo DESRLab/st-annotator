@@ -116,4 +116,4 @@ jobs:
       - name: Test documentation
         run: bash ./scripts/doc.sh
       - name: Test documentation version packaging
-        run: python ./scripts/test-doc-versions.py
+        run: python ./scripts/test/test-doc-versions.py

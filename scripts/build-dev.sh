@@ -22,7 +22,7 @@ rm -rf \
     plugins/relation/frontend/dist
 
 echo "=== [BUILD] OpenAPI client ==="
-bash "$REPO_ROOT/scripts/generate-openapi-client.sh"
+bash "$REPO_ROOT/scripts/build/generate-openapi-client.sh"
 
 echo "=== [BUILD] Frontend packages ==="
 for workspace in sta sta-pcd sta-gmesh sta-bbox sta-segmentation sta-vector sta-relation; do

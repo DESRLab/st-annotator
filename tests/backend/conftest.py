@@ -9,7 +9,6 @@ this project's own venv, which declares ``sta`` and the plugin backends
 
 from __future__ import annotations
 
-import sys
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -20,15 +19,6 @@ from sta.common.filesystem import FilesystemConfig, fs_ctx
 pytest_plugins = [
     "sta.testing.pytest_fixtures",
 ]
-
-# The scripts under `scripts/` live outside the `sta` package (so they are
-# never measured by `--cov=sta`). They are imported by inserting the repo
-# root into `sys.path` here, mirroring how the e2e fixture servers used to
-# import them via `PYTHONPATH`.
-REPO_ROOT = Path(__file__).resolve().parents[2]
-
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
 
 
 @pytest.fixture

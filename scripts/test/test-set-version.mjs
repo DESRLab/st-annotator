@@ -12,7 +12,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 
-const script = fileURLToPath(new URL("./set-version.mjs", import.meta.url));
+const script = fileURLToPath(new URL("../release/set-version.mjs", import.meta.url));
 
 test("version CLI supports partial plugins and preserves third-party locks", () => {
   const root = mkdtempSync(path.join(tmpdir(), "sta-version-"));

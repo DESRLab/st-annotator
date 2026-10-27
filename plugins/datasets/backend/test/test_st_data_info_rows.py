@@ -1,10 +1,4 @@
-"""Tests for the row-building logic of ``generate_st_data_info.py``.
-
-The per-file row construction (``_get_st_info_row``), CSV output, and CLI validation
-are covered here. The command bodies themselves load an application config
-(which reads the database/filesystem environment) and are therefore left to
-manual runs.
-"""
+"""Test timestamp parsing, metadata CSV output, and required CLI options."""
 
 from __future__ import annotations
 
@@ -13,10 +7,11 @@ from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
 
-import scripts.generate_st_data_info as generate_st_data_info_module
 from click.testing import CliRunner
 
 from sta.common.filesystem import FileSystemPath
+
+from sta_datasets import st_data_info as generate_st_data_info_module
 
 
 def test_generate_st_data_info_parses_point_cloud_timestamps_from_the_file_name(fs_root: Path):
@@ -98,7 +93,7 @@ def test_generate_st_data_info_writes_csv_relative_to_current_working_directory(
 
 
 def test_cli_requires_output_before_loading_application_config():
-    result = CliRunner().invoke(generate_st_data_info_module.generate_st_data_info, ["data"])
+    result = CliRunner().invoke(generate_st_data_info_module.cli, ["data"])
 
     assert result.exit_code == 2
     assert "Missing option" in result.output

@@ -4688,6 +4688,7 @@ source = { editable = "plugins/datasets/backend" }
 dependencies = [
     { name = "click" },
     { name = "numpy" },
+    { name = "pandas" },
     { name = "plyfile" },
     { name = "pyarrow", version = "25.0.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "pyarrow", version = "26.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -4715,6 +4716,7 @@ dev = [
 requires-dist = [
     { name = "click", specifier = ">=8.1" },
     { name = "numpy", specifier = ">=1.26,<2.3" },
+    { name = "pandas", specifier = ">=2.2,<3" },
     { name = "plyfile", specifier = ">=1.0.3" },
     { name = "pyarrow", specifier = ">=14" },
     { name = "shapely", specifier = ">=2.0" },
@@ -4799,7 +4801,6 @@ name = "sta-integration-tests"
 version = "1.1.0"
 source = { virtual = "tests/backend" }
 dependencies = [
-    { name = "click" },
     { name = "fastapi" },
     { name = "numpy" },
     { name = "pytest" },
@@ -4822,7 +4823,6 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "click", specifier = ">=8.1" },
     { name = "fastapi", specifier = ">=0.115.13,<0.116" },
     { name = "numpy", specifier = ">=1.26,<2.3" },
     { name = "pytest", specifier = ">=7.0" },

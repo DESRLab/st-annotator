@@ -72,9 +72,9 @@ If you run DynamicSAM on another host or port, set the URL to the address reacha
 
 ### Import data
 
-Run `sta-datasets --help` from the repository root to list dataset importers.
+Run `sta-datasets import --help` from the repository root to list dataset importers.
 The repository installation includes this command. Installed deployments can
-also use `sta plugins -c <config> datasets <dataset> <data-dir>`.
+also use `sta plugins -c <config> datasets import <dataset> <data-dir>`.
 
 New object classes receive stable colors derived from their names. All dataset
 importers reuse existing classes and preserve their configured colors. Existing
@@ -113,7 +113,7 @@ Import SemanticKITTI point clouds, segmentation labels, and bounding boxes. Use
 3. From the repository root, import the labeled sequences `00` through `10`:
 
     ```bash
-    sta-datasets semantickitti \
+    sta-datasets import semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json
     ```
@@ -126,7 +126,7 @@ Import SemanticKITTI point clouds, segmentation labels, and bounding boxes. Use
    be repeated or receive comma-separated IDs:
 
     ```bash
-    sta-datasets semantickitti \
+    sta-datasets import semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json \
         --sequence 00,01
@@ -137,7 +137,7 @@ Additional useful variants include:
 - Import only point clouds, including unlabeled test sequences:
 
     ```bash
-    sta-datasets semantickitti \
+    sta-datasets import semantickitti \
         data/SemanticKITTI/dataset \
         -c appconfig-postgis.json \
         --sequence 11 \
@@ -152,25 +152,25 @@ Additional useful variants include:
 - Use `--source-group-name`, `--label-group-name`, and `--label-branch-name` to
   choose names other than the defaults. This is particularly useful for
   separate imports of different sequence sets.
-- Run `sta-datasets semantickitti --help` for the complete option list.
+- Run `sta-datasets import semantickitti --help` for the complete option list.
 
 #### 3RScan dataset
 
-The `sta-datasets 3rscan` command imports the [3RScan dataset](https://github.com/WaldJohannaU/3RScan) at `data/3RScan`.
+The `sta-datasets import 3rscan` command imports the [3RScan dataset](https://github.com/WaldJohannaU/3RScan) at `data/3RScan`.
 Each annotated scan directory contains `labels.instances.annotated.v2.ply` and
 `semseg.v2.json`. Only scans with an annotated PLY file are selected by default.
 
 From the repository root, validate one scan without database writes:
 
 ```bash
-sta-datasets 3rscan data/3RScan \
+sta-datasets import 3rscan data/3RScan \
     --scan 00d42bed-778d-2ac6-86a7-0e0e5f5f5660 --dry-run
 ```
 
 Import all annotated scans, logging in with an ST Annotator account at the prompt:
 
 ```bash
-sta-datasets 3rscan data/3RScan \
+sta-datasets import 3rscan data/3RScan \
     -c appconfig-postgis.json
 ```
 
@@ -194,15 +194,15 @@ login. Each invocation creates new groups rather than resuming an earlier import
 
 #### Argoverse 2 Sensor dataset
 
-The `sta-datasets argoverse2` command imports LiDAR sweeps and static vector map
+The `sta-datasets import argoverse2` command imports LiDAR sweeps and static vector map
 labels from extracted [Argoverse 2 Sensor logs](https://argoverse.github.io/user-guide/datasets/sensor.html).
 It accepts log directories directly under the input directory or within split
 directories (`train`, `val`, `test`). Start with a single log and a few frames:
 
 ```bash
-sta-datasets argoverse2 data/argoverse2-sensor \
+sta-datasets import argoverse2 data/argoverse2-sensor \
     --log <log-id> --max-frames 10 --dry-run
-sta-datasets argoverse2 data/argoverse2-sensor \
+sta-datasets import argoverse2 data/argoverse2-sensor \
     -c appconfig-postgis.json --log <log-id> --max-frames 10
 ```
 
@@ -218,11 +218,11 @@ sources. Raw files are preserved. `--stride N` selects every Nth sweep;
 each complete log independently, using eight worker processes by default.
 Use `--workers N` to change the process count or `--workers 1` to run serially.
 Completed logs remain if another log fails. See
-`sta-datasets argoverse2 --help` for the full option list.
+`sta-datasets import argoverse2 --help` for the full option list.
 
 #### Custom data
 
-For custom data, first use `scripts/generate_st_data_info.py` to generate a
+For custom data, first use `sta-datasets generate st-data-info` to generate a
 metadata CSV for import.
 
 1. Place the data files in a directory under `FILESYSTEM_ROOT`. The generator
@@ -244,7 +244,7 @@ metadata CSV for import.
    while the output CSV is relative to the current working directory:
 
     ```bash
-    python scripts/generate_st_data_info.py \
+    sta-datasets generate st-data-info \
         custom-point-clouds \
         --output custom-point-clouds.csv \
         -c appconfig-postgis.json

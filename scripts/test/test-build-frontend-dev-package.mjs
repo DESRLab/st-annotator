@@ -18,7 +18,7 @@ import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 
 const builder = fileURLToPath(
-  new URL("./build-frontend-dev-package.mjs", import.meta.url),
+  new URL("../build/build-frontend-dev-package.mjs", import.meta.url),
 );
 const fixedTime = new Date("2000-01-01T00:00:00Z");
 
@@ -29,7 +29,7 @@ test("a staged build preserves existing package output when sources are unchange
       "typescript/bin/tsc",
     );
     const assets = fileURLToPath(
-      new URL("./copy-frontend-assets.mjs", import.meta.url),
+      new URL("../build/copy-frontend-assets.mjs", import.meta.url),
     );
     for (const args of [
       [compiler, "-p", "tsconfig.build.json"],

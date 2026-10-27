@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-PACKAGER = Path(__file__).with_name("package-doc-versions.py")
+PACKAGER = Path(__file__).resolve().parent.parent / "doc" / "package-doc-versions.py"
 
 
 class DocumentationVersionsTest(unittest.TestCase):

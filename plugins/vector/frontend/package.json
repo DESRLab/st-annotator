@@ -41,7 +41,7 @@
     }
   },
   "scripts": {
-    "build:package": "node ../../../scripts/clean-frontend-dist.mjs . && tsc -p tsconfig.build.json && node ../../../scripts/copy-frontend-assets.mjs .",
+    "build:package": "node ../../../scripts/build/clean-frontend-dist.mjs . && tsc -p tsconfig.build.json && node ../../../scripts/build/copy-frontend-assets.mjs .",
     "prepack": "npm run build:package",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../../.prettierignore --log-level silent",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../../.prettierignore",

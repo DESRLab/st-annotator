@@ -8,14 +8,10 @@ authors = [
     { name = "Cyrus Leung", email = "tlleungac@connect.ust.hk"},
     { name = "Maral Bahari", email = "mbahari@connect.ust.hk"},
 ]
-dependencies = ["sta", "sta-datasets", "sta-bbox", "sta-gmesh", "sta-pcd", "sta-segmentation", "sta-vector", "sta-relation", "click>=8.1", "fastapi>=0.115.13,<0.116", "numpy>=1.26,<2.3", "sqlmodel>=0.0.24,<0.1", "pytest>=7.0"]
+dependencies = ["sta", "sta-datasets", "sta-bbox", "sta-gmesh", "sta-pcd", "sta-segmentation", "sta-vector", "sta-relation", "fastapi>=0.115.13,<0.116", "numpy>=1.26,<2.3", "sqlmodel>=0.0.24,<0.1", "pytest>=7.0"]
 
-# The repo-level `scripts/` data tooling and the with-data e2e fixture
-# server (`tests/frontend/serve_e2e_fixture.py`) import the plugin
-# backends. The plugins depend on `sta`, so they cannot be core test
-# dependencies; this project declares them instead. All five are declared
-# so this venv registers every plugin entry point (the fixture server
-# boots the full app).
+# Integration tests and the with-data fixture server require the plugin backends.
+# Plugins depend on sta, so these dependencies belong outside the core tests.
 [tool.uv]
 package = false
 
@@ -36,12 +32,10 @@ dev = ["deptry>=0.14", "ruff>=0.12"]
 extend_exclude = ["__pycache__"]
 
 [tool.deptry.per_rule_ignores]
-# `_typeshed` is typing-only; `scripts` is repo-root data tooling reached via
-# the `sys.path` insertion in conftest.py, not an installable package.
-DEP001 = ["_typeshed", "scripts"]
+# `_typeshed` is typing-only.
+DEP001 = ["_typeshed"]
 # Data plugins are discovered through entry points by authorization tests and
-# the fixture server. The fixture server outside this tree imports numpy;
-# sta-datasets supplies the compatibility launchers under scripts/.
+# the fixture server. The fixture server outside this tree imports numpy.
 DEP002 = ["sta-bbox", "sta-gmesh", "sta-pcd", "sta-segmentation", "sta-vector", "sta-relation", "sta-datasets", "numpy"]
 
 [tool.ruff]

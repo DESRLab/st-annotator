@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/port-utils.sh"
+source "$SCRIPT_DIR/serve/port-utils.sh"
 
 CONFIG_PATH=
 BACKEND_URL=${STA_BACKEND_URL:-http://localhost:8000}
@@ -131,7 +131,7 @@ frontend_bind_port=$PARSED_BIND_PORT
 
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
-node "$SCRIPT_DIR/frontend-build-freshness.mjs" dev-once
+node "$REPO_ROOT/scripts/build/frontend-build-freshness.mjs" dev-once
 
 kill_port_listeners "$backend_bind_port" backend
 if [[ $frontend_bind_port != "$backend_bind_port" ]]; then
@@ -181,7 +181,7 @@ stop_services() {
 trap cleanup EXIT
 trap stop_services INT TERM
 
-node "$SCRIPT_DIR/frontend-build-freshness.mjs" dev-watch &
+node "$REPO_ROOT/scripts/build/frontend-build-freshness.mjs" dev-watch &
 watch_pid=$!
 
 backend_args=(--http "$BACKEND_BIND")

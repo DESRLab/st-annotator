@@ -22,7 +22,7 @@ CORE_CONFIG="$CORE_ROOT/sta.config.ts"
 FULL_CONFIG="$REPO_ROOT/distributions/full/frontend/sta.config.ts"
 
 restore_core_config() {
-    node "$REPO_ROOT/scripts/select-frontend-config.mjs" \
+    node "$REPO_ROOT/scripts/build/select-frontend-config.mjs" \
         "$CORE_ROOT" \
         "$CORE_CONFIG"
 }
@@ -41,7 +41,7 @@ fi
 
 restore_core_config
 trap - EXIT
-node "$REPO_ROOT/scripts/frontend-build-freshness.mjs" prod-record
+node "$REPO_ROOT/scripts/build/frontend-build-freshness.mjs" prod-record
 
 echo "=== RESULT ==="
 echo "Production build complete. Run 'bash scripts/serve-prod.sh -c <config>' to serve it."

@@ -13,7 +13,7 @@ import {
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const packages = [
   ["sta", "core/frontend"],
   ["sta-pcd", "plugins/pcd/frontend"],
@@ -26,10 +26,10 @@ const packages = [
 const sharedPaths = [
   "package-lock.json",
   "config/js",
-  "scripts/clean-frontend-dist.mjs",
-  "scripts/copy-frontend-assets.mjs",
-  "scripts/build-frontend-dev-package.mjs",
-  "scripts/select-frontend-config.mjs",
+  "scripts/build/clean-frontend-dist.mjs",
+  "scripts/build/copy-frontend-assets.mjs",
+  "scripts/build/build-frontend-dev-package.mjs",
+  "scripts/build/select-frontend-config.mjs",
 ];
 function sourceFiles(relative) {
   const absolute = path.join(root, relative);
@@ -115,7 +115,7 @@ function buildChangedPackages({ preserveDist = false } = {}) {
       staged ? process.execPath : "npm",
       staged
         ? [
-            path.join(root, "scripts/build-frontend-dev-package.mjs"),
+            path.join(root, "scripts/build/build-frontend-dev-package.mjs"),
             path.join(root, directory),
           ]
         : ["run", "build:package", `--workspace=${name}`],
@@ -137,7 +137,7 @@ function buildChangedPackages({ preserveDist = false } = {}) {
       const select = spawnSync(
         "node",
         [
-          path.join(root, "scripts/select-frontend-config.mjs"),
+          path.join(root, "scripts/build/select-frontend-config.mjs"),
           path.join(root, directory),
           config,
         ],
@@ -158,14 +158,14 @@ function productionFingerprint() {
     "config/js",
     "scripts/build-dev.sh",
     "scripts/build-prod.sh",
-    "scripts/frontend-build-freshness.mjs",
-    "scripts/generate-frontend-build-hash.mjs",
-    "scripts/generate-openapi-client.sh",
-    "scripts/export-openapi-client-types.mjs",
-    "scripts/clean-frontend-dist.mjs",
-    "scripts/copy-frontend-assets.mjs",
-    "scripts/build-frontend-dev-package.mjs",
-    "scripts/select-frontend-config.mjs",
+    "scripts/build/frontend-build-freshness.mjs",
+    "scripts/build/generate-frontend-build-hash.mjs",
+    "scripts/build/generate-openapi-client.sh",
+    "scripts/build/export-openapi-client-types.mjs",
+    "scripts/build/clean-frontend-dist.mjs",
+    "scripts/build/copy-frontend-assets.mjs",
+    "scripts/build/build-frontend-dev-package.mjs",
+    "scripts/build/select-frontend-config.mjs",
     "package-lock.json",
   ];
   return fingerprint(

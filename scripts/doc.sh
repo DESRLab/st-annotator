@@ -41,7 +41,7 @@ docs_config=mkdocs.yml
 if [[ -n "${DOCS_VERSION:-}" ]]; then
     docs_config=$(mktemp "$PWD/.mkdocs-versioned-XXXXXX.yml")
     trap 'rm -f "$docs_config"' EXIT
-    python "$(dirname -- "${BASH_SOURCE[0]}")/configure-doc-version.py" "$docs_config"
+    python "$(dirname -- "${BASH_SOURCE[0]}")/doc/configure-doc-version.py" "$docs_config"
 fi
 rm -rf site
 mkdocs build -f "$docs_config" --strict

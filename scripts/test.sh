@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/port-utils.sh"
+source "$SCRIPT_DIR/serve/port-utils.sh"
 
 RUN_BACKEND=true
 RUN_FRONTEND=true
@@ -104,7 +104,7 @@ if $RUN_FRONTEND; then
     test_plugins frontend
 
     echo "=== [TEST] Development package builds ==="
-    node --test scripts/test-build-frontend-dev-package.mjs
+    node --test scripts/test/test-build-frontend-dev-package.mjs
 
     echo "=== [TEST] Shared JavaScript configuration ==="
     npm run test:unit --workspace=sta-config

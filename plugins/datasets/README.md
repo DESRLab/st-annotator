@@ -4,7 +4,9 @@ This plugin imports supported datasets into ST Annotator as point-cloud sources
 and object labels, including 3DSSG relationships for 3RScan. Its backend package
 is `sta-datasets` (`sta_datasets`), and
 `bash scripts/install.sh` installs it by default. It contributes CLI commands
-without a frontend workspace.
+without a frontend workspace. It also provides `sta-datasets generate st-data-info`
+for custom data metadata CSVs; see the [custom data quickstart](../../docs/quickstart.md#custom-data)
+for naming rules and the import workflow.
 
 Supported datasets:
 
@@ -15,8 +17,8 @@ Supported datasets:
 The dataset must be accessible under the application's configured filesystem
 root. Log in with an ST Annotator account when prompted. Run the commands below
 from the repository root. For available options, run
-`sta-datasets <dataset> --help` in the installed environment. The commands are
-also available through `sta plugins -c <config> datasets <dataset> <data-dir>`.
+`sta-datasets import <dataset> --help` in the installed environment. The commands are
+also available through `sta plugins -c <config> datasets import <dataset> <data-dir>`.
 
 All importers use eight worker processes by default. Use `--workers N` to change
 the process count or `--workers 1` to run serially. Each task imports one complete
@@ -47,7 +49,7 @@ Velodyne point clouds, instance segmentation, and fitted bounding boxes. Both
 label types are imported by default.
 
 ```bash
-sta-datasets semantickitti \
+sta-datasets import semantickitti \
     data/SemanticKITTI/dataset -c appconfig-postgis.json
 ```
 
@@ -61,7 +63,7 @@ PLY point clouds and imports instance segmentation by default. PLY colors are
 annotation colors; textured meshes and RGB-D sequences are omitted.
 
 ```bash
-sta-datasets 3rscan \
+sta-datasets import 3rscan \
     data/3RScan -c appconfig-postgis.json
 ```
 
@@ -73,7 +75,7 @@ For 3DSSG relationships, download the official
 to `data/3RScan/relationships.json`, then run:
 
 ```bash
-sta-datasets 3rscan data/3RScan -c appconfig-postgis.json --label-type relations
+sta-datasets import 3rscan data/3RScan -c appconfig-postgis.json --label-type relations
 ```
 
 The importer uses the 27 classes from the official
@@ -107,14 +109,14 @@ cuboid annotations, and raster maps are omitted.
 Validate a small sample without login, configuration, or writes:
 
 ```bash
-sta-datasets argoverse2 data/argoverse2-sensor \
+sta-datasets import argoverse2 data/argoverse2-sensor \
     --log <log-id> --max-frames 10 --dry-run
 ```
 
 Import it into the configured application:
 
 ```bash
-sta-datasets argoverse2 data/argoverse2-sensor \
+sta-datasets import argoverse2 data/argoverse2-sensor \
     -c appconfig-postgis.json --log <log-id> --max-frames 10
 ```
 
@@ -150,7 +152,8 @@ Argoverse data is distributed under
 
 Dataset readers live in separate modules under `backend/sta_datasets/`.
 `common.py` provides shared geometry, label creation, batching, and import cleanup
-helpers. The original `scripts/import_*.py` files remain thin command launchers.
+helpers. `cli.py` registers importers under `import` and metadata generators under
+`generate` for both the standalone executable and the plugin host.
 
 See the [dataset import guide](https://desrlab.github.io/st-annotator/quickstart.md#import-data)
 for further usage details and the [plugin development guide](https://desrlab.github.io/st-annotator/dev/plugin.md#dataset-import-plugin)

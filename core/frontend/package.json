@@ -96,22 +96,22 @@
     "./tsconfig": "./tsconfig.json"
   },
   "scripts": {
-    "openapi-ts": "openapi-ts && node ../../scripts/export-openapi-client-types.mjs",
-    "prebuild": "node ../../scripts/generate-frontend-build-hash.mjs .",
+    "openapi-ts": "openapi-ts && node ../../scripts/build/export-openapi-client-types.mjs",
+    "prebuild": "node ../../scripts/build/generate-frontend-build-hash.mjs .",
     "build": "react-router build",
-    "build:package": "node ../../scripts/clean-frontend-dist.mjs . && node ../../scripts/select-frontend-config.mjs . sta.config.ts && react-router typegen && tsc -p tsconfig.build.json && node ../../scripts/copy-frontend-assets.mjs .",
+    "build:package": "node ../../scripts/build/clean-frontend-dist.mjs . && node ../../scripts/build/select-frontend-config.mjs . sta.config.ts && react-router typegen && tsc -p tsconfig.build.json && node ../../scripts/build/copy-frontend-assets.mjs .",
     "prepack": "npm run build:package",
     "dev": "react-router dev",
     "start": "NODE_ENV=production react-router-serve ./build/server/index.js",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../.prettierignore --log-level silent",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mjs,cjs}\" --ignore-path ../../.prettierignore",
-    "prelint": "node ../../scripts/select-frontend-config.mjs . sta.config.ts",
+    "prelint": "node ../../scripts/build/select-frontend-config.mjs . sta.config.ts",
     "lint": "eslint .",
-    "prelint:fix": "node ../../scripts/select-frontend-config.mjs . sta.config.ts",
+    "prelint:fix": "node ../../scripts/build/select-frontend-config.mjs . sta.config.ts",
     "lint:fix": "eslint . --fix",
-    "pretest:unit": "node ../../scripts/select-frontend-config.mjs . sta.config.ts",
+    "pretest:unit": "node ../../scripts/build/select-frontend-config.mjs . sta.config.ts",
     "test:unit": "vitest run",
-    "typecheck": "node ../../scripts/select-frontend-config.mjs . sta.config.ts && react-router typegen && tsc"
+    "typecheck": "node ../../scripts/build/select-frontend-config.mjs . sta.config.ts && react-router typegen && tsc"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",

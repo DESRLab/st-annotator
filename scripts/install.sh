@@ -35,7 +35,7 @@ setup_backends
 source .venv/bin/activate
 
 echo "=== [INSTALL] OpenAPI Client ==="
-bash scripts/generate-openapi-client.sh
+bash scripts/build/generate-openapi-client.sh
 
 echo "=== RESULT ==="
 echo "Installation complete! Run 'sta init -c <config>' to create the database."

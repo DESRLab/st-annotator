@@ -168,7 +168,7 @@ if $RUN_FRONTEND; then
     lint_plugin_frontend st-annotator-frontend-tests
     npm run lint --workspace=st-annotator-full
     npm run typecheck --workspace=st-annotator-full
-    node scripts/check-frontend-dependencies.mjs
+    node scripts/lint/check-frontend-dependencies.mjs
 fi
 
 if $RUN_BACKEND; then

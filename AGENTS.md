@@ -25,8 +25,9 @@ assuming a bug.
 ## Entry points
 
 The root `package.json` defines **no npm scripts**. Repository-wide commands are
-shell scripts in `scripts/`, and the tooling scripts are `scripts/*.mjs` invoked
-as `node scripts/<tool>.mjs`. Do not add root npm aliases or aggregate scripts.
+user-facing scripts in `scripts/`, with helpers grouped by stage in subdirectories.
+Invoke JavaScript tools with `node scripts/<tool>.mjs` or the helper path. See [scripts/README.md](scripts/README.md)
+for the directory layout. Do not add root npm aliases or aggregate scripts.
 
 All of these run from the **repository root** — `lint.sh`, `format.sh` and
 friends resolve `plugins/*/` relative to the current directory and do not `cd`
@@ -165,7 +166,8 @@ its presence both before selection and while editing a selected label.
 ### Backend access
 
 Access to the backend should be done via `sta/client`. Whenever changes to the backend are made,
-make sure to regenerate the client by running `bash scripts/generate-openapi-client.sh`.
+regenerate the client by rebuilding with `bash scripts/build-dev.sh` or reinstalling
+with `bash scripts/install.sh`.
 
 Avoid using `sta/client-instance` directly for sending requests as doing so might miss
 some built-in features such as cookie-based authentication.
@@ -247,10 +249,11 @@ normative. The load-bearing constraints:
   schema and is gitignored. Frontend typechecking reads it from disk, so a
   backend schema change is invisible — including to the
   `openapi-conformance*.ts` compile-time gates — until the client is
-  regenerated. Regenerate with `bash scripts/generate-openapi-client.sh`
-  (or `npm run openapi-ts --workspace=sta`, which includes the mandatory
-  `scripts/export-openapi-client-types.mjs` post-step that restores the public
-  client contract exports). Never hand-edit generated files; back the directory
+  regenerated. Regenerate by rebuilding with `bash scripts/build-dev.sh` or
+  reinstalling with `bash scripts/install.sh`. Both use the internal
+  `scripts/build/generate-openapi-client.sh` helper and the mandatory
+  `scripts/build/export-openapi-client-types.mjs` post-step that restores the
+  public client contract exports. Never hand-edit generated files; back the directory
   up before regenerating, since git offers no safety net.
 - Every environment generates its own client from its active backend; generated
   operation-name suffixes shift with plugin load order, so diff the exported

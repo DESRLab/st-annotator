@@ -83,7 +83,9 @@ workspace list in the script; a new plugin must be added to both the cleanup
 and build lists.
 
 The OpenAPI client under `core/frontend/client/` is generated during both
-installation and frontend builds. Each generation briefly starts the testing
+installation and frontend builds. Regenerate it by running `bash scripts/build-dev.sh`
+or `bash scripts/install.sh`; `scripts/build/generate-openapi-client.sh` is an
+internal helper. Each generation briefly starts the testing
 backend and requires the configured database to be reachable.
 
 Each package build:
@@ -126,12 +128,13 @@ Workspace hoisting can hide undeclared imports. Before releasing frontend
 packages, run:
 
 ```sh
-node scripts/check-frontend-dependencies.mjs
+bash scripts/lint.sh frontend
 node scripts/test-frontend-packages.mjs
 ```
 
-`check-frontend-dependencies.mjs` validates internal dependency ranges, plugin
-contracts, and package exports. `test-frontend-packages.mjs` builds and packs
+The frontend lint stage automatically runs the internal
+`scripts/lint/check-frontend-dependencies.mjs` tool to validate internal dependency
+ranges, plugin contracts, and package exports. `test-frontend-packages.mjs` builds and packs
 all frontend packages, then installs their tarballs in temporary projects for
 these compositions:
 
@@ -141,7 +144,7 @@ these compositions:
 
 The temporary projects resolve the core package's `sta/app` and `sta/client`
 exports and each plugin's `<plugin>/app` export, and perform a real import of
-`sta/client`. `check-frontend-dependencies.mjs` separately verifies that every
+`sta/client`. The internal dependency check also verifies that every
 declared export target exists on disk. This is the release gate that proves
 package consumption does not depend on npm workspace hoisting.
 
@@ -330,12 +333,12 @@ developer guide path; unversioned developer guide links remain redirects.
 The workflow runs `doc.sh` once, preserving its complete MkDocs, Sphinx, and
 TypeDoc output. `DOCS_VERSION` selects a version-specific `site_url` through a
 temporary MkDocs configuration written by
-`scripts/configure-doc-version.py`; an ordinary `bash scripts/doc.sh` still builds
+`scripts/doc/configure-doc-version.py`; an ordinary `bash scripts/doc.sh` still builds
 the standalone site. The publishing tools come from the workflow revision,
 while documentation and package sources come from the selected branch or tag.
 Release checkouts must support the current documentation build pipeline.
 
-`python scripts/package-doc-versions.py site <archive> <version> [--stable]`
+`python scripts/doc/package-doc-versions.py site <archive> <version> [--stable]`
 updates the selected snapshot in an archive checkout. The `docs-site` branch
 stores completed snapshots, Material-compatible `versions.json` metadata, and
 redirects. Older snapshots are preserved without rebuilding them. The site root
@@ -365,7 +368,7 @@ The release publication request needs `actions: write` to dispatch the workflow
 on `main`. A successful request queues publication; the dispatched run's
 deployment determines whether the updated site is published.
 
-`python scripts/test-doc-versions.py` verifies snapshot preservation,
+`python scripts/test/test-doc-versions.py` verifies snapshot preservation,
 API reference inclusion, stable alias ordering, and redirects. Pre-release CI
 and the publishing workflow run this check. `doc.sh` builds frontend
 packages in dependency order before TypeDoc discovers their public entry points
@@ -392,7 +395,7 @@ version. Before a release:
 
 The version script discovers frontend and backend plugin packages independently,
 so plugins may provide either or both. Directories without package manifests are
-skipped. Run `node --test scripts/test-set-version.mjs` to check package discovery,
+skipped. Run `node --test scripts/test/test-set-version.mjs` to check package discovery,
 dry runs, and lockfile preservation in an isolated fixture.
 
 For the current full composition, a safe frontend publication order is core,

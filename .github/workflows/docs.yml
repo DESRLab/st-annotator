@@ -48,8 +48,10 @@ jobs:
           ref: ${{ github.workflow_sha }}
       - name: Preserve publishing tools
         run: |
-          mkdir -p "$RUNNER_TEMP/docs-tools"
-          cp scripts/doc.sh scripts/configure-doc-version.py scripts/package-doc-versions.py scripts/test-doc-versions.py "$RUNNER_TEMP/docs-tools/"
+          mkdir -p "$RUNNER_TEMP/docs-tools/doc" "$RUNNER_TEMP/docs-tools/test"
+          cp scripts/doc.sh "$RUNNER_TEMP/docs-tools/"
+          cp scripts/doc/*.py "$RUNNER_TEMP/docs-tools/doc/"
+          cp scripts/test/test-doc-versions.py "$RUNNER_TEMP/docs-tools/test/"
       - name: Checkout documentation source
         uses: actions/checkout@v4
         with:
@@ -80,7 +82,7 @@ jobs:
           echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
           echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv" >> "$GITHUB_ENV"
       - name: Test documentation version packaging
-        run: python "$RUNNER_TEMP/docs-tools/test-doc-versions.py"
+        run: python "$RUNNER_TEMP/docs-tools/test/test-doc-versions.py"
       - name: Generate documentation
         run: bash "$RUNNER_TEMP/docs-tools/doc.sh"
       - name: Assemble and persist documentation versions
@@ -100,7 +102,7 @@ jobs:
           fi
           stable_args=()
           if [[ "${DOCS_STABLE:-false}" == true ]]; then stable_args+=(--stable); fi
-          python "$RUNNER_TEMP/docs-tools/package-doc-versions.py" site "$archive" "$DOCS_VERSION" "${stable_args[@]}"
+          python "$RUNNER_TEMP/docs-tools/doc/package-doc-versions.py" site "$archive" "$DOCS_VERSION" "${stable_args[@]}"
           git -C "$archive" add --all
           if ! git -C "$archive" diff --cached --quiet; then
             git -C "$archive" commit -m "Publish documentation for $DOCS_VERSION"

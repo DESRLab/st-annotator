@@ -5,7 +5,7 @@ import process from "node:process";
 
 const repoRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "..",
+  "../..",
 );
 const packageDir = path.resolve(process.argv[2] ?? ".");
 const allowedPackageDirs = new Set([

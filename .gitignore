@@ -2,6 +2,7 @@ __pycache__/
 
 .sta-dev-dist-*/
 build/
+!/scripts/build/
 dist/
 node_modules/
 

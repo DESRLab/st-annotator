@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-source "$REPO_ROOT/scripts/port-utils.sh"
+source "$REPO_ROOT/scripts/serve/port-utils.sh"
 cd "$REPO_ROOT"
 
 CONFIG_PATH=
@@ -140,7 +140,7 @@ if [[ ! -f core/frontend/build/server/index.js || ! -f core/frontend/build/clien
     echo "Production frontend build not found; run 'bash scripts/build-prod.sh' first." >&2
     exit 1
 fi
-node "$REPO_ROOT/scripts/frontend-build-freshness.mjs" prod-check
+node "$REPO_ROOT/scripts/build/frontend-build-freshness.mjs" prod-check
 
 kill_port_listeners "$backend_bind_port" backend
 if [[ $frontend_bind_port != "$backend_bind_port" ]]; then
