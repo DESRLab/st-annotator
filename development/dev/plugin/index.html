@@ -2399,7 +2399,9 @@ production build commands.</p>
 <h2 id="dataset-import-plugin">Dataset import plugin</h2>
 <p><code>plugins/datasets/backend</code> is a backend-only package (<code>sta-datasets</code>, module
 <code>sta_datasets</code>). Its plugin entry point registers the <code>datasets</code> command group,
-with SemanticKITTI, 3RScan, and Argoverse 2 Sensor importers. The same group is available through the
+with <code>import</code> and <code>generate</code> subgroups. <code>import</code> contains the SemanticKITTI,
+3RScan, and Argoverse 2 Sensor importers; <code>generate st-data-info</code> creates custom
+metadata CSVs. The same group is available through the
 <code>sta-datasets</code> executable without requiring a repository checkout. It contributes
 no API routes or frontend workspace.</p>
 <p>Dataset readers and orchestration live in separate modules. <code>sta_datasets.common</code>

@@ -1927,9 +1927,9 @@ STA_JWT_PRIVATE_KEY_PATH=jwt-signing.key
 (You may have to first manually connect to the database server with an admin account and grant permissions to non-admin users.)</p>
 </div>
 <h3 id="import-data">Import data</h3>
-<p>Run <code>sta-datasets --help</code> from the repository root to list dataset importers.
+<p>Run <code>sta-datasets import --help</code> from the repository root to list dataset importers.
 The repository installation includes this command. Installed deployments can
-also use <code>sta plugins -c &lt;config&gt; datasets &lt;dataset&gt; &lt;data-dir&gt;</code>.</p>
+also use <code>sta plugins -c &lt;config&gt; datasets import &lt;dataset&gt; &lt;data-dir&gt;</code>.</p>
 <p>New object classes receive stable colors derived from their names. All dataset
 importers reuse existing classes and preserve their configured colors. Existing
 imports are not recolored.</p>
@@ -1964,7 +1964,7 @@ imports are not recolored.</p>
    must remain accessible through <code>FILESYSTEM_ROOT</code>.
 3. From the repository root, import the labeled sequences <code>00</code> through <code>10</code>:</p>
 <pre><code>```bash
-sta-datasets semantickitti \
+sta-datasets import semantickitti \
     data/SemanticKITTI/dataset \
     -c appconfig-postgis.json
 ```
@@ -1976,7 +1976,7 @@ sta-datasets semantickitti \
 4. For a smaller initial import, select one or more sequences. The option may
    be repeated or receive comma-separated IDs:</p>
 <pre><code>```bash
-sta-datasets semantickitti \
+sta-datasets import semantickitti \
     data/SemanticKITTI/dataset \
     -c appconfig-postgis.json \
     --sequence 00,01
@@ -1986,7 +1986,7 @@ sta-datasets semantickitti \
 <ul>
 <li>
 <p>Import only point clouds, including unlabeled test sequences:</p>
-<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>semantickitti<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>import<span class="w"> </span>semantickitti<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>data/SemanticKITTI/dataset<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-c<span class="w"> </span>appconfig-postgis.json<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--sequence<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="se">\</span>
@@ -2003,18 +2003,18 @@ sta-datasets semantickitti \
 <li>Use <code>--source-group-name</code>, <code>--label-group-name</code>, and <code>--label-branch-name</code> to
   choose names other than the defaults. This is particularly useful for
   separate imports of different sequence sets.</li>
-<li>Run <code>sta-datasets semantickitti --help</code> for the complete option list.</li>
+<li>Run <code>sta-datasets import semantickitti --help</code> for the complete option list.</li>
 </ul>
 <h4 id="3rscan-dataset">3RScan dataset</h4>
-<p>The <code>sta-datasets 3rscan</code> command imports the <a href="https://github.com/WaldJohannaU/3RScan">3RScan dataset</a> at <code>data/3RScan</code>.
+<p>The <code>sta-datasets import 3rscan</code> command imports the <a href="https://github.com/WaldJohannaU/3RScan">3RScan dataset</a> at <code>data/3RScan</code>.
 Each annotated scan directory contains <code>labels.instances.annotated.v2.ply</code> and
 <code>semseg.v2.json</code>. Only scans with an annotated PLY file are selected by default.</p>
 <p>From the repository root, validate one scan without database writes:</p>
-<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>3rscan<span class="w"> </span>data/3RScan<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>import<span class="w"> </span>3rscan<span class="w"> </span>data/3RScan<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--scan<span class="w"> </span>00d42bed-778d-2ac6-86a7-0e0e5f5f5660<span class="w"> </span>--dry-run
 </code></pre></div>
 <p>Import all annotated scans, logging in with an ST Annotator account at the prompt:</p>
-<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>3rscan<span class="w"> </span>data/3RScan<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>import<span class="w"> </span>3rscan<span class="w"> </span>data/3RScan<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-c<span class="w"> </span>appconfig-postgis.json
 </code></pre></div>
 <p>Place the dataset under the configured filesystem root and keep the original
@@ -2033,13 +2033,13 @@ Relationships whose endpoints have no PLY geometry are skipped with a warning.</
 group names. <code>--dry-run</code> checks all selected point clouds and mappings without
 login. Each invocation creates new groups rather than resuming an earlier import.</p>
 <h4 id="argoverse-2-sensor-dataset">Argoverse 2 Sensor dataset</h4>
-<p>The <code>sta-datasets argoverse2</code> command imports LiDAR sweeps and static vector map
+<p>The <code>sta-datasets import argoverse2</code> command imports LiDAR sweeps and static vector map
 labels from extracted <a href="https://argoverse.github.io/user-guide/datasets/sensor.html">Argoverse 2 Sensor logs</a>.
 It accepts log directories directly under the input directory or within split
 directories (<code>train</code>, <code>val</code>, <code>test</code>). Start with a single log and a few frames:</p>
-<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>argoverse2<span class="w"> </span>data/argoverse2-sensor<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sta-datasets<span class="w"> </span>import<span class="w"> </span>argoverse2<span class="w"> </span>data/argoverse2-sensor<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--log<span class="w"> </span>&lt;log-id&gt;<span class="w"> </span>--max-frames<span class="w"> </span><span class="m">10</span><span class="w"> </span>--dry-run
-sta-datasets<span class="w"> </span>argoverse2<span class="w"> </span>data/argoverse2-sensor<span class="w"> </span><span class="se">\</span>
+sta-datasets<span class="w"> </span>import<span class="w"> </span>argoverse2<span class="w"> </span>data/argoverse2-sensor<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-c<span class="w"> </span>appconfig-postgis.json<span class="w"> </span>--log<span class="w"> </span>&lt;log-id&gt;<span class="w"> </span>--max-frames<span class="w"> </span><span class="m">10</span>
 </code></pre></div>
 <p>Each log gets separate source and label groups. Use the matching groups to
@@ -2053,9 +2053,9 @@ sources. Raw files are preserved. <code>--stride N</code> selects every Nth swee
 each complete log independently, using eight worker processes by default.
 Use <code>--workers N</code> to change the process count or <code>--workers 1</code> to run serially.
 Completed logs remain if another log fails. See
-<code>sta-datasets argoverse2 --help</code> for the full option list.</p>
+<code>sta-datasets import argoverse2 --help</code> for the full option list.</p>
 <h4 id="custom-data">Custom data</h4>
-<p>For custom data, first use <code>scripts/generate_st_data_info.py</code> to generate a
+<p>For custom data, first use <code>sta-datasets generate st-data-info</code> to generate a
 metadata CSV for import.</p>
 <ol>
 <li>Place the data files in a directory under <code>FILESYSTEM_ROOT</code>. The generator
@@ -2076,7 +2076,7 @@ metadata CSV for import.</p>
 3. From the repository root, generate the metadata CSV. The input data path is relative to <code>FILESYSTEM_ROOT</code>,
    while the output CSV is relative to the current working directory:</p>
 <pre><code>```bash
-python scripts/generate_st_data_info.py \
+sta-datasets generate st-data-info \
     custom-point-clouds \
     --output custom-point-clouds.csv \
     -c appconfig-postgis.json
