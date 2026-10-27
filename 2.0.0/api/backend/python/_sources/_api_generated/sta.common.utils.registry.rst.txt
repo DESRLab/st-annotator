@@ -1,0 +1,32 @@
+sta.common.utils.registry
+=========================
+
+.. currentmodule:: sta.common.utils
+
+.. automodule:: sta.common.utils.registry
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Registry
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,47 @@
+sta.models.label.repo
+=====================
+
+.. currentmodule:: sta.models.label
+
+.. automodule:: sta.models.label.repo
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      BranchPermission
+      BranchPermissionLevel
+      GraphDistance
+      LabelsetBranch
+      LabelsetBranchCreate
+      LabelsetBranchPublic
+      LabelsetBranchUpdate
+      LabelsetCommit
+      LabelsetCommitCreate
+      LabelsetCommitInstruction
+      LabelsetCommitPublic
+      LabelsetCommitPublicWithChildren
+      LabelsetCommitPublicWithParents
+      LabelsetEdge
+      LabelsetOperationMetadata
+      LabelsetPushResult
+   
+   
+
+   
+   
+   
+
+
+

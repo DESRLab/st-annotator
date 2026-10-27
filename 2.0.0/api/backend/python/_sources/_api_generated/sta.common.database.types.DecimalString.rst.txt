@@ -1,0 +1,47 @@
+DecimalString
+=============
+
+
+
+
+.. currentmodule:: sta.common.database.types
+
+.. autoclass:: DecimalString
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DecimalString.load_dialect_impl
+      ~DecimalString.process_bind_param
+      ~DecimalString.process_result_value
+
+   
+   .. automethod:: DecimalString.load_dialect_impl
+   .. automethod:: DecimalString.process_bind_param
+   .. automethod:: DecimalString.process_result_value
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DecimalString.cache_ok
+      ~DecimalString.max_value
+      ~DecimalString.min_value
+      ~DecimalString.precision
+      ~DecimalString.scale
+
+   
+   .. autoattribute:: DecimalString.cache_ok
+   .. autoattribute:: DecimalString.max_value
+   .. autoattribute:: DecimalString.min_value
+   .. autoattribute:: DecimalString.precision
+   .. autoattribute:: DecimalString.scale
+   
+   

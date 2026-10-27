@@ -1,0 +1,38 @@
+sta.testing.domain.tasks
+========================
+
+.. currentmodule:: sta.testing.domain
+
+.. automodule:: sta.testing.domain.tasks
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      annotator_task
+      supervisor_task
+      unassigned_task
+
+   
+   .. autofunction:: annotator_task
+   .. autofunction:: supervisor_task
+   .. autofunction:: unassigned_task
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

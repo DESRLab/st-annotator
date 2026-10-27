@@ -1,0 +1,26 @@
+ProfileOperationType
+====================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_ancestor_candidates
+
+.. autoclass:: ProfileOperationType
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProfileOperationType.NO_OP
+
+   
+   .. autoattribute:: ProfileOperationType.NO_OP
+   
+   

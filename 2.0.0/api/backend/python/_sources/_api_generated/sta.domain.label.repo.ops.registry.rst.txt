@@ -1,0 +1,40 @@
+sta.domain.label.repo.ops.registry
+==================================
+
+.. currentmodule:: sta.domain.label.repo.ops
+
+.. automodule:: sta.domain.label.repo.ops.registry
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      OperationRegistry
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+      :toctree:
+   
+      InvalidOpName
+      InvalidOpParams
+   
+   
+
+
+

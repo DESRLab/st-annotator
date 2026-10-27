@@ -1,0 +1,45 @@
+LabelsetBranchUpdate
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetBranchUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelsetBranchUpdate.sqlmodel_update
+
+   
+   .. automethod:: LabelsetBranchUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetBranchUpdate.model_config
+      ~LabelsetBranchUpdate.name
+      ~LabelsetBranchUpdate.head_hash
+      ~LabelsetBranchUpdate.checkpoint_hash
+      ~LabelsetBranchUpdate.perm_lv_by_user_id
+      ~LabelsetBranchUpdate.issued_at
+
+   
+   .. autoattribute:: LabelsetBranchUpdate.model_config
+   .. autoattribute:: LabelsetBranchUpdate.name
+   .. autoattribute:: LabelsetBranchUpdate.head_hash
+   .. autoattribute:: LabelsetBranchUpdate.checkpoint_hash
+   .. autoattribute:: LabelsetBranchUpdate.perm_lv_by_user_id
+   .. autoattribute:: LabelsetBranchUpdate.issued_at
+   
+   

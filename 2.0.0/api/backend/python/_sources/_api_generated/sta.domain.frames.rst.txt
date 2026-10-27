@@ -1,0 +1,73 @@
+sta.domain.frames
+=================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.frames
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      FRAME_OWNER_EDITABLE_FIELDS
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_create_frames
+      bulk_delete_frames
+      bulk_update_frames
+      can_read_frame
+      can_read_frame_filters
+      count_frames
+      count_recent_frames
+      create_frame
+      delete_frame
+      list_frame_ids
+      list_frames
+      list_recent_frames
+      read_frame
+      require_frame_bulk_update
+      require_frame_update
+      require_frame_writer
+      update_frame
+
+   
+   .. autofunction:: bulk_create_frames
+   .. autofunction:: bulk_delete_frames
+   .. autofunction:: bulk_update_frames
+   .. autofunction:: can_read_frame
+   .. autofunction:: can_read_frame_filters
+   .. autofunction:: count_frames
+   .. autofunction:: count_recent_frames
+   .. autofunction:: create_frame
+   .. autofunction:: delete_frame
+   .. autofunction:: list_frame_ids
+   .. autofunction:: list_frames
+   .. autofunction:: list_recent_frames
+   .. autofunction:: read_frame
+   .. autofunction:: require_frame_bulk_update
+   .. autofunction:: require_frame_update
+   .. autofunction:: require_frame_writer
+   .. autofunction:: update_frame
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

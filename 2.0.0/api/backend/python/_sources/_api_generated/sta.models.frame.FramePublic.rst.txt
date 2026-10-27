@@ -1,0 +1,93 @@
+FramePublic
+===========
+
+
+
+
+.. currentmodule:: sta.models.frame
+
+.. autoclass:: FramePublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FramePublic.check_edit_conflict
+      ~FramePublic.get_create_cls
+      ~FramePublic.get_public_cls
+      ~FramePublic.get_update_cls
+      ~FramePublic.sqlmodel_update
+      ~FramePublic.unpack_max_coords
+      ~FramePublic.unpack_min_coords
+      ~FramePublic.unpack_st_bounds
+      ~FramePublic.update_from_st_bounds
+
+   
+   .. automethod:: FramePublic.check_edit_conflict
+   .. automethod:: FramePublic.get_create_cls
+   .. automethod:: FramePublic.get_public_cls
+   .. automethod:: FramePublic.get_update_cls
+   .. automethod:: FramePublic.sqlmodel_update
+   .. automethod:: FramePublic.unpack_max_coords
+   .. automethod:: FramePublic.unpack_min_coords
+   .. automethod:: FramePublic.unpack_st_bounds
+   .. automethod:: FramePublic.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FramePublic.COORD_TYPE
+      ~FramePublic.max_coords
+      ~FramePublic.min_coords
+      ~FramePublic.model_config
+      ~FramePublic.st_bounds
+      ~FramePublic.id
+      ~FramePublic.work_type
+      ~FramePublic.last_viewed_at
+      ~FramePublic.is_complete
+      ~FramePublic.task_id
+      ~FramePublic.account_id
+      ~FramePublic.source_group_id
+      ~FramePublic.label_branch_id
+      ~FramePublic.min_x
+      ~FramePublic.min_y
+      ~FramePublic.min_z
+      ~FramePublic.max_x
+      ~FramePublic.max_y
+      ~FramePublic.max_z
+      ~FramePublic.min_timestamp
+      ~FramePublic.max_timestamp
+      ~FramePublic.last_edit_at
+
+   
+   .. autoattribute:: FramePublic.COORD_TYPE
+   .. autoattribute:: FramePublic.max_coords
+   .. autoattribute:: FramePublic.min_coords
+   .. autoattribute:: FramePublic.model_config
+   .. autoattribute:: FramePublic.st_bounds
+   .. autoattribute:: FramePublic.id
+   .. autoattribute:: FramePublic.work_type
+   .. autoattribute:: FramePublic.last_viewed_at
+   .. autoattribute:: FramePublic.is_complete
+   .. autoattribute:: FramePublic.task_id
+   .. autoattribute:: FramePublic.account_id
+   .. autoattribute:: FramePublic.source_group_id
+   .. autoattribute:: FramePublic.label_branch_id
+   .. autoattribute:: FramePublic.min_x
+   .. autoattribute:: FramePublic.min_y
+   .. autoattribute:: FramePublic.min_z
+   .. autoattribute:: FramePublic.max_x
+   .. autoattribute:: FramePublic.max_y
+   .. autoattribute:: FramePublic.max_z
+   .. autoattribute:: FramePublic.min_timestamp
+   .. autoattribute:: FramePublic.max_timestamp
+   .. autoattribute:: FramePublic.last_edit_at
+   
+   

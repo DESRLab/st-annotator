@@ -1,0 +1,30 @@
+AccountUpdateResponse
+=====================
+
+
+
+
+.. currentmodule:: sta.api.auth
+
+.. autoclass:: AccountUpdateResponse
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AccountUpdateResponse.model_config
+      ~AccountUpdateResponse.user
+      ~AccountUpdateResponse.token
+
+   
+   .. autoattribute:: AccountUpdateResponse.model_config
+   .. autoattribute:: AccountUpdateResponse.user
+   .. autoattribute:: AccountUpdateResponse.token
+   
+   

@@ -1,0 +1,38 @@
+sta.common.database.execution
+=============================
+
+.. currentmodule:: sta.common.database
+
+.. automodule:: sta.common.database.execution
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      execute_statement
+      sql_column
+      stamp_bulk_edit
+
+   
+   .. autofunction:: execute_statement
+   .. autofunction:: sql_column
+   .. autofunction:: stamp_bulk_edit
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

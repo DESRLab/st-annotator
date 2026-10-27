@@ -1,0 +1,55 @@
+Transform
+=========
+
+
+
+
+.. currentmodule:: sta.common.spatial.transform
+
+.. autoclass:: Transform
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Transform.apply_to_array
+      ~Transform.apply_to_vector
+      ~Transform.apply_to_vertices
+      ~Transform.from_optional
+
+   
+   .. automethod:: Transform.apply_to_array
+   .. automethod:: Transform.apply_to_vector
+   .. automethod:: Transform.apply_to_vertices
+   .. automethod:: Transform.from_optional
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Transform.DEFAULT_ROTATION
+      ~Transform.DEFAULT_SCALE
+      ~Transform.DEFAULT_TRANSLATION
+      ~Transform.matrix
+      ~Transform.model_config
+      ~Transform.translation
+      ~Transform.rotation
+      ~Transform.scale
+
+   
+   .. autoattribute:: Transform.DEFAULT_ROTATION
+   .. autoattribute:: Transform.DEFAULT_SCALE
+   .. autoattribute:: Transform.DEFAULT_TRANSLATION
+   .. autoattribute:: Transform.matrix
+   .. autoattribute:: Transform.model_config
+   .. autoattribute:: Transform.translation
+   .. autoattribute:: Transform.rotation
+   .. autoattribute:: Transform.scale
+   
+   

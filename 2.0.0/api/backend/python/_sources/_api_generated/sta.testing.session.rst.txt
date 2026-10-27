@@ -1,0 +1,34 @@
+sta.testing.session
+===================
+
+.. currentmodule:: sta.testing
+
+.. automodule:: sta.testing.session
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      session
+
+   
+   .. autofunction:: session
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

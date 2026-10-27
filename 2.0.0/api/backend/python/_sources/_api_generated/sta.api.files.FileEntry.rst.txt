@@ -1,0 +1,36 @@
+FileEntry
+=========
+
+
+
+
+.. currentmodule:: sta.api.files
+
+.. autoclass:: FileEntry
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileEntry.model_config
+      ~FileEntry.name
+      ~FileEntry.parent
+      ~FileEntry.is_dir
+      ~FileEntry.size
+      ~FileEntry.modified
+
+   
+   .. autoattribute:: FileEntry.model_config
+   .. autoattribute:: FileEntry.name
+   .. autoattribute:: FileEntry.parent
+   .. autoattribute:: FileEntry.is_dir
+   .. autoattribute:: FileEntry.size
+   .. autoattribute:: FileEntry.modified
+   
+   

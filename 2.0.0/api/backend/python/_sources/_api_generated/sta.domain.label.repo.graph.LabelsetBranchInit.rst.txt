@@ -1,0 +1,34 @@
+LabelsetBranchInit
+==================
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.graph
+
+.. autoclass:: LabelsetBranchInit
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetBranchInit.model_config
+      ~LabelsetBranchInit.group_id
+      ~LabelsetBranchInit.commit_hash
+      ~LabelsetBranchInit.name
+      ~LabelsetBranchInit.perm_lv_by_user_id
+
+   
+   .. autoattribute:: LabelsetBranchInit.model_config
+   .. autoattribute:: LabelsetBranchInit.group_id
+   .. autoattribute:: LabelsetBranchInit.commit_hash
+   .. autoattribute:: LabelsetBranchInit.name
+   .. autoattribute:: LabelsetBranchInit.perm_lv_by_user_id
+   
+   

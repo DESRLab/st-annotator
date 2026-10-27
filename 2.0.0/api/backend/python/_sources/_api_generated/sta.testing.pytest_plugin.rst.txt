@@ -1,0 +1,25 @@
+sta.testing.pytest\_plugin
+==========================
+
+.. currentmodule:: sta.testing
+
+.. automodule:: sta.testing.pytest_plugin
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

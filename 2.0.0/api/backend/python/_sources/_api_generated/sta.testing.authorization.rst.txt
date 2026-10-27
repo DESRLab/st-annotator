@@ -1,0 +1,44 @@
+sta.testing.authorization
+=========================
+
+.. currentmodule:: sta.testing
+
+.. automodule:: sta.testing.authorization
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      principal_profiles
+      resource_relationships
+
+   
+   .. autofunction:: principal_profiles
+   .. autofunction:: resource_relationships
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      PrincipalProfiles
+      ResourceRelationships
+   
+   
+
+   
+   
+   
+
+
+

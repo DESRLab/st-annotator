@@ -1,0 +1,6 @@
+JOB\_EXECUTORS
+==============
+
+.. currentmodule:: sta.domain.jobs.base
+
+.. autodata:: JOB_EXECUTORS

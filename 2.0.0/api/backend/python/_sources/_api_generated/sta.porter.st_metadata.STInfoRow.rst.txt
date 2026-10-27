@@ -1,0 +1,50 @@
+STInfoRow
+=========
+
+
+
+
+.. currentmodule:: sta.porter.st_metadata
+
+.. autoclass:: STInfoRow
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~STInfoRow.model_config
+      ~STInfoRow.file_uri
+      ~STInfoRow.translate_x
+      ~STInfoRow.translate_y
+      ~STInfoRow.translate_z
+      ~STInfoRow.rotate_x
+      ~STInfoRow.rotate_y
+      ~STInfoRow.rotate_z
+      ~STInfoRow.scale_x
+      ~STInfoRow.scale_y
+      ~STInfoRow.scale_z
+      ~STInfoRow.min_timestamp
+      ~STInfoRow.max_timestamp
+
+   
+   .. autoattribute:: STInfoRow.model_config
+   .. autoattribute:: STInfoRow.file_uri
+   .. autoattribute:: STInfoRow.translate_x
+   .. autoattribute:: STInfoRow.translate_y
+   .. autoattribute:: STInfoRow.translate_z
+   .. autoattribute:: STInfoRow.rotate_x
+   .. autoattribute:: STInfoRow.rotate_y
+   .. autoattribute:: STInfoRow.rotate_z
+   .. autoattribute:: STInfoRow.scale_x
+   .. autoattribute:: STInfoRow.scale_y
+   .. autoattribute:: STInfoRow.scale_z
+   .. autoattribute:: STInfoRow.min_timestamp
+   .. autoattribute:: STInfoRow.max_timestamp
+   
+   

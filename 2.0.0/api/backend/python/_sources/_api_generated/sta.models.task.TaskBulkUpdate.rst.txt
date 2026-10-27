@@ -1,0 +1,45 @@
+TaskBulkUpdate
+==============
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: TaskBulkUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TaskBulkUpdate.sqlmodel_update
+
+   
+   .. automethod:: TaskBulkUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TaskBulkUpdate.model_config
+      ~TaskBulkUpdate.description
+      ~TaskBulkUpdate.deadline
+      ~TaskBulkUpdate.parent_id
+      ~TaskBulkUpdate.supervisor_ids
+      ~TaskBulkUpdate.annotator_ids
+
+   
+   .. autoattribute:: TaskBulkUpdate.model_config
+   .. autoattribute:: TaskBulkUpdate.description
+   .. autoattribute:: TaskBulkUpdate.deadline
+   .. autoattribute:: TaskBulkUpdate.parent_id
+   .. autoattribute:: TaskBulkUpdate.supervisor_ids
+   .. autoattribute:: TaskBulkUpdate.annotator_ids
+   
+   

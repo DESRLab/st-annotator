@@ -1,0 +1,58 @@
+sta.api.editor
+==============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.editor
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      list_project_tasks
+      list_task_frames
+      list_task_label_branches
+      list_task_source_groups
+      push_labelset_commits
+      read_label_data_bulk
+      read_labelset_branch
+      read_labelset_graph
+      read_project_config
+      read_source_data_bulk
+      setup_router
+      touch_frame_last_viewed_at
+      update_frame_is_complete
+
+   
+   .. autofunction:: list_project_tasks
+   .. autofunction:: list_task_frames
+   .. autofunction:: list_task_label_branches
+   .. autofunction:: list_task_source_groups
+   .. autofunction:: push_labelset_commits
+   .. autofunction:: read_label_data_bulk
+   .. autofunction:: read_labelset_branch
+   .. autofunction:: read_labelset_graph
+   .. autofunction:: read_project_config
+   .. autofunction:: read_source_data_bulk
+   .. autofunction:: setup_router
+   .. autofunction:: touch_frame_last_viewed_at
+   .. autofunction:: update_frame_is_complete
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

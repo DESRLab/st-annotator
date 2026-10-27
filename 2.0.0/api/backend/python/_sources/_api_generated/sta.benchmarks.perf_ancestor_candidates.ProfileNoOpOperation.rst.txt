@@ -1,0 +1,37 @@
+ProfileNoOpOperation
+====================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_ancestor_candidates
+
+.. autoclass:: ProfileNoOpOperation
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProfileNoOpOperation.apply
+
+   
+   .. automethod:: ProfileNoOpOperation.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProfileNoOpOperation.name
+      ~ProfileNoOpOperation.params
+
+   
+   .. autoattribute:: ProfileNoOpOperation.name
+   .. autoattribute:: ProfileNoOpOperation.params
+   
+   

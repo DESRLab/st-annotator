@@ -1,0 +1,50 @@
+sta.domain.accounts
+===================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.accounts
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_accounts
+      count_accounts
+      create_account
+      delete_account
+      list_accounts
+      read_account
+      require_account_reader
+      require_account_writer
+      update_account
+
+   
+   .. autofunction:: bulk_update_accounts
+   .. autofunction:: count_accounts
+   .. autofunction:: create_account
+   .. autofunction:: delete_account
+   .. autofunction:: list_accounts
+   .. autofunction:: read_account
+   .. autofunction:: require_account_reader
+   .. autofunction:: require_account_writer
+   .. autofunction:: update_account
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

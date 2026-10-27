@@ -1,0 +1,30 @@
+MinCoordsDict
+=============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: MinCoordsDict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MinCoordsDict.min_x
+      ~MinCoordsDict.min_y
+      ~MinCoordsDict.min_z
+
+   
+   .. autoattribute:: MinCoordsDict.min_x
+   .. autoattribute:: MinCoordsDict.min_y
+   .. autoattribute:: MinCoordsDict.min_z
+   
+   

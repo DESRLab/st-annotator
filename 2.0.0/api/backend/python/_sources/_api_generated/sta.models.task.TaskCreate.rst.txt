@@ -1,0 +1,53 @@
+TaskCreate
+==========
+
+
+
+
+.. currentmodule:: sta.models.task
+
+.. autoclass:: TaskCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TaskCreate.check_edit_conflict
+      ~TaskCreate.sqlmodel_update
+
+   
+   .. automethod:: TaskCreate.check_edit_conflict
+   .. automethod:: TaskCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TaskCreate.model_config
+      ~TaskCreate.supervisor_ids
+      ~TaskCreate.annotator_ids
+      ~TaskCreate.name
+      ~TaskCreate.description
+      ~TaskCreate.deadline
+      ~TaskCreate.project_id
+      ~TaskCreate.parent_id
+      ~TaskCreate.last_edit_at
+
+   
+   .. autoattribute:: TaskCreate.model_config
+   .. autoattribute:: TaskCreate.supervisor_ids
+   .. autoattribute:: TaskCreate.annotator_ids
+   .. autoattribute:: TaskCreate.name
+   .. autoattribute:: TaskCreate.description
+   .. autoattribute:: TaskCreate.deadline
+   .. autoattribute:: TaskCreate.project_id
+   .. autoattribute:: TaskCreate.parent_id
+   .. autoattribute:: TaskCreate.last_edit_at
+   
+   

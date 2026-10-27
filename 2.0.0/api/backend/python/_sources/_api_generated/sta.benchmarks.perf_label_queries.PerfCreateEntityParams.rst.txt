@@ -1,0 +1,38 @@
+PerfCreateEntityParams
+======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: PerfCreateEntityParams
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PerfCreateEntityParams.model_config
+      ~PerfCreateEntityParams.builders
+      ~PerfCreateEntityParams.step
+      ~PerfCreateEntityParams.num_entities
+      ~PerfCreateEntityParams.num_elements
+      ~PerfCreateEntityParams.history
+      ~PerfCreateEntityParams.insert_hash_to_distance_perf
+
+   
+   .. autoattribute:: PerfCreateEntityParams.model_config
+   .. autoattribute:: PerfCreateEntityParams.builders
+   .. autoattribute:: PerfCreateEntityParams.step
+   .. autoattribute:: PerfCreateEntityParams.num_entities
+   .. autoattribute:: PerfCreateEntityParams.num_elements
+   .. autoattribute:: PerfCreateEntityParams.history
+   .. autoattribute:: PerfCreateEntityParams.insert_hash_to_distance_perf
+   
+   

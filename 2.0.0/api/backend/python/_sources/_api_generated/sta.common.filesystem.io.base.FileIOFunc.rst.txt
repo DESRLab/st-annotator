@@ -1,0 +1,17 @@
+FileIOFunc
+==========
+
+
+
+
+.. currentmodule:: sta.common.filesystem.io.base
+
+.. autoclass:: FileIOFunc
+
+   
+   
+   
+
+   
+   
+   

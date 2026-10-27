@@ -1,0 +1,41 @@
+sta.domain.label.repo.placeholder
+=================================
+
+.. currentmodule:: sta.domain.label.repo
+
+.. automodule:: sta.domain.label.repo.placeholder
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      match_placeholder_key
+
+   
+   .. autofunction:: match_placeholder_key
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Placeholders
+   
+   
+
+   
+   
+   
+
+
+

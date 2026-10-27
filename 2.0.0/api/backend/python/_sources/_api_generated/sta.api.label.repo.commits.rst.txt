@@ -1,0 +1,36 @@
+sta.api.label.repo.commits
+==========================
+
+.. currentmodule:: sta.api.label.repo
+
+.. automodule:: sta.api.label.repo.commits
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      list_commits
+      read_commit
+
+   
+   .. autofunction:: list_commits
+   .. autofunction:: read_commit
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

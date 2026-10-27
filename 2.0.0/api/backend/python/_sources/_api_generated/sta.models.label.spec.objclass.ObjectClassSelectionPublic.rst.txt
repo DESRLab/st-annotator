@@ -1,0 +1,61 @@
+ObjectClassSelectionPublic
+==========================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassSelectionPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionPublic.build_group_links_cls
+      ~ObjectClassSelectionPublic.build_table_base_cls
+      ~ObjectClassSelectionPublic.check_edit_conflict
+      ~ObjectClassSelectionPublic.get_create_cls
+      ~ObjectClassSelectionPublic.get_public_cls
+      ~ObjectClassSelectionPublic.get_table_cls
+      ~ObjectClassSelectionPublic.get_update_cls
+      ~ObjectClassSelectionPublic.sqlmodel_update
+
+   
+   .. automethod:: ObjectClassSelectionPublic.build_group_links_cls
+   .. automethod:: ObjectClassSelectionPublic.build_table_base_cls
+   .. automethod:: ObjectClassSelectionPublic.check_edit_conflict
+   .. automethod:: ObjectClassSelectionPublic.get_create_cls
+   .. automethod:: ObjectClassSelectionPublic.get_public_cls
+   .. automethod:: ObjectClassSelectionPublic.get_table_cls
+   .. automethod:: ObjectClassSelectionPublic.get_update_cls
+   .. automethod:: ObjectClassSelectionPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassSelectionPublic.model_config
+      ~ObjectClassSelectionPublic.objclasses
+      ~ObjectClassSelectionPublic.id
+      ~ObjectClassSelectionPublic.groups
+      ~ObjectClassSelectionPublic.description
+      ~ObjectClassSelectionPublic.name
+      ~ObjectClassSelectionPublic.last_edit_at
+
+   
+   .. autoattribute:: ObjectClassSelectionPublic.model_config
+   .. autoattribute:: ObjectClassSelectionPublic.objclasses
+   .. autoattribute:: ObjectClassSelectionPublic.id
+   .. autoattribute:: ObjectClassSelectionPublic.groups
+   .. autoattribute:: ObjectClassSelectionPublic.description
+   .. autoattribute:: ObjectClassSelectionPublic.name
+   .. autoattribute:: ObjectClassSelectionPublic.last_edit_at
+   
+   

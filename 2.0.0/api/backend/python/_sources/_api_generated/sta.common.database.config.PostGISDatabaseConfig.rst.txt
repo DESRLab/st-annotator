@@ -1,0 +1,51 @@
+PostGISDatabaseConfig
+=====================
+
+
+
+
+.. currentmodule:: sta.common.database.config
+
+.. autoclass:: PostGISDatabaseConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PostGISDatabaseConfig.create_db
+      ~PostGISDatabaseConfig.from_env
+      ~PostGISDatabaseConfig.get_engine
+      ~PostGISDatabaseConfig.is_postgis_installed
+      ~PostGISDatabaseConfig.remove_db
+      ~PostGISDatabaseConfig.with_db_suffix
+
+   
+   .. automethod:: PostGISDatabaseConfig.create_db
+   .. automethod:: PostGISDatabaseConfig.from_env
+   .. automethod:: PostGISDatabaseConfig.get_engine
+   .. automethod:: PostGISDatabaseConfig.is_postgis_installed
+   .. automethod:: PostGISDatabaseConfig.remove_db
+   .. automethod:: PostGISDatabaseConfig.with_db_suffix
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PostGISDatabaseConfig.database
+      ~PostGISDatabaseConfig.host
+      ~PostGISDatabaseConfig.port
+      ~PostGISDatabaseConfig.user
+
+   
+   .. autoattribute:: PostGISDatabaseConfig.database
+   .. autoattribute:: PostGISDatabaseConfig.host
+   .. autoattribute:: PostGISDatabaseConfig.port
+   .. autoattribute:: PostGISDatabaseConfig.user
+   
+   

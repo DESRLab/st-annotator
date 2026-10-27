@@ -1,0 +1,51 @@
+ProjectPublic
+=============
+
+
+
+
+.. currentmodule:: sta.models.project
+
+.. autoclass:: ProjectPublic
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProjectPublic.check_edit_conflict
+      ~ProjectPublic.sqlmodel_update
+
+   
+   .. automethod:: ProjectPublic.check_edit_conflict
+   .. automethod:: ProjectPublic.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectPublic.model_config
+      ~ProjectPublic.id
+      ~ProjectPublic.members
+      ~ProjectPublic.tasks
+      ~ProjectPublic.name
+      ~ProjectPublic.description
+      ~ProjectPublic.config
+      ~ProjectPublic.last_edit_at
+
+   
+   .. autoattribute:: ProjectPublic.model_config
+   .. autoattribute:: ProjectPublic.id
+   .. autoattribute:: ProjectPublic.members
+   .. autoattribute:: ProjectPublic.tasks
+   .. autoattribute:: ProjectPublic.name
+   .. autoattribute:: ProjectPublic.description
+   .. autoattribute:: ProjectPublic.config
+   .. autoattribute:: ProjectPublic.last_edit_at
+   
+   

@@ -1,0 +1,32 @@
+sta.models.types.uri
+====================
+
+.. currentmodule:: sta.models.types
+
+.. automodule:: sta.models.types.uri
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      FileURIValidators
+   
+   
+
+   
+   
+   
+
+
+

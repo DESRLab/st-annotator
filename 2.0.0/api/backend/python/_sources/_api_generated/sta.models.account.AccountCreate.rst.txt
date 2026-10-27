@@ -1,0 +1,45 @@
+AccountCreate
+=============
+
+
+
+
+.. currentmodule:: sta.models.account
+
+.. autoclass:: AccountCreate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AccountCreate.check_edit_conflict
+      ~AccountCreate.sqlmodel_update
+
+   
+   .. automethod:: AccountCreate.check_edit_conflict
+   .. automethod:: AccountCreate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AccountCreate.model_config
+      ~AccountCreate.id
+      ~AccountCreate.username
+      ~AccountCreate.preferences
+      ~AccountCreate.last_edit_at
+
+   
+   .. autoattribute:: AccountCreate.model_config
+   .. autoattribute:: AccountCreate.id
+   .. autoattribute:: AccountCreate.username
+   .. autoattribute:: AccountCreate.preferences
+   .. autoattribute:: AccountCreate.last_edit_at
+   
+   

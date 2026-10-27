@@ -1,0 +1,34 @@
+sta.testing.domain.label.groups
+===============================
+
+.. currentmodule:: sta.testing.domain.label
+
+.. automodule:: sta.testing.domain.label.groups
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      label_group
+
+   
+   .. autofunction:: label_group
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

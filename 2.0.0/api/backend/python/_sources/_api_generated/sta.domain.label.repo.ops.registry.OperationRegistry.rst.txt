@@ -1,0 +1,42 @@
+OperationRegistry
+=================
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.registry
+
+.. autoclass:: OperationRegistry
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OperationRegistry.create_instruction_type
+      ~OperationRegistry.create_op
+      ~OperationRegistry.deregister
+      ~OperationRegistry.get_op_type
+      ~OperationRegistry.get_params_type
+      ~OperationRegistry.items
+      ~OperationRegistry.keys
+      ~OperationRegistry.register
+      ~OperationRegistry.values
+
+   
+   .. automethod:: OperationRegistry.create_instruction_type
+   .. automethod:: OperationRegistry.create_op
+   .. automethod:: OperationRegistry.deregister
+   .. automethod:: OperationRegistry.get_op_type
+   .. automethod:: OperationRegistry.get_params_type
+   .. automethod:: OperationRegistry.items
+   .. automethod:: OperationRegistry.keys
+   .. automethod:: OperationRegistry.register
+   .. automethod:: OperationRegistry.values
+   
+   
+
+   
+   
+   

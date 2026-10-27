@@ -1,0 +1,28 @@
+UserBulkUpdate
+==============
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: UserBulkUpdate
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UserBulkUpdate.model_config
+      ~UserBulkUpdate.roles
+
+   
+   .. autoattribute:: UserBulkUpdate.model_config
+   .. autoattribute:: UserBulkUpdate.roles
+   
+   

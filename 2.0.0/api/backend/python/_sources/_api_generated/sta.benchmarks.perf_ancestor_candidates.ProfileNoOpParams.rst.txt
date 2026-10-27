@@ -1,0 +1,26 @@
+ProfileNoOpParams
+=================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_ancestor_candidates
+
+.. autoclass:: ProfileNoOpParams
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProfileNoOpParams.model_config
+
+   
+   .. autoattribute:: ProfileNoOpParams.model_config
+   
+   

@@ -1,0 +1,43 @@
+LabelSpecCreateLike
+===================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.base
+
+.. autoclass:: LabelSpecCreateLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelSpecCreateLike.model_dump
+      ~LabelSpecCreateLike.model_validate
+      ~LabelSpecCreateLike.sqlmodel_update
+
+   
+   .. automethod:: LabelSpecCreateLike.model_dump
+   .. automethod:: LabelSpecCreateLike.model_validate
+   .. automethod:: LabelSpecCreateLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelSpecCreateLike.model_fields_set
+      ~LabelSpecCreateLike.group_ids
+      ~LabelSpecCreateLike.name
+
+   
+   .. autoattribute:: LabelSpecCreateLike.model_fields_set
+   .. autoattribute:: LabelSpecCreateLike.group_ids
+   .. autoattribute:: LabelSpecCreateLike.name
+   
+   

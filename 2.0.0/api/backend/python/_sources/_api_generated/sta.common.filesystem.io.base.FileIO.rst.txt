@@ -1,0 +1,45 @@
+FileIO
+======
+
+
+
+
+.. currentmodule:: sta.common.filesystem.io.base
+
+.. autoclass:: FileIO
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FileIO.normalize_uri_or_path
+      ~FileIO.reader
+      ~FileIO.supports_read
+      ~FileIO.supports_write
+      ~FileIO.writer
+
+   
+   .. automethod:: FileIO.normalize_uri_or_path
+   .. automethod:: FileIO.reader
+   .. automethod:: FileIO.supports_read
+   .. automethod:: FileIO.supports_write
+   .. automethod:: FileIO.writer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileIO.read_suffixes
+      ~FileIO.write_suffixes
+
+   
+   .. autoattribute:: FileIO.read_suffixes
+   .. autoattribute:: FileIO.write_suffixes
+   
+   

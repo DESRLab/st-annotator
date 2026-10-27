@@ -1,0 +1,45 @@
+sta.domain.label.data.endpoints
+===============================
+
+.. currentmodule:: sta.domain.label.data
+
+.. automodule:: sta.domain.label.data.endpoints
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      notify_element_delete
+      register_element_domain
+      resolve_element
+
+   
+   .. autofunction:: notify_element_delete
+   .. autofunction:: register_element_domain
+   .. autofunction:: resolve_element
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LabelElementReference
+   
+   
+
+   
+   
+   
+
+
+

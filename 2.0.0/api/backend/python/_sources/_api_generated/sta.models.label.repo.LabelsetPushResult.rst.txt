@@ -1,0 +1,30 @@
+LabelsetPushResult
+==================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: LabelsetPushResult
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelsetPushResult.model_config
+      ~LabelsetPushResult.branch
+      ~LabelsetPushResult.op_results
+
+   
+   .. autoattribute:: LabelsetPushResult.model_config
+   .. autoattribute:: LabelsetPushResult.branch
+   .. autoattribute:: LabelsetPushResult.op_results
+   
+   

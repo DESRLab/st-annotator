@@ -1,0 +1,34 @@
+sta.domain.ops
+==============
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.ops
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      reserve_bulk_insert_ids
+
+   
+   .. autofunction:: reserve_bulk_insert_ids
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

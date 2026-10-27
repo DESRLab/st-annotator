@@ -1,0 +1,30 @@
+ScaleDict
+=========
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: ScaleDict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ScaleDict.scale_x
+      ~ScaleDict.scale_y
+      ~ScaleDict.scale_z
+
+   
+   .. autoattribute:: ScaleDict.scale_x
+   .. autoattribute:: ScaleDict.scale_y
+   .. autoattribute:: ScaleDict.scale_z
+   
+   

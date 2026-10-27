@@ -1,0 +1,43 @@
+ProjectConfig
+=============
+
+
+
+
+.. currentmodule:: sta.models.configs.project
+
+.. autoclass:: ProjectConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProjectConfig.default
+
+   
+   .. automethod:: ProjectConfig.default
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectConfig.model_config
+      ~ProjectConfig.frame_cache_size
+      ~ProjectConfig.auto_tracks
+      ~ProjectConfig.init_camera_position
+      ~ProjectConfig.init_camera_target
+
+   
+   .. autoattribute:: ProjectConfig.model_config
+   .. autoattribute:: ProjectConfig.frame_cache_size
+   .. autoattribute:: ProjectConfig.auto_tracks
+   .. autoattribute:: ProjectConfig.init_camera_position
+   .. autoattribute:: ProjectConfig.init_camera_target
+   
+   

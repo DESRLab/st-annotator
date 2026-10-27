@@ -1,0 +1,6 @@
+STA\_JWT\_PRIVATE\_KEY\_PATH
+============================
+
+.. currentmodule:: sta.envs
+
+.. autodata:: STA_JWT_PRIVATE_KEY_PATH

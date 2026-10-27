@@ -1,0 +1,37 @@
+LabelGroupBulkUpdate
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.group
+
+.. autoclass:: LabelGroupBulkUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelGroupBulkUpdate.sqlmodel_update
+
+   
+   .. automethod:: LabelGroupBulkUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelGroupBulkUpdate.model_config
+      ~LabelGroupBulkUpdate.description
+
+   
+   .. autoattribute:: LabelGroupBulkUpdate.model_config
+   .. autoattribute:: LabelGroupBulkUpdate.description
+   
+   

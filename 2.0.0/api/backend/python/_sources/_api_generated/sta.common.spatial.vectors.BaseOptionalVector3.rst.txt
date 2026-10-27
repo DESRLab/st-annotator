@@ -1,0 +1,63 @@
+BaseOptionalVector3
+===================
+
+
+
+
+.. currentmodule:: sta.common.spatial.vectors
+
+.. autoclass:: BaseOptionalVector3
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BaseOptionalVector3.copy_with
+      ~BaseOptionalVector3.empty
+      ~BaseOptionalVector3.equals
+      ~BaseOptionalVector3.filled
+      ~BaseOptionalVector3.from_dict
+      ~BaseOptionalVector3.from_tuple
+      ~BaseOptionalVector3.get
+      ~BaseOptionalVector3.of
+      ~BaseOptionalVector3.ones
+      ~BaseOptionalVector3.to_dict
+      ~BaseOptionalVector3.to_tuple
+      ~BaseOptionalVector3.zeros
+
+   
+   .. automethod:: BaseOptionalVector3.copy_with
+   .. automethod:: BaseOptionalVector3.empty
+   .. automethod:: BaseOptionalVector3.equals
+   .. automethod:: BaseOptionalVector3.filled
+   .. automethod:: BaseOptionalVector3.from_dict
+   .. automethod:: BaseOptionalVector3.from_tuple
+   .. automethod:: BaseOptionalVector3.get
+   .. automethod:: BaseOptionalVector3.of
+   .. automethod:: BaseOptionalVector3.ones
+   .. automethod:: BaseOptionalVector3.to_dict
+   .. automethod:: BaseOptionalVector3.to_tuple
+   .. automethod:: BaseOptionalVector3.zeros
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseOptionalVector3.model_config
+      ~BaseOptionalVector3.x
+      ~BaseOptionalVector3.y
+      ~BaseOptionalVector3.z
+
+   
+   .. autoattribute:: BaseOptionalVector3.model_config
+   .. autoattribute:: BaseOptionalVector3.x
+   .. autoattribute:: BaseOptionalVector3.y
+   .. autoattribute:: BaseOptionalVector3.z
+   
+   

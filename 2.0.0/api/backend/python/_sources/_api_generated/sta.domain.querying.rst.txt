@@ -1,0 +1,58 @@
+sta.domain.querying
+===================
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.querying
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      apply_sort
+      count_query
+      filter_contains
+      filter_in
+      filter_range
+      id_query
+      paginate
+      pagination_params
+      sorting_params
+
+   
+   .. autofunction:: apply_sort
+   .. autofunction:: count_query
+   .. autofunction:: filter_contains
+   .. autofunction:: filter_in
+   .. autofunction:: filter_range
+   .. autofunction:: id_query
+   .. autofunction:: paginate
+   .. autofunction:: pagination_params
+   .. autofunction:: sorting_params
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Pagination
+      Sorting
+   
+   
+
+   
+   
+   
+
+
+

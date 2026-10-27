@@ -1,0 +1,55 @@
+LabelDataSQLModel
+=================
+
+
+
+
+.. currentmodule:: sta.models.label.data.base
+
+.. autoclass:: LabelDataSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelDataSQLModel.build_table_base_cls
+      ~LabelDataSQLModel.check_edit_conflict
+      ~LabelDataSQLModel.get_create_cls
+      ~LabelDataSQLModel.get_public_cls
+      ~LabelDataSQLModel.get_table_cls
+      ~LabelDataSQLModel.get_update_cls
+      ~LabelDataSQLModel.sqlmodel_update
+
+   
+   .. automethod:: LabelDataSQLModel.build_table_base_cls
+   .. automethod:: LabelDataSQLModel.check_edit_conflict
+   .. automethod:: LabelDataSQLModel.get_create_cls
+   .. automethod:: LabelDataSQLModel.get_public_cls
+   .. automethod:: LabelDataSQLModel.get_table_cls
+   .. automethod:: LabelDataSQLModel.get_update_cls
+   .. automethod:: LabelDataSQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelDataSQLModel.model_config
+      ~LabelDataSQLModel.group_id
+      ~LabelDataSQLModel.commit_hash
+      ~LabelDataSQLModel.is_deleted
+      ~LabelDataSQLModel.last_edit_at
+
+   
+   .. autoattribute:: LabelDataSQLModel.model_config
+   .. autoattribute:: LabelDataSQLModel.group_id
+   .. autoattribute:: LabelDataSQLModel.commit_hash
+   .. autoattribute:: LabelDataSQLModel.is_deleted
+   .. autoattribute:: LabelDataSQLModel.last_edit_at
+   
+   

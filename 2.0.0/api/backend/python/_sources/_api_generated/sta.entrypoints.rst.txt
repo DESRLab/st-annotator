@@ -1,0 +1,36 @@
+sta.entrypoints
+===============
+
+.. currentmodule:: sta
+
+.. automodule:: sta.entrypoints
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      app_ctx
+      test_app_ctx
+
+   
+   .. autofunction:: app_ctx
+   .. autofunction:: test_app_ctx
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

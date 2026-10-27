@@ -1,0 +1,47 @@
+Account
+=======
+
+
+
+
+.. currentmodule:: sta.models.account
+
+.. autoclass:: Account
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Account.check_edit_conflict
+      ~Account.sqlmodel_update
+
+   
+   .. automethod:: Account.check_edit_conflict
+   .. automethod:: Account.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Account.id
+      ~Account.last_edit_at
+      ~Account.model_config
+      ~Account.preferences
+      ~Account.user
+      ~Account.username
+
+   
+   .. autoattribute:: Account.id
+   .. autoattribute:: Account.last_edit_at
+   .. autoattribute:: Account.model_config
+   .. autoattribute:: Account.preferences
+   .. autoattribute:: Account.user
+   .. autoattribute:: Account.username
+   
+   

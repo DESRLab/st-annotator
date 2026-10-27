@@ -1,0 +1,34 @@
+sta.domain.label.spec.objclass
+==============================
+
+.. currentmodule:: sta.domain.label.spec
+
+.. automodule:: sta.domain.label.spec.objclass
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.label.spec.objclass.definitions
+   sta.domain.label.spec.objclass.selections
+

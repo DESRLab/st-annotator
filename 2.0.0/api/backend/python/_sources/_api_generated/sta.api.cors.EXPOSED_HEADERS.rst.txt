@@ -1,0 +1,6 @@
+EXPOSED\_HEADERS
+================
+
+.. currentmodule:: sta.api.cors
+
+.. autodata:: EXPOSED_HEADERS

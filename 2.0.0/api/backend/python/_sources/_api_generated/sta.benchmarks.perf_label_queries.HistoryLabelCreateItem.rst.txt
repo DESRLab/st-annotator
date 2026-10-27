@@ -1,0 +1,44 @@
+HistoryLabelCreateItem
+======================
+
+
+
+
+.. currentmodule:: sta.benchmarks.perf_label_queries
+
+.. autoclass:: HistoryLabelCreateItem
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HistoryLabelCreateItem.create_target
+      ~HistoryLabelCreateItem.insert_hash_to_distance_seconds
+      ~HistoryLabelCreateItem.add_seconds
+      ~HistoryLabelCreateItem.val_seconds
+      ~HistoryLabelCreateItem.total_seconds
+      ~HistoryLabelCreateItem.step
+      ~HistoryLabelCreateItem.num_branches
+      ~HistoryLabelCreateItem.num_commits
+      ~HistoryLabelCreateItem.num_entities
+      ~HistoryLabelCreateItem.num_elements
+
+   
+   .. autoattribute:: HistoryLabelCreateItem.create_target
+   .. autoattribute:: HistoryLabelCreateItem.insert_hash_to_distance_seconds
+   .. autoattribute:: HistoryLabelCreateItem.add_seconds
+   .. autoattribute:: HistoryLabelCreateItem.val_seconds
+   .. autoattribute:: HistoryLabelCreateItem.total_seconds
+   .. autoattribute:: HistoryLabelCreateItem.step
+   .. autoattribute:: HistoryLabelCreateItem.num_branches
+   .. autoattribute:: HistoryLabelCreateItem.num_commits
+   .. autoattribute:: HistoryLabelCreateItem.num_entities
+   .. autoattribute:: HistoryLabelCreateItem.num_elements
+   
+   

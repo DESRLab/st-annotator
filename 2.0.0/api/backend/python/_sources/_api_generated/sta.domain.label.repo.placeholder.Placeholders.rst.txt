@@ -1,0 +1,41 @@
+Placeholders
+============
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.placeholder
+
+.. autoclass:: Placeholders
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Placeholders.get_resolved_params
+      ~Placeholders.resolve_item
+
+   
+   .. automethod:: Placeholders.get_resolved_params
+   .. automethod:: Placeholders.resolve_item
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Placeholders.keys
+      ~Placeholders.resolved_keys
+      ~Placeholders.unresolved_keys
+
+   
+   .. autoattribute:: Placeholders.keys
+   .. autoattribute:: Placeholders.resolved_keys
+   .. autoattribute:: Placeholders.unresolved_keys
+   
+   

@@ -1,0 +1,43 @@
+sta.models.label.data.base
+==========================
+
+.. currentmodule:: sta.models.label.data
+
+.. automodule:: sta.models.label.data.base
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LabelDataPublicLike
+      LabelDataSQLModel
+      LabelDataTableLike
+      LabelDataUpdateLike
+      LabelElementPublicLike
+      LabelElementSQLModel
+      LabelElementTableLike
+      LabelElementUpdateLike
+      LabelEntityPublicLike
+      LabelEntitySQLModel
+      LabelEntityTableLike
+      LabelEntityUpdateLike
+   
+   
+
+   
+   
+   
+
+
+

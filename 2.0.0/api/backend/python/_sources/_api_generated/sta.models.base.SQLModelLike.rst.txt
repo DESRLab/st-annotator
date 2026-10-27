@@ -1,0 +1,39 @@
+SQLModelLike
+============
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: SQLModelLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SQLModelLike.model_dump
+      ~SQLModelLike.model_validate
+      ~SQLModelLike.sqlmodel_update
+
+   
+   .. automethod:: SQLModelLike.model_dump
+   .. automethod:: SQLModelLike.model_validate
+   .. automethod:: SQLModelLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SQLModelLike.model_fields_set
+
+   
+   .. autoattribute:: SQLModelLike.model_fields_set
+   
+   

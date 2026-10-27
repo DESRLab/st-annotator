@@ -1,0 +1,50 @@
+sta.domain.label.spec.objclass.definitions
+==========================================
+
+.. currentmodule:: sta.domain.label.spec.objclass
+
+.. automodule:: sta.domain.label.spec.objclass.definitions
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      bulk_update_objclasses
+      count_objclasses
+      create_objclass
+      delete_objclass
+      list_objclasses
+      read_objclass
+      require_objclass_reader
+      require_objclass_writer
+      update_objclass
+
+   
+   .. autofunction:: bulk_update_objclasses
+   .. autofunction:: count_objclasses
+   .. autofunction:: create_objclass
+   .. autofunction:: delete_objclass
+   .. autofunction:: list_objclasses
+   .. autofunction:: read_objclass
+   .. autofunction:: require_objclass_reader
+   .. autofunction:: require_objclass_writer
+   .. autofunction:: update_objclass
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,34 @@
+sta.domain.jobs
+===============
+
+.. currentmodule:: sta.domain
+
+.. automodule:: sta.domain.jobs
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.jobs.base
+   sta.domain.jobs.worker
+

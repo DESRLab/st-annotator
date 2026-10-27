@@ -1,0 +1,38 @@
+sta.common.testing.tests
+========================
+
+.. currentmodule:: sta.common.testing
+
+.. automodule:: sta.common.testing.tests
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_equal_hash_tests
+      build_equivalence_relation_tests
+      jsontypes_equal
+
+   
+   .. autofunction:: build_equal_hash_tests
+   .. autofunction:: build_equivalence_relation_tests
+   .. autofunction:: jsontypes_equal
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

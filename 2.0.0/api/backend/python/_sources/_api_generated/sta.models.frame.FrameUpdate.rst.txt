@@ -1,0 +1,61 @@
+FrameUpdate
+===========
+
+
+
+
+.. currentmodule:: sta.models.frame
+
+.. autoclass:: FrameUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FrameUpdate.sqlmodel_update
+
+   
+   .. automethod:: FrameUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FrameUpdate.model_config
+      ~FrameUpdate.source_group_id
+      ~FrameUpdate.label_branch_id
+      ~FrameUpdate.last_viewed_at
+      ~FrameUpdate.is_complete
+      ~FrameUpdate.min_x
+      ~FrameUpdate.min_y
+      ~FrameUpdate.min_z
+      ~FrameUpdate.max_x
+      ~FrameUpdate.max_y
+      ~FrameUpdate.max_z
+      ~FrameUpdate.min_timestamp
+      ~FrameUpdate.max_timestamp
+      ~FrameUpdate.issued_at
+
+   
+   .. autoattribute:: FrameUpdate.model_config
+   .. autoattribute:: FrameUpdate.source_group_id
+   .. autoattribute:: FrameUpdate.label_branch_id
+   .. autoattribute:: FrameUpdate.last_viewed_at
+   .. autoattribute:: FrameUpdate.is_complete
+   .. autoattribute:: FrameUpdate.min_x
+   .. autoattribute:: FrameUpdate.min_y
+   .. autoattribute:: FrameUpdate.min_z
+   .. autoattribute:: FrameUpdate.max_x
+   .. autoattribute:: FrameUpdate.max_y
+   .. autoattribute:: FrameUpdate.max_z
+   .. autoattribute:: FrameUpdate.min_timestamp
+   .. autoattribute:: FrameUpdate.max_timestamp
+   .. autoattribute:: FrameUpdate.issued_at
+   
+   

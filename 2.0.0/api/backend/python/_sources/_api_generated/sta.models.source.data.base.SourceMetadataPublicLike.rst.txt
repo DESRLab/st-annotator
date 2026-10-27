@@ -1,0 +1,79 @@
+SourceMetadataPublicLike
+========================
+
+
+
+
+.. currentmodule:: sta.models.source.data.base
+
+.. autoclass:: SourceMetadataPublicLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceMetadataPublicLike.model_dump
+      ~SourceMetadataPublicLike.model_validate
+      ~SourceMetadataPublicLike.sqlmodel_update
+      ~SourceMetadataPublicLike.unpack_max_coords
+      ~SourceMetadataPublicLike.unpack_min_coords
+      ~SourceMetadataPublicLike.unpack_st_bounds
+      ~SourceMetadataPublicLike.update_from_st_bounds
+
+   
+   .. automethod:: SourceMetadataPublicLike.model_dump
+   .. automethod:: SourceMetadataPublicLike.model_validate
+   .. automethod:: SourceMetadataPublicLike.sqlmodel_update
+   .. automethod:: SourceMetadataPublicLike.unpack_max_coords
+   .. automethod:: SourceMetadataPublicLike.unpack_min_coords
+   .. automethod:: SourceMetadataPublicLike.unpack_st_bounds
+   .. automethod:: SourceMetadataPublicLike.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceMetadataPublicLike.max_coords
+      ~SourceMetadataPublicLike.min_coords
+      ~SourceMetadataPublicLike.model_fields_set
+      ~SourceMetadataPublicLike.st_bounds
+      ~SourceMetadataPublicLike.uri
+      ~SourceMetadataPublicLike.id
+      ~SourceMetadataPublicLike.group
+      ~SourceMetadataPublicLike.auto_bounds
+      ~SourceMetadataPublicLike.group_id
+      ~SourceMetadataPublicLike.min_x
+      ~SourceMetadataPublicLike.min_y
+      ~SourceMetadataPublicLike.min_z
+      ~SourceMetadataPublicLike.max_x
+      ~SourceMetadataPublicLike.max_y
+      ~SourceMetadataPublicLike.max_z
+      ~SourceMetadataPublicLike.min_timestamp
+      ~SourceMetadataPublicLike.max_timestamp
+
+   
+   .. autoattribute:: SourceMetadataPublicLike.max_coords
+   .. autoattribute:: SourceMetadataPublicLike.min_coords
+   .. autoattribute:: SourceMetadataPublicLike.model_fields_set
+   .. autoattribute:: SourceMetadataPublicLike.st_bounds
+   .. autoattribute:: SourceMetadataPublicLike.uri
+   .. autoattribute:: SourceMetadataPublicLike.id
+   .. autoattribute:: SourceMetadataPublicLike.group
+   .. autoattribute:: SourceMetadataPublicLike.auto_bounds
+   .. autoattribute:: SourceMetadataPublicLike.group_id
+   .. autoattribute:: SourceMetadataPublicLike.min_x
+   .. autoattribute:: SourceMetadataPublicLike.min_y
+   .. autoattribute:: SourceMetadataPublicLike.min_z
+   .. autoattribute:: SourceMetadataPublicLike.max_x
+   .. autoattribute:: SourceMetadataPublicLike.max_y
+   .. autoattribute:: SourceMetadataPublicLike.max_z
+   .. autoattribute:: SourceMetadataPublicLike.min_timestamp
+   .. autoattribute:: SourceMetadataPublicLike.max_timestamp
+   
+   

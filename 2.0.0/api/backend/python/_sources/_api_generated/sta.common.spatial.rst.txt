@@ -1,0 +1,36 @@
+sta.common.spatial
+==================
+
+.. currentmodule:: sta.common
+
+.. automodule:: sta.common.spatial
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.common.spatial.boundaries
+   sta.common.spatial.transform
+   sta.common.spatial.units
+   sta.common.spatial.vectors
+

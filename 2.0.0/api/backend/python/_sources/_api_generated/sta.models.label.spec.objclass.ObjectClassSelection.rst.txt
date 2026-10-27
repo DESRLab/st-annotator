@@ -1,0 +1,67 @@
+ObjectClassSelection
+====================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.objclass
+
+.. autoclass:: ObjectClassSelection
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ObjectClassSelection.build_group_links_cls
+      ~ObjectClassSelection.build_table_base_cls
+      ~ObjectClassSelection.check_edit_conflict
+      ~ObjectClassSelection.get_association_cls
+      ~ObjectClassSelection.get_create_cls
+      ~ObjectClassSelection.get_group_links_cls
+      ~ObjectClassSelection.get_public_cls
+      ~ObjectClassSelection.get_table_cls
+      ~ObjectClassSelection.get_update_cls
+      ~ObjectClassSelection.sqlmodel_update
+
+   
+   .. automethod:: ObjectClassSelection.build_group_links_cls
+   .. automethod:: ObjectClassSelection.build_table_base_cls
+   .. automethod:: ObjectClassSelection.check_edit_conflict
+   .. automethod:: ObjectClassSelection.get_association_cls
+   .. automethod:: ObjectClassSelection.get_create_cls
+   .. automethod:: ObjectClassSelection.get_group_links_cls
+   .. automethod:: ObjectClassSelection.get_public_cls
+   .. automethod:: ObjectClassSelection.get_table_cls
+   .. automethod:: ObjectClassSelection.get_update_cls
+   .. automethod:: ObjectClassSelection.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectClassSelection.description
+      ~ObjectClassSelection.group_links
+      ~ObjectClassSelection.groups
+      ~ObjectClassSelection.id
+      ~ObjectClassSelection.last_edit_at
+      ~ObjectClassSelection.model_config
+      ~ObjectClassSelection.name
+      ~ObjectClassSelection.objclasses
+
+   
+   .. autoattribute:: ObjectClassSelection.description
+   .. autoattribute:: ObjectClassSelection.group_links
+   .. autoattribute:: ObjectClassSelection.groups
+   .. autoattribute:: ObjectClassSelection.id
+   .. autoattribute:: ObjectClassSelection.last_edit_at
+   .. autoattribute:: ObjectClassSelection.model_config
+   .. autoattribute:: ObjectClassSelection.name
+   .. autoattribute:: ObjectClassSelection.objclasses
+   
+   

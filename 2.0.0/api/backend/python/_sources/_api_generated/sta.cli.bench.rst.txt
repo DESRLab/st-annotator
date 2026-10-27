@@ -1,0 +1,40 @@
+sta.cli.bench
+=============
+
+.. currentmodule:: sta.cli
+
+.. automodule:: sta.cli.bench
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      ancestor_candidates_command
+      attach_bench_cli
+      bench_command
+      label_queries_command
+
+   
+   .. autofunction:: ancestor_candidates_command
+   .. autofunction:: attach_bench_cli
+   .. autofunction:: bench_command
+   .. autofunction:: label_queries_command
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

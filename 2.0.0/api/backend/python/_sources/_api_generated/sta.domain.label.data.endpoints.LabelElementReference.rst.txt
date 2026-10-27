@@ -1,0 +1,30 @@
+LabelElementReference
+=====================
+
+
+
+
+.. currentmodule:: sta.domain.label.data.endpoints
+
+.. autoclass:: LabelElementReference
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelElementReference.model_config
+      ~LabelElementReference.type
+      ~LabelElementReference.id
+
+   
+   .. autoattribute:: LabelElementReference.model_config
+   .. autoattribute:: LabelElementReference.type
+   .. autoattribute:: LabelElementReference.id
+   
+   

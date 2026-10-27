@@ -1,0 +1,32 @@
+sta.domain.label.repo.ops.base.update
+=====================================
+
+.. currentmodule:: sta.domain.label.repo.ops.base
+
+.. automodule:: sta.domain.label.repo.ops.base.update
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      UpdateBase
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,41 @@
+AccountUpdate
+=============
+
+
+
+
+.. currentmodule:: sta.models.account
+
+.. autoclass:: AccountUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AccountUpdate.sqlmodel_update
+
+   
+   .. automethod:: AccountUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AccountUpdate.model_config
+      ~AccountUpdate.username
+      ~AccountUpdate.preferences
+      ~AccountUpdate.issued_at
+
+   
+   .. autoattribute:: AccountUpdate.model_config
+   .. autoattribute:: AccountUpdate.username
+   .. autoattribute:: AccountUpdate.preferences
+   .. autoattribute:: AccountUpdate.issued_at
+   
+   

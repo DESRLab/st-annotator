@@ -1,0 +1,101 @@
+FramePublicWithParents
+======================
+
+
+
+
+.. currentmodule:: sta.models.frame
+
+.. autoclass:: FramePublicWithParents
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FramePublicWithParents.check_edit_conflict
+      ~FramePublicWithParents.get_create_cls
+      ~FramePublicWithParents.get_public_cls
+      ~FramePublicWithParents.get_update_cls
+      ~FramePublicWithParents.sqlmodel_update
+      ~FramePublicWithParents.unpack_max_coords
+      ~FramePublicWithParents.unpack_min_coords
+      ~FramePublicWithParents.unpack_st_bounds
+      ~FramePublicWithParents.update_from_st_bounds
+
+   
+   .. automethod:: FramePublicWithParents.check_edit_conflict
+   .. automethod:: FramePublicWithParents.get_create_cls
+   .. automethod:: FramePublicWithParents.get_public_cls
+   .. automethod:: FramePublicWithParents.get_update_cls
+   .. automethod:: FramePublicWithParents.sqlmodel_update
+   .. automethod:: FramePublicWithParents.unpack_max_coords
+   .. automethod:: FramePublicWithParents.unpack_min_coords
+   .. automethod:: FramePublicWithParents.unpack_st_bounds
+   .. automethod:: FramePublicWithParents.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FramePublicWithParents.COORD_TYPE
+      ~FramePublicWithParents.max_coords
+      ~FramePublicWithParents.min_coords
+      ~FramePublicWithParents.model_config
+      ~FramePublicWithParents.st_bounds
+      ~FramePublicWithParents.task
+      ~FramePublicWithParents.account
+      ~FramePublicWithParents.source_group
+      ~FramePublicWithParents.label_branch
+      ~FramePublicWithParents.id
+      ~FramePublicWithParents.work_type
+      ~FramePublicWithParents.last_viewed_at
+      ~FramePublicWithParents.is_complete
+      ~FramePublicWithParents.task_id
+      ~FramePublicWithParents.account_id
+      ~FramePublicWithParents.source_group_id
+      ~FramePublicWithParents.label_branch_id
+      ~FramePublicWithParents.min_x
+      ~FramePublicWithParents.min_y
+      ~FramePublicWithParents.min_z
+      ~FramePublicWithParents.max_x
+      ~FramePublicWithParents.max_y
+      ~FramePublicWithParents.max_z
+      ~FramePublicWithParents.min_timestamp
+      ~FramePublicWithParents.max_timestamp
+      ~FramePublicWithParents.last_edit_at
+
+   
+   .. autoattribute:: FramePublicWithParents.COORD_TYPE
+   .. autoattribute:: FramePublicWithParents.max_coords
+   .. autoattribute:: FramePublicWithParents.min_coords
+   .. autoattribute:: FramePublicWithParents.model_config
+   .. autoattribute:: FramePublicWithParents.st_bounds
+   .. autoattribute:: FramePublicWithParents.task
+   .. autoattribute:: FramePublicWithParents.account
+   .. autoattribute:: FramePublicWithParents.source_group
+   .. autoattribute:: FramePublicWithParents.label_branch
+   .. autoattribute:: FramePublicWithParents.id
+   .. autoattribute:: FramePublicWithParents.work_type
+   .. autoattribute:: FramePublicWithParents.last_viewed_at
+   .. autoattribute:: FramePublicWithParents.is_complete
+   .. autoattribute:: FramePublicWithParents.task_id
+   .. autoattribute:: FramePublicWithParents.account_id
+   .. autoattribute:: FramePublicWithParents.source_group_id
+   .. autoattribute:: FramePublicWithParents.label_branch_id
+   .. autoattribute:: FramePublicWithParents.min_x
+   .. autoattribute:: FramePublicWithParents.min_y
+   .. autoattribute:: FramePublicWithParents.min_z
+   .. autoattribute:: FramePublicWithParents.max_x
+   .. autoattribute:: FramePublicWithParents.max_y
+   .. autoattribute:: FramePublicWithParents.max_z
+   .. autoattribute:: FramePublicWithParents.min_timestamp
+   .. autoattribute:: FramePublicWithParents.max_timestamp
+   .. autoattribute:: FramePublicWithParents.last_edit_at
+   
+   

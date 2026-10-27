@@ -1,0 +1,81 @@
+TransformSQLMixinLike
+=====================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: TransformSQLMixinLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TransformSQLMixinLike.model_dump
+      ~TransformSQLMixinLike.model_validate
+      ~TransformSQLMixinLike.sqlmodel_update
+      ~TransformSQLMixinLike.unpack_rotation
+      ~TransformSQLMixinLike.unpack_scale
+      ~TransformSQLMixinLike.unpack_transform
+      ~TransformSQLMixinLike.unpack_translation
+      ~TransformSQLMixinLike.update_from_rotation
+      ~TransformSQLMixinLike.update_from_scale
+      ~TransformSQLMixinLike.update_from_transform
+      ~TransformSQLMixinLike.update_from_translation
+
+   
+   .. automethod:: TransformSQLMixinLike.model_dump
+   .. automethod:: TransformSQLMixinLike.model_validate
+   .. automethod:: TransformSQLMixinLike.sqlmodel_update
+   .. automethod:: TransformSQLMixinLike.unpack_rotation
+   .. automethod:: TransformSQLMixinLike.unpack_scale
+   .. automethod:: TransformSQLMixinLike.unpack_transform
+   .. automethod:: TransformSQLMixinLike.unpack_translation
+   .. automethod:: TransformSQLMixinLike.update_from_rotation
+   .. automethod:: TransformSQLMixinLike.update_from_scale
+   .. automethod:: TransformSQLMixinLike.update_from_transform
+   .. automethod:: TransformSQLMixinLike.update_from_translation
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TransformSQLMixinLike.model_fields_set
+      ~TransformSQLMixinLike.rotation
+      ~TransformSQLMixinLike.scale
+      ~TransformSQLMixinLike.transform
+      ~TransformSQLMixinLike.translation
+      ~TransformSQLMixinLike.translate_x
+      ~TransformSQLMixinLike.translate_y
+      ~TransformSQLMixinLike.translate_z
+      ~TransformSQLMixinLike.rotate_x
+      ~TransformSQLMixinLike.rotate_y
+      ~TransformSQLMixinLike.rotate_z
+      ~TransformSQLMixinLike.scale_x
+      ~TransformSQLMixinLike.scale_y
+      ~TransformSQLMixinLike.scale_z
+
+   
+   .. autoattribute:: TransformSQLMixinLike.model_fields_set
+   .. autoattribute:: TransformSQLMixinLike.rotation
+   .. autoattribute:: TransformSQLMixinLike.scale
+   .. autoattribute:: TransformSQLMixinLike.transform
+   .. autoattribute:: TransformSQLMixinLike.translation
+   .. autoattribute:: TransformSQLMixinLike.translate_x
+   .. autoattribute:: TransformSQLMixinLike.translate_y
+   .. autoattribute:: TransformSQLMixinLike.translate_z
+   .. autoattribute:: TransformSQLMixinLike.rotate_x
+   .. autoattribute:: TransformSQLMixinLike.rotate_y
+   .. autoattribute:: TransformSQLMixinLike.rotate_z
+   .. autoattribute:: TransformSQLMixinLike.scale_x
+   .. autoattribute:: TransformSQLMixinLike.scale_y
+   .. autoattribute:: TransformSQLMixinLike.scale_z
+   
+   

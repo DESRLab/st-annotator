@@ -1,0 +1,40 @@
+sta.models.user
+===============
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.user
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      PasswordValidators
+      Role
+      User
+      UserBulkUpdate
+      UserCreate
+      UserPublic
+      UserRole
+      UserUpdate
+      UsernameValidators
+   
+   
+
+   
+   
+   
+
+
+

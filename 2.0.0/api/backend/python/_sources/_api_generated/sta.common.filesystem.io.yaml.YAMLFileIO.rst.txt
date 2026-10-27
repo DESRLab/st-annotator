@@ -1,0 +1,49 @@
+YAMLFileIO
+==========
+
+
+
+
+.. currentmodule:: sta.common.filesystem.io.yaml
+
+.. autoclass:: YAMLFileIO
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~YAMLFileIO.normalize_uri_or_path
+      ~YAMLFileIO.read
+      ~YAMLFileIO.reader
+      ~YAMLFileIO.supports_read
+      ~YAMLFileIO.supports_write
+      ~YAMLFileIO.write
+      ~YAMLFileIO.writer
+
+   
+   .. automethod:: YAMLFileIO.normalize_uri_or_path
+   .. automethod:: YAMLFileIO.read
+   .. automethod:: YAMLFileIO.reader
+   .. automethod:: YAMLFileIO.supports_read
+   .. automethod:: YAMLFileIO.supports_write
+   .. automethod:: YAMLFileIO.write
+   .. automethod:: YAMLFileIO.writer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~YAMLFileIO.read_suffixes
+      ~YAMLFileIO.write_suffixes
+
+   
+   .. autoattribute:: YAMLFileIO.read_suffixes
+   .. autoattribute:: YAMLFileIO.write_suffixes
+   
+   

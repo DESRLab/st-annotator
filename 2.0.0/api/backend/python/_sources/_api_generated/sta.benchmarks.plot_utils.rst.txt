@@ -1,0 +1,58 @@
+sta.benchmarks.plot\_utils
+==========================
+
+.. currentmodule:: sta.benchmarks
+
+.. automodule:: sta.benchmarks.plot_utils
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      apply_plot_fns
+      plot_label_count
+      plot_query_cost_detail
+      plot_query_cost_detail_partial
+      plot_query_cost_summary
+      plot_query_cost_summary_partial
+      plot_repo_growth
+      plot_storage_cost
+
+   
+   .. autofunction:: apply_plot_fns
+   .. autofunction:: plot_label_count
+   .. autofunction:: plot_query_cost_detail
+   .. autofunction:: plot_query_cost_detail_partial
+   .. autofunction:: plot_query_cost_summary
+   .. autofunction:: plot_query_cost_summary_partial
+   .. autofunction:: plot_repo_growth
+   .. autofunction:: plot_storage_cost
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      ParametersCombination
+      ParametersGroupByDeleteProb
+      ParametersGroupByNumInitLabels
+      RunCombination
+   
+   
+
+   
+   
+   
+
+
+

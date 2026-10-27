@@ -1,0 +1,34 @@
+sta.models.job
+==============
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.job
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Job
+      JobPublic
+      JobState
+   
+   
+
+   
+   
+   
+
+
+

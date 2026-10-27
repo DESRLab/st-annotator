@@ -1,0 +1,39 @@
+OptimisticLockingSQLModel
+=========================
+
+
+
+
+.. currentmodule:: sta.models.base
+
+.. autoclass:: OptimisticLockingSQLModel
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OptimisticLockingSQLModel.check_edit_conflict
+      ~OptimisticLockingSQLModel.sqlmodel_update
+
+   
+   .. automethod:: OptimisticLockingSQLModel.check_edit_conflict
+   .. automethod:: OptimisticLockingSQLModel.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OptimisticLockingSQLModel.model_config
+      ~OptimisticLockingSQLModel.last_edit_at
+
+   
+   .. autoattribute:: OptimisticLockingSQLModel.model_config
+   .. autoattribute:: OptimisticLockingSQLModel.last_edit_at
+   
+   

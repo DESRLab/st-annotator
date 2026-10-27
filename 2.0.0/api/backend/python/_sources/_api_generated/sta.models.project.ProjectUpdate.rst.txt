@@ -1,0 +1,45 @@
+ProjectUpdate
+=============
+
+
+
+
+.. currentmodule:: sta.models.project
+
+.. autoclass:: ProjectUpdate
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProjectUpdate.sqlmodel_update
+
+   
+   .. automethod:: ProjectUpdate.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectUpdate.model_config
+      ~ProjectUpdate.name
+      ~ProjectUpdate.description
+      ~ProjectUpdate.config
+      ~ProjectUpdate.member_ids
+      ~ProjectUpdate.issued_at
+
+   
+   .. autoattribute:: ProjectUpdate.model_config
+   .. autoattribute:: ProjectUpdate.name
+   .. autoattribute:: ProjectUpdate.description
+   .. autoattribute:: ProjectUpdate.config
+   .. autoattribute:: ProjectUpdate.member_ids
+   .. autoattribute:: ProjectUpdate.issued_at
+   
+   

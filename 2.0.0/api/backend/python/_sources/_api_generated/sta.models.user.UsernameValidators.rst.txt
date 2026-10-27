@@ -1,0 +1,47 @@
+UsernameValidators
+==================
+
+
+
+
+.. currentmodule:: sta.models.user
+
+.. autoclass:: UsernameValidators
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~UsernameValidators.validate
+
+   
+   .. automethod:: UsernameValidators.validate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UsernameValidators.INVALID_MSG
+      ~UsernameValidators.MAX_LENGTH
+      ~UsernameValidators.MIN_LENGTH
+      ~UsernameValidators.PATTERN
+      ~UsernameValidators.REGEX
+      ~UsernameValidators.VALID_CHARS
+      ~UsernameValidators.VALID_SPECIAL_CHARS
+
+   
+   .. autoattribute:: UsernameValidators.INVALID_MSG
+   .. autoattribute:: UsernameValidators.MAX_LENGTH
+   .. autoattribute:: UsernameValidators.MIN_LENGTH
+   .. autoattribute:: UsernameValidators.PATTERN
+   .. autoattribute:: UsernameValidators.REGEX
+   .. autoattribute:: UsernameValidators.VALID_CHARS
+   .. autoattribute:: UsernameValidators.VALID_SPECIAL_CHARS
+   
+   

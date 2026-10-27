@@ -1,0 +1,45 @@
+SourceSpecPublicLike
+====================
+
+
+
+
+.. currentmodule:: sta.models.source.spec.base
+
+.. autoclass:: SourceSpecPublicLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SourceSpecPublicLike.model_dump
+      ~SourceSpecPublicLike.model_validate
+      ~SourceSpecPublicLike.sqlmodel_update
+
+   
+   .. automethod:: SourceSpecPublicLike.model_dump
+   .. automethod:: SourceSpecPublicLike.model_validate
+   .. automethod:: SourceSpecPublicLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SourceSpecPublicLike.model_fields_set
+      ~SourceSpecPublicLike.id
+      ~SourceSpecPublicLike.groups
+      ~SourceSpecPublicLike.name
+
+   
+   .. autoattribute:: SourceSpecPublicLike.model_fields_set
+   .. autoattribute:: SourceSpecPublicLike.id
+   .. autoattribute:: SourceSpecPublicLike.groups
+   .. autoattribute:: SourceSpecPublicLike.name
+   
+   

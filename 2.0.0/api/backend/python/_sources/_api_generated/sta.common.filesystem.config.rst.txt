@@ -1,0 +1,32 @@
+sta.common.filesystem.config
+============================
+
+.. currentmodule:: sta.common.filesystem
+
+.. automodule:: sta.common.filesystem.config
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      FilesystemConfig
+   
+   
+
+   
+   
+   
+
+
+

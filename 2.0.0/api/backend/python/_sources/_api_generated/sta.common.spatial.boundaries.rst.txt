@@ -1,0 +1,33 @@
+sta.common.spatial.boundaries
+=============================
+
+.. currentmodule:: sta.common.spatial
+
+.. automodule:: sta.common.spatial.boundaries
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      PartialSTBounds
+      STBounds
+   
+   
+
+   
+   
+   
+
+
+

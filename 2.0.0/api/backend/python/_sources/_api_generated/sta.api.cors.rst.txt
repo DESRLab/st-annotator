@@ -1,0 +1,46 @@
+sta.api.cors
+============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.cors
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DEFAULT_FRONTEND_URL
+      EXPOSED_HEADERS
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      expose_headers
+      get_exposed_headers
+      resolve_frontend_url
+
+   
+   .. autofunction:: expose_headers
+   .. autofunction:: get_exposed_headers
+   .. autofunction:: resolve_frontend_url
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

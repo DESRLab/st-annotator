@@ -1,0 +1,34 @@
+sta.domain.label.data
+=====================
+
+.. currentmodule:: sta.domain.label
+
+.. automodule:: sta.domain.label.data
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.domain.label.data.base
+   sta.domain.label.data.endpoints
+

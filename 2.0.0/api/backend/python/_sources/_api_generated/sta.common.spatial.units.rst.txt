@@ -1,0 +1,34 @@
+sta.common.spatial.units
+========================
+
+.. currentmodule:: sta.common.spatial
+
+.. automodule:: sta.common.spatial.units
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_decimal_truncator
+
+   
+   .. autofunction:: create_decimal_truncator
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,37 @@
+ImportLabelData
+===============
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.special.import_
+
+.. autoclass:: ImportLabelData
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ImportLabelData.apply
+
+   
+   .. automethod:: ImportLabelData.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ImportLabelData.name
+      ~ImportLabelData.params
+
+   
+   .. autoattribute:: ImportLabelData.name
+   .. autoattribute:: ImportLabelData.params
+   
+   

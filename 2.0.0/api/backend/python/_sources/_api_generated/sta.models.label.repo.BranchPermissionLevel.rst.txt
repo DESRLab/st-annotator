@@ -1,0 +1,34 @@
+BranchPermissionLevel
+=====================
+
+
+
+
+.. currentmodule:: sta.models.label.repo
+
+.. autoclass:: BranchPermissionLevel
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BranchPermissionLevel.NONE
+      ~BranchPermissionLevel.READ
+      ~BranchPermissionLevel.WRITE
+      ~BranchPermissionLevel.WRITE_ELEVATED
+      ~BranchPermissionLevel.ADMIN
+
+   
+   .. autoattribute:: BranchPermissionLevel.NONE
+   .. autoattribute:: BranchPermissionLevel.READ
+   .. autoattribute:: BranchPermissionLevel.WRITE
+   .. autoattribute:: BranchPermissionLevel.WRITE_ELEVATED
+   .. autoattribute:: BranchPermissionLevel.ADMIN
+   
+   

@@ -1,0 +1,49 @@
+PostgresDatabaseConfig
+======================
+
+
+
+
+.. currentmodule:: sta.common.database.config
+
+.. autoclass:: PostgresDatabaseConfig
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PostgresDatabaseConfig.create_db
+      ~PostgresDatabaseConfig.from_env
+      ~PostgresDatabaseConfig.get_engine
+      ~PostgresDatabaseConfig.remove_db
+      ~PostgresDatabaseConfig.with_db_suffix
+
+   
+   .. automethod:: PostgresDatabaseConfig.create_db
+   .. automethod:: PostgresDatabaseConfig.from_env
+   .. automethod:: PostgresDatabaseConfig.get_engine
+   .. automethod:: PostgresDatabaseConfig.remove_db
+   .. automethod:: PostgresDatabaseConfig.with_db_suffix
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PostgresDatabaseConfig.database
+      ~PostgresDatabaseConfig.host
+      ~PostgresDatabaseConfig.port
+      ~PostgresDatabaseConfig.user
+
+   
+   .. autoattribute:: PostgresDatabaseConfig.database
+   .. autoattribute:: PostgresDatabaseConfig.host
+   .. autoattribute:: PostgresDatabaseConfig.port
+   .. autoattribute:: PostgresDatabaseConfig.user
+   
+   

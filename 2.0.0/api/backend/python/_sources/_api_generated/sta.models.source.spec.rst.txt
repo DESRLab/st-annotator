@@ -1,0 +1,33 @@
+sta.models.source.spec
+======================
+
+.. currentmodule:: sta.models.source
+
+.. automodule:: sta.models.source.spec
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   sta.models.source.spec.base
+

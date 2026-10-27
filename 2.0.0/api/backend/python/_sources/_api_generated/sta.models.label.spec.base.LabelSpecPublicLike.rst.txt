@@ -1,0 +1,45 @@
+LabelSpecPublicLike
+===================
+
+
+
+
+.. currentmodule:: sta.models.label.spec.base
+
+.. autoclass:: LabelSpecPublicLike
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelSpecPublicLike.model_dump
+      ~LabelSpecPublicLike.model_validate
+      ~LabelSpecPublicLike.sqlmodel_update
+
+   
+   .. automethod:: LabelSpecPublicLike.model_dump
+   .. automethod:: LabelSpecPublicLike.model_validate
+   .. automethod:: LabelSpecPublicLike.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelSpecPublicLike.model_fields_set
+      ~LabelSpecPublicLike.id
+      ~LabelSpecPublicLike.groups
+      ~LabelSpecPublicLike.name
+
+   
+   .. autoattribute:: LabelSpecPublicLike.model_fields_set
+   .. autoattribute:: LabelSpecPublicLike.id
+   .. autoattribute:: LabelSpecPublicLike.groups
+   .. autoattribute:: LabelSpecPublicLike.name
+   
+   

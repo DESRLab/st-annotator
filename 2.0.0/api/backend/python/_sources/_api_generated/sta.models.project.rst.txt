@@ -1,0 +1,37 @@
+sta.models.project
+==================
+
+.. currentmodule:: sta.models
+
+.. automodule:: sta.models.project
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Project
+      ProjectBulkUpdate
+      ProjectCreate
+      ProjectMember
+      ProjectPublic
+      ProjectUpdate
+   
+   
+
+   
+   
+   
+
+
+

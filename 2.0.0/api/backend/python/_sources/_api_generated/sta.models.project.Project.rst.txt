@@ -1,0 +1,53 @@
+Project
+=======
+
+
+
+
+.. currentmodule:: sta.models.project
+
+.. autoclass:: Project
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Project.check_edit_conflict
+      ~Project.get_member_links_cls
+      ~Project.sqlmodel_update
+
+   
+   .. automethod:: Project.check_edit_conflict
+   .. automethod:: Project.get_member_links_cls
+   .. automethod:: Project.sqlmodel_update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Project.config
+      ~Project.description
+      ~Project.id
+      ~Project.last_edit_at
+      ~Project.members
+      ~Project.model_config
+      ~Project.name
+      ~Project.tasks
+
+   
+   .. autoattribute:: Project.config
+   .. autoattribute:: Project.description
+   .. autoattribute:: Project.id
+   .. autoattribute:: Project.last_edit_at
+   .. autoattribute:: Project.members
+   .. autoattribute:: Project.model_config
+   .. autoattribute:: Project.name
+   .. autoattribute:: Project.tasks
+   
+   

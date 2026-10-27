@@ -1,0 +1,36 @@
+sta.api.jobs
+============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.jobs
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      cancel_job
+      list_jobs
+
+   
+   .. autofunction:: cancel_job
+   .. autofunction:: list_jobs
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

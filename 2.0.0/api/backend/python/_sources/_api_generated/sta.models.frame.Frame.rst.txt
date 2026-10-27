@@ -1,0 +1,101 @@
+Frame
+=====
+
+
+
+
+.. currentmodule:: sta.models.frame
+
+.. autoclass:: Frame
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Frame.check_edit_conflict
+      ~Frame.get_create_cls
+      ~Frame.get_public_cls
+      ~Frame.get_update_cls
+      ~Frame.sqlmodel_update
+      ~Frame.unpack_max_coords
+      ~Frame.unpack_min_coords
+      ~Frame.unpack_st_bounds
+      ~Frame.update_from_st_bounds
+
+   
+   .. automethod:: Frame.check_edit_conflict
+   .. automethod:: Frame.get_create_cls
+   .. automethod:: Frame.get_public_cls
+   .. automethod:: Frame.get_update_cls
+   .. automethod:: Frame.sqlmodel_update
+   .. automethod:: Frame.unpack_max_coords
+   .. automethod:: Frame.unpack_min_coords
+   .. automethod:: Frame.unpack_st_bounds
+   .. automethod:: Frame.update_from_st_bounds
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Frame.COORD_TYPE
+      ~Frame.account
+      ~Frame.account_id
+      ~Frame.id
+      ~Frame.is_complete
+      ~Frame.label_branch
+      ~Frame.label_branch_id
+      ~Frame.last_edit_at
+      ~Frame.last_viewed_at
+      ~Frame.max_coords
+      ~Frame.max_timestamp
+      ~Frame.max_x
+      ~Frame.max_y
+      ~Frame.max_z
+      ~Frame.min_coords
+      ~Frame.min_timestamp
+      ~Frame.min_x
+      ~Frame.min_y
+      ~Frame.min_z
+      ~Frame.model_config
+      ~Frame.source_group
+      ~Frame.source_group_id
+      ~Frame.st_bounds
+      ~Frame.task
+      ~Frame.task_id
+      ~Frame.work_type
+
+   
+   .. autoattribute:: Frame.COORD_TYPE
+   .. autoattribute:: Frame.account
+   .. autoattribute:: Frame.account_id
+   .. autoattribute:: Frame.id
+   .. autoattribute:: Frame.is_complete
+   .. autoattribute:: Frame.label_branch
+   .. autoattribute:: Frame.label_branch_id
+   .. autoattribute:: Frame.last_edit_at
+   .. autoattribute:: Frame.last_viewed_at
+   .. autoattribute:: Frame.max_coords
+   .. autoattribute:: Frame.max_timestamp
+   .. autoattribute:: Frame.max_x
+   .. autoattribute:: Frame.max_y
+   .. autoattribute:: Frame.max_z
+   .. autoattribute:: Frame.min_coords
+   .. autoattribute:: Frame.min_timestamp
+   .. autoattribute:: Frame.min_x
+   .. autoattribute:: Frame.min_y
+   .. autoattribute:: Frame.min_z
+   .. autoattribute:: Frame.model_config
+   .. autoattribute:: Frame.source_group
+   .. autoattribute:: Frame.source_group_id
+   .. autoattribute:: Frame.st_bounds
+   .. autoattribute:: Frame.task
+   .. autoattribute:: Frame.task_id
+   .. autoattribute:: Frame.work_type
+   
+   

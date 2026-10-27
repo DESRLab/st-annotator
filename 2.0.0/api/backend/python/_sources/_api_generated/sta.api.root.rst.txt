@@ -1,0 +1,38 @@
+sta.api.root
+============
+
+.. currentmodule:: sta.api
+
+.. automodule:: sta.api.root
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_api
+      parse_integrity_violation
+      root
+
+   
+   .. autofunction:: build_api
+   .. autofunction:: parse_integrity_violation
+   .. autofunction:: root
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,52 @@
+Job
+===
+
+
+
+
+.. currentmodule:: sta.models.job
+
+.. autoclass:: Job
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Job.created_at
+      ~Job.created_by_id
+      ~Job.dedupe_key
+      ~Job.error
+      ~Job.finished_at
+      ~Job.id
+      ~Job.kind
+      ~Job.label
+      ~Job.model_config
+      ~Job.payload
+      ~Job.progress_done
+      ~Job.progress_total
+      ~Job.started_at
+      ~Job.state
+
+   
+   .. autoattribute:: Job.created_at
+   .. autoattribute:: Job.created_by_id
+   .. autoattribute:: Job.dedupe_key
+   .. autoattribute:: Job.error
+   .. autoattribute:: Job.finished_at
+   .. autoattribute:: Job.id
+   .. autoattribute:: Job.kind
+   .. autoattribute:: Job.label
+   .. autoattribute:: Job.model_config
+   .. autoattribute:: Job.payload
+   .. autoattribute:: Job.progress_done
+   .. autoattribute:: Job.progress_total
+   .. autoattribute:: Job.started_at
+   .. autoattribute:: Job.state
+   
+   

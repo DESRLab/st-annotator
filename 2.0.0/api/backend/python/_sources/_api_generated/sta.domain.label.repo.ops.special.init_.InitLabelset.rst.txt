@@ -1,0 +1,37 @@
+InitLabelset
+============
+
+
+
+
+.. currentmodule:: sta.domain.label.repo.ops.special.init_
+
+.. autoclass:: InitLabelset
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~InitLabelset.apply
+
+   
+   .. automethod:: InitLabelset.apply
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~InitLabelset.name
+      ~InitLabelset.params
+
+   
+   .. autoattribute:: InitLabelset.name
+   .. autoattribute:: InitLabelset.params
+   
+   

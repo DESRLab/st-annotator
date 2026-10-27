@@ -1,0 +1,6 @@
+JSONType
+========
+
+.. currentmodule:: sta.common.utils.json
+
+.. autodata:: JSONType

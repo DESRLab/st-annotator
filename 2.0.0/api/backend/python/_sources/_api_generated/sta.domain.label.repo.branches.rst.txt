@@ -1,0 +1,50 @@
+sta.domain.label.repo.branches
+==============================
+
+.. currentmodule:: sta.domain.label.repo
+
+.. automodule:: sta.domain.label.repo.branches
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      can_access_branch
+      can_access_branch_filters
+      count_branches
+      create_branch
+      delete_branch
+      list_branches
+      read_branch
+      require_write_branch
+      update_branch
+
+   
+   .. autofunction:: can_access_branch
+   .. autofunction:: can_access_branch_filters
+   .. autofunction:: count_branches
+   .. autofunction:: create_branch
+   .. autofunction:: delete_branch
+   .. autofunction:: list_branches
+   .. autofunction:: read_branch
+   .. autofunction:: require_write_branch
+   .. autofunction:: update_branch
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

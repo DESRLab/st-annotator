@@ -1,0 +1,38 @@
+ParametersCombination
+=====================
+
+
+
+
+.. currentmodule:: sta.benchmarks.plot_utils
+
+.. autoclass:: ParametersCombination
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ParametersCombination.num_commits
+      ~ParametersCombination.num_init_labels
+      ~ParametersCombination.num_points
+      ~ParametersCombination.branch_prob
+      ~ParametersCombination.create_prob
+      ~ParametersCombination.delete_prob
+      ~ParametersCombination.entity_prob
+
+   
+   .. autoattribute:: ParametersCombination.num_commits
+   .. autoattribute:: ParametersCombination.num_init_labels
+   .. autoattribute:: ParametersCombination.num_points
+   .. autoattribute:: ParametersCombination.branch_prob
+   .. autoattribute:: ParametersCombination.create_prob
+   .. autoattribute:: ParametersCombination.delete_prob
+   .. autoattribute:: ParametersCombination.entity_prob
+   
+   
