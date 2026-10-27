@@ -338,6 +338,11 @@ the standalone site. The publishing tools come from the workflow revision,
 while documentation and package sources come from the selected branch or tag.
 Release checkouts must support the current documentation build pipeline.
 
+Markdown links to repository files use `{{ repo_source_url }}` for the source
+URL prefix. The MkDocs hook in `scripts/doc/repository-links.py` expands it to
+the configured repository's `blob/v<DOCS_VERSION>` URL for release snapshots,
+or `blob/main` for development and standalone builds.
+
 `python scripts/doc/package-doc-versions.py site <archive> <version> [--stable]`
 updates the selected snapshot in an archive checkout. The `docs-site` branch
 stores completed snapshots, Material-compatible `versions.json` metadata, and

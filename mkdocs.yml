@@ -44,6 +44,9 @@ theme:
 
 docs_dir: docs
 
+hooks:
+  - scripts/doc/repository-links.py
+
 nav:
   - Home: index.md
   - Get Started:

@@ -224,8 +224,8 @@ Completed logs remain if another log fails. See
 
 Use `sta-datasets generate st-data-info` to generate a metadata CSV, then
 import it with the appropriate data plugin's `import-by-st` command. See the
-[datasets README](../plugins/datasets/README.md#custom-data) for file naming
-rules, path conventions, and a complete example.
+[datasets README]({{ repo_source_url }}/plugins/datasets/README.md#custom-data)
+for file naming rules, path conventions, and a complete example.
 
 ### Host the platform
 
