@@ -315,7 +315,7 @@ You can apply an operation by calling `EditableBranch.apply()` with your operati
 
 Note that once an operation has been applied server-side, it can no longer be undone in the annotation editor.
 
-## Dataset import plugin
+## Datasets plugin
 
 `plugins/datasets/backend` is a backend-only package (`sta-datasets`, module
 `sta_datasets`). Its plugin entry point registers the `datasets` command group,

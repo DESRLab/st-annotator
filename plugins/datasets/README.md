@@ -1,12 +1,6 @@
-# ⭐ Dataset Import Plugin
+# ⭐ Datasets Plugin
 
-This plugin imports supported datasets into ST Annotator as point-cloud sources
-and object labels, including 3DSSG relationships for 3RScan. Its backend package
-is `sta-datasets` (`sta_datasets`), and
-`bash scripts/install.sh` installs it by default. It contributes CLI commands
-without a frontend workspace. It also provides `sta-datasets generate st-data-info`
-for custom data metadata CSVs; see the [custom data quickstart](../../docs/quickstart.md#custom-data)
-for naming rules and the import workflow.
+This plugin provides helper commands to import datasets into ST Annotator.
 
 Supported datasets:
 
@@ -148,13 +142,49 @@ and pose matches without creating these files.
 Argoverse data is distributed under
 [CC BY-NC-SA 4.0](https://github.com/argoverse/av2-api/blob/main/NOTICE).
 
-## Development
+## Custom Data
 
-Dataset readers live in separate modules under `backend/sta_datasets/`.
-`common.py` provides shared geometry, label creation, batching, and import cleanup
-helpers. `cli.py` registers importers under `import` and metadata generators under
-`generate` for both the standalone executable and the plugin host.
+For custom data, first use `sta-datasets generate st-data-info` to generate a
+metadata CSV for import.
 
-See the [dataset import guide](https://desrlab.github.io/st-annotator/quickstart.md#import-data)
-for further usage details and the [plugin development guide](https://desrlab.github.io/st-annotator/dev/plugin.md#dataset-import-plugin)
-for the package structure.
+1. Place the data files in a directory under `FILESYSTEM_ROOT`. The generator
+   scans only the immediate contents of that directory, not its subdirectories.
+2. Name each file with its timestamp using
+   `YYYY_MM_DD=HH_MM_SS_microseconds.<extension>`. For example:
+
+    ```text
+    data/
+    └── custom-point-clouds/
+        ├── 2026_08_25=09_30_00_000000.pcd
+        └── 2026_08_25=09_30_01_000000.pcd
+    ```
+
+   Exported JSON labels named
+   `YYYY_MM_DD=HH_MM_SS_microseconds.<source-extension>.json` are also
+   supported.
+3. From the repository root, generate the metadata CSV. The input data path is relative to `FILESYSTEM_ROOT`,
+   while the output CSV is relative to the current working directory:
+
+    ```bash
+    sta-datasets generate st-data-info \
+        custom-point-clouds \
+        --output custom-point-clouds.csv \
+        -c appconfig-postgis.json
+    ```
+
+   Edit the CSV before importing if the data requires translation, rotation,
+   or scaling.
+4. Run `sta plugins -c <config>` to list the available plugins, then inspect a
+   plugin's commands with `sta plugins -c <config> <plugin> --help`.
+5. Import the generated CSV with the plugin's `import-by-st` command.
+   The input CSV is relative to the current working directory.
+   Continuing the above example:
+
+    ```bash
+    sta plugins -c appconfig-postgis.json pcd import-by-st \
+        custom-point-clouds.csv
+    ```
+
+   Log in when prompted and select the existing source group or label branch
+   that should receive the imported data. Run the selected command with
+   `--help` for plugin-specific options such as the source-data timezone.
