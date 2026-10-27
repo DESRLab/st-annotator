@@ -7,7 +7,9 @@ import { spawnSync } from "node:child_process";
 const root = process.cwd();
 const arguments_ = process.argv.slice(2);
 if (arguments_.some((argument) => argument !== "--skip-build")) {
-  throw new Error("Usage: node scripts/test-frontend-packages.mjs [--skip-build]");
+  throw new Error(
+    "Usage: node scripts/test/test-frontend-packages.mjs [--skip-build]",
+  );
 }
 const skipBuild = arguments_.includes("--skip-build");
 const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "sta-packages-"));

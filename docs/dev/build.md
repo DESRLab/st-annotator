@@ -129,12 +129,13 @@ packages, run:
 
 ```sh
 bash scripts/lint.sh frontend
-node scripts/test-frontend-packages.mjs
+bash scripts/test.sh frontend
 ```
 
 The frontend lint stage automatically runs the internal
 `scripts/lint/check-frontend-dependencies.mjs` tool to validate internal dependency
-ranges, plugin contracts, and package exports. `test-frontend-packages.mjs` builds and packs
+ranges, plugin contracts, and package exports. The frontend test suite runs the
+internal helper `scripts/test/test-frontend-packages.mjs`, which builds and packs
 all frontend packages, then installs their tarballs in temporary projects for
 these compositions:
 
@@ -303,7 +304,6 @@ bash scripts/test.sh backend
 bash scripts/build-dev.sh
 bash scripts/lint.sh frontend
 bash scripts/test.sh frontend
-node scripts/test-frontend-packages.mjs
 bash scripts/build-prod.sh
 bash scripts/smoke-prod.sh
 bash scripts/doc.sh
@@ -317,9 +317,9 @@ scripts take `all`, `backend`, or `frontend`. The build script produces the
 publishable frontend package artifacts and proves that the full composition
 bundles successfully. The smoke script proves the built server bundle boots and
 serves, which neither the build nor the browser tests cover. The test script
-covers backend and frontend unit and integration tests, including browser tests.
-The isolated tarball installations described above run separately through
-`scripts/test-frontend-packages.mjs`. The separate documentation workflow
+covers backend and frontend unit and integration tests, including browser tests
+and the isolated tarball installations described above. The separate documentation
+workflow
 (`.github/workflows/docs.yml`) publishes `development/` on pushes to `main` and
 builds the tagged source when a GitHub release is published. Manual runs target
 `main`. Release tags use `vX.Y.Z` or
@@ -410,6 +410,6 @@ future automated release workflow should preserve the same package-build,
 isolated-install, composition-build, and publication-order gates.
 
 When publishable frontend packages have already been rebuilt,
-`node scripts/test-frontend-packages.mjs --skip-build` runs the isolated package
+`node scripts/test/test-frontend-packages.mjs --skip-build` runs the isolated package
 consumer checks without starting a development backend. The default command
 rebuilds packages before checking them.

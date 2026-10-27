@@ -129,6 +129,9 @@ if $RUN_FRONTEND; then
     CI=1 npm --prefix tests/frontend run test:e2e
     CI=1 npm --prefix tests/frontend run test:e2e:auth
     CI=1 npm --prefix tests/frontend run test:e2e:with-data
+
+    echo "=== [TEST] Frontend package consumers ==="
+    node scripts/test/test-frontend-packages.mjs
 fi
 
 echo "=== RESULT ==="

@@ -71,8 +71,8 @@ Prettier are both inside it.
 `.github/workflows/pre-release.yml` gates a change with these same scripts; every
 job first runs `.github/actions/setup`, which calls `scripts/install.sh`. The
 backend job runs `lint.sh backend` then `test.sh backend` across Python 3.10–3.12;
-the frontend job runs `build-dev.sh` → `lint.sh frontend` → `test.sh frontend` →
-`node scripts/test-frontend-packages.mjs` → `build-prod.sh` → `smoke-prod.sh`; a
+the frontend job runs `build-dev.sh` → `lint.sh frontend` → `test.sh frontend`
+(including package consumer checks) → `build-prod.sh` → `smoke-prod.sh`; a
 separate job runs `doc.sh`. Anything that breaks those is not ready to merge.
 
 ## Environments

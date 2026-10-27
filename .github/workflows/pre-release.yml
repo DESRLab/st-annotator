@@ -107,8 +107,6 @@ jobs:
         run: bash ./scripts/lint.sh frontend
       - name: Run frontend tests
         run: bash ./scripts/test.sh frontend
-      - name: Test package consumers
-        run: node ./scripts/test-frontend-packages.mjs
       - name: Build full distribution
         run: bash ./scripts/build-prod.sh
       - name: Smoke test production bundle
