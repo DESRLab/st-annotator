@@ -1898,11 +1898,12 @@ optional siblings remain host-selected.</p>
 <p>Workspace hoisting can hide undeclared imports. Before releasing frontend
 packages, run:</p>
 <div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/lint.sh<span class="w"> </span>frontend
-node<span class="w"> </span>scripts/test-frontend-packages.mjs
+bash<span class="w"> </span>scripts/test.sh<span class="w"> </span>frontend
 </code></pre></div>
 <p>The frontend lint stage automatically runs the internal
 <code>scripts/lint/check-frontend-dependencies.mjs</code> tool to validate internal dependency
-ranges, plugin contracts, and package exports. <code>test-frontend-packages.mjs</code> builds and packs
+ranges, plugin contracts, and package exports. The frontend test suite runs the
+internal helper <code>scripts/test/test-frontend-packages.mjs</code>, which builds and packs
 all frontend packages, then installs their tarballs in temporary projects for
 these compositions:</p>
 <ul>
@@ -2028,7 +2029,6 @@ bash<span class="w"> </span>scripts/test.sh<span class="w"> </span>backend
 bash<span class="w"> </span>scripts/build-dev.sh
 bash<span class="w"> </span>scripts/lint.sh<span class="w"> </span>frontend
 bash<span class="w"> </span>scripts/test.sh<span class="w"> </span>frontend
-node<span class="w"> </span>scripts/test-frontend-packages.mjs
 bash<span class="w"> </span>scripts/build-prod.sh
 bash<span class="w"> </span>scripts/smoke-prod.sh
 bash<span class="w"> </span>scripts/doc.sh
@@ -2041,9 +2041,9 @@ scripts take <code>all</code>, <code>backend</code>, or <code>frontend</code>. T
 publishable frontend package artifacts and proves that the full composition
 bundles successfully. The smoke script proves the built server bundle boots and
 serves, which neither the build nor the browser tests cover. The test script
-covers backend and frontend unit and integration tests, including browser tests.
-The isolated tarball installations described above run separately through
-<code>scripts/test-frontend-packages.mjs</code>. The separate documentation workflow
+covers backend and frontend unit and integration tests, including browser tests
+and the isolated tarball installations described above. The separate documentation
+workflow
 (<code>.github/workflows/docs.yml</code>) publishes <code>development/</code> on pushes to <code>main</code> and
 builds the tagged source when a GitHub release is published. Manual runs target
 <code>main</code>. Release tags use <code>vX.Y.Z</code> or
@@ -2060,6 +2060,10 @@ temporary MkDocs configuration written by
 the standalone site. The publishing tools come from the workflow revision,
 while documentation and package sources come from the selected branch or tag.
 Release checkouts must support the current documentation build pipeline.</p>
+<p>Markdown links to repository files use <code>{{ repo_source_url }}</code> for the source
+URL prefix. The MkDocs hook in <code>scripts/doc/repository-links.py</code> expands it to
+the configured repository's <code>blob/v&lt;DOCS_VERSION&gt;</code> URL for release snapshots,
+or <code>blob/main</code> for development and standalone builds.</p>
 <p><code>python scripts/doc/package-doc-versions.py site &lt;archive&gt; &lt;version&gt; [--stable]</code>
 updates the selected snapshot in an archive checkout. The <code>docs-site</code> branch
 stores completed snapshots, Material-compatible <code>versions.json</code> metadata, and
@@ -2123,7 +2127,7 @@ release-environment concerns and are not encoded in this repository today. A
 future automated release workflow should preserve the same package-build,
 isolated-install, composition-build, and publication-order gates.</p>
 <p>When publishable frontend packages have already been rebuilt,
-<code>node scripts/test-frontend-packages.mjs --skip-build</code> runs the isolated package
+<code>node scripts/test/test-frontend-packages.mjs --skip-build</code> runs the isolated package
 consumer checks without starting a development backend. The default command
 rebuilds packages before checking them.</p>
 

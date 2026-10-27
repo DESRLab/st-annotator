@@ -2055,48 +2055,10 @@ Use <code>--workers N</code> to change the process count or <code>--workers 1</c
 Completed logs remain if another log fails. See
 <code>sta-datasets import argoverse2 --help</code> for the full option list.</p>
 <h4 id="custom-data">Custom data</h4>
-<p>For custom data, first use <code>sta-datasets generate st-data-info</code> to generate a
-metadata CSV for import.</p>
-<ol>
-<li>Place the data files in a directory under <code>FILESYSTEM_ROOT</code>. The generator
-   scans only the immediate contents of that directory, not its subdirectories.</li>
-<li>
-<p>Name each file with its timestamp using
-   <code>YYYY_MM_DD=HH_MM_SS_microseconds.&lt;extension&gt;</code>. For example:</p>
-<div class="highlight"><pre><span></span><code>data/
-└── custom-point-clouds/
-    ├── 2026_08_25=09_30_00_000000.pcd
-    └── 2026_08_25=09_30_01_000000.pcd
-</code></pre></div>
-</li>
-</ol>
-<p>Exported JSON labels named
-   <code>YYYY_MM_DD=HH_MM_SS_microseconds.&lt;source-extension&gt;.json</code> are also
-   supported.
-3. From the repository root, generate the metadata CSV. The input data path is relative to <code>FILESYSTEM_ROOT</code>,
-   while the output CSV is relative to the current working directory:</p>
-<pre><code>```bash
-sta-datasets generate st-data-info \
-    custom-point-clouds \
-    --output custom-point-clouds.csv \
-    -c appconfig-postgis.json
-```
-</code></pre>
-<p>Edit the CSV before importing if the data requires translation, rotation,
-   or scaling.
-4. Run <code>sta plugins -c &lt;config&gt;</code> to list the available plugins, then inspect a
-   plugin's commands with <code>sta plugins -c &lt;config&gt; &lt;plugin&gt; --help</code>.
-5. Import the generated CSV with the plugin's <code>import-by-st</code> command.
-   The input CSV is relative to the current working directory.
-   Continuing the above example:</p>
-<pre><code>```bash
-sta plugins -c appconfig-postgis.json pcd import-by-st \
-    custom-point-clouds.csv
-```
-</code></pre>
-<p>Log in when prompted and select the existing source group or label branch
-   that should receive the imported data. Run the selected command with
-   <code>--help</code> for plugin-specific options such as the source-data timezone.</p>
+<p>Use <code>sta-datasets generate st-data-info</code> to generate a metadata CSV, then
+import it with the appropriate data plugin's <code>import-by-st</code> command. See the
+<a href="https://github.com/DESRLab/st-annotator/blob/main/plugins/datasets/README.md#custom-data">datasets README</a>
+for file naming rules, path conventions, and a complete example.</p>
 <h3 id="host-the-platform">Host the platform</h3>
 <ol>
 <li>Run <code>bash scripts/serve-dev.sh -c &lt;config&gt;</code> to start the backend and full frontend
