@@ -1,6 +1,6 @@
 {
   "name": "sta",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "ST Annotator Frontend",
   "keywords": [
     "computer-vision",
@@ -166,7 +166,7 @@
     "@types/uuid": "^9.0.0",
     "eslint": "9.39.4",
     "sinon": "^17.0.1",
-    "sta-config": "^1.2.0",
+    "sta-config": "^2.0.0",
     "ts-essentials": "^9.3.2",
     "typedoc": "^0.28.19",
     "typedoc-plugin-extras": "^4.0.1",

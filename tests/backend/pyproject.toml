@@ -1,6 +1,6 @@
 [project]
 name = "sta-integration-tests"
-version = "1.2.0"
+version = "2.0.0"
 description = "Plugin-dependent backend integration tests for the ST Annotator platform"
 license = "Apache-2.0"
 requires-python = ">=3.10"

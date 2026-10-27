@@ -1,6 +1,6 @@
 {
   "name": "st-annotator-full",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,16 +11,16 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "sta": "^1.2.0",
-    "sta-bbox": "^1.2.0",
-    "sta-gmesh": "^1.2.0",
-    "sta-pcd": "^1.2.0",
-    "sta-segmentation": "^1.2.0",
-    "sta-vector": "^1.2.0",
-    "sta-relation": "^1.2.0"
+    "sta": "^2.0.0",
+    "sta-bbox": "^2.0.0",
+    "sta-gmesh": "^2.0.0",
+    "sta-pcd": "^2.0.0",
+    "sta-segmentation": "^2.0.0",
+    "sta-vector": "^2.0.0",
+    "sta-relation": "^2.0.0"
   },
   "devDependencies": {
-    "sta-config": "^1.2.0"
+    "sta-config": "^2.0.0"
   },
   "engines": {
     "node": ">=20.0.0"

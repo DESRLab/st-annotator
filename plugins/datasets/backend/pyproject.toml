@@ -7,7 +7,7 @@ module-root = ""
 
 [project]
 name = "sta-datasets"
-version = "1.2.0"
+version = "2.0.0"
 description = "ST Annotator datasets plugin"
 license = "Apache-2.0"
 requires-python = ">=3.10"

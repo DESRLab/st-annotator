@@ -4531,7 +4531,7 @@ wheels = [
 
 [[package]]
 name = "sta"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "core/backend" }
 dependencies = [
     { name = "certifi" },
@@ -4632,7 +4632,7 @@ dev = [
 
 [[package]]
 name = "sta-bbox"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "plugins/bbox/backend" }
 dependencies = [
     { name = "click" },
@@ -4683,7 +4683,7 @@ dev = [
 
 [[package]]
 name = "sta-datasets"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "plugins/datasets/backend" }
 dependencies = [
     { name = "click" },
@@ -4741,7 +4741,7 @@ dev = [
 
 [[package]]
 name = "sta-gmesh"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "plugins/gmesh/backend" }
 dependencies = [
     { name = "click" },
@@ -4798,7 +4798,7 @@ dev = [
 
 [[package]]
 name = "sta-integration-tests"
-version = "1.2.0"
+version = "2.0.0"
 source = { virtual = "tests/backend" }
 dependencies = [
     { name = "fastapi" },
@@ -4845,7 +4845,7 @@ dev = [
 
 [[package]]
 name = "sta-pcd"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "plugins/pcd/backend" }
 dependencies = [
     { name = "addict" },
@@ -4925,7 +4925,7 @@ dev = [
 
 [[package]]
 name = "sta-relation"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "plugins/relation/backend" }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
@@ -4968,7 +4968,7 @@ dev = [
 
 [[package]]
 name = "sta-segmentation"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "plugins/segmentation/backend" }
 dependencies = [
     { name = "click" },
@@ -5029,7 +5029,7 @@ dev = [
 
 [[package]]
 name = "sta-vector"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "plugins/vector/backend" }
 dependencies = [
     { name = "click" },
